@@ -4,12 +4,9 @@
 library(sqldf)
 library(XLConnectJars)
 
-# Due to large size of the rlms.db Desktop is temporarily the wd but can be changed
-wd <- paste0(normalizePath(Sys.getenv("USERPROFILE"), winslash = "/"), "/Desktop")
-setwd(wd)
 
 # Connect with SQLite
-db <- dbConnect(SQLite(), dbname=paste0(wd, "/rlms.db"))
+db <- dbConnect(SQLite(), dbname="C:/Country/Russia/Data/SEABYTE/RLMS/sqlite/rlms.db")
 
 # Modified cbind
 cbind.all <- function (...) {
