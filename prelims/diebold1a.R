@@ -13,39 +13,19 @@ library(stargazer)
 library(gmodels)
 library(lmtest)
 
-library(questionr)
-library(labelled)
-
 memory.limit(1e10)
-dat_joined <- foreign::read.spss(file="USER_RLMS-HSE_IND_1994_2018_v2.sav",
+dat_joined <- foreign::read.spss(file="C:/Country/Russia/Data/SEABYTE/RLMS/rawdata/Joined_database/USER_RLMS-HSE_IND_1994_2017_v2.sav",
                                  use.value.labels = F,
-                                 use.missings = F,
-                                 to.data.frame = T)
-
+                                 use.missings=TRUE,
+                                 to.data.frame = TRUE)
 
 
 s1a_98 <- dat_joined[which(dat_joined$YEAR==1998 & dat_joined$J13.2>0),
                      c("ID_I","ID_H","J13.2","EDUC","J5A","J5B","H7.2","H5","J23",
                        "I2","I4")]
-# User-defined missing values
-for (i in colnames(s1a_98)){
-  na_values(s1a_98[,i]) <- 99999997:99999999
-}
 
-
-freq(s1a_98$J23)
-
-summary(s1a_98$I2)
-table(s1a_98$I2)
-
-
-table(s1a_98$J23)
-freq(s1a_98$J23)
-summary(s1a_98$J23)
 # I2 country of birth has 1638/3701 NAs - interesting fact but not usable easily
-which(is.na(freq(s1a_98$I2)[,3])==T)
 # I4 Nationality 3141 Russian only 9 missing will consider as non-Russian
-freq(s1a_98$I4, total=T)
 # J23 Is govt. owner 2615/914 quite amazing
 
 # 
