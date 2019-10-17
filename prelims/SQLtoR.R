@@ -18,7 +18,7 @@ cbind.all <- function (...) {
 }
 
 # Main function
-selectFromSQL <- function(column_names=NULL, column_blocks=NULL, wave_number=NULL, dbname = "rlms.db"){
+selectFromSQL <- function(column_names=NULL, column_blocks=NULL, wave_number=NULL, dbname = "C:/Country/Russia/Data/SEABYTE/RLMS/sqlite/rlms.db"){
   "
   1. column_names - select specific column/s
 
