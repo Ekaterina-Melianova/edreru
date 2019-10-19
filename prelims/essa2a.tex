@@ -1,0 +1,910 @@
+\documentclass[]{article}
+\usepackage{lmodern}
+\usepackage{amssymb,amsmath}
+\usepackage{ifxetex,ifluatex}
+\usepackage{fixltx2e} % provides \textsubscript
+\ifnum 0\ifxetex 1\fi\ifluatex 1\fi=0 % if pdftex
+  \usepackage[T1]{fontenc}
+  \usepackage[utf8]{inputenc}
+\else % if luatex or xelatex
+  \ifxetex
+    \usepackage{mathspec}
+  \else
+    \usepackage{fontspec}
+  \fi
+  \defaultfontfeatures{Ligatures=TeX,Scale=MatchLowercase}
+\fi
+% use upquote if available, for straight quotes in verbatim environments
+\IfFileExists{upquote.sty}{\usepackage{upquote}}{}
+% use microtype if available
+\IfFileExists{microtype.sty}{%
+\usepackage{microtype}
+\UseMicrotypeSet[protrusion]{basicmath} % disable protrusion for tt fonts
+}{}
+\usepackage[margin=1in]{geometry}
+\usepackage{hyperref}
+\PassOptionsToPackage{usenames,dvipsnames}{color} % color is loaded by hyperref
+\hypersetup{unicode=true,
+            pdftitle={Exploring potential of using ESS for Comparative Analysis of Rate of Returns to Education},
+            pdfauthor={Suhas Parandekar, Ekaterina Melianova and ArtÃ«m Volgin},
+            colorlinks=true,
+            linkcolor=Maroon,
+            citecolor=Blue,
+            urlcolor=blue,
+            breaklinks=true}
+\urlstyle{same}  % don't use monospace font for urls
+\usepackage{color}
+\usepackage{fancyvrb}
+\newcommand{\VerbBar}{|}
+\newcommand{\VERB}{\Verb[commandchars=\\\{\}]}
+\DefineVerbatimEnvironment{Highlighting}{Verbatim}{commandchars=\\\{\}}
+% Add ',fontsize=\small' for more characters per line
+\usepackage{framed}
+\definecolor{shadecolor}{rgb}{0.82,0.94,0.75}
+\newenvironment{Shaded}{\begin{snugshade}}{\end{snugshade}}
+\newcommand{\AlertTok}[1]{\textcolor[rgb]{0.94,0.16,0.16}{#1}}
+\newcommand{\AnnotationTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textbf{\textit{#1}}}}
+\newcommand{\AttributeTok}[1]{\textcolor[rgb]{0.77,0.63,0.00}{#1}}
+\newcommand{\BaseNTok}[1]{\textcolor[rgb]{0.00,0.00,0.81}{#1}}
+\newcommand{\BuiltInTok}[1]{#1}
+\newcommand{\CharTok}[1]{\textcolor[rgb]{0.31,0.60,0.02}{#1}}
+\newcommand{\CommentTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textit{#1}}}
+\newcommand{\CommentVarTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textbf{\textit{#1}}}}
+\newcommand{\ConstantTok}[1]{\textcolor[rgb]{0.00,0.00,0.00}{#1}}
+\newcommand{\ControlFlowTok}[1]{\textcolor[rgb]{0.13,0.29,0.53}{\textbf{#1}}}
+\newcommand{\DataTypeTok}[1]{\textcolor[rgb]{0.13,0.29,0.53}{#1}}
+\newcommand{\DecValTok}[1]{\textcolor[rgb]{0.00,0.00,0.81}{#1}}
+\newcommand{\DocumentationTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textbf{\textit{#1}}}}
+\newcommand{\ErrorTok}[1]{\textcolor[rgb]{0.64,0.00,0.00}{\textbf{#1}}}
+\newcommand{\ExtensionTok}[1]{#1}
+\newcommand{\FloatTok}[1]{\textcolor[rgb]{0.00,0.00,0.81}{#1}}
+\newcommand{\FunctionTok}[1]{\textcolor[rgb]{0.00,0.00,0.00}{#1}}
+\newcommand{\ImportTok}[1]{#1}
+\newcommand{\InformationTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textbf{\textit{#1}}}}
+\newcommand{\KeywordTok}[1]{\textcolor[rgb]{0.13,0.29,0.53}{\textbf{#1}}}
+\newcommand{\NormalTok}[1]{#1}
+\newcommand{\OperatorTok}[1]{\textcolor[rgb]{0.81,0.36,0.00}{\textbf{#1}}}
+\newcommand{\OtherTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{#1}}
+\newcommand{\PreprocessorTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textit{#1}}}
+\newcommand{\RegionMarkerTok}[1]{#1}
+\newcommand{\SpecialCharTok}[1]{\textcolor[rgb]{0.00,0.00,0.00}{#1}}
+\newcommand{\SpecialStringTok}[1]{\textcolor[rgb]{0.31,0.60,0.02}{#1}}
+\newcommand{\StringTok}[1]{\textcolor[rgb]{0.31,0.60,0.02}{#1}}
+\newcommand{\VariableTok}[1]{\textcolor[rgb]{0.00,0.00,0.00}{#1}}
+\newcommand{\VerbatimStringTok}[1]{\textcolor[rgb]{0.31,0.60,0.02}{#1}}
+\newcommand{\WarningTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textbf{\textit{#1}}}}
+\usepackage{longtable,booktabs}
+\usepackage{graphicx,grffile}
+\makeatletter
+\def\maxwidth{\ifdim\Gin@nat@width>\linewidth\linewidth\else\Gin@nat@width\fi}
+\def\maxheight{\ifdim\Gin@nat@height>\textheight\textheight\else\Gin@nat@height\fi}
+\makeatother
+% Scale images if necessary, so that they will not overflow the page
+% margins by default, and it is still possible to overwrite the defaults
+% using explicit options in \includegraphics[width, height, ...]{}
+\setkeys{Gin}{width=\maxwidth,height=\maxheight,keepaspectratio}
+\IfFileExists{parskip.sty}{%
+\usepackage{parskip}
+}{% else
+\setlength{\parindent}{0pt}
+\setlength{\parskip}{6pt plus 2pt minus 1pt}
+}
+\setlength{\emergencystretch}{3em}  % prevent overfull lines
+\providecommand{\tightlist}{%
+  \setlength{\itemsep}{0pt}\setlength{\parskip}{0pt}}
+\setcounter{secnumdepth}{0}
+% Redefines (sub)paragraphs to behave more like sections
+\ifx\paragraph\undefined\else
+\let\oldparagraph\paragraph
+\renewcommand{\paragraph}[1]{\oldparagraph{#1}\mbox{}}
+\fi
+\ifx\subparagraph\undefined\else
+\let\oldsubparagraph\subparagraph
+\renewcommand{\subparagraph}[1]{\oldsubparagraph{#1}\mbox{}}
+\fi
+
+%%% Use protect on footnotes to avoid problems with footnotes in titles
+\let\rmarkdownfootnote\footnote%
+\def\footnote{\protect\rmarkdownfootnote}
+
+%%% Change title format to be more compact
+\usepackage{titling}
+
+% Create subtitle command for use in maketitle
+\providecommand{\subtitle}[1]{
+  \posttitle{
+    \begin{center}\large#1\end{center}
+    }
+}
+
+\setlength{\droptitle}{-2em}
+
+  \title{Exploring potential of using ESS for Comparative Analysis of Rate of
+Returns to Education}
+    \pretitle{\vspace{\droptitle}\centering\huge}
+  \posttitle{\par}
+    \author{Suhas Parandekar, Ekaterina Melianova and ArtÃ«m Volgin}
+    \preauthor{\centering\large\emph}
+  \postauthor{\par}
+      \predate{\centering\large\emph}
+  \postdate{\par}
+    \date{October 17, 2019}
+
+\usepackage{xcolor}
+\usepackage{framed}
+
+\begin{document}
+\maketitle
+
+\hypertarget{r-markdown}{%
+\section{R Markdown}\label{r-markdown}}
+
+This is an R Markdown document. Markdown is a simple formatting syntax
+for authoring HTML, PDF, and MS Word documents. For more details on
+using R Markdown see \url{http://rmarkdown.rstudio.com}.
+
+When you click the \textbf{Knit} button a document will be generated
+that includes both content as well as the output of any embedded R code
+chunks within the document.
+
+Together with RStudio, you need pandoc and Miktex programs installed on
+your MS-Windows machine. In practice, I need to change the codechink
+background and the only way I could determine to do this was to edit the
+intermediate .tex file, though it is also possible to force rmarkdown to
+follow a different template for latex, in which case you would need to
+follow the instructions in 3.3.7.4 at
+\url{https://bookdown.org/yihui/rmarkdown/pdf-document.html}
+
+\hypertarget{getting-the-rawdata}{%
+\subsection{Getting the rawdata}\label{getting-the-rawdata}}
+
+The data was downloaded from the ESS website with the help of R package
+essurvey - you need an easily obtainable userid in the form of an e-mail
+for that purpose and login one time, then with R you only need to
+specify the login userid e-mail. As of October 19, 2019, latest
+available data was Round 8. \newline
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{load}\NormalTok{(}\StringTok{"C:/Country/Russia/Data/SEABYTE/ESS/downloads/ess_all_rounds.rdata"}\NormalTok{)}
+
+\CommentTok{# Start with round 8 of ESS data}
+
+\NormalTok{round8 <-}\StringTok{ }\KeywordTok{as.data.frame}\NormalTok{(all_rounds[}\DecValTok{8}\NormalTok{])}
+\end{Highlighting}
+\end{Shaded}
+
+\hypertarget{preliminaries}{%
+\subsection{Preliminaries}\label{preliminaries}}
+
+I successively filter for (i) Country; (ii) Main income is labor income;
+(iii) worked for pay last week;(iv) household income is not missing; (v)
+number of household members is at least 1; (vi) education level is
+clearly identifiued; and (vii) age is between 25 and 64 years of age
+(inclusive).
+
+I then define the variables to use in a Mincerian regression - starting
+with income from deciles using ESS documentation.
+
+\hypertarget{first-case-is-of-austria}{%
+\section{First case is of Austria}\label{first-case-is-of-austria}}
+
+The ESS data is harmonized across all countries in the sample.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{round8_AT <-}\StringTok{ }\NormalTok{round8 }\OperatorTok{%>%}\StringTok{ }\KeywordTok{filter}\NormalTok{(cntry}\OperatorTok{==}\StringTok{"AT"}\NormalTok{) }\OperatorTok{%>%}\StringTok{ }\KeywordTok{filter}\NormalTok{(hincsrca}\OperatorTok{==}\DecValTok{1}\NormalTok{) }\OperatorTok{%>%}
+\StringTok{  }\KeywordTok{filter}\NormalTok{(pdwrk}\OperatorTok{==}\DecValTok{1}\NormalTok{) }\OperatorTok{%>%}\StringTok{  }
+\StringTok{  }\KeywordTok{filter}\NormalTok{(}\OperatorTok{!}\KeywordTok{is.na}\NormalTok{(hinctnta)) }\OperatorTok{%>%}\StringTok{  }\KeywordTok{filter}\NormalTok{(hhmmb}\OperatorTok{>=}\DecValTok{1}\NormalTok{) }\OperatorTok{%>%}\StringTok{ }\KeywordTok{filter}\NormalTok{(edulvlb}\OperatorTok{!=}\DecValTok{5555}\NormalTok{) }\OperatorTok{%>%}\StringTok{ }
+\StringTok{  }\KeywordTok{filter}\NormalTok{(agea }\OperatorTok{%in%}\StringTok{ }\NormalTok{(}\DecValTok{25}\OperatorTok{:}\DecValTok{64}\NormalTok{)) }\OperatorTok{%>%}\StringTok{ }
+\StringTok{  }\KeywordTok{select}\NormalTok{(brncntr,hhmmb,gndr,agea,edulvlb,eduyrs,hinctnta,dweight,pspwght,pweight)}
+
+\CommentTok{# Succesively select for main income source is labor income, }
+\CommentTok{# at least 1 member of household, worked for pay last week,}
+\CommentTok{# non-missing household income,education level identifiable,}
+\CommentTok{# age between 25 and 64.}
+
+\CommentTok{# Define variables of interest}
+
+\CommentTok{# Mid-point income # from EESA Income definitions Appendix A2 page 3 for Austria}
+\CommentTok{# atry_h atrributed labor income household}
+\CommentTok{# income is nominal euros per year}
+\NormalTok{round8_AT}\OperatorTok{$}\NormalTok{atry_h[round8_AT}\OperatorTok{$}\NormalTok{hinctnta}\OperatorTok{==}\DecValTok{1}\NormalTok{] <-}\StringTok{ }\DecValTok{14800}\OperatorTok{/}\DecValTok{2}
+\NormalTok{round8_AT}\OperatorTok{$}\NormalTok{atry_h[round8_AT}\OperatorTok{$}\NormalTok{hinctnta}\OperatorTok{==}\DecValTok{2}\NormalTok{] <-}\StringTok{ }\NormalTok{(}\DecValTok{14800}\OperatorTok{+}\DecValTok{19800}\NormalTok{)}\OperatorTok{/}\DecValTok{2}
+\NormalTok{round8_AT}\OperatorTok{$}\NormalTok{atry_h[round8_AT}\OperatorTok{$}\NormalTok{hinctnta}\OperatorTok{==}\DecValTok{3}\NormalTok{] <-}\StringTok{ }\NormalTok{(}\DecValTok{19800}\OperatorTok{+}\DecValTok{24200}\NormalTok{)}\OperatorTok{/}\DecValTok{2}
+\NormalTok{round8_AT}\OperatorTok{$}\NormalTok{atry_h[round8_AT}\OperatorTok{$}\NormalTok{hinctnta}\OperatorTok{==}\DecValTok{4}\NormalTok{] <-}\StringTok{ }\NormalTok{(}\DecValTok{24200}\OperatorTok{+}\DecValTok{29400}\NormalTok{)}\OperatorTok{/}\DecValTok{2}
+\NormalTok{round8_AT}\OperatorTok{$}\NormalTok{atry_h[round8_AT}\OperatorTok{$}\NormalTok{hinctnta}\OperatorTok{==}\DecValTok{5}\NormalTok{] <-}\StringTok{ }\NormalTok{(}\DecValTok{29400}\OperatorTok{+}\DecValTok{35000}\NormalTok{)}\OperatorTok{/}\DecValTok{2}
+
+\NormalTok{round8_AT}\OperatorTok{$}\NormalTok{atry_h[round8_AT}\OperatorTok{$}\NormalTok{hinctnta}\OperatorTok{==}\DecValTok{6}\NormalTok{] <-}\StringTok{ }\NormalTok{(}\DecValTok{35000}\OperatorTok{+}\DecValTok{41000}\NormalTok{)}\OperatorTok{/}\DecValTok{2}
+\NormalTok{round8_AT}\OperatorTok{$}\NormalTok{atry_h[round8_AT}\OperatorTok{$}\NormalTok{hinctnta}\OperatorTok{==}\DecValTok{7}\NormalTok{] <-}\StringTok{ }\NormalTok{(}\DecValTok{41000}\OperatorTok{+}\DecValTok{48000}\NormalTok{)}\OperatorTok{/}\DecValTok{2}
+\NormalTok{round8_AT}\OperatorTok{$}\NormalTok{atry_h[round8_AT}\OperatorTok{$}\NormalTok{hinctnta}\OperatorTok{==}\DecValTok{8}\NormalTok{] <-}\StringTok{ }\NormalTok{(}\DecValTok{48000}\OperatorTok{+}\DecValTok{56500}\NormalTok{)}\OperatorTok{/}\DecValTok{2}
+\NormalTok{round8_AT}\OperatorTok{$}\NormalTok{atry_h[round8_AT}\OperatorTok{$}\NormalTok{hinctnta}\OperatorTok{==}\DecValTok{9}\NormalTok{] <-}\StringTok{ }\NormalTok{(}\DecValTok{56500}\OperatorTok{+}\DecValTok{70700}\NormalTok{)}\OperatorTok{/}\DecValTok{2}
+\NormalTok{round8_AT}\OperatorTok{$}\NormalTok{atry_h[round8_AT}\OperatorTok{$}\NormalTok{hinctnta}\OperatorTok{==}\DecValTok{10}\NormalTok{] <-}\StringTok{ }\DecValTok{70700}\OperatorTok{*}\DecValTok{2}
+
+\CommentTok{# atry_l attributed labor income individual }
+\NormalTok{round8_AT}\OperatorTok{$}\NormalTok{atry_i <-}\StringTok{ }\NormalTok{round8_AT}\OperatorTok{$}\NormalTok{atry_h}\OperatorTok{/}\NormalTok{round8_AT}\OperatorTok{$}\NormalTok{hhmmb}
+\NormalTok{round8_AT}\OperatorTok{$}\NormalTok{atry_lni <-}\StringTok{ }\KeywordTok{log}\NormalTok{(round8_AT}\OperatorTok{$}\NormalTok{atry_i)}
+
+\CommentTok{# Gender}
+\NormalTok{round8_AT}\OperatorTok{$}\NormalTok{FEMALE[round8_AT}\OperatorTok{$}\NormalTok{gndr}\OperatorTok{==}\DecValTok{1}\NormalTok{] <-}\DecValTok{0}
+\NormalTok{round8_AT}\OperatorTok{$}\NormalTok{FEMALE[round8_AT}\OperatorTok{$}\NormalTok{gndr}\OperatorTok{==}\DecValTok{2}\NormalTok{] <-}\DecValTok{1}
+
+\CommentTok{# Migrant}
+\NormalTok{round8_AT}\OperatorTok{$}\NormalTok{MIGRANT[round8_AT}\OperatorTok{$}\NormalTok{brncntr}\OperatorTok{==}\DecValTok{1}\NormalTok{] <-}\DecValTok{0}
+\NormalTok{round8_AT}\OperatorTok{$}\NormalTok{MIGRANT[round8_AT}\OperatorTok{$}\NormalTok{brncntr}\OperatorTok{==}\DecValTok{2}\NormalTok{] <-}\DecValTok{1}
+
+\CommentTok{# Education }
+\CommentTok{# Define some functions and vectors for later use}
+
+\StringTok{`}\DataTypeTok{%notin%}\StringTok{`}\NormalTok{ <-}\StringTok{ }\KeywordTok{Negate}\NormalTok{(}\StringTok{`}\DataTypeTok{%in%}\StringTok{`}\NormalTok{)}
+\NormalTok{voc <-}\StringTok{ }\KeywordTok{c}\NormalTok{(}\DecValTok{421}\NormalTok{,}\DecValTok{422}\NormalTok{,}\DecValTok{423}\NormalTok{,}\DecValTok{520}\NormalTok{)}
+\NormalTok{ter <-}\StringTok{ }\KeywordTok{c}\NormalTok{(}\DecValTok{412}\NormalTok{,}\DecValTok{413}\NormalTok{,}\DecValTok{510}\NormalTok{,}\DecValTok{610}\NormalTok{,}\DecValTok{620}\NormalTok{,}\DecValTok{710}\NormalTok{,}\DecValTok{720}\NormalTok{,}\DecValTok{800}\NormalTok{)}
+
+\NormalTok{round8_AT}\OperatorTok{$}\NormalTok{edu_SEC[round8_AT}\OperatorTok{$}\NormalTok{edulvlb }\OperatorTok{<}\StringTok{ }\DecValTok{412}\NormalTok{] <-}\StringTok{ }\DecValTok{1}
+\NormalTok{round8_AT}\OperatorTok{$}\NormalTok{edu_SEC[round8_AT}\OperatorTok{$}\NormalTok{edulvlb }\OperatorTok{>=}\StringTok{ }\DecValTok{412}\NormalTok{] <-}\StringTok{ }\DecValTok{0}
+
+\NormalTok{round8_AT}\OperatorTok{$}\NormalTok{edu_VOC[round8_AT}\OperatorTok{$}\NormalTok{edulvlb }\OperatorTok{%in%}\StringTok{ }\NormalTok{voc] <-}\StringTok{ }\DecValTok{1}
+\NormalTok{round8_AT}\OperatorTok{$}\NormalTok{edu_VOC[round8_AT}\OperatorTok{$}\NormalTok{edulvlb }\OperatorTok{%notin%}\StringTok{ }\NormalTok{voc] <-}\StringTok{ }\DecValTok{0}
+
+\NormalTok{round8_AT}\OperatorTok{$}\NormalTok{edu_TER[round8_AT}\OperatorTok{$}\NormalTok{edulvlb }\OperatorTok{%in%}\StringTok{ }\NormalTok{ter] <-}\StringTok{ }\DecValTok{1}
+\NormalTok{round8_AT}\OperatorTok{$}\NormalTok{edu_TER[round8_AT}\OperatorTok{$}\NormalTok{edulvlb }\OperatorTok{%notin%}\StringTok{ }\NormalTok{ter] <-}\StringTok{ }\DecValTok{0}
+
+\CommentTok{# Attributed experience}
+\NormalTok{round8_AT}\OperatorTok{$}\NormalTok{atr_exp=round8_AT}\OperatorTok{$}\NormalTok{agea }\OperatorTok{-}\NormalTok{(}\DecValTok{6}\OperatorTok{+}\NormalTok{round8_AT}\OperatorTok{$}\NormalTok{eduyrs)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{blix <-}\StringTok{ }\NormalTok{papeR}\OperatorTok{::}\KeywordTok{summarize}\NormalTok{(round8_AT)}
+\NormalTok{knitr}\OperatorTok{::}\KeywordTok{kable}\NormalTok{(blix, }\DataTypeTok{type =} \StringTok{"numeric"}\NormalTok{,}\DataTypeTok{format=}\StringTok{"pandoc"}\NormalTok{,}
+             \DataTypeTok{caption=}\StringTok{"Means of ESSA data Round 8 Austria"}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{longtable}[]{@{}lrlrrlrrrrr@{}}
+\caption{Means of ESSA data Round 8 Austria}\tabularnewline
+\toprule
+& N & & Mean & SD & & Min & Q1 & Median & Q3 & Max\tabularnewline
+\midrule
+\endfirsthead
+\toprule
+& N & & Mean & SD & & Min & Q1 & Median & Q3 & Max\tabularnewline
+\midrule
+\endhead
+brncntr & 695 & & 1.11 & 0.32 & & 1.00 & 1.00 & 1.00 & 1.00 &
+2.00\tabularnewline
+hhmmb & 695 & & 2.37 & 1.24 & & 1.00 & 1.00 & 2.00 & 3.00 &
+7.00\tabularnewline
+gndr & 695 & & 1.54 & 0.50 & & 1.00 & 1.00 & 2.00 & 2.00 &
+2.00\tabularnewline
+agea & 695 & & 42.82 & 10.51 & & 25.00 & 34.00 & 44.00 & 52.00 &
+64.00\tabularnewline
+edulvlb & 695 & & 391.96 & 144.19 & & 113.00 & 322.00 & 322.00 & 423.00
+& 800.00\tabularnewline
+eduyrs & 695 & & 13.38 & 2.80 & & 4.00 & 12.00 & 12.00 & 15.00 &
+25.00\tabularnewline
+hinctnta & 695 & & 5.58 & 2.27 & & 1.00 & 4.00 & 6.00 & 7.00 &
+10.00\tabularnewline
+dweight & 695 & & 1.03 & 0.48 & & 0.37 & 0.62 & 0.99 & 1.23 &
+3.36\tabularnewline
+pspwght & 695 & & 0.99 & 0.65 & & 0.18 & 0.54 & 0.79 & 1.19 &
+4.00\tabularnewline
+pweight & 695 & & 0.37 & 0.00 & & 0.37 & 0.37 & 0.37 & 0.37 &
+0.37\tabularnewline
+atry\_h & 695 & & 40276.91 & 25267.84 & & 7400.00 & 26800.00 & 38000.00
+& 44500.00 & 141400.00\tabularnewline
+atry\_i & 695 & & 19511.60 & 12787.62 & & 3700.00 & 12666.67 & 17300.00
+& 22250.00 & 141400.00\tabularnewline
+atry\_lni & 695 & & 9.74 & 0.51 & & 8.22 & 9.45 & 9.76 & 10.01 &
+11.86\tabularnewline
+FEMALE & 695 & & 0.54 & 0.50 & & 0.00 & 0.00 & 1.00 & 1.00 &
+1.00\tabularnewline
+MIGRANT & 695 & & 0.11 & 0.32 & & 0.00 & 0.00 & 0.00 & 0.00 &
+1.00\tabularnewline
+edu\_SEC & 695 & & 0.69 & 0.46 & & 0.00 & 0.00 & 1.00 & 1.00 &
+1.00\tabularnewline
+edu\_VOC & 695 & & 0.14 & 0.35 & & 0.00 & 0.00 & 0.00 & 0.00 &
+1.00\tabularnewline
+edu\_TER & 695 & & 0.17 & 0.38 & & 0.00 & 0.00 & 0.00 & 0.00 &
+1.00\tabularnewline
+atr\_exp & 695 & & 23.44 & 11.17 & & 0.00 & 13.50 & 24.00 & 32.50 &
+50.00\tabularnewline
+\bottomrule
+\end{longtable}
+
+Now, run the regression.
+
+\begin{longtable}[]{@{}lllll@{}}
+\caption{Returns to Education by level: Austria}\tabularnewline
+\toprule
+\begin{minipage}[b]{0.23\columnwidth}\raggedright
+~\strut
+\end{minipage} & \begin{minipage}[b]{0.14\columnwidth}\raggedright
+Estimate\strut
+\end{minipage} & \begin{minipage}[b]{0.16\columnwidth}\raggedright
+Std. Error\strut
+\end{minipage} & \begin{minipage}[b]{0.12\columnwidth}\raggedright
+t value\strut
+\end{minipage} & \begin{minipage}[b]{0.14\columnwidth}\raggedright
+Pr(\textgreater\textbar t\textbar)\strut
+\end{minipage}\tabularnewline
+\midrule
+\endfirsthead
+\toprule
+\begin{minipage}[b]{0.23\columnwidth}\raggedright
+~\strut
+\end{minipage} & \begin{minipage}[b]{0.14\columnwidth}\raggedright
+Estimate\strut
+\end{minipage} & \begin{minipage}[b]{0.16\columnwidth}\raggedright
+Std. Error\strut
+\end{minipage} & \begin{minipage}[b]{0.12\columnwidth}\raggedright
+t value\strut
+\end{minipage} & \begin{minipage}[b]{0.14\columnwidth}\raggedright
+Pr(\textgreater\textbar t\textbar)\strut
+\end{minipage}\tabularnewline
+\midrule
+\endhead
+\begin{minipage}[t]{0.23\columnwidth}\raggedright
+\textbf{(Intercept)}\strut
+\end{minipage} & \begin{minipage}[t]{0.14\columnwidth}\raggedright
+9.86\strut
+\end{minipage} & \begin{minipage}[t]{0.16\columnwidth}\raggedright
+0.0826\strut
+\end{minipage} & \begin{minipage}[t]{0.12\columnwidth}\raggedright
+119.4\strut
+\end{minipage} & \begin{minipage}[t]{0.14\columnwidth}\raggedright
+0\strut
+\end{minipage}\tabularnewline
+\begin{minipage}[t]{0.23\columnwidth}\raggedright
+\textbf{edu\_VOC}\strut
+\end{minipage} & \begin{minipage}[t]{0.14\columnwidth}\raggedright
+0.1537\strut
+\end{minipage} & \begin{minipage}[t]{0.16\columnwidth}\raggedright
+0.05997\strut
+\end{minipage} & \begin{minipage}[t]{0.12\columnwidth}\raggedright
+2.562\strut
+\end{minipage} & \begin{minipage}[t]{0.14\columnwidth}\raggedright
+0.01061\strut
+\end{minipage}\tabularnewline
+\begin{minipage}[t]{0.23\columnwidth}\raggedright
+\textbf{edu\_TER}\strut
+\end{minipage} & \begin{minipage}[t]{0.14\columnwidth}\raggedright
+0.2552\strut
+\end{minipage} & \begin{minipage}[t]{0.16\columnwidth}\raggedright
+0.04744\strut
+\end{minipage} & \begin{minipage}[t]{0.12\columnwidth}\raggedright
+5.379\strut
+\end{minipage} & \begin{minipage}[t]{0.14\columnwidth}\raggedright
+1.029e-07\strut
+\end{minipage}\tabularnewline
+\begin{minipage}[t]{0.23\columnwidth}\raggedright
+\textbf{atr\_exp}\strut
+\end{minipage} & \begin{minipage}[t]{0.14\columnwidth}\raggedright
+-0.02592\strut
+\end{minipage} & \begin{minipage}[t]{0.16\columnwidth}\raggedright
+0.007354\strut
+\end{minipage} & \begin{minipage}[t]{0.12\columnwidth}\raggedright
+-3.525\strut
+\end{minipage} & \begin{minipage}[t]{0.14\columnwidth}\raggedright
+0.000452\strut
+\end{minipage}\tabularnewline
+\begin{minipage}[t]{0.23\columnwidth}\raggedright
+\textbf{I(atr\_exp\^{}2)}\strut
+\end{minipage} & \begin{minipage}[t]{0.14\columnwidth}\raggedright
+0.0006019\strut
+\end{minipage} & \begin{minipage}[t]{0.16\columnwidth}\raggedright
+0.0001589\strut
+\end{minipage} & \begin{minipage}[t]{0.12\columnwidth}\raggedright
+3.788\strut
+\end{minipage} & \begin{minipage}[t]{0.14\columnwidth}\raggedright
+0.0001655\strut
+\end{minipage}\tabularnewline
+\begin{minipage}[t]{0.23\columnwidth}\raggedright
+\textbf{FEMALE}\strut
+\end{minipage} & \begin{minipage}[t]{0.14\columnwidth}\raggedright
+-0.0507\strut
+\end{minipage} & \begin{minipage}[t]{0.16\columnwidth}\raggedright
+0.0391\strut
+\end{minipage} & \begin{minipage}[t]{0.12\columnwidth}\raggedright
+-1.297\strut
+\end{minipage} & \begin{minipage}[t]{0.14\columnwidth}\raggedright
+0.1952\strut
+\end{minipage}\tabularnewline
+\begin{minipage}[t]{0.23\columnwidth}\raggedright
+\textbf{MIGRANT}\strut
+\end{minipage} & \begin{minipage}[t]{0.14\columnwidth}\raggedright
+-0.165\strut
+\end{minipage} & \begin{minipage}[t]{0.16\columnwidth}\raggedright
+0.05618\strut
+\end{minipage} & \begin{minipage}[t]{0.12\columnwidth}\raggedright
+-2.937\strut
+\end{minipage} & \begin{minipage}[t]{0.14\columnwidth}\raggedright
+0.003424\strut
+\end{minipage}\tabularnewline
+\bottomrule
+\end{longtable}
+
+\begin{longtable}[]{@{}lllll@{}}
+\caption{Returns to Education by year: Austria}\tabularnewline
+\toprule
+\begin{minipage}[b]{0.23\columnwidth}\raggedright
+~\strut
+\end{minipage} & \begin{minipage}[b]{0.14\columnwidth}\raggedright
+Estimate\strut
+\end{minipage} & \begin{minipage}[b]{0.16\columnwidth}\raggedright
+Std. Error\strut
+\end{minipage} & \begin{minipage}[b]{0.12\columnwidth}\raggedright
+t value\strut
+\end{minipage} & \begin{minipage}[b]{0.16\columnwidth}\raggedright
+Pr(\textgreater\textbar t\textbar)\strut
+\end{minipage}\tabularnewline
+\midrule
+\endfirsthead
+\toprule
+\begin{minipage}[b]{0.23\columnwidth}\raggedright
+~\strut
+\end{minipage} & \begin{minipage}[b]{0.14\columnwidth}\raggedright
+Estimate\strut
+\end{minipage} & \begin{minipage}[b]{0.16\columnwidth}\raggedright
+Std. Error\strut
+\end{minipage} & \begin{minipage}[b]{0.12\columnwidth}\raggedright
+t value\strut
+\end{minipage} & \begin{minipage}[b]{0.16\columnwidth}\raggedright
+Pr(\textgreater\textbar t\textbar)\strut
+\end{minipage}\tabularnewline
+\midrule
+\endhead
+\begin{minipage}[t]{0.23\columnwidth}\raggedright
+\textbf{(Intercept)}\strut
+\end{minipage} & \begin{minipage}[t]{0.14\columnwidth}\raggedright
+9.413\strut
+\end{minipage} & \begin{minipage}[t]{0.16\columnwidth}\raggedright
+0.1311\strut
+\end{minipage} & \begin{minipage}[t]{0.12\columnwidth}\raggedright
+71.82\strut
+\end{minipage} & \begin{minipage}[t]{0.16\columnwidth}\raggedright
+3.557e-322\strut
+\end{minipage}\tabularnewline
+\begin{minipage}[t]{0.23\columnwidth}\raggedright
+\textbf{eduyrs}\strut
+\end{minipage} & \begin{minipage}[t]{0.14\columnwidth}\raggedright
+0.03677\strut
+\end{minipage} & \begin{minipage}[t]{0.16\columnwidth}\raggedright
+0.006306\strut
+\end{minipage} & \begin{minipage}[t]{0.12\columnwidth}\raggedright
+5.831\strut
+\end{minipage} & \begin{minipage}[t]{0.16\columnwidth}\raggedright
+8.468e-09\strut
+\end{minipage}\tabularnewline
+\begin{minipage}[t]{0.23\columnwidth}\raggedright
+\textbf{atr\_exp}\strut
+\end{minipage} & \begin{minipage}[t]{0.14\columnwidth}\raggedright
+-0.02563\strut
+\end{minipage} & \begin{minipage}[t]{0.16\columnwidth}\raggedright
+0.007324\strut
+\end{minipage} & \begin{minipage}[t]{0.12\columnwidth}\raggedright
+-3.499\strut
+\end{minipage} & \begin{minipage}[t]{0.16\columnwidth}\raggedright
+0.0004966\strut
+\end{minipage}\tabularnewline
+\begin{minipage}[t]{0.23\columnwidth}\raggedright
+\textbf{I(atr\_exp\^{}2)}\strut
+\end{minipage} & \begin{minipage}[t]{0.14\columnwidth}\raggedright
+0.0006144\strut
+\end{minipage} & \begin{minipage}[t]{0.16\columnwidth}\raggedright
+0.0001582\strut
+\end{minipage} & \begin{minipage}[t]{0.12\columnwidth}\raggedright
+3.884\strut
+\end{minipage} & \begin{minipage}[t]{0.16\columnwidth}\raggedright
+0.0001126\strut
+\end{minipage}\tabularnewline
+\begin{minipage}[t]{0.23\columnwidth}\raggedright
+\textbf{FEMALE}\strut
+\end{minipage} & \begin{minipage}[t]{0.14\columnwidth}\raggedright
+-0.02454\strut
+\end{minipage} & \begin{minipage}[t]{0.16\columnwidth}\raggedright
+0.03861\strut
+\end{minipage} & \begin{minipage}[t]{0.12\columnwidth}\raggedright
+-0.6357\strut
+\end{minipage} & \begin{minipage}[t]{0.16\columnwidth}\raggedright
+0.5252\strut
+\end{minipage}\tabularnewline
+\begin{minipage}[t]{0.23\columnwidth}\raggedright
+\textbf{MIGRANT}\strut
+\end{minipage} & \begin{minipage}[t]{0.14\columnwidth}\raggedright
+-0.1742\strut
+\end{minipage} & \begin{minipage}[t]{0.16\columnwidth}\raggedright
+0.05595\strut
+\end{minipage} & \begin{minipage}[t]{0.12\columnwidth}\raggedright
+-3.113\strut
+\end{minipage} & \begin{minipage}[t]{0.16\columnwidth}\raggedright
+0.00193\strut
+\end{minipage}\tabularnewline
+\bottomrule
+\end{longtable}
+
+\hypertarget{case-of-russian-federation}{%
+\section{Case of Russian Federation}\label{case-of-russian-federation}}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{round8_RU <-}\StringTok{ }\NormalTok{round8 }\OperatorTok{%>%}\StringTok{ }\KeywordTok{filter}\NormalTok{(cntry}\OperatorTok{==}\StringTok{"RU"}\NormalTok{) }\OperatorTok{%>%}\StringTok{ }\KeywordTok{filter}\NormalTok{(hincsrca}\OperatorTok{==}\DecValTok{1}\NormalTok{) }\OperatorTok{%>%}
+\StringTok{  }\KeywordTok{filter}\NormalTok{(pdwrk}\OperatorTok{==}\DecValTok{1}\NormalTok{) }\OperatorTok{%>%}\StringTok{  }\KeywordTok{filter}\NormalTok{(}\OperatorTok{!}\KeywordTok{is.na}\NormalTok{(hinctnta)) }\OperatorTok{%>%}\StringTok{  }\KeywordTok{filter}\NormalTok{(hhmmb}\OperatorTok{>=}\DecValTok{1}\NormalTok{) }\OperatorTok{%>%}
+\StringTok{  }\KeywordTok{filter}\NormalTok{(edulvlb}\OperatorTok{!=}\DecValTok{5555}\NormalTok{) }\OperatorTok{%>%}\StringTok{   }\KeywordTok{filter}\NormalTok{(agea }\OperatorTok{%in%}\StringTok{ }\NormalTok{(}\DecValTok{25}\OperatorTok{:}\DecValTok{64}\NormalTok{)) }\OperatorTok{%>%}\StringTok{ }
+\KeywordTok{select}\NormalTok{(brncntr,hhmmb,gndr,agea,edulvlb,eduyrs,hinctnta,dweight,pspwght,pweight)}
+
+\CommentTok{# Define variables of interest}
+
+\CommentTok{# Mid-point income # from EESA Income definitions Appendix A2 page 24 for Russia}
+\CommentTok{#atry_h atrributed labor income household}
+\CommentTok{# Income is nominal rubles per month}
+\NormalTok{round8_RU}\OperatorTok{$}\NormalTok{atry_h[round8_RU}\OperatorTok{$}\NormalTok{hinctnta}\OperatorTok{==}\DecValTok{1}\NormalTok{] <-}\StringTok{ }\DecValTok{12000}\OperatorTok{/}\DecValTok{2}
+\NormalTok{round8_RU}\OperatorTok{$}\NormalTok{atry_h[round8_RU}\OperatorTok{$}\NormalTok{hinctnta}\OperatorTok{==}\DecValTok{2}\NormalTok{] <-}\StringTok{ }\NormalTok{(}\DecValTok{12000}\OperatorTok{+}\DecValTok{15000}\NormalTok{)}\OperatorTok{/}\DecValTok{2}
+\NormalTok{round8_RU}\OperatorTok{$}\NormalTok{atry_h[round8_RU}\OperatorTok{$}\NormalTok{hinctnta}\OperatorTok{==}\DecValTok{3}\NormalTok{] <-}\StringTok{ }\NormalTok{(}\DecValTok{15000}\OperatorTok{+}\DecValTok{18000}\NormalTok{)}\OperatorTok{/}\DecValTok{2}
+\NormalTok{round8_RU}\OperatorTok{$}\NormalTok{atry_h[round8_RU}\OperatorTok{$}\NormalTok{hinctnta}\OperatorTok{==}\DecValTok{4}\NormalTok{] <-}\StringTok{ }\NormalTok{(}\DecValTok{18000}\OperatorTok{+}\DecValTok{21000}\NormalTok{)}\OperatorTok{/}\DecValTok{2}
+\NormalTok{round8_RU}\OperatorTok{$}\NormalTok{atry_h[round8_RU}\OperatorTok{$}\NormalTok{hinctnta}\OperatorTok{==}\DecValTok{5}\NormalTok{] <-}\StringTok{ }\NormalTok{(}\DecValTok{21000}\OperatorTok{+}\DecValTok{25000}\NormalTok{)}\OperatorTok{/}\DecValTok{2}
+
+\NormalTok{round8_RU}\OperatorTok{$}\NormalTok{atry_h[round8_RU}\OperatorTok{$}\NormalTok{hinctnta}\OperatorTok{==}\DecValTok{6}\NormalTok{] <-}\StringTok{ }\NormalTok{(}\DecValTok{25000}\OperatorTok{+}\DecValTok{30000}\NormalTok{)}\OperatorTok{/}\DecValTok{2}
+\NormalTok{round8_RU}\OperatorTok{$}\NormalTok{atry_h[round8_RU}\OperatorTok{$}\NormalTok{hinctnta}\OperatorTok{==}\DecValTok{7}\NormalTok{] <-}\StringTok{ }\NormalTok{(}\DecValTok{30000}\OperatorTok{+}\DecValTok{40000}\NormalTok{)}\OperatorTok{/}\DecValTok{2}
+\NormalTok{round8_RU}\OperatorTok{$}\NormalTok{atry_h[round8_RU}\OperatorTok{$}\NormalTok{hinctnta}\OperatorTok{==}\DecValTok{8}\NormalTok{] <-}\StringTok{ }\NormalTok{(}\DecValTok{40000}\OperatorTok{+}\DecValTok{60000}\NormalTok{)}\OperatorTok{/}\DecValTok{2}
+\NormalTok{round8_RU}\OperatorTok{$}\NormalTok{atry_h[round8_RU}\OperatorTok{$}\NormalTok{hinctnta}\OperatorTok{==}\DecValTok{9}\NormalTok{] <-}\StringTok{ }\NormalTok{(}\DecValTok{60000}\OperatorTok{+}\DecValTok{80000}\NormalTok{)}\OperatorTok{/}\DecValTok{2} \CommentTok{# typo in text}
+\NormalTok{round8_RU}\OperatorTok{$}\NormalTok{atry_h[round8_RU}\OperatorTok{$}\NormalTok{hinctnta}\OperatorTok{==}\DecValTok{10}\NormalTok{] <-}\StringTok{ }\DecValTok{80000}\OperatorTok{*}\DecValTok{2}
+
+\CommentTok{# atry_l attributed labor income individual }
+\NormalTok{round8_RU}\OperatorTok{$}\NormalTok{atry_i <-}\StringTok{ }\NormalTok{round8_RU}\OperatorTok{$}\NormalTok{atry_h}\OperatorTok{/}\NormalTok{round8_RU}\OperatorTok{$}\NormalTok{hhmmb}
+\NormalTok{round8_RU}\OperatorTok{$}\NormalTok{atry_lni <-}\StringTok{ }\KeywordTok{log}\NormalTok{(round8_RU}\OperatorTok{$}\NormalTok{atry_i)}
+
+\CommentTok{# Gender}
+\NormalTok{round8_RU}\OperatorTok{$}\NormalTok{FEMALE[round8_RU}\OperatorTok{$}\NormalTok{gndr}\OperatorTok{==}\DecValTok{1}\NormalTok{] <-}\DecValTok{0}
+\NormalTok{round8_RU}\OperatorTok{$}\NormalTok{FEMALE[round8_RU}\OperatorTok{$}\NormalTok{gndr}\OperatorTok{==}\DecValTok{2}\NormalTok{] <-}\DecValTok{1}
+
+\CommentTok{# Migrant}
+\NormalTok{round8_RU}\OperatorTok{$}\NormalTok{MIGRANT[round8_RU}\OperatorTok{$}\NormalTok{brncntr}\OperatorTok{==}\DecValTok{1}\NormalTok{] <-}\DecValTok{0}
+\NormalTok{round8_RU}\OperatorTok{$}\NormalTok{MIGRANT[round8_RU}\OperatorTok{$}\NormalTok{brncntr}\OperatorTok{==}\DecValTok{2}\NormalTok{] <-}\DecValTok{1}
+
+\CommentTok{# Education }
+\CommentTok{# Define some functions and vectors for later use}
+
+\StringTok{`}\DataTypeTok{%notin%}\StringTok{`}\NormalTok{ <-}\StringTok{ }\KeywordTok{Negate}\NormalTok{(}\StringTok{`}\DataTypeTok{%in%}\StringTok{`}\NormalTok{)}
+\NormalTok{voc <-}\StringTok{ }\KeywordTok{c}\NormalTok{(}\DecValTok{421}\NormalTok{,}\DecValTok{422}\NormalTok{,}\DecValTok{423}\NormalTok{,}\DecValTok{520}\NormalTok{)}
+\NormalTok{ter <-}\StringTok{ }\KeywordTok{c}\NormalTok{(}\DecValTok{412}\NormalTok{,}\DecValTok{413}\NormalTok{,}\DecValTok{510}\NormalTok{,}\DecValTok{610}\NormalTok{,}\DecValTok{620}\NormalTok{,}\DecValTok{710}\NormalTok{,}\DecValTok{720}\NormalTok{,}\DecValTok{800}\NormalTok{)}
+
+\NormalTok{round8_RU}\OperatorTok{$}\NormalTok{edu_SEC[round8_RU}\OperatorTok{$}\NormalTok{edulvlb }\OperatorTok{<}\StringTok{ }\DecValTok{412}\NormalTok{] <-}\StringTok{ }\DecValTok{1}
+\NormalTok{round8_RU}\OperatorTok{$}\NormalTok{edu_SEC[round8_RU}\OperatorTok{$}\NormalTok{edulvlb }\OperatorTok{>=}\StringTok{ }\DecValTok{412}\NormalTok{] <-}\StringTok{ }\DecValTok{0}
+
+\NormalTok{round8_RU}\OperatorTok{$}\NormalTok{edu_VOC[round8_RU}\OperatorTok{$}\NormalTok{edulvlb }\OperatorTok{%in%}\StringTok{ }\NormalTok{voc] <-}\StringTok{ }\DecValTok{1}
+\NormalTok{round8_RU}\OperatorTok{$}\NormalTok{edu_VOC[round8_RU}\OperatorTok{$}\NormalTok{edulvlb }\OperatorTok{%notin%}\StringTok{ }\NormalTok{voc] <-}\StringTok{ }\DecValTok{0}
+
+\NormalTok{round8_RU}\OperatorTok{$}\NormalTok{edu_TER[round8_RU}\OperatorTok{$}\NormalTok{edulvlb }\OperatorTok{%in%}\StringTok{ }\NormalTok{ter] <-}\StringTok{ }\DecValTok{1}
+\NormalTok{round8_RU}\OperatorTok{$}\NormalTok{edu_TER[round8_RU}\OperatorTok{$}\NormalTok{edulvlb }\OperatorTok{%notin%}\StringTok{ }\NormalTok{ter] <-}\StringTok{ }\DecValTok{0}
+
+\CommentTok{# Attributed experience}
+\NormalTok{round8_RU}\OperatorTok{$}\NormalTok{atr_exp=round8_RU}\OperatorTok{$}\NormalTok{agea }\OperatorTok{-}\NormalTok{(}\DecValTok{6}\OperatorTok{+}\NormalTok{round8_RU}\OperatorTok{$}\NormalTok{eduyrs)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{blix <-}\StringTok{ }\NormalTok{papeR}\OperatorTok{::}\KeywordTok{summarize}\NormalTok{(round8_RU)}
+\NormalTok{knitr}\OperatorTok{::}\KeywordTok{kable}\NormalTok{(blix, }\DataTypeTok{type =} \StringTok{"numeric"}\NormalTok{,}\DataTypeTok{format=}\StringTok{"pandoc"}\NormalTok{,}
+             \DataTypeTok{caption=}\StringTok{"Means of ESSA data Round 8 Russia"}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{longtable}[]{@{}lrrlrrlrrrrr@{}}
+\caption{Means of ESSA data Round 8 Russia}\tabularnewline
+\toprule
+& N & Missing & & Mean & SD & & Min & Q1 & Median & Q3 &
+Max\tabularnewline
+\midrule
+\endfirsthead
+\toprule
+& N & Missing & & Mean & SD & & Min & Q1 & Median & Q3 &
+Max\tabularnewline
+\midrule
+\endhead
+brncntr & 870 & 2 & & 1.05 & 0.21 & & 1.00 & 1.00 & 1.00 & 1.00 &
+2.00\tabularnewline
+hhmmb & 872 & 0 & & 2.56 & 1.18 & & 1.00 & 2.00 & 2.00 & 3.00 &
+8.00\tabularnewline
+gndr & 872 & 0 & & 1.52 & 0.50 & & 1.00 & 1.00 & 2.00 & 2.00 &
+2.00\tabularnewline
+agea & 872 & 0 & & 40.69 & 10.28 & & 25.00 & 32.00 & 40.00 & 49.00 &
+64.00\tabularnewline
+edulvlb & 872 & 0 & & 543.60 & 164.56 & & 113.00 & 520.00 & 520.00 &
+720.00 & 800.00\tabularnewline
+eduyrs & 872 & 0 & & 13.67 & 2.39 & & 7.00 & 12.00 & 14.00 & 15.00 &
+21.00\tabularnewline
+hinctnta & 872 & 0 & & 6.34 & 2.32 & & 1.00 & 5.00 & 7.00 & 8.00 &
+10.00\tabularnewline
+dweight & 872 & 0 & & 1.04 & 0.46 & & 0.34 & 0.54 & 0.98 & 1.38 &
+3.00\tabularnewline
+pspwght & 872 & 0 & & 0.91 & 1.05 & & 0.10 & 0.32 & 0.48 & 0.90 &
+4.00\tabularnewline
+pweight & 872 & 0 & & 4.99 & 0.00 & & 4.99 & 4.99 & 4.99 & 4.99 &
+4.99\tabularnewline
+atry\_h & 872 & 0 & & 43091.17 & 35574.81 & & 6000.00 & 23000.00 &
+35000.00 & 50000.00 & 160000.00\tabularnewline
+atry\_i & 872 & 0 & & 18732.74 & 15508.90 & & 1500.00 & 9166.67 &
+14000.00 & 23000.00 & 160000.00\tabularnewline
+atry\_lni & 872 & 0 & & 9.60 & 0.67 & & 7.31 & 9.12 & 9.55 & 10.04 &
+11.98\tabularnewline
+FEMALE & 872 & 0 & & 0.52 & 0.50 & & 0.00 & 0.00 & 1.00 & 1.00 &
+1.00\tabularnewline
+MIGRANT & 870 & 2 & & 0.05 & 0.21 & & 0.00 & 0.00 & 0.00 & 0.00 &
+1.00\tabularnewline
+edu\_SEC & 872 & 0 & & 0.24 & 0.42 & & 0.00 & 0.00 & 0.00 & 0.00 &
+1.00\tabularnewline
+edu\_VOC & 872 & 0 & & 0.38 & 0.48 & & 0.00 & 0.00 & 0.00 & 1.00 &
+1.00\tabularnewline
+edu\_TER & 872 & 0 & & 0.39 & 0.49 & & 0.00 & 0.00 & 0.00 & 1.00 &
+1.00\tabularnewline
+atr\_exp & 872 & 0 & & 21.02 & 11.03 & & 1.00 & 12.00 & 20.00 & 30.00 &
+50.00\tabularnewline
+\bottomrule
+\end{longtable}
+
+\begin{longtable}[]{@{}lllll@{}}
+\caption{Returns to Education by level: Russia}\tabularnewline
+\toprule
+\begin{minipage}[b]{0.23\columnwidth}\raggedright
+~\strut
+\end{minipage} & \begin{minipage}[b]{0.14\columnwidth}\raggedright
+Estimate\strut
+\end{minipage} & \begin{minipage}[b]{0.16\columnwidth}\raggedright
+Std. Error\strut
+\end{minipage} & \begin{minipage}[b]{0.12\columnwidth}\raggedright
+t value\strut
+\end{minipage} & \begin{minipage}[b]{0.13\columnwidth}\raggedright
+Pr(\textgreater\textbar t\textbar)\strut
+\end{minipage}\tabularnewline
+\midrule
+\endfirsthead
+\toprule
+\begin{minipage}[b]{0.23\columnwidth}\raggedright
+~\strut
+\end{minipage} & \begin{minipage}[b]{0.14\columnwidth}\raggedright
+Estimate\strut
+\end{minipage} & \begin{minipage}[b]{0.16\columnwidth}\raggedright
+Std. Error\strut
+\end{minipage} & \begin{minipage}[b]{0.12\columnwidth}\raggedright
+t value\strut
+\end{minipage} & \begin{minipage}[b]{0.13\columnwidth}\raggedright
+Pr(\textgreater\textbar t\textbar)\strut
+\end{minipage}\tabularnewline
+\midrule
+\endhead
+\begin{minipage}[t]{0.23\columnwidth}\raggedright
+\textbf{(Intercept)}\strut
+\end{minipage} & \begin{minipage}[t]{0.14\columnwidth}\raggedright
+9.676\strut
+\end{minipage} & \begin{minipage}[t]{0.16\columnwidth}\raggedright
+0.1065\strut
+\end{minipage} & \begin{minipage}[t]{0.12\columnwidth}\raggedright
+90.85\strut
+\end{minipage} & \begin{minipage}[t]{0.13\columnwidth}\raggedright
+0\strut
+\end{minipage}\tabularnewline
+\begin{minipage}[t]{0.23\columnwidth}\raggedright
+\textbf{edu\_VOC}\strut
+\end{minipage} & \begin{minipage}[t]{0.14\columnwidth}\raggedright
+0.01137\strut
+\end{minipage} & \begin{minipage}[t]{0.16\columnwidth}\raggedright
+0.06127\strut
+\end{minipage} & \begin{minipage}[t]{0.12\columnwidth}\raggedright
+0.1856\strut
+\end{minipage} & \begin{minipage}[t]{0.13\columnwidth}\raggedright
+0.8528\strut
+\end{minipage}\tabularnewline
+\begin{minipage}[t]{0.23\columnwidth}\raggedright
+\textbf{edu\_TER}\strut
+\end{minipage} & \begin{minipage}[t]{0.14\columnwidth}\raggedright
+0.289\strut
+\end{minipage} & \begin{minipage}[t]{0.16\columnwidth}\raggedright
+0.06354\strut
+\end{minipage} & \begin{minipage}[t]{0.12\columnwidth}\raggedright
+4.548\strut
+\end{minipage} & \begin{minipage}[t]{0.13\columnwidth}\raggedright
+6.19e-06\strut
+\end{minipage}\tabularnewline
+\begin{minipage}[t]{0.23\columnwidth}\raggedright
+\textbf{atr\_exp}\strut
+\end{minipage} & \begin{minipage}[t]{0.14\columnwidth}\raggedright
+-0.01506\strut
+\end{minipage} & \begin{minipage}[t]{0.16\columnwidth}\raggedright
+0.00881\strut
+\end{minipage} & \begin{minipage}[t]{0.12\columnwidth}\raggedright
+-1.709\strut
+\end{minipage} & \begin{minipage}[t]{0.13\columnwidth}\raggedright
+0.08775\strut
+\end{minipage}\tabularnewline
+\begin{minipage}[t]{0.23\columnwidth}\raggedright
+\textbf{I(atr\_exp\^{}2)}\strut
+\end{minipage} & \begin{minipage}[t]{0.14\columnwidth}\raggedright
+0.0002405\strut
+\end{minipage} & \begin{minipage}[t]{0.16\columnwidth}\raggedright
+0.000175\strut
+\end{minipage} & \begin{minipage}[t]{0.12\columnwidth}\raggedright
+1.375\strut
+\end{minipage} & \begin{minipage}[t]{0.13\columnwidth}\raggedright
+0.1696\strut
+\end{minipage}\tabularnewline
+\begin{minipage}[t]{0.23\columnwidth}\raggedright
+\textbf{FEMALE}\strut
+\end{minipage} & \begin{minipage}[t]{0.14\columnwidth}\raggedright
+-0.05401\strut
+\end{minipage} & \begin{minipage}[t]{0.16\columnwidth}\raggedright
+0.04534\strut
+\end{minipage} & \begin{minipage}[t]{0.12\columnwidth}\raggedright
+-1.191\strut
+\end{minipage} & \begin{minipage}[t]{0.13\columnwidth}\raggedright
+0.2339\strut
+\end{minipage}\tabularnewline
+\begin{minipage}[t]{0.23\columnwidth}\raggedright
+\textbf{MIGRANT}\strut
+\end{minipage} & \begin{minipage}[t]{0.14\columnwidth}\raggedright
+-0.1087\strut
+\end{minipage} & \begin{minipage}[t]{0.16\columnwidth}\raggedright
+0.08962\strut
+\end{minipage} & \begin{minipage}[t]{0.12\columnwidth}\raggedright
+-1.213\strut
+\end{minipage} & \begin{minipage}[t]{0.13\columnwidth}\raggedright
+0.2255\strut
+\end{minipage}\tabularnewline
+\bottomrule
+\end{longtable}
+
+\begin{longtable}[]{@{}lllll@{}}
+\caption{Returns to Education by year: Russia}\tabularnewline
+\toprule
+\begin{minipage}[b]{0.23\columnwidth}\raggedright
+~\strut
+\end{minipage} & \begin{minipage}[b]{0.14\columnwidth}\raggedright
+Estimate\strut
+\end{minipage} & \begin{minipage}[b]{0.16\columnwidth}\raggedright
+Std. Error\strut
+\end{minipage} & \begin{minipage}[b]{0.12\columnwidth}\raggedright
+t value\strut
+\end{minipage} & \begin{minipage}[b]{0.16\columnwidth}\raggedright
+Pr(\textgreater\textbar t\textbar)\strut
+\end{minipage}\tabularnewline
+\midrule
+\endfirsthead
+\toprule
+\begin{minipage}[b]{0.23\columnwidth}\raggedright
+~\strut
+\end{minipage} & \begin{minipage}[b]{0.14\columnwidth}\raggedright
+Estimate\strut
+\end{minipage} & \begin{minipage}[b]{0.16\columnwidth}\raggedright
+Std. Error\strut
+\end{minipage} & \begin{minipage}[b]{0.12\columnwidth}\raggedright
+t value\strut
+\end{minipage} & \begin{minipage}[b]{0.16\columnwidth}\raggedright
+Pr(\textgreater\textbar t\textbar)\strut
+\end{minipage}\tabularnewline
+\midrule
+\endhead
+\begin{minipage}[t]{0.23\columnwidth}\raggedright
+\textbf{(Intercept)}\strut
+\end{minipage} & \begin{minipage}[t]{0.14\columnwidth}\raggedright
+9.255\strut
+\end{minipage} & \begin{minipage}[t]{0.16\columnwidth}\raggedright
+0.1918\strut
+\end{minipage} & \begin{minipage}[t]{0.12\columnwidth}\raggedright
+48.27\strut
+\end{minipage} & \begin{minipage}[t]{0.16\columnwidth}\raggedright
+1.686e-247\strut
+\end{minipage}\tabularnewline
+\begin{minipage}[t]{0.23\columnwidth}\raggedright
+\textbf{eduyrs}\strut
+\end{minipage} & \begin{minipage}[t]{0.14\columnwidth}\raggedright
+0.04108\strut
+\end{minipage} & \begin{minipage}[t]{0.16\columnwidth}\raggedright
+0.01111\strut
+\end{minipage} & \begin{minipage}[t]{0.12\columnwidth}\raggedright
+3.697\strut
+\end{minipage} & \begin{minipage}[t]{0.16\columnwidth}\raggedright
+0.0002322\strut
+\end{minipage}\tabularnewline
+\begin{minipage}[t]{0.23\columnwidth}\raggedright
+\textbf{atr\_exp}\strut
+\end{minipage} & \begin{minipage}[t]{0.14\columnwidth}\raggedright
+-0.01909\strut
+\end{minipage} & \begin{minipage}[t]{0.16\columnwidth}\raggedright
+0.008699\strut
+\end{minipage} & \begin{minipage}[t]{0.12\columnwidth}\raggedright
+-2.195\strut
+\end{minipage} & \begin{minipage}[t]{0.16\columnwidth}\raggedright
+0.02845\strut
+\end{minipage}\tabularnewline
+\begin{minipage}[t]{0.23\columnwidth}\raggedright
+\textbf{I(atr\_exp\^{}2)}\strut
+\end{minipage} & \begin{minipage}[t]{0.14\columnwidth}\raggedright
+0.0003303\strut
+\end{minipage} & \begin{minipage}[t]{0.16\columnwidth}\raggedright
+0.0001733\strut
+\end{minipage} & \begin{minipage}[t]{0.12\columnwidth}\raggedright
+1.906\strut
+\end{minipage} & \begin{minipage}[t]{0.16\columnwidth}\raggedright
+0.05703\strut
+\end{minipage}\tabularnewline
+\begin{minipage}[t]{0.23\columnwidth}\raggedright
+\textbf{FEMALE}\strut
+\end{minipage} & \begin{minipage}[t]{0.14\columnwidth}\raggedright
+-0.05299\strut
+\end{minipage} & \begin{minipage}[t]{0.16\columnwidth}\raggedright
+0.04564\strut
+\end{minipage} & \begin{minipage}[t]{0.12\columnwidth}\raggedright
+-1.161\strut
+\end{minipage} & \begin{minipage}[t]{0.16\columnwidth}\raggedright
+0.246\strut
+\end{minipage}\tabularnewline
+\begin{minipage}[t]{0.23\columnwidth}\raggedright
+\textbf{MIGRANT}\strut
+\end{minipage} & \begin{minipage}[t]{0.14\columnwidth}\raggedright
+-0.09445\strut
+\end{minipage} & \begin{minipage}[t]{0.16\columnwidth}\raggedright
+0.09015\strut
+\end{minipage} & \begin{minipage}[t]{0.12\columnwidth}\raggedright
+-1.048\strut
+\end{minipage} & \begin{minipage}[t]{0.16\columnwidth}\raggedright
+0.2951\strut
+\end{minipage}\tabularnewline
+\bottomrule
+\end{longtable}
+
+\hypertarget{just-some-fun-with-r-markdown-in-knitr.}{%
+\section{Just some fun with R markdown in
+knitr.}\label{just-some-fun-with-r-markdown-in-knitr.}}
+
+There is a lot going on here between R, latex and pandoc, but the
+intermediate tex file is always a recourse in case things become iffy
+trying to run latex commands from inside the .rmd files.
+
+\colorlet{shadecolor}{gray!10}
+
+\color{red}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{writeLines}\NormalTok{(}\StringTok{"help"}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## help
+\end{verbatim}
+
+\begin{shaded}
+
+Red text with a gray background.
+
+\end{shaded}
+
+Red text.
+
+\color{black}
+
+Black text.
+
+\colorlet{shadecolor}{red!10}
+
+\begin{shaded}
+
+Black text with a red background.
+
+\end{shaded}
+
+\colorlet{shadecolor}{red!90}
+
+\begin{shaded}
+
+Black text with a darker red background. Trying this for a code chunk
+will show the begin and end latex commands which I don't know yet how
+to supress, if at all it is possible in the current set-up.
+
+\end{shaded}
+
+
+\end{document}

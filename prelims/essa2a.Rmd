@@ -1,0 +1,265 @@
+---
+title: Exploring potential of using ESS for Comparative Analysis of Rate of Returns
+  to Education
+author: "Suhas Parandekar, Ekaterina Melianova and ArtÃ«m Volgin"
+date: "October 17, 2019"
+output:
+  pdf_document:
+    keep_tex: yes
+  html_document:
+    df_print: paged
+urlcolor: blue
+highlight: tango
+header-includes:
+  - \usepackage{xcolor}
+  - \usepackage{framed}
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(warning = FALSE, message=FALSE, highlight=TRUE)
+library(dplyr) # for data mungeing
+library(stargazer) # for tables
+library(Hmisc) # deprecated - perhaps not in CRAN, for summary function of descriptives
+library(pander) # For tables in knitr
+library(papeR) # Also for knitr table
+library(knitr) # Just to make sure is loaded though Rstudio may be doing in background anyways
+```
+
+# R Markdown
+
+This is an R Markdown document. Markdown is a simple formatting syntax for authoring HTML, PDF, and MS Word documents. For more details on using R Markdown see <http://rmarkdown.rstudio.com>.
+
+When you click the **Knit** button a document will be generated that includes both content as well as the output of any embedded R code chunks within the document.
+
+Together with RStudio, you need pandoc and Miktex programs installed on your MS-Windows machine. In practice, I need to change the codechink background and the only way I could determine to do this was to edit the intermediate .tex file, though it is also possible to force rmarkdown to follow a different template for latex, in which case you would need to
+follow the instructions in 3.3.7.4 at \url{https://bookdown.org/yihui/rmarkdown/pdf-document.html} 
+
+## Getting the rawdata
+
+The data was downloaded from the ESS website with the help of R package essurvey - you need an easily obtainable userid in the form of an e-mail for that purpose and login one time, then with R you only need to specify the login userid e-mail. As of October 19, 2019, latest available data was Round 8. \newline
+
+```{r Load_Data}
+
+load("C:/Country/Russia/Data/SEABYTE/ESS/downloads/ess_all_rounds.rdata")
+
+# Start with round 8 of ESS data
+
+round8 <- as.data.frame(all_rounds[8])
+
+```
+
+
+## Preliminaries
+
+I successively filter for (i) Country; (ii) Main income is labor income; (iii) worked for pay last week;(iv) household income is not missing; (v) number of household members is at least 1; (vi) education level is clearly identifiued; and (vii) age is between 25 and 64 years of age (inclusive).
+
+I then define the variables to use in a Mincerian regression - starting with income from deciles using ESS documentation.
+
+# First case is of Austria
+
+The ESS data is harmonized across all countries in the sample.
+
+
+```{r define subset Austria}
+round8_AT <- round8 %>% filter(cntry=="AT") %>% filter(hincsrca==1) %>%
+  filter(pdwrk==1) %>%  
+  filter(!is.na(hinctnta)) %>%  filter(hhmmb>=1) %>% filter(edulvlb!=5555) %>% 
+  filter(agea %in% (25:64)) %>% 
+  select(brncntr,hhmmb,gndr,agea,edulvlb,eduyrs,hinctnta,dweight,pspwght,pweight)
+
+# Succesively select for main income source is labor income, 
+# at least 1 member of household, worked for pay last week,
+# non-missing household income,education level identifiable,
+# age between 25 and 64.
+
+# Define variables of interest
+
+# Mid-point income # from EESA Income definitions Appendix A2 page 3 for Austria
+# atry_h atrributed labor income household
+# income is nominal euros per year
+round8_AT$atry_h[round8_AT$hinctnta==1] <- 14800/2
+round8_AT$atry_h[round8_AT$hinctnta==2] <- (14800+19800)/2
+round8_AT$atry_h[round8_AT$hinctnta==3] <- (19800+24200)/2
+round8_AT$atry_h[round8_AT$hinctnta==4] <- (24200+29400)/2
+round8_AT$atry_h[round8_AT$hinctnta==5] <- (29400+35000)/2
+
+round8_AT$atry_h[round8_AT$hinctnta==6] <- (35000+41000)/2
+round8_AT$atry_h[round8_AT$hinctnta==7] <- (41000+48000)/2
+round8_AT$atry_h[round8_AT$hinctnta==8] <- (48000+56500)/2
+round8_AT$atry_h[round8_AT$hinctnta==9] <- (56500+70700)/2
+round8_AT$atry_h[round8_AT$hinctnta==10] <- 70700*2
+
+# atry_l attributed labor income individual 
+round8_AT$atry_i <- round8_AT$atry_h/round8_AT$hhmmb
+round8_AT$atry_lni <- log(round8_AT$atry_i)
+
+# Gender
+round8_AT$FEMALE[round8_AT$gndr==1] <-0
+round8_AT$FEMALE[round8_AT$gndr==2] <-1
+
+# Migrant
+round8_AT$MIGRANT[round8_AT$brncntr==1] <-0
+round8_AT$MIGRANT[round8_AT$brncntr==2] <-1
+
+# Education 
+# Define some functions and vectors for later use
+
+`%notin%` <- Negate(`%in%`)
+voc <- c(421,422,423,520)
+ter <- c(412,413,510,610,620,710,720,800)
+
+round8_AT$edu_SEC[round8_AT$edulvlb < 412] <- 1
+round8_AT$edu_SEC[round8_AT$edulvlb >= 412] <- 0
+
+round8_AT$edu_VOC[round8_AT$edulvlb %in% voc] <- 1
+round8_AT$edu_VOC[round8_AT$edulvlb %notin% voc] <- 0
+
+round8_AT$edu_TER[round8_AT$edulvlb %in% ter] <- 1
+round8_AT$edu_TER[round8_AT$edulvlb %notin% ter] <- 0
+
+# Attributed experience
+round8_AT$atr_exp=round8_AT$agea -(6+round8_AT$eduyrs)
+
+```
+
+
+```{r }
+
+blix <- papeR::summarize(round8_AT)
+knitr::kable(blix, type = "numeric",format="pandoc",
+             caption="Means of ESSA data Round 8 Austria")
+
+```
+
+Now, run the regression. 
+
+```{r pander_AT, echo=FALSE, message=FALSE}
+
+# Now run the Mincerian function
+panderOptions("digits",4)
+pander(lm(atry_lni~edu_VOC+edu_TER+ atr_exp + I(atr_exp^2)+FEMALE+MIGRANT,weights=pspwght,data=round8_AT),
+       justify="left",caption = "Returns to Education by level: Austria")
+pander(lm(atry_lni~eduyrs+ atr_exp + I(atr_exp^2)+FEMALE+MIGRANT,weights=pspwght,data=round8_AT),
+       justify="left",caption = "Returns to Education by year: Austria")
+```
+
+# Case of Russian Federation
+
+```{r define subset Russia}
+
+round8_RU <- round8 %>% filter(cntry=="RU") %>% filter(hincsrca==1) %>%
+  filter(pdwrk==1) %>%  filter(!is.na(hinctnta)) %>%  filter(hhmmb>=1) %>%
+  filter(edulvlb!=5555) %>%   filter(agea %in% (25:64)) %>% 
+select(brncntr,hhmmb,gndr,agea,edulvlb,eduyrs,hinctnta,dweight,pspwght,pweight)
+
+# Define variables of interest
+
+# Mid-point income # from EESA Income definitions Appendix A2 page 24 for Russia
+#atry_h atrributed labor income household
+# Income is nominal rubles per month
+round8_RU$atry_h[round8_RU$hinctnta==1] <- 12000/2
+round8_RU$atry_h[round8_RU$hinctnta==2] <- (12000+15000)/2
+round8_RU$atry_h[round8_RU$hinctnta==3] <- (15000+18000)/2
+round8_RU$atry_h[round8_RU$hinctnta==4] <- (18000+21000)/2
+round8_RU$atry_h[round8_RU$hinctnta==5] <- (21000+25000)/2
+
+round8_RU$atry_h[round8_RU$hinctnta==6] <- (25000+30000)/2
+round8_RU$atry_h[round8_RU$hinctnta==7] <- (30000+40000)/2
+round8_RU$atry_h[round8_RU$hinctnta==8] <- (40000+60000)/2
+round8_RU$atry_h[round8_RU$hinctnta==9] <- (60000+80000)/2 # typo in text
+round8_RU$atry_h[round8_RU$hinctnta==10] <- 80000*2
+
+# atry_l attributed labor income individual 
+round8_RU$atry_i <- round8_RU$atry_h/round8_RU$hhmmb
+round8_RU$atry_lni <- log(round8_RU$atry_i)
+
+# Gender
+round8_RU$FEMALE[round8_RU$gndr==1] <-0
+round8_RU$FEMALE[round8_RU$gndr==2] <-1
+
+# Migrant
+round8_RU$MIGRANT[round8_RU$brncntr==1] <-0
+round8_RU$MIGRANT[round8_RU$brncntr==2] <-1
+
+# Education 
+# Define some functions and vectors for later use
+
+`%notin%` <- Negate(`%in%`)
+voc <- c(421,422,423,520)
+ter <- c(412,413,510,610,620,710,720,800)
+
+round8_RU$edu_SEC[round8_RU$edulvlb < 412] <- 1
+round8_RU$edu_SEC[round8_RU$edulvlb >= 412] <- 0
+
+round8_RU$edu_VOC[round8_RU$edulvlb %in% voc] <- 1
+round8_RU$edu_VOC[round8_RU$edulvlb %notin% voc] <- 0
+
+round8_RU$edu_TER[round8_RU$edulvlb %in% ter] <- 1
+round8_RU$edu_TER[round8_RU$edulvlb %notin% ter] <- 0
+
+# Attributed experience
+round8_RU$atr_exp=round8_RU$agea -(6+round8_RU$eduyrs)
+```
+
+```{r }
+
+blix <- papeR::summarize(round8_RU)
+knitr::kable(blix, type = "numeric",format="pandoc",
+             caption="Means of ESSA data Round 8 Russia")
+
+```
+
+```{r pander_RU, echo=FALSE, message=FALSE}
+
+# Now run the Mincerian function
+panderOptions("digits",4)
+pander(lm(atry_lni~edu_VOC+edu_TER+ atr_exp + I(atr_exp^2)+FEMALE+MIGRANT,weights=pspwght,data=round8_RU),
+       justify="left",caption = "Returns to Education by level: Russia")
+pander(lm(atry_lni~eduyrs+ atr_exp + I(atr_exp^2)+FEMALE+MIGRANT,weights=pspwght,data=round8_RU),
+       justify="left",caption = "Returns to Education by year: Russia")
+```
+
+# Just some fun with R markdown in knitr.
+
+There is a lot going on here between R, latex and pandoc, but the intermediate tex file is always a recourse in case things become iffy trying to run latex commands from inside the .rmd files. 
+
+\colorlet{shadecolor}{gray!10}
+
+\color{red}
+
+```{r}
+writeLines("help")
+```
+
+\begin{shaded}
+
+Red text with a gray background.
+
+\end{shaded}
+
+Red text.
+
+\color{black}
+
+Black text.
+
+\colorlet{shadecolor}{red!10} 
+
+\begin{shaded}
+
+Black text with a red background.
+
+\end{shaded}
+
+\colorlet{shadecolor}{red!90} 
+
+\begin{shaded}
+
+Black text with a darker red background. Trying this for a code chunk
+will show the begin and end latex commands which I don't know yet how
+to supress, if at all it is possible in the current set-up.
+
+\end{shaded}
+
+
+
