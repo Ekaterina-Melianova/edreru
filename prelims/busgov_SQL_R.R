@@ -3,11 +3,11 @@ library(XLConnectJars)
 library(dplyr)
 
 # Connect with SQLite
-dbname <- "C:/Country/Russia/Data/SEABYTE/bus.gov/busgov.db"
+dbname <- "busgov.db"
 db <- dbConnect(SQLite(), dbname=dbname)
 
 
-busgov_SQL_to_R <- function(selected_region, dbname='C:/Country/Russia/Data/SEABYTE/bus.gov/busgov.db'){
+busgov_SQL_to_R <- function(selected_region, dbname='busgov.db'){
   "
   Load from SQL to R.
   Input: region code as character or vector of regions.

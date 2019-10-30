@@ -237,35 +237,36 @@ df$J35_2M <- as.numeric(df$J35_2M)
 # Temporarily excluding those who are currently NOT working (J1==5)
 # Further we will merge them to account for the absence of experience when calculating the total one
 df_temp1 <-  df %>% 
-  arrange(YEAR, ID_I) %>% # making sure the waves are listed sequentially
+  arrange(YEAR, IDIND) %>% # making sure the waves are listed sequentially
   filter(J1 < 5)
 
 Freq(df$J1)
 Freq(df_temp1$J1)
 
-# Splitting a dataframe to a list by ID_I
-list <- split(df_temp1 , f = df_temp1$ID_I) 
+# Splitting a dataframe to a list by IDIND
+list <- split(df_temp1 , f = df_temp1$IDIND) 
 
 # Appending a replacement to this list
 pb <- txtProgressBar(min = 1, max = length(list), style = 3)
 for (i in seq(length(list))){ # !takes ~ 2 min 
-  list[[i]] %<>% fill(c(J5A, J5B, J35_2Y, J35_2M)) 
+  list[[i]] %<>% fill(c(J5A, J5B)) 
   list[[i]] %<>%
-    fill(c(J5A, J5B, J35_2Y, J35_2M), .direction = "up")# accounts for those who have missing in the first wave but are employed 
+    fill(c(J5A, J5B), .direction = "up")# accounts for those who have missing in the first wave but are employed 
   setTxtProgressBar(pb, i)
 }
 
 # Converting the list back to a dataframe
 df_temp2 <- do.call(rbind.data.frame, list) # takes ~ 1 min
-table(df_temp2[is.na(df_temp2$J5A),"J1"]) # Those missings that are left belong to people appearing in RLMS only once
+table(df_temp2[is.na(df_temp2$J5A),"J1"]) # Those missings that are left belong to people
+# who are employed but have missings in J5A,J5B across all the waves
 
-# 276 such respondents who have missings in both main and additional jobs -> let us drop them
-length(df_temp2[is.na(df_temp2$J35_2Y)==T&is.na(df_temp2$J5A),"ID_I"])
+# 106 such respondents who have missings in both main and additional jobs -> let us drop them
+length(df_temp2[is.na(df_temp2$J35_2Y)==T&is.na(df_temp2$J5A),"IDIND"])
 
 # Only 1 person has missing in main job BUT non-missing is additional -> let us keep him
-length(df_temp2[is.na(df_temp2$J35_2Y)==F&is.na(df_temp2$J5A),"ID_I"])
+length(df_temp2[is.na(df_temp2$J35_2Y)==F&is.na(df_temp2$J5A),"IDIND"])
 
-# Dropping 276 respondents
+# Dropping 106 respondents
 df_temp2 <- df_temp2[-which(is.na(df_temp2$J35_2Y)==T&is.na(df_temp2$J5A)),]
 
 # Selecting unemployed 
@@ -275,7 +276,8 @@ df_temp3 <- df %>%
 # Merging employed and unemployed
 df <- rbind.data.frame(df_temp2, df_temp3)
 safe <- df # saving a dataframe at this stage
-# df <- safe
+#df <- safe
+#saveRDS(safe,"safe.rds") # saving for further easy retrieval
 
 #########
 
@@ -283,12 +285,12 @@ safe <- df # saving a dataframe at this stage
 # Those are mostly older people who perhaps simply don't remember the exact year of start of their job 
 # (not talking about month).
 
-# So, in such cases (see below an example for a person with ID_I = 81000901) I replace respondents' date of start
+# So, in such cases (see below an example for a person with IDIND = 81000901) I replace respondents' date of start
 # of a current work (technically I create a new respective variable with underscore _) in each wave 
 # with what has been said by them in a PREVIOUS wave.
 
 # An example (if you carefully analyse what this person is responding, you'll find no consistensy in his answers):
-df[df$ID_I == 81000901, c("ID_I", "ID_W", "J5A", "J5B", "YEAR", "H7_2", "J35_2Y", "J35_2M")]
+df[df$IDIND == 5289, c("IDIND", "ID_I", "ID_W", "J5A", "J5B", "YEAR", "H7_2", "J35_2Y", "J35_2M")]
 
 # To fix the data I generated a function - WorkStartFix - which detects such an inconsistency:
 # WHEN A PERSON'S JOB HAS CHANGED BUT ACCOURDING TO HIS/HER ANSWERS IT HAS HAPPENED EARLIER THAN 
@@ -299,7 +301,7 @@ df[df$ID_I == 81000901, c("ID_I", "ID_W", "J5A", "J5B", "YEAR", "H7_2", "J35_2Y"
 # response (dist_int_exp). The replacement needs to be conducted if the former measure is lower than the latter.
 
 # A function to do that
-WorkStartFix <- function(df, year = "YEAR", ID = "ID_I", int_m = "H7_2", main_y = "J5A",
+WorkStartFix <- function(df, year = "YEAR", ID = "IDIND", int_m = "H7_2", main_y = "J5A",
                          main_m = "J5B", add_y = "J35_2Y", add_m = "J35_2M", status = "J1"){
   # Converting to numeric format
   df[,main_y] <- as.numeric(df[,main_y])
@@ -322,25 +324,33 @@ WorkStartFix <- function(df, year = "YEAR", ID = "ID_I", int_m = "H7_2", main_y 
   df[,"exper_main"] <- ifelse(df[,"exper_main"] > df[,"imths"], NA, df[,"exper_main"])
   df[,"exper_add"] <- ifelse(df[,"exper_add"] > df[,"imths"], NA, df[,"exper_add"])
   
-  df[,"exper_temp"] <- round((df[,"imths"] - apply(df[,c("exper_main", "exper_add")], 1, max, na.rm=T))/12,2)
+  df[,"exper_temp"] <- round((df[,"imths"] - apply(df[,c("exper_main", "exper_add")], 1, min, na.rm=T))/12,2)
   df[,"exper_temp"] <- ifelse(is.infinite(df[,"exper_temp"]), 0, df[,"exper_temp"])
   
   # Creating a distance between successive interview dates  
   df <- df %>%
-    group_by(ID_I) %>%
-    arrange(ID_I, YEAR) %>%
+    group_by(IDIND) %>%
+    arrange(IDIND, YEAR) %>%
     mutate(dist_int = imths - lag(imths, default = first(imths))) %>%
     ungroup()
     df <- as.data.frame(df)
   
   # Creating dist_int_exp
-  df[, "dist_int_exp"] <- df[,"imths"] - apply(df[,c("exper_main", "exper_add")], 1, max, na.rm = T)
+  df[, "dist_int_exp_main"] <- df[,"imths"] - df[,"exper_main"]
   
   # -Inf values are returned for unemployed since max(NA,NA)=-Inf, replacing those values with 0
-  df[, "dist_int_exp"] <- ifelse(is.infinite(df[,"dist_int_exp"]), 0, df[,"dist_int_exp"])
+  df[, "dist_int_exp_main"] <- ifelse(is.infinite(df[,"dist_int_exp_main"]), 0, df[,"dist_int_exp_main"])
+  
+  # Creating dist_int_exp
+  df[, "dist_int_exp_add"] <- df[,"imths"] - df[,"exper_add"]
+  
+  # -Inf values are returned for unemployed since max(NA,NA)=-Inf, replacing those values with 0
+  df[, "dist_int_exp_add"] <- ifelse(is.infinite(df[,"dist_int_exp_add"]), 0, df[,"dist_int_exp_add"])
+  
+  
   
   # Splitting a datafrmae to a list
-  list2 <- split(df, f = df[,"ID_I"])
+  list2 <- split(df, f = df[,"IDIND"])
   
   # Creating a progress bar, we'll need it in the following loops
   pb <- txtProgressBar(min = 1, max = length(list2), style = 3)
@@ -369,27 +379,43 @@ WorkStartFix <- function(df, year = "YEAR", ID = "ID_I", int_m = "H7_2", main_y 
     setTxtProgressBar(pb, i)
   }
   
-  # Assgning the rest of the element in each ID_I-based subsets in the list2
+  # Assigning the rest of the elements in each IDIND-based subsets in the list2
   for (i in seq(length(list2))){
     if (!len[i] == 1){
       for (j in 2:len[i]){
-        if (list2[[i]][["dist_int"]][j] < list2[[i]][["dist_int_exp"]][j]){
+        if (list2[[i]][["dist_int"]][j] < list2[[i]][["dist_int_exp_main"]][j] & 
+            is.na(list2[[i]][["dist_int_exp_main"]][j]) == F){
           list2[[i]][["J5A_"]][j] <- list2[[i]][["J5A_"]][j-1]
           list2[[i]][["J5B_"]][j] <- list2[[i]][["J5B_"]][j-1]
-          list2[[i]][["J35_2Y_"]][j] <- list2[[i]][["J35_2Y_"]][j-1]
-          list2[[i]][["J35_2M_"]][j] <- list2[[i]][["J35_2M_"]][j-1]
         }
         else {
           list2[[i]][["J5A_"]][j] <- list2[[i]][[main_y]][j]
           list2[[i]][["J5B_"]][j] <- list2[[i]][[main_m]][j]
-          list2[[i]][["J35_2Y_"]][j] <- list2[[i]][[add_y]][j]
-          list2[[i]][["J35_2M_"]][j] <- list2[[i]][[add_m]][j]
         }
       }
       list2[[i]][["J5A_"]] <- replace(list2[[i]][["J5A_"]], which(is.na(list2[[i]][["J5A_"]]))[1], list2[[i]][["J5A_"]][j])
       list2[[i]][["J5B_"]] <- replace(list2[[i]][["J5B_"]], which(is.na(list2[[i]][["J5B_"]]))[1], list2[[i]][["J5B_"]][j])
-      list2[[i]][["J35_2Y_"]] <- replace(list2[[i]][["J35_2Y_"]], which(is.na(list2[[i]][["J35_2Y_"]]))[1], list2[[i]][["J35_2Y_"]][j])
-      list2[[i]][["J35_2M_"]] <- replace(list2[[i]][["J35_2M_"]], which(is.na(list2[[i]][["J35_2M_"]]))[1], list2[[i]][["J35_2M_"]][j])
+
+      setTxtProgressBar(pb, i)
+    }
+  }
+  
+  # Assigning the rest of the elements in each IDIND-based subsets in the list2
+  for (i in seq(length(list2))){
+    if (!len[i] == 1){
+      for (j in 2:len[i]){
+        if (list2[[i]][["dist_int"]][j] < list2[[i]][["dist_int_exp_add"]][j] & 
+            is.na(list2[[i]][["dist_int_exp_add"]][j]) == F){
+          list2[[i]][["J35_2Y_"]][j] <- list2[[i]][["J35_2Y_"]][j-1]
+          list2[[i]][["J35_2M_"]][j] <- list2[[i]][["J35_2M_"]][j-1]
+        }
+        else {
+          list2[[i]][["J35_2Y_"]][j] <- list2[[i]][[add_y]][j]
+          list2[[i]][["J35_2M_"]][j] <- list2[[i]][[add_m]][j]
+        }
+      }
+      list2[[i]][["J35_2Y_"]] <- replace(list2[[i]][["J35_2Y_"]], j, list2[[i]][["J35_2Y_"]][j])
+      list2[[i]][["J35_2M_"]] <- replace(list2[[i]][["J35_2M_"]], j, list2[[i]][["J35_2M_"]][j])
       
       setTxtProgressBar(pb, i)
     }
@@ -404,18 +430,23 @@ WorkStartFix <- function(df, year = "YEAR", ID = "ID_I", int_m = "H7_2", main_y 
   fin[,"J35_2Y_"] <- ifelse(fin[, status] == 5, NA, fin[,"J35_2Y_"])
   fin[,"J35_2M_"] <- ifelse(fin[, status] == 5, NA, fin[,"J35_2M_"])
   
+  for (i in 1:nrow(fin)){
+    fin[i, "J35_2Y_"] <- ifelse(is.na(fin[i, "J35_2Y"]), NA, fin[i, "J35_2Y_"])
+    fin[i, "J35_2M_"] <- ifelse(is.na(fin[i, "J35_2M"]), NA, fin[i, "J35_2M_"])
+  }
+  
   return(fin)
 }
 
 # Applying the function to our data: now we have consistent data
 # Warnings are ok
-df <- WorkStartFix(df) # takes ~ 4 min
+df <- WorkStartFix(df) # takes ~ 10 min
 summary(df$exper_temp)
 
 # The next step is to compute TOTAL work experience across the RLMS waves
 
 # A function to do that
-TotalExper <- function(df, year = "YEAR", ID = "ID_I", int_m = "H7_2", main_y_ = "J5A_",
+TotalExper <- function(df, year = "YEAR", ID = "IDIND", int_m = "H7_2", main_y_ = "J5A_",
                        main_m_ = "J5B_", add_y_ = "J35_2Y_", add_m_ = "J35_2M_", status = "J1"){
   
   # Computing work experience with CORRECTED data
@@ -429,23 +460,23 @@ TotalExper <- function(df, year = "YEAR", ID = "ID_I", int_m = "H7_2", main_y_ =
   df[,"exper_add_"] <- ifelse(df[,"exper_add_"] > df[,"imths"], NA, df[,"exper_add_"])
   
   # Computing a variable for the experience in a current job, additional job is accounted for
-  df[,"exper_temp_"] <- round((df[,"imths"] - apply(df[,c("exper_main_", "exper_add_")], 1, max, na.rm=T))/12,2)
+  df[,"exper_temp_"] <- round((df[,"imths"] - apply(df[,c("exper_main_", "exper_add_")], 1, min, na.rm=T))/12,2)
   
   # -Inf values are returned for unemployed since max(NA,NA)=-Inf, replacing those values with 0
   df[,"exper_temp_"] <- ifelse(is.infinite(df[,"exper_temp_"]), 0, df[,"exper_temp_"])
   
-  # Seting the initial value for total experience
+  # Setting the initial value for total experience
   df[1, "total_exper"] <- df[1, "exper_temp_"]
   
   # Creating a distance between successive interview dates
   df <- df %>%
-  group_by(ID_I) %>%
-  arrange(ID_I, YEAR) %>%
+  group_by(IDIND) %>%
+  arrange(IDIND, YEAR) %>%
   mutate(dist_int = (imths - lag(imths, default = first(imths)))/12) %>%
   ungroup()
   df <- as.data.frame(df)
   
-  # Calculating the final variable. 
+    # Calculating the final variable. 
   # The logic in this calculation is the following: I take a temporary experience and see 
   # if I need to add the ones in the previous years. I need to do that if and only if 
   # the previous temporary experience falls in the distance between the successive interview
@@ -463,14 +494,14 @@ TotalExper <- function(df, year = "YEAR", ID = "ID_I", int_m = "H7_2", main_y_ =
   return(df)
 }
 
-# We need a list splitted by ID_I again
-list3 <- split(df, f = df$ID_I) 
+# We need a list splitted by IDIND again
+list3 <- split(df, f = df$IDIND) 
 
 # Appending TotalExper function to this list
-list3lap <- pblapply(list3, TotalExper) # takes ~ 3 min
+list3lap <- pblapply(list3, TotalExper) # takes ~ 6 min
 
 # Converting the list back to a dataframe
-df <- do.call(rbind.data.frame, list3lap) # takes ~ 4 min
+df <- do.call(rbind.data.frame, list3lap) # takes ~ 2 min
 
 # Let's look at the variable
 summary(df$total_exper)
@@ -494,16 +525,18 @@ ggplot(df, aes(x=total_exper))+
   theme_bw()
 
 # Saving total_exper to a .csv and then to rlms.db
-ID_I <- selectFromSQL("ID_I") 
+IDIND <- selectFromSQL("IDIND") 
 
-exper_to_csv <- ID_I %>%
-  left_join(df[,c("ID_I", "ID_W", "total_exper",
+exper_to_csv <- IDIND %>%
+  left_join(df[,c("IDIND", "ID_W", "total_exper",
                 "J5A_", "J5B_", "J35_2Y_", "J35_2M_",
                 "exper_main_", "exper_add_", "exper_temp_")],
-            by = c("ID_I", "ID_W"))
+            by = c("IDIND", "ID_W"))
 #write.csv(exper_to_csv, "exper_to_csv.csv")
 
-var_names_to_csv <- c("J5A_", "J5B_", "J35_2Y_", "J35_2M_", "exper_main_", "exper_add_", "exper_temp_")
+var_names_to_csv <- c("J5A_", "J5B_", "J35_2Y_", "J35_2M_",
+                      "exper_main_", "exper_add_", "exper_temp_",
+                      "total_exper")
 
 i = 1
 for (name in var_names_to_csv){
