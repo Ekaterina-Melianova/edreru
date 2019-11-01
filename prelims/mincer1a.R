@@ -18,7 +18,12 @@ library(pbapply)
 
 # Working directory
 wd <- paste0(normalizePath(Sys.getenv("USERPROFILE"), winslash = "/"), "/Desktop")
+###+++++++++++++++++++++SPSPS+++++++++
+# Above code does not work for me, we need to find a way to
+# work for any user, at least for MS-Windows set up
+wd <- "C:/Country/Russia/Data/SEABYTE/RLMS/sqlite"
 setwd(wd)
+
 # Connecting with SQLite
 db <- dbConnect(SQLite(), dbname=paste0(wd, "/rlms.db"))
 # Modified cbind
