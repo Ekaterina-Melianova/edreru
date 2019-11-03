@@ -2,6 +2,8 @@
 # Written by Suhas; Wednesday, August 7, 2019
 
 # Setting up RLMS data from 1994 (Round 5) to 2017 (Round 26)
+# Abandoned this file as we moved to accessing rlms all rounds 
+# from a single sqlite database
 
 library(tidyverse)
 
