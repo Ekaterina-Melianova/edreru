@@ -3,8 +3,8 @@
 \usepackage[labelfont=bf]{caption}
 \usepackage[font=small,labelfont=bf]{subcaption}
 
-\usepackage[backend=bibtex, sorting=none,  style=authoryear]{biblatex}
-\bibliography{Returns_to_Education_in_Russia}
+\usepackage[backend=biber, sorting=none,  style=authoryear]{biblatex}
+\addbibresource{Returns_to_Education_in_Russia.bib}
 
 \usepackage{float}
 
@@ -60,7 +60,7 @@ wd <- paste0(normalizePath(Sys.getenv("USERPROFILE"), winslash = "/"), "/Desktop
 ###+++++++++++++++++++++SPSPS+++++++++
 # Above code does not work for me, we need to find a way to
 # work for any user, at least for MS-Windows set up
-wd <- "C:/Country/Russia/Data/SEABYTE/RLMS/sqlite"
+# wd <- "C:/Country/Russia/Data/SEABYTE/RLMS/sqlite"
 setwd(wd)
 # Connecting with SQLite
 db <- dbConnect(SQLite(), dbname=paste0(wd, "/rlms.db"))
@@ -436,7 +436,7 @@ df_2$exper2 <- df_2$YEAR - df_2$grady
 
 # Note: df_ini is a df from mincer2a.R file with the initial experience
 # variable (without inconsistency fixing)
-setwd("C:/Country/Russia/Data/SEABYTE/RLMS/edreru/prelims")
+setwd("C:/Country/Russia/Data/SEABYTE/RLMS/edreru/wp1")
 df_ini <- readRDS("df_ini.rds")
 
 # A table with instancies
@@ -686,11 +686,16 @@ x_axis <- c(c(1994, 1996), seq(2000, 2018, 2))
 RoREs <- as.data.table(RoREs)
 RoREs_1 <- melt(RoREs, measure=c("returns_to_HE_all", "returns_to_VE_all"))
 RoREs_1$value <- as.numeric(substr(RoREs_1$value, 1, nchar(RoREs_1$value)-1))
+RoREs_1$variable <- factor(RoREs_1$variable,
+                           labels = c("Higher education",
+                                      "Vocational education"))
 
 # Plotting all
-p1 <- ggplot(RoREs_1, aes(YEAR, value, group = variable, color = variable)) +
-  geom_point(size = 3) +
-  geom_smooth(se = F) +
+p1 <- ggplot(RoREs_1, aes(YEAR, value, group = variable, color = variable,
+                          shape = variable)) +
+  geom_point(aes(shape = variable), size = 4) +
+  geom_smooth(se = F, method = 'loess') +
+  geom_line() +
   scale_y_continuous(limits = c(-10, 110), breaks = seq(-50, 110, 10)) +
   theme(legend.title = element_blank(),
         legend.position = "bottom",
@@ -700,9 +705,8 @@ p1 <- ggplot(RoREs_1, aes(YEAR, value, group = variable, color = variable)) +
         axis.title = element_text(size = 16),
         legend.text = element_text(size = 16),
         legend.key = element_rect(size = 16)) +
-  labs(color = "Education level") +
-  scale_color_manual(labels = c("Higher education", "Vocational education"),
-                     values = c("darkgreen", "red")) +
+  scale_color_manual(values = c("darkgreen", "red")) +
+  #scale_shape_manual(values=c(2,4)) +
   scale_x_discrete(breaks = x_axis) +
   ylab("Rate of returns, %") +
   xlab("Year")
@@ -726,11 +730,15 @@ x_axis <- c(c(1994, 1996), seq(2000, 2018, 2))
 # The same procedure for females
 RoREs_2a <- melt(RoREs, measure=c("returns_to_HE_f", "returns_to_VE_f"))
 RoREs_2a$value <- as.numeric(substr(RoREs_2a$value, 1, nchar(RoREs_2a$value)-1))
+RoREs_2a$variable <- factor(RoREs_2a$variable,
+                           labels = c("Higher education",
+                                      "Vocational education"))
 
 # Plotting females
 p2a <- ggplot(RoREs_2a, aes(YEAR, value, group = variable, color = variable)) +
-  geom_smooth(se = F) +
-  geom_point(size = 3) +
+  geom_point(aes(shape = variable), size = 4) +
+  geom_smooth(se = F, method = 'loess') +
+  geom_line() +
   scale_y_continuous(limits = c(-10, 110), breaks = seq(-50, 110, 10)) +
   theme(legend.title = element_blank(),
         legend.position = "bottom",
@@ -740,8 +748,7 @@ p2a <- ggplot(RoREs_2a, aes(YEAR, value, group = variable, color = variable)) +
         axis.title = element_text(size = 16),
         legend.text = element_text(size = 16),
         legend.key = element_rect(size = 16)) +
-  scale_color_manual(labels = c("Higher education", "Vocational education"),
-                     values = c("darkgreen", "red")) +
+  scale_color_manual(values = c("darkgreen", "red")) +
   scale_x_discrete(breaks = x_axis) +
   ylab("Rate of returns, %") +
   xlab("Year")
@@ -752,11 +759,14 @@ ggsave("p2a.png")
 # The same procedure for males
 RoREs_2b <- melt(RoREs, measure=c("returns_to_HE_m", "returns_to_VE_m"))
 RoREs_2b$value <- as.numeric(substr(RoREs_2b$value, 1, nchar(RoREs_2b$value)-1))
-
+RoREs_2b$variable <- factor(RoREs_2b$variable,
+                           labels = c("Higher education",
+                                      "Vocational education"))
 # Plotting males
 p2b <- ggplot(RoREs_2b, aes(YEAR, value, group = variable, color = variable)) +
-  geom_smooth(se = F) + 
-  geom_point(size = 3) +
+  geom_point(aes(shape = variable), size = 4) +
+  geom_smooth(se = F, method = 'loess') +
+  geom_line() +
   scale_y_continuous(limits = c(-10, 110), breaks = seq(-50, 110, 10)) +
   theme(legend.title = element_blank(),
         legend.position = "bottom",
@@ -766,8 +776,7 @@ p2b <- ggplot(RoREs_2b, aes(YEAR, value, group = variable, color = variable)) +
         axis.title = element_text(size = 16),
         legend.text = element_text(size = 16),
         legend.key = element_rect(size = 16)) +
-  scale_color_manual(labels = c("Higher education", "Vocational education"),
-                     values = c("darkgreen", "red")) +
+  scale_color_manual(values = c("darkgreen", "red")) +
   scale_x_discrete(breaks = x_axis) +
   ylab("Rate of returns, %") +
   xlab("Year")
@@ -803,11 +812,15 @@ For Russians payoffs to higher and vocational education are characterized by a p
 # The same procedure for Russians
 RoREs_3a <- melt(RoREs, measure=c("returns_to_HE_rus", "returns_to_VE_rus"))
 RoREs_3a$value <- as.numeric(substr(RoREs_3a$value, 1, nchar(RoREs_3a$value)-1))
+RoREs_3a$variable <- factor(RoREs_3a$variable,
+                           labels = c("Higher education",
+                                      "Vocational education"))
 
 # Plotting Russians
 p3a <- ggplot(RoREs_3a, aes(YEAR, value, group = variable, color = variable)) +
-  geom_smooth(se = F) + 
-  geom_point(size = 3) +
+  geom_point(aes(shape = variable), size = 4) +
+  geom_smooth(se = F, method = 'loess') +
+  geom_line() +
   scale_y_continuous(limits = c(-10, 110), breaks = seq(-50, 110, 10)) +
   theme(legend.title = element_blank(),
         legend.position = "bottom",
@@ -817,8 +830,7 @@ p3a <- ggplot(RoREs_3a, aes(YEAR, value, group = variable, color = variable)) +
         axis.title = element_text(size = 16),
         legend.text = element_text(size = 16),
         legend.key = element_rect(size = 16)) +
-  scale_color_manual(labels = c("Higher education", "Vocational education"),
-                     values = c("darkgreen", "red")) +
+  scale_color_manual(values = c("darkgreen", "red")) +
   scale_x_discrete(breaks = x_axis) +
   ylab("Rate of returns, %") +
   xlab("Year")
@@ -829,11 +841,14 @@ ggsave("p3a.png")
 # The same procedure for non-Russians
 RoREs_3b <- melt(RoREs, measure=c("returns_to_HE_nrus", "returns_to_VE_nrus"))
 RoREs_3b$value <- as.numeric(substr(RoREs_3b$value, 1, nchar(RoREs_3b$value)-1))
-
+RoREs_3b$variable <- factor(RoREs_3b$variable,
+                           labels = c("Higher education",
+                                      "Vocational education"))
 # Plotting non-Russians
 p3b <- ggplot(RoREs_3b, aes(YEAR, value, group = variable, color = variable)) +
-  geom_smooth(se = F) + 
-  geom_point(size = 3) +
+  geom_point(aes(shape = variable), size = 4) +
+  geom_smooth(se = F, method = 'loess') +
+  geom_line() +
   scale_y_continuous(limits = c(-10, 110), breaks = seq(-50, 110, 10)) +
   theme(legend.title = element_blank(),
         legend.position = "bottom",
@@ -843,8 +858,7 @@ p3b <- ggplot(RoREs_3b, aes(YEAR, value, group = variable, color = variable)) +
         axis.title = element_text(size = 16),
         legend.text = element_text(size = 16),
         legend.key = element_rect(size = 16)) +
-  scale_color_manual(labels = c("Higher education", "Vocational education"), 
-                     values = c("darkgreen", "red")) +
+  scale_color_manual(values = c("darkgreen", "red")) +
   scale_x_discrete(breaks = x_axis) +
   ylab("Rate of returns, %") +
   xlab("Year")
