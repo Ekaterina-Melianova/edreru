@@ -1,10 +1,12 @@
 \documentclass[12pt,a4paper]{article}
-
 \usepackage[labelfont=bf]{caption}
 \usepackage[font=small,labelfont=bf]{subcaption}
 
-\usepackage[backend=biber, sorting=none,  style=authoryear]{biblatex}
-\addbibresource{Returns_to_Education_in_Russia.bib}
+\usepackage[backend=bibtex,
+                style=authoryear,
+                natbib=true, 
+                style=authoryear]{biblatex}
+\addbibresource{Returns.bib}
 
 \usepackage{float}
 
@@ -23,32 +25,67 @@
 \hypersetup{
  pdfstartview={XYZ null null 1}}
 \usepackage{breakurl}
-
 \usepackage{Sweave}
+
+%% For tables
+\usepackage{array}
+\usepackage{longtable}
+\usepackage{fullpage}
+\usepackage{dcolumn}
+\usepackage[flushleft]{threeparttable}
+\usepackage{booktabs}
+\usepackage[12hr]{datetime}
+\usepackage[DIV=16]{typearea}
+\usepackage{scrextend,booktabs}
+\usepackage{tabulary}
+\usepackage{multirow}
+\usepackage[font=footnotesize]{caption}
+
+
+
+
+
+
 \begin{document}
 \input{WP1_rlms-concordance}
 
-\title{Working Paper 1: Draft}
-\author{Suhas D. Parandekar, Ekaterina Melianova, Art\"{e}m Volgin}
+
+
+\title{Working Paper 1: Returns to Education in the Russian Federation - Zeroth Draft \footnote{Arranged in alphabetical order of author last names. The entire code used to generate the graphs and tables presented in this paper is available on bitbucket at \burl{https://bitbucket.org/zagamog/edreru/src/master/} , starting from the raw RLMS data graciously provided in the public domain by the National Research University-Higher School of Economics (HSE).}}
+\author{Ekaterina Melianova, Suhas D. Parandekar, Harry A. Patrinos, Art\"{e}m Volgin}
 \maketitle
-
-
+\begin{abstract}
+This is the first cut at Working Paper 1 (of proposed 3 working papers) on the Returns of Education in the Russian Federation. The paper shows an interesting pattern of variation in the returns to education from 1994-2018. The paper shows the co-movement of returns to higher education and the return to vocational education. From a policy viewpoint, it shows that returns to education may be strongly influencing decisions of individuals or families regarding their future education trajectories. Policy initiatives seeking to influence enrollment trends at specific educational levels would need to consider the empirical antecedents. 
+\end{abstract}
 
 
 \section*{RLMS Results}
 
 \subsection*{Data}
 
-To estimate returns to education in Russia we employed the Russian Longitudinal Monitoring Survey (RLMS) - the longest panel survey of individuals and households in Eastern Europe and Asia (\cite{kozyreva_081._2015}) and the only representative Russian survey with a sizable panel component allowing for a dynamic analysis. The data are notable for their reliability, diversity, and applicability to a variety of research questions. The RLMS embraces information on people's income and expenditure structure, their material well-being, educational and occupational behavior, health state and nutrition, migration, etc. High standards of the survey content accepted worldwide enable to conduct a comprehensive cross-country comparison. RLMS sampling procedures have been thoroughly and extensively described elsewhere (\cite{kozyreva_081._2015}). The present research uses all 23 waves that are currently available (1994 - 2018). A sub-sample selected for the empirical investigation includes working individuals aged 25-64 who are out of school and have positive labor market experience and income.
+To estimate returns to education in Russia we employed the Russian Longitudinal 
+Monitoring Survey (RLMS) - the longest panel survey of individuals and 
+households in Eastern Europe and Asia and the only representative Russian 
+survey with a sizable panel component allowing for a dynamic analysis 
+\parencite{kozyreva_081._2015}. The data are notable for their reliability, 
+diversity, and applicability to a variety of research questions. The RLMS 
+embraces information on people's income and expenditure structure, their 
+material well-being, educational and occupational behavior, health state and 
+nutrition, migration, etc.  RLMS sampling procedures have been thoroughly and 
+extensively described elsewhere \parencite{kozyreva_081._2015}. The present 
+research uses all 23 waves (1994 - 2018) that are available as of \today. The 
+sub-sample selected for empirical investigation  in this paper consists of 
+working individuals aged 25-64 who are out of school and have positive labor 
+market experience and income.
 \\
 
 \subsection*{Methods}
 
-Our empirical analysis pertains to the examination of a slightly modified basic specification of a mincer-type wage equation (\cite{mincer_082._1974}). We present results for the general working population of the Russian Federation aged 25-64 as well as by gender and nationality. The specification of focus is as follows:
+Our empirical analysis pertains to the examination of a slightly modified basic specification of a mincer-type wage equation \parencite{mincer_082._1974}. We present results for the general working population of the Russian Federation aged 25-64 as well as by gender and nationality. The specification of focus is as follows:
 
 $$Log(Wage) = b_0 + b_1\cdot Educ + b_2\cdot Exp + b_3\cdot Exp^2 + b_4\cdot Gender + b_5\cdot Nationality + \epsilon$$
 
-where $Log(Wage)$ is a logarithm of wage, $Educ$ stands for the highest attained level of education, $Exp$ and $Exp^2$ reflect the years of working experience and its quadratic term respectively, $Gender$ is a dummy variable for gender, $Nationality$ represents a person's nationality, $b_0$ is an intercept, $b_1 ... b_n$ are the respective slope estimates, $\epsilon$ refers to a normally distributed error term.
+where $Log(Wage)$ is a logarithm of monthly wage, $Educ$ stands for the highest attained level of education, $Exp$ and $Exp^2$ reflect the years of working experience and its quadratic term respectively, $Gender$ is a dummy variable for gender, $Nationality$ represents a person's nationality, $b_0$ is an intercept, $b_1 ... b_n$ are the respective slope estimates, $\epsilon$ refers to a normally distributed error term.
 \\
 
 \subsection*{Measures}
@@ -60,49 +97,59 @@ For the dependent variable we used the logarithm of an average monthly wage with
 
 \subsubsection*{Independent variables}
 
-We distinguished 3 categories for the {\bf education} variable (EDUC): (1) secondary, (2) vocational, and (3) higher. Incomplete levels were incorporated into the respective upper categories (e.g., incomplete higher - into higher). We are interested in exploring returns to vocational and higher education. Estimations of premiums to primary and secondary schooling levels are technically unreachable to us since the amounts of adults without primary education and with only primary level are minuscule in the general population. We also refused from a strategy of measuring education metrically in years due to a tangible variability of returns at each year of education: extrapolating yearly effects to any time period of schooling might be crude and erroneous.
+We distinguished 3 categories for the {\bf education} variable (EDUC): (1) secondary, (2) vocational, and (3) higher. Incomplete levels were incorporated into the respective upper categories (e.g., incomplete higher - into higher). We are interested in exploring returns to vocational and higher education. Estimations of premiums to primary and secondary schooling levels are technically unreachable to us since the number of adults without primary education and the number of adults with only primary level are minuscule in the general population. 
 \\
 
-To create a variable displaying a person's {\bf experience} we leveraged four questions on a year and a month of both primary and additional job start (J5A, J5B, J35.2Y, and J25.2M). Based on these variables and the information on an interview date, we generated a labor market experience variable for each unique respondent in the sample by summing his or her experience time registered across RLMS waves. If an employed individual had missing values on a date of his or her start of work, we imputed those missings by the first non-missing record from previous waves. If only month of a job start lacked a valid response, we roughly assumed a respondent had started his or her work in January. In cases of the absence of a valid answer with regard to those questions in both primary and additional job in all RLMS waves a person have been surveyed, such cases (< 1\%) were dropped from the analysis. List-wise deletion strategy was also applied to the observations with "negative" experience (< 1\%) when according to one's responses a job started allegedly "after" the interview occurred.
+\subsection*{Construction of experience variable}
+
+Absence of data regarding a person's actual experience profile often compels researchers to employ a heuristic such as experience is equal to age less the official age of entrance into school and less the duration of schooling in years. However, this method introduces measurement error that drives imprecision in results, especially important if we want to compare changes in the rate of returns to education over time. Fortunately,  RLMS is a panel data with most individuals surveyed over multiple years, which allows the creation of a factual experience variable. There is considerable attrition in the data over time, with like for like replacements of households to maintain national representativeness of the sample. RLMS also follows the somewhat innovative practice of continuing to sample a dwelling if the household residing in the dwelling has moved away; a sampling practice which implies an increasing sample size over time. Another implication of the sampling scheme is that computing labor market experience is a bit complicated and necessitates some assumptions and imputations that are explained below. \\
+
+
+To create a variable displaying a person's {\bf experience} we leveraged four questions on the year and a month of starting the primary job and the month of starting an additional job, if applicable (J5A, J5B, J35.2Y, and J25.2M). Based on these variables and the information of the interview date, a labor market experience variable was generated for each unique respondent in the sample by summing up his or her experience registered \textit{across} RLMS waves. If an employed individual had missing values on a date of his or her start of work in a particular survey year, and the individual had appeared at any time in a previous year, the first non-missing record from previous waves was chosen. If only the year of a job start was provided, we standardized computation by imputing the month to be January of that year. In cases of the absence of a valid answer with regard to both year and month of job start in both primary and additional job in all RLMS waves a person was surveyed, such cases (< 1\%) were dropped from the analysis. List-wise deletion strategy was also applied to the observations with "negative" experience (< 1\%) when according to one's responses a job started allegedly "after" the interview occurred\footnote{This step is necessitated because of the mixed panel nature of RLMS. Without proper accounting of experience, with education at a fixed level and changing income for an individuala cross years, there would be avoidable noise and possibly bias introduced on the education coefficient in the Mincerian equation.} 
 \\
 
-In addition, we elaborated a routine for detecting and fixing inconsistent responses to the questions about experience. Such pitfalls, impeding the correct computation of the experience variable, originate from the following two circumstances:
+A routine was therefore elaborated for detecting and fixing inconsistent responses to the questions about experience. The `quality control' on the experience variable revealed two opposing apparent recollection errors:
 
 \begin{enumerate}
-\item individuals, "covering" a job starting date throughout one or several successive waves and "disclosing" it later (e.g., a respondent in 2005 mentioned he or she had started to work in 2000, however, in 2001 a different response was recorded); 
+\item individuals whose starting date of a first job became at a later date over successive waves (e.g., an individual said in 2001 that she started working in 2000; the same individual in 2005 said she started working in 2002); 
 
 \item individuals, naming an earlier job starting date compared to the mentioned preceding dates (e.g., a respondent in 2005 said he had started to work in 2000, but in 2001 he or she replied 1995 had been in fact the beginning year of his or her working activity). 
 \end{enumerate}
 
-In both situations the priority was given to earlier responses since the closeness to the actual job starting date can potentially downgrade the probability of making a mistake by a person. Incoherence correction involved 52\% of unique respondents or 40\% of instances in the pooled RLMS database (1994 - 2018). However, it should be noted that such an approach to the labor market experience measurement is not devoid of shortcomings. Tracking people's experience based solely on information present in the dataset implies we restrict people's career paths to what has been captured exclusively by the survey. Hence we assume everyone reports on their first job start when they are interviewed for the first time, which is not always the case. Therefore, we cannot be sure on the preciseness of calculations concerning experience variable for individuals surveyed little amount of times, albeit are certain about the experience data for people, participated in the survey many times. As a counter-argument we can contend that such systematic underestimation affects everyone equally, hence leaving a relative aspect intact.
+Ideally, people would have perfect recall and not give inconsistent responses about their job history over time. However, we found inconsistent responses for 52\% of unique respondents or 40\% of instances in the pooled RLMS database (1994 - 2018).In both situations (whether computed experience increased or decreased due to different recollections of start date of first job), the  routine used in this paper prioritizes earlier responses, based on the reasoning that memory fades over time.  The method used in this paper is not able to eliminate the error, but dealing with it in a consistent manner appears a better approach than simply imputing an experience variable assuming a person started working since finishing education and has been working ever since.\\
+
+
+
+Table 1 shows the results of averaging all the three ways of generating labor market experience by cohorts of respondents aggregated on the basis of the number of incidences in the RLMS survey. The first column shows that there were 6667 individuals who appeared only once in the RLMS, 3463 who appeared twice (though could have been different pairs of years), 2793 who appeared three times and so on until the 119 individuals who appeared 23 times in the survey. Table 1 shows the mean values of the experience variable in years as computed by three methods: (EX1) The method outlined above, chosing earliest available data in case of inconsistencies; (EX2) method looking at each year of data independently, ignoring any inconsistencies, and (EX3) Na\"ive estimates which is simply the age - duration of schooling - 6.\\
+
+The table demonstrates that the two corresponding versions of experience computed with (EX1) and without (EX2) inconsistency correction gradually increase with the rise of the number of instances an individual appeared in RLMS. These differeces are mostly statistically significant as can be seen from the displayed p-values for a t-test of no significant difference.  Overall, this indicates the necessity of harmonizing the data in the described manner. 
 \\
 
-There is another method of computing a person's labor market experience frequent in past research. This method equates one's experience with a time distance between his or her graduation from the last institution and a current work. Such an approach has some disadvantages as well. First, it ignores the existence of unemployment which is of particular point of concern for people lacking higher education; that is why the method disproportionately overestimates people's labor market activity. Second, it does not account for the fact that people can continuously receive their education across their life-course, thus the method neglects a qualification upsurge in older ages. Third, the approach erases the variability in experience between people of the same age.
-\\
 
-Table 1 shows the results of averaging all the three ways of generating labor market experience by "cohorts" - groups of respondents aggregated on the basis of incidence number in the RLMS survey - and comparing the obtained means by a t-test. This table demonstrates that the two corresponding versions of experience computed with (EXP 1) and without (EXP 2) inconsistency correction gradually increase with the rise of the instance number, which is expected. Moreover, they are rather close in absolute values, nevertheless, entail a statistical difference (for the bulk of the cohorts t-test p-values are lower than 0.05). Therefore, perhaps, these variables cannot be leveraged interchangeably without introducing bias into the analysis. Importantly, both EXP 1 and EXP 2 take into consideration the fact that people can change their job, thus previous working experience is added to a current value. Besides, the table poses evidence that experience based on a graduation year (EXP 3) overestimates one's labor market activity since is greater than the corrected EXP 1 even for the most frequent RLMS participants (p-values of the respective t-tests are lower than 0.05). Overall, this indicates the necessity of harmonizing the data in the described manner. 
-\\
+
 
 
 \begin{table}[H]
+\footnotesize
+\def\arraystretch{1} 
         \centering
         \caption{Comparison between Initial and Corrected Versions of the Experience Variable}
         \label{tab:1}
 % latex table generated in R 3.5.1 by xtable 1.8-4 package
-% Tue Nov 05 02:19:11 2019
-\begin{tabular}{rrrrrrrr}
-  \hline
-Cohort & N resp & EXP 1 & EXP 2 & EXP 3 & N inst & t-tests 1: pv & t-tests 2: pv \\ 
-  \hline
-  1 & 6667 & 5.91 & 6.25 & 18.91 & 6667 & 0.01 & 0.00 \\ 
-    2 & 3463 & 6.53 & 6.97 & 19.26 & 6926 & 0.02 & 0.00 \\ 
-    3 & 2793 & 7.60 & 8.10 & 20.41 & 8379 & 0.03 & 0.00 \\ 
-    4 & 2556 & 8.41 & 8.90 & 20.35 & 10224 & 0.04 & 0.00 \\ 
-    5 & 1729 & 7.99 & 8.82 & 20.35 & 8645 & 0.00 & 0.00 \\ 
-    6 & 1532 & 8.56 & 9.43 & 20.02 & 9192 & 0.00 & 0.00 \\ 
-    7 & 1273 & 9.41 & 10.36 & 20.45 & 8911 & 0.00 & 0.00 \\ 
-    8 & 1177 & 10.14 & 10.88 & 21.13 & 9416 & 0.02 & 0.00 \\ 
-    9 & 910 & 10.66 & 11.75 & 21.32 & 8190 & 0.00 & 0.00 \\ 
+% Thu Oct 31 14:41:07 2019
+\begin{tabular}{p{3cm}p{1.5cm}p{1.5cm}p{1.5cm}p{1.5cm}rp{1cm}p{1cm}}
+  \hline\hline \\
+Cohort - number of  appearances in RLMS & N individuals & Experience correcting error (EX1)  & Experience ignoring error (EX2) & Experience na\"ive (EX3) & N instances & t-tests EX1-EX2: pvalue & t-tests EX1-EX3: pvalue \\ 
+  \hline \\
+01 & 6667 & 05.91 & 06.25 & 18.91 & 6667 & 0.01 & 0.00 \\ 
+    02 & 3463 & 06.53 & 06.97 & 19.26 & 6926 & 0.02 & 0.00 \\ 
+    03 & 2793 & 07.60 & 08.10 & 20.41 & 8379 & 0.03 & 0.00 \\ 
+    04 & 2556 & 08.41 & 08.90 & 20.35 & 10224 & 0.04 & 0.00 \\ 
+    05 & 1729 & 07.99 & 08.82 & 20.35 & 8645 & 0.00 & 0.00 \\ 
+    06 & 1532 & 08.56 & 09.43 & 20.02 & 9192 & 0.00 & 0.00 \\ 
+    07 & 1273 & 09.41 & 10.36 & 20.45 & 8911 & 0.00 & 0.00 \\ 
+    08 & 1177 & 10.14 & 10.88 & 21.13 & 9416 & 0.02 & 0.00 \\ 
+    09 & 910 & 10.66 & 11.75 & 21.32 & 8190 & 0.00 & 0.00 \\ 
    10 & 597 & 10.58 & 12.08 & 21.56 & 5970 & 0.00 & 0.00 \\ 
    11 & 541 & 10.52 & 12.04 & 20.85 & 5951 & 0.00 & 0.00 \\ 
    12 & 495 & 11.50 & 12.93 & 22.42 & 5940 & 0.00 & 0.00 \\ 
@@ -118,30 +165,43 @@ Cohort & N resp & EXP 1 & EXP 2 & EXP 3 & N inst & t-tests 1: pv & t-tests 2: pv
    22 &  97 & 17.05 & 18.92 & 25.06 & 2134 & 0.04 & 0.00 \\ 
    23 & 119 & 19.63 & 20.88 & 25.87 & 2737 & 0.16 & 0.00 \\ 
    \hline
-\end{tabular}\end{table}
+\end{tabular}
+\end{table}
 
 
-Finally, two socio-demographic variables were incorporated into the analysis, namely gender and nationality. We introduced gender in the form of a dummy variable with "1" standing for females, "0" - for males. Likewise, nationality reflected if a person did not identify him/herself as Russian.
+Finally, two socio-demographic variables were incorporated into the analysis, namely gender and nationality. Gender is included in the specification in the form of a dichotomous dummy variable with "1" standing for females, "0" - for males. Nationality is reflected with a 1 if a person did not identify him/herself as Russian and 0 if Russian.
 
-\subsection*{Findings}
+\subsection*{Findings from Estimation of Mincerian Equation}
 
-Figure 1 displays rates of returns to higher and vocational education in Russia in 1994-2018. The results suggest that on average wage premiums to university schooling in Russia are roughly 3-5 times greater than to vocational schooling depending on the year under focus. Overall, there is a moderate curved growth in both return types, achieving their peak in the early 2000s (83\% for higher education and 26\% for vocational education compared to the average earnings of workers with the secondary level), which is followed by a downward pattern (see Figure 1). This goes in line with the previous meta-analytic research (Lukyanova 2010).
+Figure 1, panel (a) displays rates of returns to higher and vocational education (as compared to secondary education) in Russia in 1994-2018. The results suggest that on average wage premiums to university education in Russia are roughly 3-5 times greater than to vocational schooling. Overall, there is a moderate curved growth in both return types, achieving their peak in the early 2000s (83\% for higher education and 26\% for vocational education compared to the average earnings of workers with the secondary level), which is followed by a downward pattern (see Figure 1). The interesting pattern to note from panel (a) is the apparent co-movement of vocational education and higher education - the higher education smoothing curve turns a bit more sharply than the one for vocational education, but their movement is matching, even at second order levels of smoothness (SP note to team - we need to superimpose with lighter line showing unsmoothed points). Further, even though higher education premium remains much above the premium for vocational education, there is a pereceptible narrowing of the difference in recent years. Panel (b) which is drawn from a presentation made by Marina Telezhkina at the WB-HSE Summer School on the Economics of Education in July 2019, shows the interesting pattern of higher education enrollment rates for population of 17-25 year olds. Figure 1(b) shows the downturn in returns reflected in enrollments, with the peak in enrollments coming about 10 years later. 
 \\
 
 
-
 \begin{figure}[H]
-\begin{center}
-  \centering
-  \includegraphics[width=300pt]{p1.png}
-  \caption{Rates of Returns to Higher and Vocational Education in Russia, RLMS 1994-2018}\label{fig:1}
-\end{center}
-\end{figure}
+\caption{\textbf{Rates of Returns to Higher and Vocational Education in Russia, RLMS 1994-2018}}\label{fig1}
+         \centering
+         \begin{subfigure}[b]{0.5\textwidth}
+                 \includegraphics[width=\textwidth]{p1.png}
+                 \caption{Rates of Return}
+                 \label{fig:Rates}
+         \end{subfigure}%
+         ~ %add desired spacing between images, e. g. ~, \quad, \qquad, \hfill etc.
+           %(or a blank line to force the subfigure onto a new line)
+         \begin{subfigure}[b]{0.5\textwidth}
+                 \includegraphics[width=\textwidth]{telezhkina.png}
+                 \caption{Enrollment in Higher Education}
+                 \label{fig:enroll}
+         \end{subfigure}
+     \end{figure}
 
-Notably, gender-based trends in Russia have a different shape across time with regard to schooling premiums. Particularly, males' payoffs to higher education (varying from 45\% to 76\%) turn out to be on a slightly decreasing slope, whereas women' returns are described by an inversely U-shaped pattern, reaching their maximum of 104\% in 2001. Within the last roughly 5 years wage premiums to higher education for women have stabilized around the level of men (~50\%). A similar comparative picture is observed with respect to vocational education, however, the described regularities are way less pronounced (see Figure 2): returns for males are almost flat within the time period under focus and the parabolic association for females is tangibly less concave. The overall outcome concerning payoffs to schooling isolated by gender has been confirmed in a similar fashion by past studies (e.g., Cheidvasser and Benítez-Silva 2007; Lukyanova 2010).
 
 
-\newpage
+
+
+When we look at the same data with information by gender, it is quite interesting that gender-based trends in Russia have a different shape across time with regard to schooling premiums. Though the percentage fluctuated slightly from year to year, there were about 55\% females in the sample compared to 45\% males. Particularly, males' payoffs to higher education (varying from 45\% to 76\%) turn out to be on a slightly decreasing slope, whereas women' returns are described by an inversely U-shaped pattern, reaching their maximum of 104\% in 2001. Within the last roughly 5 years wage premiums to higher education for women have stabilized around the level of men (~50\%).  Gender wise enrollment rates in higher education (not shown) ten years later appears to match the differences in rates of return, strengthening the hypothesis that market rates of return to education in Russia do indeed influence individual continuing school decisions. 
+
+A similar comparative picture is observed with respect to vocational education, however, the described regularities are way less pronounced (see Figure 2): returns for males are almost flat within the time period under focus and the parabolic association for females is tangibly less concave. The overall outcome concerning payoffs to schooling isolated by gender has been confirmed in a similar fashion by past studies \parencite{cheidvasser_006._2007}, etc .
+
 
 \begin{figure}[H]
   \begin{minipage}[b]{.5\linewidth}
@@ -162,7 +222,7 @@ Notably, gender-based trends in Russia have a different shape across time with r
   \caption{Rates of Returns to Higher and Vocational Education in Russia, RLMS 1994-2018}\label{fig:2}
 \end{figure}
 
-For Russians payoffs to higher and vocational education are characterized by a pattern almost identical to the one uncovered for the whole population. As for non-Russians, the estimates of wage advantages regarding people with university education level compared to those with only secondary level are not statistically significant in the majority of time periods investigated (except for 2002-2006 and 2008). Nevertheless, the payoffs to vocational education for those who identified themselves as non-Russians are significant and the respective time trend is loosely distinguishable from the one registered for Russians. In other words, nationality seem to affect returns to higher education, but does not play a similar part with respect to vocational education.
+Looking at the pattern by nationality, there were approximately 15\% non Russian nationals or immigrants in the RLMS database. We find that for Russian nationals, the payoffs to higher and vocational education are characterized by a pattern almost identical to the one uncovered for the whole population. As for non-Russians, the estimates of wage advantages regarding people with university education level compared to those with only secondary level are not statistically significant in the majority of time periods investigated (except for 2002-2006 and 2008). Nevertheless, the payoffs to vocational education for those who identified themselves as non-Russians are significant and the respective time trend is loosely distinguishable from the one registered for Russians. In other words, nationality seem to affect returns to higher education, but does not play a similar part with respect to vocational education.
 
 
 \begin{figure}[H]
@@ -190,7 +250,7 @@ For Russians payoffs to higher and vocational education are characterized by a p
 \section*{Appendix}
 
 % Table created by stargazer v.5.2.2 by Marek Hlavac, Harvard University. E-mail: hlavac at fas.harvard.edu
-% Date and time: Tue, Nov 05, 2019 - 2:19:14 AM
+% Date and time: Thu, Oct 31, 2019 - 2:41:10 PM
 \begin{table}[!htbp] \centering 
   \caption{Results of Mincer Analysis, RLMS 1994} 
   \label{} 
@@ -236,7 +296,7 @@ F Statistic & 57.786$^{***}$ & 14.271$^{***}$ & 14.057$^{***}$ & 62.886$^{***}$ 
 \newpage
 
 % Table created by stargazer v.5.2.2 by Marek Hlavac, Harvard University. E-mail: hlavac at fas.harvard.edu
-% Date and time: Tue, Nov 05, 2019 - 2:19:15 AM
+% Date and time: Thu, Oct 31, 2019 - 2:41:10 PM
 \begin{table}[!htbp] \centering 
   \caption{Results of Mincer Analysis, RLMS 1995} 
   \label{} 
@@ -282,7 +342,7 @@ F Statistic & 41.523$^{***}$ & 8.181$^{***}$ & 12.128$^{***}$ & 40.396$^{***}$ &
 \newpage
 
 % Table created by stargazer v.5.2.2 by Marek Hlavac, Harvard University. E-mail: hlavac at fas.harvard.edu
-% Date and time: Tue, Nov 05, 2019 - 2:19:15 AM
+% Date and time: Thu, Oct 31, 2019 - 2:41:10 PM
 \begin{table}[!htbp] \centering 
   \caption{Results of Mincer Analysis, RLMS 1996} 
   \label{} 
@@ -328,7 +388,7 @@ F Statistic & 35.992$^{***}$ & 7.709$^{***}$ & 7.501$^{***}$ & 35.671$^{***}$ & 
 \newpage
 
 % Table created by stargazer v.5.2.2 by Marek Hlavac, Harvard University. E-mail: hlavac at fas.harvard.edu
-% Date and time: Tue, Nov 05, 2019 - 2:19:15 AM
+% Date and time: Thu, Oct 31, 2019 - 2:41:10 PM
 \begin{table}[!htbp] \centering 
   \caption{Results of Mincer Analysis, RLMS 1998} 
   \label{} 
@@ -374,7 +434,7 @@ F Statistic & 79.074$^{***}$ & 19.512$^{***}$ & 28.374$^{***}$ & 85.755$^{***}$ 
 \newpage
 
 % Table created by stargazer v.5.2.2 by Marek Hlavac, Harvard University. E-mail: hlavac at fas.harvard.edu
-% Date and time: Tue, Nov 05, 2019 - 2:19:15 AM
+% Date and time: Thu, Oct 31, 2019 - 2:41:11 PM
 \begin{table}[!htbp] \centering 
   \caption{Results of Mincer Analysis, RLMS 2000} 
   \label{} 
@@ -420,7 +480,7 @@ F Statistic & 78.748$^{***}$ & 12.777$^{***}$ & 29.233$^{***}$ & 84.557$^{***}$ 
 \newpage
 
 % Table created by stargazer v.5.2.2 by Marek Hlavac, Harvard University. E-mail: hlavac at fas.harvard.edu
-% Date and time: Tue, Nov 05, 2019 - 2:19:16 AM
+% Date and time: Thu, Oct 31, 2019 - 2:41:11 PM
 \begin{table}[!htbp] \centering 
   \caption{Results of Mincer Analysis, RLMS 2001} 
   \label{} 
@@ -466,7 +526,7 @@ F Statistic & 85.935$^{***}$ & 19.738$^{***}$ & 38.626$^{***}$ & 98.701$^{***}$ 
 \newpage
 
 % Table created by stargazer v.5.2.2 by Marek Hlavac, Harvard University. E-mail: hlavac at fas.harvard.edu
-% Date and time: Tue, Nov 05, 2019 - 2:19:16 AM
+% Date and time: Thu, Oct 31, 2019 - 2:41:11 PM
 \begin{table}[!htbp] \centering 
   \caption{Results of Mincer Analysis, RLMS 2002} 
   \label{} 
@@ -512,7 +572,7 @@ F Statistic & 96.883$^{***}$ & 22.835$^{***}$ & 44.584$^{***}$ & 101.827$^{***}$
 \newpage
 
 % Table created by stargazer v.5.2.2 by Marek Hlavac, Harvard University. E-mail: hlavac at fas.harvard.edu
-% Date and time: Tue, Nov 05, 2019 - 2:19:16 AM
+% Date and time: Thu, Oct 31, 2019 - 2:41:11 PM
 \begin{table}[!htbp] \centering 
   \caption{Results of Mincer Analysis, RLMS 2003} 
   \label{} 
@@ -558,7 +618,7 @@ F Statistic & 114.015$^{***}$ & 22.345$^{***}$ & 51.464$^{***}$ & 121.088$^{***}
 \newpage
 
 % Table created by stargazer v.5.2.2 by Marek Hlavac, Harvard University. E-mail: hlavac at fas.harvard.edu
-% Date and time: Tue, Nov 05, 2019 - 2:19:16 AM
+% Date and time: Thu, Oct 31, 2019 - 2:41:11 PM
 \begin{table}[!htbp] \centering 
   \caption{Results of Mincer Analysis, RLMS 2004} 
   \label{} 
@@ -604,7 +664,7 @@ F Statistic & 123.291$^{***}$ & 23.549$^{***}$ & 48.085$^{***}$ & 129.807$^{***}
 \newpage
 
 % Table created by stargazer v.5.2.2 by Marek Hlavac, Harvard University. E-mail: hlavac at fas.harvard.edu
-% Date and time: Tue, Nov 05, 2019 - 2:19:16 AM
+% Date and time: Thu, Oct 31, 2019 - 2:41:12 PM
 \begin{table}[!htbp] \centering 
   \caption{Results of Mincer Analysis, RLMS 2005} 
   \label{} 
@@ -650,7 +710,7 @@ F Statistic & 125.554$^{***}$ & 20.059$^{***}$ & 57.218$^{***}$ & 136.313$^{***}
 \newpage
 
 % Table created by stargazer v.5.2.2 by Marek Hlavac, Harvard University. E-mail: hlavac at fas.harvard.edu
-% Date and time: Tue, Nov 05, 2019 - 2:19:16 AM
+% Date and time: Thu, Oct 31, 2019 - 2:41:12 PM
 \begin{table}[!htbp] \centering 
   \caption{Results of Mincer Analysis, RLMS 2006} 
   \label{} 
@@ -696,7 +756,7 @@ F Statistic & 156.012$^{***}$ & 27.246$^{***}$ & 80.635$^{***}$ & 163.550$^{***}
 \newpage
 
 % Table created by stargazer v.5.2.2 by Marek Hlavac, Harvard University. E-mail: hlavac at fas.harvard.edu
-% Date and time: Tue, Nov 05, 2019 - 2:19:17 AM
+% Date and time: Thu, Oct 31, 2019 - 2:41:12 PM
 \begin{table}[!htbp] \centering 
   \caption{Results of Mincer Analysis, RLMS 2007} 
   \label{} 
@@ -742,7 +802,7 @@ F Statistic & 140.495$^{***}$ & 22.629$^{***}$ & 65.411$^{***}$ & 158.888$^{***}
 \newpage
 
 % Table created by stargazer v.5.2.2 by Marek Hlavac, Harvard University. E-mail: hlavac at fas.harvard.edu
-% Date and time: Tue, Nov 05, 2019 - 2:19:17 AM
+% Date and time: Thu, Oct 31, 2019 - 2:41:12 PM
 \begin{table}[!htbp] \centering 
   \caption{Results of Mincer Analysis, RLMS 2008} 
   \label{} 
@@ -788,7 +848,7 @@ F Statistic & 155.203$^{***}$ & 37.314$^{***}$ & 68.048$^{***}$ & 172.104$^{***}
 \newpage
 
 % Table created by stargazer v.5.2.2 by Marek Hlavac, Harvard University. E-mail: hlavac at fas.harvard.edu
-% Date and time: Tue, Nov 05, 2019 - 2:19:17 AM
+% Date and time: Thu, Oct 31, 2019 - 2:41:12 PM
 \begin{table}[!htbp] \centering 
   \caption{Results of Mincer Analysis, RLMS 2009} 
   \label{} 
@@ -834,7 +894,7 @@ F Statistic & 151.376$^{***}$ & 31.959$^{***}$ & 66.940$^{***}$ & 163.424$^{***}
 \newpage
 
 % Table created by stargazer v.5.2.2 by Marek Hlavac, Harvard University. E-mail: hlavac at fas.harvard.edu
-% Date and time: Tue, Nov 05, 2019 - 2:19:17 AM
+% Date and time: Thu, Oct 31, 2019 - 2:41:13 PM
 \begin{table}[!htbp] \centering 
   \caption{Results of Mincer Analysis, RLMS 2010} 
   \label{} 
@@ -880,7 +940,7 @@ F Statistic & 214.077$^{***}$ & 50.335$^{***}$ & 93.184$^{***}$ & 234.981$^{***}
 \newpage
 
 % Table created by stargazer v.5.2.2 by Marek Hlavac, Harvard University. E-mail: hlavac at fas.harvard.edu
-% Date and time: Tue, Nov 05, 2019 - 2:19:17 AM
+% Date and time: Thu, Oct 31, 2019 - 2:41:13 PM
 \begin{table}[!htbp] \centering 
   \caption{Results of Mincer Analysis, RLMS 2011} 
   \label{} 
@@ -926,7 +986,7 @@ F Statistic & 250.624$^{***}$ & 63.004$^{***}$ & 86.557$^{***}$ & 272.876$^{***}
 \newpage
 
 % Table created by stargazer v.5.2.2 by Marek Hlavac, Harvard University. E-mail: hlavac at fas.harvard.edu
-% Date and time: Tue, Nov 05, 2019 - 2:19:17 AM
+% Date and time: Thu, Oct 31, 2019 - 2:41:13 PM
 \begin{table}[!htbp] \centering 
   \caption{Results of Mincer Analysis, RLMS 2012} 
   \label{} 
@@ -972,7 +1032,7 @@ F Statistic & 254.601$^{***}$ & 64.701$^{***}$ & 80.544$^{***}$ & 269.058$^{***}
 \newpage
 
 % Table created by stargazer v.5.2.2 by Marek Hlavac, Harvard University. E-mail: hlavac at fas.harvard.edu
-% Date and time: Tue, Nov 05, 2019 - 2:19:18 AM
+% Date and time: Thu, Oct 31, 2019 - 2:41:13 PM
 \begin{table}[!htbp] \centering 
   \caption{Results of Mincer Analysis, RLMS 2013} 
   \label{} 
@@ -1018,7 +1078,7 @@ F Statistic & 240.156$^{***}$ & 59.946$^{***}$ & 99.247$^{***}$ & 258.110$^{***}
 \newpage
 
 % Table created by stargazer v.5.2.2 by Marek Hlavac, Harvard University. E-mail: hlavac at fas.harvard.edu
-% Date and time: Tue, Nov 05, 2019 - 2:19:18 AM
+% Date and time: Thu, Oct 31, 2019 - 2:41:13 PM
 \begin{table}[!htbp] \centering 
   \caption{Results of Mincer Analysis, RLMS 2014} 
   \label{} 
@@ -1064,7 +1124,7 @@ F Statistic & 195.451$^{***}$ & 49.417$^{***}$ & 88.665$^{***}$ & 220.189$^{***}
 \newpage
 
 % Table created by stargazer v.5.2.2 by Marek Hlavac, Harvard University. E-mail: hlavac at fas.harvard.edu
-% Date and time: Tue, Nov 05, 2019 - 2:19:18 AM
+% Date and time: Thu, Oct 31, 2019 - 2:41:13 PM
 \begin{table}[!htbp] \centering 
   \caption{Results of Mincer Analysis, RLMS 2015} 
   \label{} 
@@ -1110,7 +1170,7 @@ F Statistic & 202.247$^{***}$ & 58.161$^{***}$ & 69.116$^{***}$ & 217.040$^{***}
 \newpage
 
 % Table created by stargazer v.5.2.2 by Marek Hlavac, Harvard University. E-mail: hlavac at fas.harvard.edu
-% Date and time: Tue, Nov 05, 2019 - 2:19:18 AM
+% Date and time: Thu, Oct 31, 2019 - 2:41:14 PM
 \begin{table}[!htbp] \centering 
   \caption{Results of Mincer Analysis, RLMS 2016} 
   \label{} 
@@ -1156,7 +1216,7 @@ F Statistic & 179.466$^{***}$ & 52.260$^{***}$ & 58.799$^{***}$ & 190.040$^{***}
 \newpage
 
 % Table created by stargazer v.5.2.2 by Marek Hlavac, Harvard University. E-mail: hlavac at fas.harvard.edu
-% Date and time: Tue, Nov 05, 2019 - 2:19:18 AM
+% Date and time: Thu, Oct 31, 2019 - 2:41:14 PM
 \begin{table}[!htbp] \centering 
   \caption{Results of Mincer Analysis, RLMS 2017} 
   \label{} 
@@ -1202,7 +1262,7 @@ F Statistic & 191.331$^{***}$ & 57.371$^{***}$ & 48.265$^{***}$ & 199.302$^{***}
 \newpage
 
 % Table created by stargazer v.5.2.2 by Marek Hlavac, Harvard University. E-mail: hlavac at fas.harvard.edu
-% Date and time: Tue, Nov 05, 2019 - 2:19:19 AM
+% Date and time: Thu, Oct 31, 2019 - 2:41:14 PM
 \begin{table}[!htbp] \centering 
   \caption{Results of Mincer Analysis, RLMS 2018} 
   \label{} 
