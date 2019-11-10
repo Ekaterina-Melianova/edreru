@@ -1,0 +1,32 @@
+\documentclass{article}
+
+\usepackage{etoolbox}
+
+\def\parsepdfdatetime#1:#2#3#4#5#6#7#8#9{%
+  \def\theyear{#2#3#4#5}%
+  \def\themonth{#6#7}%
+  \def\theday{#8#9}%
+  \parsepdftime
+}
+
+\def\parsepdftime#1#2#3#4#5#6#7\endparsepdfdatetime{%
+  \def\thehour{#1#2}%
+  \def\theminute{#3#4}%
+  \def\thesecond{#5#6}%
+  \ifstrequal{#7}{Z}
+  {%
+    \def\thetimezonehour{+00}%
+    \def\thetimezoneminute{00}%
+  }%
+  {%
+    \parsepdftimezone#7%
+  }%
+}
+
+\def\parsepdftimezone#1'#2'{%
+  \def\thetimezonehour{#1}%
+  \def\thetimezoneminute{#2}%
+}
+
+\newcommand*{\thetimezone}{\thetimezonehour:\thetimezoneminute}
+
