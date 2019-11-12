@@ -21,7 +21,7 @@ wd <- paste0(normalizePath(Sys.getenv("USERPROFILE"), winslash = "/"), "/Desktop
 ###+++++++++++++++++++++SPSPS+++++++++
 # Above code does not work for me, we need to find a way to
 # work for any user, at least for MS-Windows set up
-wd <- "C:/Country/Russia/Data/SEABYTE/RLMS/sqlite"
+wd <- "C:/Country/Russia/Data/SEASHELL/SEABYTE/Databases/RLMS/sqlite"
 setwd(wd)
 
 # Connecting with SQLite
