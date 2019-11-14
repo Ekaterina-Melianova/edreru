@@ -56,11 +56,7 @@ library(xtable)
 <<Data preprocessing, echo=F, cache=F, include=F, results=hide>>=
 
 # Working directory
-wd <- paste0(normalizePath(Sys.getenv("USERPROFILE"), winslash = "/"), "/Desktop")
-###+++++++++++++++++++++SPSPS+++++++++
-# Above code does not work for me, we need to find a way to
-# work for any user, at least for MS-Windows set up
-# wd <- "C:/Country/Russia/Data/SEABYTE/RLMS/sqlite"
+wd <- "C/Country/Russia/Data/SEASHELL/SEABYTE/Databases/RLMS/sqlite"
 setwd(wd)
 # Connecting with SQLite
 db <- dbConnect(SQLite(), dbname=paste0(wd, "/rlms.db"))
@@ -340,7 +336,7 @@ table(resp$tag2) # 13670 respondents with inconsistencies, 12674 - without
 # experience as a time between graduation and a current work
 
 # Working directory
-wd <- paste0(normalizePath(Sys.getenv("USERPROFILE"), winslash = "/"), "/Desktop")
+wd <- "C/Country/Russia/Data/SEASHELL/SEABYTE/Databases/RLMS/sqlite"
 setwd(wd)
 
 # Vars of interest
@@ -436,7 +432,8 @@ df_2$exper2 <- df_2$YEAR - df_2$grady
 
 # Note: df_ini is a df from mincer2a.R file with the initial experience
 # variable (without inconsistency fixing)
-setwd("C:/Country/Russia/Data/SEABYTE/RLMS/edreru/wp1")
+wd <- "C:/Country/Russia/Data/SEASHELL/SEABYTE/edreru/wp1"
+setwd(wd)
 df_ini <- readRDS("df_ini.rds")
 
 # A table with instancies

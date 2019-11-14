@@ -19,16 +19,9 @@ library(gridExtra)
 ############################################################################################################
 
 # Working directory
-wd <- paste0(normalizePath(Sys.getenv("USERPROFILE"), winslash = "/"), "/Desktop")
-###+++++++++++++++++++++SPSPS+++++++++
-# Above code does not work for me, we need to find a way to
-# work for any user, at least for MS-Windows set up
-wd <- "C:/Country/Russia/Data/SEABYTE/RLMS/sqlite"
+wd <- "C/Country/Russia/Data/SEASHELL/SEABYTE/Databases/RLMS/sqlite"
 setwd(wd)
 
-
-
-setwd(wd)
 # Connecting with SQLite
 db <- dbConnect(SQLite(), dbname=paste0(wd, "/rlms.db"))
 # Modified cbind
@@ -149,7 +142,7 @@ selectFromSQL <- function(column_names=NULL, column_blocks=NULL, wave_number=NUL
 
 # Selecting the variables of interest
 df_ <- selectFromSQL(c("AGE", "J13_2", "J10", "J40", "EDUC", "J1",
-                       "J5A", "J5B", "H7_2", "H5",
+                       "J5A", "J5B", "H7_2", "H5", "OCCUP08",
                        "J23", "I2", "I4", "YEAR", "J40", "J35_2Y", "J35_2M",
                        "total_exper", "exper_main_", "exper_add_",
                        "J5A_", "J5B_", "J35_2Y_", "J35_2M_"))
@@ -261,7 +254,8 @@ Freq(df$female)
 # Generating a final dataset for the analysis
 
 names(df)[which(colnames(df) == "total_exper")] <- "exper"
-df_mincer <- df[, c("IDIND", "YEAR", "edu_4", "wage", "exper", "non_russ", "female")]
+df_mincer <- df[, c("IDIND", "YEAR", "edu_4", "wage",
+                    "exper", "non_russ", "female")]
 df_mincer$exper <- as.numeric(df_mincer$exper)
 summary(df_mincer)
 # df[which(df$wage == 0), "ID_I"]
@@ -273,6 +267,30 @@ df_mincer <- df_mincer %>%
 # F-test
 var.test(wage ~ female, df_mincer, 
          alternative = "two.sided")
+
+################################## Data with occupation to save ###########################################
+
+# Occupation
+Freq(df$OCCUP08) # user 407 NAs
+df$occup <- as.numeric(df$OCCUP08)
+df <- df%>% filter(!((occup == 99999997)|
+                       (occup == 99999998)|
+                       (occup == 99999999)))
+Freq(df$occup) 
+
+df_mincer_save <- df[, c("IDIND", "YEAR", "edu_4", "wage",
+                    "exper", "non_russ", "female", "occup")]
+df_mincer_save$exper <- as.numeric(df_mincer_save$exper)
+
+# Filtering the missings left
+df_mincer_save <- df_mincer_save %>%
+  filter(!is.na(wage) & !is.na(exper) & wage > 0)
+summary(df_mincer_save)
+
+# Saving the mincer database for the extension1.R
+wd <- "C:/Country/Russia/Data/SEASHELL/SEABYTE/edreru/wp1"
+setwd(wd)
+saveRDS(df_mincer_save, paste0(wd, "/", "df_mincer.rds"))
 
 ########################################### Regression ####################################################
 
@@ -288,7 +306,7 @@ for(i in seq(length(seq_year))){
   lm_mincer_all[[i]] <- lm(log(wage) ~ edu_4 + exper + I(exper^2) + non_russ + female,
                      data = df_mincer[df_mincer$YEAR == seq_year[i],])
 }
-names(lm_mincer_all) <- vec_year
+names(lm_mincer_all) <- seq_year
 
 # by gender
 for(i in seq(length(seq_year))){
@@ -310,11 +328,11 @@ for(i in seq(length(seq_year))){
                                             df_mincer$non_russ == 1,])  
 }
 
-names(lm_mincer_f) <- vec_year
-names(lm_mincer_m) <- vec_year
+names(lm_mincer_f) <- seq_year
+names(lm_mincer_m) <- seq_year
 
-names(lm_mincer_rus) <- vec_year
-names(lm_mincer_nrus) <- vec_year
+names(lm_mincer_rus) <- seq_year
+names(lm_mincer_nrus) <- seq_year
 
 smry_all <- lapply(lm_mincer_all, summary)
 smry_f <- lapply(lm_mincer_f, summary)
@@ -572,7 +590,8 @@ resp <- df %>%
 table(resp$tag2) # 13670 respondents with inconsistencies, 12674 - without
 
 #########################################################################################################
-
+wd <- "C:/Country/Russia/Data/SEASHELL/SEABYTE/edreru/wp1"
+setwd(wd)
 # Generating the initial experience (without inconsistencies fixing)
 # Note: safe is a df from mincer1a.R file
 safe <- readRDS("safe.rds")

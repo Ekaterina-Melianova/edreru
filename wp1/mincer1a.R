@@ -17,11 +17,7 @@ library(pbapply)
 ############################################################################################################
 
 # Working directory
-wd <- paste0(normalizePath(Sys.getenv("USERPROFILE"), winslash = "/"), "/Desktop")
-###+++++++++++++++++++++SPSPS+++++++++
-# Above code does not work for me, we need to find a way to
-# work for any user, at least for MS-Windows set up
-wd <- "C:/Country/Russia/Data/SEASHELL/SEABYTE/Databases/RLMS/sqlite"
+wd <- "C/Country/Russia/Data/SEASHELL/SEABYTE/Databases/RLMS/sqlite"
 setwd(wd)
 
 # Connecting with SQLite
@@ -545,7 +541,7 @@ var_names_to_csv <- c("J5A_", "J5B_", "J35_2Y_", "J35_2M_",
 
 i = 1
 for (name in var_names_to_csv){
-  write.csv(exper_to_csv[name], file = paste('csv_tables_exper/', name, ".csv", sep=""))
+  write.csv(exper_to_csv[name], file = paste(wd, "/", name, ".csv", sep=""))
   print(i)
   i = i + 1
 }
