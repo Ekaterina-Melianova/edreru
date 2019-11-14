@@ -19,7 +19,7 @@ library(gridExtra)
 ############################################################################################################
 
 # Working directory
-wd <- "C/Country/Russia/Data/SEASHELL/SEABYTE/Databases/RLMS/sqlite"
+wd <- "C:/Country/Russia/Data/SEASHELL/SEABYTE/Databases/RLMS/sqlite"
 setwd(wd)
 
 # Connecting with SQLite
@@ -142,7 +142,7 @@ selectFromSQL <- function(column_names=NULL, column_blocks=NULL, wave_number=NUL
 
 # Selecting the variables of interest
 df_ <- selectFromSQL(c("AGE", "J13_2", "J10", "J40", "EDUC", "J1",
-                       "J5A", "J5B", "H7_2", "H5", "OCCUP08",
+                       "J5A", "J5B", "H7_2", "H5", "J2COD08",
                        "J23", "I2", "I4", "YEAR", "J40", "J35_2Y", "J35_2M",
                        "total_exper", "exper_main_", "exper_add_",
                        "J5A_", "J5B_", "J35_2Y_", "J35_2M_"))
@@ -271,8 +271,8 @@ var.test(wage ~ female, df_mincer,
 ################################## Data with occupation to save ###########################################
 
 # Occupation
-Freq(df$OCCUP08) # user 407 NAs
-df$occup <- as.numeric(df$OCCUP08)
+Freq(df$J2COD08) # user 407 NAs
+df$occup <- as.numeric(df$J2COD08)
 df <- df%>% filter(!((occup == 99999997)|
                        (occup == 99999998)|
                        (occup == 99999999)))
