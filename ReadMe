@@ -1,3 +1,0 @@
-This repository deals with data from the Russian Longitudinal Monitoring Survey (RLMS), with a focus on education and earnings data. The purpose of this repository is to simplify the task of utilizing the open access RLMS data with an open access set of routines using freely accessible software such as R and Python.
-
-The initial developers are Suhas Parandekar (Principal Investigator); Ekaterina Melianova and Artëm Volgin
