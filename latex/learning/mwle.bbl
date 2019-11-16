@@ -1,0 +1,75 @@
+% $ biblatex auxiliary file $
+% $ biblatex bbl format version 3.1 $
+% Do not modify the above lines!
+%
+% This is an auxiliary file used by the 'biblatex' package.
+% This file may safely be deleted. It will be recreated as
+% required.
+%
+\begingroup
+\makeatletter
+\@ifundefined{ver@biblatex.sty}
+  {\@latex@error
+     {Missing 'biblatex' package}
+     {The bibliography requires the 'biblatex' package.}
+      \aftergroup\endinput}
+  {}
+\endgroup
+
+\datalist[entry]{nyt/global//global/global}
+  \entry{Baranov2001}{book}{}
+    \name{author}{1}{}{%
+      {{hash=}{%
+         family={Баранов},
+         familyi={\bibinitperiod},
+         given={Николай\bibnamedelima А},
+         giveni={\bibinitperiod\bibinitdelim \bibinitperiod},
+      }}%
+    }
+    \list{language}{1}{%
+      {russian}%
+    }
+    \field{labelnamesource}{author}
+    \field{labeltitlesource}{title}
+    \field{labelyear}{2001}
+    \field{labeldatesource}{year}
+    \field{title}{{Эволюция взглядов}}
+    \field{langid}{russian}
+    \list{location}{1}{%
+      {Санкт-Петербугр}%
+    }
+    \field{year}{2001}
+  \endentry
+
+  \entry{Bara2006}{book}{}
+    \name{author}{1}{}{%
+      {{hash=BJ}{%
+         family={Bara},
+         familyi={B\bibinitperiod},
+         given={Judith},
+         giveni={J\bibinitperiod},
+      }}%
+    }
+    \list{language}{1}{%
+      {english}%
+    }
+    \list{publisher}{1}{%
+      {Routledge}%
+    }
+    \strng{namehash}{BJ1}
+    \strng{fullhash}{BJ1}
+    \field{labelnamesource}{author}
+    \field{labeltitlesource}{title}
+    \field{labelyear}{2006}
+    \field{labeldatesource}{year}
+    \field{sortinit}{B}
+    \field{sortinithash}{B}
+    \field{title}{{English Citation entry}}
+    \field{langid}{english}
+    \list{location}{1}{%
+      {New York}%
+    }
+    \field{year}{2006}
+  \endentry
+\enddatalist
+\endinput

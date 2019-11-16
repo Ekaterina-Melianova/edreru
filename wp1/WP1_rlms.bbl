@@ -1,0 +1,204 @@
+% $ biblatex auxiliary file $
+% $ biblatex bbl format version 3.1 $
+% Do not modify the above lines!
+%
+% This is an auxiliary file used by the 'biblatex' package.
+% This file may safely be deleted. It will be recreated as
+% required.
+%
+\begingroup
+\makeatletter
+\@ifundefined{ver@biblatex.sty}
+  {\@latex@error
+     {Missing 'biblatex' package}
+     {The bibliography requires the 'biblatex' package.}
+      \aftergroup\endinput}
+  {}
+\endgroup
+
+\datalist[entry]{nyt/global//global/global}
+  \entry{blix}{article}{}
+    \name{author}{1}{}{%
+      {{hash=}{%
+         family={Лукьянова},
+         familyi={\bibinitperiod},
+         given={Анна\bibnamedelima Львовна},
+         giveni={\bibinitperiod\bibinitdelim \bibinitperiod},
+      }}%
+    }
+    \field{labelnamesource}{author}
+    \field{labeltitlesource}{shorttitle}
+    \field{labelyear}{2010}
+    \field{labeldatesource}{year}
+    \field{number}{3}
+    \field{shorttitle}{Отдача от образования}
+    \field{title}{023. Отдача от образования: что
+  показывает мета-анализ}
+    \field{volume}{14}
+    \verb{file}
+    \verb Лукьянова - 2010 - Отдача от образования
+    \verb что показывает мета-анализ.pdf:C\:\\Users\\wb1
+    \verb 64718\\Zotero\\storage\\HQ8VFQGV\\Лукьянова - 2010 - Отд�
+    \verb �ча от образования что показывает мет�
+    \verb �-анализ.pdf:application/pdf
+    \endverb
+    \field{journaltitle}{Экономический журнал Высшей
+  школы экономики}
+    \field{year}{2010}
+  \endentry
+
+  \entry{carnoy_005._2012}{article}{}
+    \name{author}{4}{}{%
+      {{hash=CM}{%
+         family={Carnoy},
+         familyi={C\bibinitperiod},
+         given={Martin},
+         giveni={M\bibinitperiod},
+      }}%
+      {{hash=LPK}{%
+         family={Loyalka},
+         familyi={L\bibinitperiod},
+         given={Prashant\bibnamedelima Kumar},
+         giveni={P\bibinitperiod\bibinitdelim K\bibinitperiod},
+      }}%
+      {{hash=AGV}{%
+         family={Androushchak},
+         familyi={A\bibinitperiod},
+         given={Greg\bibnamedelima V.},
+         giveni={G\bibinitperiod\bibinitdelim V\bibinitperiod},
+      }}%
+      {{hash=PA}{%
+         family={Proudnikova},
+         familyi={P\bibinitperiod},
+         given={Anna},
+         giveni={A\bibinitperiod},
+      }}%
+    }
+    \strng{namehash}{CM+1}
+    \strng{fullhash}{CMLPKAGVPA1}
+    \field{labelnamesource}{author}
+    \field{labeltitlesource}{title}
+    \field{labelyear}{2012}
+    \field{labeldatesource}{year}
+    \field{sortinit}{C}
+    \field{sortinithash}{C}
+    \field{title}{005. The economic returns to higher education in the {BRIC}
+  countries and their implications for higher education expansion}
+    \field{volume}{2}
+    \verb{file}
+    \verb Carnoy и др. - 2012 - The economic returns to higher education in
+    \verb the BR.pdf:C\:\\Users\\wb164718\\Zotero\\storage\\Z4XXPBT2\\Carnoy и
+    \verb  др. - 2012 - The economic returns to higher education in the BR.pd
+    \verb f:application/pdf
+    \endverb
+    \field{journaltitle}{Higher School of Economics Research Paper No. {WP}
+  {BRP}}
+    \field{year}{2012}
+  \endentry
+
+  \entry{cheidvasser_006._2007}{article}{}
+    \name{author}{2}{}{%
+      {{hash=CS}{%
+         family={Cheidvasser},
+         familyi={C\bibinitperiod},
+         given={Sofia},
+         giveni={S\bibinitperiod},
+      }}%
+      {{hash=BSH}{%
+         family={Benítez-Silva},
+         familyi={B\bibinithyphendelim S\bibinitperiod},
+         given={Hugo},
+         giveni={H\bibinitperiod},
+      }}%
+    }
+    \strng{namehash}{CSBSH1}
+    \strng{fullhash}{CSBSH1}
+    \field{labelnamesource}{author}
+    \field{labeltitlesource}{shorttitle}
+    \field{labelyear}{2007}
+    \field{labeldatesource}{year}
+    \field{sortinit}{C}
+    \field{sortinithash}{C}
+    \field{number}{1}
+    \field{pages}{1\bibrangedash 41}
+    \field{shorttitle}{The educated Russian's curse}
+    \field{title}{006. The educated Russian's curse: Returns to education in
+  the Russian Federation during the 1990s}
+    \field{volume}{21}
+    \verb{file}
+    \verb Cheidvasser и Benítez-Silva - 2007 - The educated Russian's curse R
+    \verb eturns to education.pdf:C\:\\Users\\wb164718\\Zotero\\storage\\AZRI7E
+    \verb J6\\Cheidvasser и Benítez-Silva - 2007 - The educated Russian's cur
+    \verb se Returns to education.pdf:application/pdf
+    \endverb
+    \field{journaltitle}{Labour}
+    \field{year}{2007}
+  \endentry
+
+  \entry{kozyreva_081._2015}{article}{}
+    \name{author}{2}{}{%
+      {{hash=KP}{%
+         family={Kozyreva},
+         familyi={K\bibinitperiod},
+         given={Polina},
+         giveni={P\bibinitperiod},
+      }}%
+      {{hash=SPK}{%
+         family={Sabirianova\bibnamedelima Peter},
+         familyi={S\bibinitperiod\bibinitdelim P\bibinitperiod},
+         given={Klara},
+         giveni={K\bibinitperiod},
+      }}%
+    }
+    \strng{namehash}{KPSPK1}
+    \strng{fullhash}{KPSPK1}
+    \field{labelnamesource}{author}
+    \field{labeltitlesource}{shorttitle}
+    \field{labelyear}{2015}
+    \field{labeldatesource}{year}
+    \field{sortinit}{K}
+    \field{sortinithash}{K}
+    \field{number}{2}
+    \field{pages}{293\bibrangedash 298}
+    \field{shorttitle}{Economic Change in Russia}
+    \field{title}{081. Economic Change in Russia: Twenty Years of the Russian
+  Longitudinal Monitoring Survey}
+    \field{volume}{23}
+    \verb{file}
+    \verb Kozyreva и Sabirianova Peter - 2015 - Economic Change in Russia Twen
+    \verb ty Years of the Rus.pdf:C\:\\Users\\wb164718\\Zotero\\storage\\2D73HE
+    \verb 6T\\Kozyreva и Sabirianova Peter - 2015 - Economic Change in Russia
+    \verb Twenty Years of the Rus.pdf:application/pdf;Snapshot:C\:\\Users\\wb16
+    \verb 4718\\Zotero\\storage\\356SNNQT\\ecot.html:text/html
+    \endverb
+    \field{journaltitle}{Economics of Transition}
+    \field{year}{2015}
+  \endentry
+
+  \entry{mincer_082._1974}{article}{}
+    \name{author}{1}{}{%
+      {{hash=MJA}{%
+         family={Mincer},
+         familyi={M\bibinitperiod},
+         given={Jacob\bibnamedelima A.},
+         giveni={J\bibinitperiod\bibinitdelim A\bibinitperiod},
+      }}%
+    }
+    \strng{namehash}{MJA1}
+    \strng{fullhash}{MJA1}
+    \field{labelnamesource}{author}
+    \field{labeltitlesource}{title}
+    \field{labelyear}{1974}
+    \field{labeldatesource}{year}
+    \field{sortinit}{M}
+    \field{sortinithash}{M}
+    \field{title}{082. Schooling, Experience, and Earnings}
+    \verb{file}
+    \verb Snapshot:C\:\\Users\\wb164718\\Zotero\\storage\\4JTXJ57Q\\minc74-1.ht
+    \verb ml:text/html
+    \endverb
+    \field{journaltitle}{{NBER} Books}
+    \field{year}{1974}
+  \endentry
+\enddatalist
+\endinput
