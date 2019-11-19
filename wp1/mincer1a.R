@@ -18,7 +18,7 @@ library(pbapply)
 
 # Working directory
 wd <- "C:/Country/Russia/Data/SEASHELL/SEABYTE/Databases/RLMS/sqlite"
-setwd(wd)
+setwd(wd) 
 
 # Connecting with SQLite
 db <- dbConnect(SQLite(), dbname=paste0(wd, "/rlms.db"))
