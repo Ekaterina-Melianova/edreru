@@ -23,9 +23,9 @@ wd <- "C:/Country/Russia/Data/SEASHELL/SEABYTE/Databases/RLMS/sqlite"
 setwd(wd) 
 
 # Connecting with SQLite
-db <- dbConnect(SQLite(), dbname=paste0(wd, "/rlms.db"))
+db <- dbConnect(SQLite(), dbname="C:/Country/Russia/Data/SEASHELL/SEABYTE/Databases/RLMS/sqlite/rlms.db")
 # Modified cbind
-cbind.all <- function (...) {
+cbind.all <- function (...){
   nm <- list(...)
   nm <- lapply(nm, as.matrix)
   n <- max(sapply(nm, nrow))
