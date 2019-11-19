@@ -1,0 +1,74 @@
+\documentclass[12pt]{article}
+\usepackage{array}
+\usepackage{longtable}
+\usepackage{fullpage}
+\usepackage{dcolumn}
+\usepackage{times}
+\usepackage[flushleft]{threeparttable}
+\usepackage{tabularx}
+\usepackage{booktabs}
+\usepackage[12hr]{datetime}
+\usepackage{longtable}
+\usepackage[DIV=9]{typearea}
+\usepackage{scrextend,booktabs}
+
+
+\begin{document}
+
+\begingroup  
+  \centering
+  \LARGE Initial Descriptive Files from PISA dataset \\[1.5em]
+  \Large Means from \textbf{picb\_st12} Student CB 2012  \\[1em]
+\endgroup
+\noindent
+\setlength\tabcolsep{10pt} 
+\def\arraystretch{1.5}
+\small
+% I added these from 66892 
+\setlength{\LTleft}{0pt plus 1fill minus 1fill}
+\setlength{\LTright}{\LTleft}
+
+\begin{longtable}{|p{1in}|D{.}{.}{-3}|   D{.}{.}{-3}|   D{.}{.}{-3}|   D{.}{.}{-3}|   D{.}{.}{-3}|   D{.}{.}{-3}} 
+
+
+
+\hline 
+\textbf{Statistic} & \multicolumn{1}{c|}{\textbf{N}} & \multicolumn{1}{c|}{\textbf{Mean}} & \multicolumn{1}{c|}{\textbf{St. Dev.}} & \multicolumn{1}{c|}{\textbf{Min}} & \multicolumn{1}{c|}{\textbf{Max}} \\ 
+\endfirsthead
+
+\hline 
+\textbf{Statistic} & \multicolumn{1}{c|}{\textbf{N}} & \multicolumn{1}{c|}{\textbf{Mean}} & \multicolumn{1}{c|}{\textbf{St. Dev.}} & \multicolumn{1}{c|}{\textbf{Min}} & \multicolumn{1}{c|}{\textbf{Max}} \\ 
+\hline
+\endhead
+
+
+\hline
+\multicolumn{6}{r}{\ldots continued on the the next page}
+\endfoot
+
+\hline
+\multicolumn{6}{c}{End of output: This output produced \today, at \currenttime}
+\endlastfoot
+
+
+\hline 
+% PUT STARGAZER OUTPUT - HERE - May need to adjust long numeric variables like student id manually
+CNT & 271323 & 19.117 & 12.879 & 1 & 43 \\ 
+SUBNATIO & 271323 & 23.463 & 17.285 & 1 & 60 \\ 
+STRATUM & 271323 & 415.332 & 232.677 & 1 & 809 \\ 
+OECD & 271323 & 1.675 & 0.469 & 1 & 2 \\ 
+NC & 271323 & 20.176 & 13.108 & 1 & 43 \\ 
+SCHOOLID & 271323 & 182.594 & 190.847 & 1 & 936 \\ 
+STIDSTD & 271323 & 4629.775 & 4587.696 & 1 & 24237 \\ 
+ST01Q01 & 271323 & 9.798 & 4.209 & 7 & 96 \\ 
+ST02Q01 & 271271 & 2.370 & 2.412 & 1.000 & 22.000 \\ 
+ST03Q01 & 271323 & 6.541 & 3.428 & 1 & 13 \\ 
+ST03Q02 & 271323 & 1.067 & 0.250 & 1 & 2 \\ 
+ST04Q01 & 271323 & 1.500 & 0.500 & 1 & 2 \\ 
+ST05Q01 & 265488 & 2.580 & 0.662 & 1.000 & 3.000 \\ 
+ST06Q01 & 253937 & 6.163 & 0.944 & 4.000 & 16.000 \\ 
+ST07Q01 & 235286 & 1.085 & 0.311 & 1.000 & 3.000 \\ 
+VER\_STU & 271323 & 1.000 & 0.000 & 1 & 1 \\ 
+%LAST LINE OF DATA FROM R
+\end{longtable}
+\end{document}
