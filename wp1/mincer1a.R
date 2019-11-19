@@ -149,9 +149,9 @@ SysMisFix <- function(df){
   temp <- df
   for (i in colnames(df)){
     temp[,i] <- mapvalues(df[,i], "NA", NA, warn_missing = F)
-    }
-  return(temp)
   }
+  return(temp)
+}
 UserMisFix <- function(df, na_range = 99999997:99999999){
   "UserMisFix labels user-defined missings as missing value "
   for (i in colnames(df)){
@@ -317,8 +317,8 @@ WorkStartFix <- function(df, year = "YEAR", ID = "IDIND", int_m = "H7_2", main_y
   df[,"exper_add"] <- (df[,add_y]*12) + (df[,add_m])
   
   # Nullifying experience of the unemployed
-   df[,"exper_main"] <- ifelse(is.na(df[,main_y])&is.na(df[,add_y]), NA, df[,"exper_main"])
-   df[,"exper_add"] <- ifelse(is.na(df[,main_y])&is.na(df[,add_y]), NA, df[,"exper_add"])
+  df[,"exper_main"] <- ifelse(is.na(df[,main_y])&is.na(df[,add_y]), NA, df[,"exper_main"])
+  df[,"exper_add"] <- ifelse(is.na(df[,main_y])&is.na(df[,add_y]), NA, df[,"exper_add"])
   
   # Accounting for negative values (people name a starting year of their work which happened 
   # after the interview date)
@@ -334,7 +334,7 @@ WorkStartFix <- function(df, year = "YEAR", ID = "IDIND", int_m = "H7_2", main_y
     arrange(IDIND, YEAR) %>%
     mutate(dist_int = imths - lag(imths, default = first(imths))) %>%
     ungroup()
-    df <- as.data.frame(df)
+  df <- as.data.frame(df)
   
   # Creating dist_int_exp
   df[, "dist_int_exp_main"] <- df[,"imths"] - df[,"exper_main"]
@@ -396,7 +396,7 @@ WorkStartFix <- function(df, year = "YEAR", ID = "IDIND", int_m = "H7_2", main_y
       }
       list2[[i]][["J5A_"]] <- replace(list2[[i]][["J5A_"]], which(is.na(list2[[i]][["J5A_"]]))[1], list2[[i]][["J5A_"]][j])
       list2[[i]][["J5B_"]] <- replace(list2[[i]][["J5B_"]], which(is.na(list2[[i]][["J5B_"]]))[1], list2[[i]][["J5B_"]][j])
-
+      
       setTxtProgressBar(pb, i)
     }
   }
@@ -471,13 +471,13 @@ TotalExper <- function(df, year = "YEAR", ID = "IDIND", int_m = "H7_2", main_y_ 
   
   # Creating a distance between successive interview dates
   df <- df %>%
-  group_by(IDIND) %>%
-  arrange(IDIND, YEAR) %>%
-  mutate(dist_int = (imths - lag(imths, default = first(imths)))/12) %>%
-  ungroup()
+    group_by(IDIND) %>%
+    arrange(IDIND, YEAR) %>%
+    mutate(dist_int = (imths - lag(imths, default = first(imths)))/12) %>%
+    ungroup()
   df <- as.data.frame(df)
   
-    # Calculating the final variable. 
+  # Calculating the final variable. 
   # The logic in this calculation is the following: I take a temporary experience and see 
   # if I need to add the ones in the previous years. I need to do that if and only if 
   # the previous temporary experience falls in the distance between the successive interview
@@ -530,8 +530,8 @@ IDIND <- selectFromSQL("IDIND")
 
 exper_to_csv <- IDIND %>%
   left_join(df[,c("IDIND", "ID_W", "total_exper",
-                "J5A_", "J5B_", "J35_2Y_", "J35_2M_",
-                "exper_main_", "exper_add_", "exper_temp_")],
+                  "J5A_", "J5B_", "J35_2Y_", "J35_2M_",
+                  "exper_main_", "exper_add_", "exper_temp_")],
             by = c("IDIND", "ID_W"))
 #write.csv(exper_to_csv, "exper_to_csv.csv")
 
@@ -545,4 +545,3 @@ for (name in var_names_to_csv){
   print(i)
   i = i + 1
 }
-
