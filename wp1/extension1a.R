@@ -1,7 +1,7 @@
 # extension1a.R
 # WP1 extension along lines of Neuman-Weiss 1995.
 
-library(dplyr)
+library(plyr); library(dplyr)
 library(sqldf)
 library(XLConnectJars)
 library(questionr)
@@ -34,15 +34,58 @@ setwd(wd)
 # Connecting with SQLite
 db <- dbConnect(SQLite(), dbname="C:/Country/Russia/Data/SEASHELL/SEABYTE/Databases/RLMS/sqlite/rlms.db")
 
-temp1_ <- selectFromSQL(c("J41", "YEAR")) 
+temp1_ <- selectFromSQL(c("J4_1", "YEAR")) 
 
 ## EM I needs code to bring these two variables in and update df_mincer to have a ninth variable, J41.
 ## Thanks ! 
 
+############################################################################################
 
+temp1 <- df_mincer %>%
+  left_join(temp1_, by = c("YEAR", "IDIND"))
 
+# Fixing system and user-defined missings in the RLMS database
 
+# Defining functions for a proper treatment of missing values
+SysMisFix <- function(df){
+  "SysMisFix changes chategorical NA to missing values"
+  temp <- df
+  for (i in colnames(df)){
+    temp[,i] <- mapvalues(df[,i], "NA", NA, warn_missing = F)
+  }
+  return(temp)
+}
+UserMisFix <- function(df, na_range = 99999996:99999999){
+  "UserMisFix labels user-defined missings as missing value "
+  for (i in colnames(df)){
+    if (is.character(df[,i]) == T){
+      na_values(df[,i]) <- as.character(na_range)
+    }
+    else if (is.factor(df[,i]) == T){
+      na_values(df[,i]) <- NULL
+    }
+    else if (!i %in% c("ID_W", "IDIND","YEAR","REDID_I","ID_I","ID_H")){
+      na_values(df[,i]) <- na_range
+    }
+  }
+  return(df)
+} 
 
+temp1 <- SysMisFix(temp1) # determining system missings
+temp1 <- UserMisFix(temp1) # labelling user-defined missings
+
+# A function for calculating descriptive statistics: a slightly extended version of freq
+Freq <- function(var){
+  result <- freq(var, levels = "values", total = T)
+  result <- rbind(result, 
+                  UserNA = apply(result[as.character(99999997:99999999),],2,sum),
+                  TotalNA = apply(result[c(99999997:99999999, "NA"),],2,sum, na.rm = T))
+  return(result)
+}
+  
+Freq(temp1$J4_1)
+
+############################################################################################
 
 # Move the wd back to project root
 ########## Aggregating occupations by 2 digits
