@@ -24,6 +24,27 @@ setwd(wd)
 # Data
 df_mincer <- readRDS("df_mincer.rds")
 
+
+## I want to bring in some other variables from the rawdata sqlite database.
+## I neeed the function selectFromSQL defined in mincer1a.R
+
+wd <- "C:/Country/Russia/Data/SEASHELL/SEABYTE/Databases/RLMS/sqlite"
+setwd(wd) 
+
+# Connecting with SQLite
+db <- dbConnect(SQLite(), dbname="C:/Country/Russia/Data/SEASHELL/SEABYTE/Databases/RLMS/sqlite/rlms.db")
+
+temp1_ <- selectFromSQL(c("J41", "YEAR")) 
+
+## EM I needs code to bring these two variables in and update df_mincer to have a ninth variable, J41.
+## Thanks ! 
+
+
+
+
+
+
+# Move the wd back to project root
 ########## Aggregating occupations by 2 digits
 
 # First, aggregating military men
