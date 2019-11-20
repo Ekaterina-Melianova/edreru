@@ -56,8 +56,7 @@ library(xtable)
 <<Data preprocessing>>=
 
 # Working directory
-wd <- "C:/Country/Russia/Data/SEASHELL/SEABYTE/Databases/RLMS/sqlite"
-setwd(wd)
+setwd("C:/Country/Russia/Data/SEASHELL/SEABYTE/Databases/RLMS/sqlite")
 # Connecting with SQLite
 db <- dbConnect(SQLite(), dbname="C:/Country/Russia/Data/SEASHELL/SEABYTE/Databases/RLMS/sqlite/rlms.db")
 # Modified cbind
@@ -336,8 +335,7 @@ table(resp$tag2) # 13670 respondents with inconsistencies, 12674 - without
 # experience as a time between graduation and a current work
 
 # Working directory
-wd <- paste0(normalizePath(Sys.getenv("USERPROFILE"), winslash = "/"), "/Desktop")
-setwd(wd)
+setwd("C:/Country/Russia/Data/SEASHELL/SEABYTE/Databases/RLMS/sqlite")
 
 # Vars of interest
 grad_dates <- c("J72_1E", "J72_1E2", "J72_1E3", "J72_1E4", "J72_1E5",
@@ -432,7 +430,7 @@ df_2$exper2 <- df_2$YEAR - df_2$grady
 
 # Note: df_ini is a df from mincer2a.R file with the initial experience
 # variable (without inconsistency fixing)
-setwd("C:/Country/Russia/Data/SEABYTE/RLMS/edreru/prelims")
+setwd("C:/Country/Russia/Data/SEASHELL/SEABYTE/edreru/wp1")
 df_ini <- readRDS("df_ini.rds")
 
 # A table with instancies
