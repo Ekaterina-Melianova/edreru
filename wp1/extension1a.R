@@ -16,78 +16,54 @@ library(psych)
 library(stringi)
 library(sjPlot)
 library(sjmisc)
+# Some functions -later to be edreru package
+source("C:/Country/Russia/Data/SEASHELL/SEABYTE/edreru/edreru_package.R")
 
-# wd
-wd <- "C:/Country/Russia/Data/SEASHELL/SEABYTE/edreru/wp1"
-setwd(wd)
+# Specify the default working directory for this script
+setwd("C:/Country/Russia/Data/SEASHELL/SEABYTE/edreru/wp1")
 
-# Data
+# Load data generated and saved in mincer2a.R file with RLMS 1994-2018 cleaned and cooked well
 df_mincer <- readRDS("df_mincer.rds")
 
-
 ## I want to bring in some other variables from the rawdata sqlite database.
+## The additional variables are
+# J41 - Industry or Sector of employment in RLMS
 ## I neeed the function selectFromSQL defined in mincer1a.R
-
-wd <- "C:/Country/Russia/Data/SEASHELL/SEABYTE/Databases/RLMS/sqlite"
-setwd(wd) 
+setwd("C:/Country/Russia/Data/SEASHELL/SEABYTE/Databases/RLMS/sqlite")
 
 # Connecting with SQLite
 db <- dbConnect(SQLite(), dbname="C:/Country/Russia/Data/SEASHELL/SEABYTE/Databases/RLMS/sqlite/rlms.db")
-
 temp1_ <- selectFromSQL(c("J4_1", "YEAR")) 
-
+dbDisconnect(db) # I disconnect as the connection is no longer needed
 ## EM I needs code to bring these two variables in and update df_mincer to have a ninth variable, J41.
 ## Thanks ! 
 
 ############################################################################################
-
+# I merge the variable I need and drop the other classifying variable
 temp1 <- df_mincer %>%
-  left_join(temp1_, by = c("YEAR", "IDIND"))
+  left_join(temp1_, by = c("YEAR", "IDIND")) %>% select(-ID_I,-ID_H,-ID_W,-REDID_I)
 
+rm(temp1_) # don't need this anymore
 # Fixing system and user-defined missings in the RLMS database
-
-# Defining functions for a proper treatment of missing values
-SysMisFix <- function(df){
-  "SysMisFix changes chategorical NA to missing values"
-  temp <- df
-  for (i in colnames(df)){
-    temp[,i] <- mapvalues(df[,i], "NA", NA, warn_missing = F)
-  }
-  return(temp)
-}
-UserMisFix <- function(df, na_range = 99999996:99999999){
-  "UserMisFix labels user-defined missings as missing value "
-  for (i in colnames(df)){
-    if (is.character(df[,i]) == T){
-      na_values(df[,i]) <- as.character(na_range)
-    }
-    else if (is.factor(df[,i]) == T){
-      na_values(df[,i]) <- NULL
-    }
-    else if (!i %in% c("ID_W", "IDIND","YEAR","REDID_I","ID_I","ID_H")){
-      na_values(df[,i]) <- na_range
-    }
-  }
-  return(df)
-} 
 
 temp1 <- SysMisFix(temp1) # determining system missings
 temp1 <- UserMisFix(temp1) # labelling user-defined missings
+#
 
-# A function for calculating descriptive statistics: a slightly extended version of freq
-Freq <- function(var){
-  result <- freq(var, levels = "values", total = T)
-  result <- rbind(result, 
-                  UserNA = apply(result[as.character(99999997:99999999),],2,sum),
-                  TotalNA = apply(result[c(99999997:99999999, "NA"),],2,sum, na.rm = T))
-  return(result)
-}
-  
-Freq(temp1$J4_1)
+# convert large 9999 numbers to missing 
+# Interrogative - is this a default for all variables or every variable 
+# has different set of numerically coded missing values
 
+temp1$J4_1[temp1$J4_1==99999996] <- NA
+temp1$J4_1[temp1$J4_1==99999997] <- NA
+temp1$J4_1[temp1$J4_1==99999998] <- NA
+temp1$J4_1[temp1$J4_1==99999999] <- NA
+
+FreqSP(temp1$J4_1)  
 ############################################################################################
-
 # Move the wd back to project root
+setwd("C:/Country/Russia/Data/SEASHELL/SEABYTE/edreru/wp1")
+
 ########## Aggregating occupations by 2 digits
 
 # First, aggregating military men
