@@ -14,6 +14,9 @@ library(tidyr)
 library(magrittr)
 library(pbapply)
 
+# Some functions -later to be edreru package
+source("C:/Country/Russia/Data/SEASHELL/SEABYTE/edreru/edreru_package.R")
+
 ############################################################################################################
 
 # Working directory
@@ -22,186 +25,53 @@ setwd(wd)
 
 # Connecting with SQLite
 db <- dbConnect(SQLite(), dbname="C:/Country/Russia/Data/SEASHELL/SEABYTE/Databases/RLMS/sqlite/rlms.db")
-# Modified cbind
-cbind.all <- function (...){
-  nm <- list(...)
-  nm <- lapply(nm, as.matrix)
-  n <- max(sapply(nm, nrow))
-  do.call(cbind, lapply(nm, function(x) rbind(x, matrix(, n - 
-                                                          nrow(x), ncol(x)))))
-}
-# A function for variable selection
-selectFromSQL <- function(column_names=NULL, column_blocks=NULL, wave_number=NULL, dbname = "rlms.db"){
-  "
-  1. column_names - select specific column/s
-  
-  2. column_blocks - select specific block/s of columns. Available blocks:
-  Bank services
-  Children
-  Daily activities
-  Education
-  Elections
-  Employment
-  Employment/finance (retrospective)
-  Family
-  Finance
-  For women only
-  Health assessment
-  Identification variables
-  Inequity issues
-  Insurance
-  Interviewer's remarks
-  IT skills
-  Law
-  Living conditions
-  Maternal capital
-  Medical care
-  Migration
-  Military service
-  Nationality issues
-  Other
-  Pension
-  Personality assessment
-  Politics
-  Religion
-  Safety/crimes
-  Shopping
-  Socio-demographics
-  Sorces of news
-  State services
-  Transition period
-  Traveling
-  Trust
-  
-  3. wave_number - select specific wave/s in RLMS
-  
-  4. db_name - name of database in SQLite, by default rlms.db
-  
-  "
-  
-  # Add blocks to columns
-  if (is.null(column_blocks) == FALSE){
-    # Load table with blocks
-    blocks_df <- sqldf('SELECT * from rlms_blocks', dbname = dbname)
-    # Get columns from the selected blocks
-    columns_from_blocks <- c()
-    for (block in column_blocks){
-      columns_from_blocks <- c(columns_from_blocks, blocks_df[blocks_df$column_block == block,]$column_names)
-    }
-    column_names <- c(column_names, columns_from_blocks)
-  }
-  
-  # Add ids to the columns
-  column_names <- unique(c("ID_W", "IDIND", "REDID_I", "ID_I", "ID_H", column_names))
-  # Condition on a wave number 
-  if (is.null(wave_number) == FALSE){
-    if(length(wave_number) == 1){
-      wave_condition <- paste('WHERE ID_W =', wave_number)
-    } else {
-      wave_condition <- paste('WHERE', paste(paste0('ID_W=', wave_number), collapse=' or '))
-    }
-  } else {
-    wave_condition <- ""
-  }
-  
-  # In case if the number of columns is 63 or larger (a default limitation of SQLite)
-  if (length(column_names) >= 63){
-    # Create a list with column chunks
-    column_splits <- split(column_names, ceiling(seq_along(column_names)/63))
-    # Add the columns by parts
-    result_df <- data.frame()
-    for (column_split in column_splits){
-      if ('ID_W' %in% column_split == FALSE){
-        column_split <- c('ID_W', column_split)
-      }
-      
-      command_line <- paste(c("SELECT", paste(column_split, collapse=', '),
-                              "FROM", paste(column_split, collapse=' NATURAL JOIN '),
-                              wave_condition), collapse = ' ')
-      cat('--- SQL command:', command_line, sep="\n")
-      temp_df <- data.frame(sqldf(command_line, dbname = dbname))
-      result_df <- data.frame(cbind.all(result_df, temp_df))
-    }
-    # Remove duplicates of the ID_W column
-    result_df <- result_df[, -grep("ID_W.", colnames(result_df))]
-    
-  } else {
-    command_line <- paste(c("SELECT", paste(column_names, collapse=', '),
-                            "FROM", paste(column_names, collapse=' NATURAL JOIN '),
-                            wave_condition), collapse = ' ')
-    cat('--- SQL command:', command_line, sep="\n")
-    result_df <- sqldf(command_line, dbname = dbname)
-  }
-  
-  return(result_df)
-}
 
 ############################################################################################################
 
 # Selecting the variables of interest
-df_ <- selectFromSQL(c("J1", "J5A","J5B","H7_2", "YEAR", "J35_2Y", "J35_2M"))
+df_ <- selectFromSQL(c("J1", "AGE", "J5A","J5B","H7_2", "YEAR", "J35_2Y", "J35_2M", 
+                       "J13_2", "J10", "J40", "EDUC", "H5", "J2COD08", "J23", "I2", "I4", "J40"))
 
+dbDisconnect(db) # Don't need the sqlite connection anymore
 # Fixing system and user-defined missings in the RLMS database
-
-# Defining functions for a proper treatment of missing values
-SysMisFix <- function(df){
-  "SysMisFix changes chategorical NA to missing values"
-  temp <- df
-  for (i in colnames(df)){
-    temp[,i] <- mapvalues(df[,i], "NA", NA, warn_missing = F)
-  }
-  return(temp)
-}
-UserMisFix <- function(df, na_range = 99999997:99999999){
-  "UserMisFix labels user-defined missings as missing value "
-  for (i in colnames(df)){
-    if (is.character(df[,i]) == T){
-      na_values(df[,i]) <- as.character(na_range)
-    }
-    else if (is.factor(df[,i]) == T){
-      na_values(df[,i]) <- NULL
-    }
-    else if (!i %in% c("ID_W", "IDIND","YEAR","REDID_I","ID_I","ID_H")){
-      na_values(df[,i]) <- na_range
-    }
-  }
-  return(df)
-} 
 
 df_ <- SysMisFix(df_) # determining system missings
 df_ <- UserMisFix(df_) # labelling user-defined missings
 
-# A function for calculating descriptive statistics: a slightly extended version of freq
-Freq <- function(var){
-  result <- freq(var, levels = "values", total = T)
-  result <- rbind(result, 
-                  UserNA = apply(result[as.character(99999997:99999999),],2,sum),
-                  TotalNA = apply(result[c(99999997:99999999, "NA"),],2,sum, na.rm = T))
-  return(result)
-}
-
+# Zap haven_label introduced by SysMisFix/userMisFix functions - EM perhaps introduce at end of those functions
+df_ <- haven::zap_labels(df_)   # Note, some apparently numeric variables have class alphanumeric, eg. J10 monthly wage
 ############################################## EXPERIENCE #################################################
 
 df_ <- remove_user_na(df_) # Temporarily undo labelling of user-defined missings 
-# The warning says: "Some user defined missing values have been removed but not converted to NA"
-# Yes, that's what we need
+
 
 # Dropping system missings on job questions (they were not asked)
 df_ <- df_[-which(is.na(df_$J1) == T),]
-Freq(df_$J1)
+FreqEM(df_$J1)
 
 # Transforming user-defined missings to NA
 df_ <- UserMisFix(df_)
 df <- df_ %>%
   set_na_values(99999997:99999999) %>%
   user_na_to_na()
-Freq(df$J5A)
+FreqEM(df$J5A)
 
-# Dealing with missings for H7_2 - int month
+# Dealing with missings for H7_2 - interview month
+FreqEM(df$H7_2)
 
-# Checking years with missings for int month
-(vec <- unique(df[which(is.na(df$H7_2)), "YEAR"]))
-length(df[which(is.na(df$H7_2)), "YEAR"]) # H7_2 is missing for 22 observations
+# Checking years with missings for interview month
+(vec <- unique(df[which(is.na(df$H7_2)), "YEAR"])) # an easy way to examine data by year
+# Shows that H7_2 or interview month missing for some observations in 1994 and 1995 rounds
+
+sum(is.na(df$H7_2)) # or 
+length(df[which(is.na(df$H7_2)), "YEAR"]) 
+
+# H7_2 is missing for 47 observations - 43 for 1994 and 4 for 1995, as can be seen by observation
+
+(df[which(is.na(df$H7_2)),c("YEAR","H7_2")])
+
+# These 47 observations may not be frightfully important, but these lines of code demonstrate the
+# method to be used in similar cases
 
 # A table with values for imputation: mean interview month for a year
 imths_means <- df %>%
@@ -209,27 +79,36 @@ imths_means <- df %>%
   summarize(imths_mean = mean(H7_2, na.rm = T)) %>%
   filter(YEAR %in% vec)
 
-# Imputing the calculated means 
+imths_means  # shows the two mean values to be imputed - 11.2 and 10.2
+
+# Imputing the calculated means  for each of the two rows in the dataframe imths_means, indexed by i 
+#df[condition and index of year  ] <- newvalue
+
 for (i in 1:nrow(imths_means)){
-  df[is.na(df$H7_2)&df$YEAR == as.numeric(imths_means[i,"YEAR"]), "H7_2"] = round(as.numeric(imths_means[i,"imths_mean"]),1)
+  df[is.na(df$H7_2) & df$YEAR == as.numeric(imths_means[i,"YEAR"]), "H7_2"] <- round(as.numeric(imths_means[i,"imths_mean"]),1)
 }
+
+# check the answer - in addition to the entered numbers in the data, there are 47 new values ! 
 table(df$H7_2)
 
 # Filtering missings for the questions about work experience (main and additional)
 
 # If a month of the start of work is missing but a year is not, let us use 1 (January) as an approximation
 df[is.na(df$J5B)&is.na(df$J5A)==F, "J5B"] <- 1 # for a main work
+
 df[is.na(df$J35_2M)&is.na(df$J35_2Y)==F, "J35_2M"] <- 1 # for an additional work
 
 # Dealing with user-defined missings
 
 # If a person has a missing value on the start of job date,
-# he/she in the predominant majority of cases is employed:
+# he/she in the predominant majority of cases is NOT employed:
+
 table(df[is.na(df$J5A),"J1"])
 
 # Hence, let us replace those missings with a PREVIOUS non-missing employment starting date
 
 # Converting to a numeric format
+
 df$J5A <- as.numeric(df$J5A)
 df$J5B <- as.numeric(df$J5B)
 df$J35_2Y <- as.numeric(df$J35_2Y)
@@ -237,6 +116,7 @@ df$J35_2M <- as.numeric(df$J35_2M)
 
 # Temporarily excluding those who are currently NOT working (J1==5)
 # Further we will merge them to account for the absence of experience when calculating the total one
+
 df_temp1 <-  df %>% 
   arrange(YEAR, IDIND) %>% # making sure the waves are listed sequentially
   filter(J1 < 5)

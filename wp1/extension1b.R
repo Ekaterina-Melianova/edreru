@@ -60,7 +60,7 @@ temp1$J4_1[temp1$J4_1==99999997] <- NA
 temp1$J4_1[temp1$J4_1==99999998] <- NA
 temp1$J4_1[temp1$J4_1==99999999] <- NA
 
-FreqSP(temp1$J4_1)  
+FreqSP(temp1$J4_1)  # Function derived from descr/freq works only for cases with 9999996 etc sanitized
 ############################################################################################
 # Move the wd back to project root
 setwd("C:/Country/Russia/Data/SEASHELL/SEABYTE/edreru/wp1")
@@ -273,6 +273,7 @@ t2_ <- temp218_ %>%
 # keep for later merging
 t2 <- t2_ 
 t2$ocpcat18 <- NA
+
 t2$ocpcat18[t2$pfem<44] <- "occmale"
 t2$ocpcat18[t2$pfem>=44&t2$pfem<=64] <- "occneut"
 t2$ocpcat18[t2$pfem>64] <- "occfemale"
@@ -370,21 +371,43 @@ ggsave("gen_occ18.png", width = 7.5, height = 4,
 ## But first we take 2 digit ISCO all the way
 
 
+## temp218 - Basic earnings profile 
+
+## let's take university graduates
+
+temp218u_ <- temp218_ %>% filter(edu_4=="Higher")
+
+ggplot(temp218_,aes(x=exper,y=wage,group=edu_4,col=edu_4)) + geom_smooth(se=FALSE)+
+   facet_wrap(~female)
+
 
 # Adjusting to prices in 2018
 cpi <- rio::import("cpi.xlsx")[,c(1,4)]
 df <- df %>%
   left_join(cpi, by = "YEAR")
 
-
-df <- haven::zap_labels(df) 
-df <- df %>% filter(!is.na(exper))
+df_mincer <- df_mincer %>% left_join(cpi,by="YEAR")
 
 
+## To adjust wages to 2018 Ruble values 
 df$wage_adjusted_to_2018 <- df$wage*df$norm
 # wages in 2018 are alomst 3 times as high as wages in 2000:
 aggregate(wage_adjusted_to_2018 ~ YEAR, df, mean)
 aggregate(wage ~ YEAR, df, mean)
+
+
+df_mincer$wage_adjusted_to_2018 <- df_mincer$wage*df_mincer$norm
+
+temp_ <- df_mincer %>% filter(edu_4=="Higher") %>% filter(YEAR==1998|YEAR==2003|YEAR==2006|YEAR==2015|YEAR==2018)
+ggplot(temp_,aes(x=exper,y=wage_adjusted_to_2018,group=as.factor(YEAR),col=as.factor(YEAR))) +
+geom_jitter()
+
++geom_smooth(method=loess,se=FALSE)+
+  facet_wrap(~female)
+
+temp_ <- df_mincer %>% filter(edu_4=="Vocational") %>% filter(YEAR==1998|YEAR==2008|YEAR==2018)
+ggplot(temp_,aes(x=exper,y=wage_adjusted_to_2018,group=as.factor(YEAR),col=as.factor(YEAR))) +geom_smooth(method=loess,se=FALSE)
+
 
 #################### Regressions with depreciation of education ###################
 
@@ -435,35 +458,7 @@ temp2_ <- temp2_ %>% group_by(female) %>%
           summarise(meanexp=mean(exper))
 
 # Plot
-ggplot(temp2_, aes(x = exper, y = fit, group = edu_4, color = edu_4,
-                    linetype = edu_4)) +
-  facet_wrap(facets="female")+
-  geom_line(size = 0.6) +
-  geom_vline(aes(xintercept = xmax[1])) +
-  geom_vline(aes(xintercept = xmax[2])) +
-  geom_vline(aes(xintercept = xmax[3])) +
-  geom_point(shape = 4, aes(x = xmax[1], y = ymax[1]), size = 1,
-             show.legend = F, stroke = 1.5, color = "black") +
-  geom_point(shape = 4,aes(x = xmax[2], y = ymax[3]), size = 1,
-             show.legend = F, stroke = 1.5, color = "black") +
-  geom_point(shape = 4,aes(x = xmax[3], y = ymax[2]), size = 1,
-             show.legend = F, stroke = 1.5, color = "black") +
-  theme(legend.title = element_blank(),
-        legend.position = "bottom",
-        panel.grid.minor = element_blank(),
-        axis.text.x = element_text(size = 12),
-        axis.text.y = element_text(size = 12),
-        axis.title = element_text(size = 12),
-        legend.text = element_text(size = 12),
-        legend.key = element_rect(size = 12))  +
-  scale_color_manual(values = c("blue", "red", "darkgreen")) + 
-  scale_linetype_manual(values = c("solid", "longdash", "dotted")) +
-  scale_y_continuous(limits = c(2500, 35000), breaks = seq(2500, 35000, 5000)) +
-  ylab("Monthly wage, RUB") +
-  xlab("Experience") 
 
-ggsave("2018.png", width = 7.5, height = 4,
-            units = "in")
 
 ###################################### Model prediction: 2009 
 df_2009 <- as.data.frame(df[df$YEAR == 2009,])
