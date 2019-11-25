@@ -8,6 +8,9 @@
 \usepackage[labelfont=bf]{caption}
 \usepackage[font=small,labelfont=bf]{subcaption}
 
+% for testing
+\usepackage{lipsum}
+
 
 %% For tables
 \usepackage{array}
@@ -254,6 +257,130 @@ Looking at the pattern by nationality, there were approximately 15\% non Russian
   \end{minipage}
   \caption{Rates of Returns to Higher and Vocational Education in Russia, RLMS 1994-2018}\label{fig:4}
 \end{figure}
+
+
+\section{Extension: Investigation of Gender dimension and depreciation?}
+
+
+
+\begin{figure}[H]
+     \centering
+     \hspace*{-0.7in}
+     \includegraphics{gen_ind18.png}
+  \caption{Distribution of Employment in RLMS 2018 by Industry and Gender}\label{fig:5}
+\end{figure}
+
+
+
+% 
+% latex table generated in R 3.5.3 by xtable 1.8-4 package
+% Sun Nov 24 11:37:16 2019
+\begin{table}[ht]
+\centering
+\footnotesize
+\def\arraystretch{1} 
+        \centering
+        \caption{Industries by Strength of Female Proportion: RLMS 2018}
+        \label{tab:2}
+\begin{tabular}{p{2.5cm}l>{\raggedleft\arraybackslash}p{1.5cm}>{\raggedleft\arraybackslash}p{3cm}>{\raggedleft\arraybackslash}p{1.5cm}}
+  \hline \hline
+ Category & Sector & Female Sample & Female Percentage & Total Sample \\ 
+  \hline
+ Female  & Social Services & 37 & 92.5\% &  40 \\ 
+  dominated  & Other & 17 & 89.5\% &  19 \\ 
+   & Education & 609 & 88.0\% & 692 \\ 
+   & Public Health & 412 & 85.7\% & 481 \\ 
+   & Real Estate Operations & 19 & 79.2\% &  24 \\ 
+   & Government and Public Administration & 155 & 78.7\% & 197 \\ 
+   & General Public Services & 15 & 75.0\% &  20 \\ 
+   & Finance & 107 & 73.8\% & 145 \\ 
+   & Science, Culture & 100 & 70.4\% & 142 \\ 
+   & Jurisprudence & 19 & 67.9\% &  28 \\ \hline
+  Neutral & Mass Media, Telecommunications & 24 & 63.2\% &  38 \\ 
+   & Trade, Consumer Services & 738 & 62.8\% & 1175 \\ 
+   & Light industry, Food industry & 209 & 55.0\% & 380 \\ 
+   & Sports, Tourism,Entertainment & 18 & 54.5\% &  33 \\ \hline
+  Male & Miltary Industrial Complex & 67 & 41.1\% & 163 \\ 
+  dominated & Housing and Community Services & 95 & 39.1\% & 243 \\ 
+   & Chemical Industry & 14 & 38.9\% &  36 \\ 
+   & Civil Machine Construction & 51 & 37.8\% & 135 \\ 
+   & Agriculture & 79 & 33.9\% & 233 \\ 
+   & Transportation, Communication & 186 & 33.6\% & 553 \\ 
+   & Information Technology & 9 & 32.1\% &  28 \\ 
+   & Energy or Power Industry & 41 & 31.3\% & 131 \\ 
+   & Army, Internal Security & 90 & 30.1\% & 299 \\ 
+   & Other Heavy Industry & 60 & 28.7\% & 209 \\ 
+   & Oil and Gas Industry & 52 & 23.5\% & 221 \\ 
+   & Wood, Timber, Forestry & 7 & 21.2\% &  33 \\ 
+   & Construction & 73 & 18.7\% & 391 \\ \hline
+& Total & 3303 &54.3\% & 6089 \\ \hline
+
+\end{tabular}
+\end{table}
+
+\lipsum[1]
+
+\lipsum[2-3]
+
+
+\begin{figure}[H]
+     \centering
+     \hspace*{-0.7in}
+     \includegraphics{gen_occ18.png}
+  \caption{Distribution of Employment in RLMS 2018 by Industry and Gender}\label{fig:5}
+\end{figure}
+
+
+% latex table generated in R 3.5.3 by xtable 1.8-4 package
+% Sun Nov 24 21:33:26 2019
+\begin{table}[ht]
+\begin{small}
+\centering
+\begin{tabular}{rp{8cm}llr}
+  \hline
+ & ilab & tfem & pfem & tall \\ 
+  \hline
+1 & Personal Care Workers & 97 & 97.0\% & 100 \\ 
+  2 & Cleaners and Helpers & 163 & 95.9\% & 170 \\ 
+  3 & Food Preparation Assistants & 21 & 95.5\% &  22 \\ 
+  4 & Teaching Professionals & 370 & 93.4\% & 396 \\ 
+  5 & General and Keyboard Clerks & 71 & 93.4\% &  76 \\ 
+  6 & Other Clerical Support Workers & 25 & 92.6\% &  27 \\ 
+  7 & Business and Administration Professionals & 97 & 91.5\% & 106 \\ 
+  8 & Health Associate Professionals & 192 & 91.4\% & 210 \\ 
+  9 & Health Professionals & 79 & 87.8\% &  90 \\ 
+  10 & Sales Workers & 350 & 86.6\% & 404 \\ 
+  11 & Customer Services Clerks & 67 & 85.9\% &  78 \\ 
+  12 & Legal, Social and Cultural Professionals & 169 & 80.5\% & 210 \\ 
+  13 & Business and Administration Associate Professionals & 517 & 77.4\% & 668 \\ 
+  14 & Food Processing, Woodworking, Garment and Other Craft and Related Trades Workers & 51 & 77.3\% &  66 \\ 
+  15 & Administrative and Commercial Managers & 25 & 71.4\% &  35 \\ 
+  16 & Personal Services Workers & 172 & 70.5\% & 244 \\ 
+  17 & Hospitality, Retail and Other Services Managers & 38 & 69.1\% &  55 \\ 
+  18 & Legal, Social, Cultural and Related Associate Professionals & 69 & 65.7\% & 105 \\ \hline
+  19 & Numerical and Material Recording Clerks & 100 & 63.3\% & 158 \\ 
+  20 & Production and Specialized Services Managers & 139 & 46.0\% & 302 \\ 
+  21 & Handicraft and Printing Workers & 9 & 45.0\% &  20 \\ \hline
+  22 & Science and Engineering Professionals & 101 & 42.8\% & 236 \\ 
+  23 & Stationary Plant and Machine Operators & 72 & 39.6\% & 182 \\ 
+  24 & Agricultural, Forestry and Fishery Labourers & 11 & 39.3\% &  28 \\ 
+  25 & Refuse Workers and Other Elementary Workers & 30 & 39.0\% &  77 \\ 
+  26 & Miscellaneous non-ISCO & 9 & 36.0\% &  25 \\ 
+  27 & Science and Engineering Associate Professionals & 120 & 34.9\% & 344 \\ 
+  28 & Chief Executives, Senior Officials and Legislators & 7 & 29.2\% &  24 \\ 
+  29 & Information and Communications Technology Professionals & 15 & 21.7\% &  69 \\ 
+  30 & Labourers in Mining, Construction, Manufacturing and Transport & 24 & 20.9\% & 115 \\ 
+  31 & Assemblers & 11 & 18.3\% &  60 \\ 
+  32 & Building and Related Trades Workers (excluding Electricians) & 23 & 11.1\% & 207 \\ 
+  33 & Protective Services Workers & 23 & 10.7\% & 215 \\ 
+  34 & Electrical and Electronic Trades Workers & 16 & 9.9\% & 162 \\ 
+  35 & Drivers and Mobile Plant Operators & 23 & 4.1\% & 558 \\ 
+  36 & Metal, Machinery and Related Trades Workers & 6 & 2.2\% & 267 \\ 
+   \hline
+\end{tabular}
+\end{small}
+\end{table}
+
 
 \section*{References in Russian}
 
