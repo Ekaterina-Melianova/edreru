@@ -253,18 +253,19 @@ df$female[df$H5==1] <- 0
 Freq(df$female)
 
 # Naive experience
-df$edu_years <- car::recode(df$EDUC, "8=14; 9=15; 10=16; 11=17; 12=16;
-                              13=16; 14=17; 15=17; 16=18; 17=17; 18=18;
-                              19=19; 20=20; 21=21; 22=23; 23=24")
+df$edu_yrs <- car::recode(df$EDUC, "8=8; 9=9; 10=10; 11=11; 12=10;
+                              13=10; 14=11; 15=11; 16=12; 17=11; 18=12;
+                              19=13; 20=14; 21=16; 22=17; 23=18")
 df <- df %>%
-  filter(is.na(edu_years) == F) # dropping user-defined missings
-Freq(df$edu_years)
-df$exper_naive <- df$AGE - df$edu_years
-summary(df$exper_naive)
+  filter(is.na(edu_yrs) == F) # dropping user-defined missings
+Freq(df$edu_yrs)
+df$exper <- df$AGE - df$edu_yrs - 6
+summary(df$exper)
 
 # Generating a final dataset for the analysis
 df_mincer <- df[, c("IDIND", "YEAR", "edu_4", "wage",
-                    "exper_naive", "non_russ", "female")]
+                    "exper", "non_russ", "female",
+                    "edu_yrs")]
 summary(df_mincer)
 # df[which(df$wage == 0), "ID_I"]
 
@@ -277,17 +278,17 @@ df_mincer <- df_mincer %>%
 # Occupation
 Freq(df$J2COD08) # user 407 NAs
 df$occup <- as.numeric(df$J2COD08)
-df <- df%>% filter(!((occup == 99999997)|
+df <- df %>% filter(!((occup == 99999997)|
                        (occup == 99999998)|
                        (occup == 99999999)))
 Freq(df$occup) 
 
 df_mincer_save <- df[, c("IDIND", "YEAR", "edu_4", "wage",
-                    "exper_naive", "non_russ", "female", "occup")]
-
+                    "exper", "non_russ", "female", "occup",
+                    "edu_yrs")]
 # Filtering the missings left
 df_mincer_save <- df_mincer_save %>%
-  filter(!is.na(wage) & !is.na(exper_naive) & wage > 0)
+  filter(!is.na(wage) & !is.na(exper) & wage > 0)
 summary(df_mincer_save)
 
 # Saving the mincer database for the extension1.R
