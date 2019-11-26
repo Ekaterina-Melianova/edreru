@@ -145,7 +145,8 @@ df_ <- selectFromSQL(c("AGE", "J13_2", "J10", "J40", "EDUC", "J1",
                        "J5A", "J5B", "H7_2", "H5", "J2COD08",
                        "J23", "I2", "I4", "YEAR", "J40", "J35_2Y", "J35_2M",
                        "total_exper", "exper_main_", "exper_add_",
-                       "J5A_", "J5B_", "J35_2Y_", "J35_2M_"))
+                       "J5A_", "J5B_", "J35_2Y_", "J35_2M_", 
+                       "EDUC"))
 
 # Fixing system and user-defined missings in the RLMS database
 
@@ -251,22 +252,25 @@ df$female[df$H5==2] <- 1
 df$female[df$H5==1] <- 0
 Freq(df$female)
 
-# Generating a final dataset for the analysis
+# Naive experience
+df$edu_years <- car::recode(df$EDUC, "8=14; 9=15; 10=16; 11=17; 12=16;
+                              13=16; 14=17; 15=17; 16=18; 17=17; 18=18;
+                              19=19; 20=20; 21=21; 22=23; 23=24")
+df <- df %>%
+  filter(is.na(edu_years) == F) # dropping user-defined missings
+Freq(df$edu_years)
+df$exper_naive <- df$AGE - df$edu_years
+summary(df$exper_naive)
 
-names(df)[which(colnames(df) == "total_exper")] <- "exper"
+# Generating a final dataset for the analysis
 df_mincer <- df[, c("IDIND", "YEAR", "edu_4", "wage",
-                    "exper", "non_russ", "female")]
-df_mincer$exper <- as.numeric(df_mincer$exper)
+                    "exper_naive", "non_russ", "female")]
 summary(df_mincer)
 # df[which(df$wage == 0), "ID_I"]
 
 # Filtering the missings left
 df_mincer <- df_mincer %>%
   filter(!is.na(wage) & !is.na(exper) & wage > 0)
-
-# F-test
-var.test(wage ~ female, df_mincer, 
-         alternative = "two.sided")
 
 ################################## Data with occupation to save ###########################################
 
@@ -279,12 +283,11 @@ df <- df%>% filter(!((occup == 99999997)|
 Freq(df$occup) 
 
 df_mincer_save <- df[, c("IDIND", "YEAR", "edu_4", "wage",
-                    "exper", "non_russ", "female", "occup")]
-df_mincer_save$exper <- as.numeric(df_mincer_save$exper)
+                    "exper_naive", "non_russ", "female", "occup")]
 
 # Filtering the missings left
 df_mincer_save <- df_mincer_save %>%
-  filter(!is.na(wage) & !is.na(exper) & wage > 0)
+  filter(!is.na(wage) & !is.na(exper_naive) & wage > 0)
 summary(df_mincer_save)
 
 # Saving the mincer database for the extension1.R
@@ -348,7 +351,7 @@ smry_nrus
 
 # Calculating returns by year for higher and vocational education
 
-RoREs <- as.data.frame((matrix(ncol = 21, nrow = length(vec_year))))
+RoREs <- as.data.frame((matrix(ncol = 21, nrow = length(seq_year))))
 colnames(RoREs) <-  c("YEAR", "returns_to_HE_all", "p_for_HE_all", "returns_to_VE_all", "p_for_VE_all",
                       "returns_to_HE_f", "p_for_HE_f", "returns_to_VE_f", "p_for_VE_f",
                       "returns_to_HE_m", "p_for_HE_m", "returns_to_VE_m", "p_for_VE_m",
@@ -361,8 +364,8 @@ percent <- function(x, digits = 1, format = "f", ...) {
 }
 
 # Obtaining the values
-for (i in seq(length(vec_year))){
-  RoREs[i,] <- c(vec_year[i], (percent(exp(smry_all[[i]]$coefficients[3,1]) - 1)),
+for (i in seq(length(seq_year))){
+  RoREs[i,] <- c(seq_year[i], (percent(exp(smry_all[[i]]$coefficients[3,1]) - 1)),
                  formatC(smry_all[[i]]$coefficients[3,4], digits = 2),
                  (percent(exp(smry_all[[i]]$coefficients[2,1]) - 1)),
                  formatC(smry_all[[i]]$coefficients[2,4], digits = 2),
