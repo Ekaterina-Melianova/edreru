@@ -377,36 +377,30 @@ ggsave("gen_occ18.png", width = 7.5, height = 4,
 
 temp218u_ <- temp218_ %>% filter(edu_4=="Higher")
 
-ggplot(temp218_,aes(x=exper,y=wage,group=edu_4,col=edu_4)) + geom_smooth(se=FALSE)+
+ggplot(temp218_,aes(x=exper_naive,y=wage,group=edu_4,col=edu_4)) + geom_smooth(se=FALSE, method=loess)+
    facet_wrap(~female)
 
 
 # Adjusting to prices in 2018
-cpi <- rio::import("cpi.xlsx")[,c(1,4)]
-df <- df %>%
-  left_join(cpi, by = "YEAR")
+cpi <- rio::import("cpi_revised.xlsx")[,c(1,6)]
 
 df_mincer <- df_mincer %>% left_join(cpi,by="YEAR")
 
 
 ## To adjust wages to 2018 Ruble values 
-df$wage_adjusted_to_2018 <- df$wage*df$norm
+df_mincer <- df_mincer %>% mutate(wage_c18=ifelse(YEAR >=1998,wage*cons_wb,(wage*cons_wb/1000)))
+
 # wages in 2018 are alomst 3 times as high as wages in 2000:
-aggregate(wage_adjusted_to_2018 ~ YEAR, df, mean)
-aggregate(wage ~ YEAR, df, mean)
+aggregate(wage_c18 ~ YEAR, df_mincer, mean)
+aggregate(wage ~ YEAR, df_mincer, mean)
 
-
-df_mincer$wage_adjusted_to_2018 <- df_mincer$wage*df_mincer$norm
 
 temp_ <- df_mincer %>% filter(edu_4=="Higher") %>% filter(YEAR==1998|YEAR==2003|YEAR==2006|YEAR==2015|YEAR==2018)
-ggplot(temp_,aes(x=exper,y=wage_adjusted_to_2018,group=as.factor(YEAR),col=as.factor(YEAR))) +
-geom_jitter()
+ggplot(temp_,aes(x=exper_naive,y=wage_c18,group=as.factor(YEAR),col=as.factor(YEAR))) + geom_smooth(se=FALSE)
 
-+geom_smooth(method=loess,se=FALSE)+
-  facet_wrap(~female)
 
 temp_ <- df_mincer %>% filter(edu_4=="Vocational") %>% filter(YEAR==1998|YEAR==2008|YEAR==2018)
-ggplot(temp_,aes(x=exper,y=wage_adjusted_to_2018,group=as.factor(YEAR),col=as.factor(YEAR))) +geom_smooth(method=loess,se=FALSE)
+ggplot(temp_,aes(x=exper_naive,y=wage_c18,group=as.factor(YEAR),col=as.factor(YEAR))) +geom_smooth(method=loess,se=FALSE)
 
 
 #################### Regressions with depreciation of education ###################
