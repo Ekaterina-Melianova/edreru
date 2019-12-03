@@ -1,4 +1,5 @@
-# extension1a.R
+# extension1b.R
+options(scipen=999) # to supress scientific notation
 # WP1 extension along lines of Neuman-Weiss 1995.
 
 library(plyr); library(dplyr)
@@ -377,7 +378,7 @@ ggsave("gen_occ18.png", width = 7.5, height = 4,
 
 temp218u_ <- temp218_ %>% filter(edu_4=="Higher")
 
-ggplot(temp218_,aes(x=exper_naive,y=wage,group=edu_4,col=edu_4)) + geom_smooth(se=FALSE, method=loess)+
+ggplot(temp218_,aes(x=exper,y=wage,group=edu_4,col=edu_4)) + geom_smooth(se=FALSE, method=loess)+
    facet_wrap(~female)
 
 
@@ -395,457 +396,105 @@ aggregate(wage_c18 ~ YEAR, df_mincer, mean)
 aggregate(wage ~ YEAR, df_mincer, mean)
 
 
-temp_ <- df_mincer %>% filter(edu_4=="Higher") %>% filter(YEAR==1998|YEAR==2003|YEAR==2006|YEAR==2015|YEAR==2018)
-ggplot(temp_,aes(x=exper_naive,y=wage_c18,group=as.factor(YEAR),col=as.factor(YEAR))) + geom_smooth(se=FALSE)
+temp_ <- df_mincer %>% filter(edu_4=="Higher") %>% filter(YEAR==1998|YEAR==2006|YEAR==2018)
+ggplot(temp_,aes(x=exper,y=wage_c18,group=as.factor(YEAR),linetype=as.factor(YEAR))) + geom_smooth(se=FALSE,col="red",lwd=0.75,method=loess)+
+  coord_cartesian(ylim=c(0,40000))+
+  scale_linetype_manual(values=c("dotted","longdash","solid"))+
+  theme(panel.background = element_rect(fill = "#edfca1")) +
+  theme(panel.grid.major = element_line(color="white")) +
+  theme(panel.grid.major = element_line(size=1)) +
+  theme(panel.grid.minor = element_line(color="white")) +
+  theme(panel.grid.minor = element_line(size=1))+
+  theme(legend.position = "none")
 
-
-temp_ <- df_mincer %>% filter(edu_4=="Vocational") %>% filter(YEAR==1998|YEAR==2008|YEAR==2018)
-ggplot(temp_,aes(x=exper_naive,y=wage_c18,group=as.factor(YEAR),col=as.factor(YEAR))) +geom_smooth(method=loess,se=FALSE)
-
-
-#################### Regressions with depreciation of education ###################
-
-# for all 2018 data
-
-# Empty list where the regression output will be written
-lm_dep <- vector("list", length(unique(df$YEAR)))
-seq_year <- unique(df$YEAR)
-
-# Looping over each year
-for(i in seq(length(seq_year))){
-  lm_dep[[i]] <- lm(log(wage_adjusted_to_2018) ~ edu_4 +
-                                exper + 
-                                I(exper^2) + 
-                                exper*edu_4 +
-                                I(exper^2)*edu_4,
-                           data = df[df$YEAR == seq_year[i],])
-}
-names(lm_dep) <- seq_year
-smry_lm_dep <- lapply(lm_dep, summary)
-
-###################################### Model prediction: 2018 
-df_2018 <- as.data.frame(df[df$YEAR == 2018,])
-pred_y_2018 <- exp(predict(lm_dep[['2018']], df_2018, interval="conf"))
-df_2018 <- cbind(df_2018, pred_y_2018)
-
-# Finding maximums for 2018 jointly
-grid <- expand.grid(edu_4 = factor(1:3,
-                                   labels = c("Higher",
-                                               "Secondary",
-                                               "Vocational"))) 
-
-ymax <- c()
-for (i in seq(nrow(grid))){
-  ymax <- c(ymax, max(df_2018[
-      df_2018$edu_4 == as.character(grid[i, "edu_4"]), "fit"]))
-}
-
-xmax <- unique(df_2018[df_2018$fit %in% ymax, "exper"])
-
-
-###
-temp2_ <- haven::zap_labels(df_2018) 
-
-class(temp2_$exper)
-
-temp2_ <- temp2_ %>% group_by(female) %>% 
-          summarise(meanexp=mean(exper))
-
-# Plot
-
-
-###################################### Model prediction: 2009 
-df_2009 <- as.data.frame(df[df$YEAR == 2009,])
-pred_y_2009 <- exp(predict(lm_dep[['2009']], df_2009, interval="conf"))
-df_2009 <- cbind(df_2009, pred_y_2009)
-
-# Finding maximums for 2018 jointly
-grid <- expand.grid(edu_4 = factor(1:3,
-                                   labels = c("Higher",
-                                              "Secondary",
-                                              "Vocational"))) 
-
-ymax <- c()
-for (i in seq(nrow(grid))){
-  ymax <- c(ymax, max(df_2009[
-    df_2009$edu_4 == as.character(grid[i, "edu_4"]), "fit"]))
-}
-
-xmax <- unique(df_2009[df_2009$fit %in% ymax, "exper"])
-
-# Plot
-ggplot(df_2009, aes(x = exper, y = fit, group = edu_4, color = edu_4,
-                    linetype = edu_4)) +
-  geom_line(size = 0.6) +
-  geom_vline(aes(xintercept = xmax[1])) +
-  geom_vline(aes(xintercept = xmax[2])) +
-  geom_vline(aes(xintercept = xmax[3])) +
-  geom_point(shape = 4, aes(x = xmax[1], y = ymax[1]), size = 1,
-             show.legend = F, stroke = 1.5, color = "black") +
-  geom_point(shape = 4,aes(x = xmax[2], y = ymax[3]), size = 1,
-             show.legend = F, stroke = 1.5, color = "black") +
-  geom_point(shape = 4,aes(x = xmax[3], y = ymax[2]), size = 1,
-             show.legend = F, stroke = 1.5, color = "black") +
-  theme(legend.title = element_blank(),
-        legend.position = "bottom",
-        panel.grid.minor = element_blank(),
-        axis.text.x = element_text(size = 12),
-        axis.text.y = element_text(size = 12),
-        axis.title = element_text(size = 12),
-        legend.text = element_text(size = 12),
-        legend.key = element_rect(size = 12))  +
-  scale_color_manual(values = c("blue", "red", "darkgreen")) + 
-  scale_linetype_manual(values = c("solid", "longdash", "dotted")) +
-  scale_y_continuous(limits = c(2500, 35000), breaks = seq(2500, 35000, 5000)) +
-  ylab("Monthly wage, RUB") +
-  xlab("Experience") 
-
-ggsave("2009.png", width = 7.5, height = 4,
+ggsave("dp01_he.png", width = 3, height = 3.5,
        units = "in")
-
-###################################### Model prediction: 2000 
-df_2000 <- as.data.frame(df[df$YEAR == 2000,])
-pred_y_2000 <- exp(predict(lm_dep[['2000']], df_2000, interval="conf"))
-df_2000 <- cbind(df_2000, pred_y_2000)
-
-# Finding maximums for 2018 jointly
-grid <- expand.grid(edu_4 = factor(1:3,
-                                   labels = c("Higher",
-                                              "Secondary",
-                                              "Vocational"))) 
-
-ymax <- c()
-for (i in seq(nrow(grid))){
-  ymax <- c(ymax, max(df_2000[
-    df_2000$edu_4 == as.character(grid[i, "edu_4"]), "fit"]))
-}
-
-xmax <- unique(df_2000[df_2000$fit %in% ymax, "exper"])
-
-# Plot
-ggplot(df_2000, aes(x = exper, y = fit, group = edu_4, color = edu_4,
-                    linetype = edu_4)) +
-  geom_line(size = 0.6) +
-  geom_vline(aes(xintercept = xmax[1])) +
-  geom_vline(aes(xintercept = xmax[2])) +
-  geom_vline(aes(xintercept = xmax[3])) +
-  geom_point(shape = 4, aes(x = xmax[1], y = ymax[1]), size = 1,
-             show.legend = F, stroke = 1.5, color = "black") +
-  geom_point(shape = 4,aes(x = xmax[2], y = ymax[3]), size = 1,
-             show.legend = F, stroke = 1.5, color = "black") +
-  geom_point(shape = 4,aes(x = xmax[3], y = ymax[2]), size = 1,
-             show.legend = F, stroke = 1.5, color = "black") +
-  theme(legend.title = element_blank(),
-        legend.position = "bottom",
-        panel.grid.minor = element_blank(),
-        axis.text.x = element_text(size = 12),
-        axis.text.y = element_text(size = 12),
-        axis.title = element_text(size = 12),
-        legend.text = element_text(size = 12),
-        legend.key = element_rect(size = 12))  +
-  scale_color_manual(values = c("blue", "red", "darkgreen")) + 
-  scale_linetype_manual(values = c("solid", "longdash", "dotted")) +
-  scale_y_continuous(limits = c(2500, 35000), breaks = seq(2500, 35000, 5000)) +
-  ylab("Monthly wage, RUB") +
-  xlab("Experience") 
-
-ggsave("2000.png", width = 7.5, height = 4,
-       units = "in")
-
-
-################################## for occupations separately
-
-# Empty list where the regression output will be written
-lm_dep <- vector("list", length(unique(df$YEAR)))
-seq_year <- unique(df$YEAR)
-
-# Looping over each year
-for(i in seq(length(seq_year))){
-  lm_dep[[i]] <- lm(log(wage_adjusted_to_2018) ~ edu_4 +
-                      exper + 
-                      I(exper^2) + 
-                      fem_occup +
-                      fem_occup*exper +
-                      fem_occup*I(exper^2) +
-                      fem_occup*edu_4 +
-                      exper*edu_4 +
-                      I(exper^2)*edu_4 +
-                      fem_occup*edu_4*exper +
-                      fem_occup*edu_4*I(exper^2),
-                    data = df[df$YEAR == seq_year[i],])
-}
-names(lm_dep) <- seq_year
-smry_lm_dep <- lapply(lm_dep, summary)
-
-###################################### Model prediction: 2018
-df_2018 <- as.data.frame(df[df$YEAR == 2018,])
-pred_y_2018 <- exp(predict(lm_dep[['2018']], df_2018, interval="conf"))
-df_2018 <- cbind(df_2018, pred_y_2018)
-
-# Finding maximums separately for occupational facets
-grid <- expand.grid(fem_occup = 
-                    factor(0:1, labels = c("Female Occupations",
-                                           "Non-female Occupations")),
-                    edu_4 = factor(1:3, labels = c("Higher",
-                                                   "Secondary",
-                                                   "Vocational"))) %>%
-  arrange(fem_occup)
   
-ymax <- c()
-for (i in seq(nrow(grid))){
-  ymax <- c(ymax, max(df_2018[
-     df_2018$fem_occup == as.character(grid[i, "fem_occup"]) &
-     df_2018$edu_4 == as.character(grid[i, "edu_4"]), "fit"]))
-}
 
-max <- cbind(grid, ymax)
-xmax <- unique(df_2018[df_2018$fit %in% ymax, c("exper", "fit")])
-names(xmax)[2] <- "ymax"
+temp_ <- df_mincer %>% filter(edu_4=="Vocational") %>% filter(YEAR==1998|YEAR==2006|YEAR==2018)
+ggplot(temp_,aes(x=exper,y=wage_c18,group=as.factor(YEAR),linetype=as.factor(YEAR))) + geom_smooth(se=FALSE,col="blue",lwd=0.75,method=loess)+
+  coord_cartesian(ylim=c(0,40000))+
+  scale_linetype_manual(values=c("dotted","longdash","solid"))+
+  theme(panel.background = element_rect(fill = "cornsilk")) +
+  theme(panel.grid.major = element_line(color="white")) +
+  theme(panel.grid.major = element_line(size=1)) +
+  theme(panel.grid.minor = element_line(color="white")) +
+  theme(panel.grid.minor = element_line(size=1))+
+  theme(legend.position = "none")
 
-max_f <- max %>%
-  left_join(xmax, by = "ymax")
-
-# Plot
-ggplot(df_2018, aes(x = exper, y = fit, group = edu_4, color = edu_4,
-                               linetype = edu_4)) +
-   geom_line(aes(y = fit), size = 0.6) +
-   geom_vline(data = filter(df_2018, fem_occup == "Female Occupations"),
-               aes(xintercept = max_f$exper[1])) +
-   geom_vline(data = filter(df_2018, fem_occup == "Female Occupations"),
-              aes(xintercept = max_f$exper[2])) +
-   geom_vline(data = filter(df_2018, fem_occup == "Female Occupations"),
-             aes(xintercept = max_f$exper[3])) +
-   geom_vline(data = filter(df_2018, fem_occup == "Non-female Occupations"),
-              aes(xintercept = max_f$exper[4])) +
-   geom_vline(data = filter(df_2018, fem_occup == "Non-female Occupations"),
-              aes(xintercept = max_f$exper[5])) +
-   geom_vline(data = filter(df_2018, fem_occup == "Non-female Occupations"),
-              aes(xintercept = max_f$exper[6])) +
-   geom_point(data = filter(df_2018, fem_occup == "Female Occupations"),
-              aes(x = max_f$exper[1], y = max_f$ymax[1]), size = 1,
-             show.legend = F, color = "black", shape = 4, stroke = 1.5) +
-   geom_point(data = filter(df_2018, fem_occup == "Female Occupations"),
-              aes(x = max_f$exper[2], y = max_f$ymax[2]), size = 1,
-             show.legend = F, color = "black", shape = 4, stroke = 1.5) +
-   geom_point(data = filter(df_2018, fem_occup == "Female Occupations"),
-              aes(x = max_f$exper[3], y = max_f$ymax[3]), size = 1,
-              show.legend = F, color = "black", shape = 4, stroke = 1.5) +
-   geom_point(data = filter(df_2018, fem_occup == "Non-female Occupations"),
-              aes(x = max_f$exper[4], y = max_f$ymax[4]), size = 1,
-             show.legend = F, color = "black", shape = 4, stroke = 1.5) +
-   geom_point(data = filter(df_2018, fem_occup == "Non-female Occupations"),
-              aes(x = max_f$exper[5], y = max_f$ymax[5]), size = 1,
-             show.legend = F, color = "black", shape = 4, stroke = 1.5) +
-   geom_point(data = filter(df_2018, fem_occup == "Non-female Occupations"),
-              aes(x = max_f$exper[6], y = max_f$ymax[6]), size = 1,
-             show.legend = F, color = "black", shape = 4, stroke = 1.5) +
-   facet_grid(~ as.factor(fem_occup)) +
-   theme(legend.title = element_blank(),
-          legend.position = "bottom",
-          panel.grid.minor = element_blank(),
-          axis.text.x = element_text(size = 12),
-          axis.text.y = element_text(size = 12),
-          axis.title = element_text(size = 12),
-          legend.text = element_text(size = 12),
-          legend.key = element_rect(size = 12))  +
-   scale_color_manual(values = c("blue", "red", "darkgreen")) + 
-   scale_linetype_manual(values = c("solid", "longdash", "dotted")) +
-   scale_y_continuous(limits = c(2500, 35000), breaks = seq(2500, 35000, 5000)) +
-   ylab("Monthly wage, RUB") +
-   xlab("Experience") 
-
-ggsave("2018_int.png", width = 7.5, height = 4,
-             units = "in")
-
-###################################### Model prediction: 2009
-df_2009 <- as.data.frame(df[df$YEAR == 2009,])
-pred_y_2009 <- exp(predict(lm_dep[['2009']], df_2009, interval="conf"))
-df_2009 <- cbind(df_2009, pred_y_2009)
-
-# Finding maximums separately for occupational facets
-grid <- expand.grid(fem_occup = 
-                      factor(0:1, labels = c("Female Occupations",
-                                             "Non-female Occupations")),
-                    edu_4 = factor(1:3, labels = c("Higher",
-                                                   "Secondary",
-                                                   "Vocational"))) %>%
-  arrange(fem_occup)
-
-ymax <- c()
-for (i in seq(nrow(grid))){
-  ymax <- c(ymax, max(df_2009[
-    df_2009$fem_occup == as.character(grid[i, "fem_occup"]) &
-      df_2009$edu_4 == as.character(grid[i, "edu_4"]), "fit"]))
-}
-
-max <- cbind(grid, ymax)
-xmax <- unique(df_2009[df_2009$fit %in% ymax, c("exper", "fit")])
-names(xmax)[2] <- "ymax"
-
-max_f <- max %>%
-  left_join(xmax, by = "ymax")
-
-# Plot
-ggplot(df_2009, aes(x = exper, y = fit, group = edu_4, color = edu_4,
-                    linetype = edu_4)) +
-  geom_line(aes(y = fit), size = 0.6) +
-  geom_vline(data = filter(df_2009, fem_occup == "Female Occupations"),
-             aes(xintercept = max_f$exper[1])) +
-  geom_vline(data = filter(df_2009, fem_occup == "Female Occupations"),
-             aes(xintercept = max_f$exper[2])) +
-  geom_vline(data = filter(df_2009, fem_occup == "Female Occupations"),
-           aes(xintercept = max_f$exper[3])) +
-  geom_vline(data = filter(df_2009, fem_occup == "Non-female Occupations"),
-             aes(xintercept = max_f$exper[4])) +
-  geom_vline(data = filter(df_2009, fem_occup == "Non-female Occupations"),
-             aes(xintercept = max_f$exper[5])) +
-  geom_vline(data = filter(df_2009, fem_occup == "Non-female Occupations"),
-            aes(xintercept = max_f$exper[6])) +
-  geom_point(data = filter(df_2009, fem_occup == "Female Occupations"),
-             aes(x = max_f$exper[1], y = max_f$ymax[1]), size = 1,
-             show.legend = F, color = "black", shape = 4, stroke = 1.5) +
-  geom_point(data = filter(df_2009, fem_occup == "Female Occupations"),
-             aes(x = max_f$exper[2], y = max_f$ymax[2]), size = 1,
-             show.legend = F, color = "black", shape = 4, stroke = 1.5) +
-  geom_point(data = filter(df_2009, fem_occup == "Female Occupations"),
-             aes(x = max_f$exper[3], y = max_f$ymax[3]), size = 1,
-             show.legend = F, color = "black", shape = 4, stroke = 1.5) +
-  geom_point(data = filter(df_2009, fem_occup == "Non-female Occupations"),
-             aes(x = max_f$exper[4], y = max_f$ymax[4]), size = 1,
-             show.legend = F, color = "black", shape = 4, stroke = 1.5) +
-  geom_point(data = filter(df_2009, fem_occup == "Non-female Occupations"),
-             aes(x = max_f$exper[5], y = max_f$ymax[5]), size = 1,
-             show.legend = F, color = "black", shape = 4, stroke = 1.5) +
-  geom_point(data = filter(df_2009, fem_occup == "Non-female Occupations"),
-             aes(x = max_f$exper[6], y = max_f$ymax[6]), size = 1,
-             show.legend = F, color = "black", shape = 4, stroke = 1.5) +
-  facet_grid(~ as.factor(fem_occup)) +
-  theme(legend.title = element_blank(),
-        legend.position = "bottom",
-        panel.grid.minor = element_blank(),
-        axis.text.x = element_text(size = 12),
-        axis.text.y = element_text(size = 12),
-        axis.title = element_text(size = 12),
-        legend.text = element_text(size = 12),
-        legend.key = element_rect(size = 12))  +
-  scale_color_manual(values = c("blue", "red", "darkgreen")) + 
-  scale_linetype_manual(values = c("solid", "longdash", "dotted")) +
-  scale_y_continuous(limits = c(2500, 35000), breaks = seq(2500, 35000, 5000)) +
-  ylab("Monthly wage, RUB") +
-  xlab("Experience") 
-
-ggsave("2009_int.png", width = 7.5, height = 4,
+ggsave("dp01_ve.png", width = 3, height = 3.5,
        units = "in")
 
-###################################### Model prediction: 2000
-df_2000 <- as.data.frame(df[df$YEAR == 2000,])
-pred_y_2000 <- exp(predict(lm_dep[['2000']], df_2000, interval="conf"))
-df_2000 <- cbind(df_2000, pred_y_2000)
 
-# Finding maximums separately for occupational facets
-grid <- expand.grid(fem_occup = 
-                      factor(0:1, labels = c("Female Occupations",
-                                             "Non-female Occupations")),
-                    edu_4 = factor(1:3, labels = c("Higher",
-                                                   "Secondary",
-                                                   "Vocational"))) %>%
-  arrange(fem_occup)
+temp_ <- df_mincer %>% filter(edu_4=="Secondary") %>% filter(YEAR==1998|YEAR==2006|YEAR==2018)
+ggplot(temp_,aes(x=exper,y=wage_c18,group=as.factor(YEAR),linetype=as.factor(YEAR))) + geom_smooth(se=FALSE,col="darkgreen",lwd=0.75,method=loess)+
+  coord_cartesian(ylim=c(0,40000))+
+  scale_linetype_manual(values=c("dotted","longdash","solid"),
+                        breaks = rev(levels(as.factor(temp_$YEAR))))+
+  theme(panel.background = element_rect(fill = "#dbebf9")) +
+  theme(panel.grid.major = element_line(color="white")) +
+  theme(panel.grid.major = element_line(size=1)) +
+  theme(panel.grid.minor = element_line(color="white")) +
+  theme(panel.grid.minor = element_line(size=1))+
+  theme(legend.position = c(0.8, 0.8),
+        legend.background = element_rect(fill = "yellow"),
+        legend.key = element_rect(fill = "yellow"),
+        legend.title=element_blank())
 
-ymax <- c()
-for (i in seq(nrow(grid))){
-  ymax <- c(ymax, max(df_2000[
-    df_2000$fem_occup == as.character(grid[i, "fem_occup"]) &
-      df_2000$edu_4 == as.character(grid[i, "edu_4"]), "fit"]))
-}
-
-max <- cbind(grid, ymax)
-xmax <- unique(df_2000[df_2000$fit %in% ymax, c("exper", "fit")])
-names(xmax)[2] <- "ymax"
-
-max_f <- max %>%
-  left_join(xmax, by = "ymax")
-
-# Plot
-ggplot(df_2000, aes(x = exper, y = fit, group = edu_4, color = edu_4,
-                    linetype = edu_4)) +
-  geom_line(aes(y = fit), size = 0.6) +
-  geom_vline(data = filter(df_2000, fem_occup == "Female Occupations"),
-             aes(xintercept = max_f$exper[1])) +
-  geom_vline(data = filter(df_2000, fem_occup == "Female Occupations"),
-             aes(xintercept = max_f$exper[2])) +
-  geom_vline(data = filter(df_2000, fem_occup == "Female Occupations"),
-           aes(xintercept = max_f$exper[3])) +
-  geom_vline(data = filter(df_2000, fem_occup == "Non-female Occupations"),
-             aes(xintercept = max_f$exper[4])) +
-  geom_vline(data = filter(df_2000, fem_occup == "Non-female Occupations"),
-             aes(xintercept = max_f$exper[5])) +
-  geom_vline(data = filter(df_2000, fem_occup == "Non-female Occupations"),
-             aes(xintercept = max_f$exper[6])) +
-  geom_point(data = filter(df_2000, fem_occup == "Female Occupations"),
-             aes(x = max_f$exper[1], y = max_f$ymax[1]), size = 1,
-             show.legend = F, color = "black", shape = 4, stroke = 1.5) +
-  geom_point(data = filter(df_2000, fem_occup == "Female Occupations"),
-             aes(x = max_f$exper[2], y = max_f$ymax[2]), size = 1,
-             show.legend = F, color = "black", shape = 4, stroke = 1.5) +
-  geom_point(data = filter(df_2000, fem_occup == "Female Occupations"),
-            aes(x = max_f$exper[3], y = max_f$ymax[3]), size = 1,
-          show.legend = F, color = "black", shape = 4, stroke = 1.5) +
-  geom_point(data = filter(df_2000, fem_occup == "Non-female Occupations"),
-             aes(x = max_f$exper[4], y = max_f$ymax[4]), size = 1,
-             show.legend = F, color = "black", shape = 4, stroke = 1.5) +
-  geom_point(data = filter(df_2000, fem_occup == "Non-female Occupations"),
-             aes(x = max_f$exper[5], y = max_f$ymax[5]), size = 1,
-             show.legend = F, color = "black", shape = 4, stroke = 1.5) +
-  geom_point(data = filter(df_2000, fem_occup == "Non-female Occupations"),
-             aes(x = max_f$exper[6], y = max_f$ymax[6]), size = 1,
-             show.legend = F, color = "black", shape = 4, stroke = 1.5) +
-  facet_grid(~ as.factor(fem_occup)) +
-  theme(legend.title = element_blank(),
-        legend.position = "bottom",
-        panel.grid.minor = element_blank(),
-        axis.text.x = element_text(size = 12),
-        axis.text.y = element_text(size = 12),
-        axis.title = element_text(size = 12),
-        legend.text = element_text(size = 12),
-        legend.key = element_rect(size = 12))  +
-  scale_color_manual(values = c("blue", "red", "darkgreen")) + 
-  scale_linetype_manual(values = c("solid", "longdash", "dotted")) +
-  scale_y_continuous(limits = c(2500, 35000), breaks = seq(2500, 35000, 5000)) +
-  ylab("Monthly wage, RUB") +
-  xlab("Experience") 
-
-ggsave("2000_int.png", width = 7.5, height = 4,
+ggsave("dp01_se.png", width = 3, height = 3.5,
        units = "in")
 
-################# Model prediction (for each year)
-#for (i in 1:length(seq_year)){
-#  df_year <- as.data.frame(df[df$YEAR == seq_year[i],])
-#  pred_y <- exp(predict(lm_dep[[i]], df_year, interval="conf"))
-#  df_year <- cbind(df_year, pred_y)
+## Run Murillo Regression
+
+lm_dep <- lm(log(wage_c18) ~ edu_yrs + exper*edu_yrs + exper + I(exper^2),
+             data=subset(df_mincer,YEAR==2018))
+summary(lm_dep)
+#b1 edu_yrs        0.05302502  0.00913908   5.802 0.000000006881165398 ***
+#b2 edu_yrs:exper  0.00006204  0.00038075   0.163              0.87056  
+#b3 exper          0.02265965  0.00748268   3.028              0.00247 ** 
+#b4 I(exper^2)    -0.00061336  0.00007516  -8.161 0.000000000000000402 ***
   
-# Plot
-# p_int <- ggplot(df_year, aes(x = exper, y = fit, group = edu_4, color = edu_4,
-#                  linetype = edu_4)) +
-#    geom_line(aes(y = fit), size = 1.2) +
-#    geom_ribbon(aes(ymin=lwr, ymax=upr, fill = edu_4), alpha = 0.1, colour = NA) +
-#    facet_grid(~ as.factor(fem_occup)) +
-#    theme(legend.title = element_blank(),
-#         legend.position = "bottom",
-#         panel.grid.minor = element_blank(),
-#         axis.text.x = element_text(size = 12),
-#         axis.text.y = element_text(size = 12),
-#         axis.title = element_text(size = 12),
-#         legend.text = element_text(size = 12),
-#         legend.key = element_rect(size = 12))  +
-#   scale_color_manual(values = c("blue", "red", "darkgreen")) + 
-#    scale_fill_manual(values=c("blue", "red", "darkgreen")) +
-#    scale_linetype_manual(values = c("solid", "longdash", "dotted")) +
-#    scale_y_continuous(limits = c(0, 3)) +
-#    ylab("Monthly wage normed by median") +
-#    xlab("Experience") 
+(junk <- df_mincer %>% select(YEAR,edu_yrs,exper) %>% group_by(YEAR) %>% 
+  summarize(meaned=mean(edu_yrs),meanex=mean(exper)))
+
+#tdesc=0.00006204*13*100 at average s of 13 or 0.080652 i.e. 0.08%
+
+#tdexp=2*0.00061336*22*100 at average of 22 ex or 2.698784 i.e. 2.698% 
+
+lm_dep <- lm(log(wage_c18) ~ edu_yrs + exper*edu_yrs + exper + I(exper^2),
+             data=subset(df_mincer,YEAR==2018 & female==1))
+summary(lm_dep)
+
+# b1=0.05302502
+# b2=0.00006204
+# b3=0.02265965
+# b4=-0.00061336
+
+#b1  edu_yrs        0.06648222  0.01243787   5.345         0.0000000965 ***
+#b2  edu_yrs:exper  0.00044313  0.00051476   0.861               0.3894    
+#b3  exper          0.01991126  0.01001705   1.988               0.0469 *  
+#b4  I(exper^2)    -0.00057140  0.00009656  -5.917         0.0000000036 ***
+
+# b2_s + b3 + 2b4x
+lm_dep <- lm(log(wage_c18) ~ edu_yrs + exper*edu_yrs + exper + I(exper^2),
+             data=subset(df_mincer,YEAR==2018 & female==0))
+summary(lm_dep)
+
+#b1  edu_yrs        0.0770274  0.0123341   6.245     0.00000000048807 ***
+#b2  edu_yrs:exper -0.0007765  0.0005188  -1.497             0.134619  
+#b3  exper          0.0371668  0.0102348   3.631             0.000287 ***
+#b4  I(exper^2)    -0.0007403  0.0001058  -6.997     0.00000000000327 ***
   
-# ggsave(paste0("p_", seq_year[i], "_int.png"),  width = 7.5, height = 4,
-#       units = "in")
-# print(i)
-#}
+## others 
+lm_dep <- lm(log(wage_c18) ~ edu_yrs + exper*edu_yrs + exper + I(exper^2),
+             data=subset(df_mincer,YEAR==2018 & edu_4=="Higher"))
+summary(lm_dep)
+
+
+lm_dep <- lm(log(wage_c18) ~ edu_yrs + exper*edu_yrs + exper + I(exper^2),
+             data=subset(df_mincer,YEAR==2018 & exper>5 & exper <40))
+summary(lm_dep)
+
+
+
 
