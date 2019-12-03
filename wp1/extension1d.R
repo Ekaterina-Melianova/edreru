@@ -39,6 +39,16 @@ df_mincer2$RCM=df_mincer2$RC+df_mincer2$RM
 
 df_18 <- df_mincer2 %>% filter(YEAR==2018) 
 
+df_18f <- df_18 %>% select(IDIND, wage, edu_4,exper,female,edu_yrs)  %>% filter(female==1) %>%
+               mutate(lnwage=log(wage), tlabor0=64-edu_yrs)  # using 64 for now, will need to adjust
+df_18f <- haven::zap_labels(df_18f) # Else rio gives error message
+
+df_18m <- df_18 %>% select(IDIND, wage, edu_4,exper,female,edu_yrs)  %>% filter(female==0) %>%
+  mutate(lnwage=log(wage),tlabor0=64-edu_yrs) # using 64 for now, will need to adjust
+df_18m <- haven::zap_labels(df_18m) # Else rio gives error message
+
+rio::export(df_18f, file="C:/Country/Russia/Data/SEASHELL/SEABYTE/edreru/Stata/df_18f.dta",format="stata")
+rio::export(df_18m, file="C:/Country/Russia/Data/SEASHELL/SEABYTE/edreru/Stata/df_18m.dta",format="stata")
 
 
 
