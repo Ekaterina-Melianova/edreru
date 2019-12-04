@@ -3,380 +3,21 @@
       name:  {res}<unnamed>
        {txt}log:  {res}C:\Country\Russia\Data\SEASHELL\SEABYTE\edreru\Stata\dep1a.smcl
   {txt}log type:  {res}smcl
- {txt}opened on:  {res} 3 Dec 2019, 14:52:28
+ {txt}opened on:  {res} 4 Dec 2019, 09:44:01
 {txt}
 {com}. 
-. use df_18f
+. // Females
+. 
+. use df_18f, clear
 {txt}
-{com}. 
-{txt}end of do-file
-
-{com}. do "C:\Users\wb164718\AppData\Local\Temp\STD32d0_000000.tmp"
-{txt}
-{com}. nl dep1a @ lnwage exper edu_yrs tlabor0, parameters(lnW bk delta alpha) initial(lnW 10 bk .1 delta .05 alpha .5)
+{com}. nl dep1a @ lnwage exper edu_yrs tlabor0, parameters(lnW bk delta alpha) initial(lnW 20 bk .2 delta .05 alpha .5) vce(robust) 
 {txt}(obs = 3,312)
 
-Iteration 0:  residual SS = {res}   2729.3
-{txt}Iteration 1:  residual SS = {res} 1252.893
-{txt}Iteration 2:  residual SS = {res} 1239.706
-{txt}Iteration 3:  residual SS = {res} 1197.199
-{txt}Iteration 4:  residual SS = {res}  1194.75
-{txt}Iteration 5:  residual SS = {res} 1191.689
-{txt}Iteration 6:  residual SS = {res} 1190.441
-{txt}Iteration 7:  residual SS = {res} 1190.281
-{txt}Iteration 8:  residual SS = {res} 1190.267
-{txt}Iteration 9:  residual SS = {res} 1190.265
-{txt}Iteration 10:  residual SS = {res} 1190.265
-{txt}Iteration 11:  residual SS = {res} 1190.265
-{txt}Iteration 12:  residual SS = {res} 1190.265
-{txt}Iteration 13:  residual SS = {res} 1190.265
-{txt}Iteration 14:  residual SS = {res} 1190.265
-{txt}Iteration 15:  residual SS = {res} 1190.265
-
-
-{txt}      Source {c |}      SS            df       MS
-{hline 13}{c +}{hline 34}{col 53}Number of obs = {res}     3,312
-{txt}       Model {c |} {res} 106.81617          3  35.6053886{txt}{col 53}R-squared     = {res}    0.0824
-{txt}    Residual {c |} {res} 1190.2654       3308  .359814193{txt}{col 53}Adj R-squared = {res}    0.0815
-{txt}{hline 13}{c +}{hline 34}{col 53}Root MSE      =  {res} .5998451
-{txt}       Total {c |} {res} 1297.0815       3311  .391749174{txt}{col 53}Res. dev.     =  {res} 6009.628
-
-{txt}{hline 13}{c TT}{hline 11}{hline 11}{hline 9}{hline 8}{hline 13}{hline 12}
-{col 1}      lnwage{col 14}{c |}      Coef.{col 26}   Std. Err.{col 38}      t{col 46}   P>|t|{col 54}     [95% Con{col 67}f. Interval]
-{hline 13}{c +}{hline 11}{hline 11}{hline 9}{hline 8}{hline 13}{hline 12}
-        /lnW {c |}{col 14}{res}{space 2} 8.413051{col 26}{space 2} .1134928{col 37}{space 1}   74.13{col 46}{space 3}0.000{col 54}{space 4} 8.190528{col 67}{space 3} 8.635575
-{txt}         /bk {c |}{col 14}{res}{space 2} .1329922{col 26}{space 2} .0095094{col 37}{space 1}   13.99{col 46}{space 3}0.000{col 54}{space 4} .1143474{col 67}{space 3}  .151637
-{txt}      /delta {c |}{col 14}{res}{space 2} .0249497{col 26}{space 2} .0036791{col 37}{space 1}    6.78{col 46}{space 3}0.000{col 54}{space 4} .0177361{col 67}{space 3} .0321633
-{txt}      /alpha {c |}{col 14}{res}{space 2} .4628332{col 26}{space 2}  .061857{col 37}{space 1}    7.48{col 46}{space 3}0.000{col 54}{space 4} .3415514{col 67}{space 3} .5841151
-{txt}{hline 13}{c BT}{hline 11}{hline 11}{hline 9}{hline 8}{hline 13}{hline 12}
-  Parameter lnW taken as constant term in model & ANOVA table
-
-{com}. 
-{txt}end of do-file
-
-{com}. do "C:\Users\wb164718\AppData\Local\Temp\STD32d0_000000.tmp"
-{txt}
-{com}. nl dep1a @ lnwage exper edu_yrs tlabor0, parameters(lnW bk delta alpha) initial(lnW 4 bk .2 delta .25 alpha .05)
-{txt}(obs = 3,312)
-
-Iteration 0:  residual SS = {res} 2042.799
-{txt}Iteration 1:  residual SS = {res} 1291.841
-{txt}Iteration 2:  residual SS = {res} 1284.816
-{txt}Iteration 3:  residual SS = {res} 1284.741
-{txt}Iteration 4:  residual SS = {res} 1284.382
-{txt}Iteration 5:  residual SS = {res} 1284.254
-{txt}Iteration 6:  residual SS = {res} 1284.057
-{txt}Iteration 7:  residual SS = {res} 1283.976
-{txt}Iteration 8:  residual SS = {res} 1283.965
-{txt}Iteration 9:  residual SS = {res} 1283.843
-{txt}Iteration 10:  residual SS = {res} 1283.823
-{txt}Iteration 11:  residual SS = {res} 1283.764
-{txt}Iteration 12:  residual SS = {res} 1283.755
-{txt}Iteration 13:  residual SS = {res} 1283.753
-{txt}Iteration 14:  residual SS = {res} 1283.753
-{txt}Iteration 15:  residual SS = {res} 1283.753
-{txt}Iteration 16:  residual SS = {res} 1283.753
-{txt}Iteration 17:  residual SS = {res} 1283.753
-{txt}Iteration 18:  residual SS = {res} 1283.753
-{txt}Iteration 19:  residual SS = {res} 1283.753
-{txt}Iteration 20:  residual SS = {res} 1283.753
-{txt}Iteration 21:  residual SS = {res} 1283.753
-{txt}Iteration 22:  residual SS = {res} 1283.753
-{txt}Iteration 23:  residual SS = {res} 1283.753
-{txt}Iteration 24:  residual SS = {res} 1283.753
-{txt}Iteration 25:  residual SS = {res} 1283.753
-{txt}Iteration 26:  residual SS = {res} 1283.753
-{txt}Iteration 27:  residual SS = {res} 1283.753
-{txt}Iteration 28:  residual SS = {res} 1283.753
-{txt}Iteration 29:  residual SS = {res} 1283.753
-{txt}Iteration 30:  residual SS = {res} 1283.753
-{txt}Iteration 31:  residual SS = {res} 1283.753
-{txt}Iteration 32:  residual SS = {res} 1283.753
-{txt}Iteration 33:  residual SS = {res} 1283.753
-{txt}Iteration 34:  residual SS = {res} 1283.753
-{txt}Iteration 35:  residual SS = {res} 1283.753
-{txt}Iteration 36:  residual SS = {res} 1283.753
-{txt}Iteration 37:  residual SS = {res} 1283.753
-{txt}Iteration 38:  residual SS = {res} 1283.753
-{txt}Iteration 39:  residual SS = {res} 1283.753
-{txt}Iteration 40:  residual SS = {res} 1283.753
-{txt}Iteration 41:  residual SS = {res} 1283.753
-{txt}Iteration 42:  residual SS = {res} 1283.753
-{txt}Iteration 43:  residual SS = {res} 1283.753
-{txt}Iteration 44:  residual SS = {res} 1283.753
-{txt}Iteration 45:  residual SS = {res} 1283.753
-{txt}Iteration 46:  residual SS = {res} 1283.753
-{txt}Iteration 47:  residual SS = {res} 1283.753
-{txt}Iteration 48:  residual SS = {res} 1283.753
-{txt}Iteration 49:  residual SS = {res} 1283.753
-{txt}Iteration 50:  residual SS = {res} 1283.753
-{txt}Iteration 51:  residual SS = {res} 1283.753
-{txt}Iteration 52:  residual SS = {res} 1283.753
-{txt}Iteration 53:  residual SS = {res} 1283.753
-{txt}Iteration 54:  residual SS = {res} 1283.753
-{txt}Iteration 55:  residual SS = {res} 1283.753
-{txt}Iteration 56:  residual SS = {res} 1283.753
-{txt}Iteration 57:  residual SS = {res} 1283.753
-{txt}Iteration 58:  residual SS = {res} 1283.753
-{txt}Iteration 59:  residual SS = {res} 1283.753
-{txt}Iteration 60:  residual SS = {res} 1283.753
-{txt}Iteration 61:  residual SS = {res} 1283.753
-{txt}Iteration 62:  residual SS = {res} 1283.753
-{txt}Iteration 63:  residual SS = {res} 1283.753
-{txt}Iteration 64:  residual SS = {res} 1283.753
-{txt}Iteration 65:  residual SS = {res} 1283.753
-{txt}Iteration 66:  residual SS = {res} 1283.753
-{txt}Iteration 67:  residual SS = {res} 1283.753
-{txt}Iteration 68:  residual SS = {res} 1283.753
-{txt}Iteration 69:  residual SS = {res} 1283.753
-{txt}Iteration 70:  residual SS = {res} 1283.753
-{txt}Iteration 71:  residual SS = {res} 1283.753
-{txt}Iteration 72:  residual SS = {res} 1283.753
-{txt}Iteration 73:  residual SS = {res} 1283.753
-{txt}Iteration 74:  residual SS = {res} 1283.753
-{txt}Iteration 75:  residual SS = {res} 1283.753
-{txt}Iteration 76:  residual SS = {res} 1283.753
-{txt}Iteration 77:  residual SS = {res} 1283.753
-{txt}Iteration 78:  residual SS = {res} 1283.753
-{txt}Iteration 79:  residual SS = {res} 1283.753
-{txt}Iteration 80:  residual SS = {res} 1283.753
-{txt}Iteration 81:  residual SS = {res} 1283.753
-{txt}Iteration 82:  residual SS = {res} 1283.753
-{txt}Iteration 83:  residual SS = {res} 1283.753
-
-
-{txt}      Source {c |}      SS            df       MS
-{hline 13}{c +}{hline 34}{col 53}Number of obs = {res}     3,312
-{txt}       Model {c |} {res} 13.328934          3  4.44297785{txt}{col 53}R-squared     = {res}    0.0103
-{txt}    Residual {c |} {res} 1283.7526       3308  .388075146{txt}{col 53}Adj R-squared = {res}    0.0094
-{txt}{hline 13}{c +}{hline 34}{col 53}Root MSE      =  {res} .6229568
-{txt}       Total {c |} {res} 1297.0815       3311  .391749174{txt}{col 53}Res. dev.     =  {res} 6260.052
-
-{txt}{hline 13}{c TT}{hline 11}{hline 11}{hline 9}{hline 8}{hline 13}{hline 12}
-{col 1}      lnwage{col 14}{c |}      Coef.{col 26}   Std. Err.{col 38}      t{col 46}   P>|t|{col 54}     [95% Con{col 67}f. Interval]
-{hline 13}{c +}{hline 11}{hline 11}{hline 9}{hline 8}{hline 13}{hline 12}
-        /lnW {c |}{col 14}{res}{space 2}  9.72031{col 26}{space 2} .0343305{col 37}{space 1}  283.14{col 46}{space 3}0.000{col 54}{space 4} 9.652999{col 67}{space 3} 9.787621
-{txt}         /bk {c |}{col 14}{res}{space 2}-.0062764{col 26}{space 2}  .007067{col 37}{space 1}   -0.89{col 46}{space 3}0.375{col 54}{space 4}-.0201324{col 67}{space 3} .0075797
-{txt}      /delta {c |}{col 14}{res}{space 2} 1.889002{col 26}{space 2} .1091361{col 37}{space 1}   17.31{col 46}{space 3}0.000{col 54}{space 4} 1.675021{col 67}{space 3} 2.102983
-{txt}      /alpha {c |}{col 14}{res}{space 2}-.3435406{col 26}{space 2} .0713845{col 37}{space 1}   -4.81{col 46}{space 3}0.000{col 54}{space 4}-.4835028{col 67}{space 3}-.2035784
-{txt}{hline 13}{c BT}{hline 11}{hline 11}{hline 9}{hline 8}{hline 13}{hline 12}
-  Parameter lnW taken as constant term in model & ANOVA table
-
-{com}. 
-{txt}end of do-file
-
-{com}. do "C:\Users\wb164718\AppData\Local\Temp\STD32d0_000000.tmp"
-{txt}
-{com}. nl dep1a @ lnwage exper edu_yrs tlabor0, parameters(lnW bk delta alpha) initial(lnW 20 bk .2 delta .15 alpha .2)
-{txt}(obs = 3,312)
-
-Iteration 0:  residual SS = {res}   273190
-{txt}Iteration 1:  residual SS = {res} 154377.7
-{txt}Iteration 2:  residual SS = {res} 1342.541
-{txt}Iteration 3:  residual SS = {res} 1323.761
-{txt}Iteration 4:  residual SS = {res} 1202.618
-{txt}Iteration 5:  residual SS = {res} 1190.287
-{txt}Iteration 6:  residual SS = {res} 1190.267
-{txt}Iteration 7:  residual SS = {res} 1190.265
-{txt}Iteration 8:  residual SS = {res} 1190.265
-{txt}Iteration 9:  residual SS = {res} 1190.265
-{txt}Iteration 10:  residual SS = {res} 1190.265
-{txt}Iteration 11:  residual SS = {res} 1190.265
-{txt}Iteration 12:  residual SS = {res} 1190.265
-{txt}Iteration 13:  residual SS = {res} 1190.265
-
-
-{txt}      Source {c |}      SS            df       MS
-{hline 13}{c +}{hline 34}{col 53}Number of obs = {res}     3,312
-{txt}       Model {c |} {res} 106.81617          3  35.6053886{txt}{col 53}R-squared     = {res}    0.0824
-{txt}    Residual {c |} {res} 1190.2654       3308  .359814193{txt}{col 53}Adj R-squared = {res}    0.0815
-{txt}{hline 13}{c +}{hline 34}{col 53}Root MSE      =  {res} .5998451
-{txt}       Total {c |} {res} 1297.0815       3311  .391749174{txt}{col 53}Res. dev.     =  {res} 6009.628
-
-{txt}{hline 13}{c TT}{hline 11}{hline 11}{hline 9}{hline 8}{hline 13}{hline 12}
-{col 1}      lnwage{col 14}{c |}      Coef.{col 26}   Std. Err.{col 38}      t{col 46}   P>|t|{col 54}     [95% Con{col 67}f. Interval]
-{hline 13}{c +}{hline 11}{hline 11}{hline 9}{hline 8}{hline 13}{hline 12}
-        /lnW {c |}{col 14}{res}{space 2} 8.413049{col 26}{space 2} .1134929{col 37}{space 1}   74.13{col 46}{space 3}0.000{col 54}{space 4} 8.190526{col 67}{space 3} 8.635572
-{txt}         /bk {c |}{col 14}{res}{space 2} .1329925{col 26}{space 2} .0095093{col 37}{space 1}   13.99{col 46}{space 3}0.000{col 54}{space 4} .1143478{col 67}{space 3} .1516373
-{txt}      /delta {c |}{col 14}{res}{space 2} .0249499{col 26}{space 2} .0036791{col 37}{space 1}    6.78{col 46}{space 3}0.000{col 54}{space 4} .0177363{col 67}{space 3} .0321634
-{txt}      /alpha {c |}{col 14}{res}{space 2} .4628357{col 26}{space 2} .0618564{col 37}{space 1}    7.48{col 46}{space 3}0.000{col 54}{space 4} .3415552{col 67}{space 3} .5841163
-{txt}{hline 13}{c BT}{hline 11}{hline 11}{hline 9}{hline 8}{hline 13}{hline 12}
-  Parameter lnW taken as constant term in model & ANOVA table
-
-{com}. 
-{txt}end of do-file
-
-{com}. do "C:\Users\wb164718\AppData\Local\Temp\STD32d0_000000.tmp"
-{txt}
-{com}. nl dep1a @ lnwage exper edu_yrs tlabor0, parameters(lnW bk delta alpha) initial(lnW 20 bk .2 delta .15 alpha .8)
-{txt}(obs = 3,312)
-
-Iteration 0:  residual SS = {res} 94128.85
-{txt}Iteration 1:  residual SS = {res} 2772.939
-{txt}Iteration 2:  residual SS = {res} 2301.932
-{txt}Iteration 3:  residual SS = {res}  1196.41
-{txt}Iteration 4:  residual SS = {res} 1190.284
-{txt}Iteration 5:  residual SS = {res} 1190.266
-{txt}Iteration 6:  residual SS = {res} 1190.265
-{txt}Iteration 7:  residual SS = {res} 1190.265
-{txt}Iteration 8:  residual SS = {res} 1190.265
-{txt}Iteration 9:  residual SS = {res} 1190.265
-{txt}Iteration 10:  residual SS = {res} 1190.265
-{txt}Iteration 11:  residual SS = {res} 1190.265
-{txt}Iteration 12:  residual SS = {res} 1190.265
-
-
-{txt}      Source {c |}      SS            df       MS
-{hline 13}{c +}{hline 34}{col 53}Number of obs = {res}     3,312
-{txt}       Model {c |} {res} 106.81617          3  35.6053886{txt}{col 53}R-squared     = {res}    0.0824
-{txt}    Residual {c |} {res} 1190.2654       3308  .359814193{txt}{col 53}Adj R-squared = {res}    0.0815
-{txt}{hline 13}{c +}{hline 34}{col 53}Root MSE      =  {res} .5998451
-{txt}       Total {c |} {res} 1297.0815       3311  .391749174{txt}{col 53}Res. dev.     =  {res} 6009.628
-
-{txt}{hline 13}{c TT}{hline 11}{hline 11}{hline 9}{hline 8}{hline 13}{hline 12}
-{col 1}      lnwage{col 14}{c |}      Coef.{col 26}   Std. Err.{col 38}      t{col 46}   P>|t|{col 54}     [95% Con{col 67}f. Interval]
-{hline 13}{c +}{hline 11}{hline 11}{hline 9}{hline 8}{hline 13}{hline 12}
-        /lnW {c |}{col 14}{res}{space 2} 8.413051{col 26}{space 2} .1134928{col 37}{space 1}   74.13{col 46}{space 3}0.000{col 54}{space 4} 8.190528{col 67}{space 3} 8.635574
-{txt}         /bk {c |}{col 14}{res}{space 2} .1329922{col 26}{space 2} .0095093{col 37}{space 1}   13.99{col 46}{space 3}0.000{col 54}{space 4} .1143474{col 67}{space 3}  .151637
-{txt}      /delta {c |}{col 14}{res}{space 2} .0249497{col 26}{space 2} .0036791{col 37}{space 1}    6.78{col 46}{space 3}0.000{col 54}{space 4} .0177361{col 67}{space 3} .0321633
-{txt}      /alpha {c |}{col 14}{res}{space 2} .4628335{col 26}{space 2} .0618569{col 37}{space 1}    7.48{col 46}{space 3}0.000{col 54}{space 4} .3415517{col 67}{space 3} .5841152
-{txt}{hline 13}{c BT}{hline 11}{hline 11}{hline 9}{hline 8}{hline 13}{hline 12}
-  Parameter lnW taken as constant term in model & ANOVA table
-
-{com}. 
-{txt}end of do-file
-
-{com}. do "C:\Users\wb164718\AppData\Local\Temp\STD32d0_000000.tmp"
-{txt}
-{com}. nl dep1a @ lnwage exper edu_yrs tlabor0, parameters(lnW bk delta alpha) initial(lnW 20 bk .2 delta .15 alpha .1)
-{txt}(obs = 3,312)
-
-Iteration 0:  residual SS = {res} 190993.9
-{txt}Iteration 1:  residual SS = {res} 1609.927
-{txt}Iteration 2:  residual SS = {res} 1336.673
-{txt}Iteration 3:  residual SS = {res} 1193.949
-{txt}Iteration 4:  residual SS = {res} 1190.484
-{txt}Iteration 5:  residual SS = {res} 1190.278
-{txt}Iteration 6:  residual SS = {res} 1190.266
-{txt}Iteration 7:  residual SS = {res} 1190.265
-{txt}Iteration 8:  residual SS = {res} 1190.265
-{txt}Iteration 9:  residual SS = {res} 1190.265
-{txt}Iteration 10:  residual SS = {res} 1190.265
-{txt}Iteration 11:  residual SS = {res} 1190.265
-{txt}Iteration 12:  residual SS = {res} 1190.265
-{txt}Iteration 13:  residual SS = {res} 1190.265
-
-
-{txt}      Source {c |}      SS            df       MS
-{hline 13}{c +}{hline 34}{col 53}Number of obs = {res}     3,312
-{txt}       Model {c |} {res} 106.81617          3  35.6053886{txt}{col 53}R-squared     = {res}    0.0824
-{txt}    Residual {c |} {res} 1190.2654       3308  .359814193{txt}{col 53}Adj R-squared = {res}    0.0815
-{txt}{hline 13}{c +}{hline 34}{col 53}Root MSE      =  {res} .5998451
-{txt}       Total {c |} {res} 1297.0815       3311  .391749174{txt}{col 53}Res. dev.     =  {res} 6009.628
-
-{txt}{hline 13}{c TT}{hline 11}{hline 11}{hline 9}{hline 8}{hline 13}{hline 12}
-{col 1}      lnwage{col 14}{c |}      Coef.{col 26}   Std. Err.{col 38}      t{col 46}   P>|t|{col 54}     [95% Con{col 67}f. Interval]
-{hline 13}{c +}{hline 11}{hline 11}{hline 9}{hline 8}{hline 13}{hline 12}
-        /lnW {c |}{col 14}{res}{space 2} 8.413049{col 26}{space 2} .1134929{col 37}{space 1}   74.13{col 46}{space 3}0.000{col 54}{space 4} 8.190526{col 67}{space 3} 8.635572
-{txt}         /bk {c |}{col 14}{res}{space 2} .1329925{col 26}{space 2} .0095093{col 37}{space 1}   13.99{col 46}{space 3}0.000{col 54}{space 4} .1143478{col 67}{space 3} .1516372
-{txt}      /delta {c |}{col 14}{res}{space 2} .0249498{col 26}{space 2} .0036791{col 37}{space 1}    6.78{col 46}{space 3}0.000{col 54}{space 4} .0177363{col 67}{space 3} .0321634
-{txt}      /alpha {c |}{col 14}{res}{space 2} .4628356{col 26}{space 2} .0618564{col 37}{space 1}    7.48{col 46}{space 3}0.000{col 54}{space 4} .3415549{col 67}{space 3} .5841163
-{txt}{hline 13}{c BT}{hline 11}{hline 11}{hline 9}{hline 8}{hline 13}{hline 12}
-  Parameter lnW taken as constant term in model & ANOVA table
-
-{com}. 
-{txt}end of do-file
-
-{com}. do "C:\Users\wb164718\AppData\Local\Temp\STD32d0_000000.tmp"
-{txt}
-{com}. 
-. nl dep1a @ lnwage exper edu_yrs tlabor0, parameters(lnW bk delta alpha) initial(lnW 20 bk .2 delta .75 alpha .5)
-{txt}(obs = 3,312)
-
-Iteration 0:  residual SS = {res} 77614.22
-{txt}Iteration 1:  residual SS = {res} 1289.738
-{txt}Iteration 2:  residual SS = {res} 1278.376
-{txt}Iteration 3:  residual SS = {res} 1277.549
-{txt}Iteration 4:  residual SS = {res} 1277.381
-{txt}Iteration 5:  residual SS = {res}  1277.36
-{txt}Iteration 6:  residual SS = {res} 1277.359
-{txt}Iteration 7:  residual SS = {res} 1277.359
-{txt}Iteration 8:  residual SS = {res} 1277.359
-{txt}Iteration 9:  residual SS = {res} 1277.359
-{txt}Iteration 10:  residual SS = {res} 1277.359
-{txt}Iteration 11:  residual SS = {res} 1277.359
-{txt}Iteration 12:  residual SS = {res} 1277.359
-
-
-{txt}      Source {c |}      SS            df       MS
-{hline 13}{c +}{hline 34}{col 53}Number of obs = {res}     3,312
-{txt}       Model {c |} {res} 19.722833          3  6.57427781{txt}{col 53}R-squared     = {res}    0.0152
-{txt}    Residual {c |} {res} 1277.3587       3308  .386142286{txt}{col 53}Adj R-squared = {res}    0.0143
-{txt}{hline 13}{c +}{hline 34}{col 53}Root MSE      =  {res} .6214035
-{txt}       Total {c |} {res} 1297.0815       3311  .391749174{txt}{col 53}Res. dev.     =  {res} 6243.515
-
-{txt}{hline 13}{c TT}{hline 11}{hline 11}{hline 9}{hline 8}{hline 13}{hline 12}
-{col 1}      lnwage{col 14}{c |}      Coef.{col 26}   Std. Err.{col 38}      t{col 46}   P>|t|{col 54}     [95% Con{col 67}f. Interval]
-{hline 13}{c +}{hline 11}{hline 11}{hline 9}{hline 8}{hline 13}{hline 12}
-        /lnW {c |}{col 14}{res}{space 2} 9.547809{col 26}{space 2} .0473378{col 37}{space 1}  201.70{col 46}{space 3}0.000{col 54}{space 4} 9.454995{col 67}{space 3} 9.640624
-{txt}         /bk {c |}{col 14}{res}{space 2} 1.886399{col 26}{space 2} .1412071{col 37}{space 1}   13.36{col 46}{space 3}0.000{col 54}{space 4} 1.609536{col 67}{space 3} 2.163261
-{txt}      /delta {c |}{col 14}{res}{space 2}  .859678{col 26}{space 2} .0580036{col 37}{space 1}   14.82{col 46}{space 3}0.000{col 54}{space 4} .7459515{col 67}{space 3} .9734045
-{txt}      /alpha {c |}{col 14}{res}{space 2} .8006697{col 26}{space 2} .0447553{col 37}{space 1}   17.89{col 46}{space 3}0.000{col 54}{space 4} .7129188{col 67}{space 3} .8884206
-{txt}{hline 13}{c BT}{hline 11}{hline 11}{hline 9}{hline 8}{hline 13}{hline 12}
-  Parameter lnW taken as constant term in model & ANOVA table
-
-{com}. 
-{txt}end of do-file
-
-{com}. do "C:\Users\wb164718\AppData\Local\Temp\STD32d0_000000.tmp"
-{txt}
-{com}. 
-. nl dep1a @ lnwage exper edu_yrs tlabor0, parameters(lnW bk delta alpha) initial(lnW 20 bk .2 delta .005 alpha .5)
-{txt}(obs = 3,312)
-
-Iteration 0:  residual SS = {res} 1640.899
-{txt}Iteration 1:  residual SS = {res} 1191.736
-{txt}Iteration 2:  residual SS = {res} 1190.279
-{txt}Iteration 3:  residual SS = {res} 1190.266
-{txt}Iteration 4:  residual SS = {res} 1190.265
-{txt}Iteration 5:  residual SS = {res} 1190.265
-{txt}Iteration 6:  residual SS = {res} 1190.265
-{txt}Iteration 7:  residual SS = {res} 1190.265
-{txt}Iteration 8:  residual SS = {res} 1190.265
-{txt}Iteration 9:  residual SS = {res} 1190.265
-{txt}Iteration 10:  residual SS = {res} 1190.265
-
-
-{txt}      Source {c |}      SS            df       MS
-{hline 13}{c +}{hline 34}{col 53}Number of obs = {res}     3,312
-{txt}       Model {c |} {res} 106.81617          3  35.6053886{txt}{col 53}R-squared     = {res}    0.0824
-{txt}    Residual {c |} {res} 1190.2654       3308  .359814193{txt}{col 53}Adj R-squared = {res}    0.0815
-{txt}{hline 13}{c +}{hline 34}{col 53}Root MSE      =  {res} .5998451
-{txt}       Total {c |} {res} 1297.0815       3311  .391749174{txt}{col 53}Res. dev.     =  {res} 6009.628
-
-{txt}{hline 13}{c TT}{hline 11}{hline 11}{hline 9}{hline 8}{hline 13}{hline 12}
-{col 1}      lnwage{col 14}{c |}      Coef.{col 26}   Std. Err.{col 38}      t{col 46}   P>|t|{col 54}     [95% Con{col 67}f. Interval]
-{hline 13}{c +}{hline 11}{hline 11}{hline 9}{hline 8}{hline 13}{hline 12}
-        /lnW {c |}{col 14}{res}{space 2} 8.413051{col 26}{space 2} .1134928{col 37}{space 1}   74.13{col 46}{space 3}0.000{col 54}{space 4} 8.190528{col 67}{space 3} 8.635574
-{txt}         /bk {c |}{col 14}{res}{space 2} .1329922{col 26}{space 2} .0095093{col 37}{space 1}   13.99{col 46}{space 3}0.000{col 54}{space 4} .1143475{col 67}{space 3}  .151637
-{txt}      /delta {c |}{col 14}{res}{space 2} .0249497{col 26}{space 2} .0036791{col 37}{space 1}    6.78{col 46}{space 3}0.000{col 54}{space 4} .0177361{col 67}{space 3} .0321634
-{txt}      /alpha {c |}{col 14}{res}{space 2} .4628337{col 26}{space 2} .0618569{col 37}{space 1}    7.48{col 46}{space 3}0.000{col 54}{space 4}  .341552{col 67}{space 3} .5841153
-{txt}{hline 13}{c BT}{hline 11}{hline 11}{hline 9}{hline 8}{hline 13}{hline 12}
-  Parameter lnW taken as constant term in model & ANOVA table
-
-{com}. 
-{txt}end of do-file
-
-{com}. do "C:\Users\wb164718\AppData\Local\Temp\STD32d0_000000.tmp"
-{txt}
-{com}. nl dep1a @ lnwage exper edu_yrs tlabor0, parameters(lnW bk delta alpha) initial(lnW 20 bk .2 delta .005 alpha .5) robust
-{txt}(obs = 3,312)
-
-Iteration 0:  residual SS = {res} 1640.899
-{txt}Iteration 1:  residual SS = {res} 1191.736
-{txt}Iteration 2:  residual SS = {res} 1190.279
-{txt}Iteration 3:  residual SS = {res} 1190.266
-{txt}Iteration 4:  residual SS = {res} 1190.265
+Iteration 0:  residual SS = {res} 1354.653
+{txt}Iteration 1:  residual SS = {res} 1192.259
+{txt}Iteration 2:  residual SS = {res} 1190.301
+{txt}Iteration 3:  residual SS = {res} 1190.268
+{txt}Iteration 4:  residual SS = {res} 1190.266
 {txt}Iteration 5:  residual SS = {res} 1190.265
 {txt}Iteration 6:  residual SS = {res} 1190.265
 {txt}Iteration 7:  residual SS = {res} 1190.265
@@ -395,109 +36,55 @@ Iteration 0:  residual SS = {res} 1640.899
 {col 14}{c |}{col 26}    Robust
 {col 1}      lnwage{col 14}{c |}      Coef.{col 26}   Std. Err.{col 38}      t{col 46}   P>|t|{col 54}     [95% Con{col 67}f. Interval]
 {hline 13}{c +}{hline 11}{hline 11}{hline 9}{hline 8}{hline 13}{hline 12}
-        /lnW {c |}{col 14}{res}{space 2} 8.413051{col 26}{space 2} .1274798{col 37}{space 1}   66.00{col 46}{space 3}0.000{col 54}{space 4} 8.163104{col 67}{space 3} 8.662998
-{txt}         /bk {c |}{col 14}{res}{space 2} .1329922{col 26}{space 2} .0103002{col 37}{space 1}   12.91{col 46}{space 3}0.000{col 54}{space 4} .1127969{col 67}{space 3} .1531876
-{txt}      /delta {c |}{col 14}{res}{space 2} .0249497{col 26}{space 2} .0035743{col 37}{space 1}    6.98{col 46}{space 3}0.000{col 54}{space 4} .0179418{col 67}{space 3} .0319577
-{txt}      /alpha {c |}{col 14}{res}{space 2} .4628337{col 26}{space 2} .0609125{col 37}{space 1}    7.60{col 46}{space 3}0.000{col 54}{space 4} .3434036{col 67}{space 3} .5822637
+        /lnW {c |}{col 14}{res}{space 2} 8.413052{col 26}{space 2} .1274798{col 37}{space 1}   66.00{col 46}{space 3}0.000{col 54}{space 4} 8.163105{col 67}{space 3} 8.662999
+{txt}         /bk {c |}{col 14}{res}{space 2} .1329921{col 26}{space 2} .0103002{col 37}{space 1}   12.91{col 46}{space 3}0.000{col 54}{space 4} .1127967{col 67}{space 3} .1531875
+{txt}      /delta {c |}{col 14}{res}{space 2} .0249497{col 26}{space 2} .0035743{col 37}{space 1}    6.98{col 46}{space 3}0.000{col 54}{space 4} .0179417{col 67}{space 3} .0319577
+{txt}      /alpha {c |}{col 14}{res}{space 2} .4628328{col 26}{space 2} .0609128{col 37}{space 1}    7.60{col 46}{space 3}0.000{col 54}{space 4} .3434023{col 67}{space 3} .5822634
 {txt}{hline 13}{c BT}{hline 11}{hline 11}{hline 9}{hline 8}{hline 13}{hline 12}
   Parameter lnW taken as constant term in model
 
 {com}. 
-{txt}end of do-file
-
-{com}. do "C:\Users\wb164718\AppData\Local\Temp\STD32d0_000000.tmp"
+. // Males
+. 
+. use df_18m, clear
 {txt}
-{com}. nl dep1a @ lnwage exper edu_yrs tlabor0, parameters(lnW bk delta alpha) initial(lnW 20 bk .2 delta .005 alpha .5) vce(robust)
-{txt}(obs = 3,312)
+{com}. nl dep1a @ lnwage exper edu_yrs tlabor0, parameters(lnW bk delta alpha) initial(lnW 20 bk .2 delta .05 alpha .5) vce(robust) 
+{txt}(obs = 2,800)
 
-Iteration 0:  residual SS = {res} 1640.899
-{txt}Iteration 1:  residual SS = {res} 1191.736
-{txt}Iteration 2:  residual SS = {res} 1190.279
-{txt}Iteration 3:  residual SS = {res} 1190.266
-{txt}Iteration 4:  residual SS = {res} 1190.265
-{txt}Iteration 5:  residual SS = {res} 1190.265
-{txt}Iteration 6:  residual SS = {res} 1190.265
-{txt}Iteration 7:  residual SS = {res} 1190.265
-{txt}Iteration 8:  residual SS = {res} 1190.265
-{txt}Iteration 9:  residual SS = {res} 1190.265
-{txt}Iteration 10:  residual SS = {res} 1190.265
+Iteration 0:  residual SS = {res} 936.4723
+{txt}Iteration 1:  residual SS = {res} 921.8974
+{txt}Iteration 2:  residual SS = {res} 921.6865
+{txt}Iteration 3:  residual SS = {res} 921.6843
+{txt}Iteration 4:  residual SS = {res} 921.6841
+{txt}Iteration 5:  residual SS = {res} 921.6841
+{txt}Iteration 6:  residual SS = {res} 921.6841
+{txt}Iteration 7:  residual SS = {res} 921.6841
+{txt}Iteration 8:  residual SS = {res} 921.6841
 
 
-{txt}Nonlinear regression{col 53}Number of obs = {res}     3,312
-{txt}{col 53}R-squared     = {res}    0.0824
-{txt}{col 53}Adj R-squared = {res}    0.0815
-{txt}{col 53}Root MSE      =  {res} .5998451
-{txt}{col 53}Res. dev.     =  {res} 6009.628
+{txt}Nonlinear regression{col 53}Number of obs = {res}     2,800
+{txt}{col 53}R-squared     = {res}    0.0972
+{txt}{col 53}Adj R-squared = {res}    0.0962
+{txt}{col 53}Root MSE      =  {res} .5741462
+{txt}{col 53}Res. dev.     =  {res} 4834.774
 
 {txt}{hline 13}{c TT}{hline 11}{hline 11}{hline 9}{hline 8}{hline 13}{hline 12}
 {col 14}{c |}{col 26}    Robust
 {col 1}      lnwage{col 14}{c |}      Coef.{col 26}   Std. Err.{col 38}      t{col 46}   P>|t|{col 54}     [95% Con{col 67}f. Interval]
 {hline 13}{c +}{hline 11}{hline 11}{hline 9}{hline 8}{hline 13}{hline 12}
-        /lnW {c |}{col 14}{res}{space 2} 8.413051{col 26}{space 2} .1274798{col 37}{space 1}   66.00{col 46}{space 3}0.000{col 54}{space 4} 8.163104{col 67}{space 3} 8.662998
-{txt}         /bk {c |}{col 14}{res}{space 2} .1329922{col 26}{space 2} .0103002{col 37}{space 1}   12.91{col 46}{space 3}0.000{col 54}{space 4} .1127969{col 67}{space 3} .1531876
-{txt}      /delta {c |}{col 14}{res}{space 2} .0249497{col 26}{space 2} .0035743{col 37}{space 1}    6.98{col 46}{space 3}0.000{col 54}{space 4} .0179418{col 67}{space 3} .0319577
-{txt}      /alpha {c |}{col 14}{res}{space 2} .4628337{col 26}{space 2} .0609125{col 37}{space 1}    7.60{col 46}{space 3}0.000{col 54}{space 4} .3434036{col 67}{space 3} .5822637
+        /lnW {c |}{col 14}{res}{space 2} 8.838395{col 26}{space 2} .1212945{col 37}{space 1}   72.87{col 46}{space 3}0.000{col 54}{space 4} 8.600559{col 67}{space 3} 9.076231
+{txt}         /bk {c |}{col 14}{res}{space 2} .1783578{col 26}{space 2} .0117916{col 37}{space 1}   15.13{col 46}{space 3}0.000{col 54}{space 4} .1552367{col 67}{space 3} .2014789
+{txt}      /delta {c |}{col 14}{res}{space 2} .0510964{col 26}{space 2} .0069249{col 37}{space 1}    7.38{col 46}{space 3}0.000{col 54}{space 4} .0375181{col 67}{space 3} .0646748
+{txt}      /alpha {c |}{col 14}{res}{space 2} .7311859{col 26}{space 2} .0662776{col 37}{space 1}   11.03{col 46}{space 3}0.000{col 54}{space 4} .6012278{col 67}{space 3} .8611439
 {txt}{hline 13}{c BT}{hline 11}{hline 11}{hline 9}{hline 8}{hline 13}{hline 12}
   Parameter lnW taken as constant term in model
 
 {com}. 
 {txt}end of do-file
 
-{com}. do "C:\Users\wb164718\AppData\Local\Temp\STD32d0_000000.tmp"
+{com}. do "C:\Users\wb164718\AppData\Local\Temp\STD5dd4_000000.tmp"
 {txt}
-{com}. nl dep1a @ lnwage exper edu_yrs tlabor0, parameters(lnW bk delta alpha) initial(lnW 20 bk .2 delta .005 alpha .5) vce(robust) nolog
-{txt}(obs = 3,312)
-{res}
-
-{txt}Nonlinear regression{col 53}Number of obs = {res}     3,312
-{txt}{col 53}R-squared     = {res}    0.0824
-{txt}{col 53}Adj R-squared = {res}    0.0815
-{txt}{col 53}Root MSE      =  {res} .5998451
-{txt}{col 53}Res. dev.     =  {res} 6009.628
-
-{txt}{hline 13}{c TT}{hline 11}{hline 11}{hline 9}{hline 8}{hline 13}{hline 12}
-{col 14}{c |}{col 26}    Robust
-{col 1}      lnwage{col 14}{c |}      Coef.{col 26}   Std. Err.{col 38}      t{col 46}   P>|t|{col 54}     [95% Con{col 67}f. Interval]
-{hline 13}{c +}{hline 11}{hline 11}{hline 9}{hline 8}{hline 13}{hline 12}
-        /lnW {c |}{col 14}{res}{space 2} 8.413051{col 26}{space 2} .1274798{col 37}{space 1}   66.00{col 46}{space 3}0.000{col 54}{space 4} 8.163104{col 67}{space 3} 8.662998
-{txt}         /bk {c |}{col 14}{res}{space 2} .1329922{col 26}{space 2} .0103002{col 37}{space 1}   12.91{col 46}{space 3}0.000{col 54}{space 4} .1127969{col 67}{space 3} .1531876
-{txt}      /delta {c |}{col 14}{res}{space 2} .0249497{col 26}{space 2} .0035743{col 37}{space 1}    6.98{col 46}{space 3}0.000{col 54}{space 4} .0179418{col 67}{space 3} .0319577
-{txt}      /alpha {c |}{col 14}{res}{space 2} .4628337{col 26}{space 2} .0609125{col 37}{space 1}    7.60{col 46}{space 3}0.000{col 54}{space 4} .3434036{col 67}{space 3} .5822637
-{txt}{hline 13}{c BT}{hline 11}{hline 11}{hline 9}{hline 8}{hline 13}{hline 12}
-  Parameter lnW taken as constant term in model
-
-{com}. 
-{txt}end of do-file
-
-{com}. do "C:\Users\wb164718\AppData\Local\Temp\STD32d0_000000.tmp"
-{txt}
-{com}. nl dep1a @ lnwage exper edu_yrs tlabor0, parameters(lnW bk delta alpha) initial(lnW 20 bk .2 delta .005 alpha .5) vce(robust) nolog coeflegend
-{txt}(obs = 3,312)
-{res}
-
-{txt}Nonlinear regression{col 53}Number of obs = {res}     3,312
-{txt}{col 53}R-squared     = {res}    0.0824
-{txt}{col 53}Adj R-squared = {res}    0.0815
-{txt}{col 53}Root MSE      =  {res} .5998451
-{txt}{col 53}Res. dev.     =  {res} 6009.628
-
-{txt}{hline 13}{c TT}{hline 11}{hline 11}{hline 9}{hline 8}{hline 13}{hline 12}
-{col 1}      lnwage{col 14}{c |}      Coef.{col 26}  Legend
-{hline 13}{c +}{hline 11}{hline 11}{hline 9}{hline 8}{hline 13}{hline 12}
-        /lnW {c |}{col 14}{res}{space 2} 8.413051{col 26}{txt}  _b[lnW:_cons]
-         /bk {c |}{col 14}{res}{space 2} .1329922{col 26}{txt}  _b[bk:_cons]
-      /delta {c |}{col 14}{res}{space 2} .0249497{col 26}{txt}  _b[delta:_cons]
-      /alpha {c |}{col 14}{res}{space 2} .4628337{col 26}{txt}  _b[alpha:_cons]
-{hline 13}{c BT}{hline 11}{hline 11}{hline 9}{hline 8}{hline 13}{hline 12}
-  Parameter lnW taken as constant term in model
-
-{com}. 
-{txt}end of do-file
-
-{com}. do "C:\Users\wb164718\AppData\Local\Temp\STD32d0_000000.tmp"
-{txt}
-{com}. 
-. // Set wd
+{com}. // Set wd
 . cd C:\Country\Russia\Data\SEASHELL\SEABYTE\edreru\Stata
 {res}C:\Country\Russia\Data\SEASHELL\SEABYTE\edreru\Stata
 {txt}

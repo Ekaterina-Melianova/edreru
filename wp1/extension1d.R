@@ -55,8 +55,13 @@ rio::export(df_18m, file="C:/Country/Russia/Data/SEASHELL/SEABYTE/edreru/Stata/d
 
 
 
+# Try for model with covariates - just placeholder
+df_18fz <- df_18 %>% select(IDIND, wage, edu_4,exper,female,edu_yrs,RTI)  %>% filter(female==1) %>%
+  mutate(lnwage=log(wage), d_voc=ifelse(edu_4=="Vocational",1,0),
+         d_uni=ifelse(edu_4=="Higher",1,0), tlabor0=64-edu_yrs)  # using 64 for now, will need to adjust
+df_18fz <- haven::zap_labels(df_18fz) # Else rio gives error message
 
-
+rio::export(df_18fz, file="C:/Country/Russia/Data/SEASHELL/SEABYTE/edreru/Stata/df_18fz.dta",format="stata")
 
 
 

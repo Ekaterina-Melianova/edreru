@@ -1,0 +1,58 @@
+// dep1aZ.do 
+
+// Attempt to replicate Arrazola and de Hevia, Weber et al Model I - template with a covariate
+// dep1aZ.do
+
+// needs ssc packages texdoc and  net package sjlatex  and \usepackage{stata} in latex document
+// usepackage{stata} will need stata.sty file too
+
+// Below commands one time only for a given Stata installation 
+// ssc install texdoc
+// net install sjlatex, from(http://www.stata-journal.com/production)
+
+
+texdoc init dep1aZ.tex, replace
+
+/*tex 
+
+\documentclass{article}
+\usepackage{stata}
+\usepackage{datetime}
+\begin{document}
+
+tex*/
+
+// Set wd
+cd C:\Country\Russia\Data\SEASHELL\SEABYTE\edreru\Stata
+// Preamble
+version 16
+set more off
+// Females
+
+/*tex 
+
+\section*{Arrazola-Weber Model Test Output}
+
+This is the Weber Model I with one Z covariate - RTI or Routine Task Intensity, due to MT19,
+estimates \today, \currenttime. 
+
+tex*/
+
+texdoc stlog
+use df_18fz, clear
+nl dep1aZ @ lnwage exper edu_yrs tlabor0 RTI, parameters(lnW bk delta alpha xb_RTI) initial(lnW 20 bk .2 delta .05 alpha .5 xb_RTI 0.5) vce(robust) 
+texdoc stlog close
+
+/*tex
+\end{document}
+tex*/
+
+/* Not needed and did not work with stlog, also esttab did not work with nl output
+filefilter example.tex example2.tex, ///
+    from("_") to("\BS_") replace
+*/ 
+
+
+
+   
+   

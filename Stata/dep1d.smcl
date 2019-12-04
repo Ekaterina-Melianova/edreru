@@ -1,0 +1,179 @@
+{smcl}
+{com}{sf}{ul off}{txt}{.-}
+      name:  {res}<unnamed>
+       {txt}log:  {res}C:\Country\Russia\Data\SEASHELL\SEABYTE\edreru\Stata\dep1d.smcl
+  {txt}log type:  {res}smcl
+ {txt}opened on:  {res} 4 Dec 2019, 10:03:08
+{txt}
+{com}. 
+. capture program drop nldep1d
+{txt}
+{com}. 
+{txt}end of do-file
+
+{com}. do "C:\Users\wb164718\AppData\Local\Temp\STD5dd4_000000.tmp"
+{txt}
+{com}. 
+. // Females
+. 
+. use df_18f
+{txt}
+{com}. nl dep1d @ lnwage exper edu_yrs tlabor0 d_voc d_uni, parameters(lnW bk delta_base delta_voc delta_uni alpha_base alpha_voc alpha_uni) initial(lnW 10 bk .13 delta_base .02 delta_voc .02 delta_uni .02 alpha_base .5 alpha_voc .5 alpha_uni .5)
+{txt}(obs = 3,312)
+
+Iteration 0:  residual SS = {res}  1236.75
+{txt}Iteration 1:  residual SS = {res} 1212.252
+{txt}Iteration 2:  residual SS = {res} 1177.366
+{txt}Iteration 3:  residual SS = {res} 1176.529
+{txt}Iteration 4:  residual SS = {res} 1176.505
+{txt}Iteration 5:  residual SS = {res} 1176.503
+{txt}Iteration 6:  residual SS = {res} 1176.502
+{txt}Iteration 7:  residual SS = {res}   1176.5
+{txt}Iteration 8:  residual SS = {res}   1176.5
+{txt}Iteration 9:  residual SS = {res} 1176.499
+{txt}Iteration 10:  residual SS = {res} 1176.499
+{txt}Iteration 11:  residual SS = {res} 1176.499
+{txt}Iteration 12:  residual SS = {res} 1176.499
+{txt}Iteration 13:  residual SS = {res} 1176.498
+{txt}Iteration 14:  residual SS = {res} 1176.498
+{txt}Iteration 15:  residual SS = {res} 1176.498
+{txt}Iteration 16:  residual SS = {res} 1176.498
+{txt}Iteration 17:  residual SS = {res} 1176.498
+{txt}Iteration 18:  residual SS = {res} 1176.498
+{txt}Iteration 19:  residual SS = {res} 1176.498
+{txt}Iteration 20:  residual SS = {res} 1176.498
+{txt}Iteration 21:  residual SS = {res} 1176.498
+{txt}Iteration 22:  residual SS = {res} 1176.498
+{txt}Iteration 23:  residual SS = {res} 1176.498
+{txt}Iteration 24:  residual SS = {res} 1176.498
+{txt}Iteration 25:  residual SS = {res} 1176.498
+{txt}Iteration 26:  residual SS = {res} 1176.498
+{txt}Iteration 27:  residual SS = {res} 1176.498
+{txt}Iteration 28:  residual SS = {res} 1176.498
+{txt}Iteration 29:  residual SS = {res} 1176.498
+{txt}Iteration 30:  residual SS = {res} 1176.498
+{txt}Iteration 31:  residual SS = {res} 1176.498
+{txt}Iteration 32:  residual SS = {res} 1176.498
+{txt}Iteration 33:  residual SS = {res} 1176.498
+{txt}Iteration 34:  residual SS = {res} 1176.498
+{txt}Iteration 35:  residual SS = {res} 1176.498
+{txt}Iteration 36:  residual SS = {res} 1176.498
+{txt}Iteration 37:  residual SS = {res} 1176.498
+{txt}Iteration 38:  residual SS = {res} 1176.498
+{txt}Iteration 39:  residual SS = {res} 1176.498
+{txt}Iteration 40:  residual SS = {res} 1176.498
+{txt}Iteration 41:  residual SS = {res} 1176.498
+{txt}Iteration 42:  residual SS = {res} 1176.498
+{txt}Iteration 43:  residual SS = {res} 1176.498
+{txt}Iteration 44:  residual SS = {res} 1176.498
+{txt}Iteration 45:  residual SS = {res} 1176.498
+{txt}Iteration 46:  residual SS = {res} 1176.498
+{txt}Iteration 47:  residual SS = {res} 1176.498
+{txt}Iteration 48:  residual SS = {res} 1176.498
+{txt}Iteration 49:  residual SS = {res} 1176.498
+{txt}Iteration 50:  residual SS = {res} 1176.498
+{txt}Iteration 51:  residual SS = {res} 1176.498
+{txt}Iteration 52:  residual SS = {res} 1176.498
+{txt}Iteration 53:  residual SS = {res} 1176.498
+{txt}Iteration 54:  residual SS = {res} 1176.498
+{txt}Iteration 55:  residual SS = {res} 1176.498
+{txt}Iteration 56:  residual SS = {res} 1176.498
+{txt}Iteration 57:  residual SS = {res} 1176.498
+{txt}Iteration 58:  residual SS = {res} 1176.498
+{txt}Iteration 59:  residual SS = {res} 1176.498
+{txt}Iteration 60:  residual SS = {res} 1176.498
+{txt}Iteration 61:  residual SS = {res} 1176.498
+{txt}Iteration 62:  residual SS = {res} 1176.498
+{txt}Iteration 63:  residual SS = {res} 1176.498
+{txt}Iteration 64:  residual SS = {res} 1176.498
+{txt}Iteration 65:  residual SS = {res} 1176.498
+{txt}Iteration 66:  residual SS = {res} 1176.498
+{txt}Iteration 67:  residual SS = {res} 1176.498
+
+
+{txt}      Source {c |}      SS            df       MS
+{hline 13}{c +}{hline 34}{col 53}Number of obs = {res}     3,312
+{txt}       Model {c |} {res} 120.58341          7   17.226201{txt}{col 53}R-squared     = {res}    0.0930
+{txt}    Residual {c |} {res} 1176.4981       3304  .356082963{txt}{col 53}Adj R-squared = {res}    0.0910
+{txt}{hline 13}{c +}{hline 34}{col 53}Root MSE      =  {res} .5967269
+{txt}       Total {c |} {res} 1297.0815       3311  .391749174{txt}{col 53}Res. dev.     =  {res} 5971.096
+
+{txt}{hline 13}{c TT}{hline 11}{hline 11}{hline 9}{hline 8}{hline 13}{hline 12}
+{col 1}      lnwage{col 14}{c |}      Coef.{col 26}   Std. Err.{col 38}      t{col 46}   P>|t|{col 54}     [95% Con{col 67}f. Interval]
+{hline 13}{c +}{hline 11}{hline 11}{hline 9}{hline 8}{hline 13}{hline 12}
+        /lnW {c |}{col 14}{res}{space 2} 8.643862{col 26}{space 2} .2785244{col 37}{space 1}   31.03{col 46}{space 3}0.000{col 54}{space 4} 8.097764{col 67}{space 3}  9.18996
+{txt}         /bk {c |}{col 14}{res}{space 2} .1286248{col 26}{space 2} .0129704{col 37}{space 1}    9.92{col 46}{space 3}0.000{col 54}{space 4}  .103194{col 67}{space 3} .1540556
+{txt} /delta_base {c |}{col 14}{res}{space 2} .0304525{col 26}{space 2} .0133773{col 37}{space 1}    2.28{col 46}{space 3}0.023{col 54}{space 4} .0042238{col 67}{space 3} .0566812
+{txt}  /delta_voc {c |}{col 14}{res}{space 2}-.0012818{col 26}{space 2} .0051942{col 37}{space 1}   -0.25{col 46}{space 3}0.805{col 54}{space 4}-.0114661{col 67}{space 3} .0089024
+{txt}  /delta_uni {c |}{col 14}{res}{space 2} .0019802{col 26}{space 2} .0080487{col 37}{space 1}    0.25{col 46}{space 3}0.806{col 54}{space 4}-.0138008{col 67}{space 3} .0177612
+{txt} /alpha_base {c |}{col 14}{res}{space 2} .4238296{col 26}{space 2} .1721529{col 37}{space 1}    2.46{col 46}{space 3}0.014{col 54}{space 4} .0862924{col 67}{space 3} .7613668
+{txt}  /alpha_voc {c |}{col 14}{res}{space 2}-.0321797{col 26}{space 2} .1275482{col 37}{space 1}   -0.25{col 46}{space 3}0.801{col 54}{space 4}-.2822612{col 67}{space 3} .2179018
+{txt}  /alpha_uni {c |}{col 14}{res}{space 2} .2057489{col 26}{space 2} .1336477{col 37}{space 1}    1.54{col 46}{space 3}0.124{col 54}{space 4}-.0562918{col 67}{space 3} .4677896
+{txt}{hline 13}{c BT}{hline 11}{hline 11}{hline 9}{hline 8}{hline 13}{hline 12}
+  Parameter lnW taken as constant term in model & ANOVA table
+
+{com}. 
+{txt}end of do-file
+
+{com}. do "C:\Users\wb164718\AppData\Local\Temp\STD5dd4_000000.tmp"
+{txt}
+{com}. // Males
+. 
+. use df_18m
+{txt}
+{com}. nl dep1d @ lnwage exper edu_yrs tlabor0 d_voc d_uni, parameters(lnW bk delta_base delta_voc delta_uni alpha_base alpha_voc alpha_uni) initial(lnW 10 bk .13 delta_base .02 delta_voc .02 delta_uni .02 alpha_base .5 alpha_voc .5 alpha_uni .5)
+{txt}(obs = 2,800)
+
+Iteration 0:  residual SS = {res} 971.7833
+{txt}Iteration 1:  residual SS = {res} 912.8691
+{txt}Iteration 2:  residual SS = {res}  909.855
+{txt}Iteration 3:  residual SS = {res} 909.8491
+{txt}Iteration 4:  residual SS = {res}  909.849
+{txt}Iteration 5:  residual SS = {res}  909.849
+{txt}Iteration 6:  residual SS = {res}  909.849
+{txt}Iteration 7:  residual SS = {res}  909.849
+{txt}Iteration 8:  residual SS = {res}  909.849
+
+
+{txt}      Source {c |}      SS            df       MS
+{hline 13}{c +}{hline 34}{col 53}Number of obs = {res}     2,800
+{txt}       Model {c |} {res} 111.05721          7  15.8653158{txt}{col 53}R-squared     = {res}    0.1088
+{txt}    Residual {c |} {res} 909.84904       2792  .325877162{txt}{col 53}Adj R-squared = {res}    0.1065
+{txt}{hline 13}{c +}{hline 34}{col 53}Root MSE      =  {res} .5708565
+{txt}       Total {c |} {res} 1020.9062       2799  .364739638{txt}{col 53}Res. dev.     =  {res} 4798.587
+
+{txt}{hline 13}{c TT}{hline 11}{hline 11}{hline 9}{hline 8}{hline 13}{hline 12}
+{col 1}      lnwage{col 14}{c |}      Coef.{col 26}   Std. Err.{col 38}      t{col 46}   P>|t|{col 54}     [95% Con{col 67}f. Interval]
+{hline 13}{c +}{hline 11}{hline 11}{hline 9}{hline 8}{hline 13}{hline 12}
+        /lnW {c |}{col 14}{res}{space 2} 8.864019{col 26}{space 2} .2208938{col 37}{space 1}   40.13{col 46}{space 3}0.000{col 54}{space 4} 8.430888{col 67}{space 3} 9.297151
+{txt}         /bk {c |}{col 14}{res}{space 2} .1786315{col 26}{space 2} .0110555{col 37}{space 1}   16.16{col 46}{space 3}0.000{col 54}{space 4} .1569537{col 67}{space 3} .2003093
+{txt} /delta_base {c |}{col 14}{res}{space 2} .0431343{col 26}{space 2} .0144161{col 37}{space 1}    2.99{col 46}{space 3}0.003{col 54}{space 4} .0148671{col 67}{space 3} .0714016
+{txt}  /delta_voc {c |}{col 14}{res}{space 2} .0069396{col 26}{space 2} .0054709{col 37}{space 1}    1.27{col 46}{space 3}0.205{col 54}{space 4}-.0037878{col 67}{space 3} .0176671
+{txt}  /delta_uni {c |}{col 14}{res}{space 2} .0089221{col 26}{space 2} .0072793{col 37}{space 1}    1.23{col 46}{space 3}0.220{col 54}{space 4}-.0053513{col 67}{space 3} .0231956
+{txt} /alpha_base {c |}{col 14}{res}{space 2} .4981748{col 26}{space 2}     .166{col 37}{space 1}    3.00{col 46}{space 3}0.003{col 54}{space 4} .1726798{col 67}{space 3} .8236699
+{txt}  /alpha_voc {c |}{col 14}{res}{space 2} .1436664{col 26}{space 2}  .113897{col 37}{space 1}    1.26{col 46}{space 3}0.207{col 54}{space 4}-.0796644{col 67}{space 3} .3669973
+{txt}  /alpha_uni {c |}{col 14}{res}{space 2} .3065831{col 26}{space 2} .1250618{col 37}{space 1}    2.45{col 46}{space 3}0.014{col 54}{space 4} .0613601{col 67}{space 3} .5518061
+{txt}{hline 13}{c BT}{hline 11}{hline 11}{hline 9}{hline 8}{hline 13}{hline 12}
+  Parameter lnW taken as constant term in model & ANOVA table
+
+{com}. 
+. 
+. 
+{txt}end of do-file
+
+{com}. do "C:\Users\wb164718\AppData\Local\Temp\STD5dd4_000000.tmp"
+{txt}
+{com}. 
+. // Set wd
+. cd C:\Country\Russia\Data\SEASHELL\SEABYTE\edreru\Stata
+{res}C:\Country\Russia\Data\SEASHELL\SEABYTE\edreru\Stata
+{txt}
+{com}. 
+. // Preamble
+. version 16
+{txt}
+{com}. set more off
+{txt}
+{com}. capture log close
+{smcl}
+{com}{sf}{ul off}

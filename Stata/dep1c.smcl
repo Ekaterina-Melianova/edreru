@@ -1,0 +1,107 @@
+{smcl}
+{com}{sf}{ul off}{txt}{.-}
+      name:  {res}<unnamed>
+       {txt}log:  {res}C:\Country\Russia\Data\SEASHELL\SEABYTE\edreru\Stata\dep1c.smcl
+  {txt}log type:  {res}smcl
+ {txt}opened on:  {res} 4 Dec 2019, 10:01:16
+{txt}
+{com}. 
+. capture program drop nldep1c
+{txt}
+{com}. 
+{txt}end of do-file
+
+{com}. do "C:\Users\wb164718\AppData\Local\Temp\STD5dd4_000000.tmp"
+{txt}
+{com}. use df_18f
+{txt}
+{com}. nl dep1c @ lnwage exper edu_yrs tlabor0 d_voc d_uni, parameters(lnW bk delta_base alpha_base alpha_voc alpha_uni) initial(lnW 10 bk .13 delta_base .02 alpha_base .5 alpha_voc .5 alpha_uni .5)
+{txt}(obs = 3,312)
+
+Iteration 0:  residual SS = {res} 1331.288
+{txt}Iteration 1:  residual SS = {res}  1183.38
+{txt}Iteration 2:  residual SS = {res}  1176.68
+{txt}Iteration 3:  residual SS = {res}  1176.65
+{txt}Iteration 4:  residual SS = {res}  1176.65
+{txt}Iteration 5:  residual SS = {res}  1176.65
+{txt}Iteration 6:  residual SS = {res}  1176.65
+
+
+{txt}      Source {c |}      SS            df       MS
+{hline 13}{c +}{hline 34}{col 53}Number of obs = {res}     3,312
+{txt}       Model {c |} {res} 120.43133          5  24.0862653{txt}{col 53}R-squared     = {res}    0.0928
+{txt}    Residual {c |} {res} 1176.6502       3306  .355913548{txt}{col 53}Adj R-squared = {res}    0.0915
+{txt}{hline 13}{c +}{hline 34}{col 53}Root MSE      =  {res} .5965849
+{txt}       Total {c |} {res} 1297.0815       3311  .391749174{txt}{col 53}Res. dev.     =  {res} 5971.524
+
+{txt}{hline 13}{c TT}{hline 11}{hline 11}{hline 9}{hline 8}{hline 13}{hline 12}
+{col 1}      lnwage{col 14}{c |}      Coef.{col 26}   Std. Err.{col 38}      t{col 46}   P>|t|{col 54}     [95% Con{col 67}f. Interval]
+{hline 13}{c +}{hline 11}{hline 11}{hline 9}{hline 8}{hline 13}{hline 12}
+        /lnW {c |}{col 14}{res}{space 2} 8.777862{col 26}{space 2} .0975001{col 37}{space 1}   90.03{col 46}{space 3}0.000{col 54}{space 4} 8.586696{col 67}{space 3} 8.969029
+{txt}         /bk {c |}{col 14}{res}{space 2} .1248335{col 26}{space 2} .0104779{col 37}{space 1}   11.91{col 46}{space 3}0.000{col 54}{space 4} .1042897{col 67}{space 3} .1453773
+{txt} /delta_base {c |}{col 14}{res}{space 2} .0354595{col 26}{space 2} .0045308{col 37}{space 1}    7.83{col 46}{space 3}0.000{col 54}{space 4}  .026576{col 67}{space 3} .0443429
+{txt} /alpha_base {c |}{col 14}{res}{space 2}  .448157{col 26}{space 2} .0728107{col 37}{space 1}    6.16{col 46}{space 3}0.000{col 54}{space 4} .3053984{col 67}{space 3} .5909157
+{txt}  /alpha_voc {c |}{col 14}{res}{space 2} .0124155{col 26}{space 2} .0441578{col 37}{space 1}    0.28{col 46}{space 3}0.779{col 54}{space 4}-.0741639{col 67}{space 3} .0989949
+{txt}  /alpha_uni {c |}{col 14}{res}{space 2} .2084995{col 26}{space 2} .0532965{col 37}{space 1}    3.91{col 46}{space 3}0.000{col 54}{space 4}  .104002{col 67}{space 3} .3129969
+{txt}{hline 13}{c BT}{hline 11}{hline 11}{hline 9}{hline 8}{hline 13}{hline 12}
+  Parameter lnW taken as constant term in model & ANOVA table
+
+{com}. 
+{txt}end of do-file
+
+{com}. do "C:\Users\wb164718\AppData\Local\Temp\STD5dd4_000000.tmp"
+{txt}
+{com}. 
+. use df_18m
+{txt}
+{com}. nl dep1c @ lnwage exper edu_yrs tlabor0 d_voc d_uni, parameters(lnW bk delta_base alpha_base alpha_voc alpha_uni) initial(lnW 10 bk .13 delta_base .02 alpha_base .5 alpha_voc .5 alpha_uni .5)
+{txt}(obs = 2,800)
+
+Iteration 0:  residual SS = {res} 1112.214
+{txt}Iteration 1:  residual SS = {res} 918.0588
+{txt}Iteration 2:  residual SS = {res} 910.8638
+{txt}Iteration 3:  residual SS = {res} 910.8542
+{txt}Iteration 4:  residual SS = {res} 910.8541
+{txt}Iteration 5:  residual SS = {res} 910.8541
+{txt}Iteration 6:  residual SS = {res} 910.8541
+{txt}Iteration 7:  residual SS = {res} 910.8541
+{txt}Iteration 8:  residual SS = {res} 910.8541
+
+
+{txt}      Source {c |}      SS            df       MS
+{hline 13}{c +}{hline 34}{col 53}Number of obs = {res}     2,800
+{txt}       Model {c |} {res} 110.05212          5  22.0104237{txt}{col 53}R-squared     = {res}    0.1078
+{txt}    Residual {c |} {res} 910.85413       2794  .326003625{txt}{col 53}Adj R-squared = {res}    0.1062
+{txt}{hline 13}{c +}{hline 34}{col 53}Root MSE      =  {res} .5709673
+{txt}       Total {c |} {res} 1020.9062       2799  .364739638{txt}{col 53}Res. dev.     =  {res} 4801.678
+
+{txt}{hline 13}{c TT}{hline 11}{hline 11}{hline 9}{hline 8}{hline 13}{hline 12}
+{col 1}      lnwage{col 14}{c |}      Coef.{col 26}   Std. Err.{col 38}      t{col 46}   P>|t|{col 54}     [95% Con{col 67}f. Interval]
+{hline 13}{c +}{hline 11}{hline 11}{hline 9}{hline 8}{hline 13}{hline 12}
+        /lnW {c |}{col 14}{res}{space 2} 9.021902{col 26}{space 2} .0925407{col 37}{space 1}   97.49{col 46}{space 3}0.000{col 54}{space 4} 8.840447{col 67}{space 3} 9.203357
+{txt}         /bk {c |}{col 14}{res}{space 2}  .183201{col 26}{space 2} .0121899{col 37}{space 1}   15.03{col 46}{space 3}0.000{col 54}{space 4} .1592989{col 67}{space 3}  .207103
+{txt} /delta_base {c |}{col 14}{res}{space 2} .0597187{col 26}{space 2}  .005064{col 37}{space 1}   11.79{col 46}{space 3}0.000{col 54}{space 4} .0497891{col 67}{space 3} .0696483
+{txt} /alpha_base {c |}{col 14}{res}{space 2} .6975049{col 26}{space 2} .0577726{col 37}{space 1}   12.07{col 46}{space 3}0.000{col 54}{space 4} .5842237{col 67}{space 3} .8107862
+{txt}  /alpha_voc {c |}{col 14}{res}{space 2} .0082796{col 26}{space 2} .0380983{col 37}{space 1}    0.22{col 46}{space 3}0.828{col 54}{space 4}-.0664241{col 67}{space 3} .0829833
+{txt}  /alpha_uni {c |}{col 14}{res}{space 2} .1570967{col 26}{space 2} .0419964{col 37}{space 1}    3.74{col 46}{space 3}0.000{col 54}{space 4} .0747496{col 67}{space 3} .2394437
+{txt}{hline 13}{c BT}{hline 11}{hline 11}{hline 9}{hline 8}{hline 13}{hline 12}
+  Parameter lnW taken as constant term in model & ANOVA table
+
+{com}. 
+{txt}end of do-file
+
+{com}. do "C:\Users\wb164718\AppData\Local\Temp\STD5dd4_000000.tmp"
+{txt}
+{com}. // Set wd
+. cd C:\Country\Russia\Data\SEASHELL\SEABYTE\edreru\Stata
+{res}C:\Country\Russia\Data\SEASHELL\SEABYTE\edreru\Stata
+{txt}
+{com}. 
+. // Preamble
+. version 16
+{txt}
+{com}. set more off
+{txt}
+{com}. capture log close
+{smcl}
+{com}{sf}{ul off}

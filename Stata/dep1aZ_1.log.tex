@@ -1,0 +1,37 @@
+. use df_18fz, clear
+{\smallskip}
+. nl dep1aZ @ lnwage exper edu_yrs tlabor0 RTI, parameters(lnW bk delta alpha xb_RTI) initial(lnW 20 bk .2 delta .05 alpha .5 xb_RTI 0.5) vce(robust) 
+(33 missing values generated)
+(obs = 3,279)
+{\smallskip}
+Iteration 0:  residual SS =  1363.687
+Iteration 1:  residual SS =  1181.821
+Iteration 2:  residual SS =  1178.314
+Iteration 3:  residual SS =  1178.261
+Iteration 4:  residual SS =  1178.258
+Iteration 5:  residual SS =  1178.258
+Iteration 6:  residual SS =  1178.258
+Iteration 7:  residual SS =  1178.258
+Iteration 8:  residual SS =  1178.258
+Iteration 9:  residual SS =  1178.258
+Iteration 10:  residual SS =  1178.258
+{\smallskip}
+{\smallskip}
+Nonlinear regression                                Number of obs =      3,279
+                                                    R-squared     =     0.0838
+                                                    Adj R-squared =     0.0827
+                                                    Root MSE      =   .5999027
+                                                    Res. dev.     =   5949.337
+{\smallskip}
+\HLI{13}{\TOPT}\HLI{64}
+             {\VBAR}               Robust
+      lnwage {\VBAR}      Coef.   Std. Err.      t    P>|t|     [95\% Conf. Interval]
+\HLI{13}{\PLUS}\HLI{64}
+        /lnW {\VBAR}   8.395009   .1288299    65.16   0.000     8.142414    8.647605
+         /bk {\VBAR}    .133291   .0103539    12.87   0.000     .1129902    .1535919
+      /delta {\VBAR}    .023717   .0035676     6.65   0.000     .0167221     .030712
+      /alpha {\VBAR}   .4478971    .061662     7.26   0.000     .3269971     .568797
+     /xb_RTI {\VBAR}   .0307752   .0167464     1.84   0.066    -.0020593    .0636097
+\HLI{13}{\BOTT}\HLI{64}
+  Parameter lnW taken as constant term in model
+{\smallskip}
