@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.20 (MiKTeX 2.9.7200 64-bit) (preloaded format=pdflatex 2019.11.9)  17 NOV 2019 12:28
+This is pdfTeX, Version 3.14159265-2.6-1.40.20 (MiKTeX 2.9.7200 64-bit) (preloaded format=pdflatex 2019.11.9)  5 DEC 2019 17:07
 entering extended mode
 **./table2.tex
 (table2.tex
@@ -255,8 +255,7 @@ Package: ifxetex 2010/09/12 v0.6 Provides ifxetex conditional
 \Gm@layoutvoffset=\dimen132
 \Gm@dimlist=\toks22
 
-("C:\Program Files\MiKTeX 2.9\tex/latex/geometry\geometry.cfg"))
-No file table2.aux.
+("C:\Program Files\MiKTeX 2.9\tex/latex/geometry\geometry.cfg")) (table2.aux)
 \openout1 = `table2.aux'.
 
 LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 17.
@@ -315,96 +314,230 @@ LaTeX Font Info:    External font `cmex10' loaded for size
 (Font)              <7> on input line 35.
 LaTeX Font Info:    External font `cmex10' loaded for size
 (Font)              <5> on input line 35.
-! Undefined control sequence.
-l.39 {\smaller
-              
-? r
-OK, entering \nonstopmode...
 LaTeX Font Info:    Trying to load font information for OT1+pcr on input line 4
-3.
+5.
 ("C:\Program Files\MiKTeX 2.9\tex/latex/psnfss\ot1pcr.fd"
 File: ot1pcr.fd 2001/06/04 font definitions for OT1/pcr.
 )
-! Too many }'s.
-l.51 }
-      
-You've closed more groups than you opened.
-Such booboos are generally harmless, so keep going.
-
-! Undefined control sequence.
-l.154 {\smaller
-               
-The control sequence at the end of the top line
-of your error message was never \def'ed. If you have
-misspelled it (e.g., `\hobx'), type `I' and the correct
-spelling (e.g., `I\hbox'). Otherwise just continue,
-and I'll forget about whatever was undefined.
-
-
-Overfull \hbox (44.89706pt too wide) in paragraph at lines 163--163
-[]       \OT1/pcr/m/n/10 n  missing distinct     Info     Mean      Gmd      .0
-5      .10      .25      .50[] 
+Overfull \hbox (98.89706pt too wide) in paragraph at lines 123--123
+[]\OT1/pcr/m/n/10 lowest : 0000001 0000002 0000003 0000004 0000005, highest: 00
+00223 0000224 0000225 0000226 0000227[] 
  []
-
-
-Overfull \hbox (44.89706pt too wide) in paragraph at lines 163--163
-[]  \OT1/pcr/m/n/10 458446    27044   455379        1  -0.2943    1.303  -2.357
-0  -1.8333  -1.0528  -0.2426[] 
- []
-
-! Too many }'s.
-<recently read> }
-                 
-l.168 ...q02}, \texttt{sc51q01}, \texttt{sc51q02}}
-                                                  \end{spacing}
-You've closed more groups than you opened.
-Such booboos are generally harmless, so keep going.
-
-
-! LaTeX Error: \begin{document} ended by \end{spacing}.
-
-See the LaTeX manual or LaTeX Companion for explanation.
-Type  H <return>  for immediate help.
- ...                                              
-                                                  
-l.168 ...{sc51q01}, \texttt{sc51q02}}\end{spacing}
-                                                  
-Your command was ignored.
-Type  I <command> <return>  to replace it with another command,
-or  <return>  to continue without it.
-
-! Extra \endgroup.
-<recently read> \endgroup 
-                          
-l.168 ...{sc51q01}, \texttt{sc51q02}}\end{spacing}
-                                                  
-Things are pretty mixed up, but I think the worst is over.
-
-! Too many }'s.
-l.171 END HERE \smallskip\hrule\smallskip}
-                                          
-You've closed more groups than you opened.
-Such booboos are generally harmless, so keep going.
 
 [1
 
 {C:/Users/wb164718/AppData/Local/MiKTeX/2.9/pdftex/config/pdftex.map}]
-(table2.aux) ) 
+Overfull \hbox (2.89706pt too wide) in paragraph at lines 205--205
+[]\OT1/pcr/m/n/10 Value          1     2     3     4     5     6     7     8   
+  9    10    11    12[] 
+ []
+
+
+Overfull \hbox (2.89706pt too wide) in paragraph at lines 205--205
+[]\OT1/pcr/m/n/10 Frequency    453   378   418   495   460   423   433   445   
+425   446   409   446[] 
+ []
+
+
+Overfull \hbox (2.89706pt too wide) in paragraph at lines 205--205
+[]\OT1/pcr/m/n/10 Proportion 0.087 0.072 0.080 0.095 0.088 0.081 0.083 0.085 0.
+081 0.085 0.078 0.085[] 
+ []
+
+
+Overfull \hbox (74.89706pt too wide) in paragraph at lines 254--254
+[]\OT1/pcr/m/n/10 Value                               No   Yes, for one year or
+ less Yes, for more than one year[] 
+ []
+
+
+Overfull \hbox (74.89706pt too wide) in paragraph at lines 254--254
+[]\OT1/pcr/m/n/10 Frequency                          899                       
+  517                        3782[] 
+ []
+
+
+Overfull \hbox (74.89706pt too wide) in paragraph at lines 254--254
+[]\OT1/pcr/m/n/10 Proportion                       0.173                       
+0.099                       0.728[] 
+ []
+
+[2]
+Overfull \hbox (50.89706pt too wide) in paragraph at lines 334--334
+[]\OT1/pcr/m/n/10 Value                     None    One or two times Three or f
+our times  Five or more times[] 
+ []
+
+
+Overfull \hbox (50.89706pt too wide) in paragraph at lines 334--334
+[]\OT1/pcr/m/n/10 Frequency                 2731                1609           
+      442                 420[] 
+ []
+
+
+Overfull \hbox (50.89706pt too wide) in paragraph at lines 334--334
+[]\OT1/pcr/m/n/10 Proportion               0.525               0.309           
+    0.085               0.081[] 
+ []
+
+
+Overfull \hbox (50.89706pt too wide) in paragraph at lines 354--354
+[]\OT1/pcr/m/n/10 Value                     None    One or two times Three or f
+our times  Five or more times[] 
+ []
+
+
+Overfull \hbox (50.89706pt too wide) in paragraph at lines 354--354
+[]\OT1/pcr/m/n/10 Frequency                 4091                 814           
+      155                 137[] 
+ []
+
+
+Overfull \hbox (50.89706pt too wide) in paragraph at lines 354--354
+[]\OT1/pcr/m/n/10 Proportion               0.787               0.157           
+    0.030               0.026[] 
+ []
+
+[3]
+Overfull \hbox (126.45575pt too wide) in paragraph at lines 410--414
+[]\OT1/ptm/m/n/10 [2] [] 
+ []
+
+
+Overfull \hbox (158.89706pt too wide) in paragraph at lines 417--417
+[]\OT1/pcr/m/n/10 lowest :  12.3101  12.6299  20.8641  44.7122  46.2973, highes
+t: 753.6888 770.5724 785.0831 786.6445 806.8775[] 
+ []
+
+
+Overfull \hbox (126.45575pt too wide) in paragraph at lines 486--490
+[]\OT1/ptm/m/n/10 [2] [] 
+ []
+
+
+Overfull \hbox (158.89706pt too wide) in paragraph at lines 493--493
+[]\OT1/pcr/m/n/10 lowest :  22.1112  47.9093  57.9801  59.7524  60.6145, highes
+t: 711.2976 714.0346 751.4293 753.6888 770.5724[] 
+ []
+
+
+Overfull \hbox (126.45575pt too wide) in paragraph at lines 565--569
+[]\OT1/ptm/m/n/10 [2] [] 
+ []
+
+
+Overfull \hbox (158.89706pt too wide) in paragraph at lines 572--572
+[]\OT1/pcr/m/n/10 lowest :  22.1112  47.9093  55.7519  56.4148  57.3861, highes
+t: 765.8095 785.0831 786.6445 790.5857 806.8775[] 
+ []
+
+
+Overfull \hbox (126.45575pt too wide) in paragraph at lines 647--651
+[]\OT1/ptm/m/n/10 [2] [] 
+ []
+
+
+Overfull \hbox (158.89706pt too wide) in paragraph at lines 654--654
+[]\OT1/pcr/m/n/10 lowest :  20.3254  22.1112  44.7122  46.7528  47.8317, highes
+t: 711.2976 729.1233 751.4293 753.6888 770.5724[] 
+ []
+
+
+Overfull \hbox (126.45575pt too wide) in paragraph at lines 727--731
+[]\OT1/ptm/m/n/10 [2] [] 
+ []
+
+
+Overfull \hbox (158.89706pt too wide) in paragraph at lines 734--734
+[]\OT1/pcr/m/n/10 lowest :  20.8641  22.1112  44.7122  46.7528  47.8317, highes
+t: 729.1233 747.4097 753.6888 785.0831 786.6445[] 
+ []
+
+
+Overfull \hbox (126.45575pt too wide) in paragraph at lines 807--811
+[]\OT1/ptm/m/n/10 [2] [] 
+ []
+
+
+Overfull \hbox (158.89706pt too wide) in paragraph at lines 814--814
+[]\OT1/pcr/m/n/10 lowest :  12.3101  12.6299  46.2973  57.1717  57.3861, highes
+t: 729.1233 753.6888 765.8095 770.5724 790.5857[] 
+ []
+
+[4]
+Overfull \hbox (126.45575pt too wide) in paragraph at lines 886--890
+[]\OT1/ptm/m/n/10 [2] [] 
+ []
+
+
+Overfull \hbox (158.89706pt too wide) in paragraph at lines 893--893
+[]\OT1/pcr/m/n/10 lowest :  22.1112  47.9093  57.3861  58.6053  59.3447, highes
+t: 727.1099 747.4097 753.6888 757.3100 781.8980[] 
+ []
+
+
+Overfull \hbox (21.23576pt too wide) in paragraph at lines 955--958
+[][] 
+ []
+
+
+Overfull \hbox (151.18597pt too wide) in paragraph at lines 1051--1055
+[]\OT1/ptm/m/n/10 [2] [] 
+ []
+
+
+Overfull \hbox (38.89706pt too wide) in paragraph at lines 1058--1058
+[]\OT1/pcr/m/n/10 lowest : 0.0291 0.0353 0.0358 0.0367 0.0816, highest: 0.4338 
+0.4344 0.4556 0.4580 0.4745[] 
+ []
+
+
+Overfull \hbox (3.47726pt too wide) in paragraph at lines 1077--1079
+\OT1/pcr/m/n/10 EC04Q05B\OT1/ptm/m/n/10 , \OT1/pcr/m/n/10 EC04Q05C\OT1/ptm/m/n/
+10 , \OT1/pcr/m/n/10 EC04Q06A\OT1/ptm/m/n/10 , \OT1/pcr/m/n/10 EC04Q06B\OT1/ptm
+/m/n/10 , \OT1/pcr/m/n/10 EC04Q06C\OT1/ptm/m/n/10 , \OT1/pcr/m/n/10 EC05Q01\OT1
+/ptm/m/n/10 , \OT1/pcr/m/n/10 EC06Q01\OT1/ptm/m/n/10 , \OT1/pcr/m/n/10 EC07Q01\
+OT1/ptm/m/n/10 , \OT1/pcr/m/n/10 EC07Q02\OT1/ptm/m/n/10 , \OT1/pcr/m/n/10 EC07Q
+03\OT1/ptm/m/n/10 ,
+ []
+
+
+Overfull \hbox (20.59726pt too wide) in paragraph at lines 1077--1079
+\OT1/pcr/m/n/10 EC07Q04\OT1/ptm/m/n/10 , \OT1/pcr/m/n/10 EC07Q05\OT1/ptm/m/n/10
+ , \OT1/pcr/m/n/10 EC08Q01\OT1/ptm/m/n/10 , \OT1/pcr/m/n/10 EC08Q02\OT1/ptm/m/n
+/10 , \OT1/pcr/m/n/10 EC08Q03\OT1/ptm/m/n/10 , \OT1/pcr/m/n/10 EC08Q04\OT1/ptm/
+m/n/10 , \OT1/pcr/m/n/10 EC09Q03\OT1/ptm/m/n/10 , \OT1/pcr/m/n/10 EC10Q01\OT1/p
+tm/m/n/10 , \OT1/pcr/m/n/10 EC11Q02\OT1/ptm/m/n/10 , \OT1/pcr/m/n/10 EC11Q03\OT
+1/ptm/m/n/10 , \OT1/pcr/m/n/10 EC12Q01\OT1/ptm/m/n/10 ,
+ []
+
+
+Overfull \hbox (20.59726pt too wide) in paragraph at lines 1077--1079
+\OT1/pcr/m/n/10 ST22Q01\OT1/ptm/m/n/10 , \OT1/pcr/m/n/10 ST23Q01\OT1/ptm/m/n/10
+ , \OT1/pcr/m/n/10 ST23Q02\OT1/ptm/m/n/10 , \OT1/pcr/m/n/10 ST23Q03\OT1/ptm/m/n
+/10 , \OT1/pcr/m/n/10 ST23Q04\OT1/ptm/m/n/10 , \OT1/pcr/m/n/10 ST23Q05\OT1/ptm/
+m/n/10 , \OT1/pcr/m/n/10 ST23Q06\OT1/ptm/m/n/10 , \OT1/pcr/m/n/10 ST23Q07\OT1/p
+tm/m/n/10 , \OT1/pcr/m/n/10 ST23Q08\OT1/ptm/m/n/10 , \OT1/pcr/m/n/10 ST24Q01\OT
+1/ptm/m/n/10 , \OT1/pcr/m/n/10 ST24Q02\OT1/ptm/m/n/10 ,
+ []
+
+[5] [6] (table2.aux) ) 
 Here is how much of TeX's memory you used:
- 3263 strings out of 492453
- 48936 string characters out of 3129811
- 175355 words of memory out of 3000000
- 7590 multiletter control sequences out of 15000+200000
+ 3264 strings out of 492453
+ 49015 string characters out of 3129811
+ 196355 words of memory out of 3000000
+ 7589 multiletter control sequences out of 15000+200000
  14006 words of font info for 29 fonts, out of 3000000 for 9000
  1141 hyphenation exceptions out of 8191
- 39i,6n,72p,1013b,182s stack positions out of 5000i,500n,10000p,200000b,50000s
-{C:/Program Files/MiKTeX 2.9/fonts/enc/dvips/base/8r.enc}<C:/Prog
+ 39i,7n,72p,1259b,263s stack positions out of 5000i,500n,10000p,200000b,50000s
+{C:/Program Files/MiKTeX 2.9/fonts/enc/dvips/base/8r.enc}
+<C:/Program Files/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmmi10.pfb><C:/Prog
 ram Files/MiKTeX 2.9/fonts/type1/urw/courier/ucrr8a.pfb><C:/Program Files/MiKTe
 X 2.9/fonts/type1/urw/times/utmb8a.pfb><C:/Program Files/MiKTeX 2.9/fonts/type1
 /urw/times/utmr8a.pfb>
-Output written on table2.pdf (1 page, 42815 bytes).
+Output written on table2.pdf (6 pages, 70119 bytes).
 PDF statistics:
- 19 PDF objects out of 1000 (max. 8388607)
+ 38 PDF objects out of 1000 (max. 8388607)
  0 named destinations out of 1000 (max. 500000)
  1 words of extra memory for PDF output out of 10000 (max. 10000000)
 
