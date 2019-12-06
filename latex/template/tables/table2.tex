@@ -1,4 +1,4 @@
-\documentclass[11pt,landscape]{article}
+\documentclass[11pt]{article}
 \usepackage[12hr]{datetime}
 \usepackage{longtable}
 \usepackage{fullpage}
@@ -29,146 +29,1056 @@
   \Large Levels and Head and Tail of data  \\[1em]
 \endgroup
 
-\begin{center}\textbf{pi\_stscpa12F \\ 1059 Variables~~~~~ 485,490 ~Observations}
+\begin{center}\textbf{ cba12ru \\ 616 Variables~~~~~ 5231 ~Observations}
 \\   \end{center}
 
 \begin{center}\textnormal{ As of \today \ at \ \currenttime }
 \end{center}
 % BEGIN HERE
+\smallskip\hrule\smallskip{\small
+\vbox{\noindent\textbf{CNT : Country code 3-character}
 
-{\smaller
+{\small
 \begin{tabular}{ rrrr }
 n&missing&distinct&value \\
-102032&383458&1&28NOV13 \end{tabular}
+5231&0&1&Russian Federation \end{tabular}
+\begin{verbatim}
+                             
+Value      Russian Federation
+Frequency                5231
+Proportion                  1
+\end{verbatim}
+}
+\smallskip\hrule\smallskip
+}
+\vbox{\noindent\textbf{SUBNATIO : Adjudicated sub-region code 7-digit code (3-digit country code + region ID + stratum ID)}
+
+{\small
+\begin{tabular}{ rrrr }
+n&missing&distinct&value \\
+5231&0&1&6430000 \end{tabular}
 \begin{verbatim}
                   
-Value      28NOV13
-Frequency   102032
+Value      6430000
+Frequency     5231
 Proportion       1
 \end{verbatim}
 }
 \smallskip\hrule\smallskip
 }
-\vbox{\noindent\textbf{escs\_trend}\setlength{\unitlength}{0.001in}\hfill\begin{picture}(1.5,.1)(1500,0)\linethickness{0.6pt}
+\vbox{\noindent\textbf{STRATUM : Stratum ID 7-character (cnt + region ID + original stratum ID)}
+
+{\small
+\begin{tabular}{ rrrr }
+n&missing&distinct&value \\
+5231&0&1&RUS9797 \end{tabular}
+\begin{verbatim}
+                  
+Value      RUS9797
+Frequency     5231
+Proportion       1
+\end{verbatim}
+}
+\smallskip\hrule\smallskip
+}
+\vbox{\noindent\textbf{OECD : OECD country}
+
+{\small
+\begin{tabular}{ rrrr }
+n&missing&distinct&value \\
+5231&0&1&Non-OECD \end{tabular}
+\begin{verbatim}
+                   
+Value      Non-OECD
+Frequency      5231
+Proportion        1
+\end{verbatim}
+}
+\smallskip\hrule\smallskip
+}
+\vbox{\noindent\textbf{NC : National Centre 6-digit Code}
+
+{\small
+\begin{tabular}{ rrrr }
+n&missing&distinct&value \\
+5231&0&1&Russian Federation  \end{tabular}
+\begin{verbatim}
+                             
+Value      Russian Federation
+Frequency                5231
+Proportion                  1
+\end{verbatim}
+}
+\smallskip\hrule\smallskip
+}
+\vbox{\noindent\textbf{SCHOOLID : School ID 7-digit (region ID + stratum ID + 3-digit school ID)}
+
+{\small
+\begin{tabular}{ rrr }
+n&missing&distinct \\
+5231&0&227 \end{tabular}
+\begin{verbatim}
+
+lowest : 0000001 0000002 0000003 0000004 0000005, highest: 0000223 0000224 0000225 0000226 0000227
+\end{verbatim}
+}
+\smallskip\hrule\smallskip
+}
+\vbox{\noindent\textbf{STIDSTD : Student ID}
+
+{\small
+\begin{tabular}{ rrr }
+n&missing&distinct \\
+5231&0&5231 \end{tabular}
+\begin{verbatim}
+
+lowest : 00001 00002 00003 00004 00005, highest: 05227 05228 05229 05230 05231
+\end{verbatim}
+}
+\smallskip\hrule\smallskip
+}
+\vbox{\noindent\textbf{ST01Q01 : International Grade}\setlength{\unitlength}{0.001in}\hfill\begin{picture}(1.5,.1)(1500,0)\linethickness{0.6pt}
 \put(0,0){\line(0,1){1}}
-\put(14,0){\line(0,1){1}}
-\put(29,0){\line(0,1){1}}
-\put(43,0){\line(0,1){1}}
-\put(86,0){\line(0,1){1}}
-\put(128,0){\line(0,1){1}}
-\put(157,0){\line(0,1){1}}
-\put(171,0){\line(0,1){1}}
-\put(186,0){\line(0,1){1}}
-\put(200,0){\line(0,1){1}}
-\put(228,0){\line(0,1){1}}
-\put(243,0){\line(0,1){1}}
-\put(257,0){\line(0,1){1}}
-\put(271,0){\line(0,1){1}}
-\put(286,0){\line(0,1){1}}
-\put(300,0){\line(0,1){1}}
-\put(314,0){\line(0,1){1}}
-\put(328,0){\line(0,1){1}}
-\put(343,0){\line(0,1){1}}
-\put(357,0){\line(0,1){1}}
-\put(371,0){\line(0,1){1}}
-\put(385,0){\line(0,1){1}}
-\put(400,0){\line(0,1){1}}
-\put(414,0){\line(0,1){1}}
-\put(428,0){\line(0,1){2}}
-\put(443,0){\line(0,1){2}}
-\put(457,0){\line(0,1){3}}
-\put(471,0){\line(0,1){4}}
-\put(485,0){\line(0,1){6}}
-\put(500,0){\line(0,1){7}}
-\put(514,0){\line(0,1){9}}
-\put(528,0){\line(0,1){11}}
-\put(543,0){\line(0,1){13}}
-\put(557,0){\line(0,1){16}}
-\put(571,0){\line(0,1){17}}
-\put(585,0){\line(0,1){19}}
-\put(600,0){\line(0,1){22}}
-\put(614,0){\line(0,1){24}}
-\put(628,0){\line(0,1){26}}
-\put(642,0){\line(0,1){27}}
-\put(657,0){\line(0,1){30}}
-\put(671,0){\line(0,1){32}}
-\put(685,0){\line(0,1){36}}
-\put(700,0){\line(0,1){39}}
-\put(714,0){\line(0,1){44}}
-\put(728,0){\line(0,1){49}}
-\put(742,0){\line(0,1){57}}
-\put(757,0){\line(0,1){63}}
-\put(771,0){\line(0,1){70}}
-\put(785,0){\line(0,1){77}}
-\put(800,0){\line(0,1){84}}
-\put(814,0){\line(0,1){91}}
-\put(828,0){\line(0,1){95}}
-\put(842,0){\line(0,1){98}}
-\put(857,0){\line(0,1){98}}
-\put(871,0){\line(0,1){99}}
-\put(885,0){\line(0,1){100}}
-\put(899,0){\line(0,1){100}}
-\put(914,0){\line(0,1){100}}
-\put(928,0){\line(0,1){99}}
-\put(942,0){\line(0,1){98}}
-\put(957,0){\line(0,1){96}}
-\put(971,0){\line(0,1){96}}
-\put(985,0){\line(0,1){94}}
-\put(999,0){\line(0,1){94}}
-\put(1014,0){\line(0,1){93}}
-\put(1028,0){\line(0,1){93}}
-\put(1042,0){\line(0,1){94}}
-\put(1057,0){\line(0,1){91}}
-\put(1071,0){\line(0,1){92}}
-\put(1085,0){\line(0,1){88}}
-\put(1099,0){\line(0,1){84}}
-\put(1114,0){\line(0,1){75}}
-\put(1128,0){\line(0,1){67}}
-\put(1142,0){\line(0,1){55}}
-\put(1156,0){\line(0,1){44}}
-\put(1171,0){\line(0,1){34}}
-\put(1185,0){\line(0,1){25}}
-\put(1199,0){\line(0,1){18}}
-\put(1214,0){\line(0,1){13}}
-\put(1228,0){\line(0,1){11}}
-\put(1242,0){\line(0,1){9}}
-\put(1256,0){\line(0,1){7}}
-\put(1271,0){\line(0,1){6}}
-\put(1285,0){\line(0,1){4}}
-\put(1299,0){\line(0,1){3}}
-\put(1314,0){\line(0,1){2}}
-\put(1328,0){\line(0,1){2}}
-\put(1342,0){\line(0,1){1}}
-\put(1356,0){\line(0,1){1}}
-\put(1371,0){\line(0,1){1}}
-\put(1385,0){\line(0,1){1}}
-\put(1399,0){\line(0,1){1}}
-\put(1413,0){\line(0,1){1}}
-\put(1428,0){\line(0,1){1}}
-\put(1442,0){\line(0,1){1}}
-\put(1456,0){\line(0,1){1}}
-\put(1471,0){\line(0,1){1}}
-\put(1485,0){\line(0,1){1}}
+\put(300,0){\line(0,1){11}}
+\put(600,0){\line(0,1){100}}
+\put(900,0){\line(0,1){25}}
+\put(1200,0){\line(0,1){1}}
 \end{picture}
 
-{\smaller
+{\small
+\begin{tabular}{ rrrrrr }
+n&missing&distinct&Info&Mean&Gmd \\
+5231&0&5&0.601&9.095&0.4661 \end{tabular}
 \begin{verbatim}
-       n  missing distinct     Info     Mean      Gmd      .05      .10      .25      .50 
-  458446    27044   455379        1  -0.2943    1.303  -2.3570  -1.8333  -1.0528  -0.2426 
-     .75      .90      .95 
-  0.5878   1.1317   1.4018 
+                                        
+Value          7     8     9    10    11
+Frequency     26   415  3831   953     6
+Proportion 0.005 0.079 0.732 0.182 0.001
+\end{verbatim}
+}
+\smallskip\hrule\smallskip
+}
+\vbox{\noindent\textbf{ST02Q01 : National Study Programme}\setlength{\unitlength}{0.001in}\hfill\begin{picture}(1.5,.1)(1500,0)\linethickness{0.6pt}
+\put(0,0){\line(0,1){100}}
+\put(375,0){\line(0,1){17}}
+\put(750,0){\line(0,1){2}}
+\put(1125,0){\line(0,1){3}}
+\end{picture}
 
-lowest : -6.660225 -6.587836 -6.486479 -6.431826 -6.423216
-highest:  3.633003  3.643659  3.708896  3.718465  3.737384
+{\small
+\begin{tabular}{ rrrrrr }
+n&missing&distinct&Info&Mean&Gmd \\
+5231&0&4&0.453&1.253&0.4332 \end{tabular}
+\begin{verbatim}
+                                  
+Value          1     2     3     4
+Frequency   4272   733    89   137
+Proportion 0.817 0.140 0.017 0.026
+\end{verbatim}
+}
+\smallskip\hrule\smallskip
+}
+\vbox{\noindent\textbf{ST03Q01 : Birth - Month}\setlength{\unitlength}{0.001in}\hfill\begin{picture}(1.5,.1)(1500,0)\linethickness{0.6pt}
+\put(0,0){\line(0,1){92}}
+\put(125,0){\line(0,1){76}}
+\put(250,0){\line(0,1){84}}
+\put(375,0){\line(0,1){100}}
+\put(500,0){\line(0,1){93}}
+\put(625,0){\line(0,1){85}}
+\put(750,0){\line(0,1){87}}
+\put(875,0){\line(0,1){90}}
+\put(1000,0){\line(0,1){86}}
+\put(1125,0){\line(0,1){90}}
+\put(1250,0){\line(0,1){83}}
+\put(1375,0){\line(0,1){90}}
+\end{picture}
+
+{\small
+\begin{tabular}{ rrr }
+n&missing&distinct \\
+5231&0&12 \end{tabular}
+\begin{verbatim}
+                                                                                  
+Value          1     2     3     4     5     6     7     8     9    10    11    12
+Frequency    453   378   418   495   460   423   433   445   425   446   409   446
+Proportion 0.087 0.072 0.080 0.095 0.088 0.081 0.083 0.085 0.081 0.085 0.078 0.085
+\end{verbatim}
+}
+\smallskip\hrule\smallskip
+}
+\vbox{\noindent\textbf{ST03Q02 : Birth -Year}
+
+{\small
+\begin{tabular}{ rrrr }
+n&missing&distinct&value \\
+5231&0&1&1996 \end{tabular}
+\begin{verbatim}
+               
+Value      1996
+Frequency  5231
+Proportion    1
+\end{verbatim}
+}
+\smallskip\hrule\smallskip
+}
+\vbox{\noindent\textbf{ST04Q01 : Gender}
+
+{\small
+\begin{tabular}{ rrr }
+n&missing&distinct \\
+5231&0&2 \end{tabular}
+\begin{verbatim}
+                        
+Value      Female   Male
+Frequency    2614   2617
+Proportion    0.5    0.5
+\end{verbatim}
+}
+\smallskip\hrule\smallskip
+}
+\vbox{\noindent\textbf{ST05Q01}: Attend $<$ISCED 0$>$\setlength{\unitlength}{0.001in}\hfill\begin{picture}(1.5,.1)(1500,0)\linethickness{0.6pt}
+\put(0,0){\line(0,1){24}}
+\put(500,0){\line(0,1){14}}
+\put(1000,0){\line(0,1){100}}
+\end{picture}
+
+{\small
+\begin{tabular}{ rrr }
+n&missing&distinct \\
+5198&33&3 \end{tabular}
+\begin{verbatim}
+                                                                                              
+Value                               No   Yes, for one year or less Yes, for more than one year
+Frequency                          899                         517                        3782
+Proportion                       0.173                       0.099                       0.728
+\end{verbatim}
+}
+\smallskip\hrule\smallskip
+}
+\vbox{\noindent\textbf{ST06Q01}: Age at $<$ISCED 1$>$\setlength{\unitlength}{0.001in}\hfill\begin{picture}(1.5,.1)(1500,0)\linethickness{0.6pt}
+\put(0,0){\line(0,1){1}}
+\put(250,0){\line(0,1){1}}
+\put(500,0){\line(0,1){60}}
+\put(750,0){\line(0,1){100}}
+\put(1000,0){\line(0,1){5}}
+\put(1250,0){\line(0,1){1}}
+\end{picture}
+
+{\small
+\begin{tabular}{ rrrrrr }
+n&missing&distinct&Info&Mean&Gmd \\
+5158&73&6&0.737&6.654&0.5457 \end{tabular}
+\begin{verbatim}
+                                              
+Value          4     5     6     7     8     9
+Frequency      2    45  1854  3097   157     3
+Proportion 0.000 0.009 0.359 0.600 0.030 0.001
+\end{verbatim}
+}
+\smallskip\hrule\smallskip
+}
+\vbox{\noindent\textbf{ST07Q01}: Repeat - $<$ISCED 1$>$\setlength{\unitlength}{0.001in}\hfill\begin{picture}(1.5,.1)(1500,0)\linethickness{0.6pt}
+\put(0,0){\line(0,1){100}}
+\put(500,0){\line(0,1){1}}
+\put(1000,0){\line(0,1){1}}
+\end{picture}
+
+{\small
+\begin{tabular}{ rrr }
+n&missing&distinct \\
+5152&79&3 \end{tabular}
+\begin{verbatim}
+                                                                   
+Value               No, never          Yes, once Yes, twice or more
+Frequency                5076                 67                  9
+Proportion              0.985              0.013              0.002
+\end{verbatim}
+}
+\smallskip\hrule\smallskip
+}
+\vbox{\noindent\textbf{ST07Q02}: Repeat - $<$ISCED 2$>$\setlength{\unitlength}{0.001in}\hfill\begin{picture}(1.5,.1)(1500,0)\linethickness{0.6pt}
+\put(0,0){\line(0,1){100}}
+\put(500,0){\line(0,1){1}}
+\put(1000,0){\line(0,1){1}}
+\end{picture}
+
+{\small
+\begin{tabular}{ rrr }
+n&missing&distinct \\
+5066&165&3 \end{tabular}
+\begin{verbatim}
+                                                                   
+Value               No, never          Yes, once Yes, twice or more
+Frequency                5026                 37                  3
+Proportion              0.992              0.007              0.001
+\end{verbatim}
+}
+\smallskip\hrule\smallskip
+}
+\vbox{\noindent\textbf{ST08Q01 : Truancy - Late for School}\setlength{\unitlength}{0.001in}\hfill\begin{picture}(1.5,.1)(1500,0)\linethickness{0.6pt}
+\put(0,0){\line(0,1){100}}
+\put(375,0){\line(0,1){59}}
+\put(750,0){\line(0,1){16}}
+\put(1125,0){\line(0,1){15}}
+\end{picture}
+
+{\small
+\begin{tabular}{ rrr }
+n&missing&distinct \\
+5202&29&4 \end{tabular}
+\begin{verbatim}
+                                                                                          
+Value                     None    One or two times Three or four times  Five or more times
+Frequency                 2731                1609                 442                 420
+Proportion               0.525               0.309               0.085               0.081
+\end{verbatim}
+}
+\smallskip\hrule\smallskip
+}
+\vbox{\noindent\textbf{ST09Q01 : Truancy - Skip whole school day}\setlength{\unitlength}{0.001in}\hfill\begin{picture}(1.5,.1)(1500,0)\linethickness{0.6pt}
+\put(0,0){\line(0,1){100}}
+\put(375,0){\line(0,1){20}}
+\put(750,0){\line(0,1){4}}
+\put(1125,0){\line(0,1){3}}
+\end{picture}
+
+{\small
+\begin{tabular}{ rrr }
+n&missing&distinct \\
+5197&34&4 \end{tabular}
+\begin{verbatim}
+                                                                                          
+Value                     None    One or two times Three or four times  Five or more times
+Frequency                 4091                 814                 155                 137
+Proportion               0.787               0.157               0.030               0.026
+\end{verbatim}
+}
+\smallskip\hrule\smallskip
+}
+\vbox{\noindent\textbf{ST115Q01 : Truancy - Skip classes within school day}\setlength{\unitlength}{0.001in}\hfill\begin{picture}(1.5,.1)(1500,0)\linethickness{0.6pt}
+\put(0,0){\line(0,1){100}}
+\put(375,0){\line(0,1){35}}
+\put(750,0){\line(0,1){7}}
+\put(1125,0){\line(0,1){4}}
+\end{picture}
+
+{\small
+\begin{tabular}{ rrrrrr }
+n&missing&distinct&Info&Mean&Gmd \\
+5202&29&4&0.662&1.409&0.6106 \end{tabular}
+\begin{verbatim}
+                                  
+Value          1     2     3     4
+Frequency   3572  1262   238   130
+Proportion 0.687 0.243 0.046 0.025
+\end{verbatim}
+}
+\smallskip\hrule\smallskip
+}
+\vbox{\noindent\textbf{ST11Q01 : At Home - Mother}
+
+{\small
+\begin{tabular}{ rrr }
+n&missing&distinct \\
+5070&161&2 \end{tabular}
+\begin{verbatim}
+                      
+Value        Yes    No
+Frequency   4899   171
+Proportion 0.966 0.034
+\end{verbatim}
+}
+\smallskip\hrule\smallskip
+}
+\vbox{\noindent\textbf{ST11Q02 : At Home - Father}
+
+{\small
+\begin{tabular}{ rrr }
+n&missing&distinct \\
+4665&566&2 \end{tabular}
+\begin{verbatim}
+                      
+Value        Yes    No
+Frequency   3580  1085
+Proportion 0.767 0.233
+\end{verbatim}
+}
+\smallskip\hrule\smallskip
+}
+\vbox{\noindent\textbf{ST11Q03 : At Home - Brothers}
+
+{\small[2]
+\begin{tabular}{ rrrrrrrrrrrrr }
+n&missing&distinct&Info&Mean&Gmd&.05&.10&.25&.50&.75&.90&.95 \\
+5231&0&407&1&224.2&152.8& 57.83& 77.31&105.02&230.68&312.24&358.83&442.69 \end{tabular}
+\begin{verbatim}
+
+lowest :  12.3101  12.6299  20.8641  44.7122  46.2973, highest: 753.6888 770.5724 785.0831 786.6445 806.8775
+\end{verbatim}
+}
+\smallskip\hrule\smallskip
+}
+\vbox{\noindent\textbf{W\_FSTR75 : FINAL STUDENT REPLICATE BRR-FAY WEIGHT75}\setlength{\unitlength}{0.001in}\hfill\begin{picture}(1.5,.1)(1500,0)\linethickness{0.6pt}
+\put(0,0){\line(0,1){3}}
+\put(59,0){\line(0,1){8}}
+\put(79,0){\line(0,1){30}}
+\put(98,0){\line(0,1){25}}
+\put(118,0){\line(0,1){46}}
+\put(138,0){\line(0,1){28}}
+\put(157,0){\line(0,1){89}}
+\put(177,0){\line(0,1){100}}
+\put(197,0){\line(0,1){90}}
+\put(216,0){\line(0,1){42}}
+\put(236,0){\line(0,1){73}}
+\put(256,0){\line(0,1){13}}
+\put(275,0){\line(0,1){9}}
+\put(295,0){\line(0,1){11}}
+\put(315,0){\line(0,1){3}}
+\put(335,0){\line(0,1){1}}
+\put(354,0){\line(0,1){13}}
+\put(374,0){\line(0,1){19}}
+\put(394,0){\line(0,1){7}}
+\put(413,0){\line(0,1){12}}
+\put(433,0){\line(0,1){17}}
+\put(453,0){\line(0,1){31}}
+\put(472,0){\line(0,1){33}}
+\put(492,0){\line(0,1){58}}
+\put(512,0){\line(0,1){17}}
+\put(531,0){\line(0,1){24}}
+\put(551,0){\line(0,1){20}}
+\put(571,0){\line(0,1){31}}
+\put(590,0){\line(0,1){27}}
+\put(610,0){\line(0,1){43}}
+\put(630,0){\line(0,1){38}}
+\put(649,0){\line(0,1){41}}
+\put(669,0){\line(0,1){31}}
+\put(708,0){\line(0,1){23}}
+\put(728,0){\line(0,1){9}}
+\put(767,0){\line(0,1){4}}
+\put(807,0){\line(0,1){3}}
+\put(846,0){\line(0,1){3}}
+\put(885,0){\line(0,1){1}}
+\put(905,0){\line(0,1){2}}
+\put(925,0){\line(0,1){1}}
+\put(945,0){\line(0,1){1}}
+\put(964,0){\line(0,1){1}}
+\put(984,0){\line(0,1){2}}
+\put(1004,0){\line(0,1){2}}
+\put(1023,0){\line(0,1){1}}
+\put(1043,0){\line(0,1){1}}
+\put(1063,0){\line(0,1){3}}
+\put(1122,0){\line(0,1){1}}
+\put(1141,0){\line(0,1){5}}
+\put(1161,0){\line(0,1){1}}
+\put(1181,0){\line(0,1){3}}
+\put(1200,0){\line(0,1){1}}
+\put(1220,0){\line(0,1){1}}
+\put(1259,0){\line(0,1){7}}
+\put(1279,0){\line(0,1){6}}
+\put(1299,0){\line(0,1){2}}
+\put(1318,0){\line(0,1){1}}
+\put(1338,0){\line(0,1){1}}
+\put(1358,0){\line(0,1){6}}
+\put(1436,0){\line(0,1){2}}
+\put(1476,0){\line(0,1){3}}
+\end{picture}
+
+{\small[2]
+\begin{tabular}{ rrrrrrrrrrrrr }
+n&missing&distinct&Info&Mean&Gmd&.05&.10&.25&.50&.75&.90&.95 \\
+5231&0&402&1&219.1&143.9& 72.58& 85.25&111.36&168.82&311.39&358.31&416.41 \end{tabular}
+\begin{verbatim}
+
+lowest :  22.1112  47.9093  57.9801  59.7524  60.6145, highest: 711.2976 714.0346 751.4293 753.6888 770.5724
+\end{verbatim}
+}
+\smallskip\hrule\smallskip
+}
+\vbox{\noindent\textbf{W\_FSTR76 : FINAL STUDENT REPLICATE BRR-FAY WEIGHT76}\setlength{\unitlength}{0.001in}\hfill\begin{picture}(1.5,.1)(1500,0)\linethickness{0.6pt}
+\put(0,0){\line(0,1){3}}
+\put(56,0){\line(0,1){8}}
+\put(75,0){\line(0,1){45}}
+\put(93,0){\line(0,1){24}}
+\put(112,0){\line(0,1){47}}
+\put(131,0){\line(0,1){38}}
+\put(150,0){\line(0,1){100}}
+\put(168,0){\line(0,1){97}}
+\put(187,0){\line(0,1){72}}
+\put(206,0){\line(0,1){57}}
+\put(224,0){\line(0,1){35}}
+\put(243,0){\line(0,1){14}}
+\put(262,0){\line(0,1){16}}
+\put(280,0){\line(0,1){7}}
+\put(299,0){\line(0,1){2}}
+\put(318,0){\line(0,1){1}}
+\put(337,0){\line(0,1){10}}
+\put(355,0){\line(0,1){3}}
+\put(374,0){\line(0,1){12}}
+\put(393,0){\line(0,1){3}}
+\put(411,0){\line(0,1){32}}
+\put(430,0){\line(0,1){30}}
+\put(449,0){\line(0,1){32}}
+\put(467,0){\line(0,1){28}}
+\put(486,0){\line(0,1){35}}
+\put(505,0){\line(0,1){51}}
+\put(523,0){\line(0,1){39}}
+\put(542,0){\line(0,1){32}}
+\put(561,0){\line(0,1){38}}
+\put(580,0){\line(0,1){35}}
+\put(598,0){\line(0,1){37}}
+\put(617,0){\line(0,1){42}}
+\put(636,0){\line(0,1){28}}
+\put(654,0){\line(0,1){20}}
+\put(673,0){\line(0,1){18}}
+\put(692,0){\line(0,1){9}}
+\put(710,0){\line(0,1){4}}
+\put(729,0){\line(0,1){3}}
+\put(748,0){\line(0,1){5}}
+\put(767,0){\line(0,1){4}}
+\put(785,0){\line(0,1){3}}
+\put(804,0){\line(0,1){3}}
+\put(879,0){\line(0,1){1}}
+\put(897,0){\line(0,1){1}}
+\put(916,0){\line(0,1){2}}
+\put(991,0){\line(0,1){1}}
+\put(1010,0){\line(0,1){4}}
+\put(1028,0){\line(0,1){2}}
+\put(1047,0){\line(0,1){1}}
+\put(1066,0){\line(0,1){1}}
+\put(1103,0){\line(0,1){11}}
+\put(1122,0){\line(0,1){5}}
+\put(1140,0){\line(0,1){3}}
+\put(1159,0){\line(0,1){2}}
+\put(1178,0){\line(0,1){2}}
+\put(1215,0){\line(0,1){6}}
+\put(1234,0){\line(0,1){5}}
+\put(1253,0){\line(0,1){2}}
+\put(1271,0){\line(0,1){1}}
+\put(1290,0){\line(0,1){4}}
+\put(1327,0){\line(0,1){3}}
+\put(1365,0){\line(0,1){1}}
+\put(1402,0){\line(0,1){1}}
+\put(1440,0){\line(0,1){1}}
+\put(1477,0){\line(0,1){1}}
+\end{picture}
+
+{\small[2]
+\begin{tabular}{ rrrrrrrrrrrrr }
+n&missing&distinct&Info&Mean&Gmd&.05&.10&.25&.50&.75&.90&.95 \\
+5231&0&407&1&227.2&151.3& 65.61& 83.40&109.43&221.54&317.79&372.19&450.61 \end{tabular}
+\begin{verbatim}
+
+lowest :  22.1112  47.9093  55.7519  56.4148  57.3861, highest: 765.8095 785.0831 786.6445 790.5857 806.8775
+\end{verbatim}
+}
+\smallskip\hrule\smallskip
+}
+\vbox{\noindent\textbf{W\_FSTR77 : FINAL STUDENT REPLICATE BRR-FAY WEIGHT77}\setlength{\unitlength}{0.001in}\hfill\begin{picture}(1.5,.1)(1500,0)\linethickness{0.6pt}
+\put(0,0){\line(0,1){5}}
+\put(39,0){\line(0,1){8}}
+\put(59,0){\line(0,1){18}}
+\put(79,0){\line(0,1){23}}
+\put(99,0){\line(0,1){20}}
+\put(118,0){\line(0,1){46}}
+\put(138,0){\line(0,1){26}}
+\put(158,0){\line(0,1){53}}
+\put(177,0){\line(0,1){100}}
+\put(197,0){\line(0,1){96}}
+\put(217,0){\line(0,1){38}}
+\put(236,0){\line(0,1){76}}
+\put(256,0){\line(0,1){19}}
+\put(276,0){\line(0,1){15}}
+\put(296,0){\line(0,1){12}}
+\put(315,0){\line(0,1){2}}
+\put(335,0){\line(0,1){7}}
+\put(355,0){\line(0,1){7}}
+\put(374,0){\line(0,1){16}}
+\put(394,0){\line(0,1){28}}
+\put(414,0){\line(0,1){23}}
+\put(434,0){\line(0,1){30}}
+\put(453,0){\line(0,1){36}}
+\put(473,0){\line(0,1){28}}
+\put(493,0){\line(0,1){54}}
+\put(512,0){\line(0,1){22}}
+\put(532,0){\line(0,1){43}}
+\put(552,0){\line(0,1){36}}
+\put(571,0){\line(0,1){48}}
+\put(591,0){\line(0,1){26}}
+\put(611,0){\line(0,1){37}}
+\put(631,0){\line(0,1){32}}
+\put(650,0){\line(0,1){36}}
+\put(670,0){\line(0,1){23}}
+\put(690,0){\line(0,1){15}}
+\put(709,0){\line(0,1){15}}
+\put(729,0){\line(0,1){9}}
+\put(749,0){\line(0,1){3}}
+\put(769,0){\line(0,1){2}}
+\put(788,0){\line(0,1){5}}
+\put(828,0){\line(0,1){3}}
+\put(887,0){\line(0,1){1}}
+\put(906,0){\line(0,1){3}}
+\put(926,0){\line(0,1){1}}
+\put(946,0){\line(0,1){2}}
+\put(966,0){\line(0,1){1}}
+\put(985,0){\line(0,1){2}}
+\put(1005,0){\line(0,1){1}}
+\put(1025,0){\line(0,1){1}}
+\put(1044,0){\line(0,1){2}}
+\put(1064,0){\line(0,1){1}}
+\put(1084,0){\line(0,1){1}}
+\put(1104,0){\line(0,1){1}}
+\put(1123,0){\line(0,1){1}}
+\put(1143,0){\line(0,1){1}}
+\put(1163,0){\line(0,1){12}}
+\put(1182,0){\line(0,1){5}}
+\put(1202,0){\line(0,1){3}}
+\put(1222,0){\line(0,1){2}}
+\put(1261,0){\line(0,1){4}}
+\put(1281,0){\line(0,1){1}}
+\put(1301,0){\line(0,1){5}}
+\put(1320,0){\line(0,1){1}}
+\put(1340,0){\line(0,1){3}}
+\put(1360,0){\line(0,1){4}}
+\put(1399,0){\line(0,1){1}}
+\put(1439,0){\line(0,1){2}}
+\put(1478,0){\line(0,1){3}}
+\end{picture}
+
+{\small[2]
+\begin{tabular}{ rrrrrrrrrrrrr }
+n&missing&distinct&Info&Mean&Gmd&.05&.10&.25&.50&.75&.90&.95 \\
+5231&0&405&1&225.3&144.2& 71.75& 85.25&115.18&219.26&305.74&359.43&442.69 \end{tabular}
+\begin{verbatim}
+
+lowest :  20.3254  22.1112  44.7122  46.7528  47.8317, highest: 711.2976 729.1233 751.4293 753.6888 770.5724
+\end{verbatim}
+}
+\smallskip\hrule\smallskip
+}
+\vbox{\noindent\textbf{W\_FSTR78 : FINAL STUDENT REPLICATE BRR-FAY WEIGHT78}\setlength{\unitlength}{0.001in}\hfill\begin{picture}(1.5,.1)(1500,0)\linethickness{0.6pt}
+\put(0,0){\line(0,1){5}}
+\put(38,0){\line(0,1){9}}
+\put(58,0){\line(0,1){28}}
+\put(77,0){\line(0,1){39}}
+\put(96,0){\line(0,1){19}}
+\put(115,0){\line(0,1){42}}
+\put(134,0){\line(0,1){45}}
+\put(153,0){\line(0,1){85}}
+\put(173,0){\line(0,1){100}}
+\put(192,0){\line(0,1){91}}
+\put(211,0){\line(0,1){51}}
+\put(230,0){\line(0,1){27}}
+\put(249,0){\line(0,1){13}}
+\put(269,0){\line(0,1){15}}
+\put(288,0){\line(0,1){8}}
+\put(307,0){\line(0,1){1}}
+\put(326,0){\line(0,1){8}}
+\put(345,0){\line(0,1){4}}
+\put(365,0){\line(0,1){10}}
+\put(384,0){\line(0,1){26}}
+\put(403,0){\line(0,1){27}}
+\put(422,0){\line(0,1){54}}
+\put(441,0){\line(0,1){40}}
+\put(460,0){\line(0,1){21}}
+\put(480,0){\line(0,1){33}}
+\put(499,0){\line(0,1){36}}
+\put(518,0){\line(0,1){63}}
+\put(537,0){\line(0,1){59}}
+\put(556,0){\line(0,1){49}}
+\put(576,0){\line(0,1){38}}
+\put(595,0){\line(0,1){47}}
+\put(614,0){\line(0,1){38}}
+\put(633,0){\line(0,1){30}}
+\put(652,0){\line(0,1){21}}
+\put(671,0){\line(0,1){33}}
+\put(691,0){\line(0,1){14}}
+\put(710,0){\line(0,1){14}}
+\put(748,0){\line(0,1){4}}
+\put(767,0){\line(0,1){5}}
+\put(806,0){\line(0,1){4}}
+\put(883,0){\line(0,1){1}}
+\put(902,0){\line(0,1){1}}
+\put(921,0){\line(0,1){2}}
+\put(940,0){\line(0,1){2}}
+\put(978,0){\line(0,1){2}}
+\put(998,0){\line(0,1){1}}
+\put(1017,0){\line(0,1){1}}
+\put(1036,0){\line(0,1){2}}
+\put(1055,0){\line(0,1){3}}
+\put(1074,0){\line(0,1){1}}
+\put(1094,0){\line(0,1){3}}
+\put(1113,0){\line(0,1){5}}
+\put(1132,0){\line(0,1){14}}
+\put(1151,0){\line(0,1){2}}
+\put(1170,0){\line(0,1){1}}
+\put(1189,0){\line(0,1){2}}
+\put(1209,0){\line(0,1){2}}
+\put(1228,0){\line(0,1){2}}
+\put(1247,0){\line(0,1){2}}
+\put(1266,0){\line(0,1){1}}
+\put(1285,0){\line(0,1){1}}
+\put(1305,0){\line(0,1){1}}
+\put(1324,0){\line(0,1){2}}
+\put(1362,0){\line(0,1){1}}
+\put(1401,0){\line(0,1){7}}
+\put(1477,0){\line(0,1){1}}
+\end{picture}
+
+{\small[2]
+\begin{tabular}{ rrrrrrrrrrrrr }
+n&missing&distinct&Info&Mean&Gmd&.05&.10&.25&.50&.75&.90&.95 \\
+5231&0&404&1&227&146.3& 61.02& 83.37&111.02&235.47&307.71&367.58&421.61 \end{tabular}
+\begin{verbatim}
+
+lowest :  20.8641  22.1112  44.7122  46.7528  47.8317, highest: 729.1233 747.4097 753.6888 785.0831 786.6445
+\end{verbatim}
+}
+\smallskip\hrule\smallskip
+}
+\vbox{\noindent\textbf{W\_FSTR79 : FINAL STUDENT REPLICATE BRR-FAY WEIGHT79}\setlength{\unitlength}{0.001in}\hfill\begin{picture}(1.5,.1)(1500,0)\linethickness{0.6pt}
+\put(0,0){\line(0,1){6}}
+\put(76,0){\line(0,1){2}}
+\put(95,0){\line(0,1){62}}
+\put(114,0){\line(0,1){16}}
+\put(133,0){\line(0,1){26}}
+\put(152,0){\line(0,1){38}}
+\put(170,0){\line(0,1){48}}
+\put(189,0){\line(0,1){100}}
+\put(208,0){\line(0,1){74}}
+\put(227,0){\line(0,1){43}}
+\put(246,0){\line(0,1){25}}
+\put(265,0){\line(0,1){11}}
+\put(284,0){\line(0,1){11}}
+\put(303,0){\line(0,1){5}}
+\put(322,0){\line(0,1){4}}
+\put(360,0){\line(0,1){2}}
+\put(379,0){\line(0,1){16}}
+\put(398,0){\line(0,1){14}}
+\put(417,0){\line(0,1){16}}
+\put(436,0){\line(0,1){28}}
+\put(455,0){\line(0,1){35}}
+\put(473,0){\line(0,1){27}}
+\put(492,0){\line(0,1){44}}
+\put(511,0){\line(0,1){23}}
+\put(530,0){\line(0,1){59}}
+\put(549,0){\line(0,1){39}}
+\put(568,0){\line(0,1){51}}
+\put(587,0){\line(0,1){17}}
+\put(606,0){\line(0,1){24}}
+\put(625,0){\line(0,1){12}}
+\put(644,0){\line(0,1){21}}
+\put(663,0){\line(0,1){19}}
+\put(682,0){\line(0,1){14}}
+\put(701,0){\line(0,1){6}}
+\put(720,0){\line(0,1){6}}
+\put(739,0){\line(0,1){2}}
+\put(777,0){\line(0,1){4}}
+\put(814,0){\line(0,1){3}}
+\put(871,0){\line(0,1){1}}
+\put(890,0){\line(0,1){1}}
+\put(909,0){\line(0,1){1}}
+\put(928,0){\line(0,1){1}}
+\put(966,0){\line(0,1){3}}
+\put(985,0){\line(0,1){2}}
+\put(1004,0){\line(0,1){1}}
+\put(1023,0){\line(0,1){1}}
+\put(1042,0){\line(0,1){4}}
+\put(1061,0){\line(0,1){2}}
+\put(1080,0){\line(0,1){1}}
+\put(1098,0){\line(0,1){2}}
+\put(1117,0){\line(0,1){4}}
+\put(1136,0){\line(0,1){11}}
+\put(1155,0){\line(0,1){4}}
+\put(1174,0){\line(0,1){1}}
+\put(1193,0){\line(0,1){1}}
+\put(1212,0){\line(0,1){2}}
+\put(1231,0){\line(0,1){1}}
+\put(1250,0){\line(0,1){1}}
+\put(1269,0){\line(0,1){3}}
+\put(1288,0){\line(0,1){1}}
+\put(1307,0){\line(0,1){2}}
+\put(1326,0){\line(0,1){2}}
+\put(1364,0){\line(0,1){1}}
+\put(1402,0){\line(0,1){3}}
+\put(1439,0){\line(0,1){3}}
+\put(1477,0){\line(0,1){1}}
+\end{picture}
+
+{\small[2]
+\begin{tabular}{ rrrrrrrrrrrrr }
+n&missing&distinct&Info&Mean&Gmd&.05&.10&.25&.50&.75&.90&.95 \\
+5231&0&407&1&222.8&147.8& 61.34& 81.65&110.77&226.28&298.36&359.43&520.80 \end{tabular}
+\begin{verbatim}
+
+lowest :  12.3101  12.6299  46.2973  57.1717  57.3861, highest: 729.1233 753.6888 765.8095 770.5724 790.5857
+\end{verbatim}
+}
+\smallskip\hrule\smallskip
+}
+\vbox{\noindent\textbf{W\_FSTR80 : FINAL STUDENT REPLICATE BRR-FAY WEIGHT80}\setlength{\unitlength}{0.001in}\hfill\begin{picture}(1.5,.1)(1500,0)\linethickness{0.6pt}
+\put(0,0){\line(0,1){3}}
+\put(58,0){\line(0,1){8}}
+\put(78,0){\line(0,1){53}}
+\put(97,0){\line(0,1){38}}
+\put(117,0){\line(0,1){34}}
+\put(136,0){\line(0,1){39}}
+\put(155,0){\line(0,1){73}}
+\put(175,0){\line(0,1){100}}
+\put(194,0){\line(0,1){91}}
+\put(214,0){\line(0,1){48}}
+\put(233,0){\line(0,1){28}}
+\put(253,0){\line(0,1){4}}
+\put(272,0){\line(0,1){6}}
+\put(291,0){\line(0,1){13}}
+\put(311,0){\line(0,1){5}}
+\put(330,0){\line(0,1){7}}
+\put(350,0){\line(0,1){16}}
+\put(369,0){\line(0,1){22}}
+\put(389,0){\line(0,1){16}}
+\put(408,0){\line(0,1){13}}
+\put(428,0){\line(0,1){51}}
+\put(447,0){\line(0,1){26}}
+\put(466,0){\line(0,1){41}}
+\put(486,0){\line(0,1){53}}
+\put(505,0){\line(0,1){34}}
+\put(525,0){\line(0,1){62}}
+\put(544,0){\line(0,1){49}}
+\put(564,0){\line(0,1){37}}
+\put(583,0){\line(0,1){43}}
+\put(602,0){\line(0,1){41}}
+\put(622,0){\line(0,1){33}}
+\put(641,0){\line(0,1){31}}
+\put(661,0){\line(0,1){13}}
+\put(680,0){\line(0,1){13}}
+\put(700,0){\line(0,1){1}}
+\put(719,0){\line(0,1){5}}
+\put(738,0){\line(0,1){3}}
+\put(874,0){\line(0,1){1}}
+\put(894,0){\line(0,1){1}}
+\put(913,0){\line(0,1){1}}
+\put(933,0){\line(0,1){1}}
+\put(952,0){\line(0,1){2}}
+\put(972,0){\line(0,1){2}}
+\put(991,0){\line(0,1){2}}
+\put(1011,0){\line(0,1){1}}
+\put(1030,0){\line(0,1){1}}
+\put(1049,0){\line(0,1){4}}
+\put(1069,0){\line(0,1){2}}
+\put(1088,0){\line(0,1){1}}
+\put(1108,0){\line(0,1){2}}
+\put(1127,0){\line(0,1){5}}
+\put(1147,0){\line(0,1){3}}
+\put(1166,0){\line(0,1){2}}
+\put(1185,0){\line(0,1){1}}
+\put(1205,0){\line(0,1){2}}
+\put(1224,0){\line(0,1){2}}
+\put(1244,0){\line(0,1){5}}
+\put(1263,0){\line(0,1){2}}
+\put(1302,0){\line(0,1){1}}
+\put(1321,0){\line(0,1){1}}
+\put(1341,0){\line(0,1){2}}
+\put(1380,0){\line(0,1){1}}
+\put(1419,0){\line(0,1){8}}
+\put(1438,0){\line(0,1){1}}
+\put(1477,0){\line(0,1){1}}
+\end{picture}
+
+{\small[2]
+\begin{tabular}{ rrrrrrrrrrrrr }
+n&missing&distinct&Info&Mean&Gmd&.05&.10&.25&.50&.75&.90&.95 \\
+5231&0&407&1&219.7&138.5& 63.91& 82.09&111.00&224.10&297.12&343.75&385.67 \end{tabular}
+\begin{verbatim}
+
+lowest :  22.1112  47.9093  57.3861  58.6053  59.3447, highest: 727.1099 747.4097 753.6888 757.3100 781.8980
+\end{verbatim}
+}
+\smallskip\hrule\smallskip
+}
+\vbox{\noindent\textbf{WVARSTRR : RANDOMIZED FINAL VARIANCE STRATUM (1-80)}\setlength{\unitlength}{0.001in}\hfill\begin{picture}(1.5,.1)(1500,0)\linethickness{0.6pt}
+\put(0,0){\line(0,1){7}}
+\put(28,0){\line(0,1){16}}
+\put(56,0){\line(0,1){9}}
+\put(83,0){\line(0,1){5}}
+\put(111,0){\line(0,1){55}}
+\put(139,0){\line(0,1){17}}
+\put(167,0){\line(0,1){48}}
+\put(194,0){\line(0,1){17}}
+\put(222,0){\line(0,1){2}}
+\put(250,0){\line(0,1){27}}
+\put(278,0){\line(0,1){2}}
+\put(306,0){\line(0,1){18}}
+\put(333,0){\line(0,1){17}}
+\put(361,0){\line(0,1){17}}
+\put(389,0){\line(0,1){18}}
+\put(417,0){\line(0,1){17}}
+\put(444,0){\line(0,1){14}}
+\put(472,0){\line(0,1){13}}
+\put(500,0){\line(0,1){85}}
+\put(528,0){\line(0,1){17}}
+\put(556,0){\line(0,1){60}}
+\put(583,0){\line(0,1){52}}
+\put(611,0){\line(0,1){51}}
+\put(639,0){\line(0,1){16}}
+\put(667,0){\line(0,1){4}}
+\put(694,0){\line(0,1){11}}
+\put(722,0){\line(0,1){8}}
+\put(750,0){\line(0,1){16}}
+\put(778,0){\line(0,1){38}}
+\put(806,0){\line(0,1){18}}
+\put(833,0){\line(0,1){12}}
+\put(861,0){\line(0,1){55}}
+\put(889,0){\line(0,1){15}}
+\put(917,0){\line(0,1){11}}
+\put(944,0){\line(0,1){11}}
+\put(972,0){\line(0,1){16}}
+\put(1000,0){\line(0,1){100}}
+\put(1028,0){\line(0,1){86}}
+\put(1056,0){\line(0,1){95}}
+\put(1083,0){\line(0,1){6}}
+\put(1111,0){\line(0,1){8}}
+\put(1139,0){\line(0,1){13}}
+\put(1167,0){\line(0,1){17}}
+\put(1194,0){\line(0,1){15}}
+\put(1222,0){\line(0,1){15}}
+\put(1250,0){\line(0,1){5}}
+\put(1278,0){\line(0,1){13}}
+\put(1306,0){\line(0,1){17}}
+\put(1333,0){\line(0,1){3}}
+\put(1361,0){\line(0,1){90}}
+\put(1389,0){\line(0,1){12}}
+\put(1417,0){\line(0,1){4}}
+\put(1444,0){\line(0,1){13}}
+\put(1472,0){\line(0,1){10}}
+\end{picture}
+
+{\small
+\begin{tabular}{ rrrrrrrrrrrrr }
+n&missing&distinct&Info&Mean&Gmd&.05&.10&.25&.50&.75&.90&.95 \\
+5231&0&54&0.998&28.21&16.1& 5& 7&19&29&39&48&50 \end{tabular}
+\begin{verbatim}
+
+lowest :  1  2  3  4  5, highest: 50 51 52 53 54
+\end{verbatim}
+}
+\smallskip\hrule\smallskip
+}
+\vbox{\noindent\textbf{VAR\_UNIT : RANDOMLY ASSIGNED VARIANCE UNIT}\setlength{\unitlength}{0.001in}\hfill\begin{picture}(1.5,.1)(1500,0)\linethickness{0.6pt}
+\put(0,0){\line(0,1){96}}
+\put(500,0){\line(0,1){100}}
+\put(1000,0){\line(0,1){27}}
+\end{picture}
+
+{\small
+\begin{tabular}{ rrrrrr }
+n&missing&distinct&Info&Mean&Gmd \\
+5231&0&3&0.829&1.693&0.7046 \end{tabular}
+\begin{verbatim}
+                            
+Value          1     2     3
+Frequency   2245  2347   639
+Proportion 0.429 0.449 0.122
+\end{verbatim}
+}
+\smallskip\hrule\smallskip
+}
+\vbox{\noindent\textbf{SENWGT\_STU : Senate weight - sum of weight within the country is 1000} \\ \mbox{~~~} 
+\setlength{\unitlength}{0.001in}\hfill\begin{picture}(1.5,.1)(1500,0)\linethickness{0.6pt}
+\put(0,0){\line(0,1){3}}
+\put(17,0){\line(0,1){9}}
+\put(166,0){\line(0,1){8}}
+\put(216,0){\line(0,1){4}}
+\put(232,0){\line(0,1){5}}
+\put(249,0){\line(0,1){6}}
+\put(315,0){\line(0,1){9}}
+\put(332,0){\line(0,1){30}}
+\put(348,0){\line(0,1){38}}
+\put(365,0){\line(0,1){58}}
+\put(381,0){\line(0,1){54}}
+\put(398,0){\line(0,1){38}}
+\put(415,0){\line(0,1){54}}
+\put(431,0){\line(0,1){22}}
+\put(448,0){\line(0,1){56}}
+\put(464,0){\line(0,1){81}}
+\put(481,0){\line(0,1){100}}
+\put(498,0){\line(0,1){86}}
+\put(514,0){\line(0,1){86}}
+\put(531,0){\line(0,1){87}}
+\put(547,0){\line(0,1){52}}
+\put(564,0){\line(0,1){41}}
+\put(581,0){\line(0,1){44}}
+\put(597,0){\line(0,1){36}}
+\put(614,0){\line(0,1){36}}
+\put(630,0){\line(0,1){15}}
+\put(647,0){\line(0,1){8}}
+\put(663,0){\line(0,1){6}}
+\put(680,0){\line(0,1){3}}
+\put(780,0){\line(0,1){1}}
+\put(813,0){\line(0,1){1}}
+\put(829,0){\line(0,1){3}}
+\put(846,0){\line(0,1){3}}
+\put(862,0){\line(0,1){1}}
+\put(896,0){\line(0,1){1}}
+\put(929,0){\line(0,1){3}}
+\put(945,0){\line(0,1){1}}
+\put(962,0){\line(0,1){1}}
+\put(979,0){\line(0,1){2}}
+\put(995,0){\line(0,1){2}}
+\put(1012,0){\line(0,1){3}}
+\put(1028,0){\line(0,1){5}}
+\put(1045,0){\line(0,1){14}}
+\put(1062,0){\line(0,1){7}}
+\put(1078,0){\line(0,1){9}}
+\put(1095,0){\line(0,1){5}}
+\put(1111,0){\line(0,1){1}}
+\put(1128,0){\line(0,1){3}}
+\put(1144,0){\line(0,1){8}}
+\put(1161,0){\line(0,1){6}}
+\put(1178,0){\line(0,1){8}}
+\put(1194,0){\line(0,1){1}}
+\put(1211,0){\line(0,1){1}}
+\put(1227,0){\line(0,1){7}}
+\put(1244,0){\line(0,1){1}}
+\put(1277,0){\line(0,1){3}}
+\put(1294,0){\line(0,1){3}}
+\put(1310,0){\line(0,1){8}}
+\put(1327,0){\line(0,1){4}}
+\put(1343,0){\line(0,1){1}}
+\put(1410,0){\line(0,1){1}}
+\put(1426,0){\line(0,1){1}}
+\put(1476,0){\line(0,1){1}}
+\end{picture}
+
+{\small[2]
+\begin{tabular}{ rrrrrrrrrrrrr }
+n&missing&distinct&Info&Mean&Gmd&.05&.10&.25&.50&.75&.90&.95 \\
+5231&0&337&1&0.1912&0.06172&0.1319&0.1390&0.1546&0.1788&0.1991&0.2343&0.3608 \end{tabular}
+\begin{verbatim}
+
+lowest : 0.0291 0.0353 0.0358 0.0367 0.0816, highest: 0.4338 0.4344 0.4556 0.4580 0.4745
+\end{verbatim}
+}
+\smallskip\hrule\smallskip
+}
+\vbox{\noindent\textbf{VER\_STU : Date of the database creation}
+
+{\small
+\begin{tabular}{ rrrr }
+n&missing&distinct&value \\
+5231&0&1&22NOV13 \end{tabular}
+\begin{verbatim}
+                  
+Value      22NOV13
+Frequency     5231
+Proportion       1
 \end{verbatim}
 }
 \smallskip\hrule\smallskip
 }
 \smallskip\noindent Variables with all observations missing:\ \smallskip
-\texttt{sc47q01}, \texttt{sc45q01}, \texttt{sc46q01}, \texttt{sc46q02}, \texttt{sc46q03}, \texttt{sc46q05}, \texttt{sc46q04}, \texttt{sc46q06}, \texttt{sc46q09}, \texttt{sc52q01}, \texttt{sc46q07}, \texttt{sc46q08}, \texttt{sc52q02}, \texttt{sc51q01}, \texttt{sc51q02}}\end{spacing}
-% % END PASTE FROM R Output
+\texttt{ST07Q03}, \texttt{EC01Q01}, \texttt{EC02Q01}, \texttt{EC03Q01}, \texttt{EC03Q02}, \texttt{EC03Q03}, \texttt{EC03Q04}, \texttt{EC03Q05}, \texttt{EC03Q06}, \texttt{EC03Q07}, \texttt{EC03Q08}, \texttt{EC03Q09}, \texttt{EC03Q10}, \texttt{EC04Q01A}, \texttt{EC04Q01B}, \texttt{EC04Q01C}, \texttt{EC04Q02A}, \texttt{EC04Q02B}, \texttt{EC04Q02C}, \texttt{EC04Q03A}, \texttt{EC04Q03B}, \texttt{EC04Q03C}, \texttt{EC04Q04A}, \texttt{EC04Q04B}, \texttt{EC04Q04C}, \texttt{EC04Q05A}, \texttt{EC04Q05B}, \texttt{EC04Q05C}, \texttt{EC04Q06A}, \texttt{EC04Q06B}, \texttt{EC04Q06C}, \texttt{EC05Q01}, \texttt{EC06Q01}, \texttt{EC07Q01}, \texttt{EC07Q02}, \texttt{EC07Q03}, \texttt{EC07Q04}, \texttt{EC07Q05}, \texttt{EC08Q01}, \texttt{EC08Q02}, \texttt{EC08Q03}, \texttt{EC08Q04}, \texttt{EC09Q03}, \texttt{EC10Q01}, \texttt{EC11Q02}, \texttt{EC11Q03}, \texttt{EC12Q01}, \texttt{ST22Q01}, \texttt{ST23Q01}, \texttt{ST23Q02}, \texttt{ST23Q03}, \texttt{ST23Q04}, \texttt{ST23Q05}, \texttt{ST23Q06}, \texttt{ST23Q07}, \texttt{ST23Q08}, \texttt{ST24Q01}, \texttt{ST24Q02}, \texttt{ST24Q03}, \texttt{CULTDIST}, \texttt{HERITCUL}, \texttt{HOSTCUL}, \texttt{INFOCAR}, \texttt{INFOJOB1}, \texttt{INFOJOB2}, \texttt{LANGCOMM}, \texttt{LANGRPPD}}
 
-END HERE \smallskip\hrule\smallskip}
+% % END PASTE FROM R Output
+END HERE
 
 
 \end{document}
