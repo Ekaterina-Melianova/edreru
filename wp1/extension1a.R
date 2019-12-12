@@ -1,6 +1,8 @@
 # extension1a.R
 # WP1 extension along lines of Neuman-Weiss 1995.
 
+# This script is abandoned 
+
 library(dplyr)
 library(sqldf)
 library(XLConnectJars)

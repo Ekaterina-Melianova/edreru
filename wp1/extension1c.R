@@ -52,6 +52,9 @@ junk <- df_temp1 %>% filter(YEAR==1998|YEAR==2006) %>%
   distinct(IDIND,.keep_all = T)
 
 
+# On basis of three aggregates, I define three groups for analysis of depreciation
+
+
 df_18$drti <- discretize(df_18$RTI,breaks=3,method="cluster",labels=c("Low","Medium","High"))
 df_18$dnraim <- discretize(df_18$NRAIM,breaks=3,method="cluster",labels=c("Low","Medium","High"))
 df_18$drcm <- discretize(df_18$RCM,breaks=3,method="cluster",labels=c("Low","Medium","High"))

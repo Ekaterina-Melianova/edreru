@@ -1,0 +1,139 @@
+{smcl}
+{com}{sf}{ul off}{txt}{.-}
+      name:  {res}<unnamed>
+       {txt}log:  {res}C:\Country\Russia\Data\SEASHELL\SEABYTE\edreru\Stata\dep1aZ.smcl
+  {txt}log type:  {res}smcl
+ {txt}opened on:  {res} 4 Dec 2019, 11:35:44
+{txt}
+{com}. 
+. // Females
+. 
+. // Use eststo for latex output
+. 
+. // Run below only once for a Stata installation at a machine
+. // ssc install estout, replace
+. 
+. use df_18fz, clear
+{txt}
+{com}. eststo clear
+{txt}
+{com}. eststo: nl dep1aZ @ lnwage exper edu_yrs tlabor0 RTI, parameters(lnW bk delta alpha xb_RTI) initial(lnW 20 bk .2 delta .05 alpha .5 xb_RTI 0.5) vce(robust) 
+{txt}(33 missing values generated)
+(obs = 3,279)
+
+Iteration 0:  residual SS = {res} 1363.687
+{txt}Iteration 1:  residual SS = {res} 1181.821
+{txt}Iteration 2:  residual SS = {res} 1178.314
+{txt}Iteration 3:  residual SS = {res} 1178.261
+{txt}Iteration 4:  residual SS = {res} 1178.258
+{txt}Iteration 5:  residual SS = {res} 1178.258
+{txt}Iteration 6:  residual SS = {res} 1178.258
+{txt}Iteration 7:  residual SS = {res} 1178.258
+{txt}Iteration 8:  residual SS = {res} 1178.258
+{txt}Iteration 9:  residual SS = {res} 1178.258
+{txt}Iteration 10:  residual SS = {res} 1178.258
+
+
+{txt}Nonlinear regression{col 53}Number of obs = {res}     3,279
+{txt}{col 53}R-squared     = {res}    0.0838
+{txt}{col 53}Adj R-squared = {res}    0.0827
+{txt}{col 53}Root MSE      =  {res} .5999027
+{txt}{col 53}Res. dev.     =  {res} 5949.337
+
+{txt}{hline 13}{c TT}{hline 11}{hline 11}{hline 9}{hline 8}{hline 13}{hline 12}
+{col 14}{c |}{col 26}    Robust
+{col 1}      lnwage{col 14}{c |}      Coef.{col 26}   Std. Err.{col 38}      t{col 46}   P>|t|{col 54}     [95% Con{col 67}f. Interval]
+{hline 13}{c +}{hline 11}{hline 11}{hline 9}{hline 8}{hline 13}{hline 12}
+        /lnW {c |}{col 14}{res}{space 2} 8.395009{col 26}{space 2} .1288299{col 37}{space 1}   65.16{col 46}{space 3}0.000{col 54}{space 4} 8.142414{col 67}{space 3} 8.647605
+{txt}         /bk {c |}{col 14}{res}{space 2}  .133291{col 26}{space 2} .0103539{col 37}{space 1}   12.87{col 46}{space 3}0.000{col 54}{space 4} .1129902{col 67}{space 3} .1535919
+{txt}      /delta {c |}{col 14}{res}{space 2}  .023717{col 26}{space 2} .0035676{col 37}{space 1}    6.65{col 46}{space 3}0.000{col 54}{space 4} .0167221{col 67}{space 3}  .030712
+{txt}      /alpha {c |}{col 14}{res}{space 2} .4478971{col 26}{space 2}  .061662{col 37}{space 1}    7.26{col 46}{space 3}0.000{col 54}{space 4} .3269971{col 67}{space 3}  .568797
+{txt}     /xb_RTI {c |}{col 14}{res}{space 2} .0307752{col 26}{space 2} .0167464{col 37}{space 1}    1.84{col 46}{space 3}0.066{col 54}{space 4}-.0020593{col 67}{space 3} .0636097
+{txt}{hline 13}{c BT}{hline 11}{hline 11}{hline 9}{hline 8}{hline 13}{hline 12}
+  Parameter lnW taken as constant term in model
+({res}est1{txt} stored)
+
+{com}. 
+{txt}end of do-file
+
+{com}. do "C:\Users\wb164718\AppData\Local\Temp\STD5dd4_000000.tmp"
+{txt}
+{com}. estout, style(tex)
+{res}
+            &        est1\\
+            &           b\\
+lnW         &            \\
+_cons       &    8.395009\\
+bk          &            \\
+_cons       &     .133291\\
+delta       &            \\
+_cons       &     .023717\\
+alpha       &            \\
+_cons       &    .4478971\\
+xb_RTI      &            \\
+_cons       &    .0307752\\
+{txt}
+{com}. 
+{txt}end of do-file
+
+{com}. do "C:\Users\wb164718\AppData\Local\Temp\STD5dd4_000000.tmp"
+{txt}
+{com}. esttab using tablatex.tex, label replace booktabs varlabels(_cons \_cons) ///
+>    alignment(D{c -(}.{c )-}{c -(}.{c )-}{c -(}-1{c )-}) width(0.8\hsize)        ///
+>    title(Regression table\label{c -(}tab1{c )-})
+{res}{txt}(output written to {browse  `"tablatex.tex"'})
+
+{com}. 
+{txt}end of do-file
+
+{com}. do "C:\Users\wb164718\AppData\Local\Temp\STD5dd4_000000.tmp"
+{txt}
+{com}. esttab using tablatex.tex, label replace booktabs varlabels(_cons ) ///
+>    alignment(D{c -(}.{c )-}{c -(}.{c )-}{c -(}-1{c )-}) width(0.8\hsize)        ///
+>    title(Regression table\label{c -(}tab1{c )-})
+{res}{txt}(output written to {browse  `"tablatex.tex"'})
+
+{com}. 
+{txt}end of do-file
+
+{com}. do "C:\Users\wb164718\AppData\Local\Temp\STD5dd4_000000.tmp"
+{txt}
+{com}. esttab using tablatex.tex, label replace booktabs varlabels(_cons .) ///
+>    alignment(D{c -(}.{c )-}{c -(}.{c )-}{c -(}-1{c )-}) width(0.8\hsize)        ///
+>    title(Regression table\label{c -(}tab1{c )-})
+{res}{txt}(output written to {browse  `"tablatex.tex"'})
+
+{com}. 
+{txt}end of do-file
+
+{com}. do "C:\Users\wb164718\AppData\Local\Temp\STD5dd4_000000.tmp"
+{txt}
+{com}. esttab using tablatex.tex, label replace booktabs varlabels(_cons \_) ///
+>    alignment(D{c -(}.{c )-}{c -(}.{c )-}{c -(}-1{c )-}) width(0.8\hsize)        ///
+>    title(Regression table\label{c -(}tab1{c )-})
+{res}{txt}(output written to {browse  `"tablatex.tex"'})
+
+{com}. 
+{txt}end of do-file
+
+{com}. do "C:\Users\wb164718\AppData\Local\Temp\STD5dd4_000000.tmp"
+{txt}
+{com}. esttab using tablatex.tex, label replace booktabs style(smcl) ///
+>    alignment(D{c -(}.{c )-}{c -(}.{c )-}{c -(}-1{c )-}) width(0.8\hsize)        ///
+>    title(Regression table\label{c -(}tab1{c )-})
+{res}{txt}(output written to {browse  `"tablatex.tex"'})
+
+{com}. 
+{txt}end of do-file
+
+{com}. do "C:\Users\wb164718\AppData\Local\Temp\STD5dd4_000000.tmp"
+{txt}
+{com}. sjlog
+{err}filename required
+{txt}{search r(100), local:r(100);}
+
+end of do-file
+
+{search r(100), local:r(100);}
+
+{com}. exit, clear

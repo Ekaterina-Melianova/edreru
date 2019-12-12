@@ -2,6 +2,8 @@
 options(scipen=999) # to supress scientific notation
 # WP1 extension along lines of Neuman-Weiss 1995.
 
+
+
 library(plyr); library(dplyr)
 library(sqldf)
 library(XLConnectJars)
@@ -443,6 +445,9 @@ ggplot(temp_,aes(x=exper,y=wage_c18,group=as.factor(YEAR),linetype=as.factor(YEA
 
 ggsave("dp01_se.png", width = 3, height = 3.5,
        units = "in")
+
+
+## Just experimenting below
 
 ## Run Murillo Regression
 
