@@ -3,97 +3,30 @@
       name:  {res}<unnamed>
        {txt}log:  {res}C:\Country\Russia\Data\SEASHELL\SEABYTE\edreru\Stata\dep1a.smcl
   {txt}log type:  {res}smcl
- {txt}opened on:  {res} 4 Dec 2019, 09:44:01
+ {txt}opened on:  {res}23 Dec 2019, 20:04:37
 {txt}
-{com}. 
-. // Females
-. 
-. use df_18f, clear
-{txt}
-{com}. nl dep1a @ lnwage exper edu_yrs tlabor0, parameters(lnW bk delta alpha) initial(lnW 20 bk .2 delta .05 alpha .5) vce(robust) 
-{txt}(obs = 3,312)
-
-Iteration 0:  residual SS = {res} 1354.653
-{txt}Iteration 1:  residual SS = {res} 1192.259
-{txt}Iteration 2:  residual SS = {res} 1190.301
-{txt}Iteration 3:  residual SS = {res} 1190.268
-{txt}Iteration 4:  residual SS = {res} 1190.266
-{txt}Iteration 5:  residual SS = {res} 1190.265
-{txt}Iteration 6:  residual SS = {res} 1190.265
-{txt}Iteration 7:  residual SS = {res} 1190.265
-{txt}Iteration 8:  residual SS = {res} 1190.265
-{txt}Iteration 9:  residual SS = {res} 1190.265
-{txt}Iteration 10:  residual SS = {res} 1190.265
-
-
-{txt}Nonlinear regression{col 53}Number of obs = {res}     3,312
-{txt}{col 53}R-squared     = {res}    0.0824
-{txt}{col 53}Adj R-squared = {res}    0.0815
-{txt}{col 53}Root MSE      =  {res} .5998451
-{txt}{col 53}Res. dev.     =  {res} 6009.628
-
-{txt}{hline 13}{c TT}{hline 11}{hline 11}{hline 9}{hline 8}{hline 13}{hline 12}
-{col 14}{c |}{col 26}    Robust
-{col 1}      lnwage{col 14}{c |}      Coef.{col 26}   Std. Err.{col 38}      t{col 46}   P>|t|{col 54}     [95% Con{col 67}f. Interval]
-{hline 13}{c +}{hline 11}{hline 11}{hline 9}{hline 8}{hline 13}{hline 12}
-        /lnW {c |}{col 14}{res}{space 2} 8.413052{col 26}{space 2} .1274798{col 37}{space 1}   66.00{col 46}{space 3}0.000{col 54}{space 4} 8.163105{col 67}{space 3} 8.662999
-{txt}         /bk {c |}{col 14}{res}{space 2} .1329921{col 26}{space 2} .0103002{col 37}{space 1}   12.91{col 46}{space 3}0.000{col 54}{space 4} .1127967{col 67}{space 3} .1531875
-{txt}      /delta {c |}{col 14}{res}{space 2} .0249497{col 26}{space 2} .0035743{col 37}{space 1}    6.98{col 46}{space 3}0.000{col 54}{space 4} .0179417{col 67}{space 3} .0319577
-{txt}      /alpha {c |}{col 14}{res}{space 2} .4628328{col 26}{space 2} .0609128{col 37}{space 1}    7.60{col 46}{space 3}0.000{col 54}{space 4} .3434023{col 67}{space 3} .5822634
-{txt}{hline 13}{c BT}{hline 11}{hline 11}{hline 9}{hline 8}{hline 13}{hline 12}
-  Parameter lnW taken as constant term in model
-
-{com}. 
-. // Males
-. 
-. use df_18m, clear
-{txt}
-{com}. nl dep1a @ lnwage exper edu_yrs tlabor0, parameters(lnW bk delta alpha) initial(lnW 20 bk .2 delta .05 alpha .5) vce(robust) 
-{txt}(obs = 2,800)
-
-Iteration 0:  residual SS = {res} 936.4723
-{txt}Iteration 1:  residual SS = {res} 921.8974
-{txt}Iteration 2:  residual SS = {res} 921.6865
-{txt}Iteration 3:  residual SS = {res} 921.6843
-{txt}Iteration 4:  residual SS = {res} 921.6841
-{txt}Iteration 5:  residual SS = {res} 921.6841
-{txt}Iteration 6:  residual SS = {res} 921.6841
-{txt}Iteration 7:  residual SS = {res} 921.6841
-{txt}Iteration 8:  residual SS = {res} 921.6841
-
-
-{txt}Nonlinear regression{col 53}Number of obs = {res}     2,800
-{txt}{col 53}R-squared     = {res}    0.0972
-{txt}{col 53}Adj R-squared = {res}    0.0962
-{txt}{col 53}Root MSE      =  {res} .5741462
-{txt}{col 53}Res. dev.     =  {res} 4834.774
-
-{txt}{hline 13}{c TT}{hline 11}{hline 11}{hline 9}{hline 8}{hline 13}{hline 12}
-{col 14}{c |}{col 26}    Robust
-{col 1}      lnwage{col 14}{c |}      Coef.{col 26}   Std. Err.{col 38}      t{col 46}   P>|t|{col 54}     [95% Con{col 67}f. Interval]
-{hline 13}{c +}{hline 11}{hline 11}{hline 9}{hline 8}{hline 13}{hline 12}
-        /lnW {c |}{col 14}{res}{space 2} 8.838395{col 26}{space 2} .1212945{col 37}{space 1}   72.87{col 46}{space 3}0.000{col 54}{space 4} 8.600559{col 67}{space 3} 9.076231
-{txt}         /bk {c |}{col 14}{res}{space 2} .1783578{col 26}{space 2} .0117916{col 37}{space 1}   15.13{col 46}{space 3}0.000{col 54}{space 4} .1552367{col 67}{space 3} .2014789
-{txt}      /delta {c |}{col 14}{res}{space 2} .0510964{col 26}{space 2} .0069249{col 37}{space 1}    7.38{col 46}{space 3}0.000{col 54}{space 4} .0375181{col 67}{space 3} .0646748
-{txt}      /alpha {c |}{col 14}{res}{space 2} .7311859{col 26}{space 2} .0662776{col 37}{space 1}   11.03{col 46}{space 3}0.000{col 54}{space 4} .6012278{col 67}{space 3} .8611439
-{txt}{hline 13}{c BT}{hline 11}{hline 11}{hline 9}{hline 8}{hline 13}{hline 12}
-  Parameter lnW taken as constant term in model
-
 {com}. 
 {txt}end of do-file
 
-{com}. do "C:\Users\wb164718\AppData\Local\Temp\STD5dd4_000000.tmp"
+{com}. do "C:\Users\1\AppData\Local\Temp\STD40e8_000000.tmp"
 {txt}
-{com}. // Set wd
-. cd C:\Country\Russia\Data\SEASHELL\SEABYTE\edreru\Stata
-{res}C:\Country\Russia\Data\SEASHELL\SEABYTE\edreru\Stata
+{com}. use df_18f, clear
 {txt}
 {com}. 
-. // Preamble
-. version 16
+{txt}end of do-file
+
+{com}. do "C:\Users\1\AppData\Local\Temp\STD40e8_000000.tmp"
 {txt}
-{com}. set more off
-{txt}
-{com}. capture log close
-{smcl}
-{com}{sf}{ul off}
+{com}. nldep1a @ lnwage exper edu_yrs tlabor0, parameters(lnW bk delta alpha) initial(lnW 20 bk .2 delta .05 alpha .5) vce(robust) 
+{err}this is version 15.0 of Stata; it cannot run version 16.0 programs
+{p 5 5 2}
+You can purchase the latest version of Stata by visiting
+{browse "http://www.stata.com"}.
+{p_end}
+{txt}{search r(9), local:r(9);}
+
+end of do-file
+
+{search r(9), local:r(9);}
+
+{com}. exit, clear

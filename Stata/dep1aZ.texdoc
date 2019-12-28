@@ -25,7 +25,7 @@ tex*/
 // Set wd
 cd C:\Country\Russia\Data\SEASHELL\SEABYTE\edreru\Stata
 // Preamble
-version 16
+version 15
 set more off
 // Females
 

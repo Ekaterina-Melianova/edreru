@@ -1,0 +1,12 @@
+{smcl}
+{txt}{sf}{ul off}
+{com}. use df_18fz, clear
+{err}{p 0 4 2}
+file df_18fz.dta
+not found
+{p_end}
+{txt}{search r(601), local:r(601);}
+
+end of do-file
+{smcl}
+{txt}{sf}{ul off}

@@ -2,8 +2,6 @@
 options(scipen=999) # to supress scientific notation
 # WP1 extension along lines of Neuman-Weiss 1995.
 
-
-
 library(plyr); library(dplyr)
 library(sqldf)
 library(XLConnectJars)
@@ -31,6 +29,17 @@ setwd("C:/Country/Russia/Data/SEASHELL/SEABYTE/edreru/wp1")
 # Load data generated and saved in mincer2a.R file with RLMS 1994-2018 cleaned and cooked well
 df_mincer <- readRDS("df_mincer.rds")
 
+############
+# Adjusting to prices in 2018
+cpi <- rio::import("cpi_revised.xlsx")[,c(1,6)]
+df_mincer <- df_mincer %>% left_join(cpi,by="YEAR")
+df_mincer2 <- df_mincer %>% 
+  mutate(wage_c18=ifelse(YEAR >=1998,wage*cons_wb,(wage*cons_wb/1000)))
+
+# Saving
+saveRDS(df_mincer2, "df_mincer2.rds")
+############
+
 ## I want to bring in some other variables from the rawdata sqlite database.
 ## The additional variables are
 # J41 - Industry or Sector of employment in RLMS
@@ -44,7 +53,7 @@ dbDisconnect(db) # I disconnect as the connection is no longer needed
 
 ############################################################################################
 # I merge the variable I need and drop the other classifying variable
-temp1 <- df_mincer %>%
+temp1 <- df_mincer2 %>%
   left_join(temp1_, by = c("YEAR", "IDIND")) %>% select(-ID_I,-ID_H,-ID_W,-REDID_I)
 
 rm(temp1_) # don't need this anymore
@@ -157,6 +166,21 @@ t2t_ <- t2_ %>% select(ilab,tfem,pfem,tall) %>%
 xtable::xtable(t2t_)
 rm(t2t_)
 
+#############
+#############
+#############
+#############
+############# Adding indcat to the main 2018 df
+temp1$J4_1 <- as.numeric(temp1$J4_1)
+df_dep_18 <- temp1 %>% 
+  filter (YEAR == 2018) %>%
+  left_join(t2_[, c("J4_1", "indcat")], by = "J4_1")
+#############
+#############
+#############
+#############
+#############
+
 
 # Keep only variables needed for graphing and introduce rank
 t2_ <- t2_ %>% arrange(desc(pfem)) %>% select(J4_1,pfem,pmal) %>% 
@@ -175,8 +199,8 @@ ggplot(t2b_,aes(x=reorder(as.factor(J4_1),rankf),y=percentage,fill=gender))+
   ylab("Percentage") +
   theme(legend.position ="NONE")
   
-ggsave("gen_ind18.png", width = 7.5, height = 4,
-       units = "in")
+#ggsave("gen_ind18.png", width = 7.5, height = 4,
+#       units = "in")
 
 
 
@@ -347,6 +371,40 @@ t2t_ <- t2_ %>% select(ilab,tfem,pfem,tall) %>% arrange(desc(pfem)) %>%
 xtable::xtable(t2t_)
 rm(t2t_)
 
+#############
+#############
+#############
+#############
+############# 
+# Adding categorization by double digit occupational digit to the main 2018 df
+
+# ! The same procedure as above but for the whole df
+temp218_ <- df_dep_18 %>% mutate(isco_2=substr(occup,1,2))
+
+t2 <- temp218_ %>% 
+  mutate(isco_2=replace(isco_2,isco_2%in%c(0,35,61,62,95),66)) %>% arrange(isco_2) %>%   
+  group_by(isco_2) %>% 
+  summarize(tfem=sum(female),tall=n()) %>% arrange(desc(tall)) %>%
+  mutate(pfem=tfem/tall) %>%  mutate(pfem=round(pfem,4)*100,pmal=100-pfem) %>% arrange(desc(pfem))
+
+t2$ocpcat18 <- NA
+t2$ocpcat18[t2$pfem<44] <- "occmale"
+t2$ocpcat18[t2$pfem>=44&t2$pfem<=64] <- "occneut"
+t2$ocpcat18[t2$pfem>64] <- "occfemale"
+
+df_dep_18 <- df_dep_18 %>% mutate(isco_2 = substr(occup,1,2))
+df_dep_18 <- df_dep_18 %>%
+  left_join(t2[, c("isco_2", "ocpcat18")], by = "isco_2")
+
+# Saving
+saveRDS(df_dep_18, "df_dep_18_.rds")
+
+#############
+#############
+#############
+#############
+#############
+
 # Keep only variables needed for graphing and introduce rank
 t2_ <- t2_ %>% arrange(desc(pfem)) %>% select(isco_2,pfem,pmal) %>% 
   mutate(rankf=rank(desc(pfem)))
@@ -384,16 +442,9 @@ ggplot(temp218_,aes(x=exper,y=wage,group=edu_4,col=edu_4)) + geom_smooth(se=FALS
    facet_wrap(~female)
 
 
-# Adjusting to prices in 2018
-cpi <- rio::import("cpi_revised.xlsx")[,c(1,6)]
 
-df_mincer <- df_mincer %>% left_join(cpi,by="YEAR")
-
-
-## To adjust wages to 2018 Ruble values 
-df_mincer <- df_mincer %>% mutate(wage_c18=ifelse(YEAR >=1998,wage*cons_wb,(wage*cons_wb/1000)))
-
-# wages in 2018 are alomst 3 times as high as wages in 2000:
+##########################################################################################
+# wages in 2018 are alomst 3 times as high as in 2000:
 aggregate(wage_c18 ~ YEAR, df_mincer, mean)
 aggregate(wage ~ YEAR, df_mincer, mean)
 

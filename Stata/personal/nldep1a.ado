@@ -3,7 +3,7 @@
 
 program nldep1a
 
-version 16
+version 15
 
 syntax varlist if , at(name)
 

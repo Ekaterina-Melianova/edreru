@@ -15,6 +15,9 @@ library(ggplot2)
 library(data.table)
 library(pbapply)
 library(gridExtra)
+library(rio)
+library(stargazer)
+library(xtable)
 
 ############################################################################################################
 
@@ -22,158 +25,24 @@ library(gridExtra)
 wd <- "C:/Country/Russia/Data/SEASHELL/SEABYTE/Databases/RLMS/sqlite"
 setwd(wd) 
 
+# Some functions -later to be edreru package
+source("C:/Country/Russia/Data/SEASHELL/SEABYTE/edreru/edreru_package.R")
+
 # Connecting with SQLite
 db <- dbConnect(SQLite(), dbname="C:/Country/Russia/Data/SEASHELL/SEABYTE/Databases/RLMS/sqlite/rlms.db")
-# Modified cbind
-cbind.all <- function (...){
-  nm <- list(...)
-  nm <- lapply(nm, as.matrix)
-  n <- max(sapply(nm, nrow))
-  do.call(cbind, lapply(nm, function(x) rbind(x, matrix(, n - 
-                                                          nrow(x), ncol(x)))))
-}
-# A function for variable selection
-selectFromSQL <- function(column_names=NULL, column_blocks=NULL, wave_number=NULL, dbname = "rlms.db"){
-  "
-  1. column_names - select specific column/s
-  
-  2. column_blocks - select specific block/s of columns. Available blocks:
-  Bank services
-  Children
-  Daily activities
-  Education
-  Elections
-  Employment
-  Employment/finance (retrospective)
-  Family
-  Finance
-  For women only
-  Health assessment
-  Identification variables
-  Inequity issues
-  Insurance
-  Interviewer's remarks
-  IT skills
-  Law
-  Living conditions
-  Maternal capital
-  Medical care
-  Migration
-  Military service
-  Nationality issues
-  Other
-  Pension
-  Personality assessment
-  Politics
-  Religion
-  Safety/crimes
-  Shopping
-  Socio-demographics
-  Sorces of news
-  State services
-  Transition period
-  Traveling
-  Trust
-  
-  3. wave_number - select specific wave/s in RLMS
-  
-  4. db_name - name of database in SQLite, by default rlms.db
-  
-  "
-  
-  # Add blocks to columns
-  if (is.null(column_blocks) == FALSE){
-    # Load table with blocks
-    blocks_df <- sqldf('SELECT * from rlms_blocks', dbname = dbname)
-    # Get columns from the selected blocks
-    columns_from_blocks <- c()
-    for (block in column_blocks){
-      columns_from_blocks <- c(columns_from_blocks, blocks_df[blocks_df$column_block == block,]$column_names)
-    }
-    column_names <- c(column_names, columns_from_blocks)
-  }
-  
-  # Add ids to the columns
-  column_names <- unique(c("ID_W", "IDIND", "REDID_I", "ID_I", "ID_H", column_names))
-  # Condition on a wave number 
-  if (is.null(wave_number) == FALSE){
-    if(length(wave_number) == 1){
-      wave_condition <- paste('WHERE ID_W =', wave_number)
-    } else {
-      wave_condition <- paste('WHERE', paste(paste0('ID_W=', wave_number), collapse=' or '))
-    }
-  } else {
-    wave_condition <- ""
-  }
-  
-  # In case if the number of columns is 63 or larger (a default limitation of SQLite)
-  if (length(column_names) >= 63){
-    # Create a list with column chunks
-    column_splits <- split(column_names, ceiling(seq_along(column_names)/63))
-    # Add the columns by parts
-    result_df <- data.frame()
-    for (column_split in column_splits){
-      if ('ID_W' %in% column_split == FALSE){
-        column_split <- c('ID_W', column_split)
-      }
-      
-      command_line <- paste(c("SELECT", paste(column_split, collapse=', '),
-                              "FROM", paste(column_split, collapse=' NATURAL JOIN '),
-                              wave_condition), collapse = ' ')
-      cat('--- SQL command:', command_line, sep="\n")
-      temp_df <- data.frame(sqldf(command_line, dbname = dbname))
-      result_df <- data.frame(cbind.all(result_df, temp_df))
-    }
-    # Remove duplicates of the ID_W column
-    result_df <- result_df[, -grep("ID_W.", colnames(result_df))]
-    
-  } else {
-    command_line <- paste(c("SELECT", paste(column_names, collapse=', '),
-                            "FROM", paste(column_names, collapse=' NATURAL JOIN '),
-                            wave_condition), collapse = ' ')
-    cat('--- SQL command:', command_line, sep="\n")
-    result_df <- sqldf(command_line, dbname = dbname)
-  }
-  
-  return(result_df)
-}
 
 ############################################################################################################
 
 # Selecting the variables of interest
-df_ <- selectFromSQL(c("AGE", "J13_2", "J10", "J40", "EDUC", "J1",
+df_ <- selectFromSQL(c("REGION", "AGE", "J13_2", "J10", "J40", "EDUC", "J1",
                        "J5A", "J5B", "H7_2", "H5", "J2COD08",
                        "J23", "I2", "I4", "YEAR", "J40", "J35_2Y", "J35_2M",
                        "total_exper", "exper_main_", "exper_add_",
                        "J5A_", "J5B_", "J35_2Y_", "J35_2M_", 
                        "EDUC"))
 
+dbDisconnect(db)
 # Fixing system and user-defined missings in the RLMS database
-
-# Defining functions for a proper treatment of missing values
-SysMisFix <- function(df){
-  "SysMisFix changes chategorical NA to missing values"
-  temp <- df
-  for (i in colnames(df)){
-    temp[,i] <- mapvalues(df[,i], "NA", NA, warn_missing = F)
-  }
-  return(temp)
-}
-UserMisFix <- function(df, na_range = 99999997:99999999){
-  "UserMisFix labels user-defined missings as missing value "
-  for (i in colnames(df)){
-    if (is.character(df[,i]) == T){
-      na_values(df[,i]) <- as.character(na_range)
-      }
-    else if (is.factor(df[,i]) == T){
-      na_values(df[,i]) <- NULL
-      }
-    else if (!i %in% c("ID_W", "IDIND","YEAR","REDID_I","ID_I","ID_H")){
-      na_values(df[,i]) <- na_range
-    }
-  }
-  return(df)
-} 
 
 df_ <- SysMisFix(df_) # determining system missings
 df_ <- UserMisFix(df_) # labelling user-defined missings
@@ -263,7 +132,7 @@ df$exper <- df$AGE - df$edu_yrs - 6
 summary(df$exper)
 
 # Generating a final dataset for the analysis
-df_mincer <- df[, c("IDIND", "YEAR", "edu_4", "wage",
+df_mincer <- df[, c("REGION", "IDIND", "YEAR", "edu_4", "wage",
                     "exper", "non_russ", "female",
                     "edu_yrs")]
 summary(df_mincer)
@@ -299,65 +168,64 @@ saveRDS(df_mincer_save, paste0(wd, "/", "df_mincer.rds"))
 ########################################### Regression ####################################################
 
 # Empty list where the regression output will be written
-lm_mincer_all <- vector("list", length(unique(df_mincer$YEAR)))
-lm_mincer_f = lm_mincer_m = lm_mincer_rus = lm_mincer_nrus = lm_mincer_all 
+lm_mincer_all_1 <- vector("list", length(unique(df_mincer$YEAR)))
+lm_mincer_f_1 = lm_mincer_m_1 = lm_mincer_all_2 = lm_mincer_f_2 = lm_mincer_m_2 = lm_mincer_all_1
 
 seq_year <- unique(df_mincer$YEAR)
 
-# Looping over each year
-# all
-for(i in seq(length(seq_year))){
-  lm_mincer_all[[i]] <- lm(log(wage) ~ edu_4 + exper + I(exper^2) + non_russ + female,
-                     data = df_mincer[df_mincer$YEAR == seq_year[i],])
-}
-names(lm_mincer_all) <- seq_year
+# Looping over each year (all and by gender)
 
-# by gender
 for(i in seq(length(seq_year))){
-   lm_mincer_f[[i]] <- lm(log(wage) ~ edu_4 + exper + I(exper^2) + non_russ,
+   # metric education - edu_yrs
+   lm_mincer_all_1[[i]] <- lm(log(wage) ~ edu_yrs + exper + I(exper^2) + female,
+                           data = df_mincer[df_mincer$YEAR == seq_year[i],])
+  
+   lm_mincer_f_1[[i]] <- lm(log(wage) ~ edu_yrs + exper + I(exper^2),
                        data = df_mincer[df_mincer$YEAR == seq_year[i] & 
                                           df_mincer$female == 1,])
-   lm_mincer_m[[i]] <- lm(log(wage) ~ edu_4 + exper + I(exper^2) + non_russ,
+   
+   lm_mincer_m_1[[i]] <- lm(log(wage) ~ edu_yrs + exper + I(exper^2),
                                data = df_mincer[df_mincer$YEAR == seq_year[i] & 
                                                   df_mincer$female == 0,])  
+   # categorical education - edu_4
+   
+   lm_mincer_all_2[[i]] <- lm(log(wage) ~ edu_4 + exper + I(exper^2) + female,
+                            data = df_mincer[df_mincer$YEAR == seq_year[i],])
+   
+   lm_mincer_f_2[[i]] <- lm(log(wage) ~ edu_4 + exper + I(exper^2),
+                          data = df_mincer[df_mincer$YEAR == seq_year[i] & 
+                                             df_mincer$female == 1,])
+   
+   lm_mincer_m_2[[i]] <- lm(log(wage) ~ edu_4 + exper + I(exper^2),
+                          data = df_mincer[df_mincer$YEAR == seq_year[i] & 
+                                             df_mincer$female == 0,]) 
 }
 
-# by nationality
-for(i in seq(length(seq_year))){
-  lm_mincer_rus[[i]] <- lm(log(wage) ~ edu_4 + exper + I(exper^2) + female,
-                         data = df_mincer[df_mincer$YEAR == seq_year[i] & 
-                                            df_mincer$non_russ == 0,])
-  lm_mincer_nrus[[i]] <- lm(log(wage) ~ edu_4 + exper + I(exper^2) + female,
-                         data = df_mincer[df_mincer$YEAR == seq_year[i] & 
-                                            df_mincer$non_russ == 1,])  
-}
+names(lm_mincer_f_1) <- seq_year
+names(lm_mincer_m_1) <- seq_year
+names(lm_mincer_all_1) <- seq_year
+names(lm_mincer_f_2) <- seq_year
+names(lm_mincer_m_2) <- seq_year
+names(lm_mincer_all_2) <- seq_year
 
-names(lm_mincer_f) <- seq_year
-names(lm_mincer_m) <- seq_year
-
-names(lm_mincer_rus) <- seq_year
-names(lm_mincer_nrus) <- seq_year
-
-smry_all <- lapply(lm_mincer_all, summary)
-smry_f <- lapply(lm_mincer_f, summary)
-smry_m <- lapply(lm_mincer_m, summary)
-smry_rus <- lapply(lm_mincer_rus, summary)
-smry_nrus <- lapply(lm_mincer_nrus, summary)
-
-smry_all
-smry_f
-smry_m
-smry_rus
-smry_nrus
+smry_all_1 <- lapply(lm_mincer_all_1, summary)
+smry_f_1 <- lapply(lm_mincer_f_1, summary)
+smry_m_1 <- lapply(lm_mincer_m_1, summary)
+smry_all_2 <- lapply(lm_mincer_all_2, summary)
+smry_f_2 <- lapply(lm_mincer_f_2, summary)
+smry_m_2 <- lapply(lm_mincer_m_2, summary)
 
 # Calculating returns by year for higher and vocational education
 
-RoREs <- as.data.frame((matrix(ncol = 21, nrow = length(seq_year))))
-colnames(RoREs) <-  c("YEAR", "returns_to_HE_all", "p_for_HE_all", "returns_to_VE_all", "p_for_VE_all",
+RoREs <- as.data.frame((matrix(ncol = 19, nrow = length(seq_year))))
+colnames(RoREs) <-  c("YEAR",
+                      "returns_to_edu_all", "p_for_edu_all",
+                      "returns_to_edu_f", "p_for_edu_f",
+                      "returns_to_edu_m", "p_for_edu_m", 
+                      
+                      "returns_to_HE_all", "p_for_HE_all", "returns_to_VE_all", "p_for_VE_all",
                       "returns_to_HE_f", "p_for_HE_f", "returns_to_VE_f", "p_for_VE_f",
-                      "returns_to_HE_m", "p_for_HE_m", "returns_to_VE_m", "p_for_VE_m",
-                      "returns_to_HE_rus", "p_for_HE_rus", "returns_to_VE_rus", "p_for_VE_rus",
-                      "returns_to_HE_nrus", "p_for_HE_nrus", "returns_to_VE_nrus", "p_for_VE_nrus")
+                      "returns_to_HE_m", "p_for_HE_m", "returns_to_VE_m", "p_for_VE_m")
 
 # A function for percentages
 percent <- function(x, digits = 1, format = "f", ...) {
@@ -366,197 +234,255 @@ percent <- function(x, digits = 1, format = "f", ...) {
 
 # Obtaining the values
 for (i in seq(length(seq_year))){
-  RoREs[i,] <- c(seq_year[i], (percent(exp(smry_all[[i]]$coefficients[3,1]) - 1)),
-                 formatC(smry_all[[i]]$coefficients[3,4], digits = 2),
-                 (percent(exp(smry_all[[i]]$coefficients[2,1]) - 1)),
-                 formatC(smry_all[[i]]$coefficients[2,4], digits = 2),
+  RoREs[i,] <- c(seq_year[i],
                  
-                 (percent(exp(smry_f[[i]]$coefficients[3,1]) - 1)),
-                 formatC(smry_f[[i]]$coefficients[3,4], digits = 2),
-                 (percent(exp(smry_f[[i]]$coefficients[2,1]) - 1)),
-                 formatC(smry_f[[i]]$coefficients[2,4], digits = 2),
+                 (percent(exp(smry_all_1[[i]]$coefficients[2,1]) - 1)),
+                 formatC(smry_all_1[[i]]$coefficients[2,4], digits = 2),
                  
-                 (percent(exp(smry_m[[i]]$coefficients[3,1]) - 1)),
-                 formatC(smry_m[[i]]$coefficients[3,4], digits = 2),
-                 (percent(exp(smry_m[[i]]$coefficients[2,1]) - 1)),
-                 formatC(smry_m[[i]]$coefficients[2,4], digits = 2),
+                 (percent(exp(smry_f_1[[i]]$coefficients[2,1]) - 1)),
+                 formatC(smry_f_1[[i]]$coefficients[2,4], digits = 2),
                  
-                 (percent(exp(smry_rus[[i]]$coefficients[3,1]) - 1)),
-                 formatC(smry_rus[[i]]$coefficients[3,4], digits = 2),
-                 (percent(exp(smry_rus[[i]]$coefficients[2,1]) - 1)),
-                 formatC(smry_rus[[i]]$coefficients[2,4], digits = 2),
+                 (percent(exp(smry_m_1[[i]]$coefficients[2,1]) - 1)),
+                 formatC(smry_m_1[[i]]$coefficients[2,4], digits = 2),
                  
-                 (percent(exp(smry_nrus[[i]]$coefficients[3,1]) - 1)),
-                 formatC(smry_nrus[[i]]$coefficients[3,4], digits = 2),
-                 (percent(exp(smry_nrus[[i]]$coefficients[2,1]) - 1)),
-                 formatC(smry_nrus[[i]]$coefficients[2,4], digits = 2))
+                 (percent(exp(smry_all_2[[i]]$coefficients[3,1]) - 1)),
+                 formatC(smry_all_2[[i]]$coefficients[3,4], digits = 2),
+                 (percent(exp(smry_all_2[[i]]$coefficients[2,1]) - 1)),
+                 formatC(smry_all_2[[i]]$coefficients[2,4], digits = 2),
+                 
+                 (percent(exp(smry_f_2[[i]]$coefficients[3,1]) - 1)),
+                 formatC(smry_f_2[[i]]$coefficients[3,4], digits = 2),
+                 (percent(exp(smry_f_2[[i]]$coefficients[2,1]) - 1)),
+                 formatC(smry_f_2[[i]]$coefficients[2,4], digits = 2),
+                 
+                 (percent(exp(smry_m_2[[i]]$coefficients[3,1]) - 1)),
+                 formatC(smry_m_2[[i]]$coefficients[3,4], digits = 2),
+                 (percent(exp(smry_m_2[[i]]$coefficients[2,1]) - 1)),
+                 formatC(smry_m_2[[i]]$coefficients[2,4], digits = 2))
 }
 
 # RoREs
-
+x_axis <- c(c(1994, 1996), seq(2000, 2018, 2))
 # Converting to data.table and melting in order to visualize
 RoREs <- as.data.table(RoREs)
-RoREs_1 <- melt(RoREs, measure=c("returns_to_HE_all", "returns_to_VE_all"))
-RoREs_1$value <- as.numeric(substr(RoREs_1$value, 1, nchar(RoREs_1$value)-1))
+RoREs_edu <- melt(RoREs, measure=c("returns_to_edu_all", 
+                                 "returns_to_edu_f",
+                                 "returns_to_edu_m"))
+RoREs_edu$value <- as.numeric(substr(RoREs_edu$value, 1, nchar(RoREs_edu$value)-1))
+RoREs_edu$variable <- factor(RoREs_edu$variable,
+                           labels = c("Total",
+                                      "Females",
+                                      "Males"))
 
 # Plotting all
-p1 <- ggplot(RoREs_1, aes(YEAR, value, group = variable, color = variable)) +
-  geom_point(size = 3) +
-  geom_smooth(se = F) +
-  scale_y_continuous(limits = c(-10, 110), breaks = seq(-50, 110, 10)) +
+ggplot(RoREs_edu, aes(YEAR, value, group = variable, color = variable,
+                    shape = variable)) +
+  geom_point(aes(shape = variable), size = 4) +
+  geom_smooth(se = F, method = 'loess') +
+  geom_line() +
+  scale_y_continuous(limits = c(5, 15)) +
   theme(legend.title = element_blank(),
         legend.position = "bottom",
         panel.grid.minor = element_blank(),
-        axis.text.x = element_text(angle = 30, hjust = 1)) +
- ylab("Rate of returns, %") +
- xlab("Year")
-
-############################################################################
-par(mfrow = c(1,2))
-
-# The same procedure for females
-RoREs_2 <- melt(RoREs, measure=c("returns_to_HE_f", "returns_to_VE_f"))
-RoREs_2$value <- as.numeric(substr(RoREs_2$value, 1, nchar(RoREs_2$value)-1))
-
-# Plotting females
-p2 <- ggplot(RoREs_2, aes(YEAR, value, group = variable, color = variable)) +
-  geom_smooth(se = F) +
-  geom_point(size = 3) +
-  scale_y_continuous(limits = c(-10, 110), breaks = seq(-50, 110, 10)) +
-  theme(legend.title = element_blank(),
-        legend.position = "bottom",
-        panel.grid.minor = element_blank(),
-        axis.text.x = element_text(angle = 30, hjust = 1)) +
+        axis.text.x = element_text(angle = 30, hjust = 1, size = 16),
+        axis.text.y = element_text(size = 16),
+        axis.title = element_text(size = 16),
+        legend.text = element_text(size = 16),
+        legend.key = element_rect(size = 16)) +
+  scale_color_manual(values = c("darkgray", "red3", "darkgreen")) +
+  #scale_shape_manual(values=c(2,4)) +
+  scale_x_discrete(breaks = x_axis) +
   ylab("Rate of returns, %") +
   xlab("Year")
 
+wd <- "C:/Country/Russia/Data/SEASHELL/SEABYTE/edreru/wp1"
+setwd(wd)
+# Saving
+ggsave("re_edu.png", width = 10, height = 7,
+       units = "in")
+
+#####################################################################################
+RoREs_HE_VE_all <- melt(RoREs, measure=c("returns_to_HE_all", "returns_to_VE_all"))
+RoREs_HE_VE_all$value <- as.numeric(substr(RoREs_HE_VE_all$value, 1,
+                                           nchar(RoREs_HE_VE_all$value)-1))
+RoREs_HE_VE_all$variable <- factor(RoREs_HE_VE_all$variable,
+                           labels = c("Higher education",
+                                      "Vocational education"))
+
+# Plotting all
+ggplot(RoREs_HE_VE_all, aes(YEAR, value, group = variable, color = variable,
+                          shape = variable)) +
+  geom_point(aes(shape = variable), size = 4) +
+  geom_smooth(se = F, method = 'loess') +
+  geom_line() +
+  scale_y_continuous(limits = c(0, 120), breaks = seq(0, 120, 10)) +
+  theme(legend.title = element_blank(),
+        legend.position = "bottom",
+        panel.grid.minor = element_blank(),
+        axis.text.x = element_text(angle = 30, hjust = 1, size = 16),
+        axis.text.y = element_text(size = 16),
+        axis.title = element_text(size = 16),
+        legend.text = element_text(size = 16),
+        legend.key = element_rect(size = 16)) +
+  scale_color_manual(values = c("darkgreen", "red")) +
+  #scale_shape_manual(values=c(2,4)) +
+  scale_x_discrete(breaks = x_axis) +
+  ylab("Rate of returns, %") +
+  xlab("Year")
+
+# Saving
+ggsave("re_HE_all.png", width = 7, height = 7,
+       units = "in")
+
+############################################################################
+# The same procedure for females
+RoREs_HE_VE_f <- melt(RoREs, measure=c("returns_to_HE_f",
+                                       "returns_to_VE_f"))
+RoREs_HE_VE_f$value <- as.numeric(substr(RoREs_HE_VE_f$value, 1,
+                                         nchar(RoREs_HE_VE_f$value)-1))
+RoREs_HE_VE_f$variable <- factor(RoREs_HE_VE_f$variable,
+                            labels = c("Higher education",
+                                       "Vocational education"))
+
+# Plotting females
+ggplot(RoREs_HE_VE_f, aes(YEAR, value, group = variable, color = variable)) +
+  geom_point(aes(shape = variable), size = 4) +
+  geom_smooth(se = F, method = 'loess') +
+  geom_line() +
+  scale_y_continuous(limits = c(0, 120), breaks = seq(0, 120, 10)) +
+  theme(legend.title = element_blank(),
+        legend.position = "bottom",
+        panel.grid.minor = element_blank(),
+        axis.text.x = element_text(angle = 30, hjust = 1, size = 16),
+        axis.text.y = element_text(size = 16),
+        axis.title = element_text(size = 16),
+        legend.text = element_text(size = 16),
+        legend.key = element_rect(size = 16)) +
+  scale_color_manual(values = c("darkgreen", "red")) +
+  scale_x_discrete(breaks = x_axis) +
+  ylab("Rate of returns, %") +
+  xlab("Year")
+
+# Saving
+ggsave("re_HE_f.png", width = 7, height = 7,
+       units = "in")
 
 # The same procedure for males
-RoREs_3 <- melt(RoREs, measure=c("returns_to_HE_m", "returns_to_VE_m"))
-RoREs_3$value <- as.numeric(substr(RoREs_3$value, 1, nchar(RoREs_3$value)-1))
-
+RoREs_HE_VE_m <- melt(RoREs, measure=c("returns_to_HE_m",
+                                  "returns_to_VE_m"))
+RoREs_HE_VE_m$value <- as.numeric(substr(RoREs_HE_VE_m$value, 1,
+                                    nchar(RoREs_HE_VE_m$value)-1))
+RoREs_HE_VE_m$variable <- factor(RoREs_HE_VE_m$variable,
+                            labels = c("Higher education",
+                                       "Vocational education"))
 # Plotting males
-p3 <- ggplot(RoREs_3, aes(YEAR, value, group = variable, color = variable)) +
-  geom_smooth(se = F) + 
-  geom_point(size = 3) +
-  scale_y_continuous(limits = c(-10, 110), breaks = seq(-50, 110, 10)) +
+ggplot(RoREs_HE_VE_m, aes(YEAR, value, group = variable, color = variable)) +
+  geom_point(aes(shape = variable), size = 4) +
+  geom_smooth(se = F, method = 'loess') +
+  geom_line() +
+  scale_y_continuous(limits = c(0, 120), breaks = seq(0, 120, 10)) +
   theme(legend.title = element_blank(),
         legend.position = "bottom",
         panel.grid.minor = element_blank(),
-        axis.text.x = element_text(angle = 30, hjust = 1)) +
+        axis.text.x = element_text(angle = 30, hjust = 1, size = 16),
+        axis.text.y = element_text(size = 16),
+        axis.title = element_text(size = 16),
+        legend.text = element_text(size = 16),
+        legend.key = element_rect(size = 16)) +
+  scale_color_manual(values = c("darkgreen", "red")) +
+  scale_x_discrete(breaks = x_axis) +
   ylab("Rate of returns, %") +
   xlab("Year")
 
-grid.arrange(p2, p3, nrow=1, ncol=2)
-############################################################################
-
-# The same procedure for Russians
-RoREs_4 <- melt(RoREs, measure=c("returns_to_HE_rus", "returns_to_VE_rus"))
-RoREs_4$value <- as.numeric(substr(RoREs_4$value, 1, nchar(RoREs_4$value)-1))
-
-# Plotting females
-p4 <- ggplot(RoREs_4, aes(YEAR, value, group = variable, color = variable)) +
-  geom_smooth(se = F)  +
-  geom_point(size = 3) +
-  scale_y_continuous(limits = c(-10, 110), breaks = seq(-50, 110, 10)) +
-  theme(legend.title = element_blank(),
-        legend.position = "bottom",
-        panel.grid.minor = element_blank(),
-        axis.text.x = element_text(angle = 30, hjust = 1)) +
-  ylab("Rate of returns, %") +
-  xlab("Year")
+# Saving
+ggsave("re_HE_m.png", width = 7, height = 7,
+       units = "in")
 
 
-# The same procedure for non-Russians
-RoREs_5 <- melt(RoREs, measure=c("returns_to_HE_nrus", "returns_to_VE_nrus"))
-RoREs_5$value <- as.numeric(substr(RoREs_5$value, 1, nchar(RoREs_5$value)-1))
+###################################
+# TeX tables
 
-# Plotting males
-p5 <- ggplot(RoREs_5, aes(YEAR, value, group = variable, color = variable)) +
-  geom_smooth(se = F)  +
-  geom_point(size = 3) +
-  scale_y_continuous(limits = c(-10, 110), breaks = seq(-50, 110, 10)) +
-  theme(legend.title = element_blank(),
-        legend.position = "bottom",
-        panel.grid.minor = element_blank(),
-        axis.text.x = element_text(angle = 30, hjust = 1)) +
-  ylab("Rate of returns, %") +
-  xlab("Year")
+for (i in 1:4){
+  cat("\n\\begin{landscape}\n")
+  cat("\n\\fontsize{9}{11}\n\\selectfont\n")
+  stargazer(lm_mincer_all_1[i],
+            lm_mincer_m_1[i],
+            lm_mincer_f_1[i],
+            lm_mincer_all_2[i],
+            lm_mincer_m_2[i],
+            lm_mincer_f_2[i],
+            type = "latex",
+            column.labels = c("Total",
+                              "Males", 
+                              "Females", 
+                              "Total",
+                              "Males",
+                              "Females"),
+            covariate.labels = c("Constant",
+                                 "Education, years",
+                                 "Vocational education",
+                                 "Higher education",
+                                 "Experience",
+                                 "Experience squared",
+                                 "Female"),
+            title = paste0("Results of Mincer Analysis, RLMS ",
+                           as.character(seq_year[i])),
+            dep.var.caption = "",
+            dep.var.labels.include = F,
+            df = F,
+            ci = T,
+            intercept.bottom = F,
+            header = F)
+  cat("\n\\end{landscape}\n")
+  cat("\n\\newpage\n")
+}
 
-grid.arrange(p4, p5, nrow=1, ncol=2)
-############################################################################
+for (i in 5:length(seq_year)){
+  cat("\n\\begin{landscape}\n")
+  cat("\n\\fontsize{9}{11}\n\\selectfont\n")
+  stargazer(lm_mincer_all_1[i],
+            lm_mincer_m_1[i],
+            lm_mincer_f_1[i],
+            lm_mincer_all_2[i],
+            lm_mincer_m_2[i],
+            lm_mincer_f_2[i],
+            type = "latex",
+            column.labels = c("Total",
+                              "Males", 
+                              "Females", 
+                              "Total",
+                              "Males",
+                              "Females"),
+            covariate.labels = c("Constant",
+                                 "Education, years",
+                                 "Vocational education",
+                                 "Higher education",
+                                 "Experience",
+                                 "Experience squared",
+                                 "Female"),
+            title = paste0("Results of Mincer Analysis, RLMS ",
+                           as.character(seq_year[i])),
+            dep.var.caption = "",
+            dep.var.labels.include = F,
+            df = F,
+            ci = T,
+            intercept.bottom = F,
+            header = F)
+  cat("\n\\end{landscape}\n")
+  cat("\n\\newpage\n")
+}
 
-# The same procedure for both genders in HE
-RoREs_6<- melt(RoREs, measure=c("returns_to_HE_f", "returns_to_HE_m"))
-RoREs_6$value <- as.numeric(substr(RoREs_6$value, 1, nchar(RoREs_6$value)-1))
 
-# Plotting females and males - HE
-p6 <- ggplot(RoREs_6, aes(YEAR, value, group = variable, color = variable)) +
-  geom_smooth(se = F)  +
-  geom_point(size = 3) +
-  scale_y_continuous(limits = c(-10, 110), breaks = seq(-50, 110, 10)) +
-  theme(legend.title = element_blank(),
-        legend.position = "bottom",
-        panel.grid.minor = element_blank(),
-        axis.text.x = element_text(angle = 30, hjust = 1)) +
-  ylab("Rate of returns, %") +
-  xlab("Year")
+# For descriptive statistics
+sapply(df_mincer, class)
+df_mincer$REGION <- as.numeric(df_mincer$REGION) 
+df_mincer$exper <- as.numeric(df_mincer$REGION) 
+df_mincer$edu_yrs <- as.numeric(df_mincer$REGION) 
+haven::write_sav(df_mincer, "df_mincer.sav")
 
-# The same procedure for both genders in VE
-RoREs_7<- melt(RoREs, measure=c("returns_to_VE_f", "returns_to_VE_m"))
-RoREs_7$value <- as.numeric(substr(RoREs_7$value, 1, nchar(RoREs_7$value)-1))
-
-# Plotting females and males - VE
-p7 <- ggplot(RoREs_7, aes(YEAR, value, group = variable, color = variable)) +
-  geom_smooth(se = F)  +
-  geom_point(size = 3) +
-  scale_y_continuous(limits = c(-10, 110), breaks = seq(-50, 110, 10)) +
-  theme(legend.title = element_blank(),
-        legend.position = "bottom",
-        panel.grid.minor = element_blank(),
-        axis.text.x = element_text(angle = 30, hjust = 1)) +
-  ylab("Rate of returns, %") +
-  xlab("Year")
-
-grid.arrange(p6, p7, nrow=1, ncol=2)
-############################################################################
-
-# The same procedure for Russians and non-Russians in HE
-RoREs_8<- melt(RoREs, measure=c("returns_to_HE_rus", "returns_to_HE_nrus"))
-RoREs_8$value <- as.numeric(substr(RoREs_8$value, 1, nchar(RoREs_8$value)-1))
-
-# Plotting females and males - HE
-p8 <- ggplot(RoREs_8, aes(YEAR, value, group = variable, color = variable)) +
-  geom_smooth(se = F)  +
-  geom_point(size = 3) +
-  scale_y_continuous(limits = c(-10, 110), breaks = seq(-50, 110, 10)) +
-  theme(legend.title = element_blank(),
-        legend.position = "bottom",
-        panel.grid.minor = element_blank(),
-        axis.text.x = element_text(angle = 30, hjust = 1)) +
-  ylab("Rate of returns, %") +
-  xlab("Year")
-
-# The same procedure for Russians and non-Russians in VE
-RoREs_9<- melt(RoREs, measure=c("returns_to_VE_rus", "returns_to_VE_nrus"))
-RoREs_9$value <- as.numeric(substr(RoREs_9$value, 1, nchar(RoREs_9$value)-1))
-
-# Plotting females and males - VE
-p9 <- ggplot(RoREs_9, aes(YEAR, value, group = variable, color = variable)) +
-  geom_smooth(se = F)  +
-  geom_point(size = 3) +
-  scale_y_continuous(limits = c(-10, 110), breaks = seq(-50, 110, 10)) +
-  theme(legend.title = element_blank(),
-        legend.position = "bottom",
-        panel.grid.minor = element_blank(),
-        axis.text.x = element_text(angle = 30, hjust = 1)) +
-  ylab("Rate of returns, %") +
-  xlab("Year")
-p9
-
-grid.arrange(p8, p9, nrow=1, ncol=2)
-###################################################################################################
-
+##############################################################################
+##############################################################################
+##############################################################################
 # Tagging instances (tag1) and unique respondents (tag2)
 
 # If a month of the start of work is missing but a year is not, let us use 1 (January) as an approximation

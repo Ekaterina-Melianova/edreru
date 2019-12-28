@@ -27,40 +27,43 @@ source("C:/Country/Russia/Data/SEASHELL/SEABYTE/edreru/edreru_package.R")
 # Specify the default working directory for this script
 setwd("C:/Country/Russia/Data/SEASHELL/SEABYTE/edreru/wp1")
 
-##
-
-# Adjusting to prices in 2018
+## Loading a table with routineness classification
 mt19 <- rio::import("mt19_table.xlsx")
 
-df_mincer2 <- left_join(df_mincer,mt19,by = c("occup" = "isco_08"))
+## Loading a df with gender-based categorization created in extension1b.R
+df_dep_18_ <- readRDS("df_dep_18_.rds")
+df_dep_18_$occup <- as.numeric(df_dep_18_$occup) # remove haven_labelled_spss class
 
-df_mincer2$NRAIM=df_mincer2$NRA+df_mincer2$NRI+df_mincer2$NRM
-df_mincer2$RCM=df_mincer2$RC+df_mincer2$RM
+df_dep_18 <- left_join(df_dep_18_, mt19,
+                       by = c("occup" = "isco_08"))
 
-df_18 <- df_mincer2 %>% filter(YEAR==2018) %>% mutate(summer=1) %>% 
-  group_by(occup) %>% 
-  summarize(n_occ=sum(summer)) %>% arrange(desc(n_occ)) %>% 
-  mutate(cn_occ=cumsum(n_occ))
+# Creating routineness variables
+df_dep_18$NRAIM = df_dep_18$NRA + df_dep_18$NRI + df_dep_18$NRM
+df_dep_18$RCM = df_dep_18$RC + df_dep_18$RM
 
+#df_18 <- df_mincer2 %>% filter(YEAR==2018) %>% mutate(summer=1) %>% 
+#  group_by(occup) %>% 
+#  summarize(n_occ=sum(summer)) %>% arrange(desc(n_occ)) %>% 
+#  mutate(cn_occ=cumsum(n_occ))
 
-junk <- df_temp1 %>% filter(YEAR==2018|YEAR==2006) %>% 
-  select(IDIND, ID_H,ID_I,AGE,YEAR) %>% arrange(IDIND,YEAR) %>% 
-  distinct(IDIND,.keep_all = T)
-
-junk <- df_temp1 %>% filter(YEAR==1998|YEAR==2006) %>% 
-  select(IDIND, ID_H,ID_I,AGE,YEAR) %>% arrange(IDIND,YEAR) %>% 
-  distinct(IDIND,.keep_all = T)
-
+#junk <- df_temp1 %>% filter(YEAR==2018|YEAR==2006) %>% 
+#  select(IDIND, ID_H,ID_I,AGE,YEAR) %>% arrange(IDIND,YEAR) %>% 
+#  distinct(IDIND,.keep_all = T)
+#junk <- df_temp1 %>% filter(YEAR==1998|YEAR==2006) %>% 
+#  select(IDIND, ID_H,ID_I,AGE,YEAR) %>% arrange(IDIND,YEAR) %>% 
+#  distinct(IDIND,.keep_all = T)
 
 # On basis of three aggregates, I define three groups for analysis of depreciation
+# Note: drti and drcm are identical
+df_dep_18$drti <- discretize(df_dep_18$RTI,breaks=3,method="cluster",labels=c("Low","Medium","High"))
+df_dep_18$dnraim <- discretize(df_dep_18$NRAIM,breaks=3,method="cluster",labels=c("Low","Medium","High"))
+df_dep_18$drcm <- discretize(df_dep_18$RCM,breaks=3,method="cluster",labels=c("Low","Medium","High"))
 
+# Note: drti and drcm are identical
+table(df_dep_18$drti, df_dep_18$drcm)
+table(df_dep_18$drti)
+table(df_dep_18$dnraim)
+table(df_dep_18$drcm)
 
-df_18$drti <- discretize(df_18$RTI,breaks=3,method="cluster",labels=c("Low","Medium","High"))
-df_18$dnraim <- discretize(df_18$NRAIM,breaks=3,method="cluster",labels=c("Low","Medium","High"))
-df_18$drcm <- discretize(df_18$RCM,breaks=3,method="cluster",labels=c("Low","Medium","High"))
-
-table(df_18$drti)
-table(df_18$dnraim)
-table(df_18$drcm)
-
+saveRDS(df_dep_18, "df_dep_18.rds")
 
