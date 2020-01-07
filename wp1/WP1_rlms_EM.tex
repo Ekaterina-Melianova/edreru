@@ -58,6 +58,11 @@
 			style=chicago-authordate]{biblatex}
 \addbibresource{Returns.bib}
 
+
+%% For figures numbered by section
+\usepackage{chngcntr}
+\counterwithin{figure}{section}
+
 \begin{document}
 
 \title{Working Paper 1: Returns to Education in the Russian Federation - First Draft \footnote{Arranged in alphabetical order of author last names. The entire code used to generate the graphs and tables presented in this paper is available on bitbucket at \burl{https://bitbucket.org/zagamog/edreru/src/master/} , starting from the raw RLMS data graciously provided in the public domain by the National Research University-Higher School of Economics (HSE).}}
@@ -69,98 +74,117 @@ This is the second cut at Working Paper 1 (of proposed 3 working papers) on the 
 \end{abstract}
 
 
-\section*{Returns to Education in the Russian Federation: \\ General View}
+\section{Returns to Education in the Russian Federation: \\ General View}
 
-\subsection*{Data}
+\subsection{Motivation}
 
-To estimate returns to education in Russia, we employed the Russian Longitudinal Monitoring Survey (RLMS) - the longest panel survey of individuals and households in Eastern Europe and Asia and the only representative Russian survey with a sizable panel component allowing for a dynamic analysis \parencite{kozyreva_081._2015}. The data are notable for their reliability, diversity, and applicability to a variety of research questions. The RLMS embraces information on people's income and expenditure structure, their material well-being, educational and occupational behavior, health state and nutrition, migration, etc.  RLMS sampling procedures have been thoroughly and extensively described elsewhere \parencite{kozyreva_081._2015}. The present research uses all 23 waves (1994 - 2018) that are available as of \today. The sub-sample selected for empirical investigation in this paper consists of working individuals aged 25-64 who are out of school and have positive labor market experience and income.
+Here there will be 2-3 pages drawn from the CN.
+Somewhere we will cite \parencite{mincer_082._1974}. 
+
+\subsection{Data}
+
+For country level analysis, we use the Russian Longitudinal Monitoring Survey (RLMS) - the only representative Russian survey with a sizable panel component allowing for a dynamic analysis \parencite{kozyreva_081._2015}. The data are notable for their reliability, diversity, and applicability to a variety of research questions. The RLMS embraces information on people's income and expenditure structure, their material well-being, educational and occupational behavior, health state and nutrition, migration, etc.  RLMS sampling procedures have been thoroughly and extensively described elsewhere \parencite{kozyreva_081._2015}. The present research uses all 23 waves (1994 - 2018) that are available as of \today. The sub-sample selected for empirical investigation in this paper consists of working individuals aged 25-64 who are out of school and have positive labor market experience and income. 
 \\
 
-\subsection*{Methods}
+\subsection{Estimation}
 
-Our empirical analysis pertains to the examination of a basic specification of a mincer-type wage equation \parencite{mincer_082._1974}. We present results for the general working population of the Russian Federation aged 25-64 and by gender. The specification of focus is as follows:
+Our empirical analysis present results for the general working population of the Russian Federation aged 25-64 and by gender. We use a basic Mincerian specification shown in equation \eqref{eq:1.1}: 
 
-$$Log(Wage) = b_0 + b_1\cdot Educ + b_2\cdot Exp + b_3\cdot Exp^2 + b_4\cdot Gender + \epsilon$$
+
+\begin{flalign}\label{eq:1.1} 
+Log(Wage) = b_0 + b_1\cdot Educ + b_2\cdot Exp + b_3\cdot Exp^2 + b_4\cdot Gender + \epsilon
+\end{flalign}
+
+
 
 \noindent
 where $Log(Wage)$ is a logarithm of monthly wage, $Educ$ stands for the years of education or highest attained level of education, $Exp$ and $Exp^2$ reflect the years of working experience and its quadratic term respectively, $Gender$ is a dummy variable for gender, $b_0$ is an intercept, $b_1 ... b_n$ are the respective slope estimates, $\epsilon$ refers to a normally distributed error term.
 \\
 
-\subsection*{Measures}
+%\subsection{Measures}
 
-\subsubsection*{Dependent variable}
+\subsubsection{Dependent variable}
 
 For the dependent variable, we used the logarithm of an average monthly wage within the past year on a person's primary job (J13.2 variable in the RLMS dataset). If a person had an additional job, the maximum wage value among the two (J13.2 and J40) was selected for the analysis. In the waves from 1994 to 1996, the question mentioned above was absent; for those waves, we exploited a variable about the average amount of money earned by a respondent within the past 30 days (J10) as a reasonable approximation.
 \\
 
-\subsubsection*{Independent variables}
+\subsubsection{Independent variables}
 
 The present research uses both metric (measured in years) and categorical education variables. The metric version was created by assigning the average expected number of years corresponding to each attained education level. For the categorical version (EDUC), we distinguished three categories: \textit{(1) secondary, (2) vocational, and (3) higher}. Incomplete levels were incorporated into the respective upper categories (e.g., incomplete higher - into higher). We are interested in exploring returns to education in general, and vocational and higher education. Estimations of premiums to primary and secondary schooling levels are technically unreachable to us since the number of adults without primary education, and the number of adults with only primary level is minuscule in the general population. 
 
-The experience variable was calculated as a difference between current age and years of education minus 6. Gender was included in the specification in the form of a dichotomous dummy variable with "1" standing for females, "0" - for males.
+The experience variable was calculated as a difference between current age and years of education minus $6$. Gender was included in the specification in the form of a dichotomous dummy variable with "$1$" standing for females, "$0$" - for males.
 
-\subsection*{Findings from Estimation of Mincerian Equation}
+% \subsection{Findings from Estimation of Mincerian Equation}
 
-Figure \ref{fig:1} shows rates of overall and gender-wise returns to education in Russia in 1994-2018: percentage increment in a person's earnings due to one additional year of schooling (see tables in Appendix for the estimation results). Overall, one can notice a moderate curved growth in returns to education in Russia, achieving its peak in the early 2000s, which is followed by a downward pattern. Essentially, education payoffs of women are higher than those of men in 2005-2010 and 2013-2014 time periods (see tables with 95\% confidence intervals of regression coefficients in Appendix) but seem to converge in the earlier as well as in more recent years.
+Figure \ref{fig:1.1} shows rates of overall and gender-wise returns to education in Russia in 1994-2018: percentage increment in a person's earnings due to one additional year of schooling (see tables in Appendix for the estimation results). Overall, one can notice a moderate curved growth in returns to education in Russia, achieving its peak in the early 2000s, which is followed by a downward pattern. Education payoffs for women are higher than those of men, but the difference appears to have narrowed in recent years (see tables with 95\% confidence intervals of regression coefficients in Appendix).
 
 \begin{figure}[H]
  \centering
  \includegraphics[width=\textwidth, height=300pt]{re_edu.png}
- \caption{Rates of Returns to Education in Russia, RLMS 1994-2018}\label{fig:1}
+ \caption{Rates of Returns to Education in Russia, RLMS 1994-2018}\label{fig:1.1}
 \end{figure}
 
-Figure \ref{fig:2}, panel (a) displays rates of returns to higher and vocational education (as compared to secondary education) in Russia in 1994-2018. The results suggest that on average wage premiums to university education in Russia are roughly 3-5 times greater than to vocational schooling. The observed trend for premiums to both vocational and higher education levels is similar to the trend for education in general with the following peaks: 83\% for higher education and 26\% for vocational education compared to the average earnings of workers with the secondary level. The interesting pattern to note from panel \ref{fig:2a} is the apparent co-movement of vocational education and higher education - the higher education smoothing curve turns a bit more sharply than the one for vocational education, but their movement is matching, even at second-order levels of smoothness. Further, even though higher education premium remains much above the premium for vocational education, there is a perceptible narrowing of the difference in recent years. Panel \ref{fig:2b}, which is drawn from a presentation made by Marina Telezhkina at the WB-HSE Summer School on the Economics of Education in July 2019, shows the interesting pattern of higher education enrollment rates for the population of 17-25 year old. Panel \ref{fig:2b} shows the downturn in returns reflected in enrollments, with the peak in enrollments coming about 10 years later. 
+We are particularly interested in the returns to specific levels of education, estimated through a series of dummy variables. Using Secondary Education completed as the base or omitted dummy for purpose of interpretation, we use dummies for Vocational Education and for Higher Education. The specification is presented in equation \eqref{eq:1.2}: 
+
+\begin{flalign}\label{eq:1.2} 
+Log(Wage) = a_0 + a_1\cdot D_{Voc} + a_2\cdot D_{Higher} + a_3\cdot Exp + a_4\cdot Exp^2 + a_5\cdot Gender + \epsilon
+\end{flalign}
+
+
+
+
+Figure \ref{fig:1.2}, panel (a) displays rates of returns to Higher and Vocational education (as compared to Secondary education) in Russia for the period 1994-2018. The results suggest that on average wage premiums to university education in Russia are roughly 3-5 times greater than to vocational schooling. The observed trend for premiums to both Vocational and Higher education levels is similar to the trend for education in general with the following peaks: 83\% for Higher education and 26\% for Vocational education compared to the average earnings of workers with a Secondary education. The interesting pattern to note from panel \ref{fig:1.2a} is the apparent co-movement of vocational education and higher education - the higher education smoothing curve turns a bit more sharply than the one for vocational education, but their movement is matching, even at second-order levels of smoothness. Further, even though higher education premium remains much above the premium for vocational education, there is a perceptible narrowing of the difference in recent years. Panel \ref{fig:1.2b}, which is drawn from a presentation made by Marina Telezhkina at the WB-HSE Summer School on the Economics of Education in July 2019, shows the interesting pattern of higher education enrollment rates for the population of 17-25 year old. Panel \ref{fig:1.2b} shows the downturn in returns reflected in enrollments, with the peak in enrollments coming about 10 years later. 
 \\
 
 \begin{figure}[H]
-\caption{\textbf{Rates of Returns to Higher and Vocational Education in Russia, RLMS 1994-2018}}\label{fig:2}
+\caption{\textbf{Rates of Returns to Higher and Vocational Education in Russia, RLMS 1994-2018}}\label{fig:1.2}
          \centering
          \begin{subfigure}[b]{0.5\textwidth}
                  \includegraphics[width=\textwidth]{re_HE_all.png}
                  \caption{Rates of Return}
-                 \label{fig:2a}
+                 \label{fig:1.2a}
          \end{subfigure}%
          ~ %add desired spacing between images, e. g. ~, \quad, \qquad, \hfill etc.
            %(or a blank line to force the subfigure onto a new line)
          \begin{subfigure}[b]{0.5\textwidth}
                  \includegraphics[width=\textwidth]{telezhkina.png}
                  \caption{Enrollment in Higher Education}
-                 \label{fig:2b}
+                 \label{fig:1.2b}
          \end{subfigure}
      \end{figure}
 
-When we look at the same data with information by gender, it is quite interesting that gender-based trends in Russia have a different shape across time concerning schooling premiums. Though the percentage fluctuated slightly from year to year, there were about 55\% of females in the sample compared to 45\% of males. Particularly, males' payoffs to higher education (varying from 45\% to 76\%) turn out to be on a slightly decreasing slope, whereas women's returns are described by an inversely U-shaped pattern, reaching their maximum of 104\% in 2001. Within roughly the last 5 years, wage premiums to higher education for women have stabilized around the level of men (~50\%).  Gender wise enrollment rates in higher education (not shown) ten years later appears to match the differences in rates of return, strengthening the hypothesis that market rates of return to education in Russia do indeed influence individual continuing school decisions. 
+When estimated separately by gender, we find trend variation by gender. The results from estimation of earnings functions show that payoffs to Higher education for males varied from 45\% to 76\%, whereas women's returns are described by an inversely U-shaped pattern, reaching their maximum of 104\% in 2001. Within roughly the last 5 years, wage premiums to higher education for women have stabilized around the level of men (~50\%).  Gender wise enrollment rates in higher education (not shown) ten years later appears to match the differences in rates of return, strengthening the hypothesis that market rates of return to education in Russia do indeed influence individual continuing school decisions. 
 
-A similar comparative picture is observed with respect to vocational education; however, the described regularities are a bit differently pronounced (see Figure \ref{fig:3}): returns for males are almost flat within the time period under focus and the parabolic association for females is tangibly more concave. The overall outcome concerning payoffs to schooling isolated by gender has been confirmed in a similar fashion by past studies \parencite[e.g.,][]{cheidvasser_006._2007}.
+A similar comparative picture is observed with respect to vocational education, albeit with a different kind of variation by gender (see Figure \ref{fig:1.3}): returns for males are almost flat within the time period while returns for females shows a concave pattern. The overall outcome concerning payoffs to schooling isolated by gender has been confirmed in a similar fashion by past studies \parencite[e.g.,][]{cheidvasser_006._2007}.
 
 \begin{figure}[H]
   \begin{minipage}[b]{.5\linewidth}
      \centering
      \includegraphics[width=\textwidth]{re_HE_f.png}
      % plot 1
-     \subcaption{Females}\label{fig:3a}
+     \subcaption{Females}\label{fig:1.3a}
   \end{minipage}
   \hfill
   \begin{minipage}[b]{.5\linewidth}
      \centering
      \includegraphics[width=\textwidth]{re_HE_m.png}
      % plot 2
-     \subcaption{Males}\label{fig:3b}
+     \subcaption{Males}\label{fig:1.3b}
   \end{minipage}
-  \caption{Rates of Returns to Higher and Vocational Education in Russia, RLMS 1994-2018}\label{fig:3}
+  \caption{Rates of Returns to Higher and Vocational Education in Russia, RLMS 1994-2018}\label{fig:1.3}
 \end{figure}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-\section*{Depreciation of Human Capital \\ in the Russian Federation}
+\section{Depreciation of Human Capital \\ in the Russian Federation}
 
-Age-earnings profiles are invariably concave downward shaped - earnings rise after a labor market entrant completes full-time schooling, they reach a peak, usually a few years before retirement, and then steadily decline. The shape is an outcome of two countervailing tendencies - the rise attributed to continued accumulation of human capital through training and the decline due to depreciation. The precise shape and location of the peak is an object of analytical interest. Training derived human capital is either general and transferable to other jobs, or specific to a job, sector, or industry. Depreciation of human capital is useful to investigate from a policy perspective. Just like some physical capital (machinery, buildings) are built stronger and last longer, is it possible that some kinds of education inherently generate human capital that is slower to depreciate? What attributes of the labor market lead to lower or higher levels of depreciation? What about the welfare implications of changes in the age at which individuals retire from the labor force? How has the depreciation rate of human capital changed over time? 
+Age-earnings profiles are almost invariably concave downward shaped. Earnings rise after a labor market entrant completes full-time schooling. The profile indicates a peak in earnings, usually a few years before retirement, after which there is a steady decline in earnings. The concave shape is an outcome of two countervailing tendencies - the rise attributed to continued accumulation of human capital through training and the decline due to depreciation. The precise shape and location of the peak is an object of analytical interest. Depreciation of human capital is useful to investigate from a policy perspective. Just like some physical capital (machinery, buildings) are built stronger and last longer, is it possible that some kinds of education inherently generate human capital that is slower to depreciate? What attributes of the labor market lead to lower or higher levels of depreciation? What about the welfare implications of changes in the age at which individuals retire from the labor force? How has the depreciation rate of human capital changed over time in the Russian Federation? 
 
-\subsection*{Analytical Treatment of Depreciation} 
+\subsection{Analytical Treatment of Depreciation} 
 
-\citet{rosen_176._1976}  and \citet{mincer_175._1982} presented early treatments on the depreciation of human capital. However, in terms of a focus on depreciation, a seminal paper of \citet{neuman_091._1995} established the basic parameters that have guided the research since that time. The authors introduce the important distinction between two kinds of depreciation or loss of productive potential of human capital. The first one, termed as ``obsolescence" or ``vintage effect", is due to an overall upgrading of technology or the operation of other market forces that lowers the value of education or training obtained in a previous period. This is also termed as an `external depreciation", presumably as it is a given for an individual. The second kind of depreciation is attributed to the deterioration of physical and mental abilities of an individual due to the progression of a person's age, or the simple passage of time. This is also termed as ``internal depreciation". Neuman and Weiss posited that external effects would be more important for higher levels of education, under the assumption that changes in the labor market are transmitted more readily to higher education. They give the example that a recently educated electrical engineer would be learning many new things compared to one of more ancient vintage. 
+\citet{rosen_176._1976}  and \citet{mincer_175._1982} presented early treatments on the depreciation of human capital. However, in terms of a focus on depreciation, a seminal paper of \citet{neuman_091._1995} established the basic parameters that have guided the research since that time. The authors introduce the important distinction between two kinds of depreciation or loss of productive potential of human capital. The first one, termed as ``obsolescence" or ``vintage effect", is due to an overall upgrading of technology or the operation of other market forces that lowers the value of education or training obtained in a previous period. This is also termed as an `external depreciation", presumably as it is a given for an individual. The second kind of depreciation is attributed to the deterioration of physical and mental abilities of an individual due to the progression of a person's age, or the simple passage of time. This is also termed as ``internal depreciation". Neuman and Weiss posited that external effects would be more important for higher levels of education, under the assumption that changes in the labor market are transmitted more readily to higher education. They give the example that a recently educated electrical engineer would be learning many new things compared to one who studied the same subject in an earlier time. Neuman and Weiss reasoned that workers with basic education levels may not suffer as much from obsolescence. 
 
-Figure \ref{fig:4} shows for the Russian Federation the effects described by Neuman and Weiss. There are three panels in the figure, and three lines in each figure. The vertical axis indicates the monthly earnings in constant 2018 Rubles, using the Rosstat CPI deflator. The horizontal axis indicates the years of experience. All three panels show an upward drift in the experience-earnings profiles in the period. Only Figure \ref{fig:4a} shows a clear concave downwards profile for Higher Education, the concave tendency is much less pronounced for the other two levels of Vocational education and Secondary education. Putting the curves together would suggest that the premium for university education over the other two levels does narrow at higher levels of experience. This converging tendency would suggest that depreciation is indeed higher for university graduates. In the next two subsections, we present a more rigorous quantitative treatment of this issue.
+Figure \ref{fig:2.1} shows for the Russian Federation the effects described by Neuman and Weiss. There are three panels in the figure, and three lines in each figure. The vertical axis indicates the monthly earnings in constant 2018 rubles, using the Rosstat CPI deflator. The horizontal axis indicates the years of experience. The dotted line shows the earnings for 1998, the dashed line represents 2006 and the solid line the data from 2018. Each of the panels, representing a different level of education, shows an upward drift in the experience-earnings profiles in the period from 1998 to 2018. Only Figure \ref{fig:2.1a} shows a clear concave downwards profile for Higher Education; the concave tendency is less pronounced for the other two levels of Vocational education and Secondary education.
 	
 	\begin{figure}[H]
 		\begin{minipage}[b]{.3\linewidth}
@@ -168,7 +192,7 @@ Figure \ref{fig:4} shows for the Russian Federation the effects described by Neu
 			\hspace*{-0.7in}
 			\includegraphics[width=150pt]{dp01_he.png}
 			% plot 1
-			\subcaption{Higher Education}\label{fig:4a}
+			\subcaption{Higher Education}\label{fig:2.1a}
 		\end{minipage}
 		\hfill
 		\begin{minipage}[b]{.3\linewidth}
@@ -176,7 +200,7 @@ Figure \ref{fig:4} shows for the Russian Federation the effects described by Neu
 			\hspace*{-0.7in}
 			\includegraphics[width=150pt]{dp01_ve.png}
 			% plot 2
-			\subcaption{Vocational Education}\label{fig:4b}
+			\subcaption{Vocational Education}\label{fig:2.1b}
 		\end{minipage}
 		\hfill
 		\begin{minipage}[b]{.3\linewidth}
@@ -184,17 +208,46 @@ Figure \ref{fig:4} shows for the Russian Federation the effects described by Neu
 			\hspace*{-0.7in}
 			\includegraphics[width=150pt]{dp01_se.png}
 			% plot 2
-			\subcaption{Secondary Education}\label{fig:4c}
+			\subcaption{Secondary Education}\label{fig:2.1c}
 		\end{minipage}
-		\caption{Neuman-Weiss vintage effects by education level from RLMS Rounds 1998, 2006 and 2018}\label{fig:4}
+		\caption{Neuman-Weiss vintage effects by education level from RLMS Rounds 1998, 2006 and 2018}\label{fig:2.1}
 	\end{figure}
 	
+Putting the curves together by year (\ref{fig:2.2})suggests that the premium for university education over the other two levels does narrow at higher levels of experience. In the figure, to accomodate the relatively lower wage levels of 1998, the leftmost panel (\ref{fig:2.2a}) is slightly compressed compared to the other two panels. The  converging tendency between levels of education would suggest that depreciation is indeed higher for university graduates. In the next two subsections, we present a more rigorous quantitative treatment of this issue.
+
 	
-\subsection*{Differential Depreciation Affecting Education and Training}
+	\begin{figure}[H]
+		\begin{minipage}[b]{.3\linewidth}
+			\centering
+			\hspace*{-0.7in}
+			\includegraphics[width=150pt]{dp01_98.png}
+			% plot 1
+			\subcaption{1998}\label{fig:2.2a}
+		\end{minipage}
+		\hfill
+		\begin{minipage}[b]{.3\linewidth}
+			\centering
+			\hspace*{-0.7in}
+			\includegraphics[width=150pt]{dp01_06.png}
+			% plot 2
+			\subcaption{2006}\label{fig:2.2b}
+		\end{minipage}
+		\hfill
+		\begin{minipage}[b]{.3\linewidth}
+			\centering
+			\hspace*{-0.7in}
+			\includegraphics[width=150pt]{dp01_18.png}
+			% plot 2
+			\subcaption{2018}\label{fig:2.2c}
+		\end{minipage}
+		\caption{Neuman-Weiss vintage effects by Year from RLMS Rounds 1998, 2006 and 2018}\label{fig:2.2}
+	\end{figure}
+
+\subsection{Differential Depreciation Affecting Education and Training}
 	
 \citet{murillo_172._2006} followed the Neuman and Weiss model with a focus on empirical implementation to Spain. We follow the Murillo notation in the implementation of the model, which begins with the following earnings equation: 
 
-\begin{flalign}\label{eq:one} 
+\begin{flalign}\label{eq:zne} 
 log(W_{T}) = \alpha + \beta_{1}KS_{T} +  \beta_{2}KE_{T} &&
 \end{flalign}
 
@@ -244,8 +297,8 @@ where $i$ represents an individual subscript, $t$ shows a time period, $\ln Y$ i
 
 For the complete stages of the equation \ref{eq:six} derivation see \parencite{weber_173._2008}.
 
-\subsection*{Results on Depreciation Rates}
-\subsubsection*{Murillo's Approach}
+\subsection{Results on Depreciation Rates}
+\subsubsection{Murillo's Approach}
 
 Table \ref{tab:1} shows OLS estimation results for the equation \ref{eq:five} run on the whole sample of the RLMS observations under consideration. In this subsection, we analyzed solely six years that represent the ends (1994 and 2018), the diffused peak (2003 and 2006), and halfway points to the ends (2012 and 2003) of the survey's available time interval. Table \ref{tab:2} reports depreciation rate values and sample means for the experience and education variables.
 
@@ -309,7 +362,7 @@ Quite different findings were obtained for the depreciation associated with educ
 	\end{tabular}
 \end{table}
 	
-\subsubsection*{Weber's Approach}
+\subsubsection{Weber's Approach}
 
 Table \ref{tab:3} reports empirical findings for the estimation of the \ref{eq:six} equation using NLS with robust standard errors. For simplicity, we restricted our analysis by the RLMS data collected in 2018. The four specifications displayed separately by gender portray the following combinations of the $\alpha$ (post-school investment in human capital) and $\delta$ (depreciation rate of the human capital) parameters: \textit{model I} - both $\alpha$ and $\delta$ are constant across education levels; \textit{model II} - $\alpha$ is constant, $\delta$ varies; \textit{model III} - $\alpha$ varies, $\delta$ is constant, \textit{model VI} - both $\alpha$ and $\delta$ vary across education levels.
 
@@ -374,8 +427,8 @@ Model IV is a combination of models II and III; however, according to goodness-o
 	\end{tabular}
 \end{table}
 
-\section*{Extensions of the Human Capital Depreciation \\ Analyses}
-\subsection*{Depreciation and Gender Dimension}
+\section{Extensions of the Human Capital Depreciation \\ Analyses}
+\subsection{Depreciation and Gender Dimension}
 
 In this section, by leveraging  \citet{murillo_172._2006} approach, we extend our analysis by comparing the estimated depreciation rates between female- and male-dominated groups in various industries and occupations. J4\_1 and J2COD08 (ISCO-08) variables in the RLMS 2018 database were employed to tag gender-based industrial sectors and occupations, respectively. A sector was marked as female-dominated (male-dominated) if it contained more than 64\% (less than 44\%) of women, i.e., $\pm$ 10\% from the average of 54\%. Accordingly, neutral sectors occupied the middle of the distribution. Figure \ref{fig:5} visualizes this procedure; Table \ref{tab:4} maps title of sectors with female percentages in them. To generate gender-related occupations an identical tactic was applied based on the 2-digit ISCO-08 (see Figure \ref{fig:6} and Table \ref{tab:5}). The latter was obtained by aggregating the respective 3- and 4-digit categories that were originally present in ISCO-08. If the double-digit group was composed of less than 20 observations, it was merged with ``others" and labeled as a ``Miscellaneous non-ISCO" category.
 
@@ -504,7 +557,7 @@ As for education obsolescence rates, in all the groups under focus, this measure
 \end{table} 
 
 
-\subsection*{Depreciation and Occupational Routineness}
+\subsection{Depreciation and Occupational Routineness}
 
 In addition to the examination of human capital depreciation rates in gender-dominated industries and occupations, we explored this parameter between groups generated by using an array of routine and non-routine task content metrics for ISCO-08. In this analysis, we rely on measures developed by \citet{mihaylov_152._2019}. Particularity, Routine Task Intensity measure (RTI) -- a variable of interest -- denoted a score difference between the summed routine task indices and the summed non-routine task indices: $(RC + RM) - (NRA + NRI + NRM)$. Besides, we introduced a separate measure by bringing together the non-routine task indices: $NRA + NRI + NRM$. Further, exploiting the k-means clustering technique, for the metrics described, we created two respective categorical variables (drti and dnraim) with categories capturing \textit{high, medium,} and \textit{low} manifestations of the features.
 
@@ -529,14 +582,14 @@ Table \ref{tab:7} shows the results of comparing depreciation rates between indi
 	\end{tabular}
 \end{table}
 
-\section*{The Analysis of Regional Returns to Education \\ in the Russian Federation}
+\section{The Analysis of Regional Returns to Education \\ in the Russian Federation}
 
-\subsection*{Data}
+\subsection{Data}
 To estimate returns to education in Russian regions, we used a Statistical Survey of Income and Participation in Social Programs, collected by Rosstat. The primary purpose of the Rosstat survey was to obtain statistical information, reflecting the role of wages, income from self-employment, property income, pensions, and social benefits in ensuring the material well-being of families. The survey contains data on trends in income and poverty variation among households with different socio-economic status. There are also variables on people's participation in social programs, their pension and health insurance, material and social security of low-income families, and the impact of social policy measures on people's well-being.
 
 The 2018 data (the most recent year of the survey) was exploited in the current section. A sub-sample selected for the empirical modeling is identical to the one used for the RLMS analysis: individuals aged 25-64 who are out of school and have positive labor market experience and income.
 
-\subsection*{Methods}
+\subsection{Methods}
 
 The classical Mincerian equation (described in the previous sections) was the main focus in the regional investigation of returns to education in Russia: we looked at how these returns vary across regions. Additionally, we took a step further and explored the determinants of the established variation. For this purpose, a multilevel regression analysis (mixed modeling) was leveraged. The equations of interest are as follows:
 
@@ -554,12 +607,12 @@ where an individual $i$ is nested withing a region $j$, $Log(Wage)$ is a logarit
 
 Mixed models were estimated using restricted maximum likelihood (REML). Individual Wald tests and likelihood ratio tests were exploited to evaluate the significance of fixed and random effects, respectively. It should be noted that we also used weights in the modeling to ensure the representativeness of the sample across Russian regions (the weighting variable was divided by 1000 to allow the convergence of the multilevel models). 
 
-\subsection*{Measures}
+\subsection{Measures}
 
-\subsubsection*{Dependent variable}
+\subsubsection{Dependent variable}
 Similar to the previous analyses, a logged amount of money remuneration before income tax payment at the main place of work (R\_DEN) was utilized as an outcome of interest.
 
-\subsubsection*{Independent variables}
+\subsubsection{Independent variables}
 Education, working experience, and gender were treated as the first-level independent variables. Education (I01\_10) -- a central predictor --- was plugged into the multilevel models in its categorical form. Gender (H01\_01) was leveraged as a dichotomous variable. To calculate the labor market experience variable, we relied on the same naive strategy as in the previous section.
 
 The predictors used at the second level were as follows: \textit{gross regional product, urbanization level, coverage by higher and vocational education (the number of students per 10,000 people in a region), quality of education, regional unemployment level} and \textit{a share of people in jobs related to natural resources}. Quality of education measure reflected a regional performance of students on the EGE - a Russian school-leaving exam (see Parandekar and Shmis 2018 for the details of the variable generation). The rest of the attributes were taken from the Rosstat website. Table \ref{tab:8} demonstrates a descriptive statistics by regions.
@@ -664,7 +717,7 @@ The predictors used at the second level were as follows: \textit{gross regional 
 	\end{longtable}
 }
 
-\subsection*{Results of Regional Analysis}
+\subsection{Results of Regional Analysis}
 First, simple linear regression models were fitted to the observations in each region, and 95\% confidence intervals for the education variable coefficients were returned to examine the overall pattern of regional diversity in education payoffs. A visual inspection of Figure \ref{fig:7} is illustrative of the fact that Russian regions are rather heterogeneous in terms of premiums to education. Further, a more formal statistical support for this fact underpinned by mixed modeling is provided.
 
 \begin{figure}[h!]
@@ -695,7 +748,7 @@ Although the outcomes on regional examination did not establish a whole lot of a
 \printbibliography
 
 \newpage
-\section*{Appendix}
+\section{Appendix}
 
 \begin{table}[!htbp] \centering 
 	\caption{Results of Multilevel Modeling with Coverage by Vocational Education, Rosstat 2018} 

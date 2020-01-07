@@ -2,6 +2,8 @@
 options(scipen=999) # to supress scientific notation
 # WP1 extension along lines of Neuman-Weiss 1995.
 
+# Revised by Suhas; Tuesday, January 07, 2020
+
 library(plyr); library(dplyr)
 library(sqldf)
 library(XLConnectJars)
@@ -452,6 +454,7 @@ aggregate(wage ~ YEAR, df_mincer, mean)
 temp_ <- df_mincer %>% filter(edu_4=="Higher") %>% filter(YEAR==1998|YEAR==2006|YEAR==2018)
 ggplot(temp_,aes(x=exper,y=wage_c18,group=as.factor(YEAR),linetype=as.factor(YEAR))) + geom_smooth(se=FALSE,col="red",lwd=0.75,method=loess)+
   coord_cartesian(ylim=c(0,40000))+
+  xlab("Experience in years") + ylab("Monthly wages in 2018 Rubles")+
   scale_linetype_manual(values=c("dotted","longdash","solid"))+
   theme(panel.background = element_rect(fill = "#edfca1")) +
   theme(panel.grid.major = element_line(color="white")) +
@@ -468,6 +471,7 @@ temp_ <- df_mincer %>% filter(edu_4=="Vocational") %>% filter(YEAR==1998|YEAR==2
 ggplot(temp_,aes(x=exper,y=wage_c18,group=as.factor(YEAR),linetype=as.factor(YEAR))) + geom_smooth(se=FALSE,col="blue",lwd=0.75,method=loess)+
   coord_cartesian(ylim=c(0,40000))+
   scale_linetype_manual(values=c("dotted","longdash","solid"))+
+  xlab("Experience in years") + ylab("Monthly wages in 2018 Rubles")+
   theme(panel.background = element_rect(fill = "cornsilk")) +
   theme(panel.grid.major = element_line(color="white")) +
   theme(panel.grid.major = element_line(size=1)) +
@@ -484,11 +488,13 @@ ggplot(temp_,aes(x=exper,y=wage_c18,group=as.factor(YEAR),linetype=as.factor(YEA
   coord_cartesian(ylim=c(0,40000))+
   scale_linetype_manual(values=c("dotted","longdash","solid"),
                         breaks = rev(levels(as.factor(temp_$YEAR))))+
+  xlab("Experience in years") + ylab("Monthly wages in 2018 Rubles")+
   theme(panel.background = element_rect(fill = "#dbebf9")) +
   theme(panel.grid.major = element_line(color="white")) +
   theme(panel.grid.major = element_line(size=1)) +
   theme(panel.grid.minor = element_line(color="white")) +
   theme(panel.grid.minor = element_line(size=1))+
+  theme(legend.position = "none")
   theme(legend.position = c(0.8, 0.8),
         legend.background = element_rect(fill = "yellow"),
         legend.key = element_rect(fill = "yellow"),
@@ -498,8 +504,68 @@ ggsave("dp01_se.png", width = 3, height = 3.5,
        units = "in")
 
 
-## Just experimenting below
+## Now the same plot, arranged with years together
 
+temp_ <- df_mincer %>% filter(YEAR==1998) 
+ggplot(temp_,aes(x=exper,y=wage_c18,group=as.factor(edu_4),color=as.factor(edu_4))) +
+  geom_smooth(se=FALSE,lwd=0.75,method=loess)+
+  coord_cartesian(ylim=c(0,40000))+
+  scale_color_manual(values=c("green","blue","red"),
+                        breaks = rev(levels(as.factor(temp_$edu_4))))+
+  xlab("Experience in years") + ylab("Monthly wages in 2018 Rubles")+
+  theme(panel.background = element_rect(fill = "#eeecec")) +
+  theme(panel.grid.major = element_line(color="white")) +
+  theme(panel.grid.major = element_line(size=1)) +
+  theme(panel.grid.minor = element_line(color="white")) +
+  theme(panel.grid.minor = element_line(size=1))+
+  theme(legend.position = c(0.3, 0.8),
+        legend.background = element_rect(fill = "#e5ec7b"),
+        legend.key = element_rect(fill = "#e5ec7b"),
+        legend.title=element_blank())
+
+ggsave("dp01_98.png", width = 3, height = 3.5,
+       units = "in")
+
+###
+
+temp_ <- df_mincer %>% filter(YEAR==2006) 
+ggplot(temp_,aes(x=exper,y=wage_c18,group=as.factor(edu_4),color=as.factor(edu_4))) +
+  geom_smooth(se=FALSE,lwd=0.75,method=loess)+
+  coord_cartesian(ylim=c(10000,40000))+
+  scale_color_manual(values=c("green","blue","red"),
+                     breaks = rev(levels(as.factor(temp_$edu_4))))+
+  xlab("Experience in years") + ylab("Monthly wages in 2018 Rubles")+
+  theme(panel.background = element_rect(fill = "#eeecec")) +
+  theme(panel.grid.major = element_line(color="white")) +
+  theme(panel.grid.major = element_line(size=1)) +
+  theme(panel.grid.minor = element_line(color="white")) +
+  theme(panel.grid.minor = element_line(size=1))+
+  theme(legend.position = "none")
+
+ggsave("dp01_06.png", width = 3, height = 3.5,
+       units = "in")
+
+
+###
+
+temp_ <- df_mincer %>% filter(YEAR==2018) 
+ggplot(temp_,aes(x=exper,y=wage_c18,group=as.factor(edu_4),color=as.factor(edu_4))) +
+  geom_smooth(se=FALSE,lwd=0.75,method=loess)+
+  coord_cartesian(ylim=c(10000,40000))+
+  scale_color_manual(values=c("green","blue","red"),
+                     breaks = rev(levels(as.factor(temp_$edu_4))))+
+  xlab("Experience in years") + ylab("Monthly wages in 2018 Rubles")+
+  theme(panel.background = element_rect(fill = "#eeecec")) +
+  theme(panel.grid.major = element_line(color="white")) +
+  theme(panel.grid.major = element_line(size=1)) +
+  theme(panel.grid.minor = element_line(color="white")) +
+  theme(panel.grid.minor = element_line(size=1))+
+  theme(legend.position = "none")
+
+ggsave("dp01_18.png", width = 3, height = 3.5,
+       units = "in")
+
+## Just experimenting below
 ## Run Murillo Regression
 
 lm_dep <- lm(log(wage_c18) ~ edu_yrs + exper*edu_yrs + exper + I(exper^2),
