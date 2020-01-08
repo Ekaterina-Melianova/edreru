@@ -344,7 +344,7 @@ stargazer(lm_dep_m[1],
 
 #############
 ##############
-########### A2M. General model  - By gender - Male 
+########### A2M. General model  - By gender - male 
 # Averages and 3 rows of Vignoli
 library(tables)
 
@@ -374,7 +374,7 @@ confint(lm_dep_m[[6]], level = 0.9)
 
 # creating df for further averaging edu_yrs and exper by years
 df_mincer2m <- df_mincer2 %>% filter(female==0)
-edu_exper_m <- df_mincer2m[df_mincer2f$YEAR %in% 
+edu_exper_m <- df_mincer2m[df_mincer2m$YEAR %in% 
                              seq_year, c("YEAR", "edu_yrs", "exper")]
 
 # Combining averages and coefficients to a data.frame
