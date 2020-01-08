@@ -62,6 +62,10 @@
 %% For figures numbered by section
 \usepackage{chngcntr}
 \counterwithin{figure}{section}
+\counterwithin{table}{section}
+
+%% For color in text
+\usepackage{xcolor}
 
 \begin{document}
 
@@ -99,14 +103,12 @@ Log(Wage) = b_0 + b_1\cdot Educ + b_2\cdot Exp + b_3\cdot Exp^2 + b_4\cdot Gende
 
 \noindent
 where $Log(Wage)$ is a logarithm of monthly wage, $Educ$ stands for the years of education or highest attained level of education, $Exp$ and $Exp^2$ reflect the years of working experience and its quadratic term respectively, $Gender$ is a dummy variable for gender, $b_0$ is an intercept, $b_1 ... b_n$ are the respective slope estimates, $\epsilon$ refers to a normally distributed error term.
-\\
 
 %\subsection{Measures}
 
 \subsubsection{Dependent variable}
 
 For the dependent variable, we used the logarithm of an average monthly wage within the past year on a person's primary job (J13.2 variable in the RLMS dataset). If a person had an additional job, the maximum wage value among the two (J13.2 and J40) was selected for the analysis. In the waves from 1994 to 1996, the question mentioned above was absent; for those waves, we exploited a variable about the average amount of money earned by a respondent within the past 30 days (J10) as a reasonable approximation.
-\\
 
 \subsubsection{Independent variables}
 
@@ -134,7 +136,6 @@ Log(Wage) = a_0 + a_1\cdot D_{Voc} + a_2\cdot D_{Higher} + a_3\cdot Exp + a_4\cd
 
 
 Figure \ref{fig:1.2}, panel (a) displays rates of returns to Higher and Vocational education (as compared to Secondary education) in Russia for the period 1994-2018. The results suggest that on average wage premiums to university education in Russia are roughly 3-5 times greater than to vocational schooling. The observed trend for premiums to both Vocational and Higher education levels is similar to the trend for education in general with the following peaks: 83\% for Higher education and 26\% for Vocational education compared to the average earnings of workers with a Secondary education. The interesting pattern to note from panel \ref{fig:1.2a} is the apparent co-movement of vocational education and higher education - the higher education smoothing curve turns a bit more sharply than the one for vocational education, but their movement is matching, even at second-order levels of smoothness. Further, even though higher education premium remains much above the premium for vocational education, there is a perceptible narrowing of the difference in recent years. Panel \ref{fig:1.2b}, which is drawn from a presentation made by Marina Telezhkina at the WB-HSE Summer School on the Economics of Education in July 2019, shows the interesting pattern of higher education enrollment rates for the population of 17-25 year old. Panel \ref{fig:1.2b} shows the downturn in returns reflected in enrollments, with the peak in enrollments coming about 10 years later. 
-\\
 
 \begin{figure}[H]
 \caption{\textbf{Rates of Returns to Higher and Vocational Education in Russia, RLMS 1994-2018}}\label{fig:1.2}
@@ -178,7 +179,7 @@ A similar comparative picture is observed with respect to vocational education, 
 
 \section{Depreciation of Human Capital \\ in the Russian Federation}
 
-Age-earnings profiles are almost invariably concave downward shaped. Earnings rise after a labor market entrant completes full-time schooling. The profile indicates a peak in earnings, usually a few years before retirement, after which there is a steady decline in earnings. The concave shape is an outcome of two countervailing tendencies - the rise attributed to continued accumulation of human capital through training and the decline due to depreciation. The precise shape and location of the peak is an object of analytical interest. Depreciation of human capital is useful to investigate from a policy perspective. Just like some physical capital (machinery, buildings) are built stronger and last longer, is it possible that some kinds of education inherently generate human capital that is slower to depreciate? What attributes of the labor market lead to lower or higher levels of depreciation? What about the welfare implications of changes in the age at which individuals retire from the labor force? How has the depreciation rate of human capital changed over time in the Russian Federation? 
+Age-earnings profiles are almost invariably concave downward shaped. Earnings rise after a labor market entrant completes full-time schooling. The profile indicates a peak in earnings, usually a few years before retirement, after which there is a steady decline in earnings. The concave shape is an outcome of two countervailing tendencies - the rise attributed to continued accumulation of human capital through training and the decline due to depreciation. The precise shape and location of the peak is an object of analytical interest. Depreciation of human capital is useful to investigate from a policy perspective. Just like some physical capital (machinery, buildings) are built stronger and last longer, is it possible that some kinds of education inherently generate human capital that is slower to depreciate? What attributes of the labor market lead to lower or higher levels of depreciation? What about the welfare implications of changes in the age at which individuals retire from the labor force? How has the depreciation rate of human capital changed over time in the Russian Federation? In particular, can changes in the rate of depreciation explain the observed pattern of the rates of return depicted in \ref{fig:1.1}?  
 
 \subsection{Analytical Treatment of Depreciation} 
 
@@ -213,7 +214,7 @@ Figure \ref{fig:2.1} shows for the Russian Federation the effects described by N
 		\caption{Neuman-Weiss vintage effects by education level from RLMS Rounds 1998, 2006 and 2018}\label{fig:2.1}
 	\end{figure}
 	
-Putting the curves together by year (\ref{fig:2.2})suggests that the premium for university education over the other two levels does narrow at higher levels of experience. In the figure, to accomodate the relatively lower wage levels of 1998, the leftmost panel (\ref{fig:2.2a}) is slightly compressed compared to the other two panels. The  converging tendency between levels of education would suggest that depreciation is indeed higher for university graduates. In the next two subsections, we present a more rigorous quantitative treatment of this issue.
+Putting the curves together by year (Figure \ref{fig:2.2})suggests that the premium for university education over the other two levels does narrow at higher levels of experience. In the figure, to accomodate the relatively lower wage levels of 1998, the leftmost panel (Figure \ref{fig:2.2a}) is slightly compressed compared to the other two panels. The  converging tendency between levels of education would suggest that depreciation is indeed higher for university graduates. In the next two subsections, we present a more rigorous quantitative treatment of this issue, using a variant of Neuman-Weiss developed by \citet{murillo_172._2006}.
 
 	
 	\begin{figure}[H]
@@ -245,72 +246,43 @@ Putting the curves together by year (\ref{fig:2.2})suggests that the premium for
 
 \subsection{Differential Depreciation Affecting Education and Training}
 	
-\citet{murillo_172._2006} followed the Neuman and Weiss model with a focus on empirical implementation to Spain. We follow the Murillo notation in the implementation of the model, which begins with the following earnings equation: 
-
-\begin{flalign}\label{eq:zne} 
+\citet{murillo_172._2006} implemented a variation of the Neuman and Weiss model with a focus on empirical implementation to Spain. We follow the Murillo notation in the implementation of the model, which begins with the following earnings equation: 
+\begin{flalign}\label{eq:2.1} 
 log(W_{T}) = \alpha + \beta_{1}KS_{T} +  \beta_{2}KE_{T} &&
 \end{flalign}
-
 \noindent
 where $W$ represents earnings, $KS$ the stock of human capital derived from schooling of $S$ years, and $KE$ the stock of human capital acquired from on the job training or experience, and $T$ indexes the number of experience years since completing formal education. In this set-up, the parameters $\beta_1$ and $\beta_2$ are the productivity parameters for the respective parts of the stock of human capital. Both are assumed to suffer from depreciation or the loss of productive value. At this stage, we do not distinguish between the causes (internal or external) of this loss. The path of the stock of human capital due to education is given by 
-
-\begin{flalign}\label{eq:two} 
+\begin{flalign}\label{eq:2.2} 
 KS_{T} = S + hTS &&
 \end{flalign} 
-
 \noindent
 where $h$ is the rate of loss of the stock. The next equation for the loss of stock gained from experience is a bit more complicated. The stock from schooling, $S$ is taken to be fixed at the end of the full-time schooling period and the beginning of the working period. However, experience is being built up every year at the same time as the capital acquired from previous experience depreciates. 
-
-\begin{flalign}\label{eq:three} 
-KE_{T} = \{1 + (T-1)\gamma\} + \{1 + (T-2)\gamma\}  + \{1 + (T-3)\gamma\} + \ldots + \{1\}  && 
+\begin{flalign}\label{eq:2.3} 
+KE_{T} = \{1 + (T-1)\cdot\gamma \} + \{1 + (T-2)\cdot\gamma \}  + \{1 + (T-3)\cdot\gamma \} + \ldots + \{1\}  && 
 \end{flalign} 
-
 \noindent
 where $\gamma$ is the rate of loss applied every year. The equation can be simplified and summarized as
-
-\begin{flalign}\label{eq:four} 
-KE_{T} =  T + \gamma\{(T-1) + (T-2) + (T-3) + \ldots + 1\} = T + \gamma\frac{T^2}{2}   && 
+\begin{flalign}\label{eq:2.4} 
+KE_{T} =  T + \gamma\cdot\{(T-1) + (T-2) + (T-3) + \ldots + 1\} = T + \gamma\cdot\frac{T^2}{2}   && 
 \end{flalign} 
-
-Substituting equations \ref{eq:one} and \ref{eq:two} into equation \ref{eq:four}, we get
-
-\begin{flalign}\label{eq:five} 
+Substituting equations \ref{eq:2.2} and \ref{eq:2.4} into equation \ref{eq:2.1}, we get
+\begin{flalign}\label{eq:2.5} 
 log(W) = \alpha +  \beta_{1}S +  \beta_{1}hTS + \beta_{2}T + \frac{\beta_{2}\gamma}{2}T^{2} =  \alpha +  \beta_{1}S + \pi_{1}TS + \beta_{2}T + \pi_{2}T^{2} && 
 \end{flalign} 
-
 \noindent
 where $\pi_{1} = \beta_{1}h$ and $\pi_{2} = \frac{\beta_{2}\gamma}{2}$. 
-
-From \ref{eq:five}, the depreciation rate during $T$ years applied to schooling can be computed as $\pi_{1}S $ and the depreciation rate applied to experience as $ 2\pi_{2}T$.\\
-
-A more methodologically rigorous and nuanced approach to the estimation of depreciation rates was elaborated by \citep{weber_173._2008, weber_156._2011}. The scholar suggested a model enabling to accurately identify the human capital depreciation rate by introducing it as a \textit{parameter} in the earnings equation. The technique incorporates the idea that the observed wages are lower than the potential wages since, during the working career, people devote a fraction of their earnings capacity to the generation of new human capital. The analytical strategy assumes a linear decreasing shape of time invested in training across one's working life and the linearity of the association between a portion of time devoted to training and the amount of human capital acquired. Despite these linearity assumptions, the model is nonlinear in the parameters and therefore needs to be estimated by nonlinear least squares (NLS).
-
-Weber's methodological solution culminates in the following equation:
- 
-\begin{multline}\label{eq:six} 
-	\ln Y_{i t}= \ln W+\beta_{K} \cdot\left\{(1-\delta)^{X_{i t}} \cdot S_{i}+\alpha \cdot \frac{1-(1-\delta)^{X_{i t}}}{\delta}\right.\cdot\\
-	\left.\left(1+\frac{1-\delta}{\delta \cdot L_{i}}\right)-\frac{\alpha \cdot X_{i t}}{\delta \cdot L_{i}}\right\}+\ln \left\{1-\left(\alpha-\frac{\alpha}{L_{i}} \cdot X_{i t}\right)\right\}+\beta_{Z} \cdot Z_{i t}+u_{i t}
-\end{multline}
-
+\vspace{2pt}
 \noindent
-where $i$ represents an individual subscript, $t$ shows a time period, $\ln Y$ is a logarithm of the observed earnings, $\ln W$ is a logarithm of a return per certain period on a unit of earnings capacity, $\beta_{K}$ is the effect of the human capital stock on earnings, $\beta_{Z}$ is the effect of other covariates in the model on earning, $\delta$ is the human capital depreciation rate, $X_{i t}$ is the labor market experience, $L_{i}$ is the total working life length, $\alpha$ is a parameter reflecting the share of time invested in training, $Z_{i t}$ is a set of observable attributes hypothesized to have an impact on earnings, $u_{i t}$ is an error term.
-
-For the complete stages of the equation \ref{eq:six} derivation see \parencite{weber_173._2008}.
-
-\subsection{Results on Depreciation Rates}
-\subsubsection{Murillo's Approach}
-
-Table \ref{tab:1} shows OLS estimation results for the equation \ref{eq:five} run on the whole sample of the RLMS observations under consideration. In this subsection, we analyzed solely six years that represent the ends (1994 and 2018), the diffused peak (2003 and 2006), and halfway points to the ends (2012 and 2003) of the survey's available time interval. Table \ref{tab:2} reports depreciation rate values and sample means for the experience and education variables.
-
-By a test of significance, it was ascertained that in all waves, one additional year spent at the labor market significantly reduces the effect of experience on earnings. Interestingly, the average experience depreciation rates in Russia seem to be greater at both ends of the period (1994, 1998; 2012, 2018) compared to the middle (2003, 2006). However, the inspection of confidence intervals (not shown) informs that only in 2006  -- the period of economic growth in Russia -- rates of experience loss were lower (0.5\%) compared to the most recent 2018 year (1.63\%). The remaining pairwise comparisons by years lead to indistinguishable estimates for the general population. 
-
-Quite different findings were obtained for the depreciation associated with education. The respective interaction terms $(Educ \times Exper)$ were significant only in models built for 1994 and 1998, whereas in the rest of the periods, they were equal to zero (p-values were larger than any conventional criteria).
+From \ref{eq:2.5}, the depreciation rate during $T$ years applied to schooling can be computed as $\pi_{1}S $ and the depreciation rate applied to experience as $ 2\pi_{2}T$.
+\vspace{-5pt}
+\subsubsection{Estimation Results}
+Table \ref{tab:2.1} shows OLS estimation results of equation \ref{eq:2.5} run on the whole sample of the RLMS observations. In this subsection, we analyzed separately six years that represent the ends (1994 and 2018), the diffused peak (2003 and 2006), and halfway points to the ends (2012 and 2003) of the available time interval. The idea is to examine the role played by changes in depreciation to explain the observed pattern of variation in the rates of return shown in Figure \ref{fig:1.1}. 
 
 \setlength{\tabcolsep}{2pt}
 \begin{table}[h!]
 	\centering 
 	\caption{Results of Estimating Human Capital Depreciation for the Whole Sample, RLMS} 
-	\label{tab:1}
+	\label{tab:2.1}
 	\begin{tabular}{@{\extracolsep{3pt}}lcccccc} 
 		\\[-1.8ex]\hline 
 		\hline \\[-1.8ex] 
@@ -320,17 +292,17 @@ Quite different findings were obtained for the depreciation associated with educ
 		Constant & 10.266$^{***}$ & 4.720$^{***}$ & 6.762$^{***}$ & 7.854$^{***}$ & 8.889$^{***}$ & 9.205$^{***}$ \\ 
 		& (0.301) & (0.258) & (0.221) & (0.181) & (0.128) & (0.158) \\ 
 		& & & & & & \\ 
-		Educ, years & 0.113$^{***}$ & 0.116$^{***}$ & 0.094$^{***}$ & 0.074$^{***}$ & 0.054$^{***}$ & 0.053$^{***}$ \\ 
+		Educ, years ($S$) & 0.113$^{***}$ & 0.116$^{***}$ & 0.094$^{***}$ & 0.074$^{***}$ & 0.054$^{***}$ & 0.053$^{***}$ \\ 
 		& (0.020) & (0.017) & (0.015) & (0.012) & (0.008) & (0.010) \\ 
 		& & & & & & \\ 
-		Exper & 0.053$^{***}$ & 0.044$^{***}$ & 0.016 & $-$0.001 & 0.012$^{*}$ & 0.023$^{***}$ \\ 
+		Educ X Exper ($TS$) & $-$0.001$^{*}$ & $-$0.001$^{*}$ & $-$0.00005 & 0.0003 & 0.0003 & 0.0001 \\ 
+		& (0.001) & (0.001) & (0.001) & (0.0005) & (0.0003) & (0.0004) \\ 
+		& & & & & & \\ 
+		Exper($T$) & 0.053$^{***}$ & 0.044$^{***}$ & 0.016 & $-$0.001 & 0.012$^{*}$ & 0.023$^{***}$ \\ 
 		& (0.015) & (0.013) & (0.011) & (0.009) & (0.007) & (0.008) \\ 
 		& & & & & & \\ 
-		Exper squared & $-$0.001$^{***}$ & $-$0.001$^{***}$ & $-$0.0004$^{***}$ & $-$0.0002$^{*}$ & $-$0.001$^{***}$ & $-$0.001$^{***}$ \\ 
+		Exper squared ($T^2$) & $-$0.001$^{***}$ & $-$0.001$^{***}$ & $-$0.0004$^{***}$ & $-$0.0002$^{*}$ & $-$0.001$^{***}$ & $-$0.001$^{***}$ \\ 
 		& (0.0002) & (0.0001) & (0.0001) & (0.0001) & (0.0001) & (0.0001) \\ 
-		& & & & & & \\ 
-		Educ X Exper & $-$0.001$^{*}$ & $-$0.001$^{*}$ & $-$0.00005 & 0.0003 & 0.0003 & 0.0001 \\ 
-		& (0.001) & (0.001) & (0.001) & (0.0005) & (0.0003) & (0.0004) \\ 
 		& & & & & & \\ 
 		\hline \\[-1.8ex] 
 		Observations & 3,037 & 3,100 & 3,856 & 4,800 & 7,417 & 6,112 \\ 
@@ -344,11 +316,14 @@ Quite different findings were obtained for the depreciation associated with educ
 	\end{tabular} 
 \end{table}
 
+
+Using the coefficient estimates derived from Table \ref{tab:2.1}, we compute the depreciation rate during $T$ years applied to schooling as $\pi_{1}S $ and the depreciation rate applied to experience as $ 2\pi_{2}T$, evaluating the expression at the mean level of schooling. Table \ref{tab:2.2} reports the depreciation rate values so calculated with the corresponding sample means. The table shows an interesting U-shaped pattern in the depreciation rate for human capital. The depreciation rate associated with education has been declining steadily and did not pick up again as measured with the given data. The depreciation rate associated with experience declined at first and then picked up again. 
+
 \begin{table}[h!]
 	\centering
 	\caption{Average Depreciation Rates (DR) by Years, RLMS}
-	\label{tab:2}
-	\begin{tabular}{rlrrrrrr}
+	\label{tab:2.2}
+	\begin{tabular}{@{\extracolsep{20pt}}rlrrrrrr}
 		\hline
 		& \textbf{Statistic} & \textbf{1994} & \textbf{1998} & \textbf{2003} & \textbf{2006} & \textbf{2012} & \textbf{2018} \\ 
 		\hline
@@ -362,7 +337,30 @@ Quite different findings were obtained for the depreciation associated with educ
 	\end{tabular}
 \end{table}
 	
-\subsubsection{Weber's Approach}
+Further work is required, including computation of the depreciation rates at levels other than the mean values. At this stage, the findings raise some interesting questions which needs to be addressed by further research. In the period from 1994 to 2006, the depreciation rate appears to be declining, just as the rates of return were on an ascending curve. As both kinds of depreciation (for experience and education) were declining, it is possible that the main cause was in the labor market experience rather than in the education system. Since the peak of earnings premiums in the 2003-2006 period, as returns to education have declined, we see that the depreciation rates associated with experience have started climbing back, but depreciation rates associated with education have declined to null and not reverted. It is tempting to claim that this indicates a qualitative improvment in the skills provided by the education system, but further investigation is warranted before making such a claim. We explore next an alternative computation of the depreciation rate. 
+
+\subsection{Depreciation of Human Capital using Non-Linear Least Squares}
+
+\subsubsection{Description of Model}
+
+\citet{arrazola_132b._2005} and  \citep{weber_173._2008, weber_156._2011} implemented a model that includes the human capital depreciation rate as a parameter in the earnings equation.
+
+\begin{Large}
+\textcolor{red}{
+PLEASE INCLUDE HERE ALL THE EQUATIONS AND DERIVATION RATHER THAN JUST THE LAST EQUATIION]}
+\end{Large} 
+
+Weber's methodological solution culminates in the following equation:
+ 
+\begin{multline}\label{eq:six} 
+	\ln Y_{i t}= \ln W+\beta_{K} \cdot\left\{(1-\delta)^{X_{i t}} \cdot S_{i}+\alpha \cdot \frac{1-(1-\delta)^{X_{i t}}}{\delta}\right.\cdot\\
+	\left.\left(1+\frac{1-\delta}{\delta \cdot L_{i}}\right)-\frac{\alpha \cdot X_{i t}}{\delta \cdot L_{i}}\right\}+\ln \left\{1-\left(\alpha-\frac{\alpha}{L_{i}} \cdot X_{i t}\right)\right\}+\beta_{Z} \cdot Z_{i t}+u_{i t}
+\end{multline}
+
+\noindent
+where $i$ represents an individual subscript, $t$ shows a time period, $\ln Y$ is a logarithm of the observed earnings, $\ln W$ is a logarithm of a return per certain period on a unit of earnings capacity, $\beta_{K}$ is the effect of the human capital stock on earnings, $\beta_{Z}$ is the effect of other covariates in the model on earning, $\delta$ is the human capital depreciation rate, $X_{i t}$ is the labor market experience, $L_{i}$ is the total working life length, $\alpha$ is a parameter reflecting the share of time invested in training, $Z_{i t}$ is a set of observable attributes hypothesized to have an impact on earnings, $u_{i t}$ is an error term.
+
+For the complete stages of the equation \ref{eq:six} derivation see \parencite{weber_173._2008}.
 
 Table \ref{tab:3} reports empirical findings for the estimation of the \ref{eq:six} equation using NLS with robust standard errors. For simplicity, we restricted our analysis by the RLMS data collected in 2018. The four specifications displayed separately by gender portray the following combinations of the $\alpha$ (post-school investment in human capital) and $\delta$ (depreciation rate of the human capital) parameters: \textit{model I} - both $\alpha$ and $\delta$ are constant across education levels; \textit{model II} - $\alpha$ is constant, $\delta$ varies; \textit{model III} - $\alpha$ varies, $\delta$ is constant, \textit{model VI} - both $\alpha$ and $\delta$ vary across education levels.
 
