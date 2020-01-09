@@ -28,6 +28,7 @@ library(segregation)
 library(reshape2)
 library(arules)
 library(stargazer)
+library(sparkTable)
 
 # Some functions -later to be edreru package
 source("C:/Country/Russia/Data/SEASHELL/SEABYTE/edreru/edreru_package.R")
@@ -214,6 +215,35 @@ edu_exp_mean <- cbind.data.frame(Statistic, edu_exp_mean)
 # Latex 
 xtable::xtable(edu_exp_mean)
 
+#### A. General Model. Output for Sparklines
+############################################
+# First I need to get the edu_exp_mean data into long form for sparklines
+edu_all_ <- edu_exp_mean[c(3,4,5),] %>% rename("variable"="Statistic")
+(edu_all <- melt(edu_all_,id.vars="variable",variable.name = "time"))
+
+## sparkTable needs two parameters in addition to data - content and VarType
+content <- list(
+  function(x) { round(mean(x),2) },newSparkLine())
+names(content) <- paste('column',1:2,sep='')
+varType <- rep('value',2)
+
+# sparkTable needs to run function reshapeExt on long form of data
+edu_all <- edu_all[,c('variable','value','time')]
+(xx <- reshapeExt(edu_all, varying=list(2))) # I do not understand the varying parameter
+
+# reshapeExt at up the time and added an id, I just fix that
+xx$time <- edu_all$time
+xx$id <- NULL
+
+# Generate the sparkTable
+x1 <- newSparkTable(xx, content, varType)
+
+# I save the sparklines, there is a latex table generated spkline.tex
+# from which I only use the preamble and graphics command in the latex table
+# main output are three sparklines 
+export(x1, outputType="tex", 
+       filename="C:/Country/Russia/Data/SEASHELL/SEABYTE/Edreru/wp1/sparklines/spkline",
+       graphNames="C:/Country/Russia/Data/SEASHELL/SEABYTE/Edreru/wp1/sparklines/all")
 #######################################
 ########### A1F. General model - Female
 stargazer(lm_dep_f[1],
@@ -313,6 +343,38 @@ Statistic <- c("Experience, mean",
 edu_exp_mean <- cbind.data.frame(Statistic, edu_exp_mean)
 # Latex 
 xtable::xtable(edu_exp_mean)
+###########################################
+#### A2F. General Model. Output for Sparklines
+############################################
+# First I need to get the edu_exp_mean data into long form for sparklines
+edu_female_ <- edu_exp_mean[c(3,4,5),] %>% rename("variable"="Statistic")
+(edu_female <- melt(edu_female_,id.vars="variable",variable.name = "time"))
+
+## sparkTable needs two parameters in addition to data - content and VarType
+content <- list(
+  function(x) { round(mean(x),2) },newSparkLine())
+names(content) <- paste('column',1:2,sep='')
+varType <- rep('value',2)
+
+# sparkTable needs to run function reshapeExt on long form of data
+edu_female <- edu_female[,c('variable','value','time')]
+(xx <- reshapeExt(edu_female, varying=list(2))) # I do not understand the varying parameter
+
+# reshapeExt at up the time and added an id, I just fix that
+xx$time <- edu_female$time
+xx$id <- NULL
+
+# Generate the sparkTable
+x1 <- newSparkTable(xx, content, varType)
+
+# I save the sparklines, there is a latex table generated spkline.tex
+# from which I only use the preamble and graphics command in the latex table
+# main output are three sparklines 
+export(x1, outputType="tex", 
+       filename="C:/Country/Russia/Data/SEASHELL/SEABYTE/Edreru/wp1/sparklines/spkline",
+       graphNames="C:/Country/Russia/Data/SEASHELL/SEABYTE/Edreru/wp1/sparklines/female")
+#######################################
+
 
 #######################################
 ########### A1M. General model - Male
@@ -414,7 +476,37 @@ edu_exp_mean <- cbind.data.frame(Statistic, edu_exp_mean)
 # Latex 
 xtable::xtable(edu_exp_mean)
 
+###########################################
+#### A2M. General Model. Output for Sparklines
+############################################
+# First I need to get the edu_exp_mean data into long form for sparklines
+edu_male_ <- edu_exp_mean[c(3,4,5),] %>% rename("variable"="Statistic")
+(edu_male <- melt(edu_male_,id.vars="variable",variable.name = "time"))
 
+## sparkTable needs two parameters in addition to data - content and VarType
+content <- list(
+  function(x) { round(mean(x),2) },newSparkLine())
+names(content) <- paste('column',1:2,sep='')
+varType <- rep('value',2)
+
+# sparkTable needs to run function reshapeExt on long form of data
+edu_male <- edu_male[,c('variable','value','time')]
+(xx <- reshapeExt(edu_male, varying=list(2))) # I do not understand the varying parameter
+
+# reshapeExt at up the time and added an id, I just fix that
+xx$time <- edu_male$time
+xx$id <- NULL
+
+# Generate the sparkTable
+x1 <- newSparkTable(xx, content, varType)
+
+# I save the sparklines, there is a latex table generated spkline.tex
+# from which I only use the preamble and graphics command in the latex table
+# main output are three sparklines 
+export(x1, outputType="tex", 
+       filename="C:/Country/Russia/Data/SEASHELL/SEABYTE/Edreru/wp1/sparklines/spkline",
+       graphNames="C:/Country/Russia/Data/SEASHELL/SEABYTE/Edreru/wp1/sparklines/male")
+#######################################
 
 
 ###########
