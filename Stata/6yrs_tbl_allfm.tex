@@ -1,7 +1,36 @@
 \documentclass[12pt,a4paper]{article}
 
 \begin{document}
-
+	\begin{table}[htbp]\centering
+		\def\sym#1{\ifmmode^{#1}\else\(^{#1}\)\fi}
+		\caption{Empirical Estimates for Males, Model I}
+		\begin{tabular}{l*{6}{c}}
+			\hline\hline
+			&\multicolumn{1}{c}{1994}&\multicolumn{1}{c}{1998}&\multicolumn{1}{c}{2003}&\multicolumn{1}{c}{2006}&\multicolumn{1}{c}{2012}&\multicolumn{1}{c}{2018}\\
+			\hline
+			lnW         &                     &                     &                     &                     &                     &                     \\
+			\_cons      &       10.48\sym{***}&       4.862\sym{***}&       6.730\sym{***}&       7.841\sym{***}&       8.410\sym{***}&       8.852\sym{***}\\
+			&     (0.191)         &     (0.165)         &     (0.141)         &    (0.0838)         &    (0.0787)         &    (0.0885)         \\
+			\hline
+			bk          &                     &                     &                     &                     &                     &                     \\
+			\_cons      &       0.145\sym{***}&       0.143\sym{***}&       0.114\sym{***}&      0.0723\sym{***}&       0.138\sym{***}&       0.149\sym{***}\\
+			&    (0.0167)         &    (0.0144)         &    (0.0140)         &    (0.0106)         &   (0.00871)         &   (0.00856)         \\
+			\hline
+			delta       &                     &                     &                     &                     &                     &                     \\
+			\_cons      &      0.0246\sym{***}&      0.0208\sym{***}&     0.00926         &    -0.00402         &      0.0369\sym{***}&      0.0459\sym{***}\\
+			&   (0.00518)         &   (0.00434)         &   (0.00499)         &   (0.00583)         &   (0.00434)         &   (0.00508)         \\
+			\hline
+			alpha       &                     &                     &                     &                     &                     &                     \\
+			\_cons      &       0.480\sym{***}&       0.386\sym{***}&       0.135         &      -0.169         &       0.497\sym{***}&       0.669\sym{***}\\
+			&    (0.0912)         &    (0.0790)         &    (0.0911)         &    (0.0950)         &    (0.0601)         &    (0.0533)         \\
+			\hline
+			\(N\)       &        3037         &        3100         &        3856         &        4800         &        7417         &        6112         \\
+			\hline\hline
+			\multicolumn{7}{l}{\footnotesize Standard errors in parentheses}\\
+			\multicolumn{7}{l}{\footnotesize \sym{*} \(p<0.05\), \sym{**} \(p<0.01\), \sym{***} \(p<0.001\)}\\
+		\end{tabular}
+	\end{table}
+	
 \begin{table}[h!]\centering
 	\def\sym#1{\ifmmode^{#1}\else\(^{#1}\)\fi}
 	\caption{Empirical Estimates for Females, Model I}
@@ -30,7 +59,7 @@
 
 \begin{table}[h!]\centering
 	\def\sym#1{\ifmmode^{#1}\else\(^{#1}\)\fi}
-	\caption{Empirical Estimates for Males, Model I}
+	\caption{Empirical Estimates for the Whole Sample, Model I}
 	\begin{tabular}{l*{6}{c}}
 		\hline\hline
 		&\multicolumn{1}{c}{1994}&\multicolumn{1}{c}{1998}&\multicolumn{1}{c}{2003}&\multicolumn{1}{c}{2006}&\multicolumn{1}{c}{2012}&\multicolumn{1}{c}{2018}\\

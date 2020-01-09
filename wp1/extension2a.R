@@ -223,7 +223,7 @@ edu_all_ <- edu_exp_mean[c(3,4,5),] %>% rename("variable"="Statistic")
 
 ## sparkTable needs two parameters in addition to data - content and VarType
 content <- list(
-  function(x) { round(mean(x),2) },newSparkLine())
+  function(x) {round(mean(x), 2)}, newSparkLine())
 names(content) <- paste('column',1:2,sep='')
 varType <- rep('value',2)
 

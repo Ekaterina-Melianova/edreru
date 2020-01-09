@@ -63,8 +63,15 @@ keep if YEAR == 2018
 eststo: nl dep1a @ lnwage exper edu_yrs tlabor0, parameters(lnW bk delta alpha) initial(lnW 20 bk .2 delta .05 alpha .5) vce(robust) 
 
 * TeX Females
+
+* Full tables
 esttab using 6yrs_tbl_f.tex, se title(Empirical Estimates for Females, Model I) ///
 nonumbers mtitles("1994" "1998" "2003" "2006" "2012" "2018")
+
+* For sparklines in R
+esttab using 6yrs_tbl_f.csv, not nostar ///
+nonumbers mtitles("1994" "1998" "2003" "2006" "2012" "2018")
+
 eststo clear
 
 // Males
@@ -89,13 +96,49 @@ keep if YEAR == 2018
 eststo: nl dep1a @ lnwage exper edu_yrs tlabor0, parameters(lnW bk delta alpha) initial(lnW 20 bk .2 delta .05 alpha .5) vce(robust) 
 
 * TeX Males
+
+* Full tables
 esttab using 6yrs_tbl_m.tex, se title(Empirical Estimates for Males, Model I) ///
 nonumbers mtitles("1994" "1998" "2003" "2006" "2012" "2018")
+
+* For sparklines in R
+esttab using 6yrs_tbl_m.csv, not nostar ///
+nonumbers mtitles("1994" "1998" "2003" "2006" "2012" "2018")
+
 eststo clear
 
+// All
 
+use df_6yrsall, clear
+keep if YEAR == 1994
+eststo: nl dep1a @ lnwage exper edu_yrs tlabor0, parameters(lnW bk delta alpha) initial(lnW 20 bk .2 delta .05 alpha .5) vce(robust) 
+use df_6yrsall, clear
+keep if YEAR == 1998
+eststo: nl dep1a @ lnwage exper edu_yrs tlabor0, parameters(lnW bk delta alpha) initial(lnW 20 bk .2 delta .05 alpha .5) vce(robust) 
+use df_6yrsall, clear
+keep if YEAR == 2003
+eststo: nl dep1a @ lnwage exper edu_yrs tlabor0, parameters(lnW bk delta alpha) initial(lnW 20 bk .2 delta .05 alpha .5) vce(robust) 
+use df_6yrsall, clear
+keep if YEAR == 2006
+eststo: nl dep1a @ lnwage exper edu_yrs tlabor0, parameters(lnW bk delta alpha) initial(lnW 20 bk .2 delta .05 alpha .5) vce(robust) 
+use df_6yrsall, clear
+keep if YEAR == 2012
+eststo: nl dep1a @ lnwage exper edu_yrs tlabor0, parameters(lnW bk delta alpha) initial(lnW 20 bk .2 delta .05 alpha .5) vce(robust) 
+use df_6yrsall, clear
+keep if YEAR == 2018
+eststo: nl dep1a @ lnwage exper edu_yrs tlabor0, parameters(lnW bk delta alpha) initial(lnW 20 bk .2 delta .05 alpha .5) vce(robust) 
 
+* TeX Males
 
+* Full tables
+esttab using 6yrs_tbl_all.tex, se title(Empirical Estimates for the Whole Sample, Model I) ///
+nonumbers mtitles("1994" "1998" "2003" "2006" "2012" "2018")
+
+* For sparklines in R
+esttab using 6yrs_tbl_all.csv, not nostar ///
+nonumbers mtitles("1994" "1998" "2003" "2006" "2012" "2018")
+
+eststo clear
 
 
 
