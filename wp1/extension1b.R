@@ -484,7 +484,8 @@ ggsave("dp01_ve.png", width = 3, height = 3.5,
 
 
 temp_ <- df_mincer %>% filter(edu_4=="Secondary") %>% filter(YEAR==1998|YEAR==2006|YEAR==2018)
-ggplot(temp_,aes(x=exper,y=wage_c18,group=as.factor(YEAR),linetype=as.factor(YEAR))) + geom_smooth(se=FALSE,col="darkgreen",lwd=0.75,method=loess)+
+ggplot(temp_,aes(x=exper,y=wage_c18,group=as.factor(YEAR),linetype=as.factor(YEAR))) + 
+  geom_smooth(se=FALSE,col="darkgreen",lwd=0.75,method=loess)+
   coord_cartesian(ylim=c(0,40000))+
   scale_linetype_manual(values=c("dotted","longdash","solid"),
                         breaks = rev(levels(as.factor(temp_$YEAR))))+
@@ -494,7 +495,6 @@ ggplot(temp_,aes(x=exper,y=wage_c18,group=as.factor(YEAR),linetype=as.factor(YEA
   theme(panel.grid.major = element_line(size=1)) +
   theme(panel.grid.minor = element_line(color="white")) +
   theme(panel.grid.minor = element_line(size=1))+
-  theme(legend.position = "none")
   theme(legend.position = c(0.8, 0.8),
         legend.background = element_rect(fill = "yellow"),
         legend.key = element_rect(fill = "yellow"),

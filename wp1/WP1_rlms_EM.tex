@@ -74,6 +74,10 @@
 \raisebox{-#1mm}{\includegraphics[height=#2em,width=3cm]{#3}}
 }
 
+%% For tables in panel
+\usepackage{ltablex,ragged2e}
+\renewcommand\tabularxcolumn[1]{>{\RaggedLeft}p{#1}}
+
 \begin{document}
 
 \title{Working Paper 1: Returns to Education in the Russian Federation - First Draft \footnote{Arranged in alphabetical order of author last names. The entire code used to generate the graphs and tables presented in this paper is available on bitbucket at \burl{https://bitbucket.org/zagamog/edreru/src/master/} , starting from the raw RLMS data graciously provided in the public domain by the National Research University-Higher School of Economics (HSE).}}
@@ -324,15 +328,16 @@ Table \ref{tab:2.1} shows OLS estimation results of equation \ref{eq:2.5} run on
 \end{table}
 
 
-Using the coefficient estimates derived from Table \ref{tab:2.1}, we compute the depreciation rate during $T$ years applied to schooling as $\pi_{1}S $ and the depreciation rate applied to experience as $ 2\pi_{2}T$, evaluating the expression at the mean level of schooling. Table \ref{tab:2.2} reports the depreciation rate values so calculated with the corresponding sample means. The table shows an interesting U-shaped pattern in the depreciation rate for human capital. The depreciation rate associated with education has been declining steadily and did not pick up again as measured with the given data. The depreciation rate associated with experience declined at first and then picked up again. 
+Using the coefficient estimates derived from Table \ref{tab:2.1}, we compute the depreciation rate during $T$ years applied to schooling as $\pi_{1}S $ and the depreciation rate applied to experience as $ 2\pi_{2}T$, evaluating the expression at the mean level of schooling. Table \ref{tab:2.2} reports the depreciation rate values so calculated with the corresponding sample means. The table shows an interesting U-shaped pattern in the depreciation rate for human capital, attributable mainly to the depreciation rate associated with experience. The depreciation rate associated with education has been declining steadily and did not pick up again as measured with the given data. The depreciation rate associated with experience declined at first and then picked up again. 
 
-\begin{table}[h!]
-	\centering
-	\caption{Average Depreciation Rates (DR) by Years - Whole Sample, RLMS}
-	\label{tab:2.2}
-	\begin{tabular}{@{\extracolsep{5pt}}rlrrrrrrc}
+\begin{center}
+\captionof{table}{Average Depreciation Rate by Years}\label{tbl:2.5}
+\keepXColumns
+\begin{tabularx}{\textwidth}{@{\extracolsep{5pt}}rlrrrrrrc}
 		\hline
-		& \textbf{Statistic} & \textbf{1994} & \textbf{1998} & \textbf{2003} & \textbf{2006} & \textbf{2012} & \textbf{2018} &  \\ 
+\multicolumn{9}{l}{\textbf{Panel A: Whole Sample}} \\
+\hline
+			& \textbf{Statistic} & \textbf{1994} & \textbf{1998} & \textbf{2003} & \textbf{2006} & \textbf{2012} & \textbf{2018} &  \\ 
 		\hline
 		1 & Experience, mean & 12.70 & 12.69 & 12.79 & 12.79 & 12.95 & 13.27 &\\ 
 		2 & Education, mean & 21.41 & 22.32 & 22.20 & 22.24 & 22.52 & 22.52 & \\ 
@@ -344,18 +349,11 @@ Using the coefficient estimates derived from Table \ref{tab:2.1}, we compute the
 		5 & DR Human Capital, \% & 4.67 & 4.26 & 1.15 & 0.50 & 1.37 & 1.63 & 
 \graph{1}{1}{C:/Country/Russia/Data/SEASHELL/SEABYTE/Edreru/wp1/sparklines/all2-3}\\ 
 		\hline
-	\end{tabular}
-\end{table}
-	
- This is seen
-
-\begin{table}[h!]
-	\centering
-	\caption{Average Depreciation Rates (DR) by Years - Female Sample, RLMS}
-	\label{tab:2.3}
-	\begin{tabular}{@{\extracolsep{5pt}}rlrrrrrrc}
+\end{tabularx}
+%\par\noindent
+\begin{tabularx}{\textwidth}{@{\extracolsep{5pt}}rlrrrrrrc}
 		\hline
-		& \textbf{Statistic} & \textbf{1994} & \textbf{1998} & \textbf{2003} & \textbf{2006} & \textbf{2012} & \textbf{2018} \\ 
+\multicolumn{9}{l}{\textbf{Panel B: Female Sample}} \\
 		\hline
   1 & Experience, mean & 12.76 & 12.85 & 12.98 & 13.05 & 13.24 & 13.58 & \\ 
   2 & Education, mean & 21.36 & 22.09 & 22.34 & 22.33 & 22.69 & 22.67 & \\ 
@@ -366,16 +364,10 @@ Using the coefficient estimates derived from Table \ref{tab:2.1}, we compute the
   5 & DR Human Capital, \% & 6.27 & 7.88 & 5.59 & 0.78 & 1.23 & 1.52 & 
 \graph{1}{1}{C:/Country/Russia/Data/SEASHELL/SEABYTE/Edreru/wp1/sparklines/female2-3} \\ 
    \hline
-\end{tabular}
-\end{table}
-
-\begin{table}[ht]
-	\centering
-	\caption{Average Depreciation Rates (DR) by Years - Male Sample, RLMS}
-	\label{tab:2.4}
-	\begin{tabular}{@{\extracolsep{5pt}}rlrrrrrrc}
+\end{tabularx}
+\begin{tabularx}{\textwidth}{@{\extracolsep{5pt}}rlrrrrrrc}
 		\hline
-		& \textbf{Statistic} & \textbf{1994} & \textbf{1998} & \textbf{2003} & \textbf{2006} & \textbf{2012} & \textbf{2018} \\ 
+\multicolumn{9}{l}{\textbf{Panel C: Male Sample}} \\
   \hline
 1 & Experience, mean & 12.62 & 12.50 & 12.57 & 12.47 & 12.61 & 12.91 & \\ 
   2 & Education, mean & 21.47 & 22.58 & 22.02 & 22.14 & 22.31 & 22.34 & \\ 
@@ -389,9 +381,8 @@ Using the coefficient estimates derived from Table \ref{tab:2.1}, we compute the
 \graph{1}{1}{C:/Country/Russia/Data/SEASHELL/SEABYTE/Edreru/wp1/sparklines/male2-3} 
 \\ 
    \hline
-\end{tabular}
-\end{table}
-
+\end{tabularx}
+\end{center}
 
 Further work is required, including computation of the depreciation rates at levels other than the mean values. At this stage, the findings raise some interesting questions which needs to be addressed by further research. In the period from 1994 to 2006, the depreciation rate appears to be declining, just as the rates of return were on an ascending curve. As both kinds of depreciation (for experience and education) were declining, it is possible that the main cause was in the labor market experience rather than in the education system. Since the peak of earnings premiums in the 2003-2006 period, as returns to education have declined, we see that the depreciation rates associated with experience have started climbing back, but depreciation rates associated with education have declined to null and not reverted. It is tempting to claim that this indicates a qualitative improvment in the skills provided by the education system, but further investigation is warranted before making such a claim. We explore next an alternative computation of the depreciation rate. 
 
@@ -481,7 +472,7 @@ Model IV is a combination of models II and III; however, according to goodness-o
 	\end{tabular}
 \end{table}
 
-\section{Extensions of the Human Capital Depreciation \\ Analyses}
+\section{Extensions of the Human Capital Depreciation Analyses}
 \subsection{Depreciation and Gender Dimension}
 
 In this section, by leveraging  \citet{murillo_172._2006} approach, we extend our analysis by comparing the estimated depreciation rates between female- and male-dominated groups in various industries and occupations. J4\_1 and J2COD08 (ISCO-08) variables in the RLMS 2018 database were employed to tag gender-based industrial sectors and occupations, respectively. A sector was marked as female-dominated (male-dominated) if it contained more than 64\% (less than 44\%) of women, i.e., $\pm$ 10\% from the average of 54\%. Accordingly, neutral sectors occupied the middle of the distribution. Figure \ref{fig:5} visualizes this procedure; Table \ref{tab:4} maps title of sectors with female percentages in them. To generate gender-related occupations an identical tactic was applied based on the 2-digit ISCO-08 (see Figure \ref{fig:6} and Table \ref{tab:5}). The latter was obtained by aggregating the respective 3- and 4-digit categories that were originally present in ISCO-08. If the double-digit group was composed of less than 20 observations, it was merged with ``others" and labeled as a ``Miscellaneous non-ISCO" category.
