@@ -4,6 +4,7 @@
 
 library(sparkTable)
 library(rio)
+library(reshape2)
 
 # wd
 setwd("C:/Country/Russia/Data/SEASHELL/SEABYTE/edreru/Stata")
@@ -12,18 +13,18 @@ setwd("C:/Country/Russia/Data/SEASHELL/SEABYTE/edreru/Stata")
 
 ################ all
 sixyrs_all <- import("6yrs_tbl_all.csv")
-sixyrs_all <- as.data.frame(lapply(sixyrs_all, function(x) {substr(x, 3, nchar(x)-1)}))[c(6, 8),]
+sixyrs_all <- as.data.frame(lapply(sixyrs_all, function(x) {substr(x, 3, nchar(x)-1)}))[c(2,4,6,8,9),]
 colnames(sixyrs_all) <- c('Parameter', '1994', '1998', '2003', '2006', '2012', '2018')
-sixyrs_all$Parameter <- c('delta', 'alpha')
+sixyrs_all$Parameter <- c('lnW', 'bk', 'delta', 'alpha', 'Sample size')
 rownames(sixyrs_all) <- NULL
 # Rounding
 sixyrs_all[-1] <- lapply(sixyrs_all[-1], as.character)
 sixyrs_all[-1] <- lapply(sixyrs_all[-1], as.numeric)
-sixyrs_all[] <- lapply(sixyrs_all, function(x) if(is.numeric(x)) round(x, 2) else x)
+sixyrs_all[] <- lapply(sixyrs_all, function(x) if(is.numeric(x)) round(x, 4) else x)
 
 # delta and alpha are not significant in 2003 and 2006 --> 0
-sixyrs_all$`2003` <- c(0, 0)
-sixyrs_all$`2006` <- c(0, 0)
+#sixyrs_all$`2003` <- c(0, 0)
+#sixyrs_all$`2006` <- c(0, 0)
 
 ################ Females
 sixyrs_f <- import("6yrs_tbl_f.csv")
@@ -34,7 +35,7 @@ rownames(sixyrs_f) <- NULL
 # Rounding
 sixyrs_f[-1] <- lapply(sixyrs_f[-1], as.character)
 sixyrs_f[-1] <- lapply(sixyrs_f[-1], as.numeric)
-sixyrs_f[] <- lapply(sixyrs_f, function(x) if(is.numeric(x)) round(x, 2) else x)
+sixyrs_f[] <- lapply(sixyrs_f, function(x) if(is.numeric(x)) round(x, 4) else x)
 
 # delta and alpha are not significant in 2006 --> 0
 sixyrs_f$`2006` <- c(0, 0)
@@ -48,7 +49,7 @@ rownames(sixyrs_m) <- NULL
 # Rounding
 sixyrs_m[-1] <- lapply(sixyrs_m[-1], as.character)
 sixyrs_m[-1] <- lapply(sixyrs_m[-1], as.numeric)
-sixyrs_m[] <- lapply(sixyrs_m, function(x) if(is.numeric(x)) round(x, 2) else x)
+sixyrs_m[] <- lapply(sixyrs_m, function(x) if(is.numeric(x)) round(x, 4) else x)
 
 # delta and alpha are not significant in 2003 and 2006 --> 0
 sixyrs_m$`2003` <- c(0, 0)
