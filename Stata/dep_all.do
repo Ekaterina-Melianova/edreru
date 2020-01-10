@@ -69,7 +69,7 @@ esttab using 6yrs_tbl_f.tex, se title(Empirical Estimates for Females, Model I) 
 nonumbers mtitles("1994" "1998" "2003" "2006" "2012" "2018")
 
 * For sparklines in R
-esttab using 6yrs_tbl_f.csv, not nostar ///
+esttab using 6yrs_tbl_f.csv, b(4) se(4) nostar ///
 nonumbers mtitles("1994" "1998" "2003" "2006" "2012" "2018")
 
 eststo clear
@@ -102,7 +102,7 @@ esttab using 6yrs_tbl_m.tex, se title(Empirical Estimates for Males, Model I) //
 nonumbers mtitles("1994" "1998" "2003" "2006" "2012" "2018")
 
 * For sparklines in R
-esttab using 6yrs_tbl_m.csv, not nostar ///
+esttab using 6yrs_tbl_m.csv, b(4) se(4) nostar ///
 nonumbers mtitles("1994" "1998" "2003" "2006" "2012" "2018")
 
 eststo clear
@@ -135,7 +135,7 @@ esttab using 6yrs_tbl_all.tex, se title(Empirical Estimates for the Whole Sample
 nonumbers mtitles("1994" "1998" "2003" "2006" "2012" "2018")
 
 * For sparklines in R
-esttab using 6yrs_tbl_all.csv, not nostar ///
+esttab using 6yrs_tbl_all.csv, b(4) se(4) nostar ///
 nonumbers mtitles("1994" "1998" "2003" "2006" "2012" "2018")
 
 eststo clear
