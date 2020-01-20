@@ -205,8 +205,8 @@ edu_exp_mean[5,] <- edu_exp_mean[3,] + edu_exp_mean[4,]
 edu_exp_mean <- round(edu_exp_mean, 2)
 
 # Naming
-Statistic <- c("Experience, mean",
-              "Education, mean",
+Statistic <- c("Education, mean",
+              "Experience, mean",
               "DR Experience, %",
               "DR Education, %",
               "DR Human Capital, %")
@@ -334,8 +334,8 @@ edu_exp_mean[5,] <- edu_exp_mean[3,] + edu_exp_mean[4,]
 edu_exp_mean <- round(edu_exp_mean, 2)
 
 # Naming
-Statistic <- c("Experience, mean",
-               "Education, mean",
+Statistic <- c("Education, mean",
+               "Experience, mean",
                "DR Experience, %",
                "DR Education, %",
                "DR Human Capital, %")
@@ -466,8 +466,8 @@ edu_exp_mean[5,] <- edu_exp_mean[3,] + edu_exp_mean[4,]
 edu_exp_mean <- round(edu_exp_mean, 2)
 
 # Naming
-Statistic <- c("Experience, mean",
-               "Education, mean",
+Statistic <- c("Education, mean",
+               "Experience, mean",
                "DR Experience, %",
                "DR Education, %",
                "DR Human Capital, %")
@@ -571,8 +571,8 @@ edu_exp_mean[5,] <- edu_exp_mean[3,] + edu_exp_mean[4,]
 edu_exp_mean <- round(edu_exp_mean, 2)
 
 # Naming
-Statistic <- c("Experience, mean",
-               "Education, mean",
+Statistic <- c("Education, mean",
+               "Experience, mean",
                "DR Experience, %",
                "DR Education, %",
                "DR Human Capital, %")
@@ -649,8 +649,8 @@ edu_exp_mean[5,] <- edu_exp_mean[3,] + edu_exp_mean[4,]
 edu_exp_mean <- round(edu_exp_mean, 2)
 
 # Naming
-Statistic <- c("Experience, mean",
-               "Education, mean",
+Statistic <- c("Education, mean",
+               "Experience, mean",
                "DR Experience, %",
                "DR Education, %",
                "DR Human Capital, %")
