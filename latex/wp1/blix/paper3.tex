@@ -1,0 +1,866 @@
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% A template for Wiley article submissions.
+% Developed by Overleaf. 
+%
+% Please note that whilst this template provides a 
+% preview of the typeset manuscript for submission, it 
+% will not necessarily be the final publication layout.
+%
+% Usage notes:
+% The "blind" option will make anonymous all author, affiliation, correspondence and funding information.
+% Use "num-refs" option for numerical citation and references style.
+% Use "alpha-refs" option for author-year citation and references style.
+
+\documentclass[alpha-refs,fleqn]{wiley-article_p3}
+% \documentclass[blind,num-refs]{wiley-article}
+
+% Add additional packages here if required
+\usepackage{siunitx}
+\usepackage{hyperref}
+\usepackage{lmodern}
+\usepackage{anyfontsize} 
+\usepackage[table]{xcolor}
+\usepackage{datetime}
+\usepackage{graphicx}
+\graphicspath{{pictures/}} % Specifies the directory where pictures are stored
+\settimeformat{ampmtime} % default is 24 hour format
+\usepackage[justification=centering]{caption}
+\usepackage{color} % for a rather silly hack using white text
+%\usepackage[latin1]{inputenc} 
+\usepackage{lipsum}
+\usepackage{tabularx} 
+\usepackage{relsize} 
+\usepackage[figbotcap,captionfalse]{subfigure}
+\usepackage{attrib}
+\usepackage{dcolumn,booktabs} % added dcolumn for decimal alignment
+\usepackage{makecell}
+\usepackage{subfigure}
+% https://tex.stackexchange.com/questions/53470/coding-an-equation-with-description
+\usepackage{amsmath}% http://ctan.org/pkg/amsmath
+\usepackage{array}% http://ctan.org/pkg/array
+% for decimal alignment
+\newcolumntype{d}{D..{3.3}} 
+\newcommand\mc[1]{\multicolumn{1}{c}{#1}} % handy shortcut macro
+% for table with rotated header
+\newcommand*\rot{\rotatebox{90}}
+\newcommand*\OK{\ding{51}}
+% thanks to https://tex.stackexchange.com/questions/98388/how-to-make-table-with-rotated-table-headers-in-latex 
+\setlength{\mathindent}{1cm}
+
+% Update article type if known
+\papertype{World Bank Education Global Practice}
+% Include section in journal if known, otherwise delete
+\paperfield{Russian Federation: Analytical Services and Advisory Activity: P16480}
+
+\title{Educational Equity in the Russian Federation:\\ Paper 3: Collaborative Problem Solving Skills}
+
+% List abbreviations here, if any. Please note that it is preferred that abbreviations be defined at the first instance they appear in the text, rather than creating an abbreviations list.
+\acks{\begin{normalsize}
+\emph{Country Director:} Andras Horvai; \emph{GP Senior Director:} Jaime Saavedra Chanduvi; \emph{Practice Manager:} Cristian Aedo; \emph{Program Leader:} Dorota Nowak; \emph{Peer Reviewers}: Amer Hassan; Anna Olefir; Toby Linden; \emph{Co-TTL:} Tigran Shmis; \emph{Team members:} Polina Zavalina; Zhanna Terlyga. Any errors are a responsibility of the authors.
+\end{normalsize}
+\vspace{-0.2in}}
+
+% Include full author names and degrees, when required by the journal.
+% Use the \authfn to add symbols for additional footnotes and present addresses, if any. Usually start with 1 for notes about author contributions; then continuing with 2 etc if any author has a different present address.
+\author[1]{Suhas D. Parandekar}
+\author[2]{Tigran Shmis}
+
+
+%\contrib[\authfn{1}]{Equally contributing authors.}
+
+% Include full affiliation details for all authors
+\affil[1]{Education Global Practice, Europe and Central Asia}
+\affil[2]{Education Global Practice, Europe and Central Asia}
+
+%\corraddress{Author One PhD, Department, Institution, City, State or Province, Postal Code, Country}
+\corremail{sparandekar@worldbank.org; tshmis@worldbank.org}
+
+%\presentadd[\authfn{2}]{Department, Institution, City, State or Province, Postal Code, Country}
+
+\fundinginfo{This working paper is based on data made freely available by the OECD, as well as open source software and templates (R, Latex and Overleaf). Continuing the sharing paradigm, access to all R and Latex code used to produce this paper can be obtained from the open access bitbucket site for the paper: \href{https://bitbucket.org/zagamog/pisa_paper}{https://bitbucket.org/zagamog/pisa\_paper}   }
+
+% Include the name of the author that should appear in the running header
+\runningauthor{P16480: Paper 3: Collaborative Problem Solving Skills}
+
+\begin{document}
+% \pagecolor{yellow!30} with package xcolor will make whole page yellow
+
+\maketitle
+
+\begin{abstract}
+\emph{\today \hspace{1em} \currenttime }
+
+\vspace{1em}
+
+\noindent This paper examines the equity in achievement of collaborative problem solving skills (CLPS). CLPS equity in Russia is better than OECD, but mainly because of the relative lack of high performers. Policies to improve levels of CLPS performance will likely not face an equity trade-off. These policies need to revise ICT related pedagogy, emphasize extra-curricular activities and continue reducing disparities in infrastructure within federal subjects. 
+
+% Please include a maximum of seven keywords
+\keywords{Educational Equity, {PISA/OECD}, Russian Federation, Skills }
+\end{abstract}
+
+
+\section{Forward Looking Context: Collaborative Problem Solving Skills (CLPS)}
+
+This investigation of educational equity in Russia is forward looking. In this paper we focus on Collaborative Problem Solving Skills (CLPS) that are part of the set of 21st century skills. In the Russian Federation as in other countries, policy makers seek to ensure equitable provision of CLPS and other 21st century skills.  Other terms for 21st century skills are socio-emotional skills and non-cognitive skills.  The report of the \cite{Delors96} also known as the Delors Commission report, elaborated an approach to education which goes beyond the provision of knowledge and individual skills to learners. Many countries have sought to implement policy reforms in line with the recommendations of the Commission.  The impact of the Delors report was assessed recently by  \cite{Tawil13}. Increasingly, the equitable provision of quality learning is seen as a key to national competitiveness and social goals of prosperity for all, see \cite{Kyriakides18}. This paper investigates educational equity in the Russian Federation using data from the PISA CLPS data, which was released in December 2017.  
+
+Collaborative Problem Solving Skills are conceptualized by OECD/PISA as a conjoint dimension of collaboration skills and problem-solving skills. In this paper we use the commonly understood term \textit{skills} though some education researchers refer to \textit{competencies} rather than skills. Though the terms are often used interchangeably, competency is a somewhat more elaborate concept as compared to a skill. A skill is something an individual may or may not possess - it denotes the capability of an individual to undertake a certain action, whether physical or mental. A competency involves the decision to deploy the skill and the follow-through to implement that decision, typically in a social context. Possessing a competency thus involves moral or ethical dimensions as well as other considerations regarding motivation and effort. The modern conceptualization of education goes beyond the mere provision of skills with an instrumental purpose such as performing a job. In the Delors perspective, education is meant to equip the whole human being with lifelong learning of multiple competencies. For the sake of simplicity, in this paper we refer to skills. However, it is useful to understand the term \textit{competency} as it is used in the official OECD/PISA definition of Collaborative Problem Solving (CLP):
+\vspace{-0.25cm}
+
+\begin{quote}
+Collaborative problem-solving competency is the capacity of an individual to effectively engage in a process whereby two or more agents attempt to solve a problem by sharing the understanding and effort required to come to a solution and pooling their knowledge, skills, and efforts to reach that solution.
+\attrib{\citealt[p.134]{Oecd17b}}
+\end{quote}
+
+%The natbib package provides the following four basic citation commands: \citet, % \citep,  \citealt, and \citealp.
+\vspace{-0.25cm}
+
+\begin{group} 
+\tiny
+\begin{table}[h]
+\caption{\textbf{Matrix of Collaborative Problem Solving Skills for PISA 2015}}\label{table:1}
+\begin{threeparttable}
+\setlength{\tabcolsep}{5pt}
+\renewcommand{\arraystretch}{1}
+\begin{tabular}{|p{3cm}|p{3.5cm}|p{3.5cm}|p{3.5cm}|}
+\hline
+                                 & \textbf{(1) Establishing and maintaining shared understanding}                                           & \textbf{(2) Taking appropriate action to solve the problem}                                            & \textbf{(3) Establishing and maintaining team organisation}                                             \\ \hline
+(A) Exploring and understanding  & Discovering perspectives and abilities of team members                                      & Discovering the type of collaborative interaction to solve the problem, along with goals &  Understanding roles to solve the problem                                                  
+\\ \hline
+\rowcolor{grey!30} 
+(B) Representing and formulating &  Building a shared representation and negotiating the meaning of the problem (common ground) & Identifying and describing tasks to be completed                                         &  Describe roles and team organisation (communication protocol/rules of engagement)         \\ \hline
+(C) Planning and executing       &  Communicating with team members about the actions to be/being performed                     & Enacting plans                                                                           &  Following rules of engagement, (e.g. prompting other team members to perform their tasks) \\ \hline
+\rowcolor{grey!30} 
+(D) Monitoring and reflecting    &  Monitoring and repairing the shared understanding                                           &  Monitoring results of actions and evaluating success in solving the problem              & Monitoring, providing feedback and adapting the team organisation and roles
+\\ 
+\hline   
+\end{tabular}
+\begin{tablenotes}
+\item Source: Reproduced from \cite[p.137]{Oecd17b}
+\end{tablenotes}
+\end{threeparttable}
+\end{table}
+\end{group}
+
+The framework for the measurement of CLPS in PISA 2015 is depicted in Table 1. The table indicates twelve measured skills that are the combination between one of three proficiencies indicated in columns, and four problem-solving processes, depicted in rows. Each of the twelve elements is mapped to a step in the sequence of computerized assessment of CLPS. The computerized assessment is especially important for the forward looking assessment of equity carried out in this paper. Students who come from privileged backgrounds or higher ends of the socio-economic scale, are likely to have enjoyed better access to digital artifacts from an early age. It is likley that upper income parents may themselves be more educated with digital competencies. Tackling inequity in educational quality may be challenging in traditional, print-based contexts as well as digital ones. However, given the trend towards deepening of digitization in multiple social and economic aspects, issues of inequity just assume greater salience and urgency.
+
+\subsection{Computerized Assessment using Artificial Intelligence (AI) Agents}
+
+The use of a computerized assessment for CLPS is more of a technical necessity rather than a policy-driven choice, though policy concerns about digital skills do coincide in this case. It is best to use an example to understand this necessity - consider the case of the first cell A1 from Table 1 ``Discovering perspectives and abilities of team members.'' The ability of a standardized test to measure your ability to discover perspectives and abilities of team members depends greatly on what those perspectives and abilities are, and how willing and able the team members are to allow you to discover them. With different sets of human team members for each tested student, it would be practically impossible to extract the true skill level from the displayed skill level in interaction with others. Computerization takes care of this problem by having each test taker interact with simulated agents whose behavior is pre-programmed and controlled. The PISA 2015 used a visual graphic and text based interaction, but is easy to see how future simulations can become more lifelike. Screen representations of 3-D images of other children are technologically accessible through an web browser - see for example \href{https://www.mursion.com/}{www.mursion.com}. Probably sooner than we think, costs of virtual reality and augmented reality will come down drastically. For now, is useful to take a quick look at how text based interaction is used to measure CLPS in PISA 2015. 
+
+\vspace{1em}
+
+Annex 1 reproduces screenshots from a sample unit released by OECD/PISA. Assessment takes place through a sequence of tasks organized to form a unit of assessment - the released sample unit is titled `The Aquarium'. The test taker interacts with one other person, a computerized agent named Abby. The screenshots show how the test taker is introduced to the interface and then provided with the problem statement (see Figure A4) and the time limit to undertake a specific task. Assessment depends on the options chosen by the test taker in response to the context and the prompts from Abby, as can be seen in the successive screenshots. The interface provides the test taker with a set of controls and allows him or her to look at the choices made by Abby. Feedback through an easily accessible interface informs about the progress on the task so the test taker can iterate towards an optimal solution while communicating and taking decisions jointly as a 'team'. Once the entire sequence of tasks that comprises the Aquarium unit is completed, the test taker moves to the next assignment. In the example shown in Figure A8, this is the `Class Logo' unit, where there are now two agents with whom the test taker interacts\footnote{This is a quick overview regarding the CLPS assessment by way of introduction to the analysis presented in this paper. \cite{Oecd17b} provides details about the associated literature and fascinating details about the validity, reliability and accuracy of CLPS measurement.} 
+
+\vspace{1em}
+
+As with other PISA proficiency scores, scores are standardized to an OECD mean of 500 and a standard deviation of 100. Singapore is the highest scoring country with a mean score of 561. Germany is around the middle of the high performing set of countries above the OECD mean. The mean score for the Russian Federation, with the same sample of 15 year old children as for other PISA proficiency measures, was 473, about one-fourth of a standard deviation below the OECD mean. Another country with similar performance to the Russian Federation, is Israel, with a mean score of 469. These three countries are used as reference points for comparison in this paper. PISA CLPS scores, like PISA Math, Science and Reading scores for 2015, are presented in sets of ten `plausible values' for each individual. The PISA CLPS scale is divided into five levels, with descriptions of the meaning of each of these levels in the OECD/PISA documentation. Level 1 is the base level of skill, but a level ``Below Level 1'' was introduced on account of the presence of test takers who could not reach Level 1. Students at Level 1 can solve simple problems with the help of team members. At the other end of the spectrum, students at Level 4 can solve complex coorodination problems and display behaviors such as taking initiative and resolving conflicts. 
+
+\section{Distribution of CLPS across Economic, Social and Cultural Status (ESCS)}
+
+OECD/PISA defines an index of Economic, Social and Cultural Status (ESCS) based on information collected from students regarding parental education, parental occupation, and home posessions including books at home. The variable is calibrated for an OECD mean of zero and standard deviation of 1. We divide the sample into five quintiles according to ESCS for the relevant unit - country or OECD as a whole, with Q1 being the poorest quintile and Q5 being the wealthiest quintile. Table 2 shows the overall distribution of CLPS and its distribution by ESCS quintile. The comparison between results for the Russian Federation and for all of OECD reveals some key facts. 
+
+\begin{group}
+\smaller
+\begin{table}[h]
+\caption{\textbf{Distribution of Collaborative Problem Solving Skills}}\label{table:2}
+\begin{threeparttable}
+\setlength{\tabcolsep}{5pt}
+\renewcommand{\arraystretch}{1.25}
+\begin{tabular}{p{2.5cm}cccccccccccc}
+\rowcolor{grey!30} 
+&\multicolumn{2}{c}{\textbf{Below Level 1}} & \multicolumn{2}{c}{\textbf{Level 1}} & \multicolumn{2}{c}{\textbf{Level 2}} & \multicolumn{2}{c}{\textbf{Level 3}} & \multicolumn{2}{c}{\textbf{Level 4}} & \multicolumn{2}{c}{\textbf{Mean}}\\
+\rowcolor{grey!30} 
+   & \% & (S.E.)         & \% & (S.E.)   & \% & (S.E.) & \% & (S.E.) & \% & (S.E.) & Mean & (S.D.) \\
+\rowcolor{white} 
+Russian Federation & 7.3 & (0.7)  & 29.2 & (1.3)   & 39.6 & (1.2) & 20.3 & (1.2) & 3.6 & (0.5) & 473 & (92) \\
+\rowcolor{grey!10} 
+OECD               & 5.7 & (0.1)  & 22.4 & (0.2)   & 36.2 & (0.2) & 27.8 & (0.2) & 7.9 & (0.1) & 500 & (100) \\
+\rowcolor{white} 
+Russia Q1 Poorest & 12.4 & (1.6)   & 40.8 & (2.0)   & 34.8 & (2.4) & 10.9 & (1.4) & 1.1 & (0.4) & 437 & (86) \\
+\rowcolor{grey!10} 
+OECD Q1 Poorest & 11.6 & (0.5)     & 36.1 & (0.7)   & 35.2 & (0.5) & 14.6 & (0.5) & 2.6 & (0.2) & 450 & (93) \\
+\rowcolor{white}  
+Russia Q5 Richest & 3.3 & (1.1)   & 22.0   & (1.7)   & 38.8 & (2.2) & 29.2 & (2.2) & 6.6 & (1.3) & 504 & (93) \\
+\rowcolor{grey!10} 
+OECD Q5 Richest & 2.2 & (0.4)     & 11.1 & (0.5)   & 29.3 & (0.9) & 37.1 & (0.8) & 20.3 & (0.9) & 555 & (101) \\
+\hline  % Please only put a hline at the end of the table
+\end{tabular}
+\begin{tablenotes}
+\item Source: Calculations from OECD/PISA data
+\end{tablenotes}
+\end{threeparttable}
+\end{table}
+\end{group} 
+
+Table 2 shows that less than 4\% of Russian 15 year olds achieve level 4 of CLPS proficiency, compared to nearly 8\% of OECD 15 year olds. 36.5\% of Russian students are in the category of Level 1 or below, compared to 28.1\% for OECD. This disparity deepens when we look at ESCS quintiles. Thus, more than 53\% of Russian students are at Level 1 or below, compared with about 48\% for OECD, also a high number and indicative of equity problems in OECD countries. The most striking difference in Table 2 is in the performance of the richest or fifth ESCS quintile. Approximately one-fourth of Q5 students in the Russian Federation are at the lowest levels of performance (Level 1 or below), compared to about 13\% for OECD. And while more than 20\% of OECD Q5 students attain the highest level 4 of CLPS skills, only 6.6\% of Russian Federation Q5 students do so. 
+
+\vspace{1em}
+
+The overall conclusion from Table 2 is a common equity problem between OECD and the Russian Federation, with a strong association between the student ESCS level and the CLPS score. Low performance in the highest quintile for the Russian Federation leads to a less serious equity problem compared to OECD. Few of even the top ESCS quintile children in the Russian Federation attain the top performance level 4 of CLPS. To the extent that the ESCS levels in absolute terms are lower in the Russian Federation, this fact indicates disparities in ESCS rather than disparities in educational performance. But it does indicate a gap which policy makers in the Russian Federation would be keen to overcome, especially as Russian performance on traditional achievement measures in PISA matches OECD levels. 
+
+\begin{group} 
+\begin{figure}[htb]
+\begin{subfigure}[Panel A. Singapore All]{
+\includegraphics[width=4.5cm]{p11a.png}}
+\end{subfigure}
+\begin{subfigure}[Panel B. Germany All]{
+\includegraphics[width=4.5cm]{p11b.png}}
+\end{subfigure}
+\begin{subfigure}[Panel C. Israel All]{
+\includegraphics[width=4.5cm]{p11c.png}}
+\end{subfigure}
+\begin{subfigure}[Panel D. Singapore Q1]{
+\includegraphics[width=4.5cm]{p11d.png}}
+\end{subfigure}
+\begin{subfigure}[Panel E. Germany Q1]{
+\includegraphics[width=4.5cm]{p11e.png}}
+\end{subfigure}
+\begin{subfigure}[Panel F. Israel Q1]{
+\includegraphics[width=4.5cm]{p11f.png}}
+\end{subfigure}
+\begin{subfigure}[Panel G. Singapore Q5]{
+\includegraphics[width=4.5cm]{p11g.png}}
+\end{subfigure}
+\begin{subfigure}[Panel H. Germany Q5]{
+\includegraphics[width=4.5cm]{p11h.png}}
+\end{subfigure}
+\begin{subfigure}[Panel I. Israel Q5]{
+\includegraphics[width=4.5cm]{p11i.png}}
+\end{subfigure}
+\caption{Distribution of CLPS, Science, Math and Reading Proficiency}\label{fig:1}
+\end{figure}
+\end{group} 
+
+Figure 1 provides a graphical overview of CLPS proficiency related to proficiency in Science, Math and Reading. As a scatter plot for the entire OECD sample would be too dense, the data for the Russian Federation is compared to Singapore, Germany and Israel. The scatter plots in Figure 1 represent data from individual students. Blue dots represent Russian students, with yellow, green and red chosen for ther comparator countries. All graphs show a strong positive correlation between CLPS and the other subjects. 
+
+\vspace{1em}
+
+The leftmost panel of Figure 1 shows that children from Singapore outperform Russian children on both Science and CLPS. In the Q1 poorest group the performance gap is apparent for CLPS (vertical axis), but not as much for Science (horizontal axis). In the Q5 richest group, Singapore students appear to do better on both Science and CLPS. In the middle panel showing comparison with German PISA test takers, the performance difference is seen mainly for CLPS but not for Mathematics - there is no obvious smear of the green dots towards the north eastern corner of the graph. For the poorest Q1 group there appears to be a performance gap on CLPS but not for Math scores. The rightmost panel shows a comparison with Israel for CLPS and Reading. The overall comparison does not show any pattern, which would be expected given the parity in mean scores between the two countries. There appears to be some benefit for Israeli children from the poorest Q1 quintile. The pattern hinted by the scatter plots in Figure 1 is confirmed by a look at the numbers in Annex Tables A1 through A3 comparing Russia with OECD for Science, Math and Reading. 
+
+\vspace{1em}
+
+The annex tables show that contrary to the case of CLPS, Russian Federation does better than OECD in the equity comparison for Science, Math and Reading, is better than that for OECD. Further, the positive relative performance on equity for the Russian Federation comes from better performance of the lower ESCS quintiles. This can be seen clearly in the case of Reading results presented in Table A2. Whereas less than 25\% of Russian Q1 children are at Level 1a or below in Reading, the comparable figure for OECD  is nearly 38\%. The difference is even more pronounced in the case of Mathematics. Russian Q1 students at below level 1 are only 8.9\%, compared to 21.4\% for OECD. On the positive end of the proficiency scale, 19.1\% of Russian Q1 students were top performers, compared to only 9.2\% for OECD. Indeed,the mean score for Russian Q1 students is more than half a standard deviation ahead of their OECD counterparts. Typically, half a standard deviation on the PISA scale is regarded to be equivalent of one year of instruction. 
+
+\vspace{1em}
+
+The stylized fact motivating this paper appears to be fairly unambigious: Russia shows better equity as compared to the OECD with regards to the traditional subjects of Science, Mathematics and Reading, as measured in the latest available round of OECD/PISA results. However, for the forward looking collaborative problem solving skills, Russian performance lags behind OECD in levels. Russian equity is slightly better, but only because of the relatively low number of high performers in the Russian Federation. A previously published paper, \cite{Kapuza17}, reporting a World Bank supported research program, has examined the issue of better equity with regard to the traditional subjects.\footnote{Another paper in the same World Bank supported series of education equity themed research for the Russian Federation explores the performance of resilient schools - with high proportion of children from lower socio-economic quintiles but which show high performance}. In this paper, we turn our attention to the equity issues regarding collaborative problem solving skills. 
+
+\section{Analysis of Variance of CLPS} 
+
+A basic distributional concern in education concerns the source of variation in performance. From a policy perspective, it is vital to know how much performance is clustered or segemented by region. In a large, federal country like the Russian Federation, it is useful to know how much low performance tends to be focussed or clustered in economically backward regions. With significant policy choices available within federal subjects, it is useful to understand how performance varies by federal subject. Schools are of course another critical locus of attention - this is the reason that OECD/PISA always publishes findings regarding the analysis of variance by school - how much of a country's performance variation takes place across schools, and how much variation is within a school. For this kind of analysis, the best data is census level performance data from all schools. In this paper we use PISA data for Russia that was implemented with a stratified sample that covered 42 regions in Russia, that together represent 75\% of the population of the Russian Federation (Figure 2). The sample size in each region was not big enough to be representative of the region, so the inference only extends to the schools that were covered in the sample. With a total Russian Federation sample of 6036 students, spread across 42 federal subjects, the average sample for each region was about 140 students, from about 4 to 10 schools in each region. So definitive estimates for regions cannot be made with the data, but the sample is large enough for informed qualitative inference.
+
+\vspace{1em}
+
+The Russian Federation is distributed into twelve economic regions - these are not legal entities but are contiguous federal subjects grouped together by similar level of economic development and geographical conditions. 
+
+\begin{figure}[htb]
+\includegraphics[width=14cm]{pisamap1.png}}
+\caption{PISA CLPS Proficiency by Economic Regions}\label{fig:2}
+\end{figure}
+\begin{table}[h!] \centering
+    \begin{tabular}{@{} cl*{13}c @{}}
+        & & \rot{All Russia} & \rot{Central} & \rot{Central Black Earth} & \rot{East Siberian} & \rot{Far Eastern} 
+        & \rot{Northern} & \rot{North Caucasus} & \rot{North Western} 
+        & \rot{Volga} & \rot{Ural} & \rot{Volga-Vyatka} &\rot{West Siberian} &\rot{Kaliningrad}} \\
+        \cmidrule{2-15}
+        & CLPS         & 473 & 493  & 467  & 453  & 462  & 510  & 430  & 489 &  483 &  484 &  474 &  466 &  467 \\
+        & Science      & 487 & 505  & 494  & 471  & 475  & 513  & 452  & 504 &  490 &  487 &  482 &  497 &  477 \\
+        & Mathematics  & 494 & 507  & 504  & 477  & 485  & 512  & 462  & 511 &  509 &  490 &  493 &  514 &  487 \\
+        & Reading      & 495 & 512  & 499  & 478  & 482  & 532  & 455  & 508 &  506 &  493 &  499 &  500 &  487 \\
+        \cmidrule[1pt]{2-15}
+    \end{tabular}
+    \caption{Mean PISA 2015 Scores by Economic Region }
+\end{table}
+
+Figure 2/Table 3 provide the data regarding the score distribution by economic region. Annex 3 figures provide the equivalent figures for other PISA 2015 subjects by way of comparison. The table and the maps show that regional differentiation is highest for CLPS, which is part of the motivation for the focus on CLPS in this paper. Northern, North Western and Central regions perform higher than the national average fairly consistently, and Northern region outperforms OECD even for CLPS. However, for subjects other than CLPS the mean scores are higher than OECD in many cses, for example the West Siberian region Mathematics score is the highest ranked among all regions. Performance of North Caucasus region on CLPS is quite low, in national comparison it would be similar to Thailand and Mexico. East Siberia for CLPS also is about one-third standard deviation lower than the OECD mean. Overall, the  picture by economic regions appears to be a positive one, the pattern is fairly steady and there is not a sharp contrast between extremely high performing regions and very low performing ones. In connection with broader regional development goals and public policy issues such as inter-regional migration, the relatively mild variation across economic regions makes the policy maker's job to improve equity a little bit easier. We look shortly at the quantitatively measured analysis of variance.
+
+\begin{figure}[htb]
+\includegraphics[width=14cm]{boxplot1.png}}
+\caption{PISA CLPS Proficiency by Economic Regions}\label{fig:3}
+\end{figure}
+
+Figure 3 shows a boxplot diagram of CLPS proficiency scores by Federal subject for the 42 federal subjects that are part of the PISA sample. The sample sizes do not allow for inference to be made about specific regions, only qualitative comparisons can be made. Annex 4 presents the equivalent boxplots for Science, Math and Reading.  Overall, the interpretation of Figure 3 is similar to the one made from Figure 2 for economic regions. There are a few regions where the distribution of scores appears significantly below the national median (shown by the black line at national mean CLPS score of 473), and few regions where the scores are substantially higher. A formal quantitative analysis regarding the pattern of variation is needed to verify the facts hinted by the maps and boxplots. 
+
+\vspace{1em}
+
+We consider the simplest, unconditional, variance components model, depicted in the following equation, where the score of the $ith$ student in the $jth$ school located in the $kth$ federal subject that belongs to the $lth$ economic region is depicted, where $\beta_0$ is the unconditional mean and the other terms are random effects at each level. 
+
+\begin{equation}
+y_{ijkl}=\beta_0+\gamma_l+\mu_{kl}+\psi_{jkl}+e_{ijkl},
+\end{equation}
+
+\intertext{where:}  
+
+\begin{array}{lll}
+   & \gamma_l \,\,\,\, \sim \mathcal{N}(\left(0,\,\sigma_e^{2})\right)& $variance at economic region level $\\
+   & \mu_{kl} \,\,\sim \mathcal{N}(\left(0,\,\sigma_f^{2})\right) & $variance at federal subject level$\\ 
+   & \psi_{jkl} \sim \mathcal{N}(\left(0,\,\sigma_s^{2})\right) &  $variance at school level $ \\
+   &  e_{ijkl} \sim \mathcal{N}(\left(0,\,\sigma^{2})\right) & $variance at individual student level$ 
+  \end{array}
+
+\vspace{1em}
+
+We estimate the model depicted in Equation 1, for CLPS and the traditional subjects. The purpose of this analysis is to determine the intra-class correlation coefficient (ICC), a point estimate of the variance explained by each level as a percentage of the total variance. The analysis shows that the percentage of variance explained by economic region and federal subject are very small - between 1\% to 3\%, across all four subjects, with no discernible pattern across the four subjects including CLPS. The percentage variance explained at the school level, after accounting for variation by economic and federal region, for CLPS was 19\% and for Science, Mathematics and Reading it varied between 21\% and 22\%. The CLPS variance explained at the school level (ignoring organization into Economic Region and Federal Subjects) for the Russian Federation as a whole is 21\%, slightly lower  in magnitude to the 25\% average for OECD countries. In previous rounds of PISA the percentage variance explained at school level for the traditionally measured subjects used to be higher, thus indicating a positive trend in the Russian Federation with regard to equity as measured by this variable. High percentage  of variation at the school level is an indication of a quality or segmentation difference between schools. 
+
+\vspace{0.5em}
+
+It is useful to dig a bit deeper into the variance pattern by school level. We focus on CLPS, with the note that the pattern is not different for the other subjects. We initially ignore  the fact that students belong to schools that are located in Federal Subjects. If we look only at the variation by Federal Subject, the variance explained is about 7\%. If we include both Federal Subject and Economic Region, the Federal Subject variance explained drops to 4\% and 3\% is attributed to the Economic Region. This means that nearly half of the variation in Federal Subjects is because they belong to different Economic Regions. Now if we bring back schools into consideration, the percentage variance explained by Economic Region and Federal Subject together are less than 4\%, with schools accounting for 19\% of the variance in CLPS scores. We look finally at the variation across Federal Subjects in the percentage variance explained at the school level. Since there are only 4 to 10 schools in the PISA sample for each Federal Subject, inference is limited to the sample of schools drawn and not the entire Federal Subject. Annex Table A4 presents a  comparison across the four subjects. In general, there is a consistent pattern, but some of the exceptions might benefit from investigation that requires local data beyond the OECD/PISA data used in this paper. 
+
+\section{Full Model: Analysis of Variance with Random Effects Model}
+
+We utilize a two level model, with random effects at the school level. Given our interest in equity, we also want to analyze the school level variation of two key variables - ESCS and HOMEPOS. ESCS is the OECD constructed index of Economic, Social and Cultural Status, constructed with an OECD average of zero and OECD level standard deviation of one. We use the same OECD constructed variable, which for the Russian Federation has a mean of 0.05 and standard deviation of 0.73. ESCS is a composite indicator, which combines information about parental education, parental occupation and home possessions. HOMEPOS is also considered separately, an index (with zero OECD mean and one standard deviation) of home possessions such as cars, televisions, and number of rooms in the home. The mean of HOMEPOS for the Russian Federation sample is -0.36 and the standard deviation is 0.79. The estimated model is represented in the following equation, where the score of the $ith$ student in the $jth$ school is depicted, and $\beta_0$ is the unconditional mean.
+\begin{gather}
+y_{ij}= \alpha_0 + \beta_{0j} + \beta_{1j}X_{ij} \\
+\beta_{1j}= \gamma_{00} + u_{01j} + \epsilon_{ij},
+\end{gather}
+$
+\begin{array}{ll}
+ \begin{bmatrix} \gamma_{00} \\ u_{01} \end{bmatrix} \sim N \begin{bmatrix} \sigma_{\gamma_{00}}^2 &  \\  \sigma_{\gamma_{00}u_{01}} & \sigma_{u_{01}}^2 \end{bmatrix}  & \\ 
+\textcolor{white}{a} & \textcolor{white}{a} \\
+ \epsilon_{ij} \sim  \mathcal{N}(\left(0,\,\sigma^{2})\right)
+  \end{array}
+$
+
+We include $X$ in the model mostly with fixed coefficients and two with random coeffients (marked in \textcolor{blue}{blue text}) shown in Table 4 below. This means that we allow for the slope coefficient on these two variables to be different for each school, rather than fixed for the whole sample as for the other variables. We find that of the 21\% variance at the school level described in the simple model, about 12\% of the variance is explained by the intercept term after 4\% for the ESCS and 6\% variance from HOMEPOS. This is important from the policy perspective as it indicates the relative homogeneity of schools when it comes to educational inequity. 
+
+\begin{group}
+\centering
+\smaller
+\begin{table}[htbp!]
+\caption{\textbf{Variables for modeling Production of CLPS Score - Russian Federation}}\label{table:4}
+\begin{threeparttable}
+\setlength{\tabcolsep}{2pt}
+\renewcommand{\arraystretch}{0.86}
+\begin{tabular}{p{4cm}p{10cm}}
+\rowcolor{grey!30} 
+Variable &  Variable description \\
+\Xhline{1\arrayrulewidth}
+\multicolumn{2}{l}{\textbf{Student characteristic and geographical}}\\
+Female	&  Gender of Student - Female is 1 \\
+City	& City where school located > 100,000 population \\
+Immigrant	& Student or Student's parents born in foreign country \\
+GDP\_PC	&  GDP per capita (in PPP USD of 2009 from UNDP 2011 Report \\
+\multicolumn{2}{l}{\textbf{Student home endowment}}\\
+\Xhline{1\arrayrulewidth}
+\textcolor{blue}{ESCS}	&	\textcolor{blue}{Economic, Social and Cultural Status Index - OECD/PISA construct}\\ 
+\textcolor{blue}{HOMEPOS}	& \textcolor{blue}{Home Possessions Index - OECD/PISA construct} \\
+HEDRES	& Home Educational Resources Index - OECD/PISA construct \\
+PARENTSC	& Percentage parents who particicpate in various school activities \\
+NBOOKS	& Estimated number of books at home  \\
+CULTPOSS	& Index of Cultural Possessions at home - OECD/PISA construct \\
+\multicolumn{2}{l}{\textbf{School endowment}}\\
+\Xhline{1\arrayrulewidth}
+EDUSHORT	&	Index of school infrastructure problem- OECD/PISA construct\\
+STAFFSHORT	&	Index of teaching staff problem - OECD/PISA construct\\
+STUBEHA	&	Index of student behavior as a problem - OECD/PISA construct\\
+TEACHBEHA	&	Index of teacher behavior as a problem - OECD/PISA construct \\
+ECACT	&	Index of Extra-curricular activities provided at school - Russia \\
+\multicolumn{2}{l}{\textbf{ICT related variables}}\\
+\Xhline{1\arrayrulewidth}
+ICTRES	&	Index of ICT Resources at home - OECD/PISA construct\\
+USESCH & Index of ICT Resource use at school - OECD/PISA construct\\
+ENTUSE & Index of ICT use outside of school - OECD/PISA construct \\
+INTICT &	Index of student interest in ICT - OECD/PISA construct\\
+\Xhline{1\arrayrulewidth}
+\end{tabular}
+\end{threeparttable}
+\end{table}
+\end{group} 
+
+\vspace{1in} 
+
+Table 5 describes the comparative profile of the lowest performing group for CLPS scores. The numbers are self-explanatory for the most part, and the table shows results that are very useful from a policy perspective as they show to which groups policy effort might be directed to reduce inequities. The low performers are more likely to be boys, live in a small town or a rural area,and belong to a federal subject with lower GDP per capita. They are likely to have poorer home endowments such as cultural possessions and number of books. 
+
+\vspace{1em}
+
+It is very interesting from Table 5 to take a note of patterns that are \underline{not} observed in Table 5. Immigrant status does not appear to matter in determining group membership of the low performance group. This implies that immigrant children in the Russian Federation may not suffer disadvantages in terms of educational opportunities. For the OECD as a whole, being an immigrant implies a 36 point score deficit in the CLPS score. According to the OECD, the equivalent figure for the Russian Federation is a positive 3 point surplus. OECD\PISA reports a further analysis of the correlation between CLPS scores and scores in Science, Mathematics and Reading \cite[pages 101-102]{Oecd17b}. They find that when compared to performance in the three traditionally measured subjects, Russian immigrant children actually obtain a nearly 10 point surplus in the CLPS score. 
+
+\begin{group}
+\centering
+\smaller
+\begin{table}[h]
+\caption{\textbf{Profiling Russian Federation Low Achievement Group with others}}\label{table:1}
+\begin{threeparttable}
+\setlength{\tabcolsep}{2pt}
+\renewcommand{\arraystretch}{1.25}
+\begin{tabular}{p{2cm}cccccccccccc}
+\rowcolor{grey!30} 
+ Variable & \multicolumn{2}{c}{\textbf{All}} & \multicolumn{2}{c}{\textbf{Q1 Lowest}} & \multicolumn{2}{c}{\textbf{Q2}} & \multicolumn{2}{c}{\textbf{Q3}} & \multicolumn{2}{c}{\textbf{Q4}} & \multicolumn{2}{c}{\textbf{Q5 Highest}}\\
+\rowcolor{grey!30}   
+   & Mean & (S.E.)         & Mean & (S.E.)   & Mean & (S.E.) & Mean & (S.E.) & Mean & (S.E.) & Mean & (S.E) \\
+Female	&	0.51	&	 ( 0.01 )	&	0.40	&	 ( 0.02 )	&	0.46	&	 ( 0.01 )	&	0.52	&	 ( 0.02 )	&	0.57	&	 ( 0.02 )	&	0.59	&	 ( 0.02 )	\\
+City	&	0.51	&	 ( 0.02 )	&	0.33	&	 ( 0.03 )	&	0.43	&	 ( 0.02 )	&	0.50	&	 ( 0.03 )	&	0.57	&	 ( 0.03 )	&	0.71	&	 ( 0.03 )	\\
+Immigrant	&	0.16	&	 ( 0.01 )	&	0.15	&	 ( 0.01 )	&	0.15	&	 ( 0.01 )	&	0.15	&	 ( 0.01 )	&	0.17	&	 ( 0.01 )	&	0.20	&	 ( 0.02 )	\\
+GDP\_PC	&	17,806	&	 ( 658 )	&	15,629	&	 ( 596 )	&	16,518	&	 ( 689 )	&	17,725	&	 ( 687 )	&	18,232	&	 ( 704 )	&	21,001	&	 ( 1105 )	\\
+\Xhline{1\arrayrulewidth}
+ESCS	&	0.05	&	 ( 0.02 )	&	-0.25	&	 ( 0.03 )	&	-0.11	&	 ( 0.03 )	&	0.08	&	 ( 0.03 )	&	0.18	&	 ( 0.02 )	&	0.34	&	 ( 0.02 )	\\
+HOMEPOS	&	-0.36	&	 ( 0.02 )	&	-0.56	&	 ( 0.04 )	&	-0.45	&	 ( 0.03 )	&	-0.32	&	 ( 0.03 )	&	-0.28	&	 ( 0.03 )	&	-0.18	&	 ( 0.02 )	\\
+HEDRES	&	0.42	&	 ( 0.01 )	&	0.17	&	 ( 0.03 )	&	0.40	&	 ( 0.03 )	&	0.44	&	 ( 0.03 )	&	0.53	&	 ( 0.03 )	&	0.53	&	 ( 0.02 )	\\
+PARENTSC	&	48.66	&	 ( 1.21 )	&	48.95	&	 ( 1.68 )	&	48.67	&	 ( 1.1 )	&	49.27	&	 ( 1.19 )	&	48.43	&	 ( 1.36 )	&	47.94	&	 ( 2.03 )	\\
+NBOOKS	&	139.85	&	 ( 3.02 )	&	103.1	&	 ( 5.42 )	&	115.26	&	 ( 4.9 )	&	139.09	&	 ( 7.49 )	&	151.76	&	 ( 5.66 )	&	188.5	&	 ( 4.94 )	\\
+CULTPOSS	&	0.34	&	 ( 0.02 )	&	0.04	&	 ( 0.03 )	&	0.25	&	 ( 0.03 )	&	0.39	&	 ( 0.02 )	&	0.43	&	 ( 0.02 )	&	0.55	&	 ( 0.03 )	\\
+\Xhline{1\arrayrulewidth}
+EDUSHORT	&	0.31	&	 ( 0.10 )	&	0.50	&	 ( 0.11 )	&	0.41	&	 ( 0.1 )	&	0.26	&	 ( 0.1 )	&	0.23	&	 ( 0.1 )	&	0.13	&	 ( 0.16 )	\\
+STAFFSHORT	&	0.08	&	 ( 0.10 )	&	0.20	&	 ( 0.12 )	&	0.10	&	 ( 0.12 )	&	0.03	&	 ( 0.11 )	&	0.05	&	 ( 0.1 )	&	0.01	&	 ( 0.13 )	\\
+STUBEHA	&	0.70	&	 ( 0.12 )	&	0.87	&	 ( 0.12 )	&	0.71	&	 ( 0.13 )	&	0.58	&	 ( 0.12 )	&	0.67	&	 ( 0.12 )	&	0.64	&	 ( 0.18 )	\\
+TEACHBEHA	&	0.27	&	 ( 0.13 )	&	0.22	&	 ( 0.17 )	&	0.21	&	 ( 0.14 )	&	0.20	&	 ( 0.12 )	&	0.34	&	 ( 0.14 )	&	0.37	&	 ( 0.17 )	\\
+ECACT	&	-0.03	&	 ( 0.08 )	&	-0.29	&	 ( 0.15 )	&	-0.13	&	 ( 0.1 )	&	0.04	&	 ( 0.08 )	&	0.04	&	 ( 0.08 )	&	0.20	&	 ( 0.09 )	\\
+\Xhline{1\arrayrulewidth}
+ICTRES	&	-0.33	&	 ( 0.02 )	&	-0.48	&	 ( 0.04 )	&	-0.42	&	 ( 0.03 )	&	-0.32	&	 ( 0.03 )	&	-0.28	&	 ( 0.03 )	&	-0.16	&	 ( 0.03 )	\\
+USESCH	&	 0.12	&	 ( 0.03 )	&	 0.44	&	 ( 0.06 )	&	 0.29	&	 ( 0.06 )	&	 0.13	&	 ( 0.05 )	&	-0.01	&	 ( 0.04 )	&	-0.20	&	 ( 0.05 )	\\
+ENTUSE 	&	 0.29	&	 ( 0.02 )	&	 0.16	&	 ( 0.05 )	&	 0.31	&	 ( 0.04 )	&	 0.37	&	 ( 0.06 )	&	 0.32	&	 ( 0.03 )	&	 0.26	&	 ( 0.03 )	\\
+INTICT	&	-0.24	&	 ( 0.02 )	&	-0.40	&	 ( 0.04 )	&	-0.27	&	 ( 0.03 )	&	-0.16	&	 ( 0.03 )	&	-0.18	&	 ( 0.02 )	&	-0.19	&	 ( 0.02 )	\\
+\Xhline{1\arrayrulewidth}
+\end{tabular} 
+\begin{tablenotes}
+\item Source: Calculations from OECD/PISA data
+\end{tablenotes}
+\end{threeparttable}
+\end{table}
+\end{group} 
+
+Another variable that shows a lack of correlation with membership of the lowest group is PARENTSC - parental participation at school. This variable is derived from principal reports of parental participation at school to discuss their children's progress, to take part in local school government or to volunteer. Higher percentage of parents taking part in school activities would  be expected to be related to group membership in Table 5, but one does not find this to be the case. A similar observation about the lack of discriminating power can be made regarding the variable TEACHBEHA. This variable purports to describe problems regarding teacher behavior, such as teacher absentiism, or the teacher being too strict or not prepared for class. 
+
+\vspace{1em}
+
+In Table 6 we present the results of the equation described in Equations 2 and 3 with two of the explanatory variables - ESCS and HOMEPOS modeled with random slopes at the school level. PISA scores are presented at individual level with ten alternative imputations (plausible values) and a methodology that allows to utilize the information contained in all the plausible values simultaneously. Methdology for using all plausible values for ordinary least squares (OLS) is well established in the literature. Methodology for random effects regressions using all plausible values is also available, but the use is not yet established. Here we use an arbitrarily chosen first plausible value as the dependent CLPS score variable, with weights to account for the sampling scheme used in PISA. For comparison, we also present the OLS results using the same weights and all plausible values. 
+
+\begin{group}
+\centering
+\smaller
+\begin{table}[htbp!]
+\caption{\textbf{Random Effects Model Production of CLPS Score - Russian Federation}}\label{table:6}
+\begin{threeparttable}
+\setlength{\tabcolsep}{2pt}
+\renewcommand{\arraystretch}{1}
+\begin{tabular}{p{3cm}p{6.25cm}*{4}{d{3.3}} }
+\rowcolor{grey!30} 
+\Xhline{1\arrayrulewidth}
+\mc{\textbf{Variable}}	&	\mc{\textbf{Variable description}} & \mc{\textbf{Random Eff.}} 	& \mc{\textbf{S.E}}	& 	\mc{\textbf{OLS Model}}	&	\mc{\textbf{S.E.}}	\\
+%\Xhline{1\arrayrulewidth}
+Intercept	& Constant	&	434.64	&	(9.67)	&	423.69	&	(10.8)	\\
+ESCS	& Economic, Social and Cultural Status Index  &	-	&	-	&	24.59	&	(2.99)	\\
+HOMEPOS	& Home Possessions Index 	&	-	&	-	&	-36.40	&	(6.21)	\\
+FEMALE	&  Gender of Student - Female is 1 	&	17.99	&	(2.33)	&	18.64	&	(4.23)	\\
+CITY	& City where school located > 100,000 population 	&	29.32	&	(5.33)	&	27.52	&	(5.47)	\\
+IMMIGRANT	& Student or Student's parents born in foreign country 	&	3.75	&	(3.12)	&	6.71	&	(5.75)	\\
+GDP\_PCM	&  GDP per capita (in PPP USD of 2009)	&	0.88	&	(0.35)	&	0.69	&	(0.3)	\\
+\Xhline{1\arrayrulewidth}
+HEDRES	& Home Educational Resources Index  	&	4.34	&	(1.49)	&	8.18	&	(3.97)	\\
+PARENTSC	& Percentage parents who particicpate  	&	-0.03	&	(0.14)	&	-0.10	&	(0.17)	\\
+NBOOKS	& Estimated number of books at home  	&	0.04	&	(0.01)	&	0.04	&	(0.01)	\\
+CULTPOSS	& Index of Cultural Possessions at home  	&	17.11	&	(1.95)	&	24.70	&	(4.32)	\\
+\Xhline{1\arrayrulewidth}
+EDUSHORT	& Index of school infrastructure problem 	&	-7.36	&	(2.57)	&	-5.78	&	(2.25)	\\
+STAFFSHORT	&  Index of teaching staff problem 	&	2.79	&	(2.82)	&	2.55	&	(2.93)	\\
+STUBEHA	& Index of student behavior as a problem 	&	-2.56	&	(2.66)	&	-2.79	&	(3.09)	\\
+TEACHBEHA	& Index of teacher behavior as a problem  	&	4.95	&	(2.33)	&	4.97	&	(2.75)	\\
+ECACT	& Index of Extra-curricular activities  	&	6.18	&	(2.54)	&	4.20	&	(2.98)	\\
+\Xhline{1\arrayrulewidth}
+ICTRES	&Index of ICT Resources at home 	&	1.55	&	(1.67)	&	12.58	&	(3.92)	\\
+USESCH	 & Index of ICT Resource use at school 	&	-11.23	&	(0.00)	&	-12.17	&	(1.99)	\\
+ENTUSE	 & Index of ICT use outside of school  	&	2.39	&	(1.12)	&	1.68	&	(2.08)	\\
+INTICT	& Index of student interest in ICT	&	6.82	&	(1.33)	&	5.48	&	(2.78)	\\
+\Xhline{1\arrayrulewidth}
+\end{tabular}
+\end{threeparttable}
+\end{table}
+\end{group} 
+
+
+
+
+With PISA calibrated at mean of 500 and standard deviation of 100, a difference of ten points can serve as a heuristic for economic significance of impact size of a tenth of a standard deviation, though the heteroskedastcity consistent standard errors reported in Table 6 can be used to examine statistical significance. As ESCS and HOMEPOS (economic and social status and wealth indices) are treated as random effects, they are discussed separately in Figure 4. In the OLS model ESCS has a positive effect and HOMEPOS has a negative effect. We have modeled ESCS and HOMEPOS as random slopes, pertaining to each school in the sample. This allows us to examine for the relationship with equity from the attainment perspective as well as from the economic or livelihood perspective. 
+
+\begin{group} 
+\centering
+%\captionsetup[subfloat]{farskip=0pt}
+\begin{figure}[htb!]
+\begin{subfigure}{
+\includegraphics[width=6.5cm]{ps4a.png}}
+\end{subfigure}
+\begin{subfigure}{
+\includegraphics[width=6.5cm]{ps4b.png}}
+\end{subfigure}
+\centering
+\begin{subfigure}{
+\includegraphics[width=6.5cm]{ps4c.png}}
+\end{subfigure}
+\begin{subfigure}{
+\includegraphics[width=6.5cm]{ps4d.png}}
+\end{subfigure}
+\centering
+\begin{subfigure}{
+\includegraphics[width=6.5cm]{ps4e.png}}
+\end{subfigure}
+\begin{subfigure}{
+\includegraphics[width=6.5cm]{ps4f.png}}
+\end{subfigure}
+\caption{Random coefficients compared across distribution}\label{fig:5}
+\end{figure}
+\end{group} 
+
+Figure 4 presents a panel of three rows of two graphs, with each dot representing a school. The dots vary in size depending on the total enrollment of the school.  The topmost row records the random coefficient of the intercept term on the vertical axis, the middle row records the coefficient for ESCS on the vertical axis and the bottom row has the HOMEPOS coefficient on the vertical axis. We computed two variables to give an idea of the respective concentrations of low performers and high performers within a school. On the left hand side, the horizontal axis of the three graphs indicates the percentage of students from the \textit{bottom} national quintile of the respective variable. In the top row, this is the CLPS test score - considering the mean of the ten plausible values to determine group membership. The cut-off to define this level was a CLPS score of 405, about one standard deviation below the OECD mean. On the right hand side, the horizontal axis captures the higher end of the performance spectrum - the proportion of students at the school who were in the topmost CLPS score quintile - high performers beyond a cut-off of 546 points - this is equivalent to third level and higher in the OECD/PISA scale. We also examine the aspect of regional economic disadvantage by looking at the bottom third in terms of per capita regional GDP - in each graph, the colored dots represent schools located in federal districts that are in the bottom third of GDP per capita amongst regions of the Russian Federation. 
+
+\vspace{1em}
+
+The top row of Figure 4 depicting the coefficient for the intercept term serves as a benchmark for the other two rows. The top row merely reflects a mathematical artefact. Clearly, the lower the proportion of low performing students in a school, the higher will be the random intercept value - this is because the school with the higher random intercept value has a higher average performance level. Conversely, a school with high percentage of low performers, that is further to the right on the horizontal axis, will have a lower (and in some cases negative valued) intercept term. The top left hand panel shows a negative slope in the scatter plot. Similarily, the top right hand graph shows the mirror image for high performing students. The more there are high performing students within a school, the higher will be the value of the random intercept term for that school. The only diagnostic element in the top panel is shown by the use of color representing regions with low per capita GDP. The graphs in the top row do not show any clustering of colored points. If "geography were destiny" the colored points would have been clustered at the right end of the left hand side graph and the right hand side of the right hand graph. But we do not see such a pattern, which is an important policy consideration in a large federal country like the Russian Federation. 
+
+\vspace{1em}
+
+The four other graphs in Figure, showing the value of the random coefficents for ESCS and HOMEPOS are remarkable in the lack of pronounced slope as compared to the benchmark of the first row showing the intercept terms. There is something quite interesting about the comparison between the left panel and right panel for both slope coefficients. On the left hand graphs, notice that there are very few schools in the right hand size of each graph. With few exceptions, there are no school which cluster students from the lower quintile of ESCS and HOMEPOS. On the right hand side, the scatter is evenly spread out along the horizontal axis. For ESCS, with most of the coefficients being positive, this means that having a higher ESCS helps a student obtain a higher score, but that tendency is not much affected by the proportion of either low ESCS student or high ESCS students. For HOMEPOS, the sign of the coefficient is negative for the majority of the schools. 
+
+\vspace{1em}
+
+Turning to the results regarding the fixed coefficients from Table 6, we find that the most sizeable effects are from gender, with an advantage for girls, the variable for large city location, the index for cultural possessions and the index of ICT resource used at school, though the last variable comes in with a negative coefficient. It is notable to find a negative correlation between use of computers in school and collaborative problem solving skill performance, tested in digital enviroment as described in the annex to this paper. This might be an indication of inadequacies in the curriculum or methodology of integration of computers as part of school instruction. The result is positive from an equity viewpoint - the negative association between school resources use and performance means that those who are deprived of greater school use of computers may actually be benefiting from a kind of blessing in disguise. The home use of computers (ICTRES) is uncorrelated with score, but there are positive effcts of the use of computers for entertainment purposes, and of the student interest. The findings regarding ICT indicate the need for deeper investigation of this theme, especially as digital skills are considered very important for the future.  
+
+\vspace{1em}
+
+An interesting comparison can be made about the coefficients on the variables regarding home endowment (HEDRES, PARENTSC, NBOOKS and CULTPOSS) and the variables regarding school endowment. These are EDUSHORT, STAFFSHORT, STUBEHA, TEACHBEHA, and ECACT. Three of the home endowment variables, typically outside of purview of educational policy have highly unequal distribution (Table 5) and are statistically and economically significant. A fourth variable - PARENTSC is kind of a bridge between home and school and is not significant. From the school endowment variables, we can consider three sets of variables. EDUSHORT, which represents infrastructure quality is a signficant predictor of performance. However, STAFFSHORT and STUBEHA are not significant and TEACHBEHA has the 'wrong' sign, meaning the school with greated teacher problems as measured in PISA actually does slightly better in performance. Finally, we find that ECACT, the constructed IRT index of extra-curricular activities at school has a small but positive impact on test score. 
+
+
+\section{Conclusions and Recommendations}
+
+\begin{enumerate}
+\item Collaborative Problem Solving Skills is a new area of educatioanl assessment, measured for the first time in PISA 2015 and results released in December 2017. The Russian Federation continues to do better in terms of education equity as compared to the OECD, however the equity advantage is lower for CLPS as compared to the equity advantage in traditional subjects (presented in Paper 1 of this series).
+\item The assessment of CLPS is done through the scoring of decisions made by children in collaborative problem solving scenarios with artificial intelligence agents. This methodology of assessment holds great promise and its use should be deepened through national and local assessments. They are less stressful than exams which test knowledge, but provide an accurate, reliable and valid estimate of an important 21st century competency. There is a high correlation between performance on CLPS and performance in traditional subjects.
+\item The achievement level of Russian fifteen year olds on CLPS is lower than the OECD average, whereas for the traditional subjects, the performance equals or even exceeds the OECD average, as is the case for mathematics. This lower level is mainly driven by low performance at the upper end of the distribution - there are relatively few high achievers on CLPS in Russian Federation as compared to the OECD. 
+\item Inspite of the vast geographical distances and differences that characterize the Russian Federation, the difference in student achievement between Economic Regions and Federal Subjects is relatively mild. This finding needs to be investigated further to be confirmed. However, if true, it implies that the key education financing issue may not be disparities in financing across regions. Rather there is evidence that financing and policy attention should be directed towards disparities \textit{within} regions and effectiveness of instruction more generally.
+\item Teacher performance problems and discipline related issues may not be key issues  for the Russian Federation. Rather, policy should tackle disparities in provision of infrstructure within the region, and should be directed at re-examining a possibly rigid curriculum and methodology, particularly in the use of ICT. Children are often highly motivated to use ICT in new ways such as uploading and sharing creative content and the education system needs to catch up with such uses to be effective. 
+\end{enumerate}
+
+
+
+
+
+
+\bibliography{pisa}
+
+\newpage
+
+
+\appendix
+\renewcommand\thefigure{\thesection.\arabic{figure}}   
+\section{Annex 1}
+\setcounter{figure}{0} 
+
+\begin{figure}[h]
+\begin{centering}
+\includegraphics[width=14cm]{paper1_1.png}
+\end{centering}
+\footnotesize{Source: OECD 2017b}
+\caption{Sample unit “The Aquarium”: Introduction}
+\end{figure}
+
+\newpage
+
+\textcolor{white}{WHITE TEXT}
+
+
+\begin{figure}[h]
+\begin{centering}
+\includegraphics[width=14cm]{paper1_2.png}
+\end{centering}
+\footnotesize{Source: OECD 2017b}
+\caption{Sample unit “The Aquarium”}
+\end{figure}
+
+\newpage
+
+\textcolor{white}{WHITE TEXT}
+
+
+\begin{figure}[h]
+\begin{centering}
+\includegraphics[width=14cm]{paper1_3.png}
+\end{centering}
+\footnotesize{Source: OECD 2017b}
+\caption{Sample unit “The Aquarium”}
+\end{figure}
+
+\newpage
+
+\textcolor{white}{WHITE TEXT}
+
+
+\begin{figure}[h]
+\begin{centering}
+\includegraphics[width=14cm]{paper1_4.png}
+\end{centering}
+\footnotesize{Source: OECD 2017b}
+\caption{Sample unit “The Aquarium”}
+\end{figure}
+
+\newpage
+
+\textcolor{white}{WHITE TEXT}
+
+
+\begin{figure}[h]
+\begin{centering}
+\includegraphics[width=14cm]{paper1_5.png}
+\end{centering}
+\footnotesize{Source: OECD 2017b}
+\caption{Sample unit “The Aquarium”}
+\end{figure}
+
+\newpage
+
+\textcolor{white}{WHITE TEXT}
+
+
+\begin{figure}[h]
+\begin{centering}
+\includegraphics[width=14cm]{paper1_6.png}
+\end{centering}
+\footnotesize{Source: OECD 2017b}
+\caption{Sample unit “The Aquarium”}
+\end{figure}
+
+\newpage
+
+\textcolor{white}{WHITE TEXT}
+
+
+\begin{figure}[h]
+\begin{centering}
+\includegraphics[width=14cm]{paper1_7.png}
+\end{centering}
+\footnotesize{Source: OECD 2017b}
+\caption{Sample unit “The Aquarium”}
+\end{figure}
+
+\newpage
+
+\textcolor{white}{WHITE TEXT}
+
+
+\begin{figure}[h]
+\begin{centering}
+\includegraphics[width=14cm]{paper1_8.png}
+\end{centering}
+\footnotesize{Source: OECD 2017b}
+\caption{Sample unit “Class Logo” : Introduction to next sequence}
+\end{figure}
+
+\newpage
+
+\section{Annex 2}
+\setcounter{table}{0} 
+\renewcommand{\thetable}{A\arabic{table}}
+%\vspace{-1cm}
+\smaller
+\begin{table}[h]
+\caption{\textbf{Distribution of Science Proficiency}}\label{table:a1}
+\begin{threeparttable}
+\setlength{\tabcolsep}{5pt}
+\renewcommand{\arraystretch}{1.25}
+\begin{tabular}{p{2.5cm}cccccccccccc}
+\rowcolor{grey!30} 
+&\multicolumn{2}{c}{\textbf{Below Level 1a}} & \multicolumn{2}{c}{\textbf{Level 1a}} & \multicolumn{2}{c}{\textbf{Level 2}} & \multicolumn{2}{c}{\textbf{Level 3}} & \multicolumn{2}{c}{\textbf{Level 4 +}} & \multicolumn{2}{c}{\textbf{Mean}}\\
+\rowcolor{grey!30} 
+   & \% & (S.E.)         & \% & (S.E.)   & \% & (S.E.) & \% & (S.E.) & \% & (S.E.) & Mean & (S.D.) \\
+\rowcolor{white} 
+Russian Federation	&	3.1	&	(0.4)	&	15.3	&	(1.0)	&	31.0	&	(0.8)	&	30.9	&	(0.9)	&	19.8	&	(1.0)	&	487	&	(82)	\\
+\rowcolor{grey!10}																									
+OECD	&	6.0	&	(0.2)	&	17.5	&	(0.3)	&	25.5	&	(0.3)	&	25.6	&	(0.3)	&	25.5	&	(0.4)	&	493	&	(100)	\\
+\rowcolor{white}																									
+Russia Q1 Poorest	&	5.1	&	(1.1)	&	22.5	&	(2.1)	&	37.0	&	(2.3)	&	25.3	&	(2.8)	&	10.0	&	(1.5)	&	456	&	(76)	\\
+\rowcolor{grey!10}																									
+OECD Q1 Poorest	&	11.6	&	(0.4)	&	29.5	&	(0.5)	&	30.9	&	(0.5)	&	19.2	&	(0.6)	&	8.9	&	(0.4)	&	435	&	(86)	\\
+\rowcolor{white}																									
+Russia Q5 Richest	&	1.8	&	(0.6)	&	10.5	&	(1.3)	&	24.6	&	(1.6)	&	31.3	&	(1.9)	&	31.9	&	(2.0)	&	515	&	(86)	\\
+\rowcolor{grey!10}																									
+OECD Q5 Richest	&	1.4	&	(0.4)	&	6.5	&	(0.4)	&	16.1	&	(0.4)	&	27.8	&	(0.4)	&	48.2	&	(0.4)	&	549	&	(93)	\\
+\hline  % Please only put a hline at the end of the table
+\end{tabular}
+\begin{tablenotes}
+\item Source: Calculations from OECD/PISA data; Level 4 + denotes Levels 4 and higher
+\end{tablenotes}
+\end{threeparttable}
+\end{table}
+
+%\vspace{-0.5cm}
+
+\smaller
+\begin{table}[h]
+\caption{\textbf{Distribution of Reading Proficiency}}\label{table:a2}
+\begin{threeparttable}
+\setlength{\tabcolsep}{5pt}
+\renewcommand{\arraystretch}{1.25}
+\begin{tabular}{p{2.5cm}cccccccccccc}
+\rowcolor{grey!30} 
+&\multicolumn{2}{c}{\textbf{Below Level 1a}} & \multicolumn{2}{c}{\textbf{Level 1a}} & \multicolumn{2}{c}{\textbf{Level 2}} & \multicolumn{2}{c}{\textbf{Level 3}} & \multicolumn{2}{c}{\textbf{Level 4 +}} & \multicolumn{2}{c}{\textbf{Mean}}\\
+\rowcolor{grey!30} 
+   & \% & (S.E.)         & \% & (S.E.)   & \% & (S.E.) & \% & (S.E.) & \% & (S.E.) & Mean & (S.D.) \\
+\rowcolor{white} 
+Russian Federation	&	3.5	&	(0.5)	&	12.7	&	(1.1)	&	27.3	&	(1.0)	&	30.7	&	(1.0)	&	25.8	&	(1.3)	&	495	&	(87)	\\
+\rowcolor{grey!10}																									
+OECD	&	7.0	&	(0.2)	&	14.9	&	(0.3)	&	24.1	&	(0.4)	&	26.9	&	(0.3)	&	27.0	&	(0.5)	&	493	&	(100)	\\
+\rowcolor{white}																									
+Russia Q1 Poorest	&	5.7	&	(0.8)	&	18.8	&	(1.7)	&	34.3	&	(1.9)	&	26.8	&	(2.2)	&	14.4	&	(1.8)	&	463	&	(82)	\\
+\rowcolor{grey!10}																									
+OECD Q1 Poorest	&	12.8	&	(0.5)	&	25.0	&	(0.5)	&	30.6	&	(0.7)	&	21.4	&	(0.6)	&	10.3	&	(0.5)	&	437	&	(90)	\\
+\rowcolor{white}																									
+Russia Q5 Richest	&	2.1	&	(0.6)	&	8.5	&	(1.2)	&	21.2	&	(1.5)	&	29.5	&	(2.1)	&	38.8	&	(2.3)	&	524	&	(91)	\\
+\rowcolor{grey!10}																									
+OECD Q5 Richest	&	1.8	&	(0.2)	&	6.0	&	(0.4)	&	15.1	&	(0.7)	&	28.0	&	(0.8)	&	49.1	&	(1.0)	&	544	&	(91)	\\
+\hline  % Please only put a hline at the end of the table
+\end{tabular}
+\begin{tablenotes}
+\item Source: Calculations from OECD/PISA data; Level 4 + denotes Levels 4 and higher
+\end{tablenotes}
+\end{threeparttable}
+\end{table}
+
+%\vspace{-0.5cm}
+
+\smaller
+\begin{table}[h!]
+\caption{\textbf{Distribution of Mathematics Proficiency}}\label{table:a3}
+\begin{threeparttable}
+\setlength{\tabcolsep}{5pt}
+\renewcommand{\arraystretch}{1.25}
+\begin{tabular}{p{2.5cm}cccccccccccc}
+\rowcolor{grey!30} 
+&\multicolumn{2}{c}{\textbf{Below Level 1}} & \multicolumn{2}{c}{\textbf{Level 1}} & \multicolumn{2}{c}{\textbf{Level 2}} & \multicolumn{2}{c}{\textbf{Level 3}} & \multicolumn{2}{c}{\textbf{Level 4 +}} & \multicolumn{2}{c}{\textbf{Mean}}\\
+\rowcolor{grey!30} 
+   & \% & (S.E.)         & \% & (S.E.)   & \% & (S.E.) & \% & (S.E.) & \% & (S.E.) & Mean & (S.D.) \\
+\rowcolor{white} 
+Russian Federation	&	5.2	&	(0.7)	&	13.6	&	(0.8)	&	25.4	&	(0.9)	&	27.4	&	(0.9)	&	28.3	&	(1.4)	&	494	&	(83)	\\
+\rowcolor{grey!10}																									
+OECD	&	10.9	&	(0.3)	&	17.4	&	(0.3)	&	23.4	&	(0.3)	&	23.0	&	(0.3)	&	25.3	&	(0.4)	&	490	&	(100)	\\
+\rowcolor{white}																									
+Russia Q1 Poorest	&	8.9	&	(1.2)	&	17.1	&	(1.6)	&	29.8	&	(1.5)	&	25.1	&	(1.7)	&	19.1	&	(2.0)	&	470	&	(81)	\\
+\rowcolor{grey!10}																									
+OECD Q1 Poorest	&	21.4	&	(0.6)	&	27.0	&	(0.5)	&	26.0	&	(0.5)	&	16.4	&	(0.5)	&	9.2	&	(0.4)	&	427	&	(85)	\\
+\rowcolor{white}																									
+Russia Q5 Richest	&	2.9	&	(0.9)	&	9.8	&	(1.4)	&	21.6	&	(1.7)	&	26.9	&	(1.8)	&	38.8	&	(2.1)	&	518	&	(84)	\\
+\rowcolor{grey!10}																									
+OECD Q5 Richest	&	2.7	&	(0.3)	&	7.6	&	(0.4)	&	17.1	&	(0.6)	&	26.3	&	(0.7)	&	46.3	&	(0.9)	&	532	&	(86)	\\
+\hline  % Please only put a hline at the end of the table
+\end{tabular}
+\begin{tablenotes}
+\item Source: Calculations from OECD/PISA data; Level 4 + denotes Levels 4 and higher
+\end{tablenotes}
+\end{threeparttable}
+\end{table}
+%\vspace{-3cm}
+\vspace{3in}
+
+
+\newpage
+
+
+\section{Annex 3}
+%\setcounter{figure}{0} 
+\renewcommand{\thefigure}{A\arabic{figure}}
+%\vspace{-1cm}
+\begin{figure}[h!]
+\centering
+\includegraphics[width=8.8cm]{pisamap2a.jpg}
+\footnotesize{Source: OECD/PISA}
+\caption{PISA 2015 SCIENCE Proficiency by Economic Region}
+\end{figure}
+%\vspace{-1cm}
+\begin{figure}[h!]
+\centering
+\includegraphics[width=8.8cm]{pisamap2b.jpg}
+\footnotesize{Source: OECD/PISA}
+\caption{PISA 2015 MATH Proficiency by Economic Region}
+\end{figure}
+%\vspace{-1cm}
+\begin{figure}[h!]
+\centering
+\includegraphics[width=9cm]{pisamap2c.png}
+\footnotesize{Source: OECD/PISA}
+\caption{PISA 2015 READING Proficiency by Economic Region}
+\end{figure}
+
+
+
+\newpage
+
+
+
+\section{Annex 4}
+%\setcounter{figure}{0} 
+\renewcommand{\thefigure}{A\arabic{figure}}
+%\vspace{-1cm}
+\begin{figure}[h!]
+\centering
+\includegraphics[scale=0.8]{boxplot2a.png}
+\caption{PISA 2015 SCIENCE Proficiency by Federal Subject}
+\end{figure}
+
+
+\begin{figure}[h!]
+\centering
+\includegraphics[scale=0.8]{boxplot2b.png}
+\caption{PISA 2015 SCIENCE Proficiency by Federal Subject}
+\end{figure}
+
+\begin{figure}[h!]
+\centering
+\includegraphics[scale=0.8]{boxplot2c.png}
+\caption{PISA 2015 MATH Proficiency by Federal Subject}
+\end{figure}
+
+\begin{group}
+\smaller
+\begin{table}[h!] \centering
+\setlength{\tabcolsep}{5pt}
+\renewcommand{\arraystretch}{1.1}
+ \begin{tabular}{p{3cm}p{1.5cm}p{1.5cm}p{1.5cm}p{1.5cm}p{1.5cm}p{1.5cm}} \hline
+\textbf{Federal Subject}	&	\textbf{School n}	&	\textbf{Student n}	&	\textbf{CLPS}}	&	\textbf{SCIENCE}	&	\textbf{MATH}	&	\textbf{READING}	\\ \hline
+Ivanovo region	&	4	&	154	&	0	&	2	&	0	&	1	\\
+Irkutsk region	&	6	&	175	&	0	&	3	&	8	&	0	\\
+Lipetzk region	&	4	&	86	&	0	&	2	&	10	&	0	\\
+Nizhni Novgorod region	&	6	&	169	&	0	&	11	&	19	&	8	\\
+Orenburg region	&	4	&	86	&	0	&	5	&	11	&	6	\\
+Ulyanovsk region	&	4	&	116	&	0	&	0	&	12	&	3	\\
+Stavropol territory	&	4	&	130	&	1	&	12	&	21	&	0	\\
+Kemerovo region	&	4	&	103	&	1	&	0	&	0	&	0	\\
+K. Mansisk - Yugra	&	4	&	119	&	1	&	1	&	2	&	3	\\
+Republic of Dagestan	&	6	&	135	&	2	&	18	&	21	&	19	\\
+Chuvashi Republic	&	4	&	93	&	4	&	0	&	0	&	4	\\
+Ryazan region	&	4	&	113	&	4	&	3	&	0	&	14	\\
+Arkhangelsk region	&	4	&	129	&	5	&	5	&	1	&	7	\\
+Omsk region	&	4	&	120	&	5	&	4	&	5	&	0	\\
+Kaliningrad region	&	4	&	150	&	6	&	8	&	2	&	6	\\
+Kamchatka territory	&	4	&	109	&	6	&	1	&	0	&	2	\\
+K. Balkarian Republic	&	4	&	111	&	7	&	31	&	34	&	21	\\
+Primorsky territory	&	4	&	123	&	7	&	19	&	14	&	29	\\
+Kostroma region	&	4	&	115	&	7	&	11	&	14	&	18	\\
+Bashkortostan	&	7	&	183	&	10	&	10	&	17	&	21	\\
+Yakutia	&	4	&	96	&	10	&	27	&	24	&	17	\\
+Vladimir region	&	4	&	142	&	10	&	11	&	16	&	4	\\
+Novgorod region	&	4	&	89	&	10	&	0	&	0	&	11	\\
+The City of Moscow	&	10	&	373	&	10	&	7	&	11	&	6	\\
+Volgograd region	&	4	&	103	&	12	&	10	&	6	&	15	\\
+Samara region	&	6	&	191	&	12	&	11	&	10	&	12	\\
+Perm territory	&	6	&	189	&	15	&	17	&	25	&	14	\\
+St. Petersburg	&	7	&	245	&	16	&	18	&	14	&	14	\\
+Y. Nenets district	&	4	&	90	&	17	&	24	&	6	&	25	\\
+Belgorod region	&	4	&	120	&	18	&	8	&	6	&	10	\\
+Tomsk region	&	4	&	79	&	18	&	5	&	2	&	13	\\
+Moscow region	&	8	&	286	&	21	&	13	&	11	&	9	\\
+Republic of Tatarstan	&	7	&	129	&	22	&	23	&	30	&	27	\\
+Altai territory	&	4	&	98	&	22	&	34	&	34	&	25	\\
+Sverdlovsk region	&	7	&	232	&	24	&	18	&	14	&	24	\\
+Krasnodar territory	&	7	&	173	&	27	&	14	&	20	&	18	\\
+Krasnoyarsk territory	&	6	&	168	&	27	&	21	&	15	&	28	\\
+Voronezh region	&	4	&	81	&	30	&	47	&	50	&	43	\\
+Novosibirsk region	&	4	&	112	&	32	&	31	&	28	&	21	\\
+Saratov region	&	4	&	109	&	36	&	18	&	13	&	17	\\
+Rostov region	&	7	&	206	&	39	&	40	&	42	&	30	\\
+Chelyabinsk region	&	6	&	206	&	40	&	26	&	6	&	23	\\
+\hline
+   
+  \end{tabular}
+  \caption{Variance of PISA 2015 Test Scores - At School Level}
+\end{table}
+\end{group}
+
+
+\end{document}

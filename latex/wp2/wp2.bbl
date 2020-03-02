@@ -1,0 +1,474 @@
+% $ biblatex auxiliary file $
+% $ biblatex bbl format version 3.1 $
+% Do not modify the above lines!
+%
+% This is an auxiliary file used by the 'biblatex' package.
+% This file may safely be deleted. It will be recreated as
+% required.
+%
+\begingroup
+\makeatletter
+\@ifundefined{ver@biblatex.sty}
+  {\@latex@error
+     {Missing 'biblatex' package}
+     {The bibliography requires the 'biblatex' package.}
+      \aftergroup\endinput}
+  {}
+\endgroup
+
+\datalist[entry]{nty/global//global/global}
+  \entry{arrazola_132b._2005}{article}{}
+    \name{author}{4}{}{%
+      {{hash=AM}{%
+         family={Arrazola},
+         familyi={A\bibinitperiod},
+         given={Mar{\'i}a},
+         giveni={M\bibinitperiod},
+      }}%
+      {{hash=dJ}{%
+         family={{de Hevia}},
+         familyi={d\bibinitperiod},
+         given={Jos{\'e}},
+         giveni={J\bibinitperiod},
+      }}%
+      {{hash=RM}{%
+         family={Risue{\~n}o},
+         familyi={R\bibinitperiod},
+         given={Marta},
+         giveni={M\bibinitperiod},
+      }}%
+      {{hash=SJF}{%
+         family={Sanz},
+         familyi={S\bibinitperiod},
+         given={Jose\bibnamedelima Felix},
+         giveni={J\bibinitperiod\bibinitdelim F\bibinitperiod},
+      }}%
+    }
+    \strng{namehash}{AM+1}
+    \strng{fullhash}{AMdJRMSJF1}
+    \field{labelnamesource}{author}
+    \field{labeltitlesource}{title}
+    \field{labelyear}{2005}
+    \field{labeldatesource}{}
+    \field{sortinit}{A}
+    \field{sortinithash}{A}
+    \field{number}{1}
+    \field{pages}{9\bibrangedash 22}
+    \field{title}{132b. {{A}} Proposal to Estimate Human Capital Depreciation:
+  {{Some}} Evidence for {{Spain}}}
+    \field{volume}{172}
+    \verb{file}
+    \verb C\:\\Users\\1\\Zotero\\storage\\VBLPCCQI\\Arrazola et al. - 2005 - 13
+    \verb 2b. A proposal to estimate human capital depreci.pdf
+    \endverb
+    \field{journaltitle}{Hacienda Publica Espanola\textendash{}Revista de
+  Economia Publica}
+    \field{year}{2005}
+  \endentry
+
+  \entry{blau_178_2013}{article}{}
+    \name{author}{3}{}{%
+      {{hash=BFD}{%
+         family={Blau},
+         familyi={B\bibinitperiod},
+         given={Francine\bibnamedelima D.},
+         giveni={F\bibinitperiod\bibinitdelim D\bibinitperiod},
+      }}%
+      {{hash=BP}{%
+         family={Brummund},
+         familyi={B\bibinitperiod},
+         given={Peter},
+         giveni={P\bibinitperiod},
+      }}%
+      {{hash=LAYH}{%
+         family={Liu},
+         familyi={L\bibinitperiod},
+         given={Albert Yung-Hsu},
+         giveni={A\bibinitperiod\bibinitdelim Y\bibinithyphendelim
+  H\bibinitperiod},
+      }}%
+    }
+    \strng{namehash}{BFDBPLAYH1}
+    \strng{fullhash}{BFDBPLAYH1}
+    \field{labelnamesource}{author}
+    \field{labeltitlesource}{title}
+    \field{labelyear}{2013}
+    \field{labeldatesource}{}
+    \field{sortinit}{B}
+    \field{sortinithash}{B}
+    \field{number}{2}
+    \field{pages}{471\bibrangedash 492}
+    \field{title}{178. Trends in occupational segregation by gender
+  1970–2009: Adjusting for the impact of changes in the occupational coding
+  system}
+    \field{volume}{50}
+    \verb{file}
+    \verb Blau et al. - 2013 - 178. Trends in occupational segregation by gende
+    \verb r .pdf:C\:\\Users\\wb164718\\Zotero\\storage\\PQM9UMCE\\Blau et al. -
+    \verb  2013 - 178. Trends in occupational segregation by gender .pdf:applic
+    \verb ation/pdf
+    \endverb
+    \field{journaltitle}{Demography}
+    \field{year}{2013}
+  \endentry
+
+  \entry{klimova_159._2009}{article}{}
+    \name{author}{1}{}{%
+      {{hash=KA}{%
+         family={Klimova},
+         familyi={K\bibinitperiod},
+         given={Anastasia},
+         giveni={A\bibinitperiod},
+      }}%
+    }
+    \strng{namehash}{KA1}
+    \strng{fullhash}{KA1}
+    \field{labelnamesource}{author}
+    \field{labeltitlesource}{title}
+    \field{labelyear}{2009}
+    \field{labeldatesource}{}
+    \field{sortinit}{K}
+    \field{sortinithash}{K}
+    \field{title}{159. {{Gender Occupational Segregation}} in the {{Russian
+  Labour Market}}}
+    \verb{file}
+    \verb C\:\\Users\\1\\Zotero\\storage\\YWDNVEGH\\Klimova - 2009 - 159. Gende
+    \verb r Occupational Segregation in the Russia.pdf
+    \endverb
+    \field{journaltitle}{University of Technology, Sydney Working Paper}
+    \field{year}{2009}
+  \endentry
+
+  \entry{klimova_131._2012}{article}{}
+    \name{author}{2}{}{%
+      {{hash=KA}{%
+         family={Klimova},
+         familyi={K\bibinitperiod},
+         given={Anastasia},
+         giveni={A\bibinitperiod},
+      }}%
+      {{hash=RR}{%
+         family={Ross},
+         familyi={R\bibinitperiod},
+         given={Russell},
+         giveni={R\bibinitperiod},
+      }}%
+    }
+    \strng{namehash}{KARR1}
+    \strng{fullhash}{KARR1}
+    \field{labelnamesource}{author}
+    \field{labeltitlesource}{title}
+    \field{labelyear}{2012}
+    \field{labeldatesource}{}
+    \field{sortinit}{K}
+    \field{sortinithash}{K}
+    \field{number}{7}
+    \field{pages}{474\bibrangedash 489}
+    \field{title}{131. {{Gender}}-Based Occupational Segregation in {{Russia}}:
+  An Empirical Study}
+    \field{volume}{39}
+    \verb{file}
+    \verb C\:\\Users\\1\\Zotero\\storage\\F68IIQZ5\\Klimova and Ross - 2012 - 1
+    \verb 31. Gender-based occupational segregation in Russ.pdf
+    \endverb
+    \field{journaltitle}{International Journal of Social Economics}
+    \field{year}{2012}
+  \endentry
+
+  \entry{kosyakova_121._2015}{article}{}
+    \name{author}{3}{}{%
+      {{hash=KY}{%
+         family={Kosyakova},
+         familyi={K\bibinitperiod},
+         given={Yuliya},
+         giveni={Y\bibinitperiod},
+      }}%
+      {{hash=KD}{%
+         family={Kurakin},
+         familyi={K\bibinitperiod},
+         given={Dmitry},
+         giveni={D\bibinitperiod},
+      }}%
+      {{hash=BHP}{%
+         family={Blossfeld},
+         familyi={B\bibinitperiod},
+         given={Hans-Peter},
+         giveni={H\bibinithyphendelim P\bibinitperiod},
+      }}%
+    }
+    \strng{namehash}{KYKDBHP1}
+    \strng{fullhash}{KYKDBHP1}
+    \field{labelnamesource}{author}
+    \field{labeltitlesource}{title}
+    \field{labelyear}{2015}
+    \field{labeldatesource}{}
+    \field{sortinit}{K}
+    \field{sortinithash}{K}
+    \field{number}{5}
+    \field{pages}{573\bibrangedash 590}
+    \field{title}{121. {{Horizontal}} and Vertical Gender Segregation in
+  {{Russia}}\textemdash{}Changes upon Labour Market Entry before and after the
+  Collapse of the {{Soviet}} Regime}
+    \field{volume}{31}
+    \verb{file}
+    \verb C\:\\Users\\1\\Zotero\\storage\\TESV752J\\Kosyakova et al. - 2015 - 1
+    \verb 21. Horizontal and vertical gender segregation in.pdf
+    \endverb
+    \field{journaltitle}{European Sociological Review}
+    \field{year}{2015}
+  \endentry
+
+  \entry{mihaylov_152._2019}{article}{}
+    \name{author}{2}{}{%
+      {{hash=ME}{%
+         family={Mihaylov},
+         familyi={M\bibinitperiod},
+         given={Emil},
+         giveni={E\bibinitperiod},
+      }}%
+      {{hash=TKG}{%
+         family={Tijdens},
+         familyi={T\bibinitperiod},
+         given={Kea\bibnamedelima Gartje},
+         giveni={K\bibinitperiod\bibinitdelim G\bibinitperiod},
+      }}%
+    }
+    \strng{namehash}{METKG1}
+    \strng{fullhash}{METKG1}
+    \field{labelnamesource}{author}
+    \field{labeltitlesource}{title}
+    \field{labelyear}{2019}
+    \field{labeldatesource}{}
+    \field{sortinit}{M}
+    \field{sortinithash}{M}
+    \field{title}{152. {{Measuring}} the {{Routine}} and {{Non}}-{{Routine Task
+  Content}} of 427 {{Four}}-{{Digit ISCO}}-08 {{Occupations}}}
+    \field{volume}{TI 2019-035/V}
+    \verb{file}
+    \verb C\:\\Users\\1\\Zotero\\storage\\229AFXNJ\\Mihaylov and Tijdens - 2019
+    \verb  - 152. Measuring the Routine and Non-Routine Task Co.pdf
+    \endverb
+    \field{journaltitle}{Tinbergen Institute Discussion Paper}
+    \field{year}{2019}
+  \endentry
+
+  \entry{mincer_175._1982}{article}{}
+    \name{author}{2}{}{%
+      {{hash=MJ}{%
+         family={Mincer},
+         familyi={M\bibinitperiod},
+         given={Jacob},
+         giveni={J\bibinitperiod},
+      }}%
+      {{hash=OH}{%
+         family={Ofek},
+         familyi={O\bibinitperiod},
+         given={Haim},
+         giveni={H\bibinitperiod},
+      }}%
+    }
+    \strng{namehash}{MJOH1}
+    \strng{fullhash}{MJOH1}
+    \field{labelnamesource}{author}
+    \field{labeltitlesource}{title}
+    \field{labelyear}{1982}
+    \field{labeldatesource}{}
+    \field{sortinit}{M}
+    \field{sortinithash}{M}
+    \field{pages}{3\bibrangedash 24}
+    \field{title}{175. {{Interrupted}} Work Careers: {{Depreciation}} and
+  Restoration of Human Capital}
+    \verb{file}
+    \verb C\:\\Users\\1\\Zotero\\storage\\K5YJ344P\\Mincer and Ofek - 1982 - 17
+    \verb 5. Interrupted work careers Depreciation and re.pdf
+    \endverb
+    \field{journaltitle}{Journal of human resources}
+    \field{year}{1982}
+  \endentry
+
+  \entry{murillo_172._2006}{article}{}
+    \name{author}{1}{}{%
+      {{hash=MIP}{%
+         family={Murillo},
+         familyi={M\bibinitperiod},
+         given={Ines\bibnamedelima P.},
+         giveni={I\bibinitperiod\bibinitdelim P\bibinitperiod},
+      }}%
+    }
+    \strng{namehash}{MIP1}
+    \strng{fullhash}{MIP1}
+    \field{labelnamesource}{author}
+    \field{labeltitlesource}{title}
+    \field{labelyear}{2006}
+    \field{labeldatesource}{}
+    \field{sortinit}{M}
+    \field{sortinithash}{M}
+    \field{title}{172. {{Returns}} to {{Education}} and {{Human Capital
+  Depreciation}} in {{Spain}}}
+    \verb{file}
+    \verb C\:\\Users\\1\\Zotero\\storage\\SX2568BP\\Murillo - 2006 - 172. Retur
+    \verb ns to Education and Human Capital Deprec.pdf
+    \endverb
+    \field{journaltitle}{Econstor Working Paper}
+    \field{year}{2006}
+  \endentry
+
+  \entry{neuman_091._1995}{article}{}
+    \name{author}{2}{}{%
+      {{hash=NS}{%
+         family={Neuman},
+         familyi={N\bibinitperiod},
+         given={Shoshana},
+         giveni={S\bibinitperiod},
+      }}%
+      {{hash=WA}{%
+         family={Weiss},
+         familyi={W\bibinitperiod},
+         given={Avi},
+         giveni={A\bibinitperiod},
+      }}%
+    }
+    \strng{namehash}{NSWA1}
+    \strng{fullhash}{NSWA1}
+    \field{labelnamesource}{author}
+    \field{labeltitlesource}{title}
+    \field{labelyear}{1995}
+    \field{labeldatesource}{}
+    \field{sortinit}{N}
+    \field{sortinithash}{N}
+    \field{number}{5}
+    \field{pages}{943\bibrangedash 955}
+    \field{title}{091. {{On}} the Effects of Schooling Vintage on
+  Experience-Earnings Profiles: Theory and Evidence}
+    \field{volume}{39}
+    \verb{file}
+    \verb C\:\\Users\\1\\Zotero\\storage\\QZSHVME7\\Neuman and Weiss - 1995 - 0
+    \verb 91. On the effects of schooling vintage on experi.pdf
+    \endverb
+    \field{journaltitle}{European economic review}
+    \field{year}{1995}
+  \endentry
+
+  \entry{preston_179_1999}{article}{}
+    \name{author}{1}{}{%
+      {{hash=PJA}{%
+         family={Preston},
+         familyi={P\bibinitperiod},
+         given={Jo\bibnamedelima Anne},
+         giveni={J\bibinitperiod\bibinitdelim A\bibinitperiod},
+      }}%
+    }
+    \strng{namehash}{PJA1}
+    \strng{fullhash}{PJA1}
+    \field{labelnamesource}{author}
+    \field{labeltitlesource}{title}
+    \field{labelyear}{1999}
+    \field{labeldatesource}{}
+    \field{sortinit}{P}
+    \field{sortinithash}{P}
+    \field{number}{5}
+    \field{pages}{611\bibrangedash 624}
+    \field{title}{179. Occupational gender segregation trends and explanations}
+    \field{volume}{39}
+    \verb{file}
+    \verb Preston - 1999 - 179. Occupational gender segregation trends and ex.p
+    \verb df:C\:\\Users\\wb164718\\Zotero\\storage\\FWSGKF34\\Preston - 1999 -
+    \verb 179. Occupational gender segregation trends and ex.pdf:application/pd
+    \verb f
+    \endverb
+    \field{journaltitle}{The Quarterly Review of Economics and Finance}
+    \field{year}{1999}
+  \endentry
+
+  \entry{rosen_176._1976}{article}{}
+    \name{author}{1}{}{%
+      {{hash=RS}{%
+         family={Rosen},
+         familyi={R\bibinitperiod},
+         given={Sherwin},
+         giveni={S\bibinitperiod},
+      }}%
+    }
+    \strng{namehash}{RS1}
+    \strng{fullhash}{RS1}
+    \field{labelnamesource}{author}
+    \field{labeltitlesource}{title}
+    \field{labelyear}{1976}
+    \field{labeldatesource}{}
+    \field{sortinit}{R}
+    \field{sortinithash}{R}
+    \field{number}{4, Part 2}
+    \field{pages}{S45\bibrangedash S67}
+    \field{title}{176. {{A}} Theory of Life Earnings}
+    \field{volume}{84}
+    \verb{file}
+    \verb C\:\\Users\\1\\Zotero\\storage\\JHKHZBD4\\Rosen - 1976 - 176. A theor
+    \verb y of life earnings.pdf
+    \endverb
+    \field{journaltitle}{Journal of Political Economy}
+    \field{year}{1976}
+  \endentry
+
+  \entry{weber_156._2011}{thesis}{}
+    \name{author}{1}{}{%
+      {{hash=WS}{%
+         family={Weber},
+         familyi={W\bibinitperiod},
+         given={Sylvain},
+         giveni={S\bibinitperiod},
+      }}%
+    }
+    \strng{namehash}{WS1}
+    \strng{fullhash}{WS1}
+    \field{labelnamesource}{author}
+    \field{labeltitlesource}{title}
+    \field{labelyear}{2011}
+    \field{labeldatesource}{}
+    \field{sortinit}{W}
+    \field{sortinithash}{W}
+    \field{title}{156. {{On}} the Impact of Education on Human Capital
+  Depreciation, Wage Growth, and {{Tenure}}}
+    \list{institution}{1}{%
+      {University of Geneva}%
+    }
+    \verb{file}
+    \verb C\:\\Users\\1\\Zotero\\storage\\Q4NX7B26\\Weber - 2011 - 156. On the
+    \verb impact of education on human capital d.pdf
+    \endverb
+    \field{type}{phdthesis}
+    \field{year}{2011}
+  \endentry
+
+  \entry{weber_173._2008}{inproceedings}{}
+    \name{author}{1}{}{%
+      {{hash=WS}{%
+         family={Weber},
+         familyi={W\bibinitperiod},
+         given={Sylvain},
+         giveni={S\bibinitperiod},
+      }}%
+    }
+    \strng{namehash}{WS1}
+    \strng{fullhash}{WS1}
+    \field{labelnamesource}{author}
+    \field{labeltitlesource}{title}
+    \field{labelyear}{2008}
+    \field{labeldatesource}{}
+    \field{sortinit}{W}
+    \field{sortinithash}{W}
+    \field{booktitle}{Annual {{Conference}} of the {{European Association}} of
+  {{Labour Economists}}}
+    \field{title}{173. {{Human}} Capital Depreciation and Education Level: Some
+  Evidence for {{Switzerland}}}
+    \list{location}{1}{%
+      {{Amsterdam, The Nnetherlands}}%
+    }
+    \verb{file}
+    \verb C\:\\Users\\1\\Zotero\\storage\\BPXHH2TU\\Weber - 2008 - 173. Human c
+    \verb apital depreciation and education leve.pdf
+    \endverb
+    \field{month}{09}
+    \field{year}{2008}
+  \endentry
+\enddatalist
+\endinput

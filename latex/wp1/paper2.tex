@@ -1,0 +1,1162 @@
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% A template for Wiley article submissions.
+% Developed by Overleaf. 
+%
+% Please note that whilst this template provides a 
+% preview of the typeset manuscript for submission, it 
+% will not necessarily be the final publication layout.
+%
+% Usage notes:
+% The "blind" option will make anonymous all author, affiliation, correspondence and funding information.
+% Use "num-refs" option for numerical citation and references style.
+% Use "alpha-refs" option for author-year citation and references style.
+
+\documentclass[alpha-refs,fleqn]{wiley-article_p2}
+% \documentclass[blind,num-refs]{wiley-article}
+
+% Add additional packages here if required
+
+\usepackage{amsmath}% http://ctan.org/pkg/amsmath
+\usepackage{fourier} 
+\usepackage{textcomp}
+\usepackage{phaistos}
+\usepackage{siunitx}
+\usepackage{hyperref}
+\usepackage{lmodern}
+\usepackage{anyfontsize} 
+\usepackage[table]{xcolor}
+\usepackage{datetime}
+\usepackage{graphicx}
+\graphicspath{{pictures/}} % Specifies the directory where pictures are stored
+\settimeformat{ampmtime} % default is 24 hour format
+\usepackage[justification=centering]{caption}
+\usepackage{color} % for a rather silly hack using white text
+%\usepackage[latin1]{inputenc} 
+\usepackage{lipsum}
+\usepackage{tabularx} 
+\usepackage{relsize} 
+\usepackage[figbotcap,captionfalse]{subfigure}
+\usepackage{attrib}
+\usepackage{dcolumn,booktabs} % added dcolumn for decimal alignment
+\usepackage{makecell}
+% https://tex.stackexchange.com/questions/53470/coding-an-equation-with-description
+\usepackage{array}% http://ctan.org/pkg/array
+% for decimal alignment
+\newcolumntype{d}{D..{3.3}} 
+\newcommand\mc[1]{\multicolumn{1}{c}{#1}} % handy shortcut macro
+% for table with rotated header
+\newcommand*\rot{\rotatebox{90}}
+\newcommand*\OK{\ding{51}}
+% thanks to https://tex.stackexchange.com/questions/98388/how-to-make-table-with-rotated-table-headers-in-latex 
+\setlength{\mathindent}{1cm}
+
+%%
+
+
+% Thanks to % /201590/how-can-i-use-this-math-mode-pictogram-tree-leaf
+%
+%
+%
+%
+
+\newcommand\myleaf{\mbox{\textleaf}}
+\newcommand\mytree{\mbox{\PHplaneTree}}
+\newcommand\mytreel{
+\mytree^{\mbox{\leafNE}}}
+
+
+
+
+
+
+
+
+
+
+
+% Update article type if known
+\papertype{World Bank Education Global Practice}
+% Include section in journal if known, otherwise delete
+\paperfield{Russian Federation: Analytical Services and Advisory Activity: P164840}
+
+\title{Educational Equity in the Russian Federation: Paper 2 : Social Equity, Vocational School and Educational Performance}
+
+% List abbreviations here, if any. Please note that it is preferred that abbreviations be defined at the first instance they appear in the text, rather than creating an abbreviations list.
+\acks{\begin{normalsize}
+\emph{Country Director:} Andras Horvai; \emph{GP Senior Director:} Jaime Saavedra Chanduvi; \emph{Practice Manager:} Cristian Aedo; \emph{Program Leader:} Dorota Nowak; \emph{Peer Reviewers}: Amer Hassan; Anna Olefir; Toby Linden; \emph{Team members:} Polina Zavalina; Zhanna Terlyga. Any errors are a responsibility of the authors.
+\end{normalsize}
+\vspace{-0.2in}}
+
+% Include full author names and degrees, when required by the journal.
+% Use the \authfn to add symbols for additional footnotes and present addresses, if any. Usually start with 1 for notes about author contributions; then continuing with 2 etc if any author has a different present address.
+\author[*]{Suhas D. Parandekar}
+\author[*]{Shizuka Kunimoto}
+\author[*]{Tigran Shmis}
+
+%\contrib[\authfn{1}]{Equally contributing authors.}
+
+% Include full affiliation details for all authors
+\affil[*]{Education Global Practice, Europe and Central Asia}
+
+%\corraddress{Author One PhD, Department, Institution, City, State or Province, Postal Code, Country}
+\corremail{sparandekar@worldbank.org; tshmis@worldbank.org; skunimoto@worldbank.org}
+
+%\presentadd[\authfn{2}]{Department, Institution, City, State or Province, Postal Code, Country}
+
+\fundinginfo{The data of the Russian panel study "Trajectories in Education and Career" (TrEC - \url{http://trec.hse.ru/}  are presented in this work. Support from the Basic Research Program of the National Research University Higher School of Economics is gratefully acknowledged. The paper uses R software and  the R packages bartMachine and BayesTree. A debt of gratitude is owed to the authors of those packages - Adam Kapelner, Justin Bleich, Hugh Chipman and Robert McCulloch.}
+
+% Include the name of the author that should appear in the running header
+\runningauthor{P164840: Paper 2: Social Equity, Vocational School and Educational Performance}
+
+\begin{document}
+% \pagecolor{yellow!30} with package xcolor will make whole page yellow
+
+\maketitle
+
+\begin{abstract}
+\emph{\today \hspace{1em} \currenttime }
+
+\vspace{1em}
+
+\noindent This paper examines the relationship between social equity and educational performance and the choice of going to vocational school. The paper uses a unique dataset combining PISA and TIMSS and utilizes a recently developed Bayesian econometric method that allows causal inference from non-experimental data. We find that socio-economic profile does impact educational performance, but it is not rare to overcome disadvantages, a phenomenon investigated further through another paper in this series that examines resilient schools. The paper finds that being poor may dictate career choices into vocational school, an important consideration for future educational policy. 
+
+
+% Please include a maximum of seven keywords
+\keywords{Educational Equity, TrEC, Russian Federation, Vocational, BART}
+\end{abstract}
+
+
+\section{Introduction: Poor schools for poor children?}
+
+There is a strong level of empirical regularity between the socio-economic background of children and their educational performance in school. This connection between socio-economic status or income level of parents and the educational outcomes of children crimps the use of public educational investment as a means to generate social equity or prevent a worsening of inequity. In the recently promulgated ``Decree On National Goals and Strategic Development Objectives of the Russian Federation for the Period until 2024'', one of the top goals is to reduce poverty by half. The national educational program is expected to be instrumental in meeting that goal by helping enhance quality of education to globally competitive levels and by upgrading vocational education. \url{http://kremlin.ru/acts/news/57425} Considering multiple generations over a long time period, the causality between education and economic growth with shared prosperity is interlinked. The best demonstration of this fact comes from a study that considered the empirical data over multiple decades regarding the UNDP Human Development Index (HDI) and the economic performance of nations \cite{Ranis_2000}. The diagram from their article is reproduced above, to show the complex and iterative patterns they discovered regarding the relation between human development and economic growth. A diagram linking income inequality and educational inequality would look very similar. 
+
+\begin{figure}[htbp!]
+\begin{centering}
+\includegraphics[width=14cm]{RanisFei.png}
+\end{centering}
+\footnotesize{Source: Reproduction of Figure 3 from Ranis, Stewart and Ramirez, 2000}
+\caption{Complex Trajectories between HDI and Economic Growth}
+\end{figure}
+
+The diagram utilizes four quadrants based on improvements in either HDI or growth - the authors wanted to find out if there was any consistent pattern, where countries that started from low HDI and low growth first improved their HDI which led to growth, or whether countries first developed economically and then invested in education that subsequently led to better growth - what they term as a virtuous cycle. As can be seen from the variety of patterns they unearthed, the process is necessarily iterative and variegated.  Our own goal is very modest in this paper in terms of time horizon and causality. We take the social and economic distribution to be a given, and we seek to explore the relationship between social and economic inequity and educational outcomes. Approaching the problem with a view to inform policy priorities, we explore the issue of clustering of children from lower socio-economic backgrounds into certain schools. If those schools suffer from problem of poor resources and face other disadvantages, it is likely that the children will not obtain good educational performance. Data from international comparative examinations like the OECD-PISA and the IEA-TIMSS studies indicate that this problem is smaller in Russia as compared to many other OECD countries. However, the problem is not negligible and needs to be studied as it could drive systemic educational inequity and consequent social inequities in future generations. The importance to economic development of learning with equity  has been detailed with great success in the recently published World Development Report ``Learning to Realize Education's Promise'' \cite{WorldBank_2018}
+
+For this paper, we consider socially disadvantaged schools to be those where children from poor socio-economic background constitute more than 30\% of the student population. In a world of perfect equity of school assignment according to socio-economic conditions, there would be 20\% of students from each socio-economic quintile. The figure of 30\% is somewhat arbitrary and the reason for choosing it is that extremely skewed distributions are rare in the Russian Federation, and we want our results to have systemic relevance at the same time as they are conceptually sound. 
+
+We treat attendance in such a school as a ``treatment'' in the language of the impact evaluation literature, and seek to determine the effect of that treatment. Of course, we do not run an actual experiment with random assignment to treatment and control groups, but we attempt to utilize a recently developed econometric or statistical methodology that enables us to draw causal inference. Details about data and methodology are presented in subsequent sections, but here we just look at the mean test score comparisons between the treatment and control groups to see that there are substantive differences between them in educational achievement, especially for the PISA scores, though less so for the TIMMS scores. We provide more details about the data in the next section.
+
+\begin{group}
+\smaller
+\begin{table}[h]
+\caption{\textbf{Comparison of Test Scores: Control and Treatment Groups}}\label{table:1}
+\begin{threeparttable}
+\setlength{\tabcolsep}{5pt}
+\renewcommand{\arraystretch}{1.25}
+\begin{tabular}{p{1.7cm}p{2.8cm}cccccccccc}
+\rowcolor{grey!30} 
+& & \multicolumn{4}{c}{\textbf{PISA/TIMSS Panel}}  & \multicolumn{4}{c}{\textbf{OECD Sample}}  \\
+& & \multicolumn{2}{c}{\textbf{Control}} & \multicolumn{2}{c}{\textbf{Treatment}} & \multicolumn{2}{c}{\textbf{Control}}  \multicolumn{2}{c}{\textbf{Treatment}} \\
+\rowcolor{grey!30} 
+ \textbf{Variable} & \textbf{Var.Description} &  \textbf{Mean} & \textbf{(S.E.)} & \textbf{Mean} & \textbf{(S.E.)} & \textbf{Mean} & \textbf{(S.E.)} & \textbf{Mean} & \textbf{(S.E.)}    \\
+\rowcolor{white} 
+PV1-5MATH & PISA Math Score  & 504.24 & (0.83)  & 460.26 & (1.12)   & 495.71 & (3.80) & 454.89 & (7.29)  \\
+\rowcolor{grey!10} 
+PV1-5MATH & PISA Reading Score      & 488.16 & (1.29)  & 435.46 & (1.47)   & 496.87 & (3.46) & 434.06 & (6.59)  \\
+\rowcolor{white} 
+PV1-5MATH & PISA Science Score      & 501.99 & (3.18)  & 459.75 & (1.93)   & 504.10 & (3.69) & 451.18 & (5.80)  \\
+\rowcolor{grey!10} 
+BSSMAT1-5 & TIMSS Math Score & 549.30 & (3.91)  & 516.23 & (6.14)  & -    &-  & - & -  \\
+\rowcolor{white} 
+BSSSCI1-5 & TIMSS Science Score  & 549.94 & (3.61)  & 523.38 & (5.33) & - & - & - & -  \\
+\hline  % Please only put a hline at the end of the table
+\end{tabular}
+\begin{tablenotes}
+\item Source: Calculations from OECD/PISA and TrEC data
+\end{tablenotes}
+\end{threeparttable}
+\end{table}
+\end{group} 
+
+Another equity issue in this paper concerns vocational education. The Presidential decree of May 2018 clearly lays out an objective to upgrade vocational education ``by introducing adaptive, practice oriented and flexible education programs.'' Reforming vocational education is tied closely to the strategic goals of developing manufacturing, agro-industry and the digital economy. The results from the first implementation of the Program for the International Assessment of Adult Competencies (PIAAC) have not been highly encouraging for vocational education \cite{Podolskiy_2014}. PIAAC tested young adults of ages from 16 to 25 years old for competencies in three areas - literacy, numeracy and problem solving. The results for PIAAC were released in 2013. Reproduced as Figure 2 is a chart that shows the relationship between the competency level attained and the final education level of the tested adult. As the education level increases from left to right, the graph shows a monotonically increasing competency level. A remarkable pattern in Figure 2 is the dip or trough for Vocational Education - after completing lower secondary education, some children continue in general education and most would go on for higher education. Children who take the vocational track may continue for higher education but most typically would seek to enter the labor market. The graphs shows different cohorts, but at first glance it appears to contradict long established human capital theory. As the number of years of education increase, the competency levels should increase and not decrease. In reality, it represents different people who chose to go to vocational education or go on for a Bachelor's degree.  
+ 
+\begin{figure}[htbp!]
+\begin{centering}
+\includegraphics[width=14cm]{Fig3podo.png}
+\end{centering}
+\footnotesize{Source: Reproduction of Figure 6 from Podolskiy and Popov, 2014}
+\caption{Competencies and Educational Attainment of Adults in Russia}
+\end{figure}
+
+Vocational Education in Russia is constituted mainly of 3 or 4 year programs after Lower Secondary Education and is called College in Russian. In the literature the level is termed as Post Secondary Non-Tertiary Education with ISCED (International Standard Classification of Education) Level 4, but in Russia it is often considered part of Level 5 or short cycle tertiary education. Regional data from the Russian Statistical Agency ROSSTAT indicates that the total enrollment in vocational education has fluctuated from 2.2 million students in 1990 to a high of 2.6 million in 2005 and back to just below the 2.2 million mark in 2015 \cite{Mirkina_2014}. The patterns over different regions show considerable variation. Annex Table A1 shows the number of vocational students by Federal subject. The table is arranged in decreasing order of absolute number of students. Rows in pink indicate the top 10 regions by decline in students in absolute number in the past twenty-five years, and rows in blue indicate the top 10 in terms of increase in student number. 
+
+To understand the background of students choosing Vocational education, it is also important to consider the data on the number of employees who have vocational educational qualification as their terminal qualification (Annex Table A2). In the same time period, from 1990 to 2015, the number of vocational education qualified employees went from about 2 million to over 3 million employees. The number of employees with higher education (not shown in the table)  went up by a similar order of magnitude, from over 1 million to over 2 million. The number of students in Higher Education in the meanwhile went up from 3 million to over 7 million students. Annex Figures A2 and A3 present the considerable variation in vocational unemployment (Unemployed with vocational education qualifications as percentage of the labor force} and in vocational enrollment, two series which only have a slight (-0.09) negative correlation.
+
+These figures are important because they provide a somewhat grim picture regarding the outlook of students who choose vocational education. At a time when higher education enrollment is booming, and when the job competition for limited vocational education skill level jobs is becoming more intense, the choice of vocational education may often be one that is forced upon the student because of the student's circumstances. We explore this possibility at an aggregate level by comparing a measure of regional living standards - the percentage of population with income level below the living wage with the percentage of vocational educational enrollment as a share of enrollment of all students. Figure 3 shows the scatter plot, with only a slight positive curve. The points vary in size according to the rate of growth in employment of vocational educated employees in the region, and the eight top growth regions marked in blue. Regional aggregates provide some hints but not sufficient clarity, for which we need to analyze data about individuals. The individual level analysis is introduced in the next section of this paper.
+
+\begin{figure}[htbp!]
+\begin{centering}
+\includegraphics[width=14cm]{Fig3v2.png}
+\end{centering}
+\footnotesize{Source: Mirkina ICPSR Regional database}
+\caption{Scatter Plot: Population Share below living wage and Vocational Education as Percentage of Total Enrollment}
+\end{figure}
+
+\noindent The rest of this paper is organized as follows. In the next section, we provide some details about the data being employed in the paper. Section 3 outlines the methodology being used to answer questions about the relationship between socio-economic equity and educational performance and vocational school choice. Section 4 presents the main empirical findings and Section 5 concludes with the key policy implications drawn from the analysis.
+
+%The natbib package provides the following four basic citation commands: \citet, % \citep,  \citealt, and \citealp.
+\section{Data}
+
+\vspace{-1em}
+
+The data being used for this paper is a unique dataset that goes beyond the now commonly available achievement and background data from standardized international assessments such as the OECD-PISA study and the IEA-TIMSS study. The national authorities in the Russian Federation responsible for administering the TIMSS study in 2011 arranged for the Eighth grade TIMSS sample to  be followed up in 2012 when most of the students were 15 years old, to administer the OECD-PISA test \cite{Bessudnov_14}. Researchers have used this data to be able to compare findings between TIMSS and PISA \cite{Carnoy_2016}. The original TIMSS study sample follows, as usual for such studies, a stratified random sample that is representative of the country - in this case, the sample was constituted of 4,893 students from 210 schools in 42 regions. The innovation, introduced by researchers from the Higher School of Economics, National Research University (HSE) was to follow up in 2012 and administer the PISA test, following the OECD protocols. The same cohort was followed up in 2013 in the third wave, which included 4236 students (87\% or attrition of 13\%). The panel has continued to be followed up in subsequent years, but the first wave (2012 implementation) was the only one that included a standardized assessment. The important variable from the second wave (2013 implementation) was a question that identifies whether the student continued in general education, typically an academic track, or vocational education.
+
+
+\begin{group}
+\smaller
+\begin{table}[h]
+\caption{\textbf{Comparison of Mean Values: Control and Treatment Groups}}\label{table:2}
+\begin{threeparttable}
+\setlength{\tabcolsep}{5pt}
+\renewcommand{\arraystretch}{1.25}
+\begin{tabular}{p{1.7cm}p{4.8cm}cccc}
+\rowcolor{grey!30} 
+ \textbf{Variable} & \textbf{Var. Description} &  \textbf{Mean Control} & \textbf{Mean Treatment} & \textbf{t-statistic} & \textbf{p-value}    \\
+\rowcolor{white} 
+FEMALE & Female Gender  & 0.5070 & 0.4779 & 0.0982  & 1.65 \\
+\rowcolor{grey!10} 
+PRESCHOOL & Attended Pre-school & 0.8268 & 0.6487 & 0.0000 & 11.10 \\
+\rowcolor{white} 
+STUCONF & Student Self-Confidence & 0.0267 & -0.0645 & 0.0003  & 3.61 \\
+\rowcolor{grey!10} 
+STUOUTLK  & Student Future Outlook & -0.0293 & 0.0811 & 0.0000 & -4.39 \\
+\rowcolor{white} 
+HWK\_WK & Homework minutes per week  & 323.72 & 320.30 & -0.6008  & 0.5233 \\
+\rowcolor{grey!10} 
+CULTPOS   & Cultural Possessions & 0.6686 & 0.1745 & 0.0000 & 15.51 \\
+\rowcolor{white} 
+ESCS   & ESCS Index & 0.2302 & -0.2983 & 0.0000  & 24.82 \\
+\rowcolor{grey!10} 
+ICTHOME   & ICT use at home & -0.0252 & -0.4999 & 0.0000 & 14.36 \\
+\rowcolor{white} 
+ENTUSE & ICT use for entertainment & 0.2595 & -0.0352 & 0.0000  & 5.98 \\
+\rowcolor{grey!10} 
+SCMATEDU  & School Infrastructure Index & 0.2004 & -0.4044 & 0.0000 & 6.27 \\
+\rowcolor{white} 
+TCSHORT & Teacher Problems  & 0.0918 & 0.1807 & 0.007  & -2.68 \\
+\rowcolor{grey!10} 
+ECACT     & Extra-Curricular Activities & 0.0883 & -0.1377 & 0.0000 & 6.35 \\
+\rowcolor{white} 
+M\_UMAJOR & Teacher 1 or 2 majors & 1.6927 & 1.5206 & 0.0000  & 9.07 \\
+\rowcolor{grey!10} 
+ICTSCH &  ICT at school & 0.3607 & 0.4554 & 0.003 & -2.96 \\
+\rowcolor{white} 
+VOCED &  Attending Vocational Education 2013 & 0.3211 & 0.5121 & 0.0000 & -10.76 \\
+\rowcolor{grey!10} 
+\multicolumn{2}{l}{Number of Schools}\ & 130 & 59 & - & - \\
+\rowcolor{grey!10} 
+\multicolumn{2}{l}{Number of Students}\ & 2567 & 1503 & - & - \\
+\hline  % Please only put a hline at the end of the table
+\end{tabular}
+\begin{tablenotes}
+\item Source: Calculations from OECD/PISA data
+\end{tablenotes}
+\end{threeparttable}
+\end{table}
+\end{group} 
+
+
+\textbf{Definition of treatment and control groups:} We define the treatment group of students as all students enrolled in a school where more than 30\% of the students are from the lowest socio-economic quintile. The control group is all other schools. There are a total of 189 schools out of the original 210 schools in the TIMSS sample after leaving out schools which had fewer than 10 sampled students; 59 of these 189 schools are treatment group schools; the remaining 130 schools are control group schools. There were 3136 students enrolled in control group schools and 1086 students enrolled in treatment group schools, of a total sample of 4222 students. 
+
+The treatment group school are assigned a dummy variable called MARKPOOR that takes value of 1 for treatment group, 0 otherwise. Table 2 presents the means and a t-test statistic for difference in means between the treatment group. We are not aware of any published research comparing the PISA sample that forms part of the TrEC study and the OECD-PISA sample for the Russian Federation for the year 2012. Table 1 reports on the score differences between treatment and control groups of the TrEC and the OECD samples. Using the same definitions of socio-economic status - from the OECD defined composite variable Economic, Social and Cultural Status (ESCS) we can see that at least the trend comparison matches the two samples. In this paper, from here onwards, when we refer to the PISA sample, it is the TrEC longitudinal panel sample of Table 2 that we use. 
+
+Table 2 includes three sets of variables chosen from the combined PISA and TIMSS samples - variables specific to the student; his or her family; and the school they attended in Grades 8 and 9. Student variables included: FEMALE gender; whether the student reported having attended PRESCHOOL; two constructed indices called STUCONF and STUOUTLK; and HWK\_WK - the minutes spent in the week doing homework in Mathematics and Science subjects. STUCONF is an IRT index created from a set of TIMSS items regarding their self confidence. There were nine items, reproduced in Figure 4, Panel (a).  Students responded on a four point scale, from strongly agree to strongly disagree for each item. Items were both negatively and positively framed to enhance accuracy in capturing the underlying construct. STUOUTLK is similarly constructed from the set of items in the Panel (b) of Figure 4. IRT scaling follows the usual procedure for creating such an index, with mean of zero and standard deviation of 1. Figure 4 shows the question regarding Mathematics. Similar questions were asked regarding the science subjects and the response averaged for overall measures of student confidence and outlook. We also constructed other student variables, but unlike gender and homework minutes, which we wanted to study in its own right, we did not consider these variables as there was no statistically significant difference between the treatment and control groups. 
+
+
+\begin{group} 
+\centering
+\begin{figure}[htb]
+\begin{subfigure}[Panel A. STUCONF]{
+\includegraphics[width=7cm]{tq1.png}}
+\end{subfigure}
+\begin{subfigure}[Panel B. STUOUTLK]{
+\includegraphics[width=7cm]{tq2.png}}
+\end{subfigure}
+\footnotesize{Source: TIMSS Questionnaire for 2011}
+\caption{Relationship between Low ESCS and Student Achievement}\label{fig:1}
+\end{figure}
+\end{group} 
+
+CULTPOS and ESCS are the OECD/PISA constructed measures of home cultural possessions and social and economic status. The OECD/PISA 2012 Technical Report provides the complete details about the construction of the OECD/PISA indices. There are four indices (of zero mean and one standard deviation as the OECD average) in the PISA dataset that capture aspects of home wealth - we considered all four and chose CULTPOS because of the particular interest in the Russian Federation of education to preserve and enrich culture. CULTPOS considers the home ownership of poetry books, works of classical literature, and works of art. ESCS is a composite index made up of information about the level of education of the parents, the occupation of the parents and home possessions including number of books owned. As ESCS is of special importance from the perspective of equity, and it is the defining variable for this study, we also explore the relationship between ESCS and PISA achievement through a series of scatter plots presented in the Annex as Figure A1. We choose to focus the analysis on Mathematics because of the linked PISA and TIMSS data and the focus of PISA 2012 on Mathematics. 
+
+SCMATEDU and TCHSHORT are two indices representing the quality of school educational resources and the reported existence of teacher staff shortages. These variables are well known to education researchers working with PISA data as they represent key policy measures that are related to the resource situation of the school. Table 2 shows the high level of disparity (half a standard deviation) in SCMATEDU means for the treatment and control groups. TIMSS data also included a matching of students with one or more of their teachers. Teachers of eighth grade children in the Russian Federation belong to two groups - about half have a university  qualification in the subject area - mathematics or science for purpose of the TIMSS sample, and the other half possess a double qualification in the subject areas and in pedagogy for the subject area. M\_UMAJOR counts whether the teacher has one or two majors. 
+
+ECACT is a zero mean IRT index constructed from responses about the presence of extra-curricular activities in the school. The list included ten items such as school play or musical, chess club, art club and so on.  In Russia at the current time, there is great concern about the ability of the education system to deliver socio-emotional or higher order skills. There is a fear amongst some educational thinkers that rigid and disciplinarian teachers may teach traditional material adequately but that Russian children may suffer from inadequate development of skills and competencies developed in extra-curricular activities. Especially from an equity perspective, there are concerns that well-off and more educated parents can secure better access to extra-curricular education. The fear is that even as more students from lower socio-economic quintiles attain or exceed basic cognitive proficiency, new gaps open up with regard to extra-curricular activities \cite{Snellman_2015} and \cite{Kosaretsky_2016}. 
+
+A last set of variables relates to the use of ICT both at home and at school and also for entertainment and connecting with social networks. Quite interestingly, the index for ICT availability at school, ICTSCH is actually statistically significantly higher for the treatment group. However, there is a nearly half standard deviation gap to the detriment of the treatment group where the index ICTHOME is concerned. The variable ENTUSE is another OECD defined index that examines entertainment uses including playing online games and ``uploading your own created contents for sharing (e.g.music, poetry, videos, computer programs)'' - this item being particularly relevant for the modern digital economy. The final variable shown in Table 2 - VOCED, is a key variable in the analytical section of this paper - it tells about the follow up two years later, if the student had continued in general education, or taken the vocational track.
+
+\section{Methodology: Bayesian Aggregation of Regression Trees} 
+
+The use of innovative methodology is crucial to this paper because it represents a value added contribution to the policy analytic research regarding education in Russia. One of the research questions addressed in this paper concerns the choice of vocational education. The same TrEC longitudinal data has been used to address the question using a linear probability model, which the authors undertake ``to avoid the unnecessary technical complications inevitably entailed by non-linear models'' \cite{Bessudnov_2015}. The authors compare the use of a linear probability model with a bivariate probit or logistic model against a linear probability model and conclude in favor of a linear regression. The authors are indeed correct that the choice between a linear probability model and a binary probit is not crucial for their regression analysis. However, the main problem from a policy analytic view point is not the specification of the regression equation, but the fact that causal implications cannot be correctly drawn from a cross-sectional regression. If valid and accurate policy conclusions are to be made from empirical research, it is crucial that the methodology be conceptually sound.  
+
+The Bayesian Additive Regression Trees (BART)  methodology employed in this paper is very powerful but not yet well known, so a brief methodological exposition will be helpful. There is a huge literature regarding each of the three methodologies that are combined in BART - Bayesian Analysis as opposed to the traditional ``frequentist'' or ``Neyman-Pearson'' analysis to estimate unknown parameters; Regression Trees and machine learning methods more generally - and ways to aggregate trees or make ensembles of trees; and finally the Impact Evaluation literature which is needed to access notions of causality and attribution. Each of these literatures have their own notation and convention and some of the notation is rather complicated to follow in a cursory reading. Yet, the method itself is rather clever and at least an intuitive understanding will be useful. References of the technical literature are provided for the interested reader. BART is an application oriented methodology and the theoretical development of BART and other methods is tied to the development of software to implement it. The rest of this section provides a quick overview of the key part of the methodological arsenal used in this paper, with references mentioned for relevant details. 
+
+\subsection{Bayesian Analysis}
+
+This paper utilizes an application of Bayesian analysis. Bayesian Analysis has been around for a long time, indeed the Rev.Thomas Bayes first published the eponymous theorem in 1762. A dedicated group of Bayesian statisticians have been quite active at least since the first computers were available to researchers about seventy-five years ago. However, owing to the tremendous computational complexity, it is only in the recent decade or so that the techniques of Bayesian analysis have become commonly available to mainstream researchers. Bayesian analysis models the likelihood of the parameters given the data, with $\theta$ denoting the parameters and $D$ the data:
+
+\begin{figure}[htb]
+\centering\includegraphics[width=12cm]{Fig3_BAYESa.png}}
+\end{figure}
+
+In some cases, there are analytical solutions to the Bayesian likelihood equation based on the links between families of posterior and prior distributions - these are termed as ``conjugate priors'' \cite{Kaplan_2013a}. However, the main application of Bayesian models concerns cases where analytical solutions do not exist and numerical computations have to be performed to map out the posterior distribution. Typically, in Bayesian analysis as applied to international assessment data, the idea is to use informative priors, say from earlier applications of a test and then update the model with new information. For excellent article and book length treatments of this subject, look at \cite{Kaplan_2013b} and \cite{Kaplan_2014}. Implementation of Bayesian method requires a numerical computation termed as ``Markov Chain Monte Carlo" or MCMC algorithm.
+
+\subsection{Markov Chain Monte Carlo Algorithms (MCMC)} 
+
+MCMC methods were developed only after the advent of computers and a renowned application was made by the famous mathematicians John von Neumann and Stanislas Ulam and other scientists working on the Manhattan project to develop the first atomic bomb during World War II. A Markov chain is used to denote a kind of memoryless process, where the next step in the process depends only on the previous step. A Monte Carlo simulation is well known to most economists, it only refers to the process of making a specified number of draws from a particular probability distribution. In this paper we utilize a particular method for MCMC called the Metropolis-Hastings method, developed initially for the Manhattan Project by Nicholas Metropolis and others. This little bit of history is relevant to mention because many people are unaware about the practical implications of massive increases in computational power. The Manhattan project was 75 years ago, but consider the Cray-2 Supercomputer from only 25 years ago. As remarked by the scientist Geoffrey West, former Director of the Santa Fe Complexity Institute and the Los Alamos National Physical Laboratory, the i-pad has more computational power than the Cray-2, see \citealt[p.439]{West_2017}. 
+
+The computations reported in this paper were carried out not on an iPad but a standard issue 64-bit Lenovo Yoga Thinkpad running on a dual core Intel i-76600 processor. With yesterday's supercomputing power so easily available on a notebook computer, an almost bizarre amount of computations can be employed with the right software and skills to deploy the software. How precisely such computations are practically employed by the MCMC algorithm is fascinating because it is a simple yet powerful idea. The interested reader is referred to an excellent book by John Kruschke, with the following quotation provided to give a flavor regarding the content of the book:
+
+\begin{quote}
+
+Suppose an elected politician lives on a long chain of islands. He is constantly traveling from island to island, wanting to stay in the public eye. At the end of a grueling day of photo opportunities and fundraising, he has to decide whether to (i) stay on the current island, (ii) move to the adjacent island to the west, or (iii) move to the adjacent island to the east. His goal is to visit all the islands proportionally to their relative population, so that he spends the most time on the most populated islands, and proportionally less time
+on the less populated islands. 
+
+\vspace{1em}
+
+Unfortunately, he holds his office despite having no idea what the total population of the island chain is, and he doesn't even know exactly how many islands there are! His entourage of advisers is capable of some minimal information gathering abilities, however. When they are not busy fundraising, they can ask the mayor of the island they are on how many people are on the island. And, when the politician proposes to visit an adjacent island, they can ask the mayor of that adjacent island how many people are on that island.
+
+\vspace{1em}
+
+The politician has a simple heuristic for deciding whether to travel to the proposed island: First, he flips a (fair) coin to decide whether to propose the adjacent island to the east or the adjacent island to the west. If the proposed island has a larger population than the current island, then he definitely goes to the proposed island. On the other hand, if the proposed island has a smaller population than the current island, then he goes to the proposed island only probabilistically, to the extent that the proposed island has a population as big as the current island. If the population of the proposed island is only
+half as big as the current island, the probability of going there is only 50\%.
+
+\vspace{1em}
+
+\ldots What is amazing about this heuristic is that it works: In the long run, the probability that the politician is on any one of the islands exactly matches the relative population of the island! Let's consider the island hopping heuristic in a bit more detail. \ldots
+
+\vspace{1em}
+
+This technique is profoundly useful when the target distribution $P(\Theta)$ is a posterior proportional to $p(D|\Theta)p(\Theta)$. Merely by evaluating $p(D|\Theta)p(\Theta)$ , without normalizing it by $p(D)$, we can generate random representative values from the posterior distribution. This result is wonderful because the method obviates direct computation of the evidence $p(D)$. \ldots By using MCMC techniques, we can do Bayesian inference in rich and complex models. It has only been with the development of MCMC algorithms and software that Bayesian inference is applicable to complex data analysis, and it has only been with the production of fast and cheap computer hardware that Bayesian inference is accessible to a wide audience.
+
+\end{quote}
+
+\attrib{\citealt[Chapter 7]{Kruschke_2015}}
+
+Bayesian methods can be applied to conventional regression settings, indeed there are many papers applying Bayesian analysis to PISA and TIMSS data. But in this paper we use a special kind of regression called a regression tree. We provide a brief overview regarding trees before bringing the topics together to conclude with a summarized exposition regarding BART. 
+
+\subsection{Classification and Regression Trees} 
+
+A very straightforward exposition of classification and regression trees can be obtained from the excellent textbooks \cite{Hastie_2008} and \cite{Shalizi_2013}. This section uses Shalizi's online lecture notes from Carnegie-Mellon University, accessible at \url{http://www.stat.cmu.edu/~cshalizi/350-2006/lecture-10.pdf}. With the familiar least squares regression model shown in Equation (1) below we have the basic assumption that the elements of $\textbf{X}$ are independent of the error term, but this assumption becomes questionable when there are problems such as omitted variables, measurement error and reverse causality at work. Often we need to incorporate interactions between variables and the number of parameters can grow very large, making it more and more difficult to adhere to the assumptions of the basic regression model. Shalizi describes linear regression as a \textbf{global model}, where a single predictive formula holds over the entire data-space. When the data includes variables which have lots of interactions and non-linear relationships, an alternative approach is to divide the global data-space or to \textbf{partition} the data and then partition again, which is called \textbf{recursive partitioning} and to keep doing that until you get to small chunks of space where the relationships are simple. Classification and Regression trees (CART) methods  have been developed to make these partitions in data. As with Bayesian models, it is the recent phenomenal growth in computing power that makes classification and regression trees accessible for applications with high dimensionality including tens or even hundreds of variables and thousands of observations. CART belongs to a more general field of models that are called ``machine learning'' because the recursive process is based on identifying information or `learning' about the data-space - a process where information successively becomes stronger and hence can be called learning, we can also term it as artificial intelligence.  Instead of the usual regression model
+
+\begin{equation} 
+Y \hspace{1em} $=$ \hspace{1em} \beta_{0} \hspace{1em} $+$  \hspace{1em}  \beta^{T}\textbf{X} \hspace{1em} $+$ \hspace{1em} \epsilon
+\end{equation}
+
+we estimate
+
+\begin{equation} 
+Y \hspace{1em} $=$ \hspace{1em} f(X) \hspace{1em} $=$ \hspace{1em}   \mytreel(\textbf{X}) 
+\end{equation}
+
+\noindent where $\mytreel$ represents a recursive partitioning. As with Equation (1), we wish to predict a response variable $Y$ from a set of inputs $\textbf{X}$. When the response variable is categorical, as in a binary choice (vocational education or general education), the model is a classification tree; with a continuous response variable, it is a regression tree.  We begin with a single variable $X_{i}$ and consider a split on that variable under some criteria. The most commonly used criteria is root mean squared error - meaning the root mean squared difference of the actual value of y for an observation, and the mean value or the predicted \^{y} of the cell to which the observation belongs. The explanation is simpler to understand with an actual example, and we use the data of this paper to present an illustration of a set of regression trees presented in Figure 5. 
+
+\setcounter{figure}{4} 
+\begin{figure}[htbp!]
+\centering\includegraphics[width=12cm]{Fig3v1.png}}
+\footnotesize{Source: Calculations from TrEC data}
+\caption{Regression Trees for PISA Math Score}\label{fig:5}
+\end{figure}
+
+Consider the tree in Figure 5, Panel A. The first variable considered is CULTPOS, the index of Cultural Possessions. Trees are read from left to right. The space is partitioned into two groups - with CULTPOS value less than 0.105 on the left and greater than or equal to 0.105 on the right. This cut-off minimizes the residual sum of squared error within the two groups, and maximizes it between groups. Consider the optimization problem to have maximum homogeneity within a group and maximum heterogeneity between the groups.  The end of the tree is a leaf. In the simple tree of Panel A, there is a leaf immediately at the first level, that indicates that with the cell of CULTPOS lower than 0.105, the mean Mathematics score is 449. On the right hand branch, we move from CULTPOS to a consideration of `markpoor', the variable used to define the treatment group (school with more than 30\% of lowest quintile ESCS students). The left arm of the markpoor branch is the `control' and the right hand branch is the `treatment'. Along the left arm, there is another bifurcation, depending on the variable ECACT - the extra-curricular activities index. If the ECACT index is less than 0.03, we get to a leaf with a mean Mathematics score of 493.3. If the ECACT index is higher than 0.03, the mean mathematics score in that part of the partition is 528. Along the right branch of the `markpoor' bifurcation, the `treatment' branch ends at a leaf with score of 469.8. The example of Panel A indicates that our data-space is quite rich in information - CULTPOS, markpoor, and ECACT seem to be important variables in relation to the Mathematics test score. The three other panels in Figure 5 represent similar regression trees, with differing specifications of the bifurcating variables. 
+
+\subsection{Ensemble of Trees} 
+
+There are obviously a large number of trees that can be constructed with a handful of variables, especially if there are continuous variables like the indices CULTPOS and ECACT - trees can be arranged with different hierarchy and different permutations within hierarchies. CART methods do exist that provide algorithms to build trees with rules to stop splitting and then pruning trees on the basis of certain criteria - we can then define an ideal or optimal tree and such methods are useful in certain contexts. In our case, we want to construct a large number of trees and then make ensembles or collections of these trees. Detailed exposition of different tree aggregations can be found in \cite{Hastie_2008}. Here we consider three aggregation methods - bagging, random forests and boosting. 
+
+\textbf{Bagging:} As explained by \cite{James_2013}, the classification and regression trees, outlined in the previous sub-section, suffer from a problem of high variance. If we split the data into two parts at random and fit a regression tree to each part, we could get quite different results. Linear regression does not have this problem, if the number of observations is large compared to the number of variables. Bootstrap aggregation or {\em{bagging}} is a method to reduce the variance from tree based methods. There is not space here to provide a detailed account of bagging without introducing a significant amount of mathematical notation and for this and other methods we attempt to provide an intuitive explanation. 
+
+We use the intuition that averaging a set of observations reduces the variance. We could split the original dataset into multiple training datasets at random and  then average the resulting predictions. Often we do not have so many observations so we resort to bootstrapping or drawing multiple samples, with repetition, from the same original dataset. We then average across the bootstrapped trees. In a classification tree, where $Y$ is categorical, a majority voting process is followed - we record the class predicted by each of the bootstrapped trees and take a majority vote. The observations not included in a particular bootstrap sample are called `out of bag' or OOB observations. On average, each bagged tree makes use of about two-thirds of the observations, leaving one-third OOB. An OOB error is computed by using the trees in which each observation is OOB. Bagging improves accuracy and validity, but generates a problem of interpretability of results.
+
+\textbf{Random Forests} A clever way to improve performance over bagging is a random forest. As in bagging, trees are built with bootstrapped samples, but a particular method if used to {\em{decorrelate}} one tree from the next one. When building a decision tree, each time a split is considered, a random sample of $m$ predictors is chosen from the full set of $p$ predictors and the split is allowed to choose only one of the restricted set of predictors. A fresh set of $m$ predictors is chosen at each split. 
+
+The intuition behind bagging is the following - if there is a strong predictor in the data set along with some moderately strong predictors, then in a collection of bagged trees, it is likely that the strong predictor will be chosen as the top split in each tree, and the trees will tend to be quite similar to one another or be highly correlated. Averaging across highly correlated measures does not lead to a substantial reduction in variance over a single tree. Random forests compel more variables to be considered and lead to diversity in the forest that more accurately captures the underlying data-space. 
+
+\textbf{Boosting} The last item in the bag of clever tricks to enhance performance of regression trees is boosting. In bagging and random forests, new  trees are generated from variations in bootstrapped methods, but over the same data-space or set of variables in each bootstrap. In the case of the relatively simple bagging, there is just conventional bootstrapping. In the case of the random forest, diversity is enforced by restricting the choice set of splitting variables. Boosting introduces another aspect - trees are grown {\em{sequentially}} in a boosting algorithm, and rather than averaging over identical space, each sequential step uses the {\em{residuals}} from the previous step. Boosting does not involve bootstrapping at all - rather than fitting a single large tree, which is termed as {\em{fitting the data hard}}, boosting is a {\em{slow learning}} method.
+
+More details are not possible to discuss without introducing further notation, but the intuition of this method is that different shapes of trees are used to wring out all the information content from the data. The boosting process also includes a shrinkage parameter that dictates the speed of learning - essentially referring to how the growth of the new tree depends on the trees that have already been grown. With the necessary introduction of Bayesian methods, MCMC, and regression and classification trees now out of the way, we can present the BART method that builds on all these concepts. 
+
+\subsection{BART}
+
+The BART method was introduced by \cite{Chipman_2010}. The software application used here, called bartMachine, was introduced by \cite{Kapelner_2016}. A very important reference for this paper that provides the technical details about why and how BART can be used to establish causality even in non-experimental setups is \cite{Hill_2011}. The first application to education, using Spanish data to determine the impact of ICT investment on student PISA performance was reported by \cite{Cabras_2016}. A second application to Italian PISA data was published recently \cite{Ferraro_2018}.
+
+In this section, we only present a quick overview of the BART method as provided by \cite{Kapelner_2016}. BART is an ensemble of trees model that uses boosting, but instead of merely implementing an algorithmic approach, BART uses a Bayesian approach, enforcing what is termed as a `regularization prior'. The regularization prior essentially provides a set of probabilities for small sets of alternative trees to generate a posterior distribution that is estimated with MCMC using a Metropolis-within-Gibbs sampler. 
+
+Formally, \cite{Kapelner_2016} outline that ``BART is a Bayesian approach to nonparametric function estimation using regression trees. Regression trees rely on recursive binary partitioning of predictor space into a set of hyper-rectangles in order to approximate some unknown function $f$. The predictor space has dimension equal to the number of variables, which we denote $p$. Tree-based regression models have an ability to flexibly fit interactions and nonlinearities. Models composed of sums of regression trees have an even greater ability than single trees to capture interactions and non-linearities as well as additive effects in $f$. 
+
+BART can be considered a sum-of-trees ensemble, with a novel estimation approach relying on a fully Bayesian probability model.  Specifically, the BART model can be expressed as:
+
+\begin{equation}
+\textbf{Y} \hspace{1em} $=$ \hspace{1em} f(\textbf{X}) \hspace{1em} $+$ \hspace{1em} \mathcal{E} \hspace{1em} \approx \hspace{1em} \mytreel_{1}(\textbf{X}) \hspace{1em} $+$  \hspace{1em}\mytreel_{2}(\textbf{X}) \hspace{1em} $+$ \hspace{1em} \ldots \hspace{1em} $+$ \hspace{1em} \mytreel_{m}(\textbf{X}) \hspace{1em} $+$ \hspace{1em} \mathcal{E}, \hspace{1em} \mathcal{E}  \sim \mathcal{N}(0,\,\sigma^{2}\textbf{I}_{n})
+\end{equation} 
+
+where $\textbf{Y}$ is the ($n X 1$) vector of responses, $\textbf{X}$ is the ($n X p$) design matrix (the predictors column-joined) and $\mathcal{E}$ is the ($n X 1$) vector of noise. Here we have $m$ distinct regression trees, each composed of a tree structure, denoted by $\mytree{}$, and the parameters at the terminal nodes (also called leaves), denoted by $\mbox{\leafNE}$. The two together, denoted as $\mytreel$ represents an entire tree with both its structure and set of leaf parameters.''
+
+A final methodological note remains with reference to the impact evaluation literature and the claim of causality from BART put forward by \cite{Hill_2011}. The basic intuition is that the typical impact measure of the Average Treatment Effect (ATE) comes from a `strong ignorability' assumption regarding the treatment assignment. Randomization is the classical example of enforcing strong ignorability. Under certain conditions, propensity score matching provides measures that approach the experimental set-up. However, there are difficult problems in correctly specifying the propensity score generating equation and the response surface for the particular dependent variable. As Hill explains, ``if the treatment assignment mechanism is properly specified, one can avoid modeling the response surface (just as in a randomized experiment). Not only is the correct specification of the assignment mechanism sufficient, the same holds for the response surface. That is, if the response surface is correctly specified, we do not have to worry about correctly specifying the assignment mechanism.'' BART, with its brute force terra-flops of computation, exploring every nook and cranny of the treatment surface, lays claim to that correct specification. 
+
+\section{Key Findings} 
+
+Figure 6 shows the distribution of the two outcome variables, comparing between the treatment and control groups that we defined before. The `treatment group' is enrollment in a school where more than 30\% of students are from the lowest socio-economic quintile of ESCS - an index variable that predominantly captures parental education and occupation. We know that there are strong selection effects that drive the choice between the two groups, but we claim that the BART methodology allows us to recover the impact of this treatment variable, as if the assignment had been randomized. 
+
+\begin{group} 
+\centering
+\begin{figure}[htb]
+\begin{subfigure}[Panel A. First BART Model]{
+\includegraphics[width=7cm]{Fig31a.png}}
+\end{subfigure}
+\begin{subfigure}[Panel B. Second BART Model]{
+\includegraphics[width=7cm]{Fig31b.png}}
+\end{subfigure}
+\caption{Relationship between Low ESCS and Student Achievement}\label{fig:1}
+\end{figure}
+\end{group} 
+
+The distribution on the left-hand side is completely overlapping, but the treatment group peaks early (about half a standard deviation earlier than the control group). The question we seek to answer is if the difference in performance can be attributed to being in a treatment school. On the right-hand panel, we see that in absolute numbers, about the same number of students from both treatment and groups go on to vocational school. However, since the treatment group (with 1086 students) is much smaller than the control group (3136 students), a relatively higher proportion of treatment group students found themselves in vocational schools two years later. The RHS variables into the BART model were described in Section 2 entitled `Data'. The BART model recycles through all the variables and their interactions depending on the predictive power in determining the value of the dependent variable.
+
+Following \cite{Hill_2011}  and \cite{Cabras_2016} we seek to determine the causal impact by literally flipping the treatment and control group membership of the treatment group to determine the counterfactual and establish impact of the treatment. Though the computations are horrendously large, the concept is fairly simple to understand. We keep each value of each variable for each observation the same, except the treatment group membership. So the question we ask is, what would your score (or your vocational school decision) be if you had all the characteristics that you have, but you were in a control group school rather than a treatment group school. The original and real membership is called the training group and the simulated group is the testing group. We run the BART model through and examine the posterior distribution of the marginal causal effect on the treated. The results are presented in Figure 7. Panel A shows that even though the distribution straddles the origin, 75\% lies to the left of the origin, indicating negative causal impact of the treatment, the mean effect size is about 10 points, or one-tenth of a standard deviation. Panel B shows a somewhat stronger effect of the treatment on the probability of being in vocational school two years later. The distribution shows a size of effect of about 10\% on the probability of being in vocational education. 
+
+
+\begin{group} 
+\begin{figure}[htb]
+\begin{subfigure}[Panel A. Mathematics Achievement]{
+\includegraphics[width=7cm]{Fig31c.png}}
+\end{subfigure}
+\begin{subfigure}[Panel B. Vocational School choice]{
+\includegraphics[width=7cm]{Fig31d.png}}
+\end{subfigure}
+\caption{Impact of being in treatment school}\label{fig:1}
+\end{figure}
+\end{group} 
+
+
+
+\begin{group} 
+\begin{figure}[htb]
+\begin{subfigure}[Panel A. Mathematics Achievement]{
+\includegraphics[width=7cm]{Fig32c.png}}
+\end{subfigure}
+\begin{subfigure}[Panel B. Vocational School choice]{
+\includegraphics[width=7cm]{cFig32c.png}}
+\end{subfigure}
+\caption{Importance of Variables in BART Model}\label{fig:1}
+\end{figure}
+\end{group} 
+
+In BART and similar methods, a useful way to examine the effect of the $X$ variables is a plot showing inclusion proportions in cross-validated models. Cross-validation is the process where the data is partitioned into $k$ subsets and the model is run repeatedly after leaving out each of the kth subset. See \cite{Maindonald_2006} for a clear exposition of cross-validation in regression tree models and \cite{Bleich_2014} for details about the rationale for using variable inclusion properties to gauge importance of the variable. The results are then used to predict the outcome for the set that has been left out. The notch at the top of the bars in Figure 8 represent 95\% confidence intervals. As the variable labels in Figures 8 and 9 are very small to be seen on paper, Annex Figures A6 through A9 present larger resolution versions for the reader interested in a particular variable not mentioned in the text commentary. 
+
+\begin{group} 
+\begin{figure}[htb]
+\begin{subfigure}[Panel A. Mathematics Achievement]{
+\includegraphics[width=7cm]{Fig32d.png}}
+\end{subfigure}
+\begin{subfigure}[Panel B. Vocational School choice]{
+\includegraphics[width=7cm]{cFig32d.png}}
+\end{subfigure}
+\caption{Interaction of Variables in BART Model}\label{fig:1}
+\end{figure}
+\end{group
+
+
+For mathematics achievement, the most included variables are SCMATEDU - index of school infrastructure and  TCSHORT - index of teacher shortages, incidentally the variables under policy influence. Other top ranked variables include ECACT - extra-curricular activities index, STUCONF - student confidence index, and ICTSCH - ICT use at school. For Vocational school choice, SCMATEDU is again the topmost variable, and the others in the list are quite similar. Figure 9, with magnified versions in the annex, shows that the top individual variables are also part of the top individual pairs, sometimes interacting with themselves, though variability of importance goes up in Figure 9. High rank of inclusion in trees does not mean high order of magnitude of impact, we have to adopt a permutation approach to specification to measure magnitude of importance, reported in Figures 10 and 11. 
+
+\begin{group} 
+\begin{figure}[htbp!]
+\begin{subfigure}[Panel A. Female Gender]{
+\includegraphics[width=4.5cm]{Fig3w1.png}}
+\end{subfigure}
+\begin{subfigure}[Panel B. Pre-School]{
+\includegraphics[width=4.5cm]{Fig3w02.png}}
+\end{subfigure}
+\begin{subfigure}[Panel C. Student Confidence]{
+\includegraphics[width=4.5cm]{Fig3w03.png}}
+\end{subfigure}
+\begin{subfigure}[Panel D. Student Outlook]{
+\includegraphics[width=4.5cm]{Fig3w04.png}}
+\end{subfigure}
+\begin{subfigure}[Panel E. Homework minutes ]{
+\includegraphics[width=4.5cm]{Fig3w05.png}}
+\end{subfigure}
+\begin{subfigure}[Panel F. Cultural Possessions ]{
+\includegraphics[width=4.5cm]{Fig3w06.png}}
+\end{subfigure}
+\begin{subfigure}[Panel G. ESCS Index ]{
+\includegraphics[width=4.5cm]{Fig3w07.png}}
+\end{subfigure}
+\begin{subfigure}[Panel H. ICTHOME ]{
+\includegraphics[width=4.5cm]{Fig3w08.png}}
+\end{subfigure}
+\begin{subfigure}[Panel I. ENTUSE Computers]{
+\includegraphics[width=4.5cm]{Fig3w09.png}}
+\end{subfigure}
+\begin{subfigure}[Panel J. SCMATEDU Infrastructure ]{
+\includegraphics[width=4.5cm]{Fig3w10.png}}
+\end{subfigure}
+\begin{subfigure}[Panel K. TCSHORT]{
+\includegraphics[width=4.5cm]{Fig3w11.png}}
+\end{subfigure}
+\begin{subfigure}[Panel L. ECACT]{
+\includegraphics[width=4.5cm]{Fig3w12.png}}
+\end{subfigure}
+\caption{Tests of Covariate Importance: (Math score)}\label{fig:1}
+\end{figure}
+\end{group} 
+
+A permutation approach is the name given to a process where a pseudo-$R^2$ measure is computed for the BART model (see \cite{Kapelner_2016} for details) as a first step. Then the {$x_j$} column is permuted, destroying any relationship that exists between the original column and the {$y$} and other $x_j$ variables. A new BART model is computed and a new ``null'' pseudo-$R^2$ is computed for this model. This process is repeated a number of times to obtain a null distribution of pseudo-$R^2$'s. Since the alternative hypothesis, with the unpermuted value of $x_j$, is that $x_j$ does have an effect on y, we compute a $p$-value which is the proportion of null pseudo-$R^2$s's greater than the observed pseudo-$R^2$. The same process can be carried out with permutations of a group of variables, equivalent to a partial F-test in an OLS regression.  Finally, we can permute only the $y$ values, leaving intact the existing relationships between the columns of $X$, to compute an equivalent to an omnibus F-test for all the regressor variables. We examine a histogram of the distribution of pseudo-$R^2$s divided by the misclassification error rate. The blue line shows this ratio for the original sample. And the panels also present the $p$-value, which is statistically significant for all variables in Figures 10 and 11 except for the variable FEMALE gender.  
+
+\setcounter{subfigure}{12}
+\begin{group} 
+\begin{figure}[htbp!]
+\begin{subfigure}[Panel M. Teacher Double Major]{
+\includegraphics[width=4.5cm]{Fig3w16.png}}
+\end{subfigure}
+\begin{subfigure}[Panel N. ICTSCH ]{
+\includegraphics[width=4.5cm]{Fig3w17.png}}
+\end{subfigure}
+\begin{subfigure}[Panel O. Counterfactual ]{
+\includegraphics[width=4.5cm]{Fig3w19.png}}
+\end{subfigure}
+\begin{subfigure}[Panel P. Treatment ]{
+\includegraphics[width=4.5cm]{Fig3w21.png}}
+\end{subfigure}
+\centering
+\begin{subfigure}[Panel Q. Top 6 important variables ]{
+\includegraphics[width=4.5cm]{Fig3w22.png}}
+\end{subfigure}
+\begin{subfigure}[Panel R. Omnibus Test Analog of F-Test]{
+\includegraphics[width=4.5cm]{Fig3w23.png}}
+\end{subfigure}
+\caption{Tests of Covariate Importance: Math Score ...Continued}\label{fig:1}
+\end{figure}
+\end{group} 
+
+The situation is somewhat different for the BART model for enrollment in Vocational school, shown in Figures 12 and 13. The $p$-values indicate significant importance only for panel (c): student confidence; panel (g) ESCS index; panel (j): SCMATEDU educational infrastructure index and panels (q) and (r) showing the combined variables. The fine level of control of the data-space and especially clever ideas like the ones used for tests of covariate importance are amongst the benefits of the BART method. We can use another technique, called partial dependence plots to examine marginal influence over the distribution of the $X_j$ column, shown in Figures 14 and 15. 
+
+\begin{group} 
+\begin{figure}[htbp!]
+\begin{subfigure}[Panel A. Female Gender]{
+\includegraphics[width=4.5cm]{cFig3w01.png}}
+\end{subfigure}
+\begin{subfigure}[Panel B. Pre-School]{
+\includegraphics[width=4.5cm]{cFig3w03.png}}
+\end{subfigure}
+\begin{subfigure}[Panel C. Student Confidence]{
+\includegraphics[width=4.5cm]{cFig3w04.png}}
+\end{subfigure}
+\begin{subfigure}[Panel D. Student Outlook]{
+\includegraphics[width=4.5cm]{cFig3w05.png}}
+\end{subfigure}
+\begin{subfigure}[Panel E. Homework minutes ]{
+\includegraphics[width=4.5cm]{cFig3w06.png}}
+\end{subfigure}
+\begin{subfigure}[Panel F. Cultural Possessions ]{
+\includegraphics[width=4.5cm]{cFig3w07.png}}
+\end{subfigure}
+\begin{subfigure}[Panel G. ESCS Index ]{
+\includegraphics[width=4.5cm]{cFig3w08.png}}
+\end{subfigure}
+\begin{subfigure}[Panel H. ICTHOME ]{
+\includegraphics[width=4.5cm]{cFig3w09.png}}
+\end{subfigure}
+\begin{subfigure}[Panel I. ENTUSE Computers]{
+\includegraphics[width=4.5cm]{cFig3w10.png}}
+\end{subfigure}
+\begin{subfigure}[Panel J. SCMATEDU Infrastructure ]{
+\includegraphics[width=4.5cm]{cFig3w11.png}}
+\end{subfigure}
+\begin{subfigure}[Panel K. TCSHORT]{
+\includegraphics[width=4.5cm]{cFig3w12.png}}
+\end{subfigure}
+\begin{subfigure}[Panel L. ECACT]{
+\includegraphics[width=4.5cm]{cFig3w13.png}}
+\end{subfigure}
+\caption{Tests of Covariate Importance: (Vocational Education Model) }\label{fig:1}
+\end{figure}
+\end{group} 
+
+
+\setcounter{subfigure}{12}
+\begin{group} 
+\begin{figure}[htbp!]
+\begin{subfigure}[Panel M. Teacher Double Major]{
+\includegraphics[width=4.5cm]{cFig3w16.png}}
+\end{subfigure}
+\begin{subfigure}[Panel N. ICTSCH ]{
+\includegraphics[width=4.5cm]{cFig3w17.png}}
+\end{subfigure}
+\begin{subfigure}[Panel O. Counterfactual ]{
+\includegraphics[width=4.5cm]{cFig3w19.png}}
+\end{subfigure}
+\begin{subfigure}[Panel P. Treatment ]{
+\includegraphics[width=4.5cm]{cFig3w21.png}}
+\end{subfigure}
+\centering
+\begin{subfigure}[Panel Q. Test of top 6 important variables ]{
+\includegraphics[width=4.5cm]{cFig3w22.png}}
+\end{subfigure}
+\begin{subfigure}[Panel R. Omnibus Test Analog of F-Test]{
+\includegraphics[width=4.5cm]{cFig3w23.png}}
+\end{subfigure}
+\caption{Tests of Covariate Importance: Vocational Education Model \ldots Continued}\label{fig:1}
+\end{figure}
+\end{group}
+
+
+\begin{group} 
+\begin{figure}[htbp!]
+\begin{subfigure}[Panel A. Student Confidence]{
+\includegraphics[width=4.5cm]{Fig3ww03.png}}
+\end{subfigure}
+\begin{subfigure}[Panel B. Student Outlook]{
+\includegraphics[width=4.5cm]{Fig3ww04.png}}
+\end{subfigure}
+\begin{subfigure}[Panel C. Homework minutes ]{
+\includegraphics[width=4.5cm]{Fig3ww05.png}}
+\end{subfigure}
+\begin{subfigure}[Panel D. Cultural Possessions ]{
+\includegraphics[width=4.5cm]{Fig3ww06.png}}
+\end{subfigure}
+\begin{subfigure}[Panel E. ESCS Index ]{
+\includegraphics[width=4.5cm]{Fig3ww07.png}}
+\end{subfigure}
+\begin{subfigure}[Panel F. ICTHOME ]{
+\includegraphics[width=4.5cm]{Fig3ww08.png}}
+\end{subfigure}
+\begin{subfigure}[Panel G. ENTUSE Computers]{
+\includegraphics[width=4.5cm]{Fig3ww09.png}}
+\end{subfigure}
+\begin{subfigure}[Panel H. SCMATEDU Infrastructure ]{
+\includegraphics[width=4.5cm]{Fig3ww10.png}}
+\end{subfigure}
+\begin{subfigure}[Panel I. TCSHORT]{
+\includegraphics[width=4.5cm]{Fig3ww11.png}}
+\end{subfigure}
+\begin{subfigure}[Panel J. ECACT]{
+\includegraphics[width=4.5cm]{Fig3ww12.png}}
+\end{subfigure}
+\begin{subfigure}[Panel K. ICTSCH]{
+\includegraphics[width=4.5cm]{Fig3ww13.png}}
+\end{subfigure}
+\begin{subfigure}[Panel L. Number of Trees RMSE]{
+\includegraphics[width=4.5cm]{Fig32a.png}}
+\end{subfigure}
+\caption{Partial Dependence Plots (Math Score)}\label{fig:1}
+\end{figure}
+\end{group} 
+
+The Partial Dependence Plot (PDP) is a generic machine learning method, not restricted to BART. The PDP plot shown in Figures 14 and 15 trace the marginal influence of each of the continuous regressor variables along its distribution, holding all the other variables constant. PDP also includes estimates for the 95\% confidence limits. 
+
+We examine first the PDPs for the BART model to predict Mathematics Test Score (Figure 14). There are four continuous variable for which the marginal effect  goes up with increases in the variable - these are STUCONF, CULTPOS, ESCS and ECACT. The PDPs  for CULTPOS and ESCS have a particularly interesting S shape, with a steep increase within a narrow margin. There are four variables where the marginal effect decreases over time - these are STUOUTLK, HWK\_WK, ICTHOME and ICTSCH. Both increasing and declining effects seem plausible and the trend reveals a bit of the underlying dynamics. For instance, excessive time spent on computers may become detrimental at some stage, a high general level is good, but further increases may lead to a decline in the influence of the variable. Two of the most important variables (from the influence plot) SCMATEDU and TCHSHORT have irregular PDPs - for instance the PDP for SCMATEDU shows a spike that is likely an artifact of the data without a particularly meaningful interpretation Finally, a panel added at the bottom of Figure 14 shows that the cross-validation error declines with the number of trees until it reaches a limit in further reduction at the level of 50 trees. 
+
+The PDP for the vocational education enrollment BART model shows fewer variables with interesting shapes of their PDPs. Quite a few of the variables do not appear to change in influence much through their distribution. This finding matches the earlier reported finding that the only significant influences in the construction of the BART model was for SCMATEDU, the school infrastructure index, STUCONF and ESCS. The vertical axis measures the probability for choosing vocational school - this means that as ESCS increases the influence of ESCS on the vocational school decision becomes lower. Finally, we can see from Panel L that increasing the number of trees does not reduce RMSE quite soon, after ten or 15 trees. 
+
+Since the BART method is not yet very well known, it is difficult to introduce measures about the performance of the BART method itself. However, these are generated by bartMachine and are provided as Annex Figures A4 and A5 for the two BART models deployed in this paper. These graphs show that there are no strange anomalies in the application of the algorithm. 
+
+We can see from the detailed variable by variable analysis that BART enables us to tractable understand a complex multi-dimensional response surface with its local variations. The BART method is as yet fairly new, but as researchers develop greater familiarity with it and similar machine learning methods, the popularity and applicability will grow with time. Even from a first time application, we have learnt quite a few policy relevant lessons that are summarized in the final section of the paper.
+
+
+
+
+\begin{group} 
+\begin{figure}[htbp!]
+\begin{subfigure}[Panel A. Student Confidence]{
+\includegraphics[width=4.5cm]{cFig3ww03.png}}
+\end{subfigure}
+\begin{subfigure}[Panel B. Student Outlook]{
+\includegraphics[width=4.5cm]{cFig3ww04.png}}
+\end{subfigure}
+\begin{subfigure}[Panel C. Homework minutes ]{
+\includegraphics[width=4.5cm]{cFig3ww05.png}}
+\end{subfigure}
+\begin{subfigure}[Panel D. Cultural Possessions ]{
+\includegraphics[width=4.5cm]{cFig3ww06.png}}
+\end{subfigure}
+\begin{subfigure}[Panel E. ESCS Index ]{
+\includegraphics[width=4.5cm]{cFig3ww07.png}}
+\end{subfigure}
+\begin{subfigure}[Panel F. ICTHOME ]{
+\includegraphics[width=4.5cm]{cFig3ww08.png}}
+\end{subfigure}
+\begin{subfigure}[Panel G. ENTUSE Computers]{
+\includegraphics[width=4.5cm]{cFig3ww09.png}}
+\end{subfigure}
+\begin{subfigure}[Panel H. SCMATEDU Infrastructure ]{
+\includegraphics[width=4.5cm]{cFig3ww10.png}}
+\end{subfigure}
+\begin{subfigure}[Panel I. TCSHORT]{
+\includegraphics[width=4.5cm]{cFig3ww11.png}}
+\end{subfigure}
+\begin{subfigure}[Panel J. ECACT]{
+\includegraphics[width=4.5cm]{cFig3ww12.png}}
+\end{subfigure}
+\begin{subfigure}[Panel K. ICTSCH]{
+\includegraphics[width=4.5cm]{cFig3ww13.png}}
+\end{subfigure}
+\begin{subfigure}[Panel L. Number of Trees RMSE]{
+\includegraphics[width=4.5cm]{cFig32a.png}}
+\end{subfigure}
+\caption{Partial Dependence Plots (Vocational Education)}\label{fig:1}
+\end{figure}
+\end{group} 
+
+
+\section{Conclusion and Recommendations} 
+
+\begin{itemize}
+
+\item \textbf{International Comparative Assessment Data:} The Russian Federation has made significant investments in assessment and participated in international assessments since the initiation of PISA in 2000. In the case of TrEC, there is a unique panel data available which enables very useful policy analytic research. Future follow-ups of the panel might consider application of cognitive and non-cognitive assessment tests such as the ones used in PIAAC and to determine digital literacy. Participation in international assessments provides not only an objective and impartial evaluation, but it also helps grow and benefit from the global public good of knowledge regarding educational performance. With some exceptions, Russian regions have not yet enhanced the sample size in international assessments for deeper, statistical representation by regions, as other countries have done. In the future, the Russian Federation should consider deepening investments on assessment, building on an already strong base. 
+
+\item \textbf{Utilization of Advanced Analytical Methods:} There is a huge data already available regarding student assessment and the size and richness of the data will only continue to grow. Unfortunately, the quality of the analytical methods used for data analysis have not kept pace with the massive improvements in technological capabilities of hardware and software. To some extent, the lack of exploitation of new methodologies is understandable, as research institutions and universities are subject to forces of inertia. However, there are examples such as the Federal Institute for Educational Research, Innovation and Development of the Austrian School System and others that are on the methodological forefront, and the Russian Federation also needs investments to attract talent and develop cutting edge analytical tools. 
+
+\item \textbf{Measures to reduce inequity in Russian Education} In this paper, we have attempted to undertake empirical research to provide a set of policy conclusions regarding the issue of inequity in education. In other papers that form part of this series, we have established that while education inequity remains a problem for the Russian Federation, the problem may have reduced in magnitude in the recent past, and that the situation in Russia is comparatively better than some EU and OECD countries. However, there is not much room for complacency and we are able to identify a set of interventions that will help to maintain and deepen the trend towards lower inequity in education.} 
+
+\begin{itemize}
+
+\item \textbf{Address within school inequity} While the data shows that there is some clustering by socio-economic conditions in Russian schools, and the problem is by no means resolved, the magnitude of the problem may not be so serious - of the fifty PISA points (equivalent to 1 year of education) of difference between students of what we termed as treatment and control group schools, only about ten PISA points can be attributed to the clustering effect. It is likely that policies that segregate students within school, like separating students in sections graded by ability, may be driving inequity and such policies need to be examined closely to bring down inequity.
+
+\item \textbf{Investment in Pre-School} There appears to be consistent evidence across many studies to which this study makes only a small marginal contribution, that investment in Pre-School helps overcome inequities. It appears that the effect of such investment lasts long into the future with high school achievement influenced by Pre-school enrollment. 
+
+\item \textbf{Investment in School Infrastructure} With regard both to achievement scores and the transition to vocational school, it appears that the quality of school infrastructure plays an important role. Further research will help to determine the precise nature of infrastructural investments related to better performance, but the availability of data and the application of superior analytical techniques will help in this effort.
+
+
+\item \textbf{Investment in Extra-Curricular Activities} The analysis indicated the important effects of participation in extra-curricular activities on student achievement and the gaps in terms of equity. This issue is tied to the one on school infrastructure, as the provision of extra-curricular activities often requires specialized equipment as well as the human facilitators to guide students. Students may undertake such activities outside of school and further investigation into this theme could be very useful to generate further actionable policy conclusions.
+
+\item \textbf{Pedagogical and Subject specialization for teachers} It is likely not well known internationally except amongst education researchers familiar with data on the Russian Federation that attainment of university education in Russia far exceeds the OECD average - this is clearly manifested in TIMSS comparison of teacher qualifications. In this study, we found that having double major for the teacher likely leads to more equitable educational outcomes. 
+
+\item \textbf{Image of Vocational School and Employability} In recent times, with support from institutions such as the Agency for Strategic Initiatives and other agencies of the Federal and regional governments, great strides have been made to improve the image of vocational education with examples like the World Skills initiative. These initiatives have only occurred in the recent five years and the TrEC data analyzed in this paper predates these initiatives, but it does appear until recently that vocational education was chosen disproportionately by students from relatively disadvantaged families. It would be very useful to conduct an impact evaluation analysis to examine the extent to which World Skills and other interventions to modernize vocational education in the Russian Federation have changed the scenario depicted in this paper where lower SES translated to transition into vocational school. 
+
+\end{itemize}
+
+\end{itemize}
+
+\bibliography{pisa}
+
+\newpage
+
+
+\appendix
+\renewcommand\thefigure{\thesection.\arabic{figure}}   
+\section{Annex}
+\setcounter{figure}{0} 
+
+\begin{group} 
+\begin{figure}[htb]
+\begin{subfigure}[Panel A. Math Q1]{
+\includegraphics[width=4.5cm]{p32a1.png}}
+\end{subfigure}
+\begin{subfigure}[Panel B. Math Other]{
+\includegraphics[width=4.5cm]{p32a2.png}}
+\end{subfigure}
+\begin{subfigure}[Panel C. Math All]{
+\includegraphics[width=4.5cm]{p32a3.png}}
+\end{subfigure}
+\begin{subfigure}[Panel D. Read Q1]{
+\includegraphics[width=4.5cm]{p32b1.png}}
+\end{subfigure}
+\begin{subfigure}[Panel E. Read Other]{
+\includegraphics[width=4.5cm]{p32b2.png}}
+\end{subfigure}
+\begin{subfigure}[Panel F. Read All]{
+\includegraphics[width=4.5cm]{p32b3.png}}
+\end{subfigure}
+\begin{subfigure}[Panel G. Science Q1]{
+\includegraphics[width=4.5cm]{p32c1.png}}
+\end{subfigure}
+\begin{subfigure}[Panel H. Science Other]{
+\includegraphics[width=4.5cm]{p32c2.png}}
+\end{subfigure}
+\begin{subfigure}[Panel I. Science All]{
+\includegraphics[width=4.5cm]{p32c3.png}}
+\end{subfigure}
+\caption{Relationship between Low ESCS and Student Achievement: OECD/PISA Russia Sample}\label{fig:1}
+\end{figure}
+\end{group} 
+
+\newpage
+
+\setcounter{table}{0} 
+\renewcommand{\thetable}{A\arabic{table}}
+%\vspace{-1cm}
+\smaller
+\begin{table}[h]
+\caption{\textbf{Distribution of Vocational Education Students}}\label{table:a1}
+\begin{threeparttable}
+\setlength{\tabcolsep}{5pt}
+\renewcommand{\arraystretch}{1.25}
+\begin{tabular}{p{5.5cm}cccccc}
+\rowcolor{grey!30} 
+\textbf{FEDERAL SUBJECT}	&	\textbf{1990}	&	\textbf{1995}	&	\textbf{2000}	&	\textbf{2005}	&	\textbf{2010}	&	\textbf{2015} 	\\
+\rowcolor{pink!20}
+Moscow	&	166,800	&	104,900	&	124,800	&	117,700	&	122,700	&	118,000	\\
+\rowcolor{blue!20}
+krasnodar\_kr	&	56,100	&	48,900	&	65,100	&	89,700	&	79,400	&	89,700	\\
+\rowcolor{blue!20}
+sverdlovsk\_obl	&	76,000	&	67,200	&	91,300	&	103,600	&	77,700	&	86,400	\\
+\rowcolor{blue!20}
+tatarstan\_rep	&	57,800	&	54,100	&	55,300	&	64,200	&	59,500	&	71,600	\\
+\rowcolor{pink!20}
+rostov\_obl	&	77,000	&	66,500	&	78,100	&	81,900	&	65,500	&	69,100	\\
+\rowcolor{pink!20}
+spetersburg	&	89,700	&	67,100	&	75,200	&	75,700	&	64,000	&	68,600	\\
+\rowcolor{blue!20}
+bashkortostan\_rep	&	63,700	&	64,000	&	86,100	&	102,800	&	81,000	&	68,000	\\
+\rowcolor{pink!20}
+moscow\_obl	&	76,100	&	63,400	&	73,800	&	75,200	&	60,200	&	64,200	\\
+chelyabinsk\_obl	&	61,300	&	58,100	&	68,600	&	81,900	&	55,700	&	61,200	\\
+samara\_obl	&	56,600	&	51,900	&	58,800	&	65,400	&	51,600	&	55,400	\\
+\rowcolor{pink!20}
+nizhnynovgorod\_obl	&	59,800	&	51,100	&	63,400	&	63,500	&	49,100	&	50,000	\\
+perm\_kr	&	49,200	&	39,800	&	55,700	&	63,400	&	47,900	&	47,900	\\
+krasnoyarsk\_kr	&	51,500	&	48,300	&	59,400	&	61,500	&	49,500	&	45,300	\\
+kemerovo\_obl	&	49,500	&	43,600	&	55,000	&	55,100	&	43,400	&	45,200	\\
+\rowcolor{blue!20}
+stavropol\_kr	&	27,200	&	26,400	&	33,400	&	44,000	&	40,100	&	44,000	\\
+irkutsk\_obl	&	46,500	&	37,400	&	43,600	&	41,600	&	40,300	&	43,400	\\
+volgograd\_obl	&	43,300	&	40,900	&	51,900	&	58,900	&	47,300	&	41,700	\\
+saratov\_obl	&	44,300	&	39,700	&	49,000	&	53,000	&	44,500	&	41,200	\\
+novosibirsk\_obl	&	46,500	&	37,700	&	49,700	&	52,700	&	38,000	&	39,100	\\
+orenburg\_obl	&	39,600	&	38,700	&	46,900	&	48,100	&	41,800	&	37,900	\\
+omsk\_obl	&	39,400	&	35,400	&	40,800	&	48,200	&	42,500	&	37,500	\\
+voronezh\_obl	&	38,100	&	38,800	&	43,400	&	50,800	&	35,800	&	34,600	\\
+\rowcolor{blue!20}
+dagestan\_rep	&	21,100	&	17,400	&	20,100	&	25,100	&	27,200	&	33,400	\\
+altai\_kr	&	36,100	&	29,900	&	39,600	&	45,000	&	35,500	&	33,200	\\
+primorsky\_kr	&	31,600	&	29,000	&	32,700	&	35,700	&	31,900	&	32,800	\\
+\rowcolor{blue!20}
+tyumen\_obl	&	20,900	&	15,300	&	22,400	&	30,900	&	23,200	&	26,900	\\
+udmurt\_rep	&	22,300	&	22,700	&	43,800	&	38,100	&	28,500	&	24,500	\\
+khabarovsk\_kr	&	27,900	&	21,900	&	30,400	&	32,600	&	23,700	&	23,800	\\
+chechen\_rep	&		&	4,700	&		&	9,800	&	13,100	&	23,100	\\
+belgorod\_obl	&	23,300	&	22,100	&	25,200	&	25,100	&	20,000	&	21,800	\\
+kirov\_obl	&	22,400	&	18,200	&	30,000	&	33,300	&	21,700	&	21,200	\\
+yaroslav\_obl	&	23,800	&	19,700	&	25,400	&	28,300	&	20,200	&	20,400	\\
+astrakhan\_obl	&	18,800	&	17,100	&	20,200	&	23,800	&	21,200	&	20,200	\\
+chuvash\_rep	&	21,900	&	20,300	&	24,000	&	27,000	&	20,600	&	19,900	\\
+\rowcolor{blue!20}
+khm\_ao	&	8,300	&	7,600	&	9,900	&	20,700	&	19,300	&	19,900	\\
+\rowcolor{blue!20}
+yakutia\_rep	&	10,500	&	10,600	&	11,900	&	17,400	&	18,300	&	19,700	\\
+\hline  % Please only put a hline at the end of the table
+\end{tabular}
+\begin{tablenotes}
+\item Source: Calculations from OECD/PISA data; Level 4 + denotes Levels 4 and higher
+\end{tablenotes}
+\end{threeparttable}
+\end{table}
+
+
+\setcounter{table}{0} 
+\renewcommand{\thetable}{A\arabic{table}}
+%\vspace{-1cm}
+\smaller
+\begin{table}[h]
+\caption{\textbf{Distribution of Vocational Education Students}}\label{table:a1}
+\begin{threeparttable}
+\setlength{\tabcolsep}{5pt}
+\renewcommand{\arraystretch}{1.25}
+\begin{tabular}{p{5.5cm}cccccc}
+\rowcolor{grey!30} 
+\textbf{FEDERAL SUBJECT}	&	\textbf{1990}	&	\textbf{1995}	&	\textbf{2000}	&	\textbf{2005}	&	\textbf{2010}	&	\textbf{2015} 	\\
+ryazan\_obl	&	22,200	&	18,200	&	20,500	&	21,600	&	19,400	&	19,600	\\
+\rowcolor{pink!20}
+tula\_obl	&	31,400	&	28,700	&	32,400	&	32,100	&	20,700	&	19,400	\\
+zabaykalsky\_kr	&	17,800	&	15,600	&	17,800	&	22,600	&	19,400	&	19,400	\\
+bryansk\_obl	&	22,300	&	21,200	&	24,500	&	23,700	&	19,200	&	19,200	\\
+vladimir\_obl	&	22,500	&	20,500	&	27,000	&	26,400	&	19,900	&	19,200	\\
+\rowcolor{blue!20}
+buryatia\_rep	&	15,900	&	13,500	&	16,400	&	20,700	&	19,000	&	19,100	\\
+ulyanovsk\_obl	&	22,200	&	19,300	&	25,800	&	31,400	&	22,300	&	19,100	\\
+kursk\_obl	&	20,400	&	17,500	&	21,800	&	23,400	&	20,000	&	18,200	\\
+tomsk\_obl	&	16,900	&	15,200	&	17,500	&	16,600	&	14,900	&	18,100	\\
+\rowcolor{pink!20}
+tver\_obl	&	25,900	&	22,300	&	26,400	&	27,900	&	21,700	&	17,800	\\
+\rowcolor{pink!20}
+penza\_obl	&	24,500	&	22,200	&	24,900	&	27,600	&	21,500	&	17,500	\\
+\rowcolor{pink!20}
+tambov\_obl	&	23,600	&	18,700	&	21,100	&	21,500	&	15,300	&	17,200	\\
+lipetsk\_obl	&	18,700	&	17,300	&	20,400	&	22,300	&	16,200	&	17,100	\\
+vologda\_obl	&	18,700	&	16,800	&	21,800	&	23,600	&	17,600	&	16,900	\\
+amur\_obl	&	17,600	&	16,400	&	20,700	&	20,500	&	17,000	&	16,300	\\
+arkhangelsk\_obl	&	21,700	&	17,100	&	22,100	&	25,300	&	19,100	&	16,100	\\
+kurgan\_obl	&	17,200	&	14,700	&	18,400	&	22,300	&	15,300	&	15,700	\\
+kaliningrad\_obl	&	13,200	&	10,500	&	12,400	&	14,500	&	12,600	&	14,900	\\
+komi\_rep	&	16,000	&	14,400	&	15,100	&	15,700	&	15,100	&	14,300	\\
+smolensk\_obl	&	19,600	&	16,200	&	19,500	&	22,600	&	18,000	&	14,100	\\
+kaluga\_obl	&	17,300	&	14,700	&	16,700	&	16,700	&	14,200	&	14,000	\\
+leningrad\_obl	&	11,000	&	7,500	&	8,900	&	9,300	&	11,100	&	14,000	\\
+\rowcolor{pink!20}
+ivanovo\_obl	&	21,400	&	16,900	&	17,800	&	16,800	&	14,100	&	13,600	\\
+mordovia\_rep	&	14,900	&	12,800	&	14,800	&	16,800	&	13,300	&	12,900	\\
+murmansk\_obl	&	8,700	&	8,700	&	12,400	&	13,100	&	10,700	&	12,400	\\
+oryol\_obl	&	13,700	&	13,400	&	13,400	&	12,500	&	11,600	&	11,900	\\
+mariel\_rep	&	9,800	&	8,600	&	11,200	&	14,300	&	11,900	&	11,500	\\
+karelia\_rep	&	13,200	&	11,700	&	13,600	&	14,000	&	11,300	&	10,200	\\
+alania\_rep	&	12,400	&	10,800	&	9,800	&	10,000	&	7,800	&	10,000	\\
+novgorod\_obl	&	11,100	&	9,300	&	11,100	&	11,400	&	8,300	&	9,800	\\
+kostroma\_obl	&	14,100	&	11,000	&	12,500	&	10,900	&	9,300	&	9,500	\\
+sakhalin\_obl	&	9,800	&	5,600	&	7,400	&	9,900	&	8,300	&	8,300	\\
+khakassia\_rep	&	7,500	&	6,800	&	9,100	&	11,600	&	10,400	&	7,700	\\
+pskov\_obl	&	10,800	&	8,600	&	10,700	&	10,400	&	7,800	&	7,500	\\
+kabardin\_rep	&	8,800	&	7,400	&	11,500	&	9,700	&	6,600	&	7,400	\\
+ 	&	\hspace{4em}	&	\hspace{4em}	&	\hspace{4em}	&	\hspace{4em} &	\hspace{4em} &	\hspace{4em}	\\
+\hline  % Please only put a hline at the end of the table
+\end{tabular}
+\begin{tablenotes}
+\item Source: Calculations from OECD/PISA data; Level 4 + denotes Levels 4 and higher
+\end{tablenotes}
+\end{threeparttable}
+\end{table}
+
+
+\setcounter{table}{0} 
+\renewcommand{\thetable}{A\arabic{table}}
+%\vspace{-1cm}
+\smaller
+\begin{table}[h]
+\caption{\textbf{Distribution of Vocational Education Students}}\label{table:a1}
+\begin{threeparttable}
+\setlength{\tabcolsep}{5pt}
+\renewcommand{\arraystretch}{1.25}
+\begin{tabular}{p{5.5cm}cccccc}
+\rowcolor{grey!30} 
+\textbf{FEDERAL SUBJECT}	&	\textbf{1990}	&	\textbf{1995}	&	\textbf{2000}	&	\textbf{2005}	&	\textbf{2010}	&	\textbf{2015} 	\\
+adygea\_rep	&	7,000	&	5,100	&	6,400	&	6,300	&	5,300	&	6,600	\\
+karachay\_rep	&	3,300	&	5,300	&	5,900	&	5,700	&	5,200	&	6,000	\\
+yan\_ao	&	4,600	&	5,700	&	6,800	&	4,600	&	5,600	&	6,000	\\
+tyva\_rep	&	3,900	&	3,900	&	4,600	&	6,500	&	5,800	&	5,600	\\
+kalmykia\_rep	&	5,400	&	4,300	&	5,800	&	6,100	&	5,000	&	5,300	\\
+altai\_rep	&	4,100	&	3,000	&	4,000	&	5,300	&	4,700	&	5,200	\\
+ingushetia\_rep	&	11,900	&	900	&	2,100	&	2,300	&	2,100	&	4,800	\\
+kamchatka\_kr	&	5,300	&	4,200	&	6,000	&	5,500	&	4,200	&	4,400	\\
+magadan\_obl	&	3,600	&	2,400	&	2,800	&	2,500	&	2,000	&	2,100	\\
+jewish\_aobl	&	4,900	&	4,000	&	3,600	&	3,700	&	2,600	&	1,800	\\
+chukotka\_ao	&	400	&	700	&	600	&	700	&	400	&	600	\\
+ 	&	\hspace{4em}	&	\hspace{4em}	&	\hspace{4em}	&	\hspace{4em} &	\hspace{4em} &	\hspace{4em}	\\
+\hline  % Please only put a hline at the end of the table
+\end{tabular}
+\begin{tablenotes}
+\item Source: Calculations from OECD/PISA data; Level 4 + denotes Levels 4 and higher
+\end{tablenotes}
+\end{threeparttable}
+\vspace{4in}
+\end{table}
+
+
+\setcounter{table}{1} 
+\renewcommand{\thetable}{A\arabic{table}}
+%\vspace{-1cm}
+\smaller
+\begin{table}[h]
+\caption{\textbf{Distribution of Employees with Vocational Education}}\label{table:a1}
+\begin{threeparttable}
+\setlength{\tabcolsep}{5pt}
+\renewcommand{\arraystretch}{1.25}
+\begin{tabular}{p{5.5cm}cccccc}
+\rowcolor{grey!30} 
+\textbf{FEDERAL SUBJECT}	&	\textbf{1990}	&	\textbf{1995}	&	\textbf{2000}	&	\textbf{2005}	&	\textbf{2010}	&	\textbf{2015} 	\\
+\rowcolor{blue!20}
+moscow	&	160,909	&	205,773	&	236,421	&	284,970	&	284,381	&	306,328	\\
+\rowcolor{blue!20}
+krasnodar\_kr	&	65,966	&	73,379	&	91,736	&	108,252	&	104,774	&	101,033	\\
+\rowcolor{blue!20}
+sverdlovsk\_obl	&	69,915	&	89,252	&	104,685	&	101,226	&	98,482	&	97,417	\\
+\rowcolor{blue!20}
+tatarstan\_rep	&	45,784	&	67,804	&	76,438	&	81,291	&	74,876	&	72,083	\\
+rostov\_obl	&	66,241	&	71,236	&	85,437	&	81,705	&	82,233	&	84,440	\\
+\rowcolor{blue!20}
+spetersburg	&	82,604	&	90,819	&	92,497	&	97,605	&	97,167	&	109,035	\\
+\rowcolor{blue!20}
+bashkortostan\_rep	&	51,263	&	83,818	&	89,341	&	98,622	&	97,942	&	95,739	\\
+\rowcolor{blue!20}
+moscow\_obl	&	86,751	&	98,024	&	113,992	&	117,689	&	119,997	&	113,942	\\
+\rowcolor{blue!20}
+chelyabinsk\_obl	&	56,725	&	81,652	&	92,440	&	88,077	&	87,995	&	85,510	\\
+samara\_obl	&	64,168	&	66,025	&	66,950	&	67,923	&	66,773	&	69,020	\\
+\rowcolor{blue!20}
+nizhnynovgorod\_obl	&	53,792	&	65,179	&	67,254	&	82,636	&	88,907	&	76,932	\\
+\rowcolor{blue!20}
+perm\_kr	&	44,513	&	60,160	&	64,501	&	76,046	&	73,766	&	64,169	\\
+krasnoyarsk\_kr	&	49,992	&	52,993	&	58,596	&	64,758	&	62,740	&	61,196	\\
+kemerovo\_obl	&	51,839	&	49,560	&	66,185	&	64,281	&	67,881	&	61,786	\\
+stavropol\_kr	&	32,676	&	38,675	&	43,260	&	42,783	&	45,806	&	43,853	\\
+irkutsk\_obl	&	40,615	&	46,920	&	47,381	&	52,791	&	49,801	&	49,546	\\
+volgograd\_obl	&	46,101	&	45,125	&	54,186	&	62,346	&	61,392	&	60,083	\\
+saratov\_obl	&	37,522	&	52,105	&	50,756	&	53,559	&	55,750	&	55,778	\\
+novosibirsk\_obl	&	43,945	&	56,161	&	53,266	&	59,441	&	56,376	&	53,788	\\
+orenburg\_obl	&	37,263	&	43,087	&	50,325	&	60,535	&	57,170	&	52,342	\\
+omsk\_obl	&	31,021	&	37,358	&	43,574	&	40,523	&	42,039	&	42,170	\\
+voronezh\_obl	&	30,129	&	37,418	&	31,873	&	42,383	&	41,999	&	38,072	\\
+dagestan\_rep	&	23,396	&	22,282	&	19,914	&	24,579	&	23,455	&	20,692	\\
+altai\_kr	&	35,899	&	44,852	&	61,002	&	49,760	&	47,544	&	47,464	\\
+primorsky\_kr	&	37,180	&	38,088	&	46,658	&	49,691	&	46,772	&	44,255	\\
+tyumen\_obl	&	71,887	&	25,543	&	34,455	&	30,759	&	30,772	&	33,867	\\
+udmurt\_rep	&	17,968	&	26,105	&	45,353	&	41,296	&	36,888	&	37,080	\\
+khabarovsk\_kr	&	23,618	&	28,814	&	31,781	&	32,498	&	33,311	&	30,881	\\
+chechen\_rep	&	NA	&	NA	&	NA	&	7,222	&	5,999	&	4,740	\\
+belgorod\_obl	&	25,051	&	26,718	&	33,870	&	34,120	&	33,745	&	33,230	\\
+kirov\_obl	&	21,191	&	31,561	&	34,724	&	37,050	&	34,732	&	33,323	\\
+yaroslav\_obl	&	20,146	&	28,260	&	28,627	&	36,333	&	38,074	&	30,804	\\
+astrakhan\_obl	&	17,850	&	22,191	&	24,386	&	21,758	&	21,594	&	20,909	\\
+chuvash\_rep	&	17,114	&	23,340	&	24,617	&	24,828	&	26,377	&	25,268	\\
+khm\_ao	&	NA	&	38,570	&	43,153	&	39,943	&	40,137	&	35,944	\\
+yakutia\_rep	&	24,051	&	21,376	&	19,061	&	22,057	&	21,199	&	20,971	\\
+\hline  % Please only put a hline at the end of the table
+\end{tabular}
+\begin{tablenotes}
+\item Source: Calculations from OECD/PISA data; Level 4 + denotes Levels 4 and higher
+\end{tablenotes}
+\end{threeparttable}
+\end{table}
+
+
+\setcounter{table}{1} 
+\renewcommand{\thetable}{A\arabic{table}}
+%\vspace{-1cm}
+\smaller
+\begin{table}[h]
+\caption{\textbf{Distribution of Employees with Vocational Education}}\label{table:a1}
+\begin{threeparttable}
+\setlength{\tabcolsep}{5pt}
+\renewcommand{\arraystretch}{1.25}
+\begin{tabular}{p{5.5cm}cccccc}
+\rowcolor{grey!30} 
+\textbf{FEDERAL SUBJECT}	&	\textbf{1990}	&	\textbf{1995}	&	\textbf{2000}	&	\textbf{2005}	&	\textbf{2010}	&	\textbf{2015} 	\\
+ 	&	\hspace{4em}	&	\hspace{4em}	&	\hspace{4em}	&	\hspace{4em} &	\hspace{4em} &	\hspace{4em}	\\
+ryazan\_obl	&	19,976	&	21,256	&	24,168	&	27,201	&	27,052	&	25,480	\\
+tula\_obl	&	26,390	&	28,958	&	30,759	&	34,700	&	33,794	&	34,322	\\
+zabaykalsky\_kr	&	17,042	&	20,416	&	21,277	&	20,033	&	20,281	&	19,414	\\
+bryansk\_obl	&	18,204	&	25,410	&	23,560	&	24,979	&	24,958	&	24,335	\\
+vladimir\_obl	&	21,680	&	29,274	&	32,446	&	35,597	&	34,231	&	33,620	\\
+buryatia\_rep	&	13,030	&	15,504	&	16,121	&	20,063	&	20,294	&	19,163	\\
+ulyanovsk\_obl	&	21,125	&	22,201	&	22,563	&	28,141	&	28,061	&	25,840	\\
+kursk\_obl	&	16,926	&	22,814	&	27,430	&	27,547	&	28,594	&	27,742	\\
+tomsk\_obl	&	15,107	&	21,182	&	18,651	&	22,066	&	19,373	&	20,509	\\
+tver\_obl	&	25,808	&	27,906	&	32,865	&	32,855	&	31,601	&	30,682	\\
+penza\_obl	&	21,762	&	23,052	&	28,513	&	31,763	&	29,162	&	31,232	\\
+tambov\_obl	&	17,794	&	20,728	&	19,465	&	24,626	&	24,285	&	24,610	\\
+lipetsk\_obl	&	19,008	&	23,828	&	25,899	&	28,934	&	28,876	&	27,699	\\
+vologda\_obl	&	21,506	&	26,149	&	30,043	&	30,025	&	30,163	&	29,567	\\
+amur\_obl	&	17,572	&	15,882	&	17,435	&	21,413	&	20,387	&	19,712	\\
+arkhangelsk\_obl	&	23,637	&	29,007	&	31,398	&	35,668	&	34,779	&	34,286	\\
+kurgan\_obl	&	15,674	&	16,446	&	18,122	&	18,988	&	18,892	&	17,089	\\
+kaliningrad\_obl	&	15,222	&	17,189	&	19,039	&	22,957	&	23,311	&	22,795	\\
+komi\_rep	&	19,418	&	21,063	&	22,395	&	25,882	&	25,233	&	23,094	\\
+smolensk\_obl	&	16,312	&	20,567	&	21,833	&	25,484	&	24,246	&	23,580	\\
+kaluga\_obl	&	15,303	&	22,236	&	24,318	&	25,211	&	25,459	&	22,425	\\
+leningrad\_obl	&	24,908	&	31,551	&	38,924	&	40,097	&	37,535	&	37,011	\\
+ivanovo\_obl	&	17,411	&	22,448	&	20,849	&	22,495	&	21,898	&	21,475	\\
+mordovia\_rep	&	7,684	&	12,849	&	13,330	&	16,132	&	16,626	&	16,222	\\
+murmansk\_obl	&	17,766	&	21,299	&	21,655	&	21,142	&	21,133	&	19,731	\\
+oryol\_obl	&	14,481	&	18,910	&	17,908	&	18,734	&	19,350	&	19,112	\\
+mariel\_rep	&	9,171	&	14,061	&	15,081	&	16,700	&	16,475	&	15,159	\\
+karelia\_rep	&	11,190	&	16,572	&	17,117	&	17,171	&	16,807	&	15,436	\\
+alania\_rep	&	7,103	&	9,664	&	11,004	&	11,912	&	11,642	&	12,835	\\
+novgorod\_obl	&	10,908	&	12,915	&	12,975	&	15,299	&	15,569	&	15,231	\\
+kostroma\_obl	&	12,390	&	17,861	&	17,393	&	18,583	&	17,916	&	17,209	\\
+sakhalin\_obl	&	10,912	&	13,581	&	14,052	&	16,024	&	13,996	&	12,615	\\
+khakassia\_rep	&	7,209	&	9,871	&	10,102	&	9,472	&	9,353	&	9,274	\\
+pskov\_obl	&	11,353	&	14,039	&	18,110	&	17,297	&	16,736	&	15,692	\\
+kabardin\_rep	&	8,696	&	11,717	&	11,834	&	10,103	&	10,260	&	10,962	\\
+\hline  % Please only put a hline at the end of the table
+\end{tabular}
+\begin{tablenotes}
+\item Source: Calculations from OECD/PISA data; Level 4 + denotes Levels 4 and higher
+\end{tablenotes}
+\end{threeparttable}
+\end{table}
+
+
+\setcounter{table}{1} 
+\renewcommand{\thetable}{A\arabic{table}}
+%\vspace{-1cm}
+\smaller
+\begin{table}[h]
+\caption{\textbf{Distribution of Employees with Vocational Education}}\label{table:a1}
+\begin{threeparttable}
+\setlength{\tabcolsep}{5pt}
+\renewcommand{\arraystretch}{1.25}
+\begin{tabular}{p{5.5cm}cccccc}
+\rowcolor{grey!30} 
+\textbf{FEDERAL SUBJECT}	&	\textbf{1990}	&	\textbf{1995}	&	\textbf{2000}	&	\textbf{2005}	&	\textbf{2010}	&	\textbf{2015} 	\\
+adygea\_rep	&	5,666	&	6,852	&	5,744	&	5,745	&	5,442	&	5,386	\\
+karachay\_rep	&	3,972	&	4,187	&	3,791	&	6,670	&	6,803	&	5,804	\\
+yan\_ao	&	NA	&	16,573	&	17,266	&	17,470	&	16,628	&	17,061	\\
+tyva\_rep	&	5,032	&	4,553	&	4,946	&	5,005	&	4,341	&	4,172	\\
+kalmykia\_rep	&	3,174	&	3,452	&	3,886	&	4,446	&	3,921	&	4,062	\\
+altai\_rep	&	2,904	&	3,671	&	3,116	&	4,179	&	3,874	&	3,991	\\
+ingushetia\_rep	&	1,704	&	1,331	&	1,840	&	2,390	&	2,801	&	2,512	\\
+kamchatka\_kr	&	7,640	&	9,068	&	8,760	&	8,490	&	8,273	&	7,600	\\
+magadan\_obl	&	3,640	&	4,126	&	3,818	&	2,985	&	2,993	&	3,265	\\
+jewish\_aobl	&	3,519	&	2,850	&	2,831	&	3,701	&	3,336	&	3,327	\\
+chukotka\_ao	&	NA	&	1,406	&	1,775	&	1,705	&	1,511	&	1,016	\\
+ 	&	\hspace{4em}	&	\hspace{4em}	&	\hspace{4em}	&	\hspace{4em} &	\hspace{4em} &	\hspace{4em}	\\
+\hline  % Please only put a hline at the end of the table
+\end{tabular}
+\begin{tablenotes}
+\item Source: Calculations from OECD/PISA data; Level 4 + denotes Levels 4 and higher
+\end{tablenotes}
+\end{threeparttable}
+\vspace{4in}
+\end{table}
+
+
+\newpage
+
+\begin{figure}[htbp!]
+\begin{subfigure}[Panel A. Unemployed Workforce]{
+\includegraphics[width=13cm]{m31a.png}}
+\end{subfigure}
+\caption{Unemployed Vocational Education Graduates as Percentage of Total Unemployment, 2015}
+\begin{subfigure}[Panel B. Student Population]{
+\includegraphics[width=13cm]{m31b.png}}
+\end{subfigure}
+\caption{Vocational Education Students as Percentage of All Pre-University Students, 2015}
+\end{figure}
+
+
+\newpage
+
+
+\begin{figure}[htbp!]
+\begin{subfigure}[Panel A. BART Model: Mathematics Achievement]{
+\includegraphics[width=13cm]{Fig32b.png}}
+\end{subfigure}
+\caption{Convergence Diagnostics for cross-validated BART Model} 
+\begin{subfigure}[Panel B. BART Model: Vocational School Choice]{
+\includegraphics[width=13cm]{cFig32b.png}}
+\end{subfigure}
+\caption{Convergence Diagnostics for cross-validated BART Model}
+\end{figure}
+
+\newpage
+
+
+\begin{figure}[htbp!]
+\includegraphics[width=20cm, angle=270]{Fig32c.png}
+\caption{Importance of Variables: Mathematics Model} 
+\end{figure}
+
+\begin{figure}[htbp!]
+\includegraphics[width=20cm, angle=270]{cFig32c.png}
+\caption{Importance of Variables: Vocational Ed Model} 
+\end{figure}
+
+\begin{figure}[htbp!]
+\includegraphics[width=20cm, angle=270]{Fig32d.png}
+\caption{Interaction of Variables: Mathematics Model} 
+\end{figure}
+
+\begin{figure}[htbp!]
+\includegraphics[width=20cm, angle=270]{cFig32d.png}
+\caption{Interaction of Variables: Vocational Ed Model} 
+\end{figure}
+
+
+\end{document}

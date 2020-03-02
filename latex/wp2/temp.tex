@@ -1,0 +1,11 @@
+% Formatting of footer for first page
+\RequirePackage[flushmargin,bottom]{footmisc}
+\def\blfootnote{\gdef\@thefnmark{}\@footnotetext}
+\appto{\footnotelayout}{\fontsize{6\p@}{9\p@}\selectfont}
+\renewcommand{\footnoterule}{\noindent\textcolor{black!50}{\rule{\textwidth}{0.5\p@}}\vskip2\p@}
+
+
+\RequirePackage[para,bottom]{footmisc} % [para] will generate full width text
+\def\blfootnote{\gdef\@thefnmark{}\@footnotetext}
+\appto{\footnotelayout}{\fontsize{9\p@}{11\p@}\selectfont}
+\renewcommand{\footnoterule}{\noindent\textcolor{blue!50}{\rule{\textwidth}{0.5\p@}}\vskip2\p@}
