@@ -1,0 +1,24 @@
+\boolfalse {citerequest}\boolfalse {citetracker}\boolfalse {pagetracker}\boolfalse {backtracker}\relax 
+\babel@toc {english}{}
+\defcounter {refsection}{0}\relax 
+\beamer@sectionintoc {1}{Motivation}{3}{0}{1}
+\defcounter {refsection}{0}\relax 
+\beamer@subsectionintoc {1}{1}{Stylized fact about Human Capital in Russia}{3}{0}{1}
+\defcounter {refsection}{0}\relax 
+\beamer@subsectionintoc {1}{2}{Time Trend in Returns to Education in Russia}{3}{0}{1}
+\defcounter {refsection}{0}\relax 
+\beamer@sectionintoc {2}{Depreciation of Human Capital in Russia}{6}{0}{2}
+\defcounter {refsection}{0}\relax 
+\beamer@subsectionintoc {2}{1}{Analytical Treatment of Depreciation}{6}{0}{2}
+\defcounter {refsection}{0}\relax 
+\beamer@subsectionintoc {2}{2}{Estimation Results}{9}{0}{2}
+\defcounter {refsection}{0}\relax 
+\beamer@subsectionintoc {2}{3}{Arrazola's Non-Linear Least Squares Approach}{10}{0}{2}
+\defcounter {refsection}{0}\relax 
+\beamer@subsectionintoc {2}{4}{Estimation Results}{10}{0}{2}
+\defcounter {refsection}{0}\relax 
+\beamer@sectionintoc {3}{Further Exploration of Depreciation}{11}{0}{3}
+\defcounter {refsection}{0}\relax 
+\beamer@subsectionintoc {3}{1}{Depreciation and the Gender Dimension}{11}{0}{3}
+\defcounter {refsection}{0}\relax 
+\beamer@subsectionintoc {3}{2}{Depreciation and Occupational Routineness}{13}{0}{3}
