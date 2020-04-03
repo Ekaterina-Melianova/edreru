@@ -78,4 +78,35 @@ x <- c(19,20,21,22,23:27)
 plot(x,y, type='b', col='red')
 xspline(x,y, shape=1)
 
+###
+
+op <- par(mfrow=c(1,2))
+
+(a <- spline(x, y, n = 3*length(x), method = "fmm",
+       xmin = min(x), xmax = max(x), ties = mean))
+
+plot(a,type='b', col='red')
+
+(a <- splinefun(x, y))
+
+f <- splinefun(x,y)
+ls(envir = environment(f))
+splinecoef <- get("z", envir = environment(f))
+curve(f(x), 19, 23, col = "green", lwd = 1.5)
+points(splinecoef, col = "purple", cex = 2)
+curve(f(x, deriv=1), 1, 10, col = 2, lwd = 1.5)
+curve(f(x, deriv=2), 1, 10, col = 2, lwd = 1.5, n = 401)
+curve(f(x, deriv=3), 1, 10, col = 2, lwd = 1.5, n = 401)
+
+par(op)
+
+
+
+
+
+
+
+
+
+
 
