@@ -1,6 +1,7 @@
-# wp5_1a.R
+# wp5_1b.R
 
-# Just prelims with the data
+
+# I want to determine age earnings profiles by region
 
 options(scipen=999) # to supress scientific notation
 Sys.setlocale("LC_ALL", "russian")
@@ -20,9 +21,6 @@ df_col2 <- df_col %>% group_by(inn) %>% filter(n()>1)
 
 #we eliminate the duplicates
 df_col2 <- df_col[!duplicated(df_col[,1]),]
-
-# looking at age of graduates
-table(df_col2$graduate_age)
 
 # Mostly they are коледж (1068) or техникум (925)
 blix <-as.data.frame(freq(df_col2$institutionType_name))
