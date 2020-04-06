@@ -16,7 +16,10 @@ library(ggplot2)
 library(data.table)
 library(pbapply)
 library(gridExtra)
-
+library(nnet)
+library(splitstackshape)
+library(stringi)
+library(stringr)
 ##########################################################################################################
 
 # Working directory
@@ -130,30 +133,245 @@ for(i in seq(seq_region)){
   assign(paste0("AA",seq_region[i]),   a[[i]])
 }
 
-# wage by age group 
-AA01b <- AA01 %>% select(wage, H01_02) %>%  group_by(H01_02) %>% summarise(mwage=mean(wage))
-  
-plot(AA01b$H01_02,AA01b$mwage, type='b', col='red')
-xspline(AA01b$H01_02,AA01b$mwage, shape=1)
+# compute mean and sd wage by age group 
 
 for(i in seq(seq_region)){
   b <- get(paste0("AA",seq_region[i])) %>% 
     select(wage, H01_02) %>%  
           group_by(H01_02) %>% 
-         summarise(mwage=mean(wage))
+         summarise(mwage=mean(wage),sdwage=sd(wage))
   assign(paste0("AB",seq_region[i]),b)
   }
 
-
+# Ordinary spline plot
 pfun <- function(x){
   plot(x$H01_02,x$mwage,type='b',col='red') 
 xspline(x$H01_02,x$mwage,shape=1)
-print()
 }
 
-pfun(AB01)
-# Future task - to print out series of all 85 graphs
 
+###############
+## Below I do for one region, this would need to be automated
+## and replicated for all regions
+
+## There is mismatch between Rosstat 2 digit codes for regions
+## and Artëm's College data 
+
+## 70 from Artëm is Tomsk Oblast, 69 in Rosstat from
+## /wp1/rgvars.xlsx
+
+## In naming, the Rosstat/rgvars dominates.
+
+
+pfun(AB69)
+
+# smooth spline
+ab69_ <- smooth.spline(AB69$H01_02, y=AB69$mwage, w = NULL, df=3, spar = NULL,
+              cv = FALSE, all.knots = FALSE, nknots = NULL,
+              keep.data = TRUE, df.offset = 0, penalty = 1,
+              control.spar = list())
+plot(ab69_,type='l', col='red')
+
+
+#
+
+
+# Pick up 20 random numbers without replacement
+sam_69 <- AB69 %>% filter(H01_02>25) %>%  sample_n(20) %>%
+  arrange(H01_02) %>% 
+  pivot_wider(names_from = H01_02, values_from = c(mwage,sdwage),
+              names_prefix = "") %>% 
+         expandRows(sam_69,count.is.col=FALSE,count=23)
+# a bit redundant, but easy
+
+# Actually nothing served by selecting randomly at this stage
+# only after merging with 4 actual values
+sam_69 <- AB69 %>% 
+  arrange(H01_02) %>% 
+  pivot_wider(names_from = H01_02, values_from = c(mwage,sdwage),
+              names_prefix = "") %>% 
+  expandRows(sam_69,count.is.col=FALSE,count=23)
+# a bit redundant, but easy
+
+
+# on second thoughts, sd is not going to be of much use, we are only
+# going to jitter the numbers, no need for sd
+sam_69 <- sam_69 %>% select(1:47)
+
+
+# I retrieve the colleges from FD 70 of Artëm's data which is 69
+# May need to fix region code for matching
+
+
+
+
+df69_ <- df_col2 %>% filter(region_code==70)
+df69 <- cbind(df69_,sam_69) 
+df69$graduate_age <- round(df69$graduate_age)
+
+# from graduate age to graduate age + 3 we have original data
+# 2016, 2017, 2018, 2019 
+
+# after this we have extrapolations 
+# mean for the age + or - 10% of standard deviation for that age
+# + or - random fluctuations of 0 to 5 % of standard deviation
+
+table(df69$graduate_age)
+
+# Create 5 additional columns and assign NA to ot
+df69[,158:162] <- NA
+df69[,163:167] <- NA
+
+# select 5 from the vector of names
+# create an empty dataframe with 23 rows and 5 columns
+atemp <- data.frame(matrix(NA,nrow=23, ncol=5))
+
+
+# now populate this dataframe with 5 specific random mwage points
+for(i in 1:nrow(df69)){
+atemp[i,] <-  sort(sample(colnames(df69[(111+df69[i,17]-14):157]),5))
+}
+
+atemp
+
+
+#df69[1,158] <- df69[1,vec1[1,1]]
+#df69[1,163] <- substr(atemp[1,1],7,8)
+
+# now populate the columns 158 t0 162 with 5 mwages
+# and columns 163 to 167 with corresponding 5 ages 
+
+for(i in 1:nrow(df69)){
+  vec1 <- noquote(atemp[i,])
+  for(j in 1:5){
+        df69[i,157+j] <- df69[i,vec1[1,j]]
+        df69[i,162+j] <- substr(atemp[i,j],7,8)
+   }
+    }
+
+
+# add 4 ages of graduate_age and 3 more
+df69[,168:170] <- NA
+
+for(i in 1:nrow(df69)){
+  for(k in 1:3){
+  df69[i,167+k] <- df69[i,17]+k
+  }
+}
+
+
+# now almost get the dataframe from which you want to make spline
+
+ndf69_ <- df69 %>% select(inn,graduate_age,V168:V170,V163:V168)
+
+#add four NA colums
+
+ndf69_[,11:14] <- NA
+
+
+ndf69_[,11:14] <- df69[,13:16]
+
+# add the 4 graduate_age corresponding columns from the synthetics data
+
+# create another temporary dataframe
+# 4 columns of graduate_age to +3
+
+
+(btemp <- data.frame(matrix(NA,nrow=23, ncol=4)))
+
+# populate this dataframe with the names of the 
+# mwagexx constructs we need
+
+for(i in 1:nrow(btemp)){
+  for(k in 1:4){
+    btemp[i,k] <- paste0("mwage_",df69[i,17]+k-1)   
+  }
+}
+
+btemp
+
+
+# Now we are back to add the 4 wage  variables to ndf69_
+
+ndf69_[,15:18] <- NA
+
+
+
+# now populate the columns 158 t0 162 with 5 mwages
+# and columns 163 to 167 with corresponding 5 ages 
+
+for(i in 1:nrow(ndf69_)){
+  vec1 <- noquote(btemp[i,])
+    for(j in 15:18){
+             ndf69_[i,j] <- round(df69[i,vec1[1,j-14]])
+      }
+}
+
+
+# and add the five wage variables related to atemp
+
+ndf69_[19:23] <- NA
+
+for(i in 1:nrow(ndf69_)){
+  vec1 <- noquote(atemp[i,])
+  for(j in 19:23){
+    ndf69_[i,j] <- round(df69[i,vec1[1,j-18]])
+  }
+}
+
+# now name the columns of ndf69_ to make it a bit
+# easier for the next set of calculations
+n1 <- c("inn", "gage1","gage2","gage3","gage4")
+n2 <- c("rage1","rage2","rage3","rage4","rage5")
+n3 <- c("wage1","wage2","wage3","wage4")
+n4 <- c("mwage1","mwage2","mwage3","mwage4")
+n5 <- c("rwage1","rwage2","rwage3","rwage4","rwage5")
+
+
+colnames(ndf69_) <- c(n1,n2,n3,n4,n5)
+
+##
+# now we use the ratio of rwage to mwage1 and so on 5 times
+# and use the ratio on wage1 to wage4 to get ewage1 to ewage5
+# my five extrapolated wages of future
+
+ndf69 <- ndf69_ %>% mutate(
+            rw1=rwage1/mwage1, ewage1=round(wage1*rw1),
+            rw2=rwage2/mwage2, ewage2=round(wage2*rw1),
+            rw3=rwage3/mwage3, ewage3=round(wage3*rw1),
+            rw4=rwage4/mwage4, ewage4=round(wage4*rw1),
+            rw5=rwage5/mwage1, ewage5=round(wage1*rw1),
+) %>%  select("gage1","gage2","gage3","gage4",
+             "rage1","rage2","rage3","rage4","rage5",
+             "wage1","wage2","wage3","wage4",
+             "ewage1","ewage2","ewage3","ewage4","ewage5")
+
+
+par(mfrow=c(3,4))
+for(i in 1:12){
+  x <- ndf69[i,c("gage1","gage2","gage3","gage4",
+                  "rage1","rage2","rage3","rage4","rage5")]
+  y <- ndf69[12,c("wage1","wage2","wage3","wage4",
+                  "ewage1","ewage2","ewage3","ewage4","ewage5")]
+  s69_1 <- smooth.spline(x, y, w = NULL, df=3, spar = NULL,
+                          cv = FALSE, all.knots = FALSE, nknots = NULL,
+                          keep.data = TRUE, df.offset = 0, penalty = 1,
+                          control.spar = list())
+  plot(s69_1,type='l', col='blue')
+    }
+
+
+for(i in 13:23){
+  x <- ndf69[i,c("gage1","gage2","gage3","gage4",
+                 "rage1","rage2","rage3","rage4","rage5")]
+  y <- ndf69[12,c("wage1","wage2","wage3","wage4",
+                  "ewage1","ewage2","ewage3","ewage4","ewage5")]
+  s69_1 <- smooth.spline(x, y, w = NULL, df=3, spar = NULL,
+                         cv = FALSE, all.knots = FALSE, nknots = NULL,
+                         keep.data = TRUE, df.offset = 0, penalty = 1,
+                         control.spar = list())
+  plot(s69_1,type='l', col='blue')
+}
 
 
 
