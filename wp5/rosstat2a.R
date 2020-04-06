@@ -203,7 +203,7 @@ sam_69 <- sam_69 %>% select(1:47)
 # May need to fix region code for matching
 
 
-
+table(df69$graduates_number)
 
 df69_ <- df_col2 %>% filter(region_code==70)
 df69 <- cbind(df69_,sam_69) 
@@ -238,7 +238,7 @@ atemp
 #df69[1,158] <- df69[1,vec1[1,1]]
 #df69[1,163] <- substr(atemp[1,1],7,8)
 
-# now populate the columns 158 t0 162 with 5 mwages
+# now populate the columns 158 to 162 with 5 mwages
 # and columns 163 to 167 with corresponding 5 ages 
 
 for(i in 1:nrow(df69)){
@@ -262,14 +262,14 @@ for(i in 1:nrow(df69)){
 
 # now almost get the dataframe from which you want to make spline
 
-ndf69_ <- df69 %>% select(inn,graduate_age,V168:V170,V163:V168)
+ndf69_ <- df69 %>% select(inn,graduate_age, graduates_number, V168:V170,V163:V168)
 
 #add four NA colums
 
-ndf69_[,11:14] <- NA
+ndf69_[,12:15] <- NA
 
 
-ndf69_[,11:14] <- df69[,13:16]
+ndf69_[,12:15] <- df69[,13:16]
 
 # add the 4 graduate_age corresponding columns from the synthetics data
 
@@ -293,17 +293,17 @@ btemp
 
 # Now we are back to add the 4 wage  variables to ndf69_
 
-ndf69_[,15:18] <- NA
+ndf69_[,16:19] <- NA
 
 
 
-# now populate the columns 158 t0 162 with 5 mwages
-# and columns 163 to 167 with corresponding 5 ages 
+# now populate the columns 16 to 19 with 5 mwages
+
 
 for(i in 1:nrow(ndf69_)){
   vec1 <- noquote(btemp[i,])
-    for(j in 15:18){
-             ndf69_[i,j] <- round(df69[i,vec1[1,j-14]])
+    for(j in 16:19){
+             ndf69_[i,j] <- round(df69[i,vec1[1,j-15]])
       }
 }
 
@@ -341,7 +341,7 @@ ndf69 <- ndf69_ %>% mutate(
             rw3=rwage3/mwage3, ewage3=round(wage3*rw1),
             rw4=rwage4/mwage4, ewage4=round(wage4*rw1),
             rw5=rwage5/mwage1, ewage5=round(wage1*rw1),
-) %>%  select("gage1","gage2","gage3","gage4",
+) %>%  select("inn", "gage1","gage2","gage3","gage4",
              "rage1","rage2","rage3","rage4","rage5",
              "wage1","wage2","wage3","wage4",
              "ewage1","ewage2","ewage3","ewage4","ewage5")
@@ -373,7 +373,12 @@ for(i in 13:23){
   plot(s69_1,type='l', col='blue')
 }
 
+# save ndf69 for importing in to Python
+# Working Directory
+wd <- "C:/Country/Russia/Data/SEASHELL/SEABYTE/edreru/wp5"
+setwd(wd)
 
+write.csv(ndf69,file="ndf69.csv",row.names=FALSE)
 
 
 
