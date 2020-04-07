@@ -177,7 +177,7 @@ seq_year <- unique(df_mincer$YEAR)
 
 for(i in seq(length(seq_year))){
    # metric education - edu_yrs
-   lm_mincer_all_1[[i]] <- lm(log(wage) ~ edu_yrs + exper + I(exper^2) + female,
+   lm_mincer_all_1[[i]] <- lm(log(wage) ~ edu_yrs + exper + I(exper^2),
                            data = df_mincer[df_mincer$YEAR == seq_year[i],])
   
    lm_mincer_f_1[[i]] <- lm(log(wage) ~ edu_yrs + exper + I(exper^2),
@@ -189,7 +189,7 @@ for(i in seq(length(seq_year))){
                                                   df_mincer$female == 0,])  
    # categorical education - edu_4
    
-   lm_mincer_all_2[[i]] <- lm(log(wage) ~ edu_4 + exper + I(exper^2) + female,
+   lm_mincer_all_2[[i]] <- lm(log(wage) ~ edu_4 + exper + I(exper^2),
                             data = df_mincer[df_mincer$YEAR == seq_year[i],])
    
    lm_mincer_f_2[[i]] <- lm(log(wage) ~ edu_4 + exper + I(exper^2),
@@ -245,19 +245,19 @@ for (i in seq(length(seq_year))){
                  (percent(exp(smry_m_1[[i]]$coefficients[2,1]) - 1)),
                  formatC(smry_m_1[[i]]$coefficients[2,4], digits = 2),
                  
-                 (percent(exp(smry_all_2[[i]]$coefficients[3,1]) - 1)),
+                 (percent((exp(smry_all_2[[i]]$coefficients[3,1]) - 1)/4)),
                  formatC(smry_all_2[[i]]$coefficients[3,4], digits = 2),
-                 (percent(exp(smry_all_2[[i]]$coefficients[2,1]) - 1)),
+                 (percent((exp(smry_all_2[[i]]$coefficients[2,1]) - 1)/3)),
                  formatC(smry_all_2[[i]]$coefficients[2,4], digits = 2),
                  
-                 (percent(exp(smry_f_2[[i]]$coefficients[3,1]) - 1)),
+                 (percent((exp(smry_f_2[[i]]$coefficients[3,1]) - 1)/4)),
                  formatC(smry_f_2[[i]]$coefficients[3,4], digits = 2),
-                 (percent(exp(smry_f_2[[i]]$coefficients[2,1]) - 1)),
+                 (percent((exp(smry_f_2[[i]]$coefficients[2,1]) - 1)/3)),
                  formatC(smry_f_2[[i]]$coefficients[2,4], digits = 2),
                  
-                 (percent(exp(smry_m_2[[i]]$coefficients[3,1]) - 1)),
+                 (percent((exp(smry_m_2[[i]]$coefficients[3,1]) - 1)/4)),
                  formatC(smry_m_2[[i]]$coefficients[3,4], digits = 2),
-                 (percent(exp(smry_m_2[[i]]$coefficients[2,1]) - 1)),
+                 (percent((exp(smry_m_2[[i]]$coefficients[2,1]) - 1)/3)),
                  formatC(smry_m_2[[i]]$coefficients[2,4], digits = 2))
 }
 
@@ -315,7 +315,7 @@ ggplot(RoREs_HE_VE_all, aes(YEAR, value, group = variable, color = variable,
   geom_point(aes(shape = variable), size = 4) +
   geom_smooth(se = F, method = 'loess') +
   geom_line() +
-  scale_y_continuous(limits = c(0, 120), breaks = seq(0, 120, 10)) +
+  scale_y_continuous(limits = c(-1, 30), breaks = seq(0, 30, 2)) +
   theme(legend.title = element_blank(),
         legend.position = "bottom",
         panel.grid.minor = element_blank(),
@@ -349,7 +349,7 @@ ggplot(RoREs_HE_VE_f, aes(YEAR, value, group = variable, color = variable)) +
   geom_point(aes(shape = variable), size = 4) +
   geom_smooth(se = F, method = 'loess') +
   geom_line() +
-  scale_y_continuous(limits = c(0, 120), breaks = seq(0, 120, 10)) +
+  scale_y_continuous(limits = c(0, 30), breaks = seq(0, 30, 2)) +
   theme(legend.title = element_blank(),
         legend.position = "bottom",
         panel.grid.minor = element_blank(),
@@ -380,7 +380,7 @@ ggplot(RoREs_HE_VE_m, aes(YEAR, value, group = variable, color = variable)) +
   geom_point(aes(shape = variable), size = 4) +
   geom_smooth(se = F, method = 'loess') +
   geom_line() +
-  scale_y_continuous(limits = c(0, 120), breaks = seq(0, 120, 10)) +
+  scale_y_continuous(limits = c(0, 30), breaks = seq(0, 30, 2)) +
   theme(legend.title = element_blank(),
         legend.position = "bottom",
         panel.grid.minor = element_blank(),
@@ -423,8 +423,7 @@ for (i in 1:4){
                                  "Vocational education",
                                  "Higher education",
                                  "Experience",
-                                 "Experience squared",
-                                 "Female"),
+                                 "Experience squared"),
             title = paste0("Results of Mincer Analysis, RLMS ",
                            as.character(seq_year[i])),
             dep.var.caption = "",
@@ -458,8 +457,7 @@ for (i in 5:length(seq_year)){
                                  "Vocational education",
                                  "Higher education",
                                  "Experience",
-                                 "Experience squared",
-                                 "Female"),
+                                 "Experience squared"),
             title = paste0("Results of Mincer Analysis, RLMS ",
                            as.character(seq_year[i])),
             dep.var.caption = "",
