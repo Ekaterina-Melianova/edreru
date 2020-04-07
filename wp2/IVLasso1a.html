@@ -1734,8 +1734,9 @@ ses &lt;- ses_ %&gt;% drop_na()
 # 98 ОТКАЗ ОТ ОТВЕТА
 # 99 НЕТ ОТВЕТА
 
-missings &lt;- c(99999993, 99999994, 99999995, 99999996, 99999997, 99999998, 99999999)</code></pre>
-<pre class="r"><code>############################################## OCCUPATIONS #################################################
+missings &lt;- c(99999993, 99999994, 99999995, 99999996, 99999997, 99999998, 99999999)
+
+############################################## OCCUPATIONS #################################################
 
 # Making occupations a numeric variable using The Standard Occupational Prestige Scale (SIOPS)
 library(ISCO08ConveRsions)</code></pre>
@@ -1779,8 +1780,9 @@ for (i in 1:nrow(ses)){
 ses &lt;- cbind.data.frame(ses, prestige_father, prestige_mother)
 
 # Taking max for the family prestige
-ses$prestige_family &lt;- apply(cbind.data.frame(ses$prestige_father, ses$prestige_mother), 1, max)</code></pre>
-<pre class="r"><code>############################################## EDUCATION ##################################################
+ses$prestige_family &lt;- apply(cbind.data.frame(ses$prestige_father, ses$prestige_mother), 1, max)
+
+############################################## EDUCATION ##################################################
 
 # Mother
 ses$edu_yrs_mother&lt;-car::recode(ses$J217A,&quot;1=0; 2=4; 3=8; 4=12; 5=11; 6=12;
@@ -1798,13 +1800,16 @@ ses$edu_yrs_father&lt;-car::recode(ses$J217B,&quot;1=0; 2=4; 3=8; 4=12; 5=11; 6=
 ses &lt;- ses %&gt;% drop_na()
 
 # Family educ: max
-ses$edu_family &lt;- apply(cbind.data.frame(ses$edu_yrs_father, ses$edu_yrs_mother), 1, max)</code></pre>
-<pre class="r"><code>######################################### Birth Year Dummies #############################################
+ses$edu_family &lt;- apply(cbind.data.frame(ses$edu_yrs_father, ses$edu_yrs_mother), 1, max)
+
+######################################### Birth Year Dummies #############################################
 
 # Dummy set for a birth year
-ses$birth_ &lt;- ifelse(ses$YEAR == 2006, 2006 - ses$AGE, 2011 - ses$AGE) 
-ses$birth_ &lt;- as.factor(ses$birth_)
-ses &lt;- cbind(ses, model.matrix( ~ birth_ - 1, data = ses))
+ses$birth_year &lt;- ifelse(ses$YEAR == 2006, 2006 - ses$AGE, 2011 - ses$AGE) 
+birth &lt;- ses$birth_year
+birth &lt;- cbind(birth, dummy(birth, sep = &quot;_&quot;))
+ses &lt;- cbind(ses, birth[,-1])
+
 ses_fin &lt;- ses[, c(2, 6, 11, 16, 19:ncol(ses))]
 names(ses_fin)[2] &lt;- 'YEAR_ses'
 
@@ -1841,54 +1846,36 @@ rlms18 &lt;- rlms18_ %&gt;% drop_na()
 rlms18 &lt;- rlms18[, !names(rlms18) %in% paste0(&quot;birth_19&quot;, c(46:52, 94:97))]
 
 # Generating age
-rlms18$age &lt;- 2018 - as.numeric(as.character(rlms18$birth_))
-#summary(rlms18$age)
+rlms18$age &lt;- 2018 - rlms18$birth_year
+#summary(rlms18$age)</code></pre>
+<pre class="r"><code># Birth decades
 
-# Birth decades
+rlms18[,'birth_50'] &lt;- rlms18$birth_1953 + rlms18$birth_1954 + rlms18$birth_1955 +
+  rlms18$birth_1956 + rlms18$birth_1957 + rlms18$birth_1958 + rlms18$birth_1959
 
-#paste(paste0(&quot;rlms18$birth_19&quot;, 53:59), '==1', collapse = '|') # manually pasting this expression to ifelse()
-rlms18$birth_50 &lt;- ifelse(rlms18$birth_1953 ==1|rlms18$birth_1954 ==1|rlms18$birth_1955 ==1|
-                            rlms18$birth_1956 ==1|rlms18$birth_1957 ==1|rlms18$birth_1958 ==1|rlms18$birth_1959 ==1, 1, 0)
+rlms18[,'birth_60'] &lt;- rlms18$birth_1960 + rlms18$birth_1961 + rlms18$birth_1962 +
+  rlms18$birth_1963  + rlms18$birth_1964 + rlms18$birth_1965 + rlms18$birth_1966  + rlms18$birth_1967 + rlms18$birth_1968 + rlms18$birth_1969
 
-#paste(paste0(&quot;rlms18$birth_19&quot;, 60:69), '==1', collapse = '|')
-rlms18$birth_60 &lt;- ifelse(rlms18$birth_1960 ==1|rlms18$birth_1961 ==1|
-                            rlms18$birth_1962 ==1|rlms18$birth_1963 ==1|rlms18$birth_1964 ==1|rlms18$birth_1965 ==1|
-                            rlms18$birth_1966 ==1|rlms18$birth_1967 ==1|rlms18$birth_1968 ==1|rlms18$birth_1969 ==1, 1, 0)
+rlms18[,'birth_70'] &lt;- rlms18$birth_1970 + rlms18$birth_1971 + rlms18$birth_1972  +
+  rlms18$birth_1973 + rlms18$birth_1974  + rlms18$birth_1975  + rlms18$birth_1976  + rlms18$birth_1977  + rlms18$birth_1978 + rlms18$birth_1979 
 
-#paste(paste0(&quot;rlms18$birth_19&quot;, 70:79), '==1', collapse = '|')
-rlms18$birth_70 &lt;- ifelse(rlms18$birth_1970 ==1|rlms18$birth_1971 ==1|
-                            rlms18$birth_1972 ==1|rlms18$birth_1973 ==1|rlms18$birth_1974 ==1|rlms18$birth_1975 ==1|
-                            rlms18$birth_1976 ==1|rlms18$birth_1977 ==1|rlms18$birth_1978 ==1|rlms18$birth_1979 ==1, 1, 0)
+rlms18[,'birth_80'] &lt;- rlms18$birth_1980  + rlms18$birth_1981  + rlms18$birth_1982  +
+  rlms18$birth_1983 + rlms18$birth_1984  + rlms18$birth_1985  + rlms18$birth_1986  + rlms18$birth_1987  + rlms18$birth_1988  + rlms18$birth_1989 
 
-#paste(paste0(&quot;rlms18$birth_19&quot;, 80:89), '==1', collapse = '|')
-rlms18$birth_80 &lt;- ifelse(rlms18$birth_1980 ==1|rlms18$birth_1981 ==1|
-                            rlms18$birth_1982 ==1|rlms18$birth_1983 ==1|rlms18$birth_1984 ==1|rlms18$birth_1985 ==1|
-                            rlms18$birth_1986 ==1|rlms18$birth_1987 ==1|rlms18$birth_1988 ==1|rlms18$birth_1989 ==1, 1, 0)
-
-#paste(paste0(&quot;rlms18$birth_19&quot;, 90:93), '==1', collapse = '|')
-rlms18$birth_90 &lt;- ifelse(rlms18$birth_1990 ==1|rlms18$birth_1991 ==1|rlms18$birth_1992 ==1|rlms18$birth_1993 ==1, 1, 0)
+rlms18[,'birth_90'] &lt;- rlms18$birth_1990  + rlms18$birth_1991  + rlms18$birth_1992  +
+  rlms18$birth_1993
 
 
 table(rlms18$birth_50)</code></pre>
-<pre><code>## 
-##    0    1 
-## 3583  329</code></pre>
+<pre><code>## &lt; table of extent 0 &gt;</code></pre>
 <pre class="r"><code>table(rlms18$birth_60)</code></pre>
-<pre><code>## 
-##    0    1 
-## 2991  921</code></pre>
+<pre><code>## &lt; table of extent 0 &gt;</code></pre>
 <pre class="r"><code>table(rlms18$birth_70)</code></pre>
-<pre><code>## 
-##    0    1 
-## 2636 1276</code></pre>
+<pre><code>## &lt; table of extent 0 &gt;</code></pre>
 <pre class="r"><code>table(rlms18$birth_80)</code></pre>
-<pre><code>## 
-##    0    1 
-## 2804 1108</code></pre>
+<pre><code>## &lt; table of extent 0 &gt;</code></pre>
 <pre class="r"><code>table(rlms18$birth_90)</code></pre>
-<pre><code>## 
-##    0    1 
-## 3634  278</code></pre>
+<pre><code>## &lt; table of extent 0 &gt;</code></pre>
 <pre class="r"><code># Transformed variables
 rlms18 &lt;- haven::zap_labels(rlms18) 
 rlms18$lnwage &lt;- log(rlms18$wage)

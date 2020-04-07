@@ -338,7 +338,7 @@ RoREs <- cbind.data.frame(Region = c(rgvars[,3], 'Russian Federation'), RoREs)
 RoREs$Region <- as.character(RoREs$Region)
 RoREs[,-(1:2)] <- lapply(RoREs[,-(1:2)], as.numeric)
 # RoREs
-
+#export(RoREs, 'RoREs.xlsx')
 # Converting to data.table and melting in order to visualize
 # RoREs <- as.data.table(RoREs)
 
