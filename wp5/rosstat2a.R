@@ -310,18 +310,18 @@ for(i in 1:nrow(ndf69_)){
 
 # and add the five wage variables related to atemp
 
-ndf69_[19:23] <- NA
+ndf69_[20:24] <- NA
 
 for(i in 1:nrow(ndf69_)){
   vec1 <- noquote(atemp[i,])
-  for(j in 19:23){
-    ndf69_[i,j] <- round(df69[i,vec1[1,j-18]])
+  for(j in 20:24){
+    ndf69_[i,j] <- round(df69[i,vec1[1,j-19]])
   }
 }
 
 # now name the columns of ndf69_ to make it a bit
 # easier for the next set of calculations
-n1 <- c("inn", "gage1","gage2","gage3","gage4")
+n1 <- c("inn", "gage1","graduates_number","gage2","gage3","gage4")
 n2 <- c("rage1","rage2","rage3","rage4","rage5")
 n3 <- c("wage1","wage2","wage3","wage4")
 n4 <- c("mwage1","mwage2","mwage3","mwage4")
@@ -341,14 +341,14 @@ ndf69 <- ndf69_ %>% mutate(
             rw3=rwage3/mwage3, ewage3=round(wage3*rw1),
             rw4=rwage4/mwage4, ewage4=round(wage4*rw1),
             rw5=rwage5/mwage1, ewage5=round(wage1*rw1),
-) %>%  select("inn", "gage1","gage2","gage3","gage4",
+) %>%  select("inn", "graduates_number", "gage1","gage2","gage3","gage4",
              "rage1","rage2","rage3","rage4","rage5",
              "wage1","wage2","wage3","wage4",
              "ewage1","ewage2","ewage3","ewage4","ewage5")
 
 
-par(mfrow=c(3,4))
-for(i in 1:12){
+par(mfrow=c(2,2))
+for(i in 21:23){
   x <- ndf69[i,c("gage1","gage2","gage3","gage4",
                   "rage1","rage2","rage3","rage4","rage5")]
   y <- ndf69[12,c("wage1","wage2","wage3","wage4",
@@ -379,6 +379,45 @@ wd <- "C:/Country/Russia/Data/SEASHELL/SEABYTE/edreru/wp5"
 setwd(wd)
 
 write.csv(ndf69,file="ndf69.csv",row.names=FALSE)
+
+ndf69[11,]
+
+
+## Now I get back data from Python
+x <- round(c(23  , 24.025, 25.05 , 26.075, 27.1  , 28.125, 29.15 , 30.175,
+             31.2  , 32.225, 33.25 , 34.275, 35.3  , 36.325, 37.35 , 38.375,
+             39.4  , 40.425, 41.45 , 42.475, 43.5  , 44.525, 45.55 , 46.575,
+             47.6  , 48.625, 49.65 , 50.675, 51.7  , 52.725, 53.75 , 54.775,
+             55.8  , 56.825, 57.85 , 58.875, 59.9  , 60.925, 61.95 , 62.975,
+             64))
+y <- round(c(11946.        , 13745.58422046, 14250.08970563, 15744.54487672,
+             17110.79639025, 18073.92063451, 18698.32492225, 19048.41656623,
+             19188.60287918, 19183.29117387, 19096.88876304, 18993.80295946,
+             18938.44107587, 18995.21042502, 19227.58413839, 19646.13052423,
+             20181.17498803, 20756.34195502, 21295.25585042, 21721.54109943,
+             21958.8221273 , 21933.77482112, 21639.39732883, 21132.93324622,
+             20474.26213662, 19723.26356336, 18939.81708976, 18183.80227915,
+             17515.09869485, 16993.5859002 , 16679.1434585 , 16631.6509331 ,
+             16910.98788731, 17577.03388446, 18689.66848787, 20308.77126088,
+             22494.22176681, 24894.46746954, 24949.10650281, 19359.64797414,
+             4827.08114714
+             ))
+
+plot(x,y,type='l')
+
+# Actually we can't even use that rule of cut-off at 10,000 as in this case 
+# there is a late life rebound, here we have to drop at y of 16632, 
+# just before the rebound
+
+x
+y
+
+diff(y)
+
+save(AB69,file="AB69.rdata")
+
+
+
 
 
 

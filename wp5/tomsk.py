@@ -17,17 +17,17 @@ df = pd.read_csv('C:/Country/Russia/Data/SEASHELL/SEABYTE/edreru/wp5/ndf69.csv')
 
 df
 
-df[5:6]
+# df[5:6] 5 gave weird results
 
-# I will input data or 5th row
+# I will input data or 11th row
 
-x = 27,28,29,30,36,43,45,49,57
-y = 24628,29046,25697,27637,26820,31631,27984,30097,26820
+x = 23,24,25,26,37,44,60,61,63
+y = 11946,13731,14204,15627,19125,21983,22740,25018,19125
 plt.plot(x,y)
 #f = interp1d(x,y)
 #f2 = interp1d(x, y, kind='cubic')
 
-xnew = np.linspace(27, 64, num=37, endpoint=True)
+xnew = np.linspace(23, 64, num=41, endpoint=True)
 #plt.plot(x, y, 'o', xnew, f(xnew), '-', xnew, f2(xnew), '--')
 #plt.legend(['data', 'linear', 'cubic'], loc='best')
 #plt.show()
@@ -39,7 +39,7 @@ f3 = interp1d(x, y, kind='cubic',fill_value='extrapolate')
 plt.plot(x, y, 'o', xnew, f3(xnew),'--')
 plt.legend(['data', 'linear', 'cubic'], loc='best')
 plt.show()
-f3
+
 xnew
 f3(xnew)
 # Playing with derivatibes
