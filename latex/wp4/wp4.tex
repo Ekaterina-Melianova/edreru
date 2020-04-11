@@ -1,0 +1,330 @@
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% A template for Wiley article submissions.
+% Developed by Overleaf. 
+%
+% Please note that whilst this template provides a 
+% preview of the typeset manuscript for submission, it 
+% will not necessarily be the final publication layout.
+%
+% Usage notes:
+% The "blind" option will make anonymous all author, affiliation, correspondence and funding information.
+% Use "num-refs" option for numerical citation and references style.
+% Use "alpha-refs" option for author-year citation and references style.
+
+\documentclass[alpha-refs]{wiley-article-04t}
+% \documentclass[blind,num-refs]{wiley-article}
+
+% Add additional packages here if required
+\usepackage{siunitx}
+
+% For figures
+\usepackage{graphics}
+
+%For captions - even though template has complex caption commands
+\usepackage[labelfont=bf,justification=centering]{caption}
+\usepackage[font=small,labelfont=bf]{subcaption}
+\captionsetup[sub]{font=tiny,labelfont={bf,sf}}
+
+%% For figures numbered by section
+\usepackage{chngcntr}
+\counterwithin{figure}{section}
+\counterwithin{table}{section}
+
+%% Additional links for hyperref
+\usepackage[unicode=true,pdfusetitle,
+ bookmarks=false,bookmarksnumbered=false,bookmarksopen=true,bookmarksopenlevel=2,
+ breaklinks=false,pdfborder={0 0 1},backref=false,colorlinks=false]
+ {hyperref}
+\hypersetup{pdfstartview={XYZ null null 1}}
+
+\usepackage[backend=bibtex,
+			natbib=true, 
+			style=chicago-authordate]{biblatex}
+\addbibresource{Returns.bib}
+
+\usepackage{array}
+\usepackage{longtable}
+%\usepackage{fullpage}
+
+\usepackage{lmodern}
+\newcommand{\graph}[3]{
+\raisebox{-#1mm}{\includegraphics[height=#2em,width=3cm]{#3}}
+}
+
+\usepackage{booktabs} % for vertically partitioned table
+
+\usepackage{lipsum}  % for fillers
+
+%%%%%%%%#################################################################################%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+% Update article type if known
+\papertype{WORLD BANK EDUCATION GLOBAL PRACTICE}
+% Include section in journal if known, otherwise delete
+\paperfield{Russian Federation: Analytical Services and Advisory Activity: 
+P170978}
+
+\title{Returns to Education in the Russian Federation: Application of a machine learning instrumental variable technique for policy development in priority regions}
+
+% List acknowledgements here.
+\fundinginfo{Thanks are due to the Higher School of Economics, Moscow for making the Russian Longitudinal Monitoring Study (RLMS) Household data readily available for reseachers around the world. The code used for this paper is made freely available for all researchers at \url{https://bitbucket.org/zagamog/edreru/src/master/}}
+
+% Include full author names and degrees, when required by the journal.
+% Use the \authfn to add symbols for additional footnotes and present addresses, if any. Usually start with 1 for notes about author contributions; then continuing with 2 etc if any author has a different present address.
+
+\author[*]{Ekaterina Melianova}
+\author[*]{\hspace{-1em}Suhas Parandekar}
+\author[*]{\hspace{-1em}Harry Patrinos}
+\author[*]{\hspace{-1em}Art\"{e}m Volgin}
+
+% List abbreviations here, if any. Please note that it is preferred that abbreviations be defined at the first instance they appear in the text, rather than creating an abbreviations list.
+\acks{\begin{normalsize}
+\emph{Country Director:} Renaud Seligman; \emph{Regional Director:} Fadia Saadah; \emph{Practice Manager:} Harry Patrinos; \emph{Program Leader:} Dorota Nowak; \emph{Peer Reviewers}: Cristian Aedo; Ruslan Yemtsov; Husein Abdul-Hamid; \emph{Team members:} Polina Zavalina; Zhanna Terlyga. Thanks to seminar participants at the World Bank Moscow office on Jan. 29, 2020 for useful feedback. Any errors are a responsibility of the authors.
+\end{normalsize}
+\vspace{-0.2in}}
+
+%\contrib[\authfn{1}]{Equally contributing authors.}
+
+% Include full affiliation details for all authors
+\affil[*]{Education Global Practice, Europe and Central Asia}
+
+%\corraddress{Author One PhD, Department, Institution, City, State or Province, Postal Code, Country}
+\corremail{sparandekar@worldbank.org}
+
+%\presentadd[\authfn{2}]{Department, Institution, City, State or Province, Postal Code, Country}
+
+% Include the name of the author that should appear in the running header
+\runningauthor{P170978: WP04 - Machine Learning Post Lasso IV Priority Regions}
+
+\begin{document}
+
+\maketitle
+
+\begin{abstract}
+This is a generic template designed for use by multiple journals, which includes several options for customization. Please consult the author guidelines for the journal to which you are submitting in order to confirm that your manuscript will comply with the journal's requirements. Please replace this text with your abstract.
+
+% Please include a maximum of seven keywords
+\keywords{keyword 1, \emph{keyword 2}, keyword 3, keyword 4, keyword 5, keyword 6, keyword 7}
+\end{abstract}
+
+
+\section{Motivation for this paper}
+
+\subsection{Stylized fact 1: Returns trend and looking at cohorts}
+
+\subsection{Stylized fact 2: Priority regions and policy options for education}
+
+\lipsum[1]
+
+\textbf{First level:}
+\begin{flalign}\label{eq:4.1} 
+Log(Wage)_{ij} = b_{0j} + b_{1j}\cdot Educ + b_{2j}\cdot Exp + b_{3j}\cdot Exp^2 + b_{4j}\cdot Gender + \epsilon_{ij} &&
+\end{flalign}
+
+\textbf{Second Level:}
+\begin{flalign}\label{eq:4.2} 
+b_{0j} = \gamma_{00} + \gamma_{0n}\cdot Z + u_{00} ;&&
+b_{1j} = \gamma_{10} + \gamma_{1n}\cdot Z + u_{10} ;&&
+b_{ij} = \gamma_{i0} \quad for \quad i \neq 0   &&
+\end{flalign}
+ 
+\noindent
+where an individual $i$ is nested withing a region $j$, $Log(Wage)$ is a logarithm of monthly wage, $Educ$ stands for highest attained level of education, $Exp$ and $Exp^2$ reflect the years of working experience and its quadratic term respectively, $Gender$ is a dummy variable for gender, $Z$ is an $n\times i$ matrix of regional characteristics, $\epsilon$ and $u_{00}$, $u_{10}$ are the first- and second-level errors respectively.
+
+
+We refer to \cite{card_070._1999} and \parecite{belloni_052._2011}. 
+
+
+\section{Literature Review: Use of Instrumental Variables in Returns to Education Studies}
+
+General Literature
+
+Russia Specific
+
+\section{Lasso and Post-Lasso Instrumental Variables: Overview of Estimation method}
+
+\lipsum[2]
+
+\lipsum[3]
+
+\lipsum[4]
+
+\section{Empirical Studies using Post-Lasso IV methodology}
+
+\lipsum[5]
+
+\lipsum[6]
+
+\lipsum[7]
+
+
+\section{Findings 1: Traditional Instrumental Variable Technique}
+
+\lipsum[1]
+
+\lipsum[2]
+
+\lipsum[3]
+
+
+\section{Findings 2: Post Lasso IV Results}
+
+\lipsum[6]
+
+\lipsum[9]
+
+\lipsum[3]
+
+
+\section{Conclusions}
+
+\lipsum[1]
+
+\lipsum[4]
+
+\lipsum[3]
+
+\printbibliography
+
+\newpage
+\section*{Appendix}
+\addcontentsline{toc}{section}{Appendix}%
+
+\setcounter{table}{0}
+\renewcommand{\thetable}{A\arabic{table}}
+
+
+\begin{table}[!htbp] \centering 
+\caption{Results of Estimating Human Capital Depreciation for the Female sample, RLMS} 
+	\label{tab:A1}
+\begin{tabular}{@{\extracolsep{5pt}}lcccccc} 
+\\[-1.8ex]\hline 
+\hline \\[-1.8ex] 
+& \textbf{1994} & \textbf{1998} & \textbf{2003} & \textbf{2006} & \textbf{2012} & \textbf{2018} \\ 
+\\[-1.8ex] & (1) & (2) & (3) & (4) & (5) & (6)\\ 
+\hline \\[-1.8ex] 
+ Constant & 9.725$^{***}$ & 3.786$^{***}$ & 5.464$^{***}$ & 6.946$^{***}$ & 8.133$^{***}$ & 8.767$^{***}$ \\ 
+  & (0.381) & (0.322) & (0.301) & (0.247) & (0.186) & (0.242) \\ 
+  & & & & & & \\ 
+ Educ, years ($S$) & 0.122$^{***}$ & 0.153$^{***}$ & 0.158$^{***}$ & 0.118$^{***}$ & 0.087$^{***}$ & 0.066$^{***}$ \\ 
+  & (0.025) & (0.022) & (0.020) & (0.016) & (0.012) & (0.015) \\ 
+  & & & & & & \\ 
+ Educ X Exper ($TS$) & $-$0.002$^{*}$ & $-$0.002$^{***}$ & $-$0.002$^{**}$ & $-$0.0002 & $-$0.0001 & 0.0004 \\ 
+  & (0.001) & (0.001) & (0.001) & (0.001) & (0.0005) & (0.001) \\ 
+  & & & & & & \\ 
+ Exper ($T$) & 0.074$^{***}$ & 0.080$^{***}$ & 0.055$^{***}$ & 0.013 & 0.020$^{**}$ & 0.020$^{*}$ \\ 
+  & (0.019) & (0.016) & (0.015) & (0.013) & (0.010) & (0.011) \\ 
+  & & & & & & \\ 
+ Exper squared ($T^2$) & $-$0.001$^{***}$ & $-$0.001$^{***}$ & $-$0.001$^{***}$ & $-$0.0003$^{**}$ & $-$0.0005$^{***}$ & $-$0.001$^{***}$ \\ 
+  & (0.0002) & (0.0002) & (0.0002) & (0.0001) & (0.0001) & (0.0001) \\ 
+  & & & & & & \\ 
+\hline \\[-1.8ex] 
+Observations & 1,645 & 1,667 & 2,093 & 2,630 & 4,057 & 3,312 \\ 
+R$^{2}$ & 0.051 & 0.089 & 0.110 & 0.139 & 0.104 & 0.092 \\ 
+Adjusted R$^{2}$ & 0.049 & 0.087 & 0.108 & 0.138 & 0.103 & 0.091 \\ 
+Residual Std. Error & 0.853 & 0.728 & 0.731 & 0.664 & 0.641 & 0.597 \\ 
+F Statistic & 22.179$^{***}$ & 40.520$^{***}$ & 64.342$^{***}$ & 106.385$^{***}$ & 117.366$^{***}$ & 83.993$^{***}$ \\ 
+\hline 
+\hline \\[-1.8ex] 
+\textit{Note:}  & \multicolumn{6}{r}{$^{*}$p$<$0.1; $^{**}$p$<$0.05; $^{***}$p$<$0.01} \\ 
+\end{tabular} 
+\end{table} 
+
+
+\begin{table}[!htbp] \centering 
+\caption{Results of Estimating Human Capital Depreciation for the Male sample, RLMS} 
+	\label{tab:A2}
+\begin{tabular}{@{\extracolsep{5pt}}lcccccc} 
+\\[-1.8ex]\hline 
+\hline \\[-1.8ex] 
+& \textbf{1994} & \textbf{1998} & \textbf{2003} & \textbf{2006} & \textbf{2012} & \textbf{2018} \\ 
+\\[-1.8ex] & (1) & (2) & (3) & (4) & (5) & (6)\\ 
+\hline \\[-1.8ex] 
+ Constant & 10.357$^{***}$ & 5.029$^{***}$ & 7.334$^{***}$ & 8.067$^{***}$ & 8.771$^{***}$ & 9.094$^{***}$ \\ 
+  & (0.433) & (0.360) & (0.282) & (0.243) & (0.157) & (0.185) \\ 
+  & & & & & & \\ 
+ Educ, years ($S$) & 0.136$^{***}$ & 0.123$^{***}$ & 0.080$^{***}$ & 0.077$^{***}$ & 0.077$^{***}$ & 0.077$^{***}$ \\ 
+  & (0.028) & (0.024) & (0.019) & (0.016) & (0.010) & (0.012) \\ 
+  & & & & & & \\ 
+ Educ X Exper ($TS$) & $-$0.002$^{*}$ & $-$0.001 & 0.0004 & $-$0.0003 & $-$0.0004 & $-$0.001 \\ 
+  & (0.001) & (0.001) & (0.001) & (0.001) & (0.0005) & (0.001) \\ 
+  & & & & & & \\ 
+ Exper ($T$) & 0.054$^{**}$ & 0.032$^{*}$ & 0.002 & 0.007 & 0.035$^{***}$ & 0.037$^{***}$ \\ 
+  & (0.023) & (0.017) & (0.014) & (0.013) & (0.009) & (0.010) \\ 
+  & & & & & & \\ 
+ Exper squared ($T^2$) & $-$0.001$^{***}$ & $-$0.0004$^{**}$ & $-$0.0003$^{*}$ & $-$0.0003$^{*}$ & $-$0.001$^{***}$ & $-$0.001$^{***}$ \\ 
+  & (0.0003) & (0.0002) & (0.0002) & (0.0001) & (0.0001) & (0.0001) \\ 
+  & & & & & & \\ 
+\hline \\[-1.8ex] 
+Observations & 1,392 & 1,433 & 1,763 & 2,170 & 3,360 & 2,800 \\ 
+R$^{2}$ & 0.057 & 0.070 & 0.078 & 0.074 & 0.153 & 0.110 \\ 
+Adjusted R$^{2}$ & 0.054 & 0.067 & 0.076 & 0.072 & 0.152 & 0.108 \\ 
+Residual Std. Error & 0.951 & 0.803 & 0.754 & 0.688 & 0.598 & 0.570 \\ 
+F Statistic & 20.989$^{***}$ & 26.879$^{***}$ & 37.362$^{***}$ & 43.281$^{***}$ & 151.868$^{***}$ & 86.125$^{***}$ \\ 
+\hline 
+\hline \\[-1.8ex] 
+\textit{Note:}  & \multicolumn{6}{r}{$^{*}$p$<$0.1; $^{**}$p$<$0.05; $^{***}$p$<$0.01} \\ 
+\end{tabular} 
+\end{table} 
+
+
+
+\begin{table}[!htbp] \centering 
+	\caption{Results of Multilevel Modeling with Coverage by Vocational Education, Rosstat 2018} 
+	\label{tab:A2} 
+	\begin{tabular}{@{\extracolsep{5pt}}lcccc} 
+		\\[-1.8ex]\hline 
+		\hline \\[-1.8ex] 
+		& Null model & Mincerian & Random Slope & Cross-Level Interaction \\ 
+		\\[-1.8ex] & (1) & (2) & (3) & (4)\\ 
+		\hline \\[-1.8ex] 
+		Constant & 10.178$^{***}$ & 10.032$^{***}$ & 10.056$^{***}$ & 10.065$^{***}$ \\ 
+		& (0.034) & (0.034) & (0.036) & (0.036) \\ 
+		& & & & \\ 
+		Vocational &  & 0.283$^{***}$ & 0.279$^{***}$ & 0.267$^{***}$ \\ 
+		&  & (0.009) & (0.021) & (0.021) \\ 
+		& & & & \\ 
+		Higher &  & 0.638$^{***}$ & 0.641$^{***}$ & 0.622$^{***}$ \\ 
+		&  & (0.009) & (0.025) & (0.025) \\ 
+		& & & & \\ 
+		Coverage VE X Vocational &  &  &  & 0.050$^{**}$ \\ 
+		&  &  &  & (0.025) \\ 
+		& & & & \\ 
+		Coverage VE X Higher &  &  &  & 0.083$^{***}$ \\ 
+		&  &  &  & (0.030) \\ 
+		& & & & \\ 
+		Experience &  & $-$0.026$^{***}$ & $-$0.027$^{***}$ & $-$0.027$^{***}$ \\ 
+		&  & (0.002) & (0.002) & (0.002) \\ 
+		& & & & \\ 
+		Experience squared &  & $-$0.065$^{***}$ & $-$0.065$^{***}$ & $-$0.065$^{***}$ \\ 
+		&  & (0.002) & (0.002) & (0.002) \\ 
+		& & & & \\ 
+		Females &  & $-$0.403$^{***}$ & $-$0.404$^{***}$ & $-$0.404$^{***}$ \\ 
+		&  & (0.005) & (0.005) & (0.005) \\ 
+		& & & & \\ 
+		Coverage VE &  &  & $-$0.101$^{***}$ & $-$0.142$^{***}$ \\ 
+		&  &  & (0.039) & (0.043) \\ 
+		& & & & \\ 
+		\hline
+		\hline
+		Variance of Intecept & 0.09 & 0.08 & 0.09 & 0.09 \\ 
+		Variance of Vocational &  &  & 0.02 & 0.02 \\ 
+		Variance of Higher &  &  & 0.04 & 0.04 \\ 
+		Residual Deviance & 0.45 & 0.35 & 0.34 & 0.34 \\ 
+		\hline
+		\hline
+		Observations & 49,187 & 49,187 & 49,187 & 49,187 \\ 
+		Log Likelihood & $-$59,755.060 & $-$53,289.500 & $-$53,094.620 & $-$53,096.640 \\ 
+		Akaike Inf. Crit. & 119,516.100 & 106,595.000 & 106,217.200 & 106,225.300 \\ 
+		Bayesian Inf. Crit. & 119,542.500 & 106,665.400 & 106,340.500 & 106,366.100 \\ 
+		\hline 
+		\hline \\[-1.8ex] 
+		\textit{Note:}  & \multicolumn{4}{r}{$^{*}$p$<$0.1; $^{**}$p$<$0.05; $^{***}$p$<$0.01} \\ 
+	\end{tabular} 
+\end{table} 
+
+
+
+\newpage
+\printbibliography
+
+\end{document}
