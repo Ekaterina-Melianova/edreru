@@ -33,6 +33,7 @@ db <- dbConnect(SQLite(), dbname="C:/Country/Russia/Data/SEASHELL/SEABYTE/Databa
 
 ############################################################################################################
 
+# below took system.time() about 15 seconds elapsed time
 # Selecting the variables of interest
 df_ <- selectFromSQL(c("REGION", "AGE", "J13_2", "J10", "J40", "EDUC", "J1",
                        "J5A", "J5B", "H7_2", "H5", "J2COD08",
@@ -40,6 +41,7 @@ df_ <- selectFromSQL(c("REGION", "AGE", "J13_2", "J10", "J40", "EDUC", "J1",
                        "total_exper", "exper_main_", "exper_add_",
                        "J5A_", "J5B_", "J35_2Y_", "J35_2M_", 
                        "EDUC"))
+
 
 dbDisconnect(db)
 # Fixing system and user-defined missings in the RLMS database

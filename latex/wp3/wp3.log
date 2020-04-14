@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.21 (MiKTeX 2.9.7300 64-bit) (preloaded format=pdflatex 2020.2.29)  29 FEB 2020 15:09
+This is pdfTeX, Version 3.14159265-2.6-1.40.21 (MiKTeX 2.9.7300 64-bit) (preloaded format=pdflatex 2020.2.29)  11 APR 2020 12:48
 entering extended mode
 **./wp3.tex
 (wp3.tex
@@ -2249,8 +2249,8 @@ Package logreq Info: Writing requests to 'wp3.run.xml'.
  ) 
 Here is how much of TeX's memory you used:
  41640 strings out of 481280
- 799112 string characters out of 2916512
- 1549640 words of memory out of 3000000
+ 799116 string characters out of 2916512
+ 1549644 words of memory out of 3000000
  56313 multiletter control sequences out of 15000+200000
  1248211 words of font info for 215 fonts, out of 3000000 for 9000
  1141 hyphenation exceptions out of 8191
@@ -2273,7 +2273,7 @@ rogram Files/MiKTeX 2.9/fonts/type1/public/lm/lmsy9.pfb><C:/Program Files/MiKTe
 X 2.9/fonts/type1/public/lm/lmtt8.pfb><C:/Users/wb164718/AppData/Roaming/MiKTeX
 /2.9/fonts/type1/public/txfonts/txsyc.pfb><C:/Users/wb164718/AppData/Roaming/Mi
 KTeX/2.9/fonts/type1/public/newtxsf/zsfmia-reg.pfb>
-Output written on wp3.pdf (9 pages, 921207 bytes).
+Output written on wp3.pdf (9 pages, 921211 bytes).
 PDF statistics:
  140 PDF objects out of 1000 (max. 8388607)
  23 named destinations out of 1000 (max. 500000)

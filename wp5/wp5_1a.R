@@ -22,7 +22,7 @@ df_col2 <- df_col %>% group_by(inn) %>% filter(n()>1)
 df_col2 <- df_col[!duplicated(df_col[,1]),]
 
 # looking at age of graduates
-table(df_col2$graduate_age)
+table(round(df_col2$graduate_age))
 
 # Mostly they are коледж (1068) or техникум (925)
 blix <-as.data.frame(freq(df_col2$institutionType_name))

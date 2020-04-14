@@ -17,7 +17,7 @@
 \endgroup
 
 \datalist[entry]{nty/global//global/global}
-  \entry{cheidvasser_006._2007}{article}{}
+  \entry{Cheidvasser2007}{article}{}
     \name{author}{2}{}{%
       {{hash=CS}{%
          family={Cheidvasser},
@@ -37,13 +37,13 @@
     \field{labelnamesource}{author}
     \field{labeltitlesource}{shorttitle}
     \field{labelyear}{2007}
-    \field{labeldatesource}{year}
+    \field{labeldatesource}{}
     \field{sortinit}{C}
     \field{sortinithash}{C}
     \field{number}{1}
     \field{pages}{1\bibrangedash 41}
     \field{shorttitle}{The Educated {{Russian}}'s Curse}
-    \field{title}{006. {{The}} Educated {{Russian}}'s Curse: {{Returns}} to
+    \field{title}{{{The}} Educated {{Russian}}'s Curse: {{Returns}} to
   Education in the {{Russian Federation}} during the 1990s}
     \field{volume}{21}
     \verb{file}
@@ -54,45 +54,116 @@
     \field{year}{2007}
   \endentry
 
-  \entry{kozyreva_081._2015}{article}{}
-    \name{author}{2}{}{%
+  \entry{Gimpelson2019}{article}{}
+    \name{author}{1}{}{%
+      {{hash=GV}{%
+         family={Gimpelson},
+         familyi={G\bibinitperiod},
+         given={Vladimir},
+         giveni={V\bibinitperiod},
+      }}%
+    }
+    \strng{namehash}{GV1}
+    \strng{fullhash}{GV1}
+    \field{labelnamesource}{author}
+    \field{labeltitlesource}{title}
+    \field{labelyear}{2019}
+    \field{labeldatesource}{}
+    \field{sortinit}{G}
+    \field{sortinithash}{G}
+    \field{title}{{{The}} Labor Market in {{Russia}}, 2000-2017}
+    \field{volume}{2019:466}
+    \verb{file}
+    \verb C\:\\Users\\1\\Zotero\\storage\\UMIZXGC9\\Gimpelson - 2019 - 139. The
+    \verb  labor market in Russia, 2000-2017.pdf
+    \endverb
+    \field{journaltitle}{IZA World of Labor}
+    \field{month}{09}
+    \field{year}{2019}
+  \endentry
+
+  \entry{Kozyreva2016}{article}{}
+    \name{author}{3}{}{%
       {{hash=KP}{%
          family={Kozyreva},
          familyi={K\bibinitperiod},
          given={Polina},
          giveni={P\bibinitperiod},
       }}%
-      {{hash=SPK}{%
-         family={Sabirianova\bibnamedelima Peter},
-         familyi={S\bibinitperiod\bibinitdelim P\bibinitperiod},
-         given={Klara},
-         giveni={K\bibinitperiod},
+      {{hash=KM}{%
+         family={Kosolapov},
+         familyi={K\bibinitperiod},
+         given={Mikhail},
+         giveni={M\bibinitperiod},
+      }}%
+      {{hash=PBM}{%
+         family={Popkin},
+         familyi={P\bibinitperiod},
+         given={Barry\bibnamedelima M.},
+         giveni={B\bibinitperiod\bibinitdelim M\bibinitperiod},
       }}%
     }
-    \strng{namehash}{KPSPK1}
-    \strng{fullhash}{KPSPK1}
+    \strng{namehash}{KPKMPBM1}
+    \strng{fullhash}{KPKMPBM1}
     \field{labelnamesource}{author}
-    \field{labeltitlesource}{shorttitle}
-    \field{labelyear}{2015}
-    \field{labeldatesource}{year}
+    \field{labeltitlesource}{title}
+    \field{labelyear}{2016}
+    \field{labeldatesource}{}
     \field{sortinit}{K}
     \field{sortinithash}{K}
     \field{number}{2}
-    \field{pages}{293\bibrangedash 298}
-    \field{shorttitle}{Economic {{Change}} in {{Russia}}}
-    \field{title}{081. {{Economic Change}} in {{Russia}}: {{Twenty Years}} of
-  the {{Russian Longitudinal Monitoring Survey}}}
-    \field{volume}{23}
+    \field{pages}{395\bibrangedash 401}
+    \field{title}{{{Data}} Resource Profile: {{The Russia}} Longitudinal
+  Monitoring {{Survey}}\textemdash{{Higher}} School of Economics
+  ({{RLMS}}-{{HSE}}) Phase {{II}}: {{Monitoring}} the Economic and Health
+  Situation in Russia, 1994\textendash{}2013}
+    \field{volume}{45}
     \verb{file}
-    \verb C\:\\Users\\1\\Zotero\\storage\\2D73HE6T\\Kozyreva и Sabirianova Pet
-    \verb er - 2015 - Economic Change in Russia Twenty Years of the Rus.pdf;C\:
-    \verb \\Users\\1\\Zotero\\storage\\356SNNQT\\ecot.html
+    \verb C\:\\Users\\1\\Zotero\\storage\\IUNCID4P\\Kozyreva et al. - 2016 - Da
+    \verb ta resource profile The Russia longitudinal mon.pdf
     \endverb
-    \field{journaltitle}{Economics of Transition}
-    \field{year}{2015}
+    \field{journaltitle}{International Journal of Epidemiology}
+    \field{year}{2016}
   \endentry
 
-  \entry{naikal_184_2019}{book}{}
+  \entry{Montenegro_Patrinos14}{report}{}
+    \name{author}{2}{}{%
+      {{hash=MCE}{%
+         family={Montenegro},
+         familyi={M\bibinitperiod},
+         given={Claudio\bibnamedelima E.},
+         giveni={C\bibinitperiod\bibinitdelim E\bibinitperiod},
+      }}%
+      {{hash=PHA}{%
+         family={Patrinos},
+         familyi={P\bibinitperiod},
+         given={Harry\bibnamedelima Anthony},
+         giveni={H\bibinitperiod\bibinitdelim A\bibinitperiod},
+      }}%
+    }
+    \strng{namehash}{MCEPHA1}
+    \strng{fullhash}{MCEPHA1}
+    \field{labelnamesource}{author}
+    \field{labeltitlesource}{title}
+    \field{labelyear}{2014}
+    \field{labeldatesource}{}
+    \field{sortinit}{M}
+    \field{sortinithash}{M}
+    \field{number}{7020}
+    \field{title}{Comparable estimates of returns to schooling around the
+  world}
+    \verb{url}
+    \verb https://ideas.repec.org/p/wbk/wbrwps/7020.html
+    \endverb
+    \list{institution}{1}{%
+      {The World Bank}%
+    }
+    \field{type}{Policy Research Working Paper Series}
+    \field{year}{2014}
+    \warn{\item Invalid format of field 'month'}
+  \endentry
+
+  \entry{Naikal2019}{book}{}
     \name{author}{5}{}{%
       {{hash=NE}{%
          family={Naikal},
@@ -133,10 +204,10 @@
     \field{labelnamesource}{author}
     \field{labeltitlesource}{title}
     \field{labelyear}{2019}
-    \field{labeldatesource}{year}
+    \field{labeldatesource}{}
     \field{sortinit}{N}
     \field{sortinithash}{N}
-    \field{title}{184. How Wealthy is Russia? Measuring Russia's Comprehensive
+    \field{title}{How Wealthy is Russia? Measuring Russia's Comprehensive
   Wealth from 2000-2017}
     \verb{url}
     \verb http://documents.worldbank.org/curated/en/811321575350027422/pdf/How-
@@ -152,8 +223,14 @@
     \field{year}{2019}
   \endentry
 
-  \entry{patrinos_071._2019}{article}{}
-    \name{author}{1}{}{%
+  \entry{Psacharopoulos_Patrinos18}{article}{}
+    \name{author}{2}{}{%
+      {{hash=PG}{%
+         family={Psacharopoulos},
+         familyi={P\bibinitperiod},
+         given={George},
+         giveni={G\bibinitperiod},
+      }}%
       {{hash=PHA}{%
          family={Patrinos},
          familyi={P\bibinitperiod},
@@ -161,23 +238,22 @@
          giveni={H\bibinitperiod\bibinitdelim A\bibinitperiod},
       }}%
     }
-    \strng{namehash}{PHA1}
-    \strng{fullhash}{PHA1}
+    \strng{namehash}{PGPHA1}
+    \strng{fullhash}{PGPHA1}
     \field{labelnamesource}{author}
     \field{labeltitlesource}{title}
-    \field{labelyear}{2019}
-    \field{labeldatesource}{year}
+    \field{labelyear}{2018}
+    \field{labeldatesource}{}
     \field{sortinit}{P}
     \field{sortinithash}{P}
-    \field{number}{8866}
-    \field{title}{071. {{The Changing Pattern}} of {{Returns}} to
-  {{Education}}}
-    \verb{file}
-    \verb C\:\\Users\\1\\Zotero\\storage\\6FG58HHH\\Patrinos - 2019 - The Chang
-    \verb ing Pattern of Returns to Education.pdf
-    \endverb
-    \field{journaltitle}{World Bank Policy Research Working Paper}
-    \field{year}{2019}
+    \field{number}{5}
+    \field{pages}{445\bibrangedash 458}
+    \field{title}{Returns to Investment in Education: A Decennial Review of the
+  Global Literature}
+    \field{volume}{26}
+    \field{journaltitle}{Education Economics}
+    \field{year}{2018}
+    \warn{\item Invalid format of field 'month'}
   \endentry
 \enddatalist
 \endinput

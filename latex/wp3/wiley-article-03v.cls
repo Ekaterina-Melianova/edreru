@@ -477,7 +477,7 @@
   \begin{mdframed}[font=\fontsize{9\p@}{15\p@}\selectfont,
   topline=false,bottomline=false,
   leftline=true,rightline=false,
-  backgroundcolor=blue!10,    % changed to blue by SP, Feb 28, 2020
+  backgroundcolor=purple!10,    % changed to purple by SP, Apr 11, 2020
   middlelinewidth=6\p@,middlelinecolor=white,
   outerlinewidth=0.5\p@]%
   \BODY

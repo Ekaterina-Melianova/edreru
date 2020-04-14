@@ -17,7 +17,7 @@
 \endgroup
 
 \datalist[entry]{nty/global//global/global}
-  \entry{arrazola_132b._2005}{article}{}
+  \entry{Arrazola_2005}{article}{}
     \name{author}{4}{}{%
       {{hash=AM}{%
          family={Arrazola},
@@ -54,8 +54,8 @@
     \field{sortinithash}{A}
     \field{number}{1}
     \field{pages}{9\bibrangedash 22}
-    \field{title}{132b. {{A}} Proposal to Estimate Human Capital Depreciation:
-  {{Some}} Evidence for {{Spain}}}
+    \field{title}{A Proposal to Estimate Human Capital Depreciation: {{Some}}
+  Evidence for {{Spain}}}
     \field{volume}{172}
     \verb{file}
     \verb C\:\\Users\\1\\Zotero\\storage\\VBLPCCQI\\Arrazola et al. - 2005 - 13
@@ -66,7 +66,7 @@
     \field{year}{2005}
   \endentry
 
-  \entry{blau_178_2013}{article}{}
+  \entry{Blau_2013}{article}{}
     \name{author}{3}{}{%
       {{hash=BFD}{%
          family={Blau},
@@ -98,9 +98,8 @@
     \field{sortinithash}{B}
     \field{number}{2}
     \field{pages}{471\bibrangedash 492}
-    \field{title}{178. Trends in occupational segregation by gender
-  1970–2009: Adjusting for the impact of changes in the occupational coding
-  system}
+    \field{title}{Trends in occupational segregation by gender 1970–2009:
+  Adjusting for the impact of changes in the occupational coding system}
     \field{volume}{50}
     \verb{file}
     \verb Blau et al. - 2013 - 178. Trends in occupational segregation by gende
@@ -112,7 +111,7 @@
     \field{year}{2013}
   \endentry
 
-  \entry{klimova_159._2009}{article}{}
+  \entry{Klimova_2009}{article}{}
     \name{author}{1}{}{%
       {{hash=KA}{%
          family={Klimova},
@@ -129,8 +128,8 @@
     \field{labeldatesource}{}
     \field{sortinit}{K}
     \field{sortinithash}{K}
-    \field{title}{159. {{Gender Occupational Segregation}} in the {{Russian
-  Labour Market}}}
+    \field{title}{{{Gender Occupational Segregation}} in the {{Russian Labour
+  Market}}}
     \verb{file}
     \verb C\:\\Users\\1\\Zotero\\storage\\YWDNVEGH\\Klimova - 2009 - 159. Gende
     \verb r Occupational Segregation in the Russia.pdf
@@ -139,7 +138,7 @@
     \field{year}{2009}
   \endentry
 
-  \entry{klimova_131._2012}{article}{}
+  \entry{Klimova_2012}{article}{}
     \name{author}{2}{}{%
       {{hash=KA}{%
          family={Klimova},
@@ -164,8 +163,8 @@
     \field{sortinithash}{K}
     \field{number}{7}
     \field{pages}{474\bibrangedash 489}
-    \field{title}{131. {{Gender}}-Based Occupational Segregation in {{Russia}}:
-  An Empirical Study}
+    \field{title}{{{Gender}}-Based Occupational Segregation in {{Russia}}: An
+  Empirical Study}
     \field{volume}{39}
     \verb{file}
     \verb C\:\\Users\\1\\Zotero\\storage\\F68IIQZ5\\Klimova and Ross - 2012 - 1
@@ -175,7 +174,7 @@
     \field{year}{2012}
   \endentry
 
-  \entry{kosyakova_121._2015}{article}{}
+  \entry{Kosyakova_2015}{article}{}
     \name{author}{3}{}{%
       {{hash=KY}{%
          family={Kosyakova},
@@ -206,7 +205,7 @@
     \field{sortinithash}{K}
     \field{number}{5}
     \field{pages}{573\bibrangedash 590}
-    \field{title}{121. {{Horizontal}} and Vertical Gender Segregation in
+    \field{title}{{{Horizontal}} and Vertical Gender Segregation in
   {{Russia}}\textemdash{}Changes upon Labour Market Entry before and after the
   Collapse of the {{Soviet}} Regime}
     \field{volume}{31}
@@ -218,7 +217,7 @@
     \field{year}{2015}
   \endentry
 
-  \entry{mihaylov_152._2019}{article}{}
+  \entry{Mihaylov_2019}{article}{}
     \name{author}{2}{}{%
       {{hash=ME}{%
          family={Mihaylov},
@@ -241,7 +240,7 @@
     \field{labeldatesource}{}
     \field{sortinit}{M}
     \field{sortinithash}{M}
-    \field{title}{152. {{Measuring}} the {{Routine}} and {{Non}}-{{Routine Task
+    \field{title}{{{Measuring}} the {{Routine}} and {{Non}}-{{Routine Task
   Content}} of 427 {{Four}}-{{Digit ISCO}}-08 {{Occupations}}}
     \field{volume}{TI 2019-035/V}
     \verb{file}
@@ -252,7 +251,7 @@
     \field{year}{2019}
   \endentry
 
-  \entry{mincer_175._1982}{article}{}
+  \entry{Mincer_1982}{article}{}
     \name{author}{2}{}{%
       {{hash=MJ}{%
          family={Mincer},
@@ -276,7 +275,7 @@
     \field{sortinit}{M}
     \field{sortinithash}{M}
     \field{pages}{3\bibrangedash 24}
-    \field{title}{175. {{Interrupted}} Work Careers: {{Depreciation}} and
+    \field{title}{{{Interrupted}} Work Careers: {{Depreciation}} and
   Restoration of Human Capital}
     \verb{file}
     \verb C\:\\Users\\1\\Zotero\\storage\\K5YJ344P\\Mincer and Ofek - 1982 - 17
@@ -286,7 +285,7 @@
     \field{year}{1982}
   \endentry
 
-  \entry{murillo_172._2006}{article}{}
+  \entry{Murillo_2006}{article}{}
     \name{author}{1}{}{%
       {{hash=MIP}{%
          family={Murillo},
@@ -303,7 +302,7 @@
     \field{labeldatesource}{}
     \field{sortinit}{M}
     \field{sortinithash}{M}
-    \field{title}{172. {{Returns}} to {{Education}} and {{Human Capital
+    \field{title}{{{Returns}} to {{Education}} and {{Human Capital
   Depreciation}} in {{Spain}}}
     \verb{file}
     \verb C\:\\Users\\1\\Zotero\\storage\\SX2568BP\\Murillo - 2006 - 172. Retur
@@ -313,7 +312,7 @@
     \field{year}{2006}
   \endentry
 
-  \entry{neuman_091._1995}{article}{}
+  \entry{Neuman_1995}{article}{}
     \name{author}{2}{}{%
       {{hash=NS}{%
          family={Neuman},
@@ -338,7 +337,7 @@
     \field{sortinithash}{N}
     \field{number}{5}
     \field{pages}{943\bibrangedash 955}
-    \field{title}{091. {{On}} the Effects of Schooling Vintage on
+    \field{title}{{{On}} the Effects of Schooling Vintage on
   Experience-Earnings Profiles: Theory and Evidence}
     \field{volume}{39}
     \verb{file}
@@ -349,7 +348,48 @@
     \field{year}{1995}
   \endentry
 
-  \entry{preston_179_1999}{article}{}
+  \entry{Patrinos_2020}{article}{}
+    \name{author}{4}{}{%
+      {{hash=PH}{%
+         family={Patrinos},
+         familyi={P\bibinitperiod},
+         given={Harry},
+         giveni={H\bibinitperiod},
+      }}%
+      {{hash=PS}{%
+         family={Parandekar},
+         familyi={P\bibinitperiod},
+         given={Suhas},
+         giveni={S\bibinitperiod},
+      }}%
+      {{hash=ME}{%
+         family={Melianova},
+         familyi={M\bibinitperiod},
+         given={Ekaterina},
+         giveni={E\bibinitperiod},
+      }}%
+      {{hash=VA}{%
+         family={Volgin},
+         familyi={V\bibinitperiod},
+         given={Artem},
+         giveni={A\bibinitperiod},
+      }}%
+    }
+    \strng{namehash}{PH+1}
+    \strng{fullhash}{PHPSMEVA1}
+    \field{labelnamesource}{author}
+    \field{labeltitlesource}{title}
+    \field{labelyear}{2020}
+    \field{labeldatesource}{}
+    \field{sortinit}{P}
+    \field{sortinithash}{P}
+    \field{title}{WP 1 - Returns to Education in the Russian Federation: Some
+  New Estimates}
+    \field{journaltitle}{World Bank ASA P170979 Russian Federation}
+    \field{year}{2020}
+  \endentry
+
+  \entry{Preston_1999}{article}{}
     \name{author}{1}{}{%
       {{hash=PJA}{%
          family={Preston},
@@ -368,7 +408,7 @@
     \field{sortinithash}{P}
     \field{number}{5}
     \field{pages}{611\bibrangedash 624}
-    \field{title}{179. Occupational gender segregation trends and explanations}
+    \field{title}{Occupational gender segregation trends and explanations}
     \field{volume}{39}
     \verb{file}
     \verb Preston - 1999 - 179. Occupational gender segregation trends and ex.p
@@ -380,7 +420,7 @@
     \field{year}{1999}
   \endentry
 
-  \entry{rosen_176._1976}{article}{}
+  \entry{Rosen_1976}{article}{}
     \name{author}{1}{}{%
       {{hash=RS}{%
          family={Rosen},
@@ -399,7 +439,7 @@
     \field{sortinithash}{R}
     \field{number}{4, Part 2}
     \field{pages}{S45\bibrangedash S67}
-    \field{title}{176. {{A}} Theory of Life Earnings}
+    \field{title}{{{A}} Theory of Life Earnings}
     \field{volume}{84}
     \verb{file}
     \verb C\:\\Users\\1\\Zotero\\storage\\JHKHZBD4\\Rosen - 1976 - 176. A theor
@@ -409,37 +449,7 @@
     \field{year}{1976}
   \endentry
 
-  \entry{weber_156._2011}{thesis}{}
-    \name{author}{1}{}{%
-      {{hash=WS}{%
-         family={Weber},
-         familyi={W\bibinitperiod},
-         given={Sylvain},
-         giveni={S\bibinitperiod},
-      }}%
-    }
-    \strng{namehash}{WS1}
-    \strng{fullhash}{WS1}
-    \field{labelnamesource}{author}
-    \field{labeltitlesource}{title}
-    \field{labelyear}{2011}
-    \field{labeldatesource}{}
-    \field{sortinit}{W}
-    \field{sortinithash}{W}
-    \field{title}{156. {{On}} the Impact of Education on Human Capital
-  Depreciation, Wage Growth, and {{Tenure}}}
-    \list{institution}{1}{%
-      {University of Geneva}%
-    }
-    \verb{file}
-    \verb C\:\\Users\\1\\Zotero\\storage\\Q4NX7B26\\Weber - 2011 - 156. On the
-    \verb impact of education on human capital d.pdf
-    \endverb
-    \field{type}{phdthesis}
-    \field{year}{2011}
-  \endentry
-
-  \entry{weber_173._2008}{inproceedings}{}
+  \entry{Weber_2008}{inproceedings}{}
     \name{author}{1}{}{%
       {{hash=WS}{%
          family={Weber},
@@ -458,7 +468,7 @@
     \field{sortinithash}{W}
     \field{booktitle}{Annual {{Conference}} of the {{European Association}} of
   {{Labour Economists}}}
-    \field{title}{173. {{Human}} Capital Depreciation and Education Level: Some
+    \field{title}{{{Human}} Capital Depreciation and Education Level: Some
   Evidence for {{Switzerland}}}
     \list{location}{1}{%
       {{Amsterdam, The Nnetherlands}}%
@@ -469,6 +479,36 @@
     \endverb
     \field{month}{09}
     \field{year}{2008}
+  \endentry
+
+  \entry{Weber_2011}{thesis}{}
+    \name{author}{1}{}{%
+      {{hash=WS}{%
+         family={Weber},
+         familyi={W\bibinitperiod},
+         given={Sylvain},
+         giveni={S\bibinitperiod},
+      }}%
+    }
+    \strng{namehash}{WS1}
+    \strng{fullhash}{WS1}
+    \field{labelnamesource}{author}
+    \field{labeltitlesource}{title}
+    \field{labelyear}{2011}
+    \field{labeldatesource}{}
+    \field{sortinit}{W}
+    \field{sortinithash}{W}
+    \field{title}{{{On}} the Impact of Education on Human Capital Depreciation,
+  Wage Growth, and {{Tenure}}}
+    \list{institution}{1}{%
+      {University of Geneva}%
+    }
+    \verb{file}
+    \verb C\:\\Users\\1\\Zotero\\storage\\Q4NX7B26\\Weber - 2011 - 156. On the
+    \verb impact of education on human capital d.pdf
+    \endverb
+    \field{type}{phdthesis}
+    \field{year}{2011}
   \endentry
 \enddatalist
 \endinput

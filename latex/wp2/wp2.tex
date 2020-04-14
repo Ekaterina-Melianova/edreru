@@ -32,7 +32,7 @@
 
 %% Additional links for hyperref
 \usepackage[unicode=true,pdfusetitle,
- bookmarks=false,bookmarksnumbered=false,bookmarksopen=true,bookmarksopenlevel=2,
+bookmarks=true,bookmarksnumbered=true,bookmarksopen=true,bookmarksopenlevel=2,
  breaklinks=false,pdfborder={0 0 1},backref=false,colorlinks=false]
  {hyperref}
 \hypersetup{pdfstartview={XYZ null null 1}}
@@ -61,14 +61,13 @@ P170978}
 \title{Returns to Education in the Russian Federation: Does depreciation explain some recent trends?}
 
 % List acknowledgements here.
-\fundinginfo{Thanks are due to the Higher School of Economics, Moscow for making the Russian Longitudinal Monitoring Study (RLMS) Household data readily available for reseachers around the world. The code used for this paper is made freely available for all researchers at \url{https://bitbucket.org/zagamog/edreru/src/master/}}
+\fundinginfo{Thanks are due to the Higher School of Economics, Moscow for making the Russian Longitudinal Monitoring Study (RLMS) Household data readily available for reseachers around the world. Thanks are also due to Sylvain Weber for generously sharing the code from his University of Geneva Doctoral Thesis, which we adapted for one of the reported sets of estimations. The code used for this paper is made freely available for all researchers at \url{https://bitbucket.org/zagamog/edreru/src/master/}}
 
 % Include full author names and degrees, when required by the journal.
 % Use the \authfn to add symbols for additional footnotes and present addresses, if any. Usually start with 1 for notes about author contributions; then continuing with 2 etc if any author has a different present address.
 
 \author[*]{Ekaterina Melianova}
 \author[*]{\hspace{-1em}Suhas Parandekar}
-\author[*]{\hspace{-1em}Harry Patrinos}
 \author[*]{\hspace{-1em}Art\"{e}m Volgin}
 
 % List abbreviations here, if any. Please note that it is preferred that abbreviations be defined at the first instance they appear in the text, rather than creating an abbreviations list.
@@ -95,22 +94,21 @@ P170978}
 \maketitle
 
 \begin{abstract}
-This is a generic template designed for use by multiple journals, which includes several options for customization. Please consult the author guidelines for the journal to which you are submitting in order to confirm that your manuscript will comply with the journal's requirements. Please replace this text with your abstract.
-
+This paper explores the topic of depreciation of human capital as a possible explanation for observed trends in the returns to education in the Russian Federation. Estimates of depreciation are presented for various sample groups. Depreciation first decreased and then increased in the period 1994-2018. Post education investment in human capital is found to be higher amongst university educated workers. 
 % Please include a maximum of seven keywords
-\keywords{keyword 1, \emph{keyword 2}, keyword 3, keyword 4, keyword 5, keyword 6, keyword 7}
+\keywords{Returns to Education, Depreciation, Gender segregation, Automation, \emph{JEL Codes: I26, I28, J16, J29}}
 \end{abstract}
 
 
 \section{Depreciation of Human Capital \\ in the Russian Federation}
 
-Age-earnings profiles are almost invariably concave downward shaped. Earnings rise after a labor market entrant completes full-time schooling. The profile indicates a peak in earnings, usually a few years before retirement, after which there is a steady decline in earnings. The concave shape is an outcome of two countervailing tendencies - the rise attributed to continued accumulation of human capital through training and the decline due to depreciation. The precise shape and location of the peak is an object of analytical interest. Depreciation of human capital is useful to investigate from a policy perspective. Just like some physical capital (machinery, buildings) are built stronger and last longer, is it possible that some kinds of education inherently generate human capital that is slower to depreciate? What attributes of the labor market lead to lower or higher levels of depreciation? What about the welfare implications of changes in the age at which individuals retire from the labor force? How has the depreciation rate of human capital changed over time in the Russian Federation? In particular, can changes in the rate of depreciation explain the observed pattern of the rates of return depicted in \ref{fig:1.2}?  
+Age-earnings profiles are almost invariably concave downward shaped. Earnings rise after a labor market entrant completes full-time schooling. The profile indicates a peak in earnings, usually a few years before retirement, after which there is a steady decline in earnings. The concave shape is an outcome of two countervailing tendencies - the rise attributed to continued accumulation of human capital through training and the decline due to depreciation. The precise shape and location of the peak is an object of analytical interest. Depreciation of human capital is useful to investigate from a policy perspective. Just like some physical capital (machinery, buildings) are built stronger and last longer, is it possible that some kinds of education inherently generate human capital that is slower to depreciate? What attributes of the labor market lead to lower or higher levels of depreciation? What about the welfare implications of changes in the age at which individuals retire from the labor force? How has the depreciation rate of human capital changed over time in the Russian Federation? 
 
 \subsection{Analytical Treatment of Depreciation} 
 
-\citet{rosen_176._1976}  and \citet{mincer_175._1982} presented early treatments on the depreciation of human capital. However, in terms of a focus on depreciation, a seminal paper of \citet{neuman_091._1995} established the basic parameters that have guided the research since that time. The authors introduce the important distinction between two kinds of depreciation or loss of productive potential of human capital. The first one, termed as ``obsolescence" or ``vintage effect", is due to an overall upgrading of technology or the operation of other market forces that lowers the value of education or training obtained in a previous period. This is also termed as an `external depreciation", presumably as it is a given for an individual. The second kind of depreciation is attributed to the deterioration of physical and mental abilities of an individual due to the progression of a person's age, or the simple passage of time. This is also termed as ``internal depreciation". Neuman and Weiss posited that external effects would be more important for higher levels of education, under the assumption that changes in the labor market are transmitted more readily to higher education. They give the example that a recently educated electrical engineer would be learning many new things compared to one who studied the same subject in an earlier time. Neuman and Weiss reasoned that workers with basic education levels may not suffer as much from obsolescence. 
+\citet{Rosen_1976}  and \citet{Mincer_1982} presented early treatments on the depreciation of human capital. However, in terms of a focus on depreciation, a seminal paper of \citet{Neuman_1995} established the basic parameters that have guided the research since that time. The authors introduce the important distinction between two kinds of depreciation or loss of productive potential of human capital. The first one, termed as ``obsolescence" or ``vintage effect", is due to an overall upgrading of technology or the operation of other market forces that lowers the value of education or training obtained in a previous period. This is also termed as an `external depreciation", presumably as it is a given for an individual. The second kind of depreciation is attributed to the deterioration of physical and mental abilities of an individual due to the progression of a person's age, or the simple passage of time. This is termed as ``internal depreciation". Neuman and Weiss posited that external effects would be more important for higher levels of education, under the assumption that changes in the labor market are transmitted more readily to higher education. They give the example that a recently educated electrical engineer would be learning many new things compared to one who studied the same subject in an earlier time. Neuman and Weiss reasoned that workers with basic education levels may not suffer as much from obsolescence. 
 
-Figure \ref{fig:2.1} shows for the Russian Federation the effects described by Neuman and Weiss. There are three panels in the figure, and three lines in each figure. The vertical axis indicates the monthly earnings in constant 2018 rubles, using the Rosstat CPI deflator. The horizontal axis indicates the years of experience. The dotted line shows the earnings for 1998, the dashed line represents 2006 and the solid line the data from 2018. Each of the panels, representing a different level of education, shows an upward drift in the experience-earnings profiles in the period from 1998 to 2018. Only Figure \ref{fig:2.1a} shows a clear concave downwards profile for Higher Education; the concave tendency is less pronounced for the other two levels of Vocational education and Secondary education.
+Figure \ref{fig:1.1} shows for the Russian Federation the effects described by Neuman and Weiss. There are three panels in the figure, and three lines in each figure. The vertical axis indicates the monthly earnings in constant 2018 rubles, using the Rosstat CPI deflator. The horizontal axis indicates the years of experience. The dotted line shows the earnings for 1998, the dashed line represents 2006 and the solid line the data from 2018. Each of the panels, representing a different level of education, shows an upward drift in the experience-earnings profiles in the period from 1998 to 2018. Only Figure \ref{fig:1.1a} shows a clear concave downwards profile for Higher Education; the concave tendency is less pronounced for the other two levels of Vocational education and Secondary education.
 	
 	\begin{figure}[htbp!]
 \hspace{0.35in}
@@ -119,7 +117,7 @@ Figure \ref{fig:2.1} shows for the Russian Federation the effects described by N
 			\hspace*{-0.7in}
 			\includegraphics[width=150pt]{dp01_he.png}
 			% plot 1
-			\subcaption{Higher Education}\label{fig:2.1a}
+			\subcaption{Higher Education}\label{fig:1.1a}
 		\end{minipage}
 		\hfill
 		\begin{minipage}[b]{.3\linewidth}
@@ -127,7 +125,7 @@ Figure \ref{fig:2.1} shows for the Russian Federation the effects described by N
 			\hspace*{-0.7in}
 			\includegraphics[width=150pt]{dp01_ve.png}
 			% plot 2
-			\subcaption{Vocational Education}\label{fig:2.1b}
+			\subcaption{Vocational Education}\label{fig:1.1b}
 		\end{minipage}
 		\hfill
 		\begin{minipage}[b]{.3\linewidth}
@@ -135,12 +133,12 @@ Figure \ref{fig:2.1} shows for the Russian Federation the effects described by N
 			\hspace*{-0.7in}
 			\includegraphics[width=150pt]{dp01_se.png}
 			% plot 2
-			\subcaption{Secondary Education}\label{fig:2.1c}
+			\subcaption{Secondary Education}\label{fig:1.1c}
 		\end{minipage}
-		\caption{Neuman-Weiss vintage effects by education level from RLMS Rounds 1998, 2006 and 2018}\label{fig:2.1}
+		\caption{Neuman-Weiss vintage effects by education level from RLMS Rounds 1998, 2006 and 2018}\label{fig:1.1}
 	\end{figure}
 	
-Putting the curves together by year (Figure \ref{fig:2.2})suggests that the premium for university education over the other two levels does narrow at higher levels of experience. In the figure, to accomodate the relatively lower wage levels of 1998, the leftmost panel (Figure \ref{fig:2.2a}) is slightly compressed compared to the other two panels. The  converging tendency between levels of education would suggest that depreciation is indeed higher for university graduates. In the next two subsections, we present a more rigorous quantitative treatment of this issue, using a variant of Neuman-Weiss developed by \citet{murillo_172._2006} and an alternative approach developed by \citet{arrazola_132b._2005}.
+Putting the curves together by year (Figure \ref{fig:1.2}) suggests that the premium for university education over the other two levels does narrow at higher levels of experience. In the figure, to accomodate the relatively lower wage levels of 1998, the leftmost panel (Figure \ref{fig:1.2a}) is slightly compressed compared to the other two panels. The  converging tendency between levels of education would suggest that depreciation is indeed higher for university graduates. In the next two subsections, we present a more rigorous quantitative treatment of this issue, using a variant of Neuman-Weiss developed by \citet{Murillo_2006} and an alternative approach developed by \citet{Arrazola_2005}.
 
 \begin{figure}[htbp!]
 \hspace{0.35in}
@@ -149,7 +147,7 @@ Putting the curves together by year (Figure \ref{fig:2.2})suggests that the prem
 			\hspace*{-0.7in}
 			\includegraphics[width=150pt]{dp01_98.png}
 			% plot 1
-			\subcaption{1998}\label{fig:2.2a}
+			\subcaption{1998}\label{fig:1.2a}
 		\end{minipage}
 		\hfill
 		\begin{minipage}[b]{.3\linewidth}
@@ -157,7 +155,7 @@ Putting the curves together by year (Figure \ref{fig:2.2})suggests that the prem
 			\hspace*{-0.7in}
 			\includegraphics[width=150pt]{dp01_06.png}
 			% plot 2
-			\subcaption{2006}\label{fig:2.2b}
+			\subcaption{2006}\label{fig:1.2b}
 		\end{minipage}
 		\hfill
 		\begin{minipage}[b]{.3\linewidth}
@@ -165,16 +163,16 @@ Putting the curves together by year (Figure \ref{fig:2.2})suggests that the prem
 			\hspace*{-0.7in}
 			\includegraphics[width=150pt]{dp01_18.png}
 			% plot 2
-			\subcaption{2018}\label{fig:2.2c}
+			\subcaption{2018}\label{fig:1.2c}
 		\end{minipage}
-		\caption{Neuman-Weiss vintage effects by Year from RLMS Rounds 1998, 2006 and 2018}\label{fig:2.2}
+		\caption{Neuman-Weiss vintage effects by Year from RLMS Rounds 1998, 2006 and 2018}\label{fig:1.2}
 	\end{figure}
 
 
 
 \subsection{Differential Depreciation Affecting Education and Training}
 	
-\citet{murillo_172._2006} implemented a variation of the Neuman and Weiss model with a focus on empirical implementation to Spain. We follow the Murillo notation in the implementation of the model, which begins with the following earnings equation: 
+\citet{Murillo_2006} implemented a variation of the Neuman and Weiss model with a focus on empirical implementation to Spain. We follow the Murillo notation in the implementation of the model, which begins with the following earnings equation: 
 \begin{flalign}\label{eq:2.1} 
 log(W_{T}) = \alpha + \beta_{1}KS_{T} +  \beta_{2}KE_{T} &&
 \end{flalign}
@@ -204,9 +202,12 @@ where $\pi_{1} = \beta_{1}h$ and $\pi_{2} = \frac{\beta_{2}\gamma}{2}$.
 From \ref{eq:2.5}, the depreciation rate during $T$ years applied to schooling can be computed as $\pi_{1}S $ and the depreciation rate applied to experience as $ 2\pi_{2}T$.
 \vspace{-5pt}
 \subsubsection{Estimation Results}
-Table \ref{tab:2.1} shows OLS estimation results of equation \ref{eq:2.5} run on the whole sample of the RLMS observations. In this subsection, we analyzed separately six years that represent the ends (1994 and 2018), the diffused peak (2003 and 2006), and halfway points to the ends (2012 and 2003) of the available time interval. The idea is to examine the role played by changes in depreciation to explain the observed pattern of variation in the rates of return shown in Figure \ref{fig:1.1}. 
+ In the first working paper of this series, we presented an apparent inverted-U shaped trend in the returns to education in the Russian Federation between 1994 and 2018 \parencite{Patrinos_2020}. In this paper exploring depreciation, we 
+analyze separately six years that represent the ends (1994 and 2018), the 
+diffused peak (2003 and 2006), and halfway points to the ends (1998 and 
+2012) of that inverted-U shape. Table \ref{tab:1.1} shows OLS estimation results of equation \ref{eq:2.5} run on the whole sample of the RLMS observations. The idea is to examine the role played by changes in depreciation to explain the observed pattern of variation in the rates of return over the time period}. 
 
-Using the coefficient estimates derived from Table \ref{tab:2.1}, we compute the depreciation rate during $T$ years applied to schooling as $\pi_{1}S $ and the depreciation rate applied to experience as $ 2\pi_{2}T$, evaluating the expression at the mean level of schooling. Table \ref{tab:2.2} reports the depreciation rate values so calculated with the corresponding sample means. The table shows an interesting U-shaped pattern in the depreciation rate for human capital, attributable mainly to the depreciation rate associated with experience. The depreciation rate associated with education has been declining steadily and did not pick up again as measured with the given data. The depreciation rate associated with experience declined at first and then picked up again. 
+Using the coefficient estimates derived from Table \ref{tab:1.1}, we compute the depreciation rate during $T$ years applied to schooling as $\pi_{1}S $ and the depreciation rate applied to experience as $ 2\pi_{2}T$, evaluating the expression at the mean level of schooling. Table \ref{tab:1.2} reports the depreciation rate values so calculated with the corresponding sample means. The table shows an interesting U-shaped pattern in the depreciation rate for human capital, attributable mainly to the depreciation rate associated with experience. The depreciation rate associated with education has been declining steadily and did not pick up again as measured with the given data. The depreciation rate associated with experience declined at first and then picked up again. 
 
 Further work is required, including computation of the depreciation rates at levels other than the mean values. At this stage, the findings raise some interesting questions which needs to be addressed by further research. In the period from 1994 to 2006, the depreciation rate appears to be declining, just as the rates of return were on an ascending curve. As both kinds of depreciation (for experience and education) were declining, it is possible that the main cause was in the labor market experience rather than in the education system. Since the peak of earnings premiums in the 2003-2006 period, as returns to education have declined, we see that the depreciation rates associated with experience have started climbing back, but depreciation rates associated with education have declined to null and not reverted. It is tempting to claim that this indicates a qualitative improvment in the skills provided by the education system, but further investigation is warranted before making such a claim. We explore next an alternative computation of the depreciation rate. 
 
@@ -221,7 +222,7 @@ Further work is required, including computation of the depreciation rates at lev
 \begin{table}[htbp!]
 	\centering 
 	\caption{Results of Estimating Human Capital Depreciation for the Whole Sample, RLMS} 
-	\label{tab:2.1}
+	\label{tab:1.1}
 	\begin{tabular}{@{\extracolsep{3pt}}lcccccc} 
 		\\[-1.8ex]\hline 
 		\hline \\[-1.8ex] 
@@ -263,7 +264,7 @@ Further work is required, including computation of the depreciation rates at lev
 
 
 \begin{center}
-\captionof{table}{Average Depreciation Rate by Years}\label{tab:2.2}
+\captionof{table}{Average Depreciation Rate by Years}\label{tab:1.2}
 \keepXColumns
 \begin{tabularx}{\textwidth}{@{\extracolsep{5pt}}rlrrrrrrc}
 		\hline
@@ -321,7 +322,7 @@ Further work is required, including computation of the depreciation rates at lev
 
 \subsection{Depreciation of Human Capital using Non-Linear Least Squares}
 
-\citet{arrazola_132b._2005} developed an alternative approach the issue of human capital depreciation with a first principles approach regarding the formation of human capital, providing an empirical estimation for Spain.  A number of other authors have replicated Arrazola's approach. In this paper, we follow the notation adopted by Sylvain Weber, who estimated depreciation rates for Switzerland (\citet{weber_173._2008} and \citet{weber_156._2011}). Weber starts with the definition of $s_{t}$ -- the time fraction invested into the generation of new human capital by a person at age $t$. Relying on a human capital theory implication about the decline of $s_{t}$ over the life cycle, Weber shows that the complete path of $s_{t}$ is written as follows:
+\citet{Arrazola_2005} developed an alternative approach the issue of human capital depreciation with a first principles approach regarding the formation of human capital, providing an empirical estimation for Spain.  A number of other authors have replicated Arrazola's approach. In this paper, we follow the notation adopted by Sylvain Weber, who estimated depreciation rates for Switzerland (\citet{Weber_2008} and \citet{Weber_2011}). Weber starts with the definition of $s_{t}$ -- the time fraction invested into the generation of new human capital by a person at age $t$. Relying on a human capital theory implication about the decline of $s_{t}$ over the life cycle, Weber shows that the complete path of $s_{t}$ is written as follows:
 
 \begin{flalign}\label{eq:2.6} 
 s_{t}=\left\{\begin{array}{ll}
@@ -409,12 +410,12 @@ Substituting \ref{eq:2.13} and \ref{eq:2.14} into \ref{eq:2.12}, adding an error
 \noindent
 where $t$ shows a time period, $\ln Y$ is a logarithm of the observed earnings, $\ln W$ is a logarithm of a return per certain period on a unit of earnings capacity, $\beta_{K}$ is the effect of the human capital stock on earnings, $\beta_{Z}$ is the effect of other covariates in the model on earning, $\delta$ is the human capital depreciation rate, $X_{i t}$ is the labor market experience, $L_{i}$ is the total working life length, $\alpha$ is a parameter reflecting the share of time invested in training, $Z_{i t}$ is a set of observable attributes hypothesized to have an impact on earnings, $u_{i t}$ is an error term.
 
-Table \ref{tab:2.3} reports empirical findings for the estimation of the \ref{eq:2.16} equation using NLS with robust standard errors for the same range of years as presented in the previous section. Unlike that earlier model, the Arrazola model does not allow for a different treatment of depreciation of human capital acquired from schooling or from experience - only a single $\delta$ (depreciation rate of the human capital) parameter is estimated. However, the model does allow the identification of an  $\alpha$ parameter (related to post-school investment in human capital).
+Table \ref{tab:1.3} reports empirical findings for the estimation of the \ref{eq:2.16} equation using NLS with robust standard errors for the same range of years as presented in the previous section. Unlike that earlier model, the Arrazola model does not allow for a different treatment of depreciation of human capital acquired from schooling or from experience - only a single $\delta$ (depreciation rate of the human capital) parameter is estimated. However, the model does allow the identification of an  $\alpha$ parameter (related to post-school investment in human capital).
 
 
 \begin{center}
 	\captionof{table}{Non-Linear Lest Squares estimated for range of years}
-	\label{tab:2.3}
+	\label{tab:1.3}
 	\keepXColumns
 	\begin{tabularx}{\textwidth}{clccccccc}
 		\hline
@@ -479,7 +480,7 @@ Table \ref{tab:2.3} reports empirical findings for the estimation of the \ref{eq
 
 \setcounter{table}{3} % to avoid tabularx countine subtables as tables
 
-The sparklines in Table \ref{tab:2.3} indicates a smilar roughly U-shaped  pattern for depreciation as reported in Table \ref{tab:2.2}, with depreciation of human capital first declining and then increasing again. This supports the narrative that the observed increase and then decrease in returns to education in the Russian Federation may be explained through the effect of depreciation. The  exact magnitudes of estimated depreciation in the two tables do not match - while the range of depreciation is similar - between 2\% to 5\%, the 2018 figures indicate a higher level in Table \ref{tab:2.3}. 
+The sparklines in Table \ref{tab:1.3} indicates a smilar roughly U-shaped  pattern for depreciation as reported in Table \ref{tab:2.2}, with depreciation of human capital first declining and then increasing again. This supports the narrative that the observed increase and then decrease in returns to education in the Russian Federation may be explained through the effect of depreciation. The  exact magnitudes of estimated depreciation in the two tables do not match - while the range of depreciation is similar - between 2\% to 5\%, the 2018 figures indicate a higher level in Table \ref{tab:2.3}. 
 
 \vspace{3pt}
 
@@ -491,19 +492,18 @@ Finally, a word about the $\alpha$ parameter, which is an indicator of post-scho
 
 \vspace{3pt}
 
-Adapting a strategy adopted by (\citet{weber_173._2008} to fit the Russian context, Table \ref{tab:2.4} provides four alternative specifications displayed separately by gender. The four models portray the following combinations regarding the $\alpha$  and $\delta$ parameters: \textit{model I} - both $\alpha$ and $\delta$ are constant across education levels; \textit{model II} - $\alpha$ is constant, $\delta$ varies; \textit{model III} - $\alpha$ varies, $\delta$ is constant, \textit{model VI} - both $\alpha$ and $\delta$ vary across education levels.
+Adopting a strategy utilized by (\citet{Weber_2008}) and modifying the approach to fit the Russian context, Table \ref{tab:1.4} provides four alternative specifications displayed separately by gender. The four models portray the following combinations regarding the $\alpha$  and $\delta$ parameters: \textit{Model I} - both $\alpha$ and $\delta$ are constant across education levels; \textit{Model II} - $\alpha$ is constant, $\delta$ varies; \textit{Model III} - $\alpha$ varies, $\delta$ is constant, \textit{Model IV} - both $\alpha$ and $\delta$ vary across education levels.
 
 \vspace{3pt}
 
-Model I - the base model, has already been presented in Table \ref{tab:2.3} and is shown again as part of Table \ref{tab:2.4} only for easy reference. Model II, allows the $\delta$ parameter to vary across education levels; Model III allows the $\alpha$ parameter to vary across education levels; and finally Model IV allows both parameters to vary by education level. The estimates indicate the absence of depreciation effects by educational level. Weber had found for Switzerland  that depreciation is higher for vocational education, and provided the explanation that vocational education skills tend to be more specific to jobs and careers. However, this finding is not replicated with the data for the Russian Federation. The statistically signifciant finding in Table 2.4 concerns the $\alpha$ parameter. Post-schooling investment in human capital for those with vocational education is not different from those with secondary education, but university education brings with it a higher level of the $\alpha$ parameter, for both male and female workers. 
+Model I - the base model, has already been presented in Table \ref{tab:1.3} and is shown again as part of Table \ref{tab:1.4} only for easy reference. Model II, allows the $\delta$ parameter to vary across education levels; Model III allows the $\alpha$ parameter to vary across education levels; and finally Model IV allows both parameters to vary by education level. The estimates indicate the absence of depreciation effects by educational level. Weber had found for Switzerland  that depreciation is higher for vocational education, and provided the explanation that vocational education skills tend to be more specific to jobs and careers. However, this finding is not replicated with the data for the Russian Federation. The statistically signifciant finding in Table \ref{tab:1.4} concerns the $\alpha$ parameter. Post-schooling investment in human capital for those with vocational education is not different from those with secondary education, but university education brings with it a higher level of the $\alpha$ parameter, for both male and female workers. 
 
-% TABLE SUHAS
 
 \setlength{\tabcolsep}{2pt}
 \begin{table}[htbp!]\centering
 	\def\sym#1{\ifmmode^{#1}\else\(^{#1}\)\fi}
 	\caption{Empirical Estimates for Females and Males, RLMS 2018}
-	\label{tab:2.4}
+	\label{tab:1.4}
 	\begin{tabular}{l*{8}{c}}
 		\toprule\\
 		&\multicolumn{4}{c}{Females}&\multicolumn{4}{c}{Males}\\
@@ -554,28 +554,28 @@ Model I - the base model, has already been presented in Table \ref{tab:2.3} and 
 \section{Further Exploration of Depreciation}
 \subsection{Depreciation and the Gender dimension}
 
-The previous section indicated an intriguing finding regarding depreciation and gender, with recent rounds of RLMS data indicating a higher level of depreciation for male workers, a possibly anamolous finding. This sub-section draws upon the literature regarding occupational gender segregation, the tendency for some jobs to be dominated by one gender, a phenomenon that has been studied in detail in labor markets around the world (\citet{preston_179_1999} and \citet{blau_178_2013}). Empirical application in the Russian Federation has examined trends regarding gender segregation in occupations (\citet{klimova_159._2009},\citet{klimova_131._2012},\citet{kosyakova_121._2015}). The bulk of this literature is concerned with the issue of the possible inequities and inefficiencies arising from gender segregation. However, for purpose of this paper is to exploit the presence in the data of occupational gender segregation to obtain insights into human capital depreciation.
+The previous section indicated an intriguing finding regarding depreciation and gender, with recent rounds of RLMS data indicating a higher level of depreciation for male workers, a possibly anamolous finding. This sub-section draws upon the literature regarding occupational gender segregation, the tendency for some jobs to be dominated by one gender, a phenomenon that has been studied in detail in labor markets around the world (\citet{Preston_1999} and \citet{Blau_2013}). Empirical application in the Russian Federation has examined trends regarding gender segregation in occupations (\citet{Klimova_2009},\citet{Klimova_2012},\citet{Kosyakova_2015}). The bulk of this literature is concerned with the issue of the possible inequities and inefficiencies arising from gender segregation. However, for purpose of this paper is to exploit the presence in the data of occupational gender segregation to obtain insights into human capital depreciation.
 
 
-In this section,we extend the Neuman and Weiss model of the previous section to compare the estimated depreciation rates between female- and male-dominated groups in various industries and occupations. The RLMS 2018 database contains information about sector or industry and standardized ISCO-08 classfication of jobs. These were used  to tag gender-based industrial sectors and occupations, respectively. The average female representation by sector was 54\%.  Using a range of $\pm$ 10\% from the average, a sector was marked as female-dominated if it contained more than 64\% of women workers, and male-dominated if it contained less than 44\% of women workers. Neutral sectors occupied the middle of the distribution. Figure \ref{fig:3.1} visualizes this procedure; Table \ref{tab:3.1} maps title of sectors with female percentages in them. To generate gender-related occupations a similar tactic was applied based on the 2-digit ISCO-08 classification (see Figure \ref{fig:3.2} and Table \ref{tab:3.2}). 
+In this section,we extend the Neuman and Weiss model of the previous section to compare the estimated depreciation rates between female- and male-dominated groups in various industries and occupations. The RLMS 2018 database contains information about sector or industry and standardized ISCO-08 classfication of jobs. These were used  to tag gender-based industrial sectors and occupations, respectively. The average female representation by sector was 54\%.  Using a range of $\pm$ 10\% from the average, a sector was marked as female-dominated if it contained more than 64\% of women workers, and male-dominated if it contained less than 44\% of women workers. Neutral sectors occupied the middle of the distribution. Figure \ref{fig:2.1} visualizes this procedure; Table \ref{tab:2.1} maps title of sectors with female percentages in them. To generate gender-related occupations a similar tactic was applied based on the 2-digit ISCO-08 classification (see Figure \ref{fig:2.2} and Table \ref{tab:2.2}). 
 
 \begin{figure}[H]
 	\centering
 	\includegraphics[width=400pt]{gen_ind18.png}
-	\caption{Distribution of Employment in RLMS 2018 by Industry and Gender}\label{fig:3.1}
+	\caption{Distribution of Employment in RLMS 2018 by Industry and Gender}\label{fig:2.1}
 \end{figure}
 
 \begin{figure}[H]
 	\centering
 	\includegraphics[width=400pt]{gen_occ18.png}
-	\caption{Distribution of Employment in RLMS 2018 by Occupation and Gender}\label{fig:3.2}
+	\caption{Distribution of Employment in RLMS 2018 by Occupation and Gender}\label{fig:2.2}
 \end{figure}
 	
 \begin{table}[H]
 		\centering
 		\def\arraystretch{1} 
 		\caption{Industries by Strength of Female Proportion, RLMS 2018}
-		\label{tab:3.1}
+		\label{tab:2.1}
 		\begin{tabular}{p{2.5cm}l>{\raggedleft\arraybackslash}p{1.5cm}>{\raggedleft\arraybackslash}p{3cm}>{\raggedleft\arraybackslash}p{1.5cm}}
 			\hline \hline
 			\textbf{Category} & \textbf{Sector} & \textbf{N fem} & \textbf{\% fem} & \textbf{N total} \\ 
@@ -614,7 +614,7 @@ In this section,we extend the Neuman and Weiss model of the previous section to 
 \begin{table}[!ht]
 	\centering
 	\caption{Occupations by Strength of Female Proportion, RLMS 2018}
-	\label{tab:3.2}
+	\label{tab:2.2}
 		\begin{small}
 			\begin{tabular}{cp{10cm}ccc}
 				\hline
@@ -663,12 +663,12 @@ In this section,we extend the Neuman and Weiss model of the previous section to 
 
 The Neuman and Weiss model provides an estimation of the depreciation rate for human capital, but by itself is unable to identify how much of that  depreciation is external or internal. External depreciation is due to obsolescence (as new technologies make skills redundant) and internal depreciation is due to factors related to the individual. The previous section reported the finding that depreciation for female workers first exceeded and  then was exceeded by depreciation for male workers. Examining differences in depreciation rate by the segregation classfication helps identify between internal and external depreciation based on a conjecture. The conjecture is that external depreciation would have a greater affect by industry sector, as technological change would propagate more rapidly through a sector rather than through occupations, which are dispersed across sectors. 
 
-Table \ref{tab:3.3} depicts average rates of human capital loss due to experience and education by the female- and male-dominated industrial sectors and occupations. Industry or sector related differences does show difference in the depreciation rate, with depreciation rate being higher for male dominated industrial sectors. These are engineering and technology oriented sectors, compared to administration, services, and education which are the female dominated sectors. The depreciation does not appear to vary across occupational groupings - male dominated and female dominated occupation groupings have similar depreciation rates. These findings need to be treated as preliminary findings as they are only point estimates of depreciation, evaluated at mean values. 
+Table \ref{tab:2.3} depicts average rates of human capital loss due to experience and education by the female- and male-dominated industrial sectors and occupations. Industry or sector related differences does show difference in the depreciation rate, with depreciation rate being higher for male dominated industrial sectors. These are engineering and technology oriented sectors, compared to administration, services, and education which are the female dominated sectors. The depreciation does not appear to vary across occupational groupings - male dominated and female dominated occupation groupings have similar depreciation rates. These findings need to be treated as preliminary findings as they are only point estimates of depreciation, evaluated at mean values. 
 
 \begin{table}[htbp!]
 	\centering 
 	\caption{Average Human Capital Depreciation Rates (DR) by Female- and Male-dominated Industries and Occupations, RLMS 2018} 
-	\label{tab:3.3} 
+	\label{tab:2.3} 
 	\begin{tabular}{clcccc}
 		\hline
 		& \textbf{Statistic} &\textbf{Ind\_F}& \textbf{Ind\_M} & \textbf{occfemale} & \textbf{occmale} \\ 
@@ -686,16 +686,16 @@ Table \ref{tab:3.3} depicts average rates of human capital loss due to experienc
 
 \subsection{Depreciation and Occupational Routineness}
 
-In addition to the examination of human capital depreciation rates in gender-dominated industries and occupations, we explore differences in depreciation  between groups generated by using an array of routine and non-routine task content metrics for jobs. This is important in light of discussion about computers and robots taking over routine oriented jobs. In this analysis, we rely on a recent literature of job classification based on task intensity measures  \citet{mihaylov_152._2019}. These measures are based on the textual analysis of description of jobs in the ISCO 08 classification. Each job lists a detailed set of activities or tasks performed as part of the job, and these activities are rated according to whether they are vulnerable to automation in which case they are classified as Routine (R), otherwise they are Non-Routine (NR). Tasks are also classified depending on their Cognitive (C) or Manual (M) requirements; Cognitive taks are further classified as mainly Analytic (A) or Interactive (I). The results is a five-fold classification of tasks, which is subsequently used to develop a set of measures depending on the incidence of these tasks in the job description.
+In addition to the examination of human capital depreciation rates in gender-dominated industries and occupations, we explore differences in depreciation  between groups generated by using an array of routine and non-routine task content metrics for jobs. This is important in light of discussion about computers and robots taking over routine oriented jobs. In this analysis, we rely on a recent literature of job classification based on task intensity measures  \citet{Mihaylov_2019}. These measures are based on the textual analysis of description of jobs in the ISCO 08 classification. Each job lists a detailed set of activities or tasks performed as part of the job, and these activities are rated according to whether they are vulnerable to automation in which case they are classified as Routine (R), otherwise they are Non-Routine (NR). Tasks are also classified depending on their Cognitive (C) or Manual (M) requirements; Cognitive taks are further classified as mainly Analytic (A) or Interactive (I). The results is a five-fold classification of tasks, which is subsequently used to develop a set of measures depending on the incidence of these tasks in the job description.
 
 For purpose of this analyis, we use two of these measures. Routine Task Intensity measure (RTI) denotes a score difference between the summed routine task indices and the summed non-routine task indices: $(RC + RM) - (NRA + NRI + NRM)$ - it is a net measure of job routineness or vulnerability to automation. We also use a gross measure that brings together the non-routine task indices: $NRA + NRI + NRM$. Using the k-means clustering technique for the metrics described, we created two respective categorical variables (drti and dnraim) with categories capturing \textit{high, medium,} and \textit{low} manifestations of the features.
 
-Table \ref{tab:3.4} shows the results of comparing depreciation rates between individuals whose jobs invoke routine or non-routine tasks at a high, medium, or low level. The findings suggest that depreciation explained by experience does not differ substantially between people with jobs with varying routine task intensity. The same outcome also applies to workers varying in the degree of non-routine content at their jobs. As with the findings regarding gender, these should be regarded as preliminary findings subject to further analysis. However, it does appear that the automation aspect of technological change may not be affecting the rate of depreciation of skills - both routine and non-routine intensive jobs undergo depreciation, though it is possibly that the underlying causal factors may be different. 
+Table \ref{tab:2.4} shows the results of comparing depreciation rates between individuals whose jobs invoke routine or non-routine tasks at a high, medium, or low level. The findings suggest that depreciation explained by experience does not differ substantially between people with jobs with varying routine task intensity. The same outcome also applies to workers varying in the degree of non-routine content at their jobs. As with the findings regarding gender, these should be regarded as preliminary findings subject to further analysis. However, it does appear that the automation aspect of technological change may not be affecting the rate of depreciation of skills - both routine and non-routine intensive jobs undergo depreciation, though it is possibly that the underlying causal factors may be different. 
 
 \begin{table}[htbp!]
 	\centering
 	\caption{Average Human Capital Depreciation Rates (DR) by Routineness Classification, RLMS 2018}
-	\label{tab:3.4}
+	\label{tab:2.4}
 	\begin{tabular}{clccc|cccccc}
 		\hline
 		& \textbf{Statistic} & \textbf{High} & \textbf{Low} & \textbf{Medium} & \textbf{High} & \textbf{Low} & \textbf{Medium} \\ 
@@ -712,6 +712,22 @@ Table \ref{tab:3.4} shows the results of comparing depreciation rates between in
 		\hline
 	\end{tabular}
 \end{table}
+
+\section{Summarized Findings}
+
+\begin{itemize}
+\item \textbf{Depreciation of 2\%} The topic of depreciation of human capital is important from the policy perspective because increasing the human capital can be made both by the creation of human capital as well as reducing the depreciation of human capital to the extent possible. In this paper per first presented an overview of the literature regarding depreciation of human capital and present estimates of depreciation in the Russian Federation. Depreciation appears to be around 2\% per year in the most recent finding, with the depreciation mostly attributed to depreciation of human capital acquired with experience (Table\ref{tab:1.2}).
+
+\item \textbf{Depreciation declining then increasing}  The pattern of the depreciation rate indicates a gentle decline followed by an increase in the period 1994-2018 (Table \ref{tab:1.2} and Table \ref{tab:1.3}). This pattern is a reflection of the inverted-U shaped pattern of the rates of return to education. It is possible that depreciation may be an explanation for the observed tendency in the returns to education.
+
+\item \textbf{University educated individuals make more post-school investment too} In estimating rates of depreciation, we undertake an exploration of a related parameter that represents post-schooling investment in human capital. The data indicates that post-schooling investment for those with vocational education is indistinguishable from those with only secondary education. However, those with university education appear to be investing more in their working period (Table \ref{tab:1.4}).
+
+\item \textbf{Males may be experiencing higher depreciation than females} The paper explored differences in depreciation rates across industrial and occupation groupings denoted by levels of gender segrgation. Depreciation rates appear to be higher in male dominated industrial sectors but gender related occupational groupings do not show this differential. The evidence suggests that external depreciation due to obsolecence may be a dominant component of the depreciation of human capital (Table \ref{tab:2.3}). 
+
+\item \textbf{Automation possibilities of jobs may not be related to depreciation} The paper used a relatively recent classification of jobs regarding the potential for automation depending on the routine or non-routine nature of tasks. It was hypothesized that routine intensive jobs which are more likely to be taken overy by computers may suffer from a higher depreciation rate, but the data do not reveal differences in depreciation rate by routine task intensity (Table \ref{tab:2.4}).
+
+\end{itemize}
+
 
 \printbibliography
 
