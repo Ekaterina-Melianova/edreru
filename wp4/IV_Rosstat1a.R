@@ -1,4 +1,4 @@
-# IV_Rosstat.R
+# IV_Rosstat1a.R
 
 library(dplyr)
 library(tidyr)
@@ -72,7 +72,7 @@ names(Rosstat18)[1] <- 'OKATO'
 
 # Merging
 df <- Rosstat18 %>%
-  left_join(ivs, by = 'OKATO')
+  left_join(ivs, by = c('OKATO', 'RoR_names'))
 
 # Marital status
 df$married <- ifelse(df$H01_04 == 1 | df$H01_04 == 2, 1, 0)
@@ -229,6 +229,8 @@ else if (if_females == F & marital_status == 'single'){
 }
 return(ivmodel_list_res)
 }
+
+##################################################### BY DISTRICTS
 # Females all
 # Younger/older
 ivmodel.fem.all.y <- ivmodel_by_dist(df = df_y, if_females = T, marital_status = 'all')
@@ -300,6 +302,14 @@ ivreg.fem.all.o <- ivreg(log(wage) ~ edu_yrs + exper + I(exper^2)|
 summary(ivreg.fem.all.o, vcov = sandwich, diagnostics = T) # the same as ivmodel
 
 # So the problem is not in ivmodel, but in something else
+#########################################################################################################################
+#########################################################################################################################
+#########################################################################################################################
+#########################################################################################################################
+#########################################################################################################################
+#########################################################################################################################
+#########################################################################################################################
+#########################################################################################################################
 #########################################################################################################################
 
 ########################### (iii) Use HDM and Post Lasso and look at results
@@ -512,6 +522,19 @@ ggplot(pLasso_TSLS_coefs, aes(y = cat_sorted, colour = Method)) +
   scale_color_manual(values = c('darkgreen', 'blue', 'red'), 
                      labels = c('OLS', 'pLasso: high_n, HSGPER, migrationrate', 
                                 '2SLS: Literacy_97')) +
+  geom_point(aes(x = Est), size = 2) +
+  geom_text(aes(x = Est, label = Est, vjust = -1), color="black" ) +
+  theme(panel.background = element_blank(),
+        axis.title = element_blank(),
+        axis.text = element_text(size = 14, face = 'bold'), 
+        axis.line = element_line(color = 'black'),
+        plot.title.position = 'plot')
+
+ggplot(pLasso_TSLS_coefs[!pLasso_TSLS_coefs$Method == 'TSLS',], aes(y = cat_sorted, colour = Method)) + 
+  geom_errorbar(aes(xmin = lower, xmax = upper),
+                width = 0, size = 1) + 
+  scale_color_manual(values = c('darkgreen', 'blue'), 
+                     labels = c('OLS', 'pLasso: high_n, HSGPER, migrationrate')) +
   geom_point(aes(x = Est), size = 2) +
   geom_text(aes(x = Est, label = Est, vjust = -1), color="black" ) +
   theme(panel.background = element_blank(),

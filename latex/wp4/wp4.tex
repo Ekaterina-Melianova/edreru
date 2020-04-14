@@ -40,7 +40,7 @@
 \usepackage[backend=bibtex,
 			natbib=true, 
 			style=chicago-authordate]{biblatex}
-\addbibresource{Returns.bib}
+\addbibresource{wp4.bib}
 
 \usepackage{array}
 \usepackage{longtable}
@@ -140,13 +140,39 @@ General Literature
 
 Russia Specific
 
-\section{Lasso and Post-Lasso Instrumental Variables: Overview of Estimation method}
+The usage of instrumental variables as a way of correcting for the endogeneity of educational attainments in the estimation of returns to schooling in Russia is relatively rare. Nevertheless, there are several papers that leveraged IV technique and made a number of important conclusions.
 
-\lipsum[2]
+One research ascertained that during the transition returns to education in Russia were not improving and remained among the most deficient in the world \citep{cheidvasser_educated_2007}. The researchers instrumented years of schooling, employing a policy experiment in Russia from the 1950s to 1960s, and corrected for a selectivity bias by adding an equation for the labor market participation. It was highlighted that the excess of well-educated workers seemed to be the main underpinning factor of wage differentials in Russia after Soviet Union dissolution. Additionally, the study showed that heterogeneity in rates of returns to education in Russia also hails from gender differences similar to the global patterns: women receive greater returns to higher education than men.
 
-\lipsum[3]
+Utilizing the same instruments as \citet{cheidvasser_educated_2007}, \citet{akhmedjonov_higher_2011} evaluated the magnitude of the education premiums in Russia between 2000 and 2002. Both OLS and 2SLS estimates (8\% and 19.1\% respectively) were indicative of significant returns and the formation of a more flexible wage structure in the Russian Federation.
 
-\lipsum[4]
+\citet{arabsheibani_returns_2012} introduced the age of sexual intercourse as another instrumental variable to tackle endogeneity in schooling. In line with some past research, the scholars show that OLS undervalues returns to education compared to the IV estimates. The study adopts an instrumental variable quantile approach over the wage distribution in addition to the conditional mean estimation.
+
+\citet{kyui_expansion_2016}, using the amount available slots as an instrument, showed that returns to schooling in Russia declined for those who took advantage of higher education expansion in a post-communist Russia (1990-2005) in comparison to youths who obtained university degree in preceding periods. In an earlier study, \citet{kyui_returns_2010} used the accessibility of tertiary education and the education levels of other household members as instruments in a wage equation (2010). The scholar demonstrated that a growth in returns to education in the Russian Federation does not indicate its closeness to the developed countries \citep{kyui_returns_2010}.
+
+\citet{belskaya_college_2014} evaluated a large-scale college expansion in Russia after the breakdown of the Soviet Union (2014). Using the number of campuses in the municipality of residence at age 17 as an instrument, the research contended that as the number of university campuses grew, individuals with low returns to schooling grew as well. But for a marginal person, who switched into a treatment group as a result of new campuses opening, the total gains from attending a college are considerable and positive. Furthermore, the scholars found that students with higher returns are attracted more intensively by new campuses opened in constrained municipalities (small non-capital cities or those lacking higher education institutions before college expansion) in comparison to the unconstrained ones.
+
+
+\section{Lasso and Post-Lasso Instrumental Variables: Overview of Estimation Method}
+
+This study uses post-Lasso IV estimation, which was elaborated by \citet{belloni_high_2011} and \citet{belloni_sparse_2012} a decade ago. The method performs an optimal IV selection, using Lasso technique.
+
+The Lasso (Least Absolute Shrinkage and Selection Operator) is a regression analysis method, which was popularized by Tibshirani \citet{tibshirani_regression_1996}. As it stems from the name, the method does both variable selection and shrinkage (unlike Ridge, which only shrinks). The Lasso solves a regression problem with L1 penalization of finding \citep{diebold_econometric_2019}:
+
+\begin{equation}\hat{\beta}_{L A S S O}=\operatorname{argmin}_{\beta}\left(\sum_{i=1}^{N}\left(y_{i}-\sum_{i} \beta_{i} x_{i t}\right)^{2}+\lambda \sum_{i=1}^{K}\left|\beta_{i}\right|\right)\end{equation}
+
+or equivalently:
+
+\begin{equation}\hat{\beta}_{L A S S O}=\operatorname{argmin}_{\beta} \sum_{i=1}^{N}\left(y_{i}-\sum_{i} \beta_{i} x_{i t}\right)^{2}\end{equation}
+
+s.t.
+
+\begin{equation}\sum_{i=1}^{K}\left|\beta_{i}\right| \leq c\end{equation}
+
+The equations portray that the Lasso loss function is composed of the least squares estimator (or can be extended to many other estimators) and a penalty term in a form of the absolute coefficient value. The main distinctive property of this technique is the ability to conduct feature selection procedure by nullifying regression coefficients of low importance, which is of particular relevance in situations with large feature sets. In case of zero lambda, the method gets back to OLS, while huge lambdas reduce coefficients to zero and may lead to under-fitting.
+
+The d.f. results of Lasso are convenient: the effective number of parameters equals exactly to the number of the picked up (non-zero) variables. The best-fitting lambda can be chosen by reliance on various information criteria (e.g., AIC and SIC) or cross-validation. The additional advantage of Lasso is its relative computational tractability due to the convex minimization problem \citep{diebold_econometric_2019}.
+
 
 \section{Empirical Studies using Post-Lasso IV methodology}
 

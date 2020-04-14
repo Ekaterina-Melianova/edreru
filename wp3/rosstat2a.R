@@ -6,7 +6,7 @@ library(lme4)
 library(rio)
 
 ###### Rosstat main 2018 dataset
-wd <- 'C:/Country/Russia/Data/SEASHELL/SEABYTE/edreru/wp1'
+wd <- 'C:/Country/Russia/Data/SEASHELL/SEABYTE/edreru/wp3'
 setwd(wd)
 Rosstat18 <- readRDS('Rosstat18.rds')
 names(Rosstat18)[1] <- 'OKATO'
@@ -92,7 +92,7 @@ Ranks$rank_supply <- rowMeans(Ranks[, c('rank_univ', 'rank_ege')])
 Ranks <- Ranks %>% select(en_rgnames, OKATO, rank_supply,
                         rank_demand, rank_re_HE, rank_re_VE)
 
-export(Ranks, 'Ranks.xlsx')
+
 ###############################################################################################
 # Depressed regions
 #depressed_regions <- c('Respublika Adygeya', 'Pskovskaya Oblast',
@@ -114,6 +114,5 @@ Ranks$Ql_re_low_dem_greater <- ifelse(Ranks$rank_re_HE >= 28 &
 Ranks$Ql_re_low_dem_lower <- ifelse(Ranks$rank_re_HE >= 28 & 
                                                Ranks$rank_demand < Ranks$rank_supply, 1, 0)
 
-
-
 export(Ranks, 'Ranks.xlsx')
+# in Ranks_modified the regions are arranged manually according to our classification

@@ -84,7 +84,7 @@
       <file>wp4-blx.bib</file>
     </requires>
     <requires type="editable">
-      <file>Returns.bib</file>
+      <file>wp4.bib</file>
     </requires>
     <requires type="static">
       <file>biblatex.bst</file>

@@ -387,7 +387,7 @@ ggsave("reg_ve_18.png", width = 8, height = 20,
 ############################################################################################
 # A file with region names
 Sys.setlocale("LC_CTYPE", "russian")
-wd <- "C:/Country/Russia/Data/SEASHELL/SEABYTE/edreru/wp1"
+wd <- "C:/Country/Russia/Data/SEASHELL/SEABYTE/edreru/wp3"
 setwd(wd)
 rgvars <- rio::import("rgvars.xlsx") %>% arrange(OKATO)
 
