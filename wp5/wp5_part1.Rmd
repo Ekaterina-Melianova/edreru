@@ -1,0 +1,434 @@
+---
+title: "R Notebook"
+output:
+  html_document:
+    df_print: paged
+---
+
+# Part 1. Descriptive statistics
+
+
+```{r Libraries, include=FALSE}
+
+library(tidyverse)
+library(sp)
+library(maptools)
+library(ggmap)
+library(raster)
+library(rio)
+library(sf)
+library(dplyr)
+library(purrr)
+library(raster)
+library(osmdata)
+library(data.table)
+library(rio)
+library(ggplot2)
+library(ggmap)
+library(tmap)
+library(rgeos)
+library(geosphere)
+library(tidyr)
+library(osmdata)
+library(OpenStreetMap)
+library(maps)
+library(RColorBrewer)
+library(spatstat)
+library(igraph)
+library(janitor)
+require(gridExtra)
+library(spatialEco)
+library(RJSONIO)
+library(RCurl)
+library(jsonlite)
+library(rangeMapper)
+library(geojsonio)
+library(descr)
+library(BaylorEdPsych)
+library(mvnmle)
+library(mice)
+library(Amelia)
+
+```
+
+
+### Data Preprocessing
+
+```{r Data Preprocessing, include=FALSE}
+
+setwd('C:/Country/Russia/Data/SEASHELL/SEABYTE/Databases/Tertiary')
+
+# Load dataframes
+df_colleges <- rio::import("dataframe_colleges.xlsx")
+df_universities <- rio::import("dataframe_universities.xlsx")
+df_universities_areas <- rio::import("dataframe_universities_areas.xlsx")
+
+
+### Filtering
+
+# Select Universities with more than 100 graduates
+df_universities <- df_universities[df_universities$graduates_number > 100,]
+# Remove salary outlier
+df_universities <- df_universities[df_universities$salary_2016 != max(df_universities$salary_2016),]
+# Remove 0 salaries
+df_universities <- df_universities[df_universities$salary_2016 != 0,]
+# Select Colleges with more than 50 graduates
+df_colleges <- df_colleges[df_colleges$graduates_number > 50,]
+
+
+### Remove outliers of salaries
+
+# Colleges
+high_quant <- quantile(df_colleges$graduate_salary_2014, 0.99)
+low_quant <- quantile(df_colleges$graduate_salary_2014, 0.01)
+df_colleges <- df_colleges[df_colleges$graduate_salary_2013 < high_quant,]
+df_colleges <- df_colleges[df_colleges$graduate_salary_2013 > low_quant,]
+
+# Universities
+high_quant <- quantile(df_universities$salary_2014, 0.99)
+low_quant <- quantile(df_universities$salary_2014, 0.01)
+df_universities <- df_universities[df_universities$salary_2014 < high_quant,]
+df_universities <- df_universities[df_universities$salary_2014 > low_quant,]
+
+
+### Caclulate rate of salary change
+
+# Calculate rate of salary change for universities
+df_universities$rate_salary_change <- df_universities$salary_2016 / df_universities$salary_2014
+# Remove outlier
+high_quant <- quantile(df_universities$rate_salary_change, 0.99)
+low_quant <- quantile(df_universities$rate_salary_change, 0.01)
+df_universities$rate_salary_change[df_universities$rate_salary_change > high_quant] <- NA
+df_universities$rate_salary_change[df_universities$rate_salary_change < low_quant] <- NA
+
+# Calculate rate of salary change for colleges
+df_colleges$rate_salary_change <- df_colleges$graduate_salary_2016 / df_colleges$graduate_salary_2014
+# Remove outlier
+high_quant <- quantile(df_colleges$rate_salary_change, 0.99)
+low_quant <- quantile(df_colleges$rate_salary_change, 0.01)
+df_colleges$rate_salary_change[df_colleges$rate_salary_change > high_quant] <- NA
+df_colleges$rate_salary_change[df_colleges$rate_salary_change < low_quant] <- NA
+
+
+### Calculate salary compared to the region mean
+
+# Colleges
+df_colleges <- df_colleges %>%
+  group_by(region_name) %>%
+  mutate(salary_normed_2014 = graduate_salary_2014/mean(graduate_salary_2014)) %>%
+  ungroup() %>%
+  as.data.frame()
+
+# Universities
+df_universities <- df_universities %>%
+  group_by(region_name) %>%
+  mutate(salary_normed_2014 = salary_2014/mean(salary_2014)) %>%
+  ungroup() %>%
+  as.data.frame()
+
+
+### Recode rare specialization types in universities and colleges
+df_colleges$speciality_type[df_colleges$speciality_type == "спортивный"] <- "общий"
+df_universities$specialization_type[df_universities$specialization_type == "спортивный"] <- "специализированный"
+
+### Remove outliers from Income and PaidServices
+
+removeOutliers <- function(vec, q=0.01){
+  
+  # Calculate low and high threshold for outliers based on quantile value q
+  low_q <- quantile(vec, q, na.rm=T)
+  high_q <- quantile(vec, 1 - q, na.rm=T)
+  # Overwrite outliers with NA's
+  vec[vec > high_q] <- NA
+  vec[vec < low_q] <- NA
+  
+  return(vec)
+}
+
+# 1. Colleges
+df_colleges$income_total_2012 <- removeOutliers(df_colleges$income_total_2012)
+df_colleges$income_total_2013 <- removeOutliers(df_colleges$income_total_2013)
+df_colleges$income_total_2014 <- removeOutliers(df_colleges$income_total_2014)
+df_colleges$income_total_2015 <- removeOutliers(df_colleges$income_total_2015)
+df_colleges$income_total_2016 <- removeOutliers(df_colleges$income_total_2016)
+df_colleges$income_total_2017 <- removeOutliers(df_colleges$income_total_2017)
+
+df_colleges$cashReceipts_paidServices_2012 <- removeOutliers(df_colleges$cashReceipts_paidServices_2012)
+df_colleges$cashReceipts_paidServices_2013 <- removeOutliers(df_colleges$cashReceipts_paidServices_2013)
+df_colleges$cashReceipts_paidServices_2014 <- removeOutliers(df_colleges$cashReceipts_paidServices_2014)
+df_colleges$cashReceipts_paidServices_2015 <- removeOutliers(df_colleges$cashReceipts_paidServices_2015)
+df_colleges$cashReceipts_paidServices_2016 <- removeOutliers(df_colleges$cashReceipts_paidServices_2016)
+df_colleges$cashReceipts_paidServices_2017 <- removeOutliers(df_colleges$cashReceipts_paidServices_2017)
+
+# 2. Universities
+df_universities$income_total_2012 <- removeOutliers(df_universities$income_total_2012)
+df_universities$income_total_2013 <- removeOutliers(df_universities$income_total_2013)
+df_universities$income_total_2014 <- removeOutliers(df_universities$income_total_2014)
+df_universities$income_total_2015 <- removeOutliers(df_universities$income_total_2015)
+df_universities$income_total_2016 <- removeOutliers(df_universities$income_total_2016)
+df_universities$income_total_2017 <- removeOutliers(df_universities$income_total_2017)
+
+df_universities$cashReceipts_paidServices_2012 <- removeOutliers(df_universities$cashReceipts_paidServices_2012)
+df_universities$cashReceipts_paidServices_2013 <- removeOutliers(df_universities$cashReceipts_paidServices_2013)
+df_universities$cashReceipts_paidServices_2014 <- removeOutliers(df_universities$cashReceipts_paidServices_2014)
+df_universities$cashReceipts_paidServices_2015 <- removeOutliers(df_universities$cashReceipts_paidServices_2015)
+df_universities$cashReceipts_paidServices_2016 <- removeOutliers(df_universities$cashReceipts_paidServices_2016)
+df_universities$cashReceipts_paidServices_2017 <- removeOutliers(df_universities$cashReceipts_paidServices_2017)
+
+
+### Calculate Income per graduate in 2012
+df_universities$income_per_graduate_2012 <- df_universities$income_total_2012 / df_universities$graduates_number
+df_colleges$income_per_graduate_2012 <- df_colleges$income_total_2012 / df_colleges$graduates_number
+
+
+### Spatial
+
+# Load GADM map of Russia
+gadm_russia <- readRDS("gadm36_RUS_1_sp.rds")
+
+# Create spatial points dataframe for the colleges
+spdf_colleges <- SpatialPointsDataFrame(data=df_colleges,
+  coords=as.matrix(df_colleges[,c("coordinates_long", "coordinates_lat")]),
+  proj4string=gadm_russia@proj4string)
+# Create spatial points dataframe for the universities
+spdf_universities <- SpatialPointsDataFrame(data=df_universities,
+  coords=as.matrix(df_universities[,c("coordinates_long", "coordinates_lat")]),
+  proj4string=gadm_russia@proj4string)
+
+# Reproject in different coordinates
+proj4.str <- CRS("+init=epsg:3413 +lon_0=105")
+gadm.prj <- spTransform(gadm_russia, proj4.str)
+spdf_colleges.prj <- spTransform(spdf_colleges, proj4.str)
+spdf_universities.prj <- spTransform(spdf_universities, proj4.str)
+
+## Colleges
+# Get the polygon id for each organization
+colleges_polygon_indices <- over(spdf_colleges,
+                 SpatialPolygons(gadm_russia@polygons, proj4string=gadm_russia@proj4string),
+                 returnList=F)
+spdf_colleges$polygon_index <- colleges_polygon_indices
+# Calculate number of organizations in each region
+colleges_region_number <- as.data.frame(spdf_colleges) %>%
+  group_by(polygon_index) %>% count() %>% as.data.frame()
+colnames(colleges_region_number) <- c("region_id", "count")
+df_temp <- data.frame(region_id=1:length(gadm.prj))
+df_temp <- df_temp %>% left_join(colleges_region_number, by='region_id')
+df_temp$count[is.na(df_temp$count)] <- 0
+# Add number of organizations
+gadm.prj$colleges_number <- df_temp$count
+
+## Universities
+# Get the polygon id for each organization
+universities_polygon_indices <- over(spdf_universities,
+                                 SpatialPolygons(gadm_russia@polygons, proj4string=gadm_russia@proj4string),
+                                 returnList=F)
+spdf_universities$polygon_index <- universities_polygon_indices
+# Calculate number of organizations in each region
+universities_region_number <- as.data.frame(spdf_universities) %>%
+  group_by(polygon_index) %>% count() %>% as.data.frame()
+colnames(universities_region_number) <- c("region_id", "count")
+df_temp <- data.frame(region_id=1:length(gadm.prj))
+df_temp <- df_temp %>% left_join(universities_region_number, by='region_id')
+df_temp$count[is.na(df_temp$count)] <- 0
+# Add number of organizations
+gadm.prj$universities_number <- df_temp$count
+
+
+### Remove outliers from df_universities_areas
+
+# Remove low number of graduates
+df_universities_areas <- df_universities_areas[df_universities_areas$graduates_number >= 30,]
+
+# Remove outliers in the 2014 salary
+high_quant <- quantile(df_universities_areas$graduates_salary_2014, 0.99)
+low_quant <- quantile(df_universities_areas$graduates_salary_2014, 0.01)
+df_universities_areas <- df_universities_areas[df_universities_areas$graduates_salary_2014 < high_quant,]
+df_universities_areas <- df_universities_areas[df_universities_areas$graduates_salary_2014 > low_quant,]
+
+# Remove outliers in the 2016 salary
+high_quant <- quantile(df_universities_areas$graduates_salary_2016, 0.99)
+low_quant <- quantile(df_universities_areas$graduates_salary_2016, 0.01)
+df_universities_areas <- df_universities_areas[df_universities_areas$graduates_salary_2016 < high_quant,]
+df_universities_areas <- df_universities_areas[df_universities_areas$graduates_salary_2016 > low_quant,]
+
+# Calculate graduate salary change
+df_universities_areas$rate_salary_change <- df_universities_areas$graduates_salary_2016/df_universities_areas$graduates_salary_2014
+high_quant <- quantile(df_universities_areas$rate_salary_change, 0.99)
+low_quant <- quantile(df_universities_areas$rate_salary_change, 0.01)
+df_universities_areas$rate_salary_change[df_universities_areas$rate_salary_change > high_quant] <- NA
+df_universities_areas$rate_salary_change[df_universities_areas$rate_salary_change < low_quant] <- NA
+
+```
+
+### Visualization
+
+```{r Plot 1. Number of colleges and universities in a region, echo=FALSE, fig.height=10, fig.width=10}
+
+# Plot with Number of colleges
+plot1 <- tm_shape(gadm.prj) + tm_borders() + tm_fill(title = "Number of colleges", col="colleges_number", palette="Greens") + tm_layout(title="Number of colleges by region")
+# Plot with Number of universities
+plot2 <- tm_shape(gadm.prj) + tm_borders() + tm_fill(title = "Number of universities", col="universities_number", palette="Blues") + tm_layout(title="Number of universities by region")
+# Arrange in one plot
+tmap_arrange(plot1, plot2, nrow=2)
+
+```
+
+
+
+```{r Plot 2. Average salary for graduates in 2014 by region, echo=FALSE, fig.width = 10, fig.height = 15}
+
+## Colleges
+# Calculate average salary in each region
+colleges_region_salary <- as.data.frame(spdf_colleges)[,c("graduate_salary_2014", "polygon_index")] %>%
+                          group_by(polygon_index) %>%
+                          summarise(mean_salary=mean(graduate_salary_2014, na.rm=T)) %>%
+                          as.data.frame()
+
+colnames(colleges_region_salary) <- c("region_id", "mean_salary")
+df_temp <- data.frame(region_id=1:length(gadm.prj))
+df_temp <- df_temp %>% left_join(colleges_region_salary, by='region_id')
+
+# Add number of organizations
+gadm.prj$colleges_salary <- df_temp$mean_salary
+
+# Plot colleges salary
+plot1 <- tm_shape(gadm.prj) + tm_borders() + tm_fill(title="Average salary", col="colleges_salary", palette="Greens") + tm_layout(title="Average Salary for College Graduates in 2014")
+
+
+## Universities
+# Calculate average salary in each region
+universities_region_salary <- as.data.frame(spdf_universities)[,c("salary_2014", "polygon_index")] %>%
+  group_by(polygon_index) %>%
+  summarise(mean_salary=mean(salary_2014, na.rm=T)) %>%
+  as.data.frame()
+colnames(universities_region_salary) <- c("region_id", "mean_salary")
+
+df_temp <- data.frame(region_id=1:length(gadm.prj))
+df_temp <- df_temp %>% left_join(universities_region_salary, by='region_id')
+
+# Add universities salary
+gadm.prj$universities_salary <- df_temp$mean_salary
+
+# Plot colleges salary
+plot2 <- tm_shape(gadm.prj) + tm_borders() + tm_fill(title="Average salary", col="universities_salary", palette="Blues") + tm_layout(title="Average Salary for University Graduates in 2014")
+
+# Arrange in one plot
+tmap_arrange(plot1, plot2, nrow=2)
+
+```
+
+
+
+```{r Plot 3. Salary of graduates by specialization type, echo=FALSE, fig.width = 25, fig.height = 12}
+
+# 1. Universities
+plot1 <- ggplot(df_universities, aes(reorder(specialization_type, salary_2014), salary_2014)) +
+  geom_boxplot(outlier.shape = NA) + 
+  coord_flip() +
+  ggtitle("Salary of University Graduates in 2014 by Specialization") + 
+  labs(y="Average salary", x = "Specialization of university") + 
+  theme_classic() + theme(plot.title = element_text(size = 24), axis.text = element_text(size=18))
+
+# 2. Colleges
+plot2 <- ggplot(df_colleges, aes(reorder(speciality_type, graduate_salary_2014), graduate_salary_2014)) +
+  geom_boxplot(outlier.shape = NA) + 
+   coord_flip() +
+  ggtitle("Salary of College Graduates in 2014 by Specialization") +
+  labs(y="Average salary", x = "Specialization of college") + 
+  theme_classic() + theme(plot.title = element_text(size = 24), axis.text = element_text(size=18))
+
+# Arrange in one plot
+grid.arrange(plot1, plot2, ncol=2)
+
+```
+
+
+```{r Plot 4. Graduate salary and rate of salary increase colored by specialization, echo=FALSE, fig.width = 16, fig.height = 8}
+
+# 1. Colleges
+plot2 <- ggplot(df_colleges, aes(x=graduate_salary_2014, y=rate_salary_change)) +
+  geom_point() + geom_smooth(method="lm") + theme_minimal() + theme(plot.title = element_text(size = 18), axis.text = element_text(size=14)) +
+  labs(x="Average salary in 2014", y = "Rate of Salary Increase in 2016") + 
+  ggtitle("Salary of College Graduates and Rate of Salary Increase")
+
+# 2. Universities
+plot1 <- ggplot(df_universities, aes(x=salary_2014, y=rate_salary_change)) +
+  geom_point() + geom_smooth(method="lm") + theme_minimal() + theme(plot.title = element_text(size = 18), axis.text = element_text(size=14)) +
+  labs(x="Average salary in 2014", y = "Rate of Salary Increase in 2016") + 
+  ggtitle("Salary of University Graduates and Rate of Salary Increase")
+
+# Arrange in one plot
+grid.arrange(plot1, plot2, ncol=2)
+
+```
+
+
+```{r Plot 5. Salary of university graduates by study area, echo=FALSE, fig.width = 14, fig.height = 14}
+
+# Mean salary by areas in 2014
+area_salary_2014 <- df_universities_areas %>%
+  dplyr::select(area_name, graduates_salary_2014) %>%
+  group_by(area_name) %>%
+  summarise(mean_salary=mean(graduates_salary_2014)) %>%
+  mutate(year="2014") %>%
+  as.data.frame()
+
+# Mean salary by areas in 2016
+area_salary_2016 <- df_universities_areas %>%
+  dplyr::select(area_name, graduates_salary_2016) %>%
+  group_by(area_name) %>%
+  summarise(mean_salary=mean(graduates_salary_2016)) %>%
+  mutate(year="2016") %>%
+  as.data.frame()
+
+# Combine into one dataframe
+area_salary_full <- rbind(area_salary_2014, area_salary_2016)
+# Add column with salary 2014 for sorting
+area_salary_full$mean_salary_2014 <- rbind(area_salary_2014, area_salary_2014)$mean_salary
+
+# Plot the salaries by the areas
+ggplot(area_salary_full, aes(reorder(area_name, mean_salary_2014), mean_salary, color=year)) +
+  geom_point(size=3)  + coord_flip() + theme_light() + theme(plot.title = element_text(size = 22, hjust = 0.9), axis.text = element_text(size=14), legend.text = element_text(size = 14), legend.title=element_text(size=14)) +
+  labs(x="Study area", y = "Average salary") + 
+  ggtitle("Salary of University Graduates by Study Area in 2014 and 2016")
+
+
+```
+
+
+```{r Plot 6. Income per graduate by region, echo=FALSE, fig.width = 10, fig.height = 15}
+
+calculateMeanForRegion <- function(spdf_organizations, var_name, gadm.prj=gadm.prj){
+  
+  # Calculate average salary in each region
+  organizations_region_mean <- as.data.frame(spdf_organizations)[,c(var_name, "polygon_index")] %>%
+    group_by(polygon_index) %>%
+    summarise(region_mean=mean(get(var_name), na.rm=T)) %>%
+    as.data.frame()
+  
+  colnames(organizations_region_mean) <- c("region_id", "region_mean")
+  df_temp <- data.frame(region_id=1:length(gadm.prj))
+  df_temp <- df_temp %>% left_join(organizations_region_mean, by='region_id')
+  
+  return(df_temp$region_mean)
+}
+
+# Calculate mean income per graduate by region
+gadm.prj$colleges_income_per_graduate <- calculateMeanForRegion(spdf_colleges,
+                                                                'income_per_graduate_2012', gadm.prj)
+gadm.prj$universities_income_per_graduate <- calculateMeanForRegion(spdf_universities,
+                                                                'income_per_graduate_2012', gadm.prj)
+
+# Plot with colleges
+plot1 <- tm_shape(gadm.prj) + tm_borders() + tm_fill(title = "Income per graduate", col="colleges_income_per_graduate", palette="Greens") + tm_layout(title="College Income per Graduate in 2012 by Region")
+# Plot with universities
+plot2 <- tm_shape(gadm.prj) + tm_borders() + tm_fill(title = "Income per graduate", col="universities_income_per_graduate", palette="Blues") + tm_layout(title="University Income per Graduate in 2012 by Region")
+# Arrange in one plot
+tmap_arrange(plot1, plot2, nrow=2)
+
+
+```
+
+
+
+

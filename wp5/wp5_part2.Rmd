@@ -1,0 +1,505 @@
+---
+title: "R Notebook"
+output:
+  html_document:
+    df_print: paged
+---
+
+
+```{r Libraries, include=FALSE}
+
+library(tidyverse)
+library(tidyverse)
+library(sp)
+library(maptools)
+library(ggmap)
+library(raster)
+library(rio)
+library(sf)
+library(dplyr)
+library(purrr)
+library(raster)
+library(osmdata)
+library(data.table)
+library(rio)
+library(ggplot2)
+library(ggmap)
+library(tmap)
+library(rgeos)
+library(geosphere)
+library(tidyr)
+library(osmdata)
+library(OpenStreetMap)
+library(maps)
+library(RColorBrewer)
+library(spatstat)
+library(igraph)
+library(janitor)
+library(gridExtra)
+library(spatialEco)
+library(RJSONIO)
+library(RCurl)
+library(jsonlite)
+library(rangeMapper)
+library(geojsonio)
+library(descr)
+library(BaylorEdPsych)
+library(mvnmle)
+library(mice)
+library(Amelia)
+library(foreign)
+library(gmodels)
+library(lmtest)
+library(sqldf)
+library(questionr)
+library(labelled)
+library(tidyr)
+library(magrittr)
+library(ggplot2)
+library(pbapply)
+library(nnet)
+library(splitstackshape)
+library(stringi)
+library(stringr)
+library(FinCal)
+library(knitr)
+library(kableExtra)
+
+```
+
+```{r Data Loading, include=FALSE}
+
+setwd('C:/Country/Russia/Data/SEASHELL/SEABYTE/Databases/Tertiary')
+
+# Load dataframes
+df_colleges <- rio::import("dataframe_colleges.xlsx")
+df_universities <- rio::import("dataframe_universities.xlsx")
+df_universities_areas <- rio::import("dataframe_universities_areas.xlsx")
+
+
+### Filtering
+# Select Universities with more than 100 graduates
+df_universities <- df_universities[df_universities$graduates_number > 100,]
+# Remove salary outlier
+# df_universities <- df_universities[df_universities$salary_2016 != max(df_universities$salary_2016),]
+# Remove 0 salaries
+df_universities <- df_universities[df_universities$salary_2016 != 0,]
+# Select Colleges with more than 50 graduates
+df_colleges <- df_colleges[df_colleges$graduates_number > 50,]
+
+### Recode rare specialization types in universities and colleges
+df_colleges$speciality_type[df_colleges$speciality_type == "спортивный"] <- "общий"
+df_universities$specialization_type[df_universities$specialization_type == "спортивный"] <- "специализированный"
+
+```
+
+# Part 2. Returns Ranks based on IRR for 4 year period after graduation
+
+
+### Calculation of Returns
+
+```{r Calculation of Returns, include=FALSE}
+
+### Private Cost
+
+# 1. Universities
+df_universities$paidServices_mean <- df_universities %>%
+  dplyr::select(cashReceipts_paidServices_2012, cashReceipts_paidServices_2013, cashReceipts_paidServices_2014,
+                cashReceipts_paidServices_2015, cashReceipts_paidServices_2016, cashReceipts_paidServices_2017) %>%
+  rowMeans(na.rm = T, dims = 1)
+# Calculate social cost per graduate
+df_universities$private_cost <- df_universities$paidServices_mean / (df_universities$graduates_number*4)
+
+# 2. Colleges 
+df_colleges$paidServices_mean <- df_colleges %>%
+  dplyr::select(cashReceipts_paidServices_2012, cashReceipts_paidServices_2013, cashReceipts_paidServices_2014,
+                cashReceipts_paidServices_2015, cashReceipts_paidServices_2016, cashReceipts_paidServices_2017) %>%
+  rowMeans(na.rm = T, dims = 1)
+# Calculate social cost per graduate
+df_colleges$private_cost <- df_colleges$paidServices_mean / (df_colleges$graduates_number*3)
+
+
+### Social Cost
+# we use total income of establishment as the social cost
+
+# 1. Universities
+df_universities$income_total_mean <- df_universities %>%
+  dplyr::select(income_total_2012, income_total_2013, income_total_2014,
+                income_total_2015, income_total_2016, income_total_2017) %>%
+  rowMeans(na.rm = T, dims = 1)
+# Calculate social cost per graduate
+df_universities$social_cost <- df_universities$income_total_mean / (df_universities$graduates_number*4)
+
+# 2. Colleges
+df_colleges$income_total_mean <- df_colleges %>%
+  dplyr::select(income_total_2012, income_total_2013, income_total_2014,
+                income_total_2015, income_total_2016, income_total_2017) %>%
+  rowMeans(na.rm = T, dims = 1)
+# Calculate social cost per graduate
+df_colleges$social_cost <- df_colleges$income_total_mean / (df_colleges$graduates_number*3)
+
+# Remove organizations with 0 social costs
+df_universities <- df_universities[-which(df_universities$social_cost == 0),]
+
+# Remove organizations with 0 salary for graduates
+df_colleges <- df_colleges[df_colleges$graduate_salary_2013 > 0,]
+df_universities <- df_universities[df_universities$salary_2014 > 0,]
+
+
+calculateIRR <- function(one_row, org_type, return_type){
+  
+  # Compute the internal rate of return for one row (organization) in the dataframe
+  #
+  # Input:
+  #   1. row - row of the university/college dataframe
+  #   2. org_type - type of the organization, "university" or "college"
+  #   3. return_type - type of the return, "private" or "social"
+  # 
+  # Output:
+  #   1. rate_of_return - the internal rate of return
+
+  # Search for NA in social, private cost variables
+  if (one_row %>% dplyr::select(social_cost, private_cost) %>% is.na() %>% any()){
+  
+    # Rate of return can't be calculated - return NA
+    rate_of_return <- NA
+    
+  } else {
+    
+    # Select cost variable according the type of returns
+    if (return_type == "private"){
+      cost_variable <- "private_cost"
+    } else {
+      cost_variable <- "social_cost"
+    }
+    
+    # Select salary variables according to the type of organization
+    if (org_type == "university"){
+      # Append 2014-2016 salaries to the 4 years of expenses 
+      rate_of_return <- FinCal::irr(c(rep(-as.numeric(one_row[cost_variable]), 4),
+                                      one_row$salary_2014, one_row$salary_2015, one_row$salary_2016))
+    } else {
+      
+      # Append 2013-2016 salaries to the 3 years of expenses
+      rate_of_return <- FinCal::irr(c(rep(-as.numeric(one_row[cost_variable]), 3),
+                                      one_row$graduate_salary_2013, one_row$graduate_salary_2014,
+                                      one_row$graduate_salary_2015, one_row$graduate_salary_2016))
+    }
+    
+  }
+  
+  return(rate_of_return)
+  
+}
+
+
+### Calculate the IRR
+
+# 1, Universities - Social
+university_social_returns <- c()
+for(i in 1:nrow(df_universities)){university_social_returns <- c(university_social_returns,
+                                  (calculateIRR(df_universities[i,], "university", "social")))}
+df_universities$social_returns <- university_social_returns
+
+# 2, Universities - Private
+university_private_returns <- c()
+for(i in 1:nrow(df_universities)){university_private_returns <- c(university_private_returns,
+                                  (calculateIRR(df_universities[i,], "university", "private")))}
+df_universities$private_returns <- university_private_returns
+
+# 3, Colleges - Social
+college_social_returns <- c()
+for(i in 1:nrow(df_colleges)){college_social_returns <- c(college_social_returns,
+                                  (calculateIRR(df_colleges[i,], "college", "social")))}
+df_colleges$social_returns <- college_social_returns
+
+
+# 4, Colleges - Private
+college_private_returns <- c()
+for(i in 1:nrow(df_colleges)){college_private_returns <- c(college_private_returns,
+                                  (calculateIRR(df_colleges[i,], "college", "private")))}
+df_colleges$private_returns <- college_private_returns
+
+
+# Remove outliers from IRR
+
+removeOutliers <- function(vec, q=0.01){
+  
+  # Calculate low and high threshold for outliers based on quantile value q
+  low_q <- quantile(vec, q, na.rm=T)
+  high_q <- quantile(vec, 1 - q, na.rm=T)
+  # Overwrite outliers with NA's
+  vec[vec > high_q] <- NA
+  vec[vec < low_q] <- NA
+  
+  return(vec)
+}
+
+
+# Calculate ranks of private and social returns
+df_colleges$private_returns_rank <- rank(-df_colleges$private_returns, na.last = "keep")
+df_colleges$social_returns_rank <- rank(-df_colleges$social_returns, na.last = "keep")
+df_universities$private_returns_rank <- rank(-df_universities$private_returns, na.last = "keep")
+df_universities$social_returns_rank <- rank(-df_universities$social_returns, na.last = "keep")
+
+# Remove organizations with NA in rank
+df_colleges <- df_colleges[!is.na(df_colleges$private_returns_rank),]
+df_colleges <- df_colleges[!is.na(df_colleges$social_returns_rank),]
+df_universities <- df_universities[!is.na(df_universities$private_returns_rank),]
+df_universities <- df_universities[!is.na(df_universities$social_returns_rank),]
+
+```
+
+
+### Tables with Top-20 and Bottom-20 organizations by returns
+
+```{r Create Tables with Top-10 and Bottom-10 organizations by returns, include=FALSE}
+
+# Create kable tables with top-10/bottom-10 organizations by social returns.
+select_top_bottom_n <- 10
+
+### 1. Colleges
+df_colleges_table <- df_colleges %>%
+  dplyr::select(social_returns_rank, private_returns_rank, name, region_name, income_total_mean, paidServices_mean,
+                graduates_number,
+                graduate_salary_2014, graduate_salary_2015, graduate_salary_2016) %>%
+  arrange(social_returns_rank)
+df_colleges_table <- df_colleges_table[c(1:select_top_bottom_n,
+                    (nrow(df_colleges_table)-select_top_bottom_n+1):nrow(df_colleges_table)),]
+
+### 2. Universities
+df_universities_table <- df_universities %>%
+  dplyr::select(social_returns_rank, private_returns_rank, 
+                name, region_name, income_total_mean, paidServices_mean,
+                graduates_number,
+                salary_2014, salary_2015, salary_2016) %>%
+  arrange(social_returns_rank)
+df_universities_table <- df_universities_table[c(1:select_top_bottom_n,
+                        (nrow(df_universities_table)-select_top_bottom_n+1):nrow(df_universities_table)),]
+
+
+```
+
+
+# Top-10/Bottom-10 Universities by Social Returns
+
+```{r Plot Kable Table with Top-10/Bottom-10 Universities by social returns, echo=FALSE}
+
+# Change columns for visualization
+colnames(df_universities_table) <- c("social returns rank", "private returns rank", 
+                                     "name", "region", 'income', 'fee income', "graduates number",
+                                     "salary 2014", "salary 2015", "salary 2016")
+
+# Income to integer
+df_universities_table$income <- round(as.numeric(df_universities_table$income), 0)
+df_universities_table$`fee income` <- round(as.numeric(df_universities_table$`fee income`), 0)
+
+# Add separation row
+sep_row <- rep("...", ncol(df_universities_table))
+df_universities_table <- rbind(df_universities_table[1:select_top_bottom_n,], sep_row, df_universities_table[-(1:select_top_bottom_n),])
+
+# Remove row index
+row.names(df_universities_table) <- NULL
+
+df_universities_table %>%
+  kable() %>%
+  # kable_styling(bootstrap_options = "striped", full_width = F)
+  kable_styling(bootstrap_options = c("striped", "hover", "condensed", "responsive"),
+                full_width = F, font_size = 10) %>% 
+  column_spec(1:2, bold = T)
+
+
+```
+
+
+# Top-10/Bottom-10 Colleges by Social Returns
+
+```{r Plot Kable Table with Top-10/Bottom-10 Colleges by social returns, echo=FALSE}
+
+# Change columns for visualization
+colnames(df_colleges_table) <- c("social returns rank", "private returns rank", 
+                                 "name", "region", 'income', 'fee income', "graduates number",
+                                     "salary 2014", "salary 2015", "salary 2016")
+
+# Income to integer
+df_colleges_table$income <- round(as.numeric(df_colleges_table$income), 0)
+df_colleges_table$`fee income` <- round(as.numeric(df_colleges_table$`fee income`), 0)
+
+# Add separation row
+sep_row <- rep("...", ncol(df_colleges_table))
+df_colleges_table <- rbind(df_colleges_table[1:select_top_bottom_n,], sep_row, df_colleges_table[-(1:select_top_bottom_n),])
+
+# Remove row index
+row.names(df_colleges_table) <- NULL
+
+df_colleges_table %>%
+  kable() %>%
+  # kable_styling(bootstrap_options = "striped", full_width = F)
+  kable_styling(bootstrap_options = c("striped", "hover", "condensed", "responsive"),
+                full_width = F, font_size = 10) %>% 
+  column_spec(1:2, bold = T)
+
+```
+
+
+# Visualizing Returns in Different Groups
+
+```{r Plot 1. Scatter Plot with ranks of Private and Social returns, echo=FALSE, fig.width = 16, fig.height = 8}
+
+# 1. Colleges
+plot2 <- ggplot(df_colleges, aes(x=private_returns_rank, y=social_returns_rank)) +
+  geom_point() + geom_smooth(method="lm") + theme_minimal() + theme(plot.title = element_text(size = 18), axis.text = element_text(size=14)) +
+  labs(x="Rank of private returns", y = "Rank of social returns") + 
+  ggtitle("Rank of Private and Social Returns for Colleges")
+
+# 2. Universities
+plot1 <- ggplot(df_universities, aes(x=private_returns_rank, y=social_returns_rank)) +
+  geom_point() + geom_smooth(method="lm") + theme_minimal() + theme(plot.title = element_text(size = 18), axis.text = element_text(size=14)) +
+  labs(x="Rank of private returns", y = "Rank of social returns") + 
+  ggtitle("Rank of Private and Social Returns for Universities")
+
+# Arrange in one plot
+grid.arrange(plot1, plot2, ncol=2)
+
+```
+
+
+```{r Spatial Preprocessing, include=FALSE}
+
+
+# Load GADM map of Russia
+gadm_russia <- readRDS("gadm36_RUS_1_sp.rds")
+
+# Create spatial points dataframe for the colleges
+spdf_colleges <- SpatialPointsDataFrame(data=df_colleges,
+                                        coords=as.matrix(df_colleges[,c("coordinates_long", "coordinates_lat")]),
+                                        proj4string=gadm_russia@proj4string)
+# Create spatial points dataframe for the universities
+spdf_universities <- SpatialPointsDataFrame(data=df_universities,
+                                            coords=as.matrix(df_universities[,c("coordinates_long", "coordinates_lat")]),
+                                            proj4string=gadm_russia@proj4string)
+# Reproject in different coordinates
+proj4.str <- CRS("+init=epsg:3413 +lon_0=105")
+gadm.prj <- spTransform(gadm_russia, proj4.str)
+spdf_colleges.prj <- spTransform(spdf_colleges, proj4.str)
+spdf_universities.prj <- spTransform(spdf_universities, proj4.str)
+# Get the polygon id for each organization
+colleges_polygon_indices <- over(spdf_colleges,
+                                 SpatialPolygons(gadm_russia@polygons, proj4string=gadm_russia@proj4string),
+                                 returnList=F)
+spdf_colleges$polygon_index <- colleges_polygon_indices
+# Get the polygon id for each organization
+universities_polygon_indices <- over(spdf_universities,
+                                     SpatialPolygons(gadm_russia@polygons, proj4string=gadm_russia@proj4string),
+                                     returnList=F)
+spdf_universities$polygon_index <- universities_polygon_indices
+
+
+calculateMeanForRegion <- function(spdf_organizations, var_name, gadm.prj=gadm.prj){
+  
+  # Calculate average salary in each region
+  organizations_region_mean <- as.data.frame(spdf_organizations)[,c(var_name, "polygon_index")] %>%
+    group_by(polygon_index) %>%
+    summarise(region_mean=mean(get(var_name), na.rm=T)) %>%
+    as.data.frame()
+  
+  colnames(organizations_region_mean) <- c("region_id", "region_mean")
+  df_temp <- data.frame(region_id=1:length(gadm.prj))
+  df_temp <- df_temp %>% left_join(organizations_region_mean, by='region_id')
+  
+  return(df_temp$region_mean)
+}
+
+gadm.prj$colleges_social_returns_rank <- calculateMeanForRegion(spdf_colleges, 'social_returns_rank', gadm.prj)
+gadm.prj$colleges_private_returns_rank <- calculateMeanForRegion(spdf_colleges, 'private_returns_rank', gadm.prj)
+gadm.prj$universities_social_returns_rank <- calculateMeanForRegion(spdf_universities, 'social_returns_rank', gadm.prj)
+gadm.prj$universities_private_returns_rank <- calculateMeanForRegion(spdf_universities, 'private_returns_rank', gadm.prj)
+
+```
+
+
+
+```{r Plot 2. Private and Social returns ranks for colleges by region, echo=FALSE, fig.width = 10, fig.height = 15}
+
+# Plot 1
+plot1 <- tm_shape(gadm.prj) + tm_borders() + tm_fill(title = "Average rank", col="colleges_social_returns_rank", palette="-Greens") + tm_layout(title="Average Rank of Social Returns for Colleges by Region")
+# Plot 2
+plot2 <- tm_shape(gadm.prj) + tm_borders() + tm_fill(title = "Average rank", col="colleges_private_returns_rank", palette="-Blues") + tm_layout(title="Average Rank of Private Returns for Colleges by Region")
+# Arrange in one plot
+tmap_arrange(plot1, plot2, nrow=2)
+
+
+```
+
+
+
+```{r Plot 3. Private and Social returns ranks for universities by region, echo=FALSE, fig.width = 10, fig.height = 15}
+
+# Plot 1
+plot1 <- tm_shape(gadm.prj) + tm_borders() + tm_fill(title = "Average rank", col="universities_social_returns_rank", palette="-Greens") + tm_layout(title="Average Rank of Social Returns for Universities by Region")
+# Plot 2
+plot2 <- tm_shape(gadm.prj) + tm_borders() + tm_fill(title = "Average rank", col="universities_private_returns_rank", palette="-Blues") + tm_layout(title="Average Rank of Private Returns for Universities by Region")
+# Arrange in one plot
+tmap_arrange(plot1, plot2, nrow=2)
+
+```
+
+
+```{r Plot 4. Private and Social returns ranks for universities by specialization, echo=FALSE, fig.width = 25, fig.height = 12}
+
+# 1. Universities
+plot1 <- ggplot(df_universities, aes(reorder(specialization_type, -social_returns_rank), social_returns_rank)) +
+  geom_boxplot(outlier.shape = NA) + 
+  coord_flip() +
+  ggtitle("Social Returns Ranks for Universities by Specialization") + 
+  labs(y="Average rank", x = "Specialization of university") + 
+  theme_classic() + theme(plot.title = element_text(size = 24), axis.text = element_text(size=18))
+
+plot2 <- ggplot(df_universities, aes(reorder(specialization_type, -private_returns_rank), private_returns_rank)) +
+  geom_boxplot(outlier.shape = NA) + 
+  coord_flip() +
+  ggtitle("Private Returns Ranks for Universities by Specialization") + 
+  labs(y="Average rank", x = "Specialization of university") + 
+  theme_classic() + theme(plot.title = element_text(size = 24), axis.text = element_text(size=18))
+
+# Arrange in one plot
+grid.arrange(plot1, plot2, ncol=2)
+
+```
+
+
+
+```{r Plot 5. Private and Social returns ranks for colleges by specialization, echo=FALSE, fig.width = 25, fig.height = 12}
+
+# 1. Universities
+plot1 <- ggplot(df_colleges, aes(reorder(speciality_type, -social_returns_rank), social_returns_rank)) +
+  geom_boxplot(outlier.shape = NA) + 
+  coord_flip() +
+  ggtitle("Social Returns Ranks for Colleges by Specialization") + 
+  labs(y="Average rank", x = "Specialization of college") + 
+  theme_classic() + theme(plot.title = element_text(size = 24), axis.text = element_text(size=18))
+
+plot2 <- ggplot(df_colleges, aes(reorder(speciality_type, -private_returns_rank), private_returns_rank)) +
+  geom_boxplot(outlier.shape = NA) + 
+  coord_flip() +
+  ggtitle("Private Returns Ranks for Colleges by Specialization") + 
+  labs(y="Average rank", x = "Specialization of college") + 
+  theme_classic() + theme(plot.title = element_text(size = 24), axis.text = element_text(size=18))
+
+# Arrange in one plot
+grid.arrange(plot1, plot2, ncol=2)
+
+```
+
+
+
+
+
+
+
+
+
+
+
+
+
