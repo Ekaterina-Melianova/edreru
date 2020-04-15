@@ -14,6 +14,8 @@ library(ggplot2)
 library(data.table)
 library(pbapply)
 library(gridExtra)
+library(stargazer)
+library(xtable)
 
 ##########################################################################################################
 
@@ -235,9 +237,11 @@ for (i in 1:length(Rlm_mincer_all)){
 
 # A file with region names
 Sys.setlocale("LC_CTYPE", "russian")
-wd <- "C:/Country/Russia/Data/SEASHELL/SEABYTE/edreru/wp1"
+wd <- "C:/Country/Russia/Data/SEASHELL/SEABYTE/edreru/wp3"
 setwd(wd)
 rgvars <- rio::import("rgvars.xlsx") %>% arrange(OKATO)
+
+# Note the strict correspondence necessary between OKATO and H00_02
 
 # Naming sublists with regression summary
 for (i in seq(length(seq_year))){
@@ -303,6 +307,8 @@ for (i in seq_along(re_h)){
 
 ncol = length(re_p_ci) + 1
 seq_region <- c(seq_region, "Russian Federation")
+
+# Empty dataframe to input results later
 RoREs <- as.data.frame((matrix(ncol = ncol, nrow = length(seq_region))))
 colnames(RoREs) <-  c("OKATO", re_p_ci)
 
@@ -638,7 +644,7 @@ anova(M18_16, M18_17) # nat_res does not work as a moderator
 summary(M18_17)
 
 #################
-
+# Just for a rough look 
 dotplot(coef(M18_2))
 dotplot(ranef(M18_2, condVar=T))
 plot_model(M18_2, terms = "edu_4")
@@ -660,6 +666,9 @@ ggplot(data = t[t$term == "edu_4Higher",],
   coord_flip() +
   geom_vline(xintercept = 0, linetype = "dotted", color = "red", size = 1.5) +
   xlab("Random effect for higher education")
+ggsave("rst_he_18.png", width = 15, height = 7,
+       units = "in")
+
 
 ggplot(data = t[t$term == "edu_4Vocational",],
        aes(x = condval, y = reorder(grp, -condval))) +
@@ -683,37 +692,6 @@ ggsave("rst_ve_18.png", width = 15, height = 7,
 pub.list <- lmList(log(wage) ~ edu_4 | en_rgnames, 
                    data=df[df$YEAR == 2018,],
                    weights = df[df$YEAR == 2018, "KVZV"])
-
-#################################### Latex #################################
-
-################# Fixed effects
-stargazer(M18_0,
-          M18_1,
-          M18_11,
-          M18_12,
-          type = "latex",
-          dep.var.caption = "",
-          dep.var.labels.include = F,
-          df = F,
-          header = F,
-          intercept.bottom = F,
-          column.labels = c("Null model",
-                            "Mincerian",
-                            "Random Slope",
-                            "Cross-Level Interaction"),
-          covariate.labels = c("Constant",
-                               "Vocational",
-                               "Higher",
-                               "Coverage VE X Vocational",
-                               "Coverage VE X Higher",
-                               "Experience",
-                               "Experience squared",
-                               "Females",
-                               "Coverage VE"),
-          add.lines = list(c(as.vector(as.character(ranef[1,])),
-                             as.vector(as.character(ranef[2,])),
-                             as.vector(as.character(ranef[3,])),
-                             as.vector(as.character(ranef[4,])))))
 
 ################### Random effects (was added separately in the main table)
 
@@ -759,6 +737,39 @@ ranef <- ranef[c(1,3,4,2),]
 colnames(ranef) <- c("", "", "", "", "")
 ranef[,-1] <- round(ranef[,-1],2)
 xtable(ranef)
+
+
+#################################### Latex #################################
+
+################# Fixed effects
+stargazer(M18_0,
+          M18_1,
+          M18_11,
+          M18_12,
+          type = "latex",
+          dep.var.caption = "",
+          dep.var.labels.include = F,
+          df = F,
+          header = F,
+          intercept.bottom = F,
+          column.labels = c("Null model",
+                            "Mincerian",
+                            "Random Slope",
+                            "Cross-Level Interaction"),
+          covariate.labels = c("Constant",
+                               "Vocational",
+                               "Higher",
+                               "Coverage VE X Vocational",
+                               "Coverage VE X Higher",
+                               "Experience",
+                               "Experience squared",
+                               "Females",
+                               "Coverage VE"),
+          add.lines = list(c(as.vector(as.character(ranef[1,])),
+                             as.vector(as.character(ranef[2,])),
+                             as.vector(as.character(ranef[3,])),
+                             as.vector(as.character(ranef[4,])))))
+
 
 ################### Specification of the effects for the model with coverage by VE
 
