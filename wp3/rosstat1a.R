@@ -445,32 +445,63 @@ library(lme4)
 library(lattice)
 library(sjPlot)
 library(effects)
+library(broom) # for glance at AIC, BIC etc.
+library(performance) # for icc
+library(ggeffects) # for ggpredict
+library(margins) # for marginal effects
 
 # Null model
 M18_0 <- lmer(log(wage) ~ 1 + (1|en_rgnames),
             data = df[df$YEAR == 2018,],
             weights = df[df$YEAR == 2018, "KVZV"],
             control=lmerControl(optimizer="bobyqa"))
-# ICC = 0.08875/(0.08875 + 0.46805)
+# ICC = 0.08875/(0.08875 + 0.46805) # EM I get slightly different numbers
 
 summary(M18_0)
+glance(M18_0)
+performance::icc(M18_0)
 
 # Adding predictors
-M18_1 <- lmer(log(wage) ~ edu_4 + scale(exper) + I(scale(exper)^2) + female + 
-                (1|en_rgnames),
+M18_1 <- lmer(log(wage) ~ edu_4 + scale(exper) + I(scale(exper)^2) +
+                female +   (1|en_rgnames),
               data = df[df$YEAR == 2018,],
               weights = df[df$YEAR == 2018, "KVZV"],
               control=lmerControl(optimizer="bobyqa"))
 
 # Adding a random effect for edu_4
-M18_2 <- lmer(log(wage) ~ edu_4 + scale(exper) + I(scale(exper)^2) + female + 
-                (1 + edu_4|en_rgnames),
+M18_2 <- lmer(log(wage) ~ edu_4 + scale(exper) + I(scale(exper)^2) +
+                female +  (1 + edu_4|en_rgnames),
               data = df[df$YEAR == 2018,],
               weights = df[df$YEAR == 2018, "KVZV"],
               control=lmerControl(optimizer="bobyqa"))
 
 anova(M18_1, M18_2) # renef for edu_4 is worth adding!
 summary(M18_2)
+
+
+
+df$s.exper <- scale(df$exper)
+df$s.exper.sq <- df$s.exper*df$s.exper
+M18_2b <- lmer(log(wage) ~ edu_4 + s.exper + s.exper.sq +
+                 female +  (1 + edu_4|en_rgnames),
+               data = df[df$YEAR == 2018,],
+               weights = df[df$YEAR == 2018, "KVZV"],
+               control=lmerControl(optimizer="bobyqa"))
+
+VarCorr(M18_2b)
+blix <- ra
+
+
+head(ranef(fm2)$Patient, n = 3)
+
+
+## Marginal effects of edu_yrs
+pr <- ggpredict(M18_2b, "edu_4")
+plot(pr)
+
+marginal_effects(M18_2b,variables="edu_4")
+
+
 
 ##### Adding 2-level characteristics
 
