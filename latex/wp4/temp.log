@@ -1,0 +1,264 @@
+This is pdfTeX, Version 3.14159265-2.6-1.40.20 (MiKTeX 2.9.7200 64-bit) (preloaded format=pdflatex 2019.10.31)  16 APR 2020 23:16
+entering extended mode
+**./temp.tex
+(temp.tex
+LaTeX2e <2019-10-01> patch level 1
+("C:\Users\1\AppData\Local\Programs\MiKTeX 2.9\tex/latex/base\book.cls"
+Document Class: book 2019/08/27 v1.4j Standard LaTeX document class
+("C:\Users\1\AppData\Local\Programs\MiKTeX 2.9\tex/latex/base\bk12.clo"
+File: bk12.clo 2019/08/27 v1.4j Standard LaTeX file (size option)
+)
+\c@part=\count80
+\c@chapter=\count81
+\c@section=\count82
+\c@subsection=\count83
+\c@subsubsection=\count84
+\c@paragraph=\count85
+\c@subparagraph=\count86
+\c@figure=\count87
+\c@table=\count88
+\abovecaptionskip=\skip41
+\belowcaptionskip=\skip42
+\bibindent=\dimen102
+)
+("C:\Users\1\AppData\Local\Programs\MiKTeX 2.9\tex/latex/graphics\graphicx.sty"
+Package: graphicx 2017/06/01 v1.1a Enhanced LaTeX Graphics (DPC,SPQR)
+("C:\Users\1\AppData\Local\Programs\MiKTeX 2.9\tex/latex/graphics\keyval.sty"
+Package: keyval 2014/10/28 v1.15 key=value parser (DPC)
+\KV@toks@=\toks14
+)
+("C:\Users\1\AppData\Local\Programs\MiKTeX 2.9\tex/latex/graphics\graphics.sty"
+Package: graphics 2019/10/08 v1.3c Standard LaTeX Graphics (DPC,SPQR)
+("C:\Users\1\AppData\Local\Programs\MiKTeX 2.9\tex/latex/graphics\trig.sty"
+Package: trig 2016/01/03 v1.10 sin cos tan (DPC)
+)
+("C:\Users\1\AppData\Local\Programs\MiKTeX 2.9\tex/latex/graphics-cfg\graphics.
+cfg"
+File: graphics.cfg 2016/06/04 v1.11 sample graphics configuration
+)
+Package graphics Info: Driver file: pdftex.def on input line 105.
+
+("C:\Users\1\AppData\Local\Programs\MiKTeX 2.9\tex/latex/graphics-def\pdftex.de
+f"
+File: pdftex.def 2018/01/08 v1.0l Graphics/color driver for pdftex
+))
+\Gin@req@height=\dimen103
+\Gin@req@width=\dimen104
+)
+("C:\Users\1\AppData\Local\Programs\MiKTeX 2.9\tex/latex/caption\caption.sty"
+Package: caption 2019/09/01 v3.3d Customizing captions (AR)
+
+("C:\Users\1\AppData\Local\Programs\MiKTeX 2.9\tex/latex/caption\caption3.sty"
+Package: caption3 2019/09/01 v1.8d caption3 kernel (AR)
+Package caption3 Info: TeX engine: e-TeX on input line 64.
+\captionmargin=\dimen105
+\captionmargin@=\dimen106
+\captionwidth=\dimen107
+\caption@tempdima=\dimen108
+\caption@indent=\dimen109
+\caption@parindent=\dimen110
+\caption@hangindent=\dimen111
+)
+\c@caption@flags=\count89
+\c@ContinuedFloat=\count90
+)
+("C:\Users\1\AppData\Local\Programs\MiKTeX 2.9\tex/latex/caption\subcaption.sty
+"
+Package: subcaption 2019/09/01 v1.3a Sub-captions (AR)
+\c@subfigure=\count91
+\c@subtable=\count92
+)
+("C:\Users\1\AppData\Local\Programs\MiKTeX 2.9\tex/latex/booktabs\booktabs.sty"
+Package: booktabs 2019/10/08 v1.6180339 publication quality tables
+\heavyrulewidth=\dimen112
+\lightrulewidth=\dimen113
+\cmidrulewidth=\dimen114
+\belowrulesep=\dimen115
+\belowbottomsep=\dimen116
+\aboverulesep=\dimen117
+\abovetopsep=\dimen118
+\cmidrulesep=\dimen119
+\cmidrulekern=\dimen120
+\defaultaddspace=\dimen121
+\@cmidla=\count93
+\@cmidlb=\count94
+\@aboverulesep=\dimen122
+\@belowrulesep=\dimen123
+\@thisruleclass=\count95
+\@lastruleclass=\count96
+\@thisrulewidth=\dimen124
+) ("C:\Users\1\AppData\Local\Programs\MiKTeX 2.9\tex/latex/float\float.sty"
+Package: float 2001/11/08 v1.3d Float enhancements (AL)
+\c@float@type=\count97
+\float@exts=\toks15
+\float@box=\box27
+\@float@everytoks=\toks16
+\@floatcapt=\box28
+)
+("C:\Users\1\AppData\Local\Programs\MiKTeX 2.9\tex/latex/threeparttable\threepa
+rttable.sty"
+Package: threeparttable 2003/06/13  v 3.0
+\@tempboxb=\box29
+) (temp.aux)
+\openout1 = `temp.aux'.
+
+LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 14.
+LaTeX Font Info:    ... okay on input line 14.
+LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 14.
+LaTeX Font Info:    ... okay on input line 14.
+LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 14.
+LaTeX Font Info:    ... okay on input line 14.
+LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 14.
+LaTeX Font Info:    ... okay on input line 14.
+LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 14.
+LaTeX Font Info:    ... okay on input line 14.
+LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 14.
+LaTeX Font Info:    ... okay on input line 14.
+
+("C:\Users\1\AppData\Local\Programs\MiKTeX 2.9\tex/context/base/mkii\supp-pdf.m
+kii"
+[Loading MPS to PDF converter (version 2006.09.02).]
+\scratchcounter=\count98
+\scratchdimen=\dimen125
+\scratchbox=\box30
+\nofMPsegments=\count99
+\nofMParguments=\count100
+\everyMPshowfont=\toks17
+\MPscratchCnt=\count101
+\MPscratchDim=\dimen126
+\MPnumerator=\count102
+\makeMPintoPDFobject=\count103
+\everyMPtoPDFconversion=\toks18
+)
+("C:\Users\1\AppData\Local\Programs\MiKTeX 2.9\tex/latex/oberdiek\epstopdf-base
+.sty"
+Package: epstopdf-base 2016/05/15 v2.6 Base part for package epstopdf
+
+("C:\Users\1\AppData\Local\Programs\MiKTeX 2.9\tex/generic/oberdiek\infwarerr.s
+ty"
+Package: infwarerr 2016/05/16 v1.4 Providing info/warning/error messages (HO)
+)
+("C:\Users\1\AppData\Local\Programs\MiKTeX 2.9\tex/latex/oberdiek\grfext.sty"
+Package: grfext 2016/05/16 v1.2 Manage graphics extensions (HO)
+
+("C:\Users\1\AppData\Local\Programs\MiKTeX 2.9\tex/generic/oberdiek\kvdefinekey
+s.sty"
+Package: kvdefinekeys 2016/05/16 v1.4 Define keys (HO)
+
+("C:\Users\1\AppData\Local\Programs\MiKTeX 2.9\tex/generic/oberdiek\ltxcmds.sty
+"
+Package: ltxcmds 2016/05/16 v1.23 LaTeX kernel commands for general use (HO)
+)))
+("C:\Users\1\AppData\Local\Programs\MiKTeX 2.9\tex/latex/oberdiek\kvoptions.sty
+"
+Package: kvoptions 2016/05/16 v3.12 Key value format for package options (HO)
+
+("C:\Users\1\AppData\Local\Programs\MiKTeX 2.9\tex/generic/oberdiek\kvsetkeys.s
+ty"
+Package: kvsetkeys 2016/05/16 v1.17 Key value parser (HO)
+
+("C:\Users\1\AppData\Local\Programs\MiKTeX 2.9\tex/generic/oberdiek\etexcmds.st
+y"
+Package: etexcmds 2016/05/16 v1.6 Avoid name clashes with e-TeX commands (HO)
+
+("C:\Users\1\AppData\Local\Programs\MiKTeX 2.9\tex/generic/oberdiek\ifluatex.st
+y"
+Package: ifluatex 2016/05/16 v1.4 Provides the ifluatex switch (HO)
+Package ifluatex Info: LuaTeX not detected.
+))))
+("C:\Users\1\AppData\Local\Programs\MiKTeX 2.9\tex/generic/oberdiek\pdftexcmds.
+sty"
+Package: pdftexcmds 2019/07/25 v0.30 Utility functions of pdfTeX for LuaTeX (HO
+)
+
+("C:\Users\1\AppData\Local\Programs\MiKTeX 2.9\tex/generic/oberdiek\ifpdf.sty"
+Package: ifpdf 2018/09/07 v3.3 Provides the ifpdf switch
+)
+Package pdftexcmds Info: LuaTeX not detected.
+Package pdftexcmds Info: \pdf@primitive is available.
+Package pdftexcmds Info: \pdf@ifprimitive is available.
+Package pdftexcmds Info: \pdfdraftmode found.
+)
+Package epstopdf-base Info: Redefining graphics rule for `.eps' on input line 4
+38.
+Package grfext Info: Graphics extension search list:
+(grfext)             [.pdf,.png,.jpg,.mps,.jpeg,.jbig2,.jb2,.PDF,.PNG,.JPG,.JPE
+G,.JBIG2,.JB2,.eps]
+(grfext)             \AppendGraphicsExtensions on input line 456.
+)
+Package caption Info: Begin \AtBeginDocument code.
+Package caption Info: float package is loaded.
+Package caption Info: threeparttable package is loaded.
+Package caption Info: End \AtBeginDocument code.
+LaTeX Font Info:    External font `cmex10' loaded for size
+(Font)              <8> on input line 20.
+LaTeX Font Info:    External font `cmex10' loaded for size
+(Font)              <6> on input line 20.
+LaTeX Font Info:    External font `cmex10' loaded for size
+(Font)              <5> on input line 20.
+
+Overfull \hbox (92.70187pt too wide) in paragraph at lines 20--36
+[][]
+ []
+
+LaTeX Font Info:    External font `cmex10' loaded for size
+(Font)              <12> on input line 45.
+
+Overfull \hbox (1986.4041pt too wide) in paragraph at lines 45--60
+ [][] 
+ []
+
+
+Overfull \hbox (189.44885pt too wide) in paragraph at lines 64--79
+ [][] 
+ []
+
+<iv_2_methods_1.png, id=1, 1084.05pt x 433.62pt>
+File: iv_2_methods_1.png Graphic file (type png)
+<use iv_2_methods_1.png>
+Package pdftex.def Info: iv_2_methods_1.png  used on input line 86.
+(pdftex.def)             Requested size: 390.0pt x 155.99721pt.
+<iv_2_methods_2.png, id=2, 1084.05pt x 433.62pt>
+File: iv_2_methods_2.png Graphic file (type png)
+<use iv_2_methods_2.png>
+Package pdftex.def Info: iv_2_methods_2.png  used on input line 94.
+(pdftex.def)             Requested size: 390.0pt x 155.99721pt.
+<iv_2_methods_3.png, id=3, 1084.05pt x 433.62pt>
+File: iv_2_methods_3.png Graphic file (type png)
+<use iv_2_methods_3.png>
+Package pdftex.def Info: iv_2_methods_3.png  used on input line 100.
+(pdftex.def)             Requested size: 390.0pt x 155.99721pt.
+<iv_by_districts.png, id=4, 1084.05pt x 505.89pt>
+File: iv_by_districts.png Graphic file (type png)
+<use iv_by_districts.png>
+Package pdftex.def Info: iv_by_districts.png  used on input line 108.
+(pdftex.def)             Requested size: 390.0pt x 181.99675pt.
+
+Underfull \vbox (badness 10000) has occurred while \output is active []
+
+ [1{C:/Users/1/AppData/Local/MiKTeX/2.9/pdftex/config/pdftex.map}
+
+] [2 <./iv_2_methods_1.png> <./iv_2_methods_2.png> <./iv_2_methods_3.png>] [3 <
+./iv_by_districts.png>]
+(temp.aux) ) 
+Here is how much of TeX's memory you used:
+ 2864 strings out of 492453
+ 46091 string characters out of 3121943
+ 123072 words of memory out of 3000000
+ 7209 multiletter control sequences out of 15000+200000
+ 7941 words of font info for 28 fonts, out of 3000000 for 9000
+ 1141 hyphenation exceptions out of 8191
+ 46i,13n,42p,564b,463s stack positions out of 5000i,500n,10000p,200000b,50000s
+<C:/Users/1/AppData/Local/Programs/MiKTeX 2.9/fonts/type1/public/am
+sfonts/cm/cmbx12.pfb><C:/Users/1/AppData/Local/Programs/MiKTeX 2.9/fonts/type1/
+public/amsfonts/cm/cmr10.pfb><C:/Users/1/AppData/Local/Programs/MiKTeX 2.9/font
+s/type1/public/amsfonts/cm/cmr12.pfb><C:/Users/1/AppData/Local/Programs/MiKTeX 
+2.9/fonts/type1/public/amsfonts/cm/cmr6.pfb><C:/Users/1/AppData/Local/Programs/
+MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmr8.pfb><C:/Users/1/AppData/Local/Pr
+ograms/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmssbx10.pfb>
+Output written on temp.pdf (3 pages, 311648 bytes).
+PDF statistics:
+ 44 PDF objects out of 1000 (max. 8388607)
+ 0 named destinations out of 1000 (max. 500000)
+ 21 words of extra memory for PDF output out of 10000 (max. 10000000)
+

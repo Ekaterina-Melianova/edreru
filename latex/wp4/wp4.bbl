@@ -1,0 +1,417 @@
+% $ biblatex auxiliary file $
+% $ biblatex bbl format version 3.1 $
+% Do not modify the above lines!
+%
+% This is an auxiliary file used by the 'biblatex' package.
+% This file may safely be deleted. It will be recreated as
+% required.
+%
+\begingroup
+\makeatletter
+\@ifundefined{ver@biblatex.sty}
+  {\@latex@error
+     {Missing 'biblatex' package}
+     {The bibliography requires the 'biblatex' package.}
+      \aftergroup\endinput}
+  {}
+\endgroup
+
+\datalist[entry]{nty/global//global/global}
+  \entry{akhmedjonov_higher_2011}{article}{}
+    \name{author}{1}{}{%
+      {{hash=AA}{%
+         family={Akhmedjonov},
+         familyi={A\bibinitperiod},
+         given={Alisher},
+         giveni={A\bibinitperiod},
+      }}%
+    }
+    \strng{namehash}{AA1}
+    \strng{fullhash}{AA1}
+    \field{labelnamesource}{author}
+    \field{labeltitlesource}{title}
+    \field{labelyear}{2011}
+    \field{labeldatesource}{year}
+    \field{sortinit}{A}
+    \field{sortinithash}{A}
+    \field{note}{Publisher: Taylor \& Francis}
+    \field{number}{4}
+    \field{pages}{47\bibrangedash 60}
+    \field{title}{Do higher levels of education raise earnings in post-reform
+  {Russia}?}
+    \field{volume}{49}
+    \verb{file}
+    \verb Full Text:files/1292/Akhmedjonov - 2011 - Do higher levels of educati
+    \verb on raise earnings in po.pdf:application/pdf;Snapshot:C\:\\Users\\1\\Z
+    \verb otero\\storage\\UZ9NMRZV\\EEE0012-8775490403.html:text/html
+    \endverb
+    \field{journaltitle}{Eastern European Economics}
+    \field{year}{2011}
+  \endentry
+
+  \entry{arabsheibani_returns_2012}{article}{}
+    \name{author}{2}{}{%
+      {{hash=AGR}{%
+         family={Arabsheibani},
+         familyi={A\bibinitperiod},
+         given={G.\bibnamedelima Reza},
+         giveni={G\bibinitperiod\bibinitdelim R\bibinitperiod},
+      }}%
+      {{hash=SA}{%
+         family={Staneva},
+         familyi={S\bibinitperiod},
+         given={Anita},
+         giveni={A\bibinitperiod},
+      }}%
+    }
+    \strng{namehash}{AGRSA1}
+    \strng{fullhash}{AGRSA1}
+    \field{labelnamesource}{author}
+    \field{labeltitlesource}{shorttitle}
+    \field{labelyear}{2012}
+    \field{labeldatesource}{year}
+    \field{sortinit}{A}
+    \field{sortinithash}{A}
+    \field{note}{Publisher: IZA Discussion Paper}
+    \field{shorttitle}{Returns to education in {Russia}}
+    \field{title}{Returns to education in {Russia}: {Where} there is risky
+  sexual behaviour there is also an instrument}
+    \verb{file}
+    \verb Full Text:files/1295/Arabsheibani and Staneva - 2012 - Returns to edu
+    \verb cation in Russia Where there is ris.pdf:application/pdf;Snapshot:file
+    \verb s/1296/papers.html:text/html
+    \endverb
+    \field{year}{2012}
+  \endentry
+
+  \entry{belloni_high_2011}{incollection}{}
+    \name{author}{2}{}{%
+      {{hash=BA}{%
+         family={Belloni},
+         familyi={B\bibinitperiod},
+         given={Alexandre},
+         giveni={A\bibinitperiod},
+      }}%
+      {{hash=CV}{%
+         family={Chernozhukov},
+         familyi={C\bibinitperiod},
+         given={Victor},
+         giveni={V\bibinitperiod},
+      }}%
+    }
+    \list{publisher}{1}{%
+      {Springer}%
+    }
+    \strng{namehash}{BACV1}
+    \strng{fullhash}{BACV1}
+    \field{labelnamesource}{author}
+    \field{labeltitlesource}{shorttitle}
+    \field{labelyear}{2011}
+    \field{labeldatesource}{year}
+    \field{sortinit}{B}
+    \field{sortinithash}{B}
+    \field{booktitle}{Inverse {Problems} and {High}-{Dimensional} {Estimation}}
+    \field{pages}{121\bibrangedash 156}
+    \field{shorttitle}{High dimensional sparse econometric models}
+    \field{title}{High dimensional sparse econometric models: {An}
+  introduction}
+    \verb{file}
+    \verb Full Text:files/1298/Belloni and Chernozhukov - 2011 - High dimension
+    \verb al sparse econometric models An int.pdf:application/pdf;Snapshot:file
+    \verb s/1299/978-3-642-19989-9_3.html:text/html
+    \endverb
+    \field{year}{2011}
+  \endentry
+
+  \entry{belloni_high-dimensional_2014}{article}{}
+    \name{author}{3}{}{%
+      {{hash=BA}{%
+         family={Belloni},
+         familyi={B\bibinitperiod},
+         given={Alexandre},
+         giveni={A\bibinitperiod},
+      }}%
+      {{hash=CV}{%
+         family={Chernozhukov},
+         familyi={C\bibinitperiod},
+         given={Victor},
+         giveni={V\bibinitperiod},
+      }}%
+      {{hash=HC}{%
+         family={Hansen},
+         familyi={H\bibinitperiod},
+         given={Christian},
+         giveni={C\bibinitperiod},
+      }}%
+    }
+    \strng{namehash}{BACVHC1}
+    \strng{fullhash}{BACVHC1}
+    \field{labelnamesource}{author}
+    \field{labeltitlesource}{title}
+    \field{labelyear}{2014}
+    \field{labeldatesource}{year}
+    \field{sortinit}{B}
+    \field{sortinithash}{B}
+    \field{number}{2}
+    \field{pages}{29\bibrangedash 50}
+    \field{title}{High-dimensional methods and inference on structural and
+  treatment effects}
+    \field{volume}{28}
+    \verb{file}
+    \verb Full Text:files/1307/Belloni et al. - 2014 - High-dimensional methods
+    \verb  and inference on structur.pdf:application/pdf;Snapshot:files/1308/ar
+    \verb ticles.html:text/html
+    \endverb
+    \field{journaltitle}{Journal of Economic Perspectives}
+    \field{year}{2014}
+  \endentry
+
+  \entry{belloni_sparse_2012}{article}{}
+    \name{author}{4}{}{%
+      {{hash=BA}{%
+         family={Belloni},
+         familyi={B\bibinitperiod},
+         given={Alexandre},
+         giveni={A\bibinitperiod},
+      }}%
+      {{hash=CD}{%
+         family={Chen},
+         familyi={C\bibinitperiod},
+         given={Daniel},
+         giveni={D\bibinitperiod},
+      }}%
+      {{hash=CV}{%
+         family={Chernozhukov},
+         familyi={C\bibinitperiod},
+         given={Victor},
+         giveni={V\bibinitperiod},
+      }}%
+      {{hash=HC}{%
+         family={Hansen},
+         familyi={H\bibinitperiod},
+         given={Christian},
+         giveni={C\bibinitperiod},
+      }}%
+    }
+    \strng{namehash}{BA+1}
+    \strng{fullhash}{BACDCVHC1}
+    \field{labelnamesource}{author}
+    \field{labeltitlesource}{title}
+    \field{labelyear}{2012}
+    \field{labeldatesource}{year}
+    \field{sortinit}{B}
+    \field{sortinithash}{B}
+    \field{note}{Publisher: Wiley Online Library}
+    \field{number}{6}
+    \field{pages}{2369\bibrangedash 2429}
+    \field{title}{Sparse models and methods for optimal instruments with an
+  application to eminent domain}
+    \field{volume}{80}
+    \verb{file}
+    \verb Snapshot:files/1301/ECTA9626.html:text/html
+    \endverb
+    \field{journaltitle}{Econometrica}
+    \field{year}{2012}
+  \endentry
+
+  \entry{belskaya_college_2014}{article}{}
+    \name{author}{3}{}{%
+      {{hash=BO}{%
+         family={Belskaya},
+         familyi={B\bibinitperiod},
+         given={Olga},
+         giveni={O\bibinitperiod},
+      }}%
+      {{hash=SPK}{%
+         family={Sabirianova\bibnamedelima Peter},
+         familyi={S\bibinitperiod\bibinitdelim P\bibinitperiod},
+         given={Klara},
+         giveni={K\bibinitperiod},
+      }}%
+      {{hash=PC}{%
+         family={Posso},
+         familyi={P\bibinitperiod},
+         given={Christian},
+         giveni={C\bibinitperiod},
+      }}%
+    }
+    \strng{namehash}{BOSPKPC1}
+    \strng{fullhash}{BOSPKPC1}
+    \field{labelnamesource}{author}
+    \field{labeltitlesource}{shorttitle}
+    \field{labelyear}{2014}
+    \field{labeldatesource}{year}
+    \field{sortinit}{B}
+    \field{sortinithash}{B}
+    \field{shorttitle}{College expansion and the marginal returns to education}
+    \field{title}{College expansion and the marginal returns to education:
+  {Evidence} from {Russia}}
+    \verb{file}
+    \verb Belskaya и др. - 2014 - College expansion and the marginal returns
+    \verb  to education in Russia Econstor IZA WP 2014.pdf:files/594/Belskaya �
+    \verb � др. - 2014 - College expansion and the marginal returns to educat
+    \verb ion in Russia Econstor IZA WP 2014.pdf:application/pdf
+    \endverb
+    \field{year}{2014}
+  \endentry
+
+  \entry{cheidvasser_educated_2007}{article}{}
+    \name{author}{2}{}{%
+      {{hash=CS}{%
+         family={Cheidvasser},
+         familyi={C\bibinitperiod},
+         given={Sofia},
+         giveni={S\bibinitperiod},
+      }}%
+      {{hash=BSH}{%
+         family={Benítez-Silva},
+         familyi={B\bibinithyphendelim S\bibinitperiod},
+         given={Hugo},
+         giveni={H\bibinitperiod},
+      }}%
+    }
+    \strng{namehash}{CSBSH1}
+    \strng{fullhash}{CSBSH1}
+    \field{labelnamesource}{author}
+    \field{labeltitlesource}{shorttitle}
+    \field{labelyear}{2007}
+    \field{labeldatesource}{year}
+    \field{sortinit}{C}
+    \field{sortinithash}{C}
+    \field{number}{1}
+    \field{pages}{1\bibrangedash 41}
+    \field{shorttitle}{The educated {Russian}'s curse}
+    \field{title}{The educated {Russian}'s curse: {Returns} to education in the
+  {Russian} {Federation} during the 1990s}
+    \field{volume}{21}
+    \verb{file}
+    \verb Cheidvasser и Benítez-Silva - 2007 - The educated Russian's curse R
+    \verb eturns to education.pdf:files/512/Cheidvasser и Benítez-Silva - 200
+    \verb 7 - The educated Russian's curse Returns to education.pdf:application
+    \verb /pdf
+    \endverb
+    \field{journaltitle}{Labour}
+    \field{year}{2007}
+  \endentry
+
+  \entry{diebold_econometric_2019}{article}{}
+    \name{author}{1}{}{%
+      {{hash=DFX}{%
+         family={Diebold},
+         familyi={D\bibinitperiod},
+         given={F.\bibnamedelima X.},
+         giveni={F\bibinitperiod\bibinitdelim X\bibinitperiod},
+      }}%
+    }
+    \strng{namehash}{DFX1}
+    \strng{fullhash}{DFX1}
+    \field{labelnamesource}{author}
+    \field{labeltitlesource}{shorttitle}
+    \field{labelyear}{2019}
+    \field{labeldatesource}{year}
+    \field{sortinit}{D}
+    \field{sortinithash}{D}
+    \field{shorttitle}{Econometric {Data} {Science}}
+    \field{title}{Econometric {Data} {Science}: {A} {Predictive} {Modeling}
+  {Approach}}
+    \verb{url}
+    \verb http://www.ssc.upenn.edu/~fdiebold/Textbooks.html
+    \endverb
+    \field{journaltitle}{Department of Economics, University of Pennsylvania}
+    \field{year}{2019}
+  \endentry
+
+  \entry{kyui_expansion_2016}{article}{}
+    \name{author}{1}{}{%
+      {{hash=KN}{%
+         family={Kyui},
+         familyi={K\bibinitperiod},
+         given={Natalia},
+         giveni={N\bibinitperiod},
+      }}%
+    }
+    \strng{namehash}{KN1}
+    \strng{fullhash}{KN1}
+    \field{labelnamesource}{author}
+    \field{labeltitlesource}{title}
+    \field{labelyear}{2016}
+    \field{labeldatesource}{year}
+    \field{sortinit}{K}
+    \field{sortinithash}{K}
+    \field{pages}{68\bibrangedash 87}
+    \field{title}{Expansion of higher education, employment and wages:
+  {Evidence} from the {Russian} {Transition}}
+    \field{volume}{39}
+    \verb{file}
+    \verb Kyui - 2016 - Expansion of higher education, employment and wage.pdf:
+    \verb files/618/Kyui - 2016 - Expansion of higher education, employment and
+    \verb  wage.pdf:application/pdf;Natalia Kyui HE EXPANSION AND WAGES IN RUSS
+    \verb IA Labor Economics 2016 TECHNICAL APPENDIX.pdf:files/641/Natalia Kyui
+    \verb  HE EXPANSION AND WAGES IN RUSSIA Labor Economics 2016 TECHNICAL APPE
+    \verb NDIX.pdf:application/pdf
+    \endverb
+    \field{journaltitle}{Labour Economics}
+    \field{year}{2016}
+  \endentry
+
+  \entry{kyui_returns_2010}{article}{}
+    \name{author}{1}{}{%
+      {{hash=KN}{%
+         family={Kyui},
+         familyi={K\bibinitperiod},
+         given={Natalia},
+         giveni={N\bibinitperiod},
+      }}%
+    }
+    \strng{namehash}{KN1}
+    \strng{fullhash}{KN1}
+    \field{labelnamesource}{author}
+    \field{labeltitlesource}{title}
+    \field{labelyear}{2010}
+    \field{labeldatesource}{year}
+    \field{sortinit}{K}
+    \field{sortinithash}{K}
+    \field{title}{Returns to {Education} and {Education}-{Occupation}
+  {Mismatch} within a {Transition} {Economy}. {Empirical} {Analysis} for the
+  {Russian} {Federation}}
+    \verb{file}
+    \verb Kyui - 2010 - Returns to Education and Education-Occupation Mism.pdf:
+    \verb files/617/Kyui - 2010 - Returns to Education and Education-Occupation
+    \verb  Mism.pdf:application/pdf
+    \endverb
+    \field{year}{2010}
+  \endentry
+
+  \entry{tibshirani_regression_1996}{article}{}
+    \name{author}{1}{}{%
+      {{hash=TR}{%
+         family={Tibshirani},
+         familyi={T\bibinitperiod},
+         given={Robert},
+         giveni={R\bibinitperiod},
+      }}%
+    }
+    \strng{namehash}{TR1}
+    \strng{fullhash}{TR1}
+    \field{labelnamesource}{author}
+    \field{labeltitlesource}{title}
+    \field{labelyear}{1996}
+    \field{labeldatesource}{year}
+    \field{sortinit}{T}
+    \field{sortinithash}{T}
+    \field{note}{Publisher: Wiley Online Library}
+    \field{number}{1}
+    \field{pages}{267\bibrangedash 288}
+    \field{title}{Regression shrinkage and selection via the lasso}
+    \field{volume}{58}
+    \verb{file}
+    \verb Full Text:files/1303/Tibshirani - 1996 - Regression shrinkage and sel
+    \verb ection via the lasso.pdf:application/pdf;Snapshot:files/1304/j.2517-6
+    \verb 161.1996.tb02080.html:text/html
+    \endverb
+    \field{journaltitle}{Journal of the Royal Statistical Society: Series B
+  (Methodological)}
+    \field{year}{1996}
+  \endentry
+\enddatalist
+\endinput

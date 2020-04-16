@@ -19,8 +19,8 @@ Sys.setlocale("LC_CTYPE", "russian")
 # load('C:/Country/Russia/Data/SEASHELL/SEABYTE/Databases/Regional/PISA01.rdata')
 load('C:/Country/Russia/Data/SEASHELL/SEABYTE/Databases/Regional/qq1.rdata')
 RoR_1990_2015_rub <- readstata13::read.dta13('C:/Country/Russia/Data/SEASHELL/SEABYTE/Databases/Regional/RoR_1990_2015_rub.dta')
-rgvars <- import("C:/Country/Russia/Data/SEASHELL/SEABYTE/edreru/wp1/rgvars.xlsx")
-rgvars_2 <- import("C:/Country/Russia/Data/SEASHELL/SEABYTE/edreru/wp2/rgvars_2.xlsx")
+rgvars <- import("C:/Country/Russia/Data/SEASHELL/SEABYTE/edreru/wp4/rgvars.xlsx")
+rgvars_2 <- import("C:/Country/Russia/Data/SEASHELL/SEABYTE/edreru/wp4/rgvars_2.xlsx")
 
 # Taking last year
 RoR_15 <- RoR_1990_2015_rub %>% filter(year == 2015)
@@ -65,7 +65,7 @@ ivs <- high_n %>%
 # Adding them to the Rosstat df
 ###### Rosstat main dataset
 
-wd <- 'C:/Country/Russia/Data/SEASHELL/SEABYTE/edreru/wp2'
+wd <- 'C:/Country/Russia/Data/SEASHELL/SEABYTE/edreru/wp4'
 setwd(wd)
 Rosstat18 <- readRDS('Rosstat18.rds')
 names(Rosstat18)[1] <- 'OKATO'
@@ -102,58 +102,112 @@ df_o <- df[df$H01_02 >= 40 & df$H01_02 <= 51,]
 # (i) Examine correlation with Edu_years one by one
 
 ######################## Females all
-Z <- c('high_n', 's1z', 'migrationrate', 'women2menratio', 'marriagerate', 'fem_ind_prop')
+Z <- c('high_n', 'HSGPER', 's1z', 'migrationrate',
+       'women2menratio', 'marriagerate', 'fem_ind_prop', 'Literacy_97')
 
 cor_fem_all_yonger <- c()
 cor_fem_all_older <- c()
-cor_fem_mar_younger <- c()
-cor_fem_mar_older <- c()
-cor_fem_sngl_younger <- c()
-cor_fem_sngl_older <- c()
 cor_male_all_yonger <- c()
 cor_male_all_older <- c()
 
 for (i in 1:length(Z)){
   # Females all
-  cor_fem_all_yonger <- c(cor_fem_all_yonger, 
-                          eval(parse(text = paste0("cor.test(df_y[df_y$H01_01 == 1, 'edu_yrs'], df_y[df_y$H01_01 == 1, ",
-                                                 paste(" '", Z[i], "' ", sep = ''), "])$estimate"))))
-  cor_fem_all_older <- c(cor_fem_all_older,
-                          eval(parse(text = paste0('cor.test(df_o[df_o$H01_01 == 1, "edu_yrs"], df_o[df_o$H01_01 == 1, ',
-                                                 paste(" '", Z[i], "' ", sep = ''), '])$estimate'))))
-  # Females married
-  cor_fem_mar_younger <- c(cor_fem_mar_younger,
-                           eval(parse(text = paste0('cor.test(df_y[df_y$H01_01 == 1 & df_y$married == 1, "edu_yrs"], df_y[df_y$H01_01 == 1 & df_y$married == 1, ',
-                                                  paste(" '", Z[i], "' ", sep = ''), '])$estimate'))))
-  cor_fem_mar_older <- c(cor_fem_mar_older,
-                         eval(parse(text = paste0('cor.test(df_o[df_o$H01_01 == 1 & df_o$married == 1, "edu_yrs"], df_o[df_o$H01_01 == 1 & df_o$married == 1, ',
-                                                  paste(" '", Z[i], "' ", sep = ''), '])$estimate'))))
-  
-  # Females single
-  cor_fem_sngl_younger <- c(cor_fem_sngl_younger,
-                            eval(parse(text = paste0('cor.test(df_y[df_y$H01_01 == 1 & df_y$married == 0, "edu_yrs"], df_y[df_y$H01_01 == 1 & df_y$married == 0, ',
-                                                  paste(" '", Z[i], "' ", sep = ''), '])$estimate'))))
-  cor_fem_sngl_older <- c(cor_fem_sngl_older,
-                          eval(parse(text = paste0('cor.test(df_y[df_y$H01_01 == 1 & df_y$married == 0, "edu_yrs"], df_y[df_y$H01_01 == 1 & df_y$married == 0, ',
-                                                paste(" '", Z[i], "' ", sep = ''), '])$estimate'))))
-  
+  cor_fem_all_yonger <- rbind.data.frame(cor_fem_all_yonger, 
+                          eval(parse(text = paste0("as.data.frame(cor.test(df_y[df_y$H01_01 == 2, 'edu_yrs'], df_y[df_y$H01_01 == 2, ",
+                                                 paste(" '", Z[i], "' ", sep = ''), "])[c(4,3)])"))))
+  cor_fem_all_older <- rbind.data.frame(cor_fem_all_older,
+                          eval(parse(text = paste0('as.data.frame(cor.test(df_o[df_o$H01_01 == 2, "edu_yrs"], df_o[df_o$H01_01 == 2, ',
+                                                 paste(" '", Z[i], "' ", sep = ''), '])[c(4,3)])'))))
   # Males
-  cor_male_all_yonger <- c(cor_male_all_yonger,
-                           eval(parse(text = paste0("cor.test(df_y[df_y$H01_01 == 2, 'edu_yrs'], df_y[df_y$H01_01 == 2, ",
-                                                 paste(" '", Z[i], "' ", sep = ''), "])$estimate"))))
-  cor_male_all_older <- c(cor_male_all_older,
-                          eval(parse(text = paste0('cor.test(df_o[df_o$H01_01 == 2, "edu_yrs"], df_o[df_o$H01_01 == 2, ',
-                                                 paste(" '", Z[i], "' ", sep = ''), '])$estimate'))))
+  cor_male_all_yonger <- rbind.data.frame(cor_male_all_yonger,
+                           eval(parse(text = paste0("as.data.frame(cor.test(df_y[df_y$H01_01 == 1, 'edu_yrs'], df_y[df_y$H01_01 == 1, ",
+                                                 paste(" '", Z[i], "' ", sep = ''), "])[c(4,3)])"))))
+  cor_male_all_older <- rbind.data.frame(cor_male_all_older,
+                          eval(parse(text = paste0('as.data.frame(cor.test(df_o[df_o$H01_01 == 1, "edu_yrs"], df_o[df_o$H01_01 == 1, ',
+                                                 paste(" '", Z[i], "' ", sep = ''), '])[c(4,3)])'))))
 }
 
-cor_df <- cbind.data.frame(Z, round(cbind.data.frame(cor_fem_all_yonger,
+cor_df <- cbind.data.frame(IV = rep(Z, 4), Cohort = rep(c('Females younger', 'Females older',
+                                                        'Males younger', 'Males older'), each = 8),
+                           round(rbind.data.frame(cor_fem_all_yonger,
                            cor_fem_all_older,
-                           cor_fem_mar_younger,
-                           cor_fem_mar_older,
-                           cor_fem_sngl_younger,
-                           cor_fem_sngl_older,
                            cor_male_all_yonger,
                            cor_male_all_older), 2))
+
+# Create a column with the stars
+cor_df$stars <- cut(cor_df$p.value, breaks=c(-Inf, 0.001, 0.01, 0.05, Inf), 
+                    label=c("***", "**", "*", ""))  # Create column of significance labels
+cor_df$color <- ifelse(abs(cor_df$estimate) >= 0.16, 'maroon', 'black')
+
+# Plotting correlation by cohorts
+cor_plot1 <- ggplot(cor_df, aes(factor(Cohort), IV)) +
+  geom_text(aes(label = stars), size = 10, hjust = -1.5) +
+  geom_text(aes(label = round(estimate, 2)), colour = cor_df$color, size = 10) +
+  theme(axis.text.x = element_blank(),
+        axis.text.y = element_text(size = 25, colour='black'),
+        axis.title.x = element_blank(),
+        axis.title.y = element_text(size = 25),
+        panel.background = element_rect(colour = "grey", fill = NA),
+        strip.text = element_text(size = 25)) +
+  ylab('Instrumental Variables') +
+  facet_grid(. ~ Cohort, scales = "free", space = "free") 
+
+library(gridExtra)
+library(grid)
+
+# adding notes
+g <- grid.arrange(cor_plot1, bottom = textGrob("Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05",
+                                               x = 1, hjust = 1,
+                                               gp = gpar(fontface = 3L,
+                                                         fontsize = 17)))
+# saving 
+ggsave("cor_by_cohorts.png", g, width = 20, height = 8,
+       units = "in")
+
+############3 Overall correlations matrix for IV
+library(PerformanceAnalytics)
+Z <- c('high_n', 'HSGPER', 's1z', 'migrationrate',
+       'women2menratio', 'marriagerate',
+       'fem_ind_prop', 'Literacy_97')
+# Since IVs are regional - leave only regions (unique)
+df_iv <- df[, Z]
+df_iv <- df_iv[!duplicated(df_iv),]
+
+# Elements of the plot
+hist.panel = function (x, ...) {
+  par(new = TRUE)
+  hist(x,
+       col = "light gray",
+       probability = T,
+       axes = FALSE,
+       main = "",
+       breaks = "FD")
+}
+panel.cor <- function(x, y, digits=2, prefix="", use="pairwise.complete.obs",
+                      method = 'pearson', cex.cor, ...){
+  usr <- par("usr"); on.exit(par(usr))
+  par(usr = c(0, 1, 0, 1))
+  r <- cor(x, y, use=use, method=method) # MG: remove abs here
+  txt <- format(c(r, 0.123456789), digits=digits)[1]
+  txt <- paste(prefix, txt, sep="")
+  if(missing(cex.cor)) cex <- 1/strwidth(txt)
+  
+  test <- cor.test(x,y, method=method)
+  # borrowed from printCoefmat
+  Signif <- symnum(test$p.value, corr = FALSE, na = FALSE,
+                   cutpoints = c(0, 0.001, 0.01, 0.05, 0.1, 1),
+                   symbols = c("***", "**", "*", ".", " "))
+  # MG: add abs here and also include a 30% buffer for small numbers
+  text(0.5, 0.5, txt, cex = cex)
+  text(.8, .8, Signif, cex=cex, col=2)
+}
+
+# Plotting cor matrix
+pairs(df_iv, gap=0, lower.panel=panel.smooth,
+      upper.panel=panel.cor, diag.panel=hist.panel,
+      cex.labels = 2.1, font.labels = 2)
+ggsave("cor_matrix.png", width = 20, height = 8,
+       units = "in")
 
 ###################################################################################################
 ###########################  (ii) Use Kang et al ivmodel for running ols, TSLS standard with all IVs;
@@ -184,33 +238,6 @@ if (if_females == T & marital_status == 'all'){
 }
 else if (if_females == T & marital_status == 'married'){
   for (i in 1:length(dist_vec)){
-    ivmodel_list_res[[i]] <- ivmodel(Y = df[df[, females] == 1 & df[, married] == 1 & df[, districts] == dist_vec[i], Y],
-                                    D = df[df[, females] == 1 & df[, married] == 1 & df[, districts] == dist_vec[i], D],
-                                    Z = df[df[, females] == 1 & df[, married] == 1 & df[, districts] == dist_vec[i], Z],
-                                    X = df[df[, females] == 1 & df[, married] == 1 & df[, districts] == dist_vec[i], X])
-    
-  }
-}
-else if (if_females == T & marital_status == 'single'){
-  for (i in 1:length(dist_vec)){
-    ivmodel_list_res[[i]] <- ivmodel(Y = df[df[, females] == 1 & df[, married] == 0 & df[, districts] == dist_vec[i], Y],
-                                    D = df[df[, females] == 1 & df[, married] == 0 & df[, districts] == dist_vec[i], D],
-                                    Z = df[df[, females] == 1 & df[, married] == 0 & df[, districts] == dist_vec[i], Z],
-                                    X = df[df[, females] == 1 & df[, married] == 0 & df[, districts] == dist_vec[i], X])
-    
-  }
-}
-else if (if_females == F & marital_status == 'all'){
-  for (i in 1:length(dist_vec)){
-    ivmodel_list_res[[i]] <- ivmodel(Y = df[df[, females] == 2 & df[, districts] == dist_vec[i], Y],
-                                    D = df[df[, females] == 2 & df[, districts] == dist_vec[i], D],
-                                    Z = df[df[, females] == 2 & df[, districts] == dist_vec[i], Z],
-                                    X = df[df[, females] == 2 & df[, districts] == dist_vec[i], X])
-    
-  }
-}
-else if (if_females == F & marital_status == 'married'){
-  for (i in 1:length(dist_vec)){
     ivmodel_list_res[[i]] <- ivmodel(Y = df[df[, females] == 2 & df[, married] == 1 & df[, districts] == dist_vec[i], Y],
                                     D = df[df[, females] == 2 & df[, married] == 1 & df[, districts] == dist_vec[i], D],
                                     Z = df[df[, females] == 2 & df[, married] == 1 & df[, districts] == dist_vec[i], Z],
@@ -218,12 +245,39 @@ else if (if_females == F & marital_status == 'married'){
     
   }
 }
-else if (if_females == F & marital_status == 'single'){
+else if (if_females == T & marital_status == 'single'){
   for (i in 1:length(dist_vec)){
     ivmodel_list_res[[i]] <- ivmodel(Y = df[df[, females] == 2 & df[, married] == 0 & df[, districts] == dist_vec[i], Y],
                                     D = df[df[, females] == 2 & df[, married] == 0 & df[, districts] == dist_vec[i], D],
                                     Z = df[df[, females] == 2 & df[, married] == 0 & df[, districts] == dist_vec[i], Z],
                                     X = df[df[, females] == 2 & df[, married] == 0 & df[, districts] == dist_vec[i], X])
+    
+  }
+}
+else if (if_females == F & marital_status == 'all'){
+  for (i in 1:length(dist_vec)){
+    ivmodel_list_res[[i]] <- ivmodel(Y = df[df[, females] == 1 & df[, districts] == dist_vec[i], Y],
+                                    D = df[df[, females] == 1 & df[, districts] == dist_vec[i], D],
+                                    Z = df[df[, females] == 1 & df[, districts] == dist_vec[i], Z],
+                                    X = df[df[, females] == 1 & df[, districts] == dist_vec[i], X])
+    
+  }
+}
+else if (if_females == F & marital_status == 'married'){
+  for (i in 1:length(dist_vec)){
+    ivmodel_list_res[[i]] <- ivmodel(Y = df[df[, females] == 1 & df[, married] == 1 & df[, districts] == dist_vec[i], Y],
+                                    D = df[df[, females] == 1 & df[, married] == 1 & df[, districts] == dist_vec[i], D],
+                                    Z = df[df[, females] == 1 & df[, married] == 1 & df[, districts] == dist_vec[i], Z],
+                                    X = df[df[, females] == 1 & df[, married] == 1 & df[, districts] == dist_vec[i], X])
+    
+  }
+}
+else if (if_females == F & marital_status == 'single'){
+  for (i in 1:length(dist_vec)){
+    ivmodel_list_res[[i]] <- ivmodel(Y = df[df[, females] == 1 & df[, married] == 0 & df[, districts] == dist_vec[i], Y],
+                                    D = df[df[, females] == 1 & df[, married] == 0 & df[, districts] == dist_vec[i], D],
+                                    Z = df[df[, females] == 1 & df[, married] == 0 & df[, districts] == dist_vec[i], Z],
+                                    X = df[df[, females] == 1 & df[, married] == 0 & df[, districts] == dist_vec[i], X])
     
     }
 }
@@ -290,7 +344,7 @@ ivreg.fem.all.y <- ivreg(log(wage) ~ edu_yrs + exper + I(exper^2)|
                  exper + I(exper^2) + high_n + HSGPER + s1z +
                  migrationrate + women2menratio + marriagerate +
                  fem_ind_prop,
-                 data = df_y[df_y$H01_01 == 1,])
+                 data = df_y[df_y$H01_01 == 2,])
 summary(ivreg.fem.all.y, vcov = sandwich, diagnostics = T) # the same as ivmodel
 
 # Older
@@ -298,7 +352,7 @@ ivreg.fem.all.o <- ivreg(log(wage) ~ edu_yrs + exper + I(exper^2)|
                            exper + I(exper^2) + high_n + HSGPER + s1z +
                            migrationrate + women2menratio + marriagerate +
                            fem_ind_prop,
-                         data = df_o[df_o$H01_01 == 1,])
+                         data = df_o[df_o$H01_01 == 2,])
 summary(ivreg.fem.all.o, vcov = sandwich, diagnostics = T) # the same as ivmodel
 
 # So the problem is not in ivmodel, but in something else
@@ -313,19 +367,16 @@ summary(ivreg.fem.all.o, vcov = sandwich, diagnostics = T) # the same as ivmodel
 #########################################################################################################################
 
 ########################### (iii) Use HDM and Post Lasso and look at results
-# Formulas
+
+
 fm_postLasso <- formula(log(wage) ~ edu_yrs + exper + I(exper^2)|exper + I(exper^2) + high_n + HSGPER + s1z +
-                migrationrate + women2menratio + marriagerate + fem_ind_prop)
+                           migrationrate + women2menratio + marriagerate + fem_ind_prop)
 fm_OLS <- formula(log(wage) ~ edu_yrs + exper + I(exper^2))
 # Subsets
-subset <-  c('df_y[df_y$H01_01 == 1,]', # females younger
-             'df_o[df_o$H01_01 == 1,]', # females older
-             'df_y[df_y$H01_01 == 1 & df_y$married == 1,]', # females younger married
-             'df_o[df_o$H01_01 == 1 & df_o$married == 1,]', # females older married
-             'df_y[df_y$H01_01 == 1 & df_y$married == 0,]', # females younger signle
-             'df_o[df_o$H01_01 == 1 & df_o$married == 0,]', # females older single
-             'df_y[df_y$H01_01 == 2,]', # males younger
-             'df_o[df_o$H01_01 == 2,]') # males older
+subset <-  c('df_y[df_y$H01_01 == 2,]', # females younger
+             'df_o[df_o$H01_01 == 2,]', # females older
+             'df_y[df_y$H01_01 == 1,]', # males younger
+             'df_o[df_o$H01_01 == 1,]') # males older
 
 # Function for a series of postLasso and OLS
 postLasso <- function(fm_postLasso, fm_OLS, subset){
@@ -344,17 +395,16 @@ postLasso <- function(fm_postLasso, fm_OLS, subset){
 
 # Running the function
 postLasso_OLS <- postLasso(fm_postLasso = fm_postLasso, fm_OLS = fm_OLS, subset = subset)
-names(postLasso_OLS)
 
 # Aggregating all the parameters
-Sample <- rep(c('females all', 'females married', 'females single', 'males'),  each = 2, 2)
-Cohort <- rep(c('Young', 'Older', 'Young', 'Older'), 8)
-Method <- rep(c('pLasso', 'OLS'), each = 8)
+Sample <- rep(c('females', 'males'),  each = 2, 2)
+Cohort <- rep(c('Young', 'Older', 'Young', 'Older'), 2)
+Method <- rep(c('pLasso', 'OLS'), each = 4)
 postLasso.coefs <- eval(parse(text = paste0('cbind(Method, Cohort, Sample, mapply(c,',
-                        paste0('c(as.numeric(summary(postLasso_OLS$postLasso[[', 1:8, ']])),',
-                        'confint(postLasso_OLS$postLasso[[', 1:8, ']]))', collapse = ', '), ',',
-                        paste0('c(summary(postLasso_OLS$OLS[[', 1:8, ']])$coefficients["edu_yrs",],',
-                        'confint(postLasso_OLS$OLS[[', 1:8, ']])["edu_yrs",])', collapse = ', '), '))')))
+                        paste0('c(as.numeric(summary(postLasso_OLS$postLasso[[', 1:4, ']])),',
+                        'confint(postLasso_OLS$postLasso[[', 1:4, ']]))', collapse = ', '), ',',
+                        paste0('c(summary(postLasso_OLS$OLS[[', 1:4, ']])$coefficients["edu_yrs",],',
+                        'confint(postLasso_OLS$OLS[[', 1:4, ']])["edu_yrs",])', collapse = ', '), '))')))
 # Naming
 colnames(postLasso.coefs)[4:ncol(postLasso.coefs)] <- c('Est', 'SE', 'test_stat', 'pvalue', 'lower', 'upper')
 # Rounding
@@ -410,40 +460,40 @@ ivmodel_series <- function(df, if_females = T,
                             X = c('exper', 'exper2')){
 # ivmodel for each combination of of gender and marital status
 if (if_females == T & marital_status == 'all'){
-   ivmodel_list_res <- ivmodel(Y = df[df[, females] == 1, Y],
-                                    D = df[df[, females] == 1, D],
-                                    Z = df[df[, females] == 1, Z],
-                                    X = df[df[, females] == 1, X])
- }
-else if (if_females == T & marital_status == 'married'){
-   ivmodel_list_res <- ivmodel(Y = df[df[, females] == 1 & df[, married] == 1, Y],
-                                    D = df[df[, females] == 1 & df[, married] == 1, D],
-                                    Z = df[df[, females] == 1 & df[, married] == 1, Z],
-                                    X = df[df[, females] == 1 & df[, married] == 1, X])
- }
-else if (if_females == T & marital_status == 'single'){
-   ivmodel_list_res <- ivmodel(Y = df[df[, females] == 1 & df[, married] == 0, Y],
-                                    D = df[df[, females] == 1 & df[, married] == 0, D],
-                                    Z = df[df[, females] == 1 & df[, married] == 0, Z],
-                                    X = df[df[, females] == 1 & df[, married] == 0, X])
- }
-else if (if_females == F & marital_status == 'all'){
    ivmodel_list_res <- ivmodel(Y = df[df[, females] == 2, Y],
                                     D = df[df[, females] == 2, D],
                                     Z = df[df[, females] == 2, Z],
                                     X = df[df[, females] == 2, X])
  }
-else if (if_females == F & marital_status == 'married'){
+else if (if_females == T & marital_status == 'married'){
    ivmodel_list_res <- ivmodel(Y = df[df[, females] == 2 & df[, married] == 1, Y],
                                     D = df[df[, females] == 2 & df[, married] == 1, D],
                                     Z = df[df[, females] == 2 & df[, married] == 1, Z],
                                     X = df[df[, females] == 2 & df[, married] == 1, X])
  }
-else if (if_females == F & marital_status == 'single'){
+else if (if_females == T & marital_status == 'single'){
    ivmodel_list_res <- ivmodel(Y = df[df[, females] == 2 & df[, married] == 0, Y],
                                     D = df[df[, females] == 2 & df[, married] == 0, D],
                                     Z = df[df[, females] == 2 & df[, married] == 0, Z],
                                     X = df[df[, females] == 2 & df[, married] == 0, X])
+ }
+else if (if_females == F & marital_status == 'all'){
+   ivmodel_list_res <- ivmodel(Y = df[df[, females] == 1, Y],
+                                    D = df[df[, females] == 1, D],
+                                    Z = df[df[, females] == 1, Z],
+                                    X = df[df[, females] == 1, X])
+ }
+else if (if_females == F & marital_status == 'married'){
+   ivmodel_list_res <- ivmodel(Y = df[df[, females] == 1 & df[, married] == 1, Y],
+                                    D = df[df[, females] == 1 & df[, married] == 1, D],
+                                    Z = df[df[, females] == 1 & df[, married] == 1, Z],
+                                    X = df[df[, females] == 1 & df[, married] == 1, X])
+ }
+else if (if_females == F & marital_status == 'single'){
+   ivmodel_list_res <- ivmodel(Y = df[df[, females] == 1 & df[, married] == 0, Y],
+                                    D = df[df[, females] == 1 & df[, married] == 0, D],
+                                    Z = df[df[, females] == 1 & df[, married] == 0, Z],
+                                    X = df[df[, females] == 1 & df[, married] == 0, X])
   } 
 return(ivmodel_list_res)
 }
@@ -453,16 +503,6 @@ return(ivmodel_list_res)
 ivmodel.fem.all.y <- ivmodel_series(df = df_y, if_females = T, marital_status = 'all')
 ivmodel.fem.all.o <- ivmodel_series(df = df_o, if_females = T, marital_status = 'all')
 
-# Females married
-# Younger/older
-ivmodel.fem.married.y <- ivmodel_series(df = df_y, if_females = T, marital_status = 'married')
-ivmodel.fem.married.o <- ivmodel_series(df = df_o, if_females = T, marital_status = 'married')
-
-# Females single
-# Younger/older
-ivmodel.fem.single.y <- ivmodel_series(df = df_y, if_females = T, marital_status = 'single')
-ivmodel.fem.single.o <- ivmodel_series(df = df_o, if_females = T, marital_status = 'single')
-
 # Males all
 # Younger/older
 ivmodel.male.all.y <- ivmodel_series(df = df_y, if_females = F, marital_status = 'all')
@@ -470,8 +510,7 @@ ivmodel.male.all.o <- ivmodel_series(df = df_o, if_females = F, marital_status =
 
 ################################################# Extracting Coefs
 # A vector with models' names
-model_estimated_name <- c('ivmodel.fem.all.y', 'ivmodel.fem.all.o', 'ivmodel.fem.married.y', 
-                          'ivmodel.fem.married.o', 'ivmodel.fem.single.y', 'ivmodel.fem.single.o',
+model_estimated_name <- c('ivmodel.fem.all.y', 'ivmodel.fem.all.o',
                           'ivmodel.male.all.y', 'ivmodel.male.all.o')
 
 # Extracting estimations from each model and creating a dataframe
@@ -484,13 +523,14 @@ ivmodel_est <- eval(parse(text = paste0('rbind(ivmodel_est, do.call(cbind.data.f
 
 # Adding Sample, Cohort, Estimator
 rownames(ivmodel_est) <- NULL
-Method <-  rep(c( 'OLS', 'TSLS'), 8)
-Sample <- rep(c('females all', 'females married', 'females single', 'males'),  each = 4)
-Cohort <- rep(c('Young', 'Young', 'Older', 'Older'), 4) 
+Method <-  rep(c( 'OLS', 'TSLS'), 4)
+Sample <- rep(c('females', 'males'),  each = 4)
+Cohort <- rep(c('Young', 'Young', 'Older', 'Older'), 2) 
 ivmodel_est <- cbind.data.frame(Method, Sample, Cohort, ivmodel_est)
 
 # Naming
-colnames(ivmodel_est) <- c('Method', 'Sample', 'Cohort', 'Est', 'SE', 'test_stat', 'pvalue', 'lower', 'upper')
+colnames(ivmodel_est) <- c('Method', 'Sample', 'Cohort', 'Est',
+                           'SE', 'test_stat', 'pvalue', 'lower', 'upper')
 
 # Rounding
 ivmodel_est[, 4:ncol(ivmodel_est)] <- sapply(4:ncol(ivmodel_est),
@@ -518,17 +558,24 @@ pLasso_TSLS_coefs <- rbind.data.frame(pLasso_coefs, TSLS_coefs, OLS_coefs)
 # postLasso
 ggplot(pLasso_TSLS_coefs, aes(y = cat_sorted, colour = Method)) + 
   geom_errorbar(aes(xmin = lower, xmax = upper),
-                width = 0, size = 1) + 
-  scale_color_manual(values = c('darkgreen', 'blue', 'red'), 
-                     labels = c('OLS', 'pLasso: high_n, HSGPER, migrationrate', 
+                width = 0, size = 1.3) + 
+  scale_color_manual(values = c('darkgreen', 'red', 'blue'), 
+                     labels = c('OLS', 'pLasso', 
                                 '2SLS: Literacy_97')) +
-  geom_point(aes(x = Est), size = 2) +
-  geom_text(aes(x = Est, label = Est, vjust = -1), color="black" ) +
+  geom_point(aes(x = Est), size = 5) +
+  geom_text(aes(x = Est, label = Est, vjust = -1), size = 6, color="black" ) +
   theme(panel.background = element_blank(),
         axis.title = element_blank(),
-        axis.text = element_text(size = 14, face = 'bold'), 
+        axis.text = element_text(size = 18, face = 'bold'), 
         axis.line = element_line(color = 'black'),
-        plot.title.position = 'plot')
+        plot.title.position = 'plot',
+        legend.position = 'bottom',
+        legend.text = element_text(colour = "black", size = 18),
+        legend.title = element_text(colour = "black", size = 18, face = "bold"))+
+  geom_vline(xintercept = c(0.5, 1), color = 'grey')
+
+ggsave("iv_3_methods.png", width = 15, height = 7,
+       units = "in")
 
 ggplot(pLasso_TSLS_coefs[!pLasso_TSLS_coefs$Method == 'TSLS',], aes(y = cat_sorted, colour = Method)) + 
   geom_errorbar(aes(xmin = lower, xmax = upper),

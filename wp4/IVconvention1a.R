@@ -126,32 +126,32 @@ df_o <- df[df$H01_02 >= 40 & df$H01_02 <= 51,]
 # 2SLS with literacy
 # Females all
 # Younger
-ivmodel.fem.all.y <- ivmodel(Y = df_y[df_y$H01_01 == 1, 'lnwage'],
-                             D = df_y[df_y$H01_01 == 1, 'edu_yrs'],
-                             Z = df_y[df_y$H01_01 == 1, "Literacy_97"],
-                             X = df_y[df_y$H01_01 == 1, c('exper', 'exper2')])
+ivmodel.fem.all.y <- ivmodel(Y = df_y[df_y$H01_01 == 2, 'lnwage'],
+                             D = df_y[df_y$H01_01 == 2, 'edu_yrs'],
+                             Z = df_y[df_y$H01_01 == 2, "Literacy_97"],
+                             X = df_y[df_y$H01_01 == 2, c('exper', 'exper2')])
 ivmodel.fem.all.y
 
 # Older
-ivmodel.fem.all.o <- ivmodel(Y = df_o[df_o$H01_01 == 1, 'lnwage'],
-                             D = df_o[df_o$H01_01 == 1, 'edu_yrs'],
-                             Z = df_o[df_o$H01_01 == 1, 'Literacy_97'],
-                             X = df_o[df_o$H01_01 == 1, c('exper', 'exper2')])
+ivmodel.fem.all.o <- ivmodel(Y = df_o[df_o$H01_01 == 2, 'lnwage'],
+                             D = df_o[df_o$H01_01 == 2, 'edu_yrs'],
+                             Z = df_o[df_o$H01_01 == 2, 'Literacy_97'],
+                             X = df_o[df_o$H01_01 == 2, c('exper', 'exper2')])
 ivmodel.fem.all.o
 
 # Males all
 # Younger
-ivmodel.male.all.y <- ivmodel(Y = df_y[df_y$H01_01 == 2, 'lnwage'],
-                             D = df_y[df_y$H01_01 == 2, 'edu_yrs'],
-                             Z = df_y[df_y$H01_01 == 2, "Literacy_97"],
-                             X = df_y[df_y$H01_01 == 2, c('exper', 'exper2')])
+ivmodel.male.all.y <- ivmodel(Y = df_y[df_y$H01_01 == 1, 'lnwage'],
+                             D = df_y[df_y$H01_01 == 1, 'edu_yrs'],
+                             Z = df_y[df_y$H01_01 == 1, "Literacy_97"],
+                             X = df_y[df_y$H01_01 == 1, c('exper', 'exper2')])
 ivmodel.male.all.y
 
 # Older
-ivmodel.male.all.o <- ivmodel(Y = df_o[df_o$H01_01 == 2, 'lnwage'],
-                             D = df_o[df_o$H01_01 == 2, 'edu_yrs'],
-                             Z = df_o[df_o$H01_01 == 2, 'Literacy_97'],
-                             X = df_o[df_o$H01_01 == 2, c('exper', 'exper2')])
+ivmodel.male.all.o <- ivmodel(Y = df_o[df_o$H01_01 == 1, 'lnwage'],
+                             D = df_o[df_o$H01_01 == 1, 'edu_yrs'],
+                             Z = df_o[df_o$H01_01 == 1, 'Literacy_97'],
+                             X = df_o[df_o$H01_01 == 1, c('exper', 'exper2')])
 ivmodel.male.all.o
 
 

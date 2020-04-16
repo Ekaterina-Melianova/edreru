@@ -55,6 +55,12 @@
 
 \usepackage{lipsum}  % for fillers
 
+% Additional
+\usepackage{amsmath}
+\usepackage{tabularx}
+\usepackage{tabulary}
+\usepackage{float}
+\usepackage[flushleft]{threeparttable}
 %%%%%%%%#################################################################################%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 % Update article type if known
@@ -115,30 +121,13 @@ This is a generic template designed for use by multiple journals, which includes
 
 \lipsum[1]
 
-\textbf{First level:}
-\begin{flalign}\label{eq:4.1} 
-Log(Wage)_{ij} = b_{0j} + b_{1j}\cdot Educ + b_{2j}\cdot Exp + b_{3j}\cdot Exp^2 + b_{4j}\cdot Gender + \epsilon_{ij} &&
-\end{flalign}
-
-\textbf{Second Level:}
-\begin{flalign}\label{eq:4.2} 
-b_{0j} = \gamma_{00} + \gamma_{0n}\cdot Z + u_{00} ;&&
-b_{1j} = \gamma_{10} + \gamma_{1n}\cdot Z + u_{10} ;&&
-b_{ij} = \gamma_{i0} \quad for \quad i \neq 0   &&
-\end{flalign}
- 
-\noindent
-where an individual $i$ is nested withing a region $j$, $Log(Wage)$ is a logarithm of monthly wage, $Educ$ stands for highest attained level of education, $Exp$ and $Exp^2$ reflect the years of working experience and its quadratic term respectively, $Gender$ is a dummy variable for gender, $Z$ is an $n\times i$ matrix of regional characteristics, $\epsilon$ and $u_{00}$, $u_{10}$ are the first- and second-level errors respectively.
-
-
-We refer to \cite{card_070._1999} and \parecite{belloni_052._2011}. 
-
-
 \section{Literature Review: Use of Instrumental Variables in Returns to Education Studies}
 
 General Literature
 
+
 Russia Specific
+
 
 The usage of instrumental variables as a way of correcting for the endogeneity of educational attainments in the estimation of returns to schooling in Russia is relatively rare. Nevertheless, there are several papers that leveraged IV technique and made a number of important conclusions.
 
@@ -155,11 +144,12 @@ Utilizing the same instruments as \citet{cheidvasser_educated_2007}, \citet{akhm
 
 \section{Lasso and Post-Lasso Instrumental Variables: Overview of Estimation Method}
 
-This study uses post-Lasso IV estimation, which was elaborated by \citet{belloni_high_2011} and \citet{belloni_sparse_2012} a decade ago. The method performs an optimal IV selection, using Lasso technique.
+This study considers post-Lasso IV estimation procedure, which was elaborated by \citet{belloni_high_2011} and \citet{belloni_sparse_2012} a decade ago. The method performs an optimal IV selection, using the Lasso statistical learning algorithm.
 
-The Lasso (Least Absolute Shrinkage and Selection Operator) is a regression analysis method, which was popularized by Tibshirani \citet{tibshirani_regression_1996}. As it stems from the name, the method does both variable selection and shrinkage (unlike Ridge, which only shrinks). The Lasso solves a regression problem with L1 penalization of finding \citep{diebold_econometric_2019}:
+The Lasso (Least Absolute Shrinkage and Selection Operator) is a regression analysis method, which was popularized by \citet{tibshirani_regression_1996}. As it stems from the name, the method does both variable selection and shrinkage (unlike Ridge, which only shrinks). The Lasso solves a regression problem with L1 penalization of finding \citep{diebold_econometric_2019}:
 
-\begin{equation}\hat{\beta}_{L A S S O}=\operatorname{argmin}_{\beta}\left(\sum_{i=1}^{N}\left(y_{i}-\sum_{i} \beta_{i} x_{i t}\right)^{2}+\lambda \sum_{i=1}^{K}\left|\beta_{i}\right|\right)\end{equation}
+\begin{equation}\hat{\beta}_{L A S S O}=\operatorname{argmin}_{\beta}\left(\sum_{i=1}^{N}\left(y_{i}-\sum_{i} \beta_{i} x_{i t}\right)^{2}+\lambda \sum_{i=1}^{K}\left|\beta_{i}\right|\right)
+\end{equation}
 
 or equivalently:
 
@@ -169,184 +159,163 @@ s.t.
 
 \begin{equation}\sum_{i=1}^{K}\left|\beta_{i}\right| \leq c\end{equation}
 
+\noindent
+where $y$ and $x$ are dependent and independent variables for $i = 1,2,...,N$, respectively; $\beta$ is a regression coefficient of interest; $\lambda$ is a tuning parameter, $K$ is the number of degrees of freedom (d.f.) in the model fitting, $t$ is the amount of independent variables.
+
 The equations portray that the Lasso loss function is composed of the least squares estimator (or can be extended to many other estimators) and a penalty term in a form of the absolute coefficient value. The main distinctive property of this technique is the ability to conduct feature selection procedure by nullifying regression coefficients of low importance, which is of particular relevance in situations with large feature sets. In case of zero lambda, the method gets back to OLS, while huge lambdas reduce coefficients to zero and may lead to under-fitting.
 
-The d.f. results of Lasso are convenient: the effective number of parameters equals exactly to the number of the picked up (non-zero) variables. The best-fitting lambda can be chosen by reliance on various information criteria (e.g., AIC and SIC) or cross-validation. The additional advantage of Lasso is its relative computational tractability due to the convex minimization problem \citep{diebold_econometric_2019}.
+The d.f. results of Lasso are convenient: the effective number of parameters equals exactly to the number of the picked up (non-zero) variables. The best-fitting lambda can be chosen by reliance on various information criteria (e.g., AIC and SIC) or cross-validation. The additional advantage of the Lasso algorithm is its relative computational tractability due to the convex minimization problem \citep{diebold_econometric_2019}.
+
+The post-Lasso was devised for the instrument selection by excluding IVs with insignificant effects on the endogenous variable. Particularly, the post-Lasso algorithm consists of 2 steps: (1) IV selection in the first-stage regression using Lasso, (2) 2SLS estimation with the picked up instruments. The method allows to enhance the precision of inferences due to the advantage of implementing multiple instruments and avoiding the finite sample bias expansion. As long as the instruments of economic importance are filtered out, the erroneous exclusion of valid instrument with minor effects does not amend the 2SLS estimation \citep{belloni_high-dimensional_2014}. This is achieved due to the assumption that the conditional mean of a given endogenous attribute can be well approached by a small range of key instruments.
+
+The Two-Stage Least Squares specification of interest in the present paper can be written by the following equations.
+
+First stage:
+
+\begin{equation}
+x_{1i}=z_{i}^{\prime} \pi_{1}+x_{2i}^{\prime} \pi_{2}+v_{i}
+\end{equation}
+
+Second stage:
+
+\begin{equation}
+y_{i}=x_{1 i} \beta_{1}+x_{2i}^{\prime} \beta_{2}+\varepsilon_{i}
+\end{equation}
+
+\noindent
+where $y$ is a logarithm of wages for $i = 1,2,...,N$; $x_{1i}$ reflects years of education (an endogenous regressor); $x_{2i}$ is a vector of exogenous variables: labor market experience and its squared term; $z_{i}$ is a vector of instrumental variables, aggregated at a regional level in the Russian Federation: the number of higher education institutions, high school graduate students per school, standard deviation from the national average EGE scores (Russian school-leaving examination), net migration rate, women to men ratio, marriage rate, employment in female-dominated industries, and literacy level in 1897 in the Russian empire; $\beta_{1}$ is the causal effect of $x_{1}$ an $y$; $\varepsilon_{i}$ and $v_{i}$ are normally distributed error terms.
+
+When a specified 2SLS model contains exogenous regressors, the Lasso selection technique is applied over the transformed first-stage equation where each side is multiplied by a projection matrix of control variables (i.e., they are partialed out). Then the Lasso estimator is given by: 
+
+\begin{equation}\hat{\pi}_{1}^{\text {Lasso}}=\arg \min_{\pi_{1}}\left\{\frac{1}{N} \sum_{i=1}^{N}\left(x_{1 i}^{*} -z_{i}^{*} \pi_{1}\right)^{2} +\frac{\lambda}{N}\left\|\pi_{1}\right\|_{1}\right\}\end{equation}
+
+\noindent
+where $x_{1}^{*}$ and $z^{*}$ are the projected endogenous regressor (education years) and IVs, respectively; $\pi_{1}$ is a regression coefficient of interest; $\lambda$ stands for the regularization parameter.
 
 
 \section{Empirical Studies using Post-Lasso IV methodology}
 
 \lipsum[5]
 
-\lipsum[6]
-
-\lipsum[7]
-
-
 \section{Findings 1: Traditional Instrumental Variable Technique}
 
-\lipsum[1]
+Figure \ref{fig:5.1} displays correlations between the instrumental variables and years of education by cohorts and figure \ref{fig:5.2} is a correlation matrix between all the region-level instruments of focus: the number of higher education institutions \textit{(HSGPER)}, high school graduate students per school \textit{(high\_n)}, standard deviation from the national average EGE scores \textit{(s1z)}, net migration rate \textit{(migrationrate)}, women to men ratio \textit{(women2menratio)}, marriage rate \textit{(marriagerate)}, employment in female-dominated industries \textit{(migrationrate)}, and literacy level in 1897 in the Russian empire \textit{(Literacy\_97)}.
 
-\lipsum[2]
 
-\lipsum[3]
+\begin{figure}[h]
+	\includegraphics[width=\textwidth]{cor_by_cohorts.png}
+	\caption{Pearson correlation between Instrumental Variables and Years of Education by Cohorts, 2018} \label{fig:5.1}
+\end{figure}
+
+\begin{figure}[h]
+	\includegraphics[width=\textwidth]{cor_matrix.png}
+	\caption{Pearson correlation Matrix and Distributions for Instrumental Variables, 2018} \label{fig:5.2}
+\end{figure}
+
+
+\begin{table}[ht]
+	\centering
+	\caption{Individual 2SLS Estimates (Standard Errors) for each IV by Cohorts and OLS Results, 2018}
+	\label{tab:5.1}	
+	\resizebox{\textwidth}{!}{
+\begin{tabular}{lcccccccc}
+		\hline
+		IVs & Female\_young & N1 & Female\_old & N2 & Male\_young & N3 & Male\_old & N4 \\ 
+		\hline
+		high\_n & 1.959 (0.229) & 9779 & 0.857 (0.042) & 11564 & 0.787 (0.047) & 10636 & 0.64 (0.026) & 9826 \\ 
+		HSGPER & 1.717 (0.174) & 9779 & 0.887 (0.044) & 11564 & 0.754 (0.043) & 10636 & 0.636 (0.026) & 9826 \\ 
+		s1z & 1.34 (0.195) & 9779 & 0.602 (0.041) & 11564 & 0.648 (0.06) & 10636 & 0.501 (0.034) & 9826 \\ 
+		migrationrate & 1.429 (0.163) & 9779 & 0.796 (0.05) & 11564 & 0.625 (0.045) & 10636 & 0.534 (0.028) & 9826 \\ 
+		women2menratio & -0.439 (0.609) & 9779 & -0.99 (0.731) & 11564 & -0.105 (0.154) & 10636 & -2.998 (5.602) & 9826 \\ 
+		marriagerate & 2.312 (0.536) & 9779 & 2.18 (0.477) & 11564 & 2.638 (0.705) & 10636 & 1.988 (0.378) & 9826 \\ 
+		fem\_ind\_prop & 1.677 (0.218) & 9779 & 0.985 (0.079) & 11564 & 0.829 (0.066) & 10636 & 0.663 (0.034) & 9826 \\ 
+		Literacy\_97 & 1.868 (0.232) & 6834 & 0.912 (0.053) & 7860 & 0.726 (0.044) & 7247 & 0.641 (0.03) & 6701 \\ 
+		\hline
+		OLS & 0.092 (0.003) & 9775 & 0.107 (0.003) & 11560 & 0.103 (0.003) & 10632 & 0.114 (0.003) & 9822 \\ 
+		\hline
+\end{tabular}
+}
+\end{table}
 
 
 \section{Findings 2: Post Lasso IV Results}
 
-\lipsum[6]
+\begin{figure}[h]
+	\includegraphics[width=\textwidth]{iv_3_methods.png}
+	\caption{Returns to Education Estimates and 95\% CIs for Post-Lasso, 2SLS, and OLS by Cohorts, 2018} \label{fig:5.3}
+\end{figure}
 
-\lipsum[9]
+\begin{table}[H]
+	\centering	
+	\caption{Means and Standard Deviations for Education Years and Wages by Ranked Groups of Regions, 2018}
+	\label{tab:5.2}	
+	\resizebox{\textwidth}{!}{
+		\begin{tabular}{llllll}
+			\hline		Variable & Group & Top 20 & Middle 40 & Bottom 20 & Whole Sample \\ 
+			\hline
+			edu\_yrs & Female older & 13.38 (2.62) & 13.91 (2.73) & 13.91 (2.7) & 13.76 (2.71) \\ 
+			&Female young & 14.09 (2.75) & 14.55 (2.66) & 14.8 (2.61) & 14.49 (2.68) \\ 
+			&Male older & 12.51 (2.34) & 13.21 (2.66) & 13.26 (2.68) & 13.03 (2.6) \\ 
+			&Male young & 13.04 (2.58) & 13.83 (2.74) & 14.02 (2.75) & 13.67 (2.73) \\ 
+			wage & Female older & 19379.02 (11665.53) & 27784.51 (18811.94) & 26329.79 (16935.15) & 25132.36 (17104.73) \\ 
+			&Female young & 19731.68 (10639.46) & 30433.91 (20443.96) & 27890.92 (16672.82) & 27170.08 (18149.23) \\ 
+			&Male older & 26392.05 (18023.65) & 36872.17 (26937.81) & 35302.24 (24426.05) & 33650.33 (24684.13) \\ 
+			&Male young & 31539.2 (18744.09) & 40202.54 (24260.45) & 37103.45 (24277.62) & 37266.07 (23242.51) \\
+			\midrule
+			Priority regions &  & \begin{tabular}[l]{@{}l@{}}Pskovskaya Obl.,\\ Resp. Karelia, \\Resp. Mariy El\end{tabular} & \begin{tabular}[l]{@{}l@{}}Altayskiy Kray, \\Kurganskaya Obl.,\\ Chuvashskaya Resp.,\\ Resp.a Altay \end{tabular}& \begin{tabular}[l]{@{}l@{}}Resp. Adygeya,\\ Resp. Kalmykiya,\\ Resp. Tyva \end{tabular}& \begin{tabular}[l]{@{}l@{}} Resp. Adygeya,\\ Pskovskaya Obl.,\\ Altayskiy Kray,\\ Kurganskaya Obl.,\\ Resp. Kalmykiya, \\ Chuvashskaya Resp.,\\ Res. Altay,\\ Resp. Karelia,\\ Resp. Tyva,\\ Resp. Mariy El \end{tabular}\\ 
+			\hline
+		\end{tabular}
+}
+\begin{tablenotes}
+	\small
+	\item \textit{Note: the ranking was based on the regional level of employment among vocational level holders.}
+\end{tablenotes}
+\end{table}
 
-\lipsum[3]
 
+\begin{figure}[H]
+	\begin{minipage}[b]{\linewidth}
+		\centering
+		\includegraphics[width=350pt]{iv_2_methods_1.png}
+		\subcaption{Ranking variable: regional percentage of vocational education as final level amongst women 25-64}\label{fig:5.4a}
+	\end{minipage}
+	\hfill
+	\begin{minipage}[b]{\linewidth}
+		\centering
+		\includegraphics[width=350pt]{iv_2_methods_2.png}
+		\subcaption{Ranking variable: regional level of employment among vocational level holders}\label{fig:5.4b}
+	\end{minipage}
+	\hfill
+	\begin{minipage}[b]{\linewidth}
+		\centering
+		\includegraphics[width=350pt]{iv_2_methods_3.png}
+		\subcaption{Ranking variable: regional employment level of vocational education holders \\
+	    multiplied with reciprocal of employment level of higher education holders}\label{fig:5.4c}
+	\end{minipage}
+	\caption{Returns to Education Estimates and 95\% CIs for Post-Lasso and OLS by Cohorts and Ranked Groups of Regions, 2018}
+	\label{fig:5.4}
+\end{figure}
+
+
+\begin{figure}[H]
+	\includegraphics[width=\textwidth]{iv_by_districts.png}
+	\caption{Returns to Education Estimates and 95\% CIs for Post-Lasso and OLS by Cohorts and\\
+    Federal Districts (Maximum and Minimum for each Method), 2018} \label{fig:5.5}
+\end{figure}
+
+\newpage
 
 \section{Conclusions}
 
 \lipsum[1]
 
-\lipsum[4]
 
-\lipsum[3]
 
 \printbibliography
 
 \newpage
 \section*{Appendix}
-\addcontentsline{toc}{section}{Appendix}%
 
-\setcounter{table}{0}
-\renewcommand{\thetable}{A\arabic{table}}
-
-
-\begin{table}[!htbp] \centering 
-\caption{Results of Estimating Human Capital Depreciation for the Female sample, RLMS} 
-	\label{tab:A1}
-\begin{tabular}{@{\extracolsep{5pt}}lcccccc} 
-\\[-1.8ex]\hline 
-\hline \\[-1.8ex] 
-& \textbf{1994} & \textbf{1998} & \textbf{2003} & \textbf{2006} & \textbf{2012} & \textbf{2018} \\ 
-\\[-1.8ex] & (1) & (2) & (3) & (4) & (5) & (6)\\ 
-\hline \\[-1.8ex] 
- Constant & 9.725$^{***}$ & 3.786$^{***}$ & 5.464$^{***}$ & 6.946$^{***}$ & 8.133$^{***}$ & 8.767$^{***}$ \\ 
-  & (0.381) & (0.322) & (0.301) & (0.247) & (0.186) & (0.242) \\ 
-  & & & & & & \\ 
- Educ, years ($S$) & 0.122$^{***}$ & 0.153$^{***}$ & 0.158$^{***}$ & 0.118$^{***}$ & 0.087$^{***}$ & 0.066$^{***}$ \\ 
-  & (0.025) & (0.022) & (0.020) & (0.016) & (0.012) & (0.015) \\ 
-  & & & & & & \\ 
- Educ X Exper ($TS$) & $-$0.002$^{*}$ & $-$0.002$^{***}$ & $-$0.002$^{**}$ & $-$0.0002 & $-$0.0001 & 0.0004 \\ 
-  & (0.001) & (0.001) & (0.001) & (0.001) & (0.0005) & (0.001) \\ 
-  & & & & & & \\ 
- Exper ($T$) & 0.074$^{***}$ & 0.080$^{***}$ & 0.055$^{***}$ & 0.013 & 0.020$^{**}$ & 0.020$^{*}$ \\ 
-  & (0.019) & (0.016) & (0.015) & (0.013) & (0.010) & (0.011) \\ 
-  & & & & & & \\ 
- Exper squared ($T^2$) & $-$0.001$^{***}$ & $-$0.001$^{***}$ & $-$0.001$^{***}$ & $-$0.0003$^{**}$ & $-$0.0005$^{***}$ & $-$0.001$^{***}$ \\ 
-  & (0.0002) & (0.0002) & (0.0002) & (0.0001) & (0.0001) & (0.0001) \\ 
-  & & & & & & \\ 
-\hline \\[-1.8ex] 
-Observations & 1,645 & 1,667 & 2,093 & 2,630 & 4,057 & 3,312 \\ 
-R$^{2}$ & 0.051 & 0.089 & 0.110 & 0.139 & 0.104 & 0.092 \\ 
-Adjusted R$^{2}$ & 0.049 & 0.087 & 0.108 & 0.138 & 0.103 & 0.091 \\ 
-Residual Std. Error & 0.853 & 0.728 & 0.731 & 0.664 & 0.641 & 0.597 \\ 
-F Statistic & 22.179$^{***}$ & 40.520$^{***}$ & 64.342$^{***}$ & 106.385$^{***}$ & 117.366$^{***}$ & 83.993$^{***}$ \\ 
-\hline 
-\hline \\[-1.8ex] 
-\textit{Note:}  & \multicolumn{6}{r}{$^{*}$p$<$0.1; $^{**}$p$<$0.05; $^{***}$p$<$0.01} \\ 
-\end{tabular} 
-\end{table} 
-
-
-\begin{table}[!htbp] \centering 
-\caption{Results of Estimating Human Capital Depreciation for the Male sample, RLMS} 
-	\label{tab:A2}
-\begin{tabular}{@{\extracolsep{5pt}}lcccccc} 
-\\[-1.8ex]\hline 
-\hline \\[-1.8ex] 
-& \textbf{1994} & \textbf{1998} & \textbf{2003} & \textbf{2006} & \textbf{2012} & \textbf{2018} \\ 
-\\[-1.8ex] & (1) & (2) & (3) & (4) & (5) & (6)\\ 
-\hline \\[-1.8ex] 
- Constant & 10.357$^{***}$ & 5.029$^{***}$ & 7.334$^{***}$ & 8.067$^{***}$ & 8.771$^{***}$ & 9.094$^{***}$ \\ 
-  & (0.433) & (0.360) & (0.282) & (0.243) & (0.157) & (0.185) \\ 
-  & & & & & & \\ 
- Educ, years ($S$) & 0.136$^{***}$ & 0.123$^{***}$ & 0.080$^{***}$ & 0.077$^{***}$ & 0.077$^{***}$ & 0.077$^{***}$ \\ 
-  & (0.028) & (0.024) & (0.019) & (0.016) & (0.010) & (0.012) \\ 
-  & & & & & & \\ 
- Educ X Exper ($TS$) & $-$0.002$^{*}$ & $-$0.001 & 0.0004 & $-$0.0003 & $-$0.0004 & $-$0.001 \\ 
-  & (0.001) & (0.001) & (0.001) & (0.001) & (0.0005) & (0.001) \\ 
-  & & & & & & \\ 
- Exper ($T$) & 0.054$^{**}$ & 0.032$^{*}$ & 0.002 & 0.007 & 0.035$^{***}$ & 0.037$^{***}$ \\ 
-  & (0.023) & (0.017) & (0.014) & (0.013) & (0.009) & (0.010) \\ 
-  & & & & & & \\ 
- Exper squared ($T^2$) & $-$0.001$^{***}$ & $-$0.0004$^{**}$ & $-$0.0003$^{*}$ & $-$0.0003$^{*}$ & $-$0.001$^{***}$ & $-$0.001$^{***}$ \\ 
-  & (0.0003) & (0.0002) & (0.0002) & (0.0001) & (0.0001) & (0.0001) \\ 
-  & & & & & & \\ 
-\hline \\[-1.8ex] 
-Observations & 1,392 & 1,433 & 1,763 & 2,170 & 3,360 & 2,800 \\ 
-R$^{2}$ & 0.057 & 0.070 & 0.078 & 0.074 & 0.153 & 0.110 \\ 
-Adjusted R$^{2}$ & 0.054 & 0.067 & 0.076 & 0.072 & 0.152 & 0.108 \\ 
-Residual Std. Error & 0.951 & 0.803 & 0.754 & 0.688 & 0.598 & 0.570 \\ 
-F Statistic & 20.989$^{***}$ & 26.879$^{***}$ & 37.362$^{***}$ & 43.281$^{***}$ & 151.868$^{***}$ & 86.125$^{***}$ \\ 
-\hline 
-\hline \\[-1.8ex] 
-\textit{Note:}  & \multicolumn{6}{r}{$^{*}$p$<$0.1; $^{**}$p$<$0.05; $^{***}$p$<$0.01} \\ 
-\end{tabular} 
-\end{table} 
-
-
-
-\begin{table}[!htbp] \centering 
-	\caption{Results of Multilevel Modeling with Coverage by Vocational Education, Rosstat 2018} 
-	\label{tab:A2} 
-	\begin{tabular}{@{\extracolsep{5pt}}lcccc} 
-		\\[-1.8ex]\hline 
-		\hline \\[-1.8ex] 
-		& Null model & Mincerian & Random Slope & Cross-Level Interaction \\ 
-		\\[-1.8ex] & (1) & (2) & (3) & (4)\\ 
-		\hline \\[-1.8ex] 
-		Constant & 10.178$^{***}$ & 10.032$^{***}$ & 10.056$^{***}$ & 10.065$^{***}$ \\ 
-		& (0.034) & (0.034) & (0.036) & (0.036) \\ 
-		& & & & \\ 
-		Vocational &  & 0.283$^{***}$ & 0.279$^{***}$ & 0.267$^{***}$ \\ 
-		&  & (0.009) & (0.021) & (0.021) \\ 
-		& & & & \\ 
-		Higher &  & 0.638$^{***}$ & 0.641$^{***}$ & 0.622$^{***}$ \\ 
-		&  & (0.009) & (0.025) & (0.025) \\ 
-		& & & & \\ 
-		Coverage VE X Vocational &  &  &  & 0.050$^{**}$ \\ 
-		&  &  &  & (0.025) \\ 
-		& & & & \\ 
-		Coverage VE X Higher &  &  &  & 0.083$^{***}$ \\ 
-		&  &  &  & (0.030) \\ 
-		& & & & \\ 
-		Experience &  & $-$0.026$^{***}$ & $-$0.027$^{***}$ & $-$0.027$^{***}$ \\ 
-		&  & (0.002) & (0.002) & (0.002) \\ 
-		& & & & \\ 
-		Experience squared &  & $-$0.065$^{***}$ & $-$0.065$^{***}$ & $-$0.065$^{***}$ \\ 
-		&  & (0.002) & (0.002) & (0.002) \\ 
-		& & & & \\ 
-		Females &  & $-$0.403$^{***}$ & $-$0.404$^{***}$ & $-$0.404$^{***}$ \\ 
-		&  & (0.005) & (0.005) & (0.005) \\ 
-		& & & & \\ 
-		Coverage VE &  &  & $-$0.101$^{***}$ & $-$0.142$^{***}$ \\ 
-		&  &  & (0.039) & (0.043) \\ 
-		& & & & \\ 
-		\hline
-		\hline
-		Variance of Intecept & 0.09 & 0.08 & 0.09 & 0.09 \\ 
-		Variance of Vocational &  &  & 0.02 & 0.02 \\ 
-		Variance of Higher &  &  & 0.04 & 0.04 \\ 
-		Residual Deviance & 0.45 & 0.35 & 0.34 & 0.34 \\ 
-		\hline
-		\hline
-		Observations & 49,187 & 49,187 & 49,187 & 49,187 \\ 
-		Log Likelihood & $-$59,755.060 & $-$53,289.500 & $-$53,094.620 & $-$53,096.640 \\ 
-		Akaike Inf. Crit. & 119,516.100 & 106,595.000 & 106,217.200 & 106,225.300 \\ 
-		Bayesian Inf. Crit. & 119,542.500 & 106,665.400 & 106,340.500 & 106,366.100 \\ 
-		\hline 
-		\hline \\[-1.8ex] 
-		\textit{Note:}  & \multicolumn{4}{r}{$^{*}$p$<$0.1; $^{**}$p$<$0.05; $^{***}$p$<$0.01} \\ 
-	\end{tabular} 
-\end{table} 
 
 
 
