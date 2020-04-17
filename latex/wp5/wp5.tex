@@ -54,6 +54,7 @@
 \usepackage{booktabs} % for vertically partitioned table
 
 \usepackage{lipsum}  % for fillers
+\usepackage{float}
 
 %%%%%%%%#################################################################################%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
@@ -111,39 +112,34 @@ The Ministry of Education provides information regarding  the salaries obtained 
 
 \subsection{Graduate.edu portal}
 
-\textbf{One or two paragraphs explaining the process of data collection for graduate.edu}
+Graduate.edu allows the registered users to download all desirable information about the earnings of college or university graduates in .xlsx format. By using that service we obtained data about the number of graduates in 2013 in each university and college and their corresponding salaries in 2014, 2015 and 2016.
+Our final set of data consists of 1909 colleges, 423 universities, and 2975 pairs of university-study areas with information about the graduates earning in them. We filtered out universities and colleges with less than 100 and 50 graduates in 2013, respectively. Salaries in 2014 and 2015 were adjusted to the prices of 2016.
 
-\lipsum[1]
+\begin{table}[ht]
+	\centering
+	\begin{tabular}{rrrrrr}
+		\hline
+		& Mean & Std & Quantile 25\% & Quantile 50\% & Quantile 75\% \\ 
+		\hline
+		College Graduates Avg. Earnings 2014 & 22408.41 & 6718.38 & 18213.59 & 20843.45 & 24744.95 \\ 
+		College Graduates Avg. Earnings 2015 & 21035.93 & 6243.07 & 17172.41 & 19611.08 & 23374.58 \\ 
+		College Graduates Avg. Earnings 2016 & 21585.56 & 6636.83 & 17359.00 & 20001.00 & 23944.00 \\ 
+		University Graduates Avg. Earnings 2014 & 34910.34 & 15281.97 & 24810.51 & 30480.92 & 40376.30 \\ 
+		University Graduates Avg. Earnings 2015 & 35789.17 & 16926.88 & 25381.09 & 30709.85 & 41602.99 \\ 
+		University Graduates Avg. Earnings 2016 & 36937.19 & 18353.19 & 25409.50 & 31692.00 & 42500.50 \\ 
+		\hline
+	\end{tabular}
+\end{table}
 
-\textbf{Another sentence telling size of data - how many univs, colleges etc.} 
 
-TABLE HERE OF DESCRIPTIVE STATISTICS OF THE VARIABLES
-
-Column: Mean, Standard deviation and three quartiles - 25\% 50\% (or median) and 75\% and N 
-6 Rows - College Natl.Average Graduate Earnings 2014; Earnings 2015;Earnings 2016;  Univ for 3 years
-
-
-
-AV: Please color the two parts of the boxplots and introduce 3 or 4 vertical reference lines in the graph for easier reading; use the same scale please.
-
-
-
-\begin{figure}[htbp!]
+\begin{figure}[H]
 	\centering
 	\includegraphics[width=400pt]{box_plot1a.png}
 	\caption{Earnings in 2014 by Specialization}\label{fig:1.1}
 \end{figure}
 
 
-
-\textbf{Couple of sentence about growth in earnings in real terms over the period to introduce next figure}
-
-Please change with line to connect the two dots and arrange in order of descending gap as we discussed on the Skype call. 
-
-
-
-
-\begin{figure}[htbp!]
+\begin{figure}[H]
 	\centering
 	\includegraphics[width=400pt]{sal_inc.png}
 	\caption{Earnings Growth 2014-16 by Specialization}\label{fig:1.2}
@@ -153,17 +149,33 @@ Please change with line to connect the two dots and arrange in order of descendi
 
 \subsection{Bus.gov portal}
 
-\lipsum[1] 
+We obtained financial data about the colleges and universities from the open data section on the https://bus.gov.ru. It contains information about the total cash receipts of an organization for a given year and provides data on the income subcategories, such as cash receipts from paid services, target subsidy, budget investments, state (municipal) tasks. In our research, we approximated fee payments through the information about cash receipts from the paid services and used it together with the number of graduates for the calculation of the private education cost. To estimate the social cost of education we used total cash receipts in an organization. 
 
-\textbf{Paragraph about contents of our bus.gov portal database}
-
-TABLE Columns as before, Mean SD, 3 quartiles and Number of est
-Rows - 8 each for college and 8 for university: 8 = 5 + 1 +2
-5 cash receipt concepts including total (average across 6 years - if possible
-use constant 2016 rubles but we can use nominal for now); 
-1 row number of graduate
-2 rows our unit cost figures private and social
-
+\begin{table}[ht]
+	\centering
+	\begin{tabular}{rrrrrr}
+		\hline
+		& Mean & Std & Quantile 25\% & Quantile 50\% & Quantile 75\% \\ 
+		\hline
+		Number of College Graduates in 2013 & 176.31 & 133.39 & 90.75 & 139.50 & 224.00 \\ 
+		Total Cash Receipts in Colleges, mean 2012-2017 & 88499122.76 & 200088664.05 & 42204580.14 & 60579178.44 & 94179182.94 \\ 
+		Cash Receipts from the Paid Services in Colleges, mean 2012-2017 & 12004524.72 & 24174678.97 & 3338267.21 & 6714012.86 & 13290757.87 \\ 
+		Cash Receipts from the Target Subsidy in Colleges, mean 2012-2017 & 10928188.61 & 68501579.61 & 2628307.95 & 5600336.39 & 10975815.41 \\ 
+		Cash Receipts from the Budget Investments in Colleges, mean 2012-2017 & 391006.37 & 3281730.14 & 0.00 & 0.00 & 0.00 \\ 
+		Cash Receipts from the State (Municipal) Tasks in Colleges, mean 2012-2017 & 62185102.87 & 78598656.84 & 31545197.90 & 45165347.00 & 68748188.24 \\ 
+		Social Cost for Colleges & 209009.22 & 376699.68 & 107375.57 & 149017.39 & 224786.38 \\ 
+		Private Cost for Colleges & 22514.60 & 26853.43 & 8605.75 & 16156.35 & 28188.52 \\ 
+		Number of University Graduates in 2013 & 1653.40 & 1540.26 & 632.75 & 1230.00 & 2068.75 \\ 
+		Total Cash Receipts in Universities, mean 2012-2017 & 1584286956.47 & 2428205237.24 & 483322824.71 & 852711495.45 & 1554176934.12 \\ 
+		Cash Receipts from the Paid Services in Universities, mean 2012-2017 & 635645476.93 & 1093170696.05 & 131150222.87 & 296913560.19 & 687080404.05 \\ 
+		Cash Receipts from the Target Subsidy in Universities, mean 2012-2017 & 219245815.86 & 307653669.29 & 71807802.22 & 128997271.85 & 220246526.77 \\ 
+		Cash Receipts from the Budget Investments in Universities, mean 2012-2017 & 38817642.63 & 136401304.85 & 0.00 & 0.00 & 2823464.86 \\ 
+		Cash Receipts from the State (Municipal) Tasks in Universities, mean 2012-2017 & 658658759.84 & 1066074165.51 & 242686336.78 & 361106786.64 & 651264620.70 \\ 
+		Social Cost for Universities & 272583.61 & 282826.42 & 107100.80 & 176603.23 & 308564.26 \\ 
+		Private Cost for Universities & 102266.58 & 131717.09 & 34453.63 & 58740.89 & 113401.27 \\ 
+		\hline
+	\end{tabular}
+\end{table}
 
 
 
