@@ -56,6 +56,10 @@
 \usepackage{lipsum}  % for fillers
 \usepackage{float}
 
+%% For landscape pages 
+
+\usepackage{lscape}
+
 %%%%%%%%#################################################################################%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 % Update article type if known
@@ -115,7 +119,7 @@ The Ministry of Education provides information regarding  the salaries obtained 
 Graduate.edu allows the registered users to download all desirable information about the earnings of college or university graduates in .xlsx format. By using that service we obtained data about the number of graduates in 2013 in each university and college and their corresponding salaries in 2014, 2015 and 2016.
 Our final set of data consists of 1909 colleges, 423 universities, and 2975 pairs of university-study areas with information about the graduates earning in them. We filtered out universities and colleges with less than 100 and 50 graduates in 2013, respectively. Salaries in 2014 and 2015 were adjusted to the prices of 2016.
 
-\begin{table}[ht]
+\begin{table}[htbp!]
 	\centering
 	\begin{tabular}{rrrrrr}
 		\hline
@@ -138,6 +142,7 @@ Our final set of data consists of 1909 colleges, 423 universities, and 2975 pair
 	\caption{Earnings in 2014 by Specialization}\label{fig:1.1}
 \end{figure}
 
+\newpage
 
 \begin{figure}[H]
 	\centering
@@ -151,9 +156,15 @@ Our final set of data consists of 1909 colleges, 423 universities, and 2975 pair
 
 We obtained financial data about the colleges and universities from the open data section on the https://bus.gov.ru. It contains information about the total cash receipts of an organization for a given year and provides data on the income subcategories, such as cash receipts from paid services, target subsidy, budget investments, state (municipal) tasks. In our research, we approximated fee payments through the information about cash receipts from the paid services and used it together with the number of graduates for the calculation of the private education cost. To estimate the social cost of education we used total cash receipts in an organization. 
 
-\begin{table}[ht]
-	\centering
-	\begin{tabular}{rrrrrr}
+\begin{landscape}
+\fontsize{9}{11}
+\selectfont
+
+\begin{table}[!htbp] \centering 
+\renewcommand{\arraystretch}{1.0}
+  \caption{Data regarding Tertiary Education Institutes} 
+  \label{} 
+\begin{tabular}{@{\extracolsep{1pt}}p{5cm}rrrrr} 
 		\hline
 		& Mean & Std & Quantile 25\% & Quantile 50\% & Quantile 75\% \\ 
 		\hline
@@ -177,7 +188,9 @@ We obtained financial data about the colleges and universities from the open dat
 	\end{tabular}
 \end{table}
 
+\end{landscape}
 
+\newpage
 
 \section{Institutional Returns for Colleges and Universities}
 
