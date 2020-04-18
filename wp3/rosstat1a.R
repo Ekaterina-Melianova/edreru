@@ -836,7 +836,7 @@ stargazer(M18_0,
                              as.vector(as.character(ranef[3,])),
                              as.vector(as.character(ranef[4,])))))
 
-
+# Also to add other diagnostics like glance() for each model
 ################### Specification of the effects for the model with coverage by VE
 
 # Cov_HE_sdandardized = 1, i.e., coverage is high
