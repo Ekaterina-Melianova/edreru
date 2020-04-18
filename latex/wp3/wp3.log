@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.21 (MiKTeX 2.9.7300 64-bit) (preloaded format=pdflatex 2020.2.29)  11 APR 2020 12:48
+This is pdfTeX, Version 3.14159265-2.6-1.40.21 (MiKTeX 2.9.7300 64-bit) (preloaded format=pdflatex 2020.2.29)  17 APR 2020 13:44
 entering extended mode
 **./wp3.tex
 (wp3.tex
@@ -1665,92 +1665,92 @@ Package: booktabs 2020/01/12 v1.61803398 Publication quality tables
 \@thisrulewidth=\dimen345
 )
 LaTeX Font Info:    Trying to load font information for T1+lato-TLF on input li
-ne 82.
+ne 81.
 
 (C:\Users\wb164718\AppData\Roaming\MiKTeX\2.9\tex/latex/lato\t1lato-tlf.fd
 File: T1lato-TLF.fd 2019/06/24 Font definitions for T1/lato-TLF.
 )
 LaTeX Font Info:    Font shape `T1/lato-TLF/m/n' will be
-(Font)              scaled to size 8.0pt on input line 82.
+(Font)              scaled to size 8.0pt on input line 81.
 LaTeX Font Info:    Font shape `T1/lato-TLF/m/n' will be
-(Font)              scaled to size 6.66675pt on input line 82.
-LaTeX Font Info:    Calculating math sizes for size <6.66675> on input line 82.
+(Font)              scaled to size 6.66675pt on input line 81.
+LaTeX Font Info:    Calculating math sizes for size <6.66675> on input line 81.
 
 LaTeX Font Info:    Trying to load font information for OT1+lmr on input line 8
-2.
+1.
 
 ("C:\Program Files\MiKTeX 2.9\tex/latex/lm\ot1lmr.fd"
 File: ot1lmr.fd 2009/10/30 v1.6 Font defs for Latin Modern
 )
 LaTeX Font Info:    Trying to load font information for OML+lmm on input line 8
-2.
+1.
 
 ("C:\Program Files\MiKTeX 2.9\tex/latex/lm\omllmm.fd"
 File: omllmm.fd 2009/10/30 v1.6 Font defs for Latin Modern
 )
 LaTeX Font Info:    Trying to load font information for OMS+lmsy on input line 
-82.
+81.
 
 ("C:\Program Files\MiKTeX 2.9\tex/latex/lm\omslmsy.fd"
 File: omslmsy.fd 2009/10/30 v1.6 Font defs for Latin Modern
 )
 LaTeX Font Info:    Trying to load font information for OMX+lmex on input line 
-82.
+81.
 
 ("C:\Program Files\MiKTeX 2.9\tex/latex/lm\omxlmex.fd"
 File: omxlmex.fd 2009/10/30 v1.6 Font defs for Latin Modern
 )
 LaTeX Font Info:    External font `lmex10' loaded for size
-(Font)              <6.66675> on input line 82.
+(Font)              <6.66675> on input line 81.
 LaTeX Font Info:    External font `lmex10' loaded for size
-(Font)              <4.86668> on input line 82.
+(Font)              <4.86668> on input line 81.
 LaTeX Font Info:    External font `lmex10' loaded for size
-(Font)              <3.66672> on input line 82.
+(Font)              <3.66672> on input line 81.
 
 
 LaTeX Font Warning: Font shape `OT1/cmr/bx/n' in size <3.66672> not available
-(Font)              size <5> substituted on input line 82.
+(Font)              size <5> substituted on input line 81.
 
 
 LaTeX Font Warning: Font shape `OML/cmm/b/it' in size <3.66672> not available
-(Font)              size <5> substituted on input line 82.
+(Font)              size <5> substituted on input line 81.
 
 
 LaTeX Font Warning: Font shape `OMS/cmsy/b/n' in size <3.66672> not available
-(Font)              size <5> substituted on input line 82.
+(Font)              size <5> substituted on input line 81.
 
 LaTeX Font Info:    Trying to load font information for U+ntxsfmia on input lin
-e 82.
+e 81.
 (C:\Users\wb164718\AppData\Roaming\MiKTeX\2.9\tex/latex/newtxsf\untxsfmia.fd
 File: untxsfmia.fd 2014/11/16 Fontinst v1.933 font definitions for U/ntxsfmia.
 )
 LaTeX Font Info:    Trying to load font information for U+ntxsym on input line 
-82.
+81.
 
 (C:\Users\wb164718\AppData\Roaming\MiKTeX\2.9\tex/latex/newtx\untxsym.fd
 File: untxsym.fd 2015/03/20 Fontinst v1.933 font definitions for U/ntxsym.
 )
 LaTeX Font Info:    Trying to load font information for U+ntxexa on input line 
-82.
+81.
 
 (C:\Users\wb164718\AppData\Roaming\MiKTeX\2.9\tex/latex/newtx\untxexa.fd
 File: untxexa.fd 2012/04/16 Fontinst v1.933 font definitions for U/ntxexa.
 )
 Missing character: There is no ¹ in font lmsy7!
 LaTeX Font Info:    Font shape `T1/lato-TLF/m/n' will be
-(Font)              scaled to size 4.86668pt on input line 82.
+(Font)              scaled to size 4.86668pt on input line 81.
 
 
-Package hyperref Warning: Ignoring empty anchor on input line 82.
+Package hyperref Warning: Ignoring empty anchor on input line 81.
 
 LaTeX Font Info:    Font shape `T1/lato-TLF/b/n' will be
-(Font)              scaled to size 6.66675pt on input line 82.
+(Font)              scaled to size 6.66675pt on input line 81.
 LaTeX Font Info:    Font shape `T1/lato-TLF/b/n' will be
-(Font)              scaled to size 8.0pt on input line 82.
+(Font)              scaled to size 8.0pt on input line 81.
 LaTeX Font Info:    Font shape `T1/lato-TLF/m/it' will be
-(Font)              scaled to size 8.0pt on input line 82.
+(Font)              scaled to size 8.0pt on input line 81.
 Package translations Info: No language package found. I am going to use `englis
-h' as default language. on input line 97.
+h' as default language. on input line 96.
 \@quotelevel=\count503
 \@quotereset=\count504
 (wp3.aux
@@ -1769,39 +1769,39 @@ LaTeX Warning: Label `tab:A2' multiply defined.
 )
 \openout1 = `wp3.aux'.
 
-LaTeX Font Info:    Checking defaults for OML/ntxsfmi/m/it on input line 97.
+LaTeX Font Info:    Checking defaults for OML/ntxsfmi/m/it on input line 96.
 LaTeX Font Info:    Trying to load font information for OML+ntxsfmi on input li
-ne 97.
+ne 96.
  (C:\Users\wb164718\AppData\Roaming\MiKTeX\2.9\tex/latex/newtxsf\omlntxsfmi.fd
 File: omlntxsfmi.fd 2014/11/16 Fontinst v1.933 font definitions for OML/ntxsfmi
 .
 )
-LaTeX Font Info:    ... okay on input line 97.
-LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 97.
-LaTeX Font Info:    ... okay on input line 97.
-LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 97.
-LaTeX Font Info:    ... okay on input line 97.
-LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 97.
-LaTeX Font Info:    ... okay on input line 97.
-LaTeX Font Info:    Checking defaults for TS1/cmr/m/n on input line 97.
-LaTeX Font Info:    ... okay on input line 97.
-LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 97.
-LaTeX Font Info:    ... okay on input line 97.
-LaTeX Font Info:    Checking defaults for U/ntxexa/m/n on input line 97.
-LaTeX Font Info:    ... okay on input line 97.
-LaTeX Font Info:    Checking defaults for LMS/ntxsy/m/n on input line 97.
+LaTeX Font Info:    ... okay on input line 96.
+LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 96.
+LaTeX Font Info:    ... okay on input line 96.
+LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 96.
+LaTeX Font Info:    ... okay on input line 96.
+LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 96.
+LaTeX Font Info:    ... okay on input line 96.
+LaTeX Font Info:    Checking defaults for TS1/cmr/m/n on input line 96.
+LaTeX Font Info:    ... okay on input line 96.
+LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 96.
+LaTeX Font Info:    ... okay on input line 96.
+LaTeX Font Info:    Checking defaults for U/ntxexa/m/n on input line 96.
+LaTeX Font Info:    ... okay on input line 96.
+LaTeX Font Info:    Checking defaults for LMS/ntxsy/m/n on input line 96.
 LaTeX Font Info:    Trying to load font information for LMS+ntxsy on input line
- 97.
+ 96.
  (C:\Users\wb164718\AppData\Roaming\MiKTeX\2.9\tex/latex/newtx\lmsntxsy.fd
 File: lmsntxsy.fd 2016/07/02 Fontinst v1.933 font definitions for LMS/ntxsy.
 )
-LaTeX Font Info:    ... okay on input line 97.
-LaTeX Font Info:    Checking defaults for LMX/ntxexx/m/n on input line 97.
-LaTeX Font Info:    ... okay on input line 97.
-LaTeX Font Info:    Checking defaults for PD1/pdf/m/n on input line 97.
-LaTeX Font Info:    ... okay on input line 97.
-LaTeX Font Info:    Checking defaults for PU/pdf/m/n on input line 97.
-LaTeX Font Info:    ... okay on input line 97.
+LaTeX Font Info:    ... okay on input line 96.
+LaTeX Font Info:    Checking defaults for LMX/ntxexx/m/n on input line 96.
+LaTeX Font Info:    ... okay on input line 96.
+LaTeX Font Info:    Checking defaults for PD1/pdf/m/n on input line 96.
+LaTeX Font Info:    ... okay on input line 96.
+LaTeX Font Info:    Checking defaults for PU/pdf/m/n on input line 96.
+LaTeX Font Info:    ... okay on input line 96.
 
 (C:\Users\wb164718\AppData\Roaming\MiKTeX\2.9\tex/context/base/mkii\supp-pdf.mk
 ii
@@ -1823,17 +1823,17 @@ Package epstopdf-base Info: Redefining graphics rule for `.eps' on input line 4
 85.
 )
 ABD: EverySelectfont initializing macros
-LaTeX Info: Redefining \selectfont on input line 97.
+LaTeX Info: Redefining \selectfont on input line 96.
 \AtBeginShipoutBox=\box85
  ABD: EveryShipout initializing macros
-LaTeX Info: Redefining \microtypecontext on input line 97.
+LaTeX Info: Redefining \microtypecontext on input line 96.
 Package microtype Info: Generating PDF output.
 Package microtype Info: Character protrusion enabled (level 2).
 Package microtype Info: Using default protrusion set `alltext'.
 Package microtype Info: Automatic font expansion enabled (level 2),
 (microtype)             stretch: 20, shrink: 20, step: 1, non-selected.
 Package microtype Info: Using default expansion set `basictext'.
-LaTeX Info: Redefining \showhyphens on input line 97.
+LaTeX Info: Redefining \showhyphens on input line 96.
 Package microtype Info: No adjustment of tracking.
 Package microtype Info: No adjustment of interword spacing.
 Package microtype Info: No adjustment of character kerning.
@@ -1894,7 +1894,7 @@ File: translations-basic-dictionary-english.trsl (english translation file `tra
 nslations-basic-dictionary')
 )
 Package translations Info: loading dictionary `translations-basic-dictionary' f
-or `english'. on input line 97.
+or `english'. on input line 96.
 
 (C:\Users\wb164718\AppData\Roaming\MiKTeX\2.9\tex/latex/translator\translator-b
 asic-dictionary-English.dict
@@ -1904,7 +1904,7 @@ Dictionary: translator-basic-dictionary, Language: English
 ations.cfg
 File: siunitx-abbreviations.cfg 2017/11/26 v2.7k siunitx: Abbreviated units
 )
-Package hyperref Info: Link coloring OFF on input line 97.
+Package hyperref Info: Link coloring OFF on input line 96.
 
 (C:\Users\wb164718\AppData\Roaming\MiKTeX\2.9\tex/latex/hyperref\nameref.sty
 Package: nameref 2019/09/16 v2.46 Cross-referencing by name of section
@@ -1917,9 +1917,9 @@ Package: gettitlestring 2019/12/15 v1.6 Cleanup title references (HO)
 )
 \c@section@level=\count513
 )
-LaTeX Info: Redefining \ref on input line 97.
-LaTeX Info: Redefining \pageref on input line 97.
-LaTeX Info: Redefining \nameref on input line 97.
+LaTeX Info: Redefining \ref on input line 96.
+LaTeX Info: Redefining \pageref on input line 96.
+LaTeX Info: Redefining \nameref on input line 96.
 Package biblatex Info: Trying to load language 'english'...
 Package biblatex Info: ... file 'english.lbx' found.
 
@@ -1938,35 +1938,35 @@ Package biblatex Info: Data encoding 'utf8' specified.
 Package biblatex Info: Trying to load bibliographic data...
 Package biblatex Info: ... file 'wp3.bbl' found.
  (wp3.bbl)
-Package biblatex Info: Reference section=0 on input line 97.
-Package biblatex Info: Reference segment=0 on input line 97.
+Package biblatex Info: Reference section=0 on input line 96.
+Package biblatex Info: Reference segment=0 on input line 96.
 
 (C:\Users\wb164718\AppData\Roaming\MiKTeX\2.9\tex/latex/microtype\mt-cmr.cfg
 File: mt-cmr.cfg 2013/05/19 v2.2 microtype config. file: Computer Modern Roman 
 (RS)
 )
 LaTeX Font Info:    External font `lmex10' loaded for size
-(Font)              <8> on input line 97.
+(Font)              <8> on input line 96.
 LaTeX Font Info:    External font `lmex10' loaded for size
-(Font)              <6.2> on input line 97.
+(Font)              <6.2> on input line 96.
 LaTeX Font Info:    External font `lmex10' loaded for size
-(Font)              <5.5> on input line 97.
+(Font)              <5.5> on input line 96.
 
 
 LaTeX Font Warning: Font shape `OT1/cmr/bx/n' in size <5.5> not available
-(Font)              size <5> substituted on input line 97.
+(Font)              size <5> substituted on input line 96.
 
 
 LaTeX Font Warning: Font shape `OML/cmm/b/it' in size <5.5> not available
-(Font)              size <5> substituted on input line 97.
+(Font)              size <5> substituted on input line 96.
 
 
 LaTeX Font Warning: Font shape `OMS/cmsy/b/n' in size <5.5> not available
-(Font)              size <5> substituted on input line 97.
+(Font)              size <5> substituted on input line 96.
 
 Missing character: There is no ¹ in font lmsy8!
 LaTeX Font Info:    Trying to load font information for OT1+lmss on input line 
-97.
+96.
 ("C:\Program Files\MiKTeX 2.9\tex/latex/lm\ot1lmss.fd"
 File: ot1lmss.fd 2009/10/30 v1.6 Font defs for Latin Modern
 )
@@ -1975,7 +1975,7 @@ Package microtype Info: Loading generic protrusion settings for font family
 (microtype)             For optimal results, create family-specific settings.
 (microtype)             See the microtype manual for details.
 LaTeX Font Info:    Trying to load font information for OT1+lmtt on input line 
-97.
+96.
 
 ("C:\Program Files\MiKTeX 2.9\tex/latex/lm\ot1lmtt.fd"
 File: ot1lmtt.fd 2009/10/30 v1.6 Font defs for Latin Modern
@@ -1985,36 +1985,36 @@ Package microtype Info: Loading generic protrusion settings for font family
 (microtype)             For optimal results, create family-specific settings.
 (microtype)             See the microtype manual for details.
 LaTeX Font Info:    Font shape `T1/lato-TLF/eb/n' will be
-(Font)              scaled to size 8.0pt on input line 100.
+(Font)              scaled to size 8.0pt on input line 99.
 LaTeX Font Info:    Font shape `T1/lato-TLF/eb/n' will be
-(Font)              scaled to size 9.0pt on input line 100.
+(Font)              scaled to size 9.0pt on input line 99.
 LaTeX Font Info:    External font `lmex10' loaded for size
-(Font)              <9> on input line 100.
+(Font)              <9> on input line 99.
 LaTeX Font Info:    External font `lmex10' loaded for size
-(Font)              <7.3> on input line 100.
+(Font)              <7.3> on input line 99.
 Missing character: There is no ¹ in font lmsy9!
 Missing character: There is no ¹ in font lmsy8!
 LaTeX Font Info:    Font shape `T1/lato-TLF/b/n' will be
-(Font)              scaled to size 18.0pt on input line 100.
+(Font)              scaled to size 18.0pt on input line 99.
 LaTeX Font Info:    Font shape `T1/lato-TLF/b/n' will be
-(Font)              scaled to size 12.0pt on input line 100.
+(Font)              scaled to size 12.0pt on input line 99.
 LaTeX Font Info:    External font `lmex10' loaded for size
-(Font)              <12> on input line 100.
+(Font)              <12> on input line 99.
 LaTeX Font Info:    External font `lmex10' loaded for size
-(Font)              <8.8> on input line 100.
+(Font)              <8.8> on input line 99.
 LaTeX Font Info:    External font `lmex10' loaded for size
-(Font)              <6.6> on input line 100.
+(Font)              <6.6> on input line 99.
 Missing character: There is no ¹ in font lmsy10!
 LaTeX Font Info:    Font shape `T1/lato-TLF/b/n' will be
-(Font)              scaled to size 8.8pt on input line 100.
+(Font)              scaled to size 8.8pt on input line 99.
 Missing character: There is no ¹ in font lmsy8!
 LaTeX Font Info:    Font shape `T1/lato-TLF/m/n' will be
-(Font)              scaled to size 7.0pt on input line 106.
+(Font)              scaled to size 7.0pt on input line 105.
 Missing character: There is no ¹ in font lmsy7!
 LaTeX Font Info:    Font shape `T1/lato-TLF/m/n' will be
-(Font)              scaled to size 5.5pt on input line 106.
+(Font)              scaled to size 5.5pt on input line 105.
 LaTeX Font Info:    Font shape `T1/lato-TLF/b/n' will be
-(Font)              scaled to size 7.0pt on input line 106.
+(Font)              scaled to size 7.0pt on input line 105.
 
 
 ! LaTeX Error: There's no line here to end.
@@ -2023,14 +2023,14 @@ See the LaTeX manual or LaTeX Companion for explanation.
 Type  H <return>  for immediate help.
  ...                                              
                                                   
-l.106 \end{abstract}
+l.105 \end{abstract}
                     
 Your command was ignored.
 Type  I <command> <return>  to replace it with another command,
 or  <return>  to continue without it.
 
 LaTeX Font Info:    Trying to load font information for T1+lmtt on input line 1
-06.
+05.
 ("C:\Program Files\MiKTeX 2.9\tex/latex/lm\t1lmtt.fd"
 File: t1lmtt.fd 2009/10/30 v1.6 Font defs for Latin Modern
 )
@@ -2040,14 +2040,14 @@ Package microtype Info: Loading generic protrusion settings for font family
 (microtype)             See the microtype manual for details.
 Missing character: There is no ¹ in font lmsy8!
 \wiley@abstractbox=\box86
-Package mdframed Info: mdframed works in twoside mode on input line 106.
+Package mdframed Info: mdframed works in twoside mode on input line 105.
 LaTeX Font Info:    Font shape `T1/lato-TLF/m/n' will be
-(Font)              scaled to size 9.0pt on input line 106.
+(Font)              scaled to size 9.0pt on input line 105.
 LaTeX Font Info:    Font shape `T1/lato-TLF/b/n' will be
-(Font)              scaled to size 9.0pt on input line 106.
+(Font)              scaled to size 9.0pt on input line 105.
 Missing character: There is no ¹ in font lmsy7!
 Package mdframed Info: mdframed inside a box 
- mdframed uses option nobreak mdframed on input line 106.
+ mdframed uses option nobreak mdframed on input line 105.
 Missing character: There is no ¹ in font lmsy8!
 Missing character: There is no ¹ in font lmsy7!
 
@@ -2058,26 +2058,26 @@ See the LaTeX manual or LaTeX Companion for explanation.
 Type  H <return>  for immediate help.
  ...                                              
                                                   
-l.106 \end{abstract}
+l.105 \end{abstract}
                     
 Your command was ignored.
 Type  I <command> <return>  to replace it with another command,
 or  <return>  to continue without it.
 
-Package mdframed Info: mdframed works in twoside mode on input line 106.
+Package mdframed Info: mdframed works in twoside mode on input line 105.
 
-Overfull \hbox (7.36005pt too wide) in paragraph at lines 106--106
+Overfull \hbox (7.36005pt too wide) in paragraph at lines 105--105
 \T1/lato-TLF/m/n/9 nals, which in-cludes sev-eral op-tions for cus-tomiza-tion.
  Please
  []
 
 Missing character: There is no ¹ in font lmsy7!
 LaTeX Font Info:    Font shape `T1/lato-TLF/b/n' will be
-(Font)              scaled to size 10.0pt on input line 109.
+(Font)              scaled to size 10.0pt on input line 108.
 LaTeX Font Info:    Font shape `T1/lato-TLF/m/n' will be
-(Font)              scaled to size 10.0pt on input line 109.
+(Font)              scaled to size 10.0pt on input line 108.
 LaTeX Font Info:    External font `lmex10' loaded for size
-(Font)              <10> on input line 109.
+(Font)              <10> on input line 108.
 Missing character: There is no ¹ in font lmsy10!
 Missing character: There is no ¹ in font lmsy7!
 
@@ -2098,13 +2098,13 @@ Missing character: There is no º in font lmsy8!
 Missing character: There is no ¹ in font lmsy8!
 Missing character: There is no ¹ in font lmsy8!
 
-Overfull \hbox (19.0414pt too wide) in alignment at lines 147--154
+Overfull \hbox (19.0414pt too wide) in alignment at lines 146--153
  [] [] [] [] [] [] [] [] [] [] [] 
  []
 
 Missing character: There is no ¹ in font lmsy9!
 
-Overfull \hbox (19.0414pt too wide) in alignment at lines 154--175
+Overfull \hbox (19.0414pt too wide) in alignment at lines 153--174
  [] [] [] [] [] [] [] [] [] [] [] 
  []
 
@@ -2112,17 +2112,17 @@ Missing character: There is no ¹ in font lmsy7!
 [2]
 Missing character: There is no ¹ in font lmsy9!
 
-Overfull \hbox (19.0414pt too wide) in alignment at lines 175--195
+Overfull \hbox (19.0414pt too wide) in alignment at lines 174--194
  [] [] [] [] [] [] [] [] [] [] [] 
  []
 
 
-Overfull \hbox (19.0414pt too wide) in alignment at lines 195--215
+Overfull \hbox (19.0414pt too wide) in alignment at lines 194--214
  [] [] [] [] [] [] [] [] [] [] [] 
  []
 
 
-Overfull \hbox (19.0414pt too wide) in alignment at lines 215--235
+Overfull \hbox (19.0414pt too wide) in alignment at lines 214--234
  [] [] [] [] [] [] [] [] [] [] [] 
  []
 
@@ -2130,26 +2130,26 @@ Missing character: There is no ¹ in font lmsy7!
 [3]
 Missing character: There is no ¹ in font lmsy9!
 
-Overfull \hbox (19.0414pt too wide) in alignment at lines 235--241
+Overfull \hbox (19.0414pt too wide) in alignment at lines 234--240
  [] [] [] [] [] [] [] [] [] [] [] 
  []
 
 <reg_he_18.png, id=45, 578.16pt x 1445.4pt>
 File: reg_he_18.png Graphic file (type png)
 <use reg_he_18.png>
-Package pdftex.def Info: reg_he_18.png  used on input line 251.
+Package pdftex.def Info: reg_he_18.png  used on input line 250.
 (pdftex.def)             Requested size: 250.0pt x 624.99458pt.
 
-Overfull \hbox (19.87444pt too wide) in paragraph at lines 250--253
+Overfull \hbox (19.87444pt too wide) in paragraph at lines 249--252
  []|  [] 
  []
 
 LaTeX Font Info:    Font shape `T1/lato-TLF/m/n' will be
-(Font)              scaled to size 4.0pt on input line 253.
+(Font)              scaled to size 4.0pt on input line 252.
 LaTeX Font Info:    Font shape `T1/lato-TLF/b/n' will be
-(Font)              scaled to size 4.0pt on input line 253.
+(Font)              scaled to size 4.0pt on input line 252.
 LaTeX Font Info:    Trying to load font information for T1+lmss on input line 2
-53.
+52.
 ("C:\Program Files\MiKTeX 2.9\tex/latex/lm\t1lmss.fd"
 File: t1lmss.fd 2009/10/30 v1.6 Font defs for Latin Modern
 )
@@ -2160,60 +2160,56 @@ Package microtype Info: Loading generic protrusion settings for font family
 <reg_ve_18.png, id=46, 578.16pt x 1445.4pt>
 File: reg_ve_18.png Graphic file (type png)
 <use reg_ve_18.png>
-Package pdftex.def Info: reg_ve_18.png  used on input line 259.
+Package pdftex.def Info: reg_ve_18.png  used on input line 258.
 (pdftex.def)             Requested size: 250.0pt x 624.99458pt.
 
-Overfull \hbox (34.32822pt too wide) in paragraph at lines 258--261
+Overfull \hbox (34.32822pt too wide) in paragraph at lines 257--260
  []|  [] 
  []
 
 
-Overfull \hbox (1.36557pt too wide) in paragraph at lines 248--263
+Overfull \hbox (1.36557pt too wide) in paragraph at lines 247--262
 [][]  [] 
  []
 
 Missing character: There is no ¹ in font lmsy8!
 Missing character: There is no ¹ in font lmsy8!
 
-LaTeX Warning: Float too large for page by 107.51459pt on input line 264.
+LaTeX Warning: Float too large for page by 107.51459pt on input line 263.
 
-
-Underfull \vbox (badness 4132) has occurred while \output is active []
-
-Missing character: There is no ¹ in font lmsy7!
- [4]
 Missing character: There is no ¹ in font lmsy9!
 Missing character: There is no ¹ in font lmsy9!
 Missing character: There is no º in font lmsy9!
-LaTeX Font Info:    Font shape `T1/lato-TLF/m/it' will be
-(Font)              scaled to size 9.0pt on input line 268.
-
-
-LaTeX Warning: Empty bibliography on input line 271.
-
 Missing character: There is no ¹ in font lmsy7!
-[5] [6 <./reg_he_18.png> <./reg_ve_18.png>]
+[4] [5 <./reg_he_18.png> <./reg_ve_18.png>]
+LaTeX Font Info:    Font shape `T1/lato-TLF/m/it' will be
+(Font)              scaled to size 9.0pt on input line 267.
+
+
+LaTeX Warning: Empty bibliography on input line 270.
+
+[6]
 LaTeX Font Info:    Font shape `T1/lato-TLF/m/sc' will be
-(Font)              scaled to size 10.0pt on input line 274.
+(Font)              scaled to size 10.0pt on input line 273.
 
 
 LaTeX Font Warning: Font shape `T1/lato-TLF/b/sc' undefined
-(Font)              using `T1/lato-TLF/b/n' instead on input line 274.
+(Font)              using `T1/lato-TLF/b/n' instead on input line 273.
 
 LaTeX Font Info:    Font shape `T1/lato-TLF/b/sc' will be
-(Font)              scaled to size 10.0pt on input line 274.
+(Font)              scaled to size 10.0pt on input line 273.
 Missing character: There is no ¹ in font lmsy10!
 Missing character: There is no ¹ in font lmsy8!
 Missing character: There is no ¹ in font lmsy8!
 
-Overfull \hbox (12.94933pt too wide) in paragraph at lines 284--315
+Overfull \hbox (12.94933pt too wide) in paragraph at lines 283--314
  [][] 
  []
 
 Missing character: There is no ¹ in font lmsy8!
 Missing character: There is no ¹ in font lmsy8!
 
-Overfull \hbox (5.04584pt too wide) in paragraph at lines 321--352
+Overfull \hbox (5.04584pt too wide) in paragraph at lines 320--351
  [][] 
  []
 
@@ -2222,13 +2218,13 @@ Missing character: There is no ¹ in font lmsy8!
 Missing character: There is no ¹ in font lmsy7!
 [7] [8] [9]
 
-LaTeX Warning: Empty bibliography on input line 413.
+LaTeX Warning: Empty bibliography on input line 412.
 
-Package atveryend Info: Empty hook `BeforeClearDocument' on input line 415.
-Package atveryend Info: Empty hook `AfterLastShipout' on input line 415.
+Package atveryend Info: Empty hook `BeforeClearDocument' on input line 414.
+Package atveryend Info: Empty hook `AfterLastShipout' on input line 414.
 (wp3.aux)
-Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 415.
-Package atveryend Info: Empty hook `AtEndAfterFileList' on input line 415.
+Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 414.
+Package atveryend Info: Empty hook `AtEndAfterFileList' on input line 414.
 
 
 LaTeX Font Warning: Size substitutions with differences
@@ -2248,10 +2244,10 @@ Package logreq Info: Writing requests to 'wp3.run.xml'.
 
  ) 
 Here is how much of TeX's memory you used:
- 41640 strings out of 481280
- 799116 string characters out of 2916512
- 1549644 words of memory out of 3000000
- 56313 multiletter control sequences out of 15000+200000
+ 41639 strings out of 481280
+ 799111 string characters out of 2916512
+ 1548570 words of memory out of 3000000
+ 56312 multiletter control sequences out of 15000+200000
  1248211 words of font info for 215 fonts, out of 3000000 for 9000
  1141 hyphenation exceptions out of 8191
  81i,20n,110p,1271b,1130s stack positions out of 5000i,500n,10000p,200000b,50000s
@@ -2273,7 +2269,7 @@ rogram Files/MiKTeX 2.9/fonts/type1/public/lm/lmsy9.pfb><C:/Program Files/MiKTe
 X 2.9/fonts/type1/public/lm/lmtt8.pfb><C:/Users/wb164718/AppData/Roaming/MiKTeX
 /2.9/fonts/type1/public/txfonts/txsyc.pfb><C:/Users/wb164718/AppData/Roaming/Mi
 KTeX/2.9/fonts/type1/public/newtxsf/zsfmia-reg.pfb>
-Output written on wp3.pdf (9 pages, 921211 bytes).
+Output written on wp3.pdf (9 pages, 921219 bytes).
 PDF statistics:
  140 PDF objects out of 1000 (max. 8388607)
  23 named destinations out of 1000 (max. 500000)
