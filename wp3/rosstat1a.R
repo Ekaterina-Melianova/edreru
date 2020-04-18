@@ -444,11 +444,13 @@ latex(desc_rst)
 library(lme4)
 library(lattice)
 library(sjPlot)
+library(sjmisc)
 library(effects)
 library(broom) # for glance at AIC, BIC etc.
 library(performance) # for icc
 library(ggeffects) # for ggpredict
 library(margins) # for marginal effects
+library(merTools)
 
 # Null model
 M18_0 <- lmer(log(wage) ~ 1 + (1|en_rgnames),
@@ -460,6 +462,14 @@ M18_0 <- lmer(log(wage) ~ 1 + (1|en_rgnames),
 summary(M18_0)
 glance(M18_0)
 performance::icc(M18_0)
+
+# We have  result that gamma_00 = 10.17810; 
+# we have sigma-squared as 0.4493  and tau_00 as 0.0911
+# we have rho as 0.169 
+# and we have 79 nu_oj coefficients
+dotplot(ranef(M18_0),main=F,title="Model M18_0: Random effects - no covariates")
+M18_0a <- as.data.frame(ranef(M18_0)[1])
+
 
 # Adding predictors
 M18_1 <- lmer(log(wage) ~ edu_4 + scale(exper) + I(scale(exper)^2) +
@@ -478,7 +488,8 @@ M18_2 <- lmer(log(wage) ~ edu_4 + scale(exper) + I(scale(exper)^2) +
 anova(M18_1, M18_2) # renef for edu_4 is worth adding!
 summary(M18_2)
 
-
+# I need to get the exper and exper^2 variables defined separately
+# for packages like ggeffects - so I use M18_2b
 
 df$s.exper <- scale(df$exper)
 df$s.exper.sq <- df$s.exper*df$s.exper
@@ -488,19 +499,15 @@ M18_2b <- lmer(log(wage) ~ edu_4 + s.exper + s.exper.sq +
                weights = df[df$YEAR == 2018, "KVZV"],
                control=lmerControl(optimizer="bobyqa"))
 
-VarCorr(M18_2b)
-blix <- ra
+plot_model(M18_2b,type="re",sort.est = "edu_4Higher")
+M18_2ba <- get_model_data(M18_2b,type="re",sort.est = "edu_4Higher")
 
+summary(M18_2b)
 
-head(ranef(fm2)$Patient, n = 3)
-
-
-## Marginal effects of edu_yrs
-pr <- ggpredict(M18_2b, "edu_4")
-plot(pr)
-
-marginal_effects(M18_2b,variables="edu_4")
-
+# M18_2ba is the long format tidy data for the plot, the random effects
+# already have correction for 100(exp(beta) - 1); we do that for the 
+# fixed effect part and construct a new dataframe for plotting
+# that combines fixed and random effect, with confidence intervals. 
 
 
 ##### Adding 2-level characteristics
@@ -600,7 +607,7 @@ M18_11 <- lmer(log(wage) ~ edu_4 + scale(exper) + I(scale(exper)^2) + female +
 
 anova(M18_2, M18_11) # cov_VE is worth adding
 summary(M18_11)
-
+#################
 # Cross-level interaction
 M18_12 <- lmer(log(wage) ~ scale(exper) + I(scale(exper)^2) + female + 
                scale(cov_VE)*edu_4 +(1 + edu_4|en_rgnames),
@@ -611,7 +618,29 @@ M18_12 <- lmer(log(wage) ~ scale(exper) + I(scale(exper)^2) + female +
 anova(M18_11, M18_12) # cov_VE works as a moderator
 summary(M18_12)
 
+
 #################
+######## REVISED REVISED 
+
+blix <- getME(M18_12,name=c("Ztlist"))
+
+# df$s.exper <- scale(df$exper)
+# df$s.exper.sq <- df$s.exper*df$s.exper
+df$s.COV_VE <- scale(df$cov_VE)
+df$s.cv.edu_4 <- df$edu_4*df$s.COV_VE
+
+M18_12b <- lmer(log(wage) ~ edu_4 + s.exper + s.exper.sq +
+                  female + scale(cov_VE)*edu_4 + (1 + edu_4|en_rgnames),
+                data = df[df$YEAR == 2018,],
+                weights = df[df$YEAR == 2018, "KVZV"],
+                control=lmerControl(optimizer="bobyqa"))
+
+plot_model(M18_12b,type="re",sort.est = "edu_4Higher")
+M18_12ba <- get_model_data(M18_12b,type="re",sort.est = "edu_4Higher")
+
+summary(M18_2b)
+
+#################################
 # coverage HE
 M18_13 <- lmer(log(wage) ~ edu_4 + scale(exper) + I(scale(exper)^2) + female + 
                  scale(cov_HE) + (1 + edu_4|en_rgnames),
@@ -678,9 +707,13 @@ summary(M18_17)
 # Just for a rough look 
 dotplot(coef(M18_2))
 dotplot(ranef(M18_2, condVar=T))
-plot_model(M18_2, terms = "edu_4")
+
 
 #################
+
+# I would like to compare the result of adding fixed and random values to 
+# these conditional values or find documentation that they are the same. 
+
 t <- as.data.frame(ranef(M18_2, condVar=T))
 
 # Plotting
