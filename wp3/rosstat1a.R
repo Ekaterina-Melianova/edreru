@@ -504,6 +504,7 @@ M18_2ba <- get_model_data(M18_2b,type="re",sort.est = "edu_4Higher")
 
 summary(M18_2b)
 
+
 # M18_2ba is the long format tidy data for the plot, the random effects
 # already have correction for 100(exp(beta) - 1); we do that for the 
 # fixed effect part and construct a new dataframe for plotting
@@ -639,7 +640,8 @@ plot_model(M18_12b,type="re",sort.est = "edu_4Higher")
 M18_12ba <- get_model_data(M18_12b,type="re",sort.est = "edu_4Higher")
 
 summary(M18_2b)
-
+tab_model(M18_2b,M18_12b)
+glance(M18_2b,M18_12b)
 #################################
 # coverage HE
 M18_13 <- lmer(log(wage) ~ edu_4 + scale(exper) + I(scale(exper)^2) + female + 
