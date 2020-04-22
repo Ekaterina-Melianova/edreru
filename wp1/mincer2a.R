@@ -83,16 +83,6 @@ df$edu_4 <- car::recode(df$EDUC, "0:7=0; 8:9=1; 10:11=2; 12=1; 13=2;
 Freq(df$edu_4)
 df <- UserMisFix(df) # fixing missings after creating a new variable
 
-# Filtering 3 education levels
-df <- df[df$edu_4>0,]
-Freq(df$edu_4)
-
-# Education as factor
-df$edu_4 <- factor(df$edu_4, levels=c(1,2,3),
-                              labels=c("Secondary",
-                                       "Vocational",
-                                       "Higher"))
-
 # Wage
 
 # Select max wage if there is an additional job
@@ -136,13 +126,198 @@ summary(df$exper)
 # Generating a final dataset for the analysis
 df_mincer <- df[, c("REGION", "IDIND", "YEAR", "edu_4", "wage",
                     "exper", "non_russ", "female",
-                    "edu_yrs")]
+                    "edu_yrs", 'AGE')]
 summary(df_mincer)
-# df[which(df$wage == 0), "ID_I"]
 
 # Filtering the missings left
 df_mincer <- df_mincer %>%
   filter(!is.na(wage) & !is.na(exper) & wage > 0)
+
+# Filtering 3 education levels
+df_mincer <- df_mincer[df_mincer$edu_4>0,]
+Freq(df_mincer$edu_4)
+
+# Education as factor
+df_mincer$edu_4 <- factor(df_mincer$edu_4, levels=c(1,2,3),
+                          labels=c("Secondary",
+                                   "Vocational",
+                                   "Higher"))
+setwd("C:/Country/Russia/Data/SEASHELL/SEABYTE/edreru/wp1")
+########################################################################
+# Earnings Ratio by Educational Level
+
+# Average earnings secondary level
+edu_0 <- df_mincer %>%
+  group_by(edu_4, YEAR) %>%
+  filter(edu_4 == "Secondary" & YEAR %in% c(1998, 2006, 2018)) %>%
+  summarise(wage_sec = mean(wage))
+
+# Average earnings for all levels
+edu_ratio <- df_mincer %>%
+  group_by(edu_4, YEAR) %>%
+  filter(YEAR %in% c(1998, 2006, 2018))  %>%
+  summarise(wage_by_level = mean(wage))
+
+# Merging and computing ratios
+edu_ratio <- edu_ratio %>%
+  left_join(edu_0, by = 'YEAR')
+edu_ratio$edu_ratio <- 100*round(edu_ratio$wage_by_level/edu_ratio$wage_sec, 2)
+
+# Plotting for a subset of years
+g1 <- ggplot(data=edu_ratio[edu_ratio$YEAR == 1998,], aes(x = edu_4.x, y = edu_ratio,
+                                                          fill = edu_4.x)) + 
+  geom_bar(stat="identity") +
+  scale_fill_manual(values = c('grey', '#A7414A', '#A7414A')) +
+  geom_text(aes(y = edu_ratio, label = edu_ratio, vjust = -0.5), color="black", size = 5) +
+  theme(panel.background = element_blank(),
+        axis.title = element_blank(),
+        axis.text.x = element_text(size = 14, face = 'bold'),
+        axis.text.y = element_blank(),
+        axis.line = element_blank(),
+        axis.ticks = element_blank(),
+        legend.position="none",
+        plot.title = element_text(hjust = 0.5, size = 20)) +
+  ggtitle('1998')
+
+g2 <- ggplot(data=edu_ratio[edu_ratio$YEAR == 2006,], aes(x = edu_4.x, y = edu_ratio,
+                                                          fill = edu_4.x)) + 
+  geom_bar(stat="identity") +
+  scale_fill_manual(values = c('grey', '#A7414A', '#A7414A')) +
+  geom_text(aes(y = edu_ratio, label = edu_ratio, vjust = -0.5), color="black", size = 5) +
+  theme(panel.background = element_blank(),
+        axis.title = element_blank(),
+        axis.text.x = element_text(size = 14, face = 'bold'),
+        axis.text.y = element_blank(),
+        axis.line.y = element_line(color = 'black'),
+        axis.ticks = element_blank(),
+        legend.position="none",
+        plot.title = element_text(hjust = 0.5, size = 20)) +
+  ggtitle('2006')
+
+g3 <- ggplot(data=edu_ratio[edu_ratio$YEAR == 2018,], aes(x = edu_4.x, y = edu_ratio,
+                                                          fill = edu_4.x)) + 
+  geom_bar(stat="identity") +
+  scale_fill_manual(values = c('grey', '#A7414A', '#A7414A')) +
+  geom_text(aes(y = edu_ratio, label = edu_ratio, vjust = -0.5), color="black", size = 5) +
+  theme(panel.background = element_blank(),
+        axis.title = element_blank(),
+        axis.text.x = element_text(size = 14, face = 'bold'),
+        axis.text.y = element_blank(),
+        axis.line.y = element_line(color = 'black'),
+        axis.ticks = element_blank(),
+        legend.position="none",
+        plot.title = element_text(hjust = 0.5, size = 20)) +
+  ggtitle('2018')
+
+g <- gridExtra::grid.arrange(g1, g2, g3, nrow = 1, ncol = 3)
+
+# saving 
+ggsave("earnings_ratio.png", g, width = 10, height = 6,
+       units = "in")
+
+################### Age-earning Profiles by Level of Education
+############
+# Adjusting to prices in 2018
+cpi <- rio::import("cpi_revised.xlsx")[, c(1,6)]
+df_mincer <- df_mincer %>% left_join(cpi, by="YEAR")
+df_mincer2 <- df_mincer %>% 
+  mutate(wage_c18=ifelse(YEAR >=1998,wage*cons_wb,(wage*cons_wb/1000)))
+df_mincer2 <- haven::zap_labels(df_mincer2)
+############
+
+## Now the same plot, arranged with years together
+
+temp_ <- df_mincer2 %>% filter(YEAR==1998) 
+g1 <- ggplot(temp_,aes(x=AGE,y=wage_c18,group=as.factor(edu_4),color=as.factor(edu_4))) +
+  geom_smooth(aes(linetype = edu_4), se=FALSE, lwd=2, method=loess)+
+  scale_linetype_manual(values = c('longdash', 'dotted', 'solid'), guide = 'none') +
+  coord_cartesian(ylim=c(5000,40000))+
+  scale_color_manual(values=c("#D50B53","#824CA7","#B9C406"),
+                     breaks = rev(levels(as.factor(temp_$edu_4))))+
+  xlab("Age") + ylab("Monthly wages in 2018 Rubles")+
+  theme(panel.background = element_rect(fill = "#eeecec")) +
+  theme(panel.grid.major = element_line(color="white")) +
+  theme(panel.grid.major = element_line(size=1)) +
+  theme(panel.grid.minor = element_line(color="white")) +
+  theme(panel.grid.minor = element_line(size=1))+
+  theme(legend.position = c(0.2, 0.8),
+        legend.background = element_rect(fill = "#F4D993"),
+        legend.key = element_rect(fill = "#F4D993"),
+        legend.title=element_blank(),
+        axis.text = element_text(size = 18, face = 'bold'),
+        axis.title = element_text(size = 18, face = 'bold'),
+        legend.text = element_text(size = 14, face = 'bold'),
+        legend.key.size = unit(3,"line"),
+        plot.title = element_text(hjust = 0.5, size = 20)) +
+  ggtitle('1998') +
+  guides(shape = FALSE,
+         colour = guide_legend(override.aes = list(color = c("#D50B53","#824CA7","#B9C406"),
+                                                   linetype = c('longdash', 'dotted', 'solid'))))
+
+###
+
+temp_ <- df_mincer2 %>% filter(YEAR==2006) 
+g2 <- ggplot(temp_,aes(x=AGE,y=wage_c18,group=as.factor(edu_4),color=as.factor(edu_4))) +
+  geom_smooth(aes(linetype = edu_4), se=FALSE, lwd=2, method=loess)+
+  scale_linetype_manual(values = c('longdash', 'dotted', 'solid'), guide = 'none') +
+  coord_cartesian(ylim=c(5000,40000))+
+  scale_color_manual(values=c("#D50B53","#824CA7","#B9C406"),
+                     breaks = rev(levels(as.factor(temp_$edu_4))))+
+  xlab("Age") + 
+  theme(panel.background = element_rect(fill = "#eeecec")) +
+  theme(panel.grid.major = element_line(color="white")) +
+  theme(panel.grid.major = element_line(size=1)) +
+  theme(panel.grid.minor = element_line(color="white")) +
+  theme(panel.grid.minor = element_line(size=1))+
+  theme(axis.text = element_text(size = 18, face = 'bold'),
+        axis.title.x = element_text(size = 18, face = 'bold'),
+        axis.title.y = element_blank(),
+        legend.position = 'none',
+        plot.title = element_text(hjust = 0.5, size = 20)) +
+  ggtitle('2006')
+
+
+###
+
+temp_ <- df_mincer2 %>% filter(YEAR==2018) 
+g3 <- ggplot(temp_,aes(x=AGE,y=wage_c18,group=as.factor(edu_4),color=as.factor(edu_4))) +
+  geom_smooth(aes(linetype = edu_4), se=FALSE, lwd=2, method=loess)+
+  scale_linetype_manual(values = c('longdash', 'dotted', 'solid'), guide = 'none') +
+  coord_cartesian(ylim=c(5000,40000))+
+  scale_color_manual(values=c("#D50B53","#824CA7","#B9C406"),
+                     breaks = rev(levels(as.factor(temp_$edu_4))))+
+  xlab("Age") + 
+  theme(panel.background = element_rect(fill = "#eeecec")) +
+  theme(panel.grid.major = element_line(color="white")) +
+  theme(panel.grid.major = element_line(size=1)) +
+  theme(panel.grid.minor = element_line(color="white")) +
+  theme(panel.grid.minor = element_line(size=1))+
+  theme(axis.text = element_text(size = 18, face = 'bold'),
+        axis.title.x = element_text(size = 18, face = 'bold'),
+        axis.title.y = element_blank(),
+        legend.position = 'none',
+        plot.title = element_text(hjust = 0.5, size = 20)) +
+  ggtitle('2018')
+
+g <- gridExtra::grid.arrange(g1, g2, g3, nrow = 1, ncol = 3)
+
+# saving 
+ggsave("earnings_by_level.png", g, width = 20, height = 8,
+       units = "in")
+
+########################################################################
+####### Descriptive stat
+library(tables)
+desc_rst <- tabular((Year = factor(YEAR) )~ (N=1) + 
+                      Format(digits=2)*((Wage = wage*((Mean = mean) + (SD = sd))) +
+                                          (Experience = exper*((Mean = mean) + (SD = sd))) +
+                                          (Education_years = edu_yrs*((Mean = mean) + (SD = sd))) +
+                                          (Education = factor(edu_4)*Percent("row"))),
+                    data = df_mincer)
+
+#desc_rst
+
+latex(desc_rst)
 
 ################################## Data with occupation to save ###########################################
 

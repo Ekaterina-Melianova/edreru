@@ -323,35 +323,38 @@ for (j in 1:(length(seq_region))){
         ){
       #print(j)
       re_one_region <- c(re_one_region,
-                    (100*(exp(Rsmry_all[[i]][[j]]$coefficients[3,1]) - 1)),
+                         
+                     # Higher level
+                    (100*(exp(Rsmry_all[[i]][[j]]$coefficients[3,1]) - 1))/4,
                     formatC(Rsmry_all[[i]][[j]]$coefficients[3,4], digits = 2),
-                    (100*(exp(confint(Rlm_mincer_all[[i]][[j]])[3,1]) - 1)),
-                    (100*(exp(confint(Rlm_mincer_all[[i]][[j]])[3,2]) - 1)),
+                    (100*(exp(confint(Rlm_mincer_all[[i]][[j]])[3,1]) - 1))/4,
+                    (100*(exp(confint(Rlm_mincer_all[[i]][[j]])[3,2]) - 1))/4,
                     
-                    (100*(exp(Rsmry_m[[i]][[j]]$coefficients[3,1]) - 1)),
+                    (100*(exp(Rsmry_m[[i]][[j]]$coefficients[3,1]) - 1))/4,
                     formatC(Rsmry_m[[i]][[j]]$coefficients[3,4], digits = 2),
-                    (100*(exp(confint(Rlm_mincer_m[[i]][[j]])[3,1]) - 1)),
-                    (100*(exp(confint(Rlm_mincer_m[[i]][[j]])[3,2]) - 1)),
+                    (100*(exp(confint(Rlm_mincer_m[[i]][[j]])[3,1]) - 1))/4,
+                    (100*(exp(confint(Rlm_mincer_m[[i]][[j]])[3,2]) - 1))/4,
                     
-                    (100*(exp(Rsmry_f[[i]][[j]]$coefficients[3,1]) - 1)),
+                    (100*(exp(Rsmry_f[[i]][[j]]$coefficients[3,1]) - 1))/4,
                     formatC(Rsmry_f[[i]][[j]]$coefficients[3,4], digits = 2),
-                    (100*(exp(confint(Rlm_mincer_f[[i]][[j]])[3,1]) - 1)),
-                    (100*(exp(confint(Rlm_mincer_f[[i]][[j]])[3,2]) - 1)),
-                    
-                    (100*(exp(Rsmry_all[[i]][[j]]$coefficients[2,1]) - 1)),
+                    (100*(exp(confint(Rlm_mincer_f[[i]][[j]])[3,1]) - 1))/4,
+                    (100*(exp(confint(Rlm_mincer_f[[i]][[j]])[3,2]) - 1))/4,
+                     
+                    # Vocational level
+                    (100*(exp(Rsmry_all[[i]][[j]]$coefficients[2,1]) - 1))/3,
                     formatC(Rsmry_all[[i]][[j]]$coefficients[2,4], digits = 2),
-                    (100*(exp(confint(Rlm_mincer_all[[i]][[j]])[2,1]) - 1)),
-                    (100*(exp(confint(Rlm_mincer_all[[i]][[j]])[2,2]) - 1)),
+                    (100*(exp(confint(Rlm_mincer_all[[i]][[j]])[2,1]) - 1))/3,
+                    (100*(exp(confint(Rlm_mincer_all[[i]][[j]])[2,2]) - 1))/3,
                     
-                    (100*(exp(Rsmry_m[[i]][[j]]$coefficients[2,1]) - 1)),
+                    (100*(exp(Rsmry_m[[i]][[j]]$coefficients[2,1]) - 1))/3,
                     formatC(Rsmry_m[[i]][[j]]$coefficients[2,4], digits = 2),
-                    (100*(exp(confint(Rlm_mincer_m[[i]][[j]])[2,1]) - 1)),
-                    (100*(exp(confint(Rlm_mincer_m[[i]][[j]])[2,2]) - 1)),
+                    (100*(exp(confint(Rlm_mincer_m[[i]][[j]])[2,1]) - 1))/3,
+                    (100*(exp(confint(Rlm_mincer_m[[i]][[j]])[2,2]) - 1))/3,
                     
-                    (100*(exp(Rsmry_f[[i]][[j]]$coefficients[2,1]) - 1)),
+                    (100*(exp(Rsmry_f[[i]][[j]]$coefficients[2,1]) - 1))/3,
                     formatC(Rsmry_f[[i]][[j]]$coefficients[2,4], digits = 2),
-                    (100*(exp(confint(Rlm_mincer_f[[i]][[j]])[2,1]) - 1)),
-                    (100*(exp(confint(Rlm_mincer_f[[i]][[j]])[2,2]) - 1)))   
+                    (100*(exp(confint(Rlm_mincer_f[[i]][[j]])[2,1]) - 1))/3,
+                    (100*(exp(confint(Rlm_mincer_f[[i]][[j]])[2,2]) - 1))/3)   
     }
     else {
       re_one_region <- c(re_one_region, rep(NA, 24))
@@ -374,42 +377,40 @@ RoREs[,-(1:2)] <- lapply(RoREs[,-(1:2)], as.numeric)
 # 2018
 # HE
 
-temp <- RoREs %>% arrange(re_HE_all_2018)
-RF_color <- ifelse(temp[, "Region"] == "Russian Federation", "red", "black")
+#temp <- RoREs %>% arrange(re_HE_all_2018)
+#RF_color <- ifelse(temp[, "Region"] == "Russian Federation", "red", "black")
 
-ggplot(data = temp, aes(x = re_HE_all_2018, y = reorder(Region, re_HE_all_2018))) +
-  geom_point(size = 3, color = RF_color) + 
-  geom_errorbarh(aes(xmin = ci_lo_HE_all_2018,
-                     xmax = ci_up_HE_all_2018, height = 0.6)) +
-  theme_bw() +
-  theme(axis.text.y = element_text(color = RF_color, size = 16),
-        axis.text.x = element_text(color = "black", size = 16, face = "bold"),
-        axis.title.y = element_blank(),
-        axis.title.x = element_blank())  +
-  scale_x_continuous(limits = c(-30, 350))
+#ggplot(data = temp, aes(x = re_HE_all_2018, y = reorder(Region, re_HE_all_2018))) +
+#  geom_point(size = 3, color = RF_color) + 
+#  geom_errorbarh(aes(xmin = ci_lo_HE_all_2018,
+#                     xmax = ci_up_HE_all_2018, height = 0.6)) +
+#  theme_bw() +
+#  theme(axis.text.y = element_text(color = RF_color, size = 16),
+#        axis.text.x = element_text(color = "black", size = 16, face = "bold"),
+#        axis.title.y = element_blank(),
+#        axis.title.x = element_blank())  +
+#  scale_x_continuous(limits = c(-1,85))
 
-ggsave("reg_he_18.png", width = 8, height = 20,
-       units = "in")
+#ggsave("reg_he_18.png", width = 8, height = 20,
+ #      units = "in")
 
 # VE
-temp <- RoREs %>% arrange(re_VE_all_2018)
-RF_color <- ifelse(temp[, "Region"] == "Russian Federation", "red", "black")
+#temp <- RoREs %>% arrange(re_VE_all_2018)
+#RF_color <- ifelse(temp[, "Region"] == "Russian Federation", "red", "black")
 
-ggplot(data = temp, aes(x = re_VE_all_2018, y = reorder(Region, re_VE_all_2018))) +
-  geom_point(size = 3, color = RF_color) + 
-  geom_errorbarh(aes(xmin = ci_lo_VE_all_2018,
-                     xmax = ci_up_VE_all_2018, height = 0.6)) +
-  theme_bw() +
-  theme(axis.text.y = element_text(color = RF_color, size = 16),
-        axis.text.x = element_text(color = "black", size = 16, face = "bold"),
-        axis.title.y = element_blank(),
-        axis.title.x = element_blank())  +
-  scale_x_continuous(limits = c(-30, 350))
+#ggplot(data = temp, aes(x = re_VE_all_2018, y = reorder(Region, re_VE_all_2018))) +
+#  geom_point(size = 3, color = RF_color) + 
+#  geom_errorbarh(aes(xmin = ci_lo_VE_all_2018,
+#                     xmax = ci_up_VE_all_2018, height = 0.6)) +
+#  theme_bw() +
+#  theme(axis.text.y = element_text(color = RF_color, size = 16),
+#        axis.text.x = element_text(color = "black", size = 16, face = "bold"),
+#        axis.title.y = element_blank(),
+#        axis.title.x = element_blank())  +
+#  scale_x_continuous(limits = c(-10, 85))
 
-ggsave("reg_ve_18.png", width = 8, height = 20,
-       units = "in")
-
-
+#ggsave("reg_ve_18.png", width = 8, height = 20,
+#       units = "in")
 
 ############################################################################################
 # A file with region names
@@ -451,6 +452,7 @@ library(performance) # for icc
 library(ggeffects) # for ggpredict
 library(margins) # for marginal effects
 library(merTools)
+library(glmmTMB)
 
 # Null model
 M18_0 <- lmer(log(wage) ~ 1 + (1|en_rgnames),
@@ -502,38 +504,94 @@ M18_2b <- lmer(log(wage) ~ edu_4 + s.exper + s.exper.sq +
 plot_model(M18_2b,type="re",sort.est = "edu_4Higher")
 M18_2ba <- get_model_data(M18_2b,type="re",sort.est = "edu_4Higher")
 
-summary(M18_2b)
-
+M18_2b_smry <- summary(M18_2b)
 
 # M18_2ba is the long format tidy data for the plot, the random effects
 # already have correction for 100(exp(beta) - 1); we do that for the 
 # fixed effect part and construct a new dataframe for plotting
 # that combines fixed and random effect, with confidence intervals. 
 
+# Returns by region: fized plus region-specific random effect
+returns_by_regions <- as.data.frame(matrix(ncol = 1, nrow = 79))
 
-##### Adding 2-level characteristics
+# HE
+returns_by_regions$HE_est <- M18_2b_smry$coefficients['edu_4Higher',1] + 
+  M18_2ba[M18_2ba$facet == 'edu_4Higher', 'estimate']
+# CIs
+returns_by_regions$HE_lower <- confint(M18_2b, method="Wald")['edu_4Higher',1] + 
+  M18_2ba[M18_2ba$facet == 'edu_4Higher', 'conf.low']
+returns_by_regions$HE_upper <- confint(M18_2b, method="Wald")['edu_4Higher',2] + 
+  M18_2ba[M18_2ba$facet == 'edu_4Higher', 'conf.high']
 
-df_ <- df[!(df$en_rgnames == "Respublika Crimea"|df$en_rgnames == "Sevastopol"),]
+# VE
+returns_by_regions$VE_est <- M18_2b_smry$coefficients['edu_4Vocational',1] + 
+  M18_2ba[M18_2ba$facet == 'edu_4Vocational', 'estimate']
+# CIs
+returns_by_regions$VE_lower <- confint(M18_2b, method="Wald")['edu_4Vocational',1] + 
+  M18_2ba[M18_2ba$facet == 'edu_4Vocational', 'conf.low']
+returns_by_regions$VE_upper <- confint(M18_2b, method="Wald")['edu_4Vocational',2] + 
+  M18_2ba[M18_2ba$facet == 'edu_4Vocational', 'conf.high']
 
-# Quality of education: s1z
-M18_3 <- lmer(log(wage) ~ edu_4 + scale(exper) + I(scale(exper)^2) + female + 
-              scale(s1z) + (1 + edu_4|en_rgnames),
-              data = df_[df_$YEAR == 2018,],
-              weights = df_[df_$YEAR == 2018, "KVZV"],
-              control=lmerControl(optimizer="bobyqa"))
+returns_by_regions <- cbind.data.frame(term = M18_2ba[M18_2ba$facet == 'edu_4Higher','term'],
+                                                      returns_by_regions[,-1])
 
-anova(M18_2, M18_3) # s1z is worth adding
-summary(M18_3)
+# Calculating returns
+# HE
+returns_by_regions[,c("HE_est", "HE_lower", "HE_upper")] <- 
+  100*(exp(returns_by_regions[,c("HE_est", "HE_lower", "HE_upper")]) - 1)/4
+# VE
+returns_by_regions[,c("VE_est", "VE_lower", "VE_upper")] <- 
+  100*(exp(returns_by_regions[,c("VE_est", "VE_lower", "VE_upper")]) - 1)/3
 
-# Cross-level interaction
-M18_4 <- lmer(log(wage) ~ scale(exper) + I(scale(exper)^2) + female + 
-              scale(s1z)*edu_4 + (1 + edu_4|en_rgnames),
-              data = df_[df_$YEAR == 2018,],
-              weights = df_[df_$YEAR == 2018, "KVZV"],
-              control=lmerControl(optimizer="bobyqa"))
 
-anova(M18_3, M18_4) # s1z does not work as a moderator
-summary(M18_4)
+##################################### Plot ##########################################
+priority_regions <- c('Respublika Adygeya', 'Pskovskaya Oblast',
+                       'Altayskiy Kray', 'Kurganskaya Oblast',
+                       'Respublika Kalmykiya', 'Chuvashskaya Respublika', 
+                       'Respublika Altay', 'Respublika Karelia',
+                       'Respublika Tyva', 'Respublika Mariy El')
+
+# 2018
+# HE
+returns_by_regions <- returns_by_regions %>% arrange(HE_est)
+col_HE <- ifelse(returns_by_regions$term %in% priority_regions, "red", "black")
+
+ggplot(data = returns_by_regions, aes(x = HE_est, y = reorder(term, HE_est))) +
+  geom_point(color = col_HE, size = 3) + 
+  geom_errorbarh(aes(xmin = HE_upper,
+                     xmax = HE_lower, height = 0.6)) +
+  theme_bw() +
+  theme(axis.text.y = element_text(color = col_HE, size = 18),
+        axis.text.x = element_text(color = "black", size = 18, face = "bold"),
+        axis.title.y = element_blank(),
+        axis.title.x = element_blank())  +
+  scale_x_continuous(limits = c(-10,85))
+
+ggsave("reg_he_18.png", width = 8, height = 20,
+       units = "in")
+
+# VE
+returns_by_regions <- returns_by_regions %>% arrange(VE_est)
+col_VE <- ifelse(returns_by_regions$term %in% priority_regions, "red", "black")
+
+ggplot(data = returns_by_regions, aes(x = VE_est, y = reorder(term, VE_est))) +
+  geom_point(color = col_VE, size = 3) + 
+  geom_errorbarh(aes(xmin = VE_upper,
+                     xmax = VE_lower, height = 0.6)) +
+  theme_bw() +
+  theme(axis.text.y = element_text(color = col_VE, size = 18),
+        axis.text.x = element_text(color = "black", size = 18, face = "bold"),
+        axis.title.y = element_blank(),
+        axis.title.x = element_blank())  +
+  scale_x_continuous(limits = c(-10,85))
+
+
+ggsave("reg_ve_18.png", width = 8, height = 20,
+        units = "in")
+
+
+
+############################################################################################
 
 #################
 # Migration: migr
@@ -620,6 +678,8 @@ anova(M18_11, M18_12) # cov_VE works as a moderator
 summary(M18_12)
 
 
+
+
 #################
 ######## REVISED REVISED 
 
@@ -642,6 +702,8 @@ M18_12ba <- get_model_data(M18_12b,type="re",sort.est = "edu_4Higher")
 summary(M18_2b)
 tab_model(M18_2b,M18_12b)
 glance(M18_2b,M18_12b)
+
+
 #################################
 # coverage HE
 M18_13 <- lmer(log(wage) ~ edu_4 + scale(exper) + I(scale(exper)^2) + female + 
@@ -802,11 +864,16 @@ ranef <- ranef[c(1,3,4,2),]
 # Producing the table
 colnames(ranef) <- c("", "", "", "", "")
 ranef[,-1] <- round(ranef[,-1],2)
-xtable(ranef)
-
+#xtable(ranef)
+ranef[is.na(ranef[,2]),2 ] <- ""
+ranef[is.na(ranef[,3]),3 ] <- ""
 
 #################################### Latex #################################
 
+# Additional model fit criteria
+
+fit.stat <- t(do.call(rbind.data.frame, lapply(c(M18_0, M18_1, M18_11, M18_12), glance)))
+fit.stat <- cbind(rownames(fit.stat), round(fit.stat, 3))
 ################# Fixed effects
 stargazer(M18_0,
           M18_1,
@@ -831,10 +898,13 @@ stargazer(M18_0,
                                "Experience squared",
                                "Females",
                                "Coverage VE"),
-          add.lines = list(c(as.vector(as.character(ranef[1,])),
-                             as.vector(as.character(ranef[2,])),
-                             as.vector(as.character(ranef[3,])),
-                             as.vector(as.character(ranef[4,])))))
+          add.lines = list(c(as.vector(as.character(ranef[1,]))),
+                           c(as.vector(as.character(ranef[2,]))),
+                           c(as.vector(as.character(ranef[3,]))),
+                           c(as.vector(as.character(ranef[4,]))),
+                           c(as.vector(fit.stat[1,])),
+                           c(as.vector(fit.stat[5,])),
+                           c(as.vector(fit.stat[6,]))))
 
 # Also to add other diagnostics like glance() for each model
 ################### Specification of the effects for the model with coverage by VE

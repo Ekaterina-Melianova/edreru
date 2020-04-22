@@ -210,6 +210,15 @@ ggsave("cor_matrix.png", width = 20, height = 8,
        units = "in")
 
 ###################################################################################################
+# Post-Lasso whol sample
+fm_postLasso <- formula(log(wage) ~ edu_yrs + exper + I(exper^2)|exper + I(exper^2) + high_n + HSGPER + s1z +
+                          migrationrate + women2menratio + marriagerate + fem_ind_prop)
+
+pLasso_whole <- rlassoIVselectZ(fm_postLasso, data = df)
+pLasso_whole
+pLasso_whole$selected
+
+###################################################################################################
 ###########################  (ii) Use Kang et al ivmodel for running ols, TSLS standard with all IVs;
 
 ivmodel_by_dist <- function(df, if_females = T,

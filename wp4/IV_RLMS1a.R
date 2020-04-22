@@ -1,4 +1,4 @@
-# IV_RLMS.R
+# IV_RLMS1a.R
 
 library(hdm)
 library(sqldf)
