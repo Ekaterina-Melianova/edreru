@@ -210,13 +210,57 @@ ggsave("cor_matrix.png", width = 20, height = 8,
        units = "in")
 
 ###################################################################################################
-# Post-Lasso whol sample
+# Post-Lasso whole sample
 fm_postLasso <- formula(log(wage) ~ edu_yrs + exper + I(exper^2)|exper + I(exper^2) + high_n + HSGPER + s1z +
                           migrationrate + women2menratio + marriagerate + fem_ind_prop)
 
 pLasso_whole <- rlassoIVselectZ(fm_postLasso, data = df)
 pLasso_whole
 pLasso_whole$selected
+
+#
+fm_tsls <- formula(log(wage) ~ edu_yrs + exper + I(exper^2)|exper + I(exper^2) + high_n)
+
+ivreg_whole1 <- ivreg(fm_tsls, data = df)
+ivreg_whole1
+
+#
+fm_tsls <- formula(log(wage) ~ edu_yrs + exper + I(exper^2)|exper + I(exper^2) + HSGPER)
+
+ivreg_whole2 <- ivreg(fm_tsls, data = df)
+ivreg_whole2
+
+#
+fm_tsls <- formula(log(wage) ~ edu_yrs + exper + I(exper^2)|exper + I(exper^2) + s1z)
+
+ivreg_whole3 <- ivreg(fm_tsls, data = df)
+ivreg_whole3
+
+#
+fm_tsls <- formula(log(wage) ~ edu_yrs + exper + I(exper^2)|exper + I(exper^2) + migrationrate)
+
+ivreg_whole4 <- ivreg(fm_tsls, data = df)
+ivreg_whole4
+
+#
+fm_tsls <- formula(log(wage) ~ edu_yrs + exper + I(exper^2)|exper + I(exper^2) + women2menratio)
+
+ivreg_whole5 <- ivreg(fm_tsls, data = df)
+ivreg_whole5
+
+#
+fm_tsls <- formula(log(wage) ~ edu_yrs + exper + I(exper^2)|exper + I(exper^2) + marriagerate)
+
+ivreg_whole6 <- ivreg(fm_tsls, data = df)
+ivreg_whole6
+
+
+#
+fm_tsls <- formula(log(wage) ~ edu_yrs + exper + I(exper^2)|exper + I(exper^2) + fem_ind_prop)
+
+ivreg_whole7 <- ivreg(fm_tsls, data = df)
+ivreg_whole7
+
 
 ###################################################################################################
 ###########################  (ii) Use Kang et al ivmodel for running ols, TSLS standard with all IVs;

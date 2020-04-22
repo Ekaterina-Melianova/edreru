@@ -1,5 +1,16 @@
 # IV_RLMS2a.R
 
+library(AER)
+library(dplyr)
+library(tidyr)
+library(hdm)
+library(lme4)
+library(ivmodel)
+library(naivereg)
+library(rio)
+library(npsr)
+library(ggplot2)
+
 ########################################### Data  ################################################
 
 ### Main RLMS data
@@ -91,9 +102,53 @@ rlms18$exper2 <- (rlms18$exper)^2
 ##################################################################################################3
 # Analysis
 
+#
 fm_postLasso <- formula(log(wage) ~ edu_yrs + exper + I(exper^2)|exper + I(exper^2) + high_n + HSGPER + s1z +
                           migrationrate + women2menratio + marriagerate + fem_ind_prop)
 
 pLasso_whole <- rlassoIVselectZ(fm_postLasso, data = rlms18)
 pLasso_whole$selected
+
+#
+fm_tsls <- formula(log(wage) ~ edu_yrs + exper + I(exper^2)|exper + I(exper^2) + high_n)
+
+ivreg_whole1 <- ivreg(fm_tsls, data = rlms18)
+ivreg_whole1
+
+#
+fm_tsls <- formula(log(wage) ~ edu_yrs + exper + I(exper^2)|exper + I(exper^2) + HSGPER)
+
+ivreg_whole2 <- ivreg(fm_tsls, data = rlms18)
+ivreg_whole2
+
+#
+fm_tsls <- formula(log(wage) ~ edu_yrs + exper + I(exper^2)|exper + I(exper^2) + s1z)
+
+ivreg_whole3 <- ivreg(fm_tsls, data = rlms18)
+ivreg_whole3
+
+#
+fm_tsls <- formula(log(wage) ~ edu_yrs + exper + I(exper^2)|exper + I(exper^2) + migrationrate)
+
+ivreg_whole4 <- ivreg(fm_tsls, data = rlms18)
+ivreg_whole4
+
+#
+fm_tsls <- formula(log(wage) ~ edu_yrs + exper + I(exper^2)|exper + I(exper^2) + women2menratio)
+
+ivreg_whole5 <- ivreg(fm_tsls, data = rlms18)
+ivreg_whole5
+
+#
+fm_tsls <- formula(log(wage) ~ edu_yrs + exper + I(exper^2)|exper + I(exper^2) + marriagerate)
+
+ivreg_whole6 <- ivreg(fm_tsls, data = rlms18)
+ivreg_whole6
+
+
+#
+fm_tsls <- formula(log(wage) ~ edu_yrs + exper + I(exper^2)|exper + I(exper^2) + fem_ind_prop)
+
+ivreg_whole7 <- ivreg(fm_tsls, data = rlms18)
+ivreg_whole7
 
