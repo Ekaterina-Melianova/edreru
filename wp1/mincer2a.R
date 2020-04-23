@@ -167,10 +167,9 @@ edu_ratio$edu_ratio <- 100*round(edu_ratio$wage_by_level/edu_ratio$wage_sec, 2)
 g1 <- ggplot(data=edu_ratio[edu_ratio$YEAR == 1998,], aes(x = edu_4.x, y = edu_ratio,
                                                           fill = edu_4.x)) + 
   geom_bar(stat="identity") +
-  scale_fill_manual(values = c('grey', '#A7414A', '#A7414A')) +
+  scale_fill_manual(values = c('grey', 'darkgreen', 'darkgreen')) +
   geom_text(aes(y = edu_ratio, label = edu_ratio, vjust = -0.5), color="black", size = 5) +
-  theme(panel.background = element_blank(),
-        axis.title = element_blank(),
+  theme(axis.title = element_blank(),
         axis.text.x = element_text(size = 14, face = 'bold'),
         axis.text.y = element_blank(),
         axis.line = element_blank(),
@@ -182,10 +181,9 @@ g1 <- ggplot(data=edu_ratio[edu_ratio$YEAR == 1998,], aes(x = edu_4.x, y = edu_r
 g2 <- ggplot(data=edu_ratio[edu_ratio$YEAR == 2006,], aes(x = edu_4.x, y = edu_ratio,
                                                           fill = edu_4.x)) + 
   geom_bar(stat="identity") +
-  scale_fill_manual(values = c('grey', '#A7414A', '#A7414A')) +
+  scale_fill_manual(values = c('grey', 'darkgreen', 'darkgreen')) +
   geom_text(aes(y = edu_ratio, label = edu_ratio, vjust = -0.5), color="black", size = 5) +
-  theme(panel.background = element_blank(),
-        axis.title = element_blank(),
+  theme(axis.title = element_blank(),
         axis.text.x = element_text(size = 14, face = 'bold'),
         axis.text.y = element_blank(),
         axis.line.y = element_line(color = 'black'),
@@ -197,10 +195,9 @@ g2 <- ggplot(data=edu_ratio[edu_ratio$YEAR == 2006,], aes(x = edu_4.x, y = edu_r
 g3 <- ggplot(data=edu_ratio[edu_ratio$YEAR == 2018,], aes(x = edu_4.x, y = edu_ratio,
                                                           fill = edu_4.x)) + 
   geom_bar(stat="identity") +
-  scale_fill_manual(values = c('grey', '#A7414A', '#A7414A')) +
+  scale_fill_manual(values = c('grey', 'darkgreen', 'darkgreen')) +
   geom_text(aes(y = edu_ratio, label = edu_ratio, vjust = -0.5), color="black", size = 5) +
-  theme(panel.background = element_blank(),
-        axis.title = element_blank(),
+  theme(axis.title = element_blank(),
         axis.text.x = element_text(size = 14, face = 'bold'),
         axis.text.y = element_blank(),
         axis.line.y = element_line(color = 'black'),
