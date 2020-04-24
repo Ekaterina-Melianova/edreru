@@ -1,0 +1,507 @@
+---
+title: "Regional Returns"
+output:
+  html_document:
+    df_print: paged
+---
+
+
+```{r Libraries, include=FALSE}
+
+library(tidyverse)
+library(foreign)
+library(dplyr)
+
+Sys.setlocale("LC_CTYPE", "russian")
+
+```
+
+```{r Graduate.edu Data Loading and preprocessing, include=FALSE}
+
+setwd("C:/Country/Russia/Data/SEASHELL/SEABYTE/Databases/Tertiary")
+
+# Load dataframes
+df_colleges <- rio::import("dataframe_colleges.xlsx")
+df_universities <- rio::import("dataframe_universities.xlsx")
+df_universities_areas <- rio::import("dataframe_universities_areas.xlsx")
+
+
+### Filtering
+# Select Universities with more than 100 graduates
+df_universities <- df_universities[df_universities$graduates_number > 100,]
+# Remove salary outlier
+# df_universities <- df_universities[df_universities$salary_2016 != max(df_universities$salary_2016),]
+# Remove 0 salaries
+df_universities <- df_universities[df_universities$salary_2016 != 0,]
+# Select Colleges with more than 50 graduates
+df_colleges <- df_colleges[df_colleges$graduates_number > 50,]
+
+### Recode rare specialization types in universities and colleges
+df_colleges$speciality_type[df_colleges$speciality_type == "спортивный"] <- "общий"
+df_universities$specialization_type[df_universities$specialization_type == "спортивный"] <- "специализированный"
+
+# Adjust salaries in 2014 and 2015 for 2016 prices
+df_colleges$graduate_salary_2014 <- df_colleges$graduate_salary_2014 * 1.237
+df_colleges$graduate_salary_2015 <- df_colleges$graduate_salary_2015 * 1.071
+df_universities$salary_2014 <- df_universities$salary_2014 * 1.237
+df_universities$salary_2015 <- df_universities$salary_2015 * 1.071
+df_universities_areas$graduates_salary_2014 <- df_universities_areas$graduates_salary_2014 * 1.237
+df_universities_areas$graduates_salary_2015 <- df_universities_areas$graduates_salary_2015 * 1.071
+
+# Transform monthly wage to annual wage
+df_colleges$graduate_salary_2014 <- df_colleges$graduate_salary_2014*12
+df_colleges$graduate_salary_2015 <- df_colleges$graduate_salary_2015*12
+df_colleges$graduate_salary_2016 <- df_colleges$graduate_salary_2016*12
+
+df_universities$salary_2014 <- df_universities$salary_2014*12
+df_universities$salary_2015 <- df_universities$salary_2015*12
+df_universities$salary_2016 <- df_universities$salary_2016*12
+
+
+### Private Cost
+
+# 1. Universities
+df_universities$paidServices_mean <- df_universities %>%
+  dplyr::select(cashReceipts_paidServices_2012, cashReceipts_paidServices_2013, cashReceipts_paidServices_2014,
+                cashReceipts_paidServices_2015, cashReceipts_paidServices_2016, cashReceipts_paidServices_2017) %>%
+  rowMeans(na.rm = T, dims = 1)
+# Calculate social cost per graduate
+df_universities$private_cost <- df_universities$paidServices_mean / (df_universities$graduates_number*4)
+
+# 2. Colleges 
+df_colleges$paidServices_mean <- df_colleges %>%
+  dplyr::select(cashReceipts_paidServices_2012, cashReceipts_paidServices_2013, cashReceipts_paidServices_2014,
+                cashReceipts_paidServices_2015, cashReceipts_paidServices_2016, cashReceipts_paidServices_2017) %>%
+  rowMeans(na.rm = T, dims = 1)
+# Calculate social cost per graduate
+df_colleges$private_cost <- df_colleges$paidServices_mean / (df_colleges$graduates_number*3)
+
+
+### Social Cost
+# we use total income of establishment as the social cost
+
+# 1. Universities
+df_universities$income_total_mean <- df_universities %>%
+  dplyr::select(income_total_2012, income_total_2013, income_total_2014,
+                income_total_2015, income_total_2016, income_total_2017) %>%
+  rowMeans(na.rm = T, dims = 1)
+# Calculate social cost per graduate
+df_universities$social_cost <- df_universities$income_total_mean / (df_universities$graduates_number*4)
+
+# 2. Colleges
+df_colleges$income_total_mean <- df_colleges %>%
+  dplyr::select(income_total_2012, income_total_2013, income_total_2014,
+                income_total_2015, income_total_2016, income_total_2017) %>%
+  rowMeans(na.rm = T, dims = 1)
+# Calculate social cost per graduate
+df_colleges$social_cost <- df_colleges$income_total_mean / (df_colleges$graduates_number*3)
+
+# Remove organizations with 0 social costs
+df_universities <- df_universities[-which(df_universities$social_cost == 0),]
+
+# Remove organizations with 0 salary for graduates
+df_colleges <- df_colleges[df_colleges$graduate_salary_2013 > 0,]
+df_universities <- df_universities[df_universities$salary_2014 > 0,]
+
+
+
+calculateIRR <- function(one_row, org_type, return_type){
+  
+  # Compute the internal rate of return for one row (organization) in the dataframe
+  #
+  # Input:
+  #   1. row - row of the university/college dataframe
+  #   2. org_type - type of the organization, "university" or "college"
+  #   3. return_type - type of the return, "private" or "social"
+  # 
+  # Output:
+  #   1. rate_of_return - the internal rate of return
+
+  # Search for NA in social, private cost variables
+  if (one_row %>% dplyr::select(social_cost, private_cost) %>% is.na() %>% any()){
+  
+    # Rate of return can't be calculated - return NA
+    rate_of_return <- NA
+    
+  } else {
+    
+    # Select cost variable according the type of returns
+    if (return_type == "private"){
+      cost_variable <- "private_cost"
+    } else {
+      cost_variable <- "social_cost"
+    }
+    
+    # Select salary variables according to the type of organization
+    if (org_type == "university"){
+      # Append 2014-2016 salaries to the 4 years of expenses 
+      rate_of_return <- FinCal::irr(c(rep(-as.numeric(one_row[cost_variable]), 4),
+                                      one_row$salary_2014, one_row$salary_2015, one_row$salary_2016))
+    } else {
+      
+      # Append 2013-2016 salaries to the 3 years of expenses
+      rate_of_return <- FinCal::irr(c(rep(-as.numeric(one_row[cost_variable]), 3),
+                                      one_row$graduate_salary_2013, one_row$graduate_salary_2014,
+                                      one_row$graduate_salary_2015, one_row$graduate_salary_2016))
+    }
+    
+  }
+  
+  return(rate_of_return)
+  
+}
+
+
+### Calculate the IRR
+
+# 1, Universities - Social
+university_social_returns <- c()
+for(i in 1:nrow(df_universities)){university_social_returns <- c(university_social_returns,
+                                  (calculateIRR(df_universities[i,], "university", "social")))}
+df_universities$social_returns <- university_social_returns
+
+# 2, Universities - Private
+university_private_returns <- c()
+for(i in 1:nrow(df_universities)){university_private_returns <- c(university_private_returns,
+                                  (calculateIRR(df_universities[i,], "university", "private")))}
+df_universities$private_returns <- university_private_returns
+
+# 3, Colleges - Social
+college_social_returns <- c()
+for(i in 1:nrow(df_colleges)){college_social_returns <- c(college_social_returns,
+                                  (calculateIRR(df_colleges[i,], "college", "social")))}
+df_colleges$social_returns <- college_social_returns
+
+
+# 4, Colleges - Private
+college_private_returns <- c()
+for(i in 1:nrow(df_colleges)){college_private_returns <- c(college_private_returns,
+                                  (calculateIRR(df_colleges[i,], "college", "private")))}
+df_colleges$private_returns <- college_private_returns
+
+
+# Remove outliers from IRR
+
+removeOutliers <- function(vec, q=0.01){
+  
+  # Calculate low and high threshold for outliers based on quantile value q
+  low_q <- quantile(vec, q, na.rm=T)
+  high_q <- quantile(vec, 1 - q, na.rm=T)
+  # Overwrite outliers with NA's
+  vec[vec > high_q] <- NA
+  vec[vec < low_q] <- NA
+  
+  return(vec)
+}
+
+# Remove outliers in returns
+df_colleges$private_returns <- removeOutliers(df_colleges$private_returns)
+df_colleges$social_returns <- removeOutliers(df_colleges$social_returns)
+df_universities$private_returns <- removeOutliers(df_universities$private_returns)
+df_universities$social_returns <- removeOutliers(df_universities$social_returns)
+
+
+# Remove organizations with NA in returns
+df_colleges <- df_colleges[!is.na(df_colleges$private_returns),]
+df_colleges <- df_colleges[!is.na(df_colleges$social_returns),]
+df_universities <- df_universities[!is.na(df_universities$private_returns),]
+df_universities <- df_universities[!is.na(df_universities$social_returns),]
+
+
+
+```
+
+
+
+```{r Load Rosstat Data, include=FALSE}
+
+# Working directory
+wd <- "C:/Country/Russia/Data/SEASHELL/SEABYTE/Databases/ROSSTAT"
+setwd(wd) 
+
+######################################### Data ###########################################################
+
+rst_18 <- read.spss(file="rosstat_18.sav",
+                    use.value.labels = F,
+                    use.missings=TRUE,
+                    to.data.frame = TRUE)
+rst_17 <- read.spss(file="rosstat_17.sav",
+                    use.value.labels = F,
+                    use.missings=TRUE,
+                    to.data.frame = TRUE)
+rst_16 <- read.spss(file="rosstat_16.sav",
+                    use.value.labels = F,
+                    use.missings=TRUE,
+                    to.data.frame = TRUE)
+rst_15 <- read.spss(file="rosstat_15.sav",
+                    use.value.labels = F,
+                    use.missings=TRUE,
+                    to.data.frame = TRUE)
+rst_14 <- read.spss(file="rosstat_14.sav",
+                    use.value.labels = F,
+                    use.missings=TRUE,
+                    to.data.frame = TRUE)
+
+df_18 <- rst_18 %>% dplyr::select(H00_02, H00_04, H01_00, H01_02, I01_10,
+                           R_DEN, H01_01, VZR_RAB, KVZV) %>% mutate (YEAR = 2018)
+df_17 <- rst_17 %>% dplyr::select(H00_02, H00_04, H01_00, H01_02, I01_10,
+                           R_DEN, H01_01, VZR_RAB, KVZV) %>% mutate (YEAR = 2017)
+df_16 <- rst_16 %>% dplyr::select(H00_02, H00_04, H01_00, H01_02, I01_10,
+                           R_DEN, H01_01, VZR_RAB, KVZV) %>% mutate (YEAR = 2016)
+df_15 <- rst_15 %>% dplyr::select(H00_02, H00_04, H01_00, H01_02, I01_10,
+                           R_DEN, H01_01, VZR_RAB, KVZV) %>% mutate (YEAR = 2015)
+df_14 <- rst_14 %>% dplyr::select(H00_02, H00_04, H01_00, H01_02, I01_10,
+                           R_DEN, H01_01, VZR_RAB, KVZV) %>% mutate (YEAR = 2014)
+
+
+#  Adjust for the prices in 2016
+df_14$R_DEN <- df_14$R_DEN * 1.237
+df_15$R_DEN <- df_15$R_DEN * 1.071
+df_16$R_DEN <- df_16$R_DEN * 1
+df_17$R_DEN <- df_17$R_DEN * 1.071
+df_18$R_DEN <- df_18$R_DEN * 1.110
+
+
+df_ <- rbind(df_14, df_15, df_16, df_17, df_18)
+
+
+# Filtering age
+df <- df_[df_$H01_02 >= 22 & df_$H01_02 < 65,]
+
+# Filtering employed
+df <- df[!is.na(df$VZR_RAB),]
+
+# Education 
+
+# 4 categories:
+# 0 - lower than secondary
+# 1 - secondary 
+# 2 - specialized / vocational
+# 3 - higher and above
+
+df$edu_4 <- car::recode(df$I01_10, "9=0; 7:8=1; 5:6=2; 1:4=3")
+
+
+# Filtering 3 education levels
+df <- df[df$edu_4>0,]
+
+# Education as factor
+df$edu_4 <- factor(df$edu_4, levels=c(1,2,3),
+                   labels=c("Secondary",
+                            "Vocational",
+                            "Higher"))
+
+# Wage
+df$wage <- df$R_DEN/12
+
+# Filtering wage > 0 
+df <- df %>%
+  filter(wage >0)
+
+# Socio-demographics
+# Gender
+df$female[df$H01_01==2] <- 1
+df$female[df$H01_01==1] <- 0
+
+
+# Experience (naive)
+df$edu_yrs <- car::recode(df$I01_10, "1=20; 2=17; 3=16; 4=14; 5=12;
+                            6=11; 7=11; 8=9")
+df$exper <- df$H01_02 - df$edu_yrs - 6
+df$exper <- ifelse(df$exper < 0, 0, df$exper)
+
+df_rosstat <- df
+
+
+```
+
+
+```{r include=FALSE}
+
+# Create dataframe with aggregated salary by year, edu level, region and age
+df_year_edu_region_age_salary <- df_rosstat %>% group_by(YEAR, edu_4, H00_02, H01_02) %>% summarise(average_salary=weighted.mean(wage, w=KVZV)) %>% filter(edu_4 != "Secondary") %>% ungroup()
+
+df_year_edu_region_age_salary <- df_year_edu_region_age_salary[!(df_year_edu_region_age_salary$H01_02 == 22 & df_year_edu_region_age_salary$edu_4 == "Higher"),]
+# Calculate annual wage
+df_year_edu_region_age_salary$annual_wage <- df_year_edu_region_age_salary$average_salary*12
+
+# Calculate mean social and private cost in the region
+df_colleges_mean_cost <- df_colleges %>% group_by(OKATO) %>%
+  summarise(mean_social_cost=mean(social_cost), mean_private_cost=mean(private_cost)) %>%
+  as.data.frame()
+df_universities_mean_cost <- df_universities %>% group_by(OKATO) %>%
+  summarise(mean_social_cost=mean(social_cost), mean_private_cost=mean(private_cost)) %>%
+  as.data.frame()
+
+# Create dataframe with colleges and universities
+df_year_edu_region_age_salary_colleges <- df_year_edu_region_age_salary %>% filter(edu_4 == "Vocational")
+df_year_edu_region_age_salary_universities <- df_year_edu_region_age_salary %>% filter(edu_4 == "Higher")
+
+# Remove regions which are not present in graduate.edu
+df_year_edu_region_age_salary_colleges <- df_year_edu_region_age_salary_colleges %>% filter(H00_02 %in% df_colleges_mean_cost$OKATO)
+df_year_edu_region_age_salary_universities <- df_year_edu_region_age_salary_universities %>% filter(H00_02 %in% df_universities_mean_cost$OKATO)
+df_universities_mean_cost <- df_universities_mean_cost[!is.na(as.numeric(df_universities_mean_cost$OKATO)),]
+
+
+
+### Calculate IRR
+
+# 1. Social and Private Returns for Colleges
+
+social_returns_vec <- c()
+private_returns_vec <- c()
+region_vec <- c()
+year_vec <- c()
+
+for (region_okato in unique(df_colleges_mean_cost$OKATO)){
+  
+  social_cost_temp <- as.numeric(df_colleges_mean_cost %>% filter(OKATO == region_okato) %>% dplyr::select(mean_social_cost))
+  private_cost_temp <- as.numeric(df_colleges_mean_cost %>% filter(OKATO == region_okato) %>% dplyr::select(mean_private_cost))
+  
+  for (year_n in unique(df_year_edu_region_age_salary_colleges$YEAR)){
+    
+    social_cost_vec <- rep(-social_cost_temp, 3)
+    private_cost_vec <- rep(-private_cost_temp, 3)
+    wage_vec <- (df_year_edu_region_age_salary_colleges %>% filter(YEAR == year_n & H00_02 == region_okato))$annual_wage
+    
+    social_returns_vec <- c(social_returns_vec, FinCal::irr(c(social_cost_vec, wage_vec)))
+    private_returns_vec <- c(private_returns_vec, FinCal::irr(c(private_cost_vec, wage_vec)))
+    
+    region_vec <- c(region_vec, region_okato)
+    year_vec <- c(year_vec, year_n)
+    
+  }
+  
+}
+
+# 
+df_region_returns_college <- data.frame(region=region_vec,
+                                 year=year_vec,
+                                 social_returns=social_returns_vec,
+                                 private_returns=private_returns_vec)
+df_region_returns_college$year <- as.character(df_region_returns_college$year)
+
+
+# 2. Social and Private Returns for Universities
+
+social_returns_vec <- c()
+private_returns_vec <- c()
+region_vec <- c()
+year_vec <- c()
+
+for (region_okato in unique(df_universities_mean_cost$OKATO)){
+  
+  social_cost_temp <- as.numeric(df_universities_mean_cost %>% filter(OKATO == region_okato) %>% dplyr::select(mean_social_cost))
+  private_cost_temp <- as.numeric(df_universities_mean_cost %>% filter(OKATO == region_okato) %>% dplyr::select(mean_private_cost))
+  
+  for (year_n in unique(df_year_edu_region_age_salary_universities$YEAR)){
+    
+    social_cost_vec <- rep(-social_cost_temp, 3)
+    private_cost_vec <- rep(-private_cost_temp, 3)
+    wage_vec <- (df_year_edu_region_age_salary_universities %>% filter(YEAR == year_n & H00_02 == region_okato))$annual_wage
+    
+    social_returns_vec <- c(social_returns_vec, FinCal::irr(c(social_cost_vec, wage_vec)))
+    private_returns_vec <- c(private_returns_vec, FinCal::irr(c(private_cost_vec, wage_vec)))
+    
+    region_vec <- c(region_vec, region_okato)
+    year_vec <- c(year_vec, year_n)
+    
+  }
+  
+}
+
+# 
+df_region_returns_university <- data.frame(region=region_vec,
+                                    year=year_vec,
+                                    social_returns=social_returns_vec,
+                                    private_returns=private_returns_vec)
+df_region_returns_university$year <- as.character(df_region_returns_university$year)
+
+```
+
+
+```{r Preprocessing for plotting, include=FALSE}
+
+# Extract region names for plotting
+temp_df <- rbind(df_colleges %>% dplyr::select(OKATO, region_name), df_universities %>% dplyr::select(OKATO, region_name))
+temp_df <- temp_df[!duplicated(temp_df$OKATO),]
+
+# Add region names for plotting
+df_region_returns_university <- left_join(df_region_returns_university, temp_df, by=c("region"="OKATO"))
+df_region_returns_college <- left_join(df_region_returns_college, temp_df, by=c("region"="OKATO"))
+
+
+# Select only 2014 and 2018 for plotting
+df_region_returns_university <- df_region_returns_university %>% filter(year == 2014|year == 2018)
+df_region_returns_college <- df_region_returns_college %>% filter(year == 2014|year == 2018)
+
+# Create variable with returns in 2018
+df_region_returns_university$social_returns_2018 <- rep((df_region_returns_university %>% filter(year == 2018))$social_returns, each=2)
+df_region_returns_university$private_returns_2018 <- rep((df_region_returns_university %>% filter(year == 2018))$private_returns, each=2) 
+
+df_region_returns_college$social_returns_2018 <- rep((df_region_returns_college %>% filter(year == 2018))$social_returns, each=2)
+df_region_returns_college$private_returns_2018 <- rep((df_region_returns_college %>% filter(year == 2018))$private_returns, each=2)           
+```
+
+
+
+```{r Plot 1. Mean Social Returns by region Universities, echo=FALSE, fig.height=14, fig.width=14, echo=FALSE}
+
+# Plot the salaries by the areas
+ggplot(df_region_returns_university, aes(x=reorder(region_name, social_returns_2018), y=social_returns, color=year)) +
+  geom_point(size=3) +
+  coord_flip() + theme_light() + 
+  theme(plot.title = element_text(size = 22, hjust = 0.9), axis.text = element_text(size=12), legend.text = element_text(size = 14), legend.title=element_text(size=14)) +
+  labs(x="Region", y = "Social Returns") + 
+  ggtitle("Rate of Social Returns by Region, Higher Educaton")
+
+
+```
+
+
+```{r Plot 2. Mean Private Returns by region Universities, echo=FALSE, fig.height=14, fig.width=14, echo=FALSE}
+
+# Plot the salaries by the areas
+ggplot(df_region_returns_university, aes(x=reorder(region_name, private_returns_2018), y=private_returns, color=year)) +
+  geom_point(size=3) +
+  coord_flip() + theme_light() + 
+  theme(plot.title = element_text(size = 22, hjust = 0.9), axis.text = element_text(size=12), legend.text = element_text(size = 14), legend.title=element_text(size=14)) +
+  labs(x="Region", y = "Private Returns") + 
+  ggtitle("Rate of Private Returns by Region, Higher Educaton")
+
+
+```
+
+
+```{r Plot 3. Mean Social Returns by region Colleges, echo=FALSE, fig.height=14, fig.width=14, echo=FALSE}
+
+# Plot the salaries by the areas
+ggplot(df_region_returns_college, aes(x=reorder(region_name, social_returns_2018), y=social_returns, color=year)) +
+  geom_point(size=3) +
+  coord_flip() + theme_light() + 
+  theme(plot.title = element_text(size = 22, hjust = 0.9), axis.text = element_text(size=12), legend.text = element_text(size = 14), legend.title=element_text(size=14)) +
+  labs(x="Region", y = "Social Returns") + 
+  ggtitle("Rate of Social Returns by Region, Vocational Educaton")
+
+```
+
+
+```{r Plot 4. Mean Private Returns by region Colleges, echo=FALSE, fig.height=14, fig.width=14, echo=FALSE}
+
+## Remove outlier with too high private returns
+#df_region_returns_college_ <- #df_region_returns_college[-which.max(df_region_returns_college$private_returns),]
+#df_region_returns_college_ <- #df_region_returns_college_[-which.max(df_region_returns_college$private_returns),]
+
+# Plot the salaries by the areas
+ggplot(df_region_returns_college, aes(x=reorder(region_name, private_returns_2018), y=private_returns, color=year)) +
+  geom_point(size=3) +
+  coord_flip() + theme_light() + 
+  theme(plot.title = element_text(size = 22, hjust = 0.9), axis.text = element_text(size=12), legend.text = element_text(size = 14), legend.title=element_text(size=14)) +
+  labs(x="Region", y = "Private Returns") + 
+  ggtitle("Rate of Private Returns by Region, Vocational Educaton")
+
+```
+
+
+
+
