@@ -85,7 +85,7 @@ df <- na.omit(df)
 
 # Literacy 1897
 Grig <- rio::import('C:/Country/Russia/Data/SEASHELL/SEABYTE/Databases/Regional/Grigoriev.xlsx')
-names(Grig)[4] <- 'OKATO'
+names(Grig)[3] <- 'OKATO' # changed from 4 to 3 SP
 
 # Merging with the main df
 df <- df %>%
