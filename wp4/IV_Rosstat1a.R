@@ -9,6 +9,7 @@ library(naivereg)
 library(rio)
 library(npsr)
 library(ggplot2)
+library(AER)
 
 #install.packages('readstata13', dependencies = T)
 ########################################### Data  ################################################
@@ -52,7 +53,7 @@ women2menratio <- RoR_15[, c('RoR_names', 'women2menratio')]
 marriagerate <- RoR_15[, c('RoR_names', 'marriagerate')]
 
 # fem_industry share
-# fem_ind_prop <- rgvars_2[, c('RoR_names', 'fem_ind_prop', 'OKATO')] %>% drop_na()
+#fem_ind_prop <- rgvars_2[, c('RoR_names', 'fem_ind_prop', 'OKATO')] %>% drop_na()
 
 # all IV candidates
 ivs <- high_n %>%
@@ -60,8 +61,7 @@ ivs <- high_n %>%
   left_join(EGE, by = 'RoR_names') %>%
   left_join(migrationrate, by = 'RoR_names') %>%
   left_join(women2menratio, by = 'RoR_names') %>%
-  left_join(marriagerate, by = 'RoR_names')
-
+  left_join(marriagerate, by = 'RoR_names') 
 # Adding them to the Rosstat df
 ###### Rosstat main dataset
 
@@ -109,6 +109,7 @@ cor_fem_all_yonger <- c()
 cor_fem_all_older <- c()
 cor_male_all_yonger <- c()
 cor_male_all_older <- c()
+cor_all <- c()
 
 for (i in 1:length(Z)){
   # Females all
@@ -125,14 +126,18 @@ for (i in 1:length(Z)){
   cor_male_all_older <- rbind.data.frame(cor_male_all_older,
                           eval(parse(text = paste0('as.data.frame(cor.test(df_o[df_o$H01_01 == 1, "edu_yrs"], df_o[df_o$H01_01 == 1, ',
                                                  paste(" '", Z[i], "' ", sep = ''), '])[c(4,3)])'))))
+  # All
+  cor_all <- rbind.data.frame(cor_all, eval(parse(text = paste0('as.data.frame(cor.test(df[, "edu_yrs"], df[, ',
+                                                                  paste(" '", Z[i], "' ", sep = ''), '])[c(4,3)])'))))
 }
 
-cor_df <- cbind.data.frame(IV = rep(Z, 4), Cohort = rep(c('Females younger', 'Females older',
-                                                        'Males younger', 'Males older'), each = 8),
+cor_df <- cbind.data.frame(IV = rep(Z, 5), Cohort = rep(c('Females younger', 'Females older',
+                                                        'Males younger', 'Males older', 'Total'), each = 8),
                            round(rbind.data.frame(cor_fem_all_yonger,
                            cor_fem_all_older,
                            cor_male_all_yonger,
-                           cor_male_all_older), 2))
+                           cor_male_all_older,
+                           cor_all), 2))
 
 # Create a column with the stars
 cor_df$stars <- cut(cor_df$p.value, breaks=c(-Inf, 0.001, 0.01, 0.05, Inf), 
@@ -161,7 +166,7 @@ g <- grid.arrange(cor_plot1, bottom = textGrob("Signif. codes:  0 '***' 0.001 '*
                                                gp = gpar(fontface = 3L,
                                                          fontsize = 17)))
 # saving 
-ggsave("cor_by_cohorts.png", g, width = 20, height = 8,
+ggsave("cor_by_cohorts_18.png", g, width = 20, height = 8,
        units = "in")
 
 ############3 Overall correlations matrix for IV
@@ -261,6 +266,15 @@ fm_tsls <- formula(log(wage) ~ edu_yrs + exper + I(exper^2)|exper + I(exper^2) +
 ivreg_whole7 <- ivreg(fm_tsls, data = df)
 ivreg_whole7
 
+#
+fm_tsls <- formula(log(wage) ~ edu_yrs + exper + I(exper^2)|exper + I(exper^2) + Literacy_97)
+
+ivreg_whole8 <- ivreg(fm_tsls, data = df)
+ivreg_whole8
+
+# OLS
+Rosstat_ols_whole_18 <- lm(log(wage) ~ edu_yrs + exper + I(exper^2), data = Rosstat18,
+                           weights = Rosstat18$KVZV)
 
 ###################################################################################################
 ###########################  (ii) Use Kang et al ivmodel for running ols, TSLS standard with all IVs;
