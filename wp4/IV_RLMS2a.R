@@ -10,23 +10,27 @@ library(naivereg)
 library(rio)
 library(npsr)
 library(ggplot2)
-
+library(sqldf)
 ########################################### Data  ################################################
 
 ### Main RLMS data
 rlms <- readRDS('C:/Country/Russia/Data/SEASHELL/SEABYTE/edreru/wp1/df_mincer.rds')
 
 # Filtering 2018 
-rlms18 <- filter(rlms, YEAR == 2018)
+rlms18_15 <- filter(rlms, YEAR %in%  c(2018, 2015))
 
 # Some functions -later to be edreru package
 source("C:/Country/Russia/Data/SEASHELL/SEABYTE/edreru/edreru_package.R")
 
 # Region
-Region_rlms <- selectFromSQL(c("IDIND", "YEAR", "Region", "AGE")) %>% filter(YEAR == 2018)
+# wd
+setwd("C:/Country/Russia/Data/SEASHELL/SEABYTE/Databases/RLMS/sqlite") 
+Region_rlms <- selectFromSQL(c("IDIND", "YEAR", "Region", "AGE"))
+
+Region_rlms <- Region_rlms %>% filter(YEAR %in% c(2018, 2015))
 
 # Merging
-rlms18 <- rlms18 %>%
+rlms18_15 <- rlms18_15 %>%
   left_join(Region_rlms[,c("IDIND", "YEAR", "REGION", "AGE")], by = c("IDIND", "YEAR"))
 
 # Literacy 1897
@@ -35,7 +39,7 @@ names(Grig)[4] <- 'OKATO'
 names(Grig)[5] <- 'REGION'
 
 # Merging with the main df
-rlms18 <- rlms18 %>%
+rlms18_15 <- rlms18_15 %>%
   left_join(Grig[, c('Literacy_97', 'OKATO', 'REGION')], by = 'REGION')
 
 # IVs
@@ -92,12 +96,12 @@ ivs <- high_n %>%
 # Adding them to the RLMS df
 
 # Merging
-rlms18 <- rlms18 %>%
+rlms18_15 <- rlms18_15 %>%
   left_join(ivs, by = 'OKATO')
 
 # Adding transformed vars
-rlms18$lnwage <- log(rlms18$wage)
-rlms18$exper2 <- (rlms18$exper)^2
+rlms18_15$lnwage <- log(rlms18_15$wage)
+rlms18_15$exper2 <- (rlms18_15$exper)^2
 
 ##################################################################################################3
 # Analysis
@@ -106,49 +110,97 @@ rlms18$exper2 <- (rlms18$exper)^2
 fm_postLasso <- formula(log(wage) ~ edu_yrs + exper + I(exper^2)|exper + I(exper^2) + high_n + HSGPER + s1z +
                           migrationrate + women2menratio + marriagerate + fem_ind_prop)
 
-pLasso_whole <- rlassoIVselectZ(fm_postLasso, data = rlms18)
+pLasso_whole <- rlassoIVselectZ(fm_postLasso, data = rlms18_15[rlms18_15$YEAR == 2018,])
 pLasso_whole$selected
 
 #
 fm_tsls <- formula(log(wage) ~ edu_yrs + exper + I(exper^2)|exper + I(exper^2) + high_n)
 
-ivreg_whole1 <- ivreg(fm_tsls, data = rlms18)
-ivreg_whole1
+RLMS_ivreg_whole1 <- ivreg(fm_tsls, data = rlms18_15[rlms18_15$YEAR == 2018,])
 
 #
 fm_tsls <- formula(log(wage) ~ edu_yrs + exper + I(exper^2)|exper + I(exper^2) + HSGPER)
 
-ivreg_whole2 <- ivreg(fm_tsls, data = rlms18)
-ivreg_whole2
+RLMS_ivreg_whole2 <- ivreg(fm_tsls, data = rlms18_15[rlms18_15$YEAR == 2018,])
 
 #
 fm_tsls <- formula(log(wage) ~ edu_yrs + exper + I(exper^2)|exper + I(exper^2) + s1z)
 
-ivreg_whole3 <- ivreg(fm_tsls, data = rlms18)
-ivreg_whole3
+RLMS_ivreg_whole3 <- ivreg(fm_tsls, data = rlms18_15[rlms18_15$YEAR == 2018,])
 
 #
 fm_tsls <- formula(log(wage) ~ edu_yrs + exper + I(exper^2)|exper + I(exper^2) + migrationrate)
 
-ivreg_whole4 <- ivreg(fm_tsls, data = rlms18)
-ivreg_whole4
+RLMS_ivreg_whole4 <- ivreg(fm_tsls, data = rlms18_15[rlms18_15$YEAR == 2018,])
 
 #
 fm_tsls <- formula(log(wage) ~ edu_yrs + exper + I(exper^2)|exper + I(exper^2) + women2menratio)
 
-ivreg_whole5 <- ivreg(fm_tsls, data = rlms18)
-ivreg_whole5
+RLMS_ivreg_whole5 <- ivreg(fm_tsls, data = rlms18_15[rlms18_15$YEAR == 2018,])
 
 #
 fm_tsls <- formula(log(wage) ~ edu_yrs + exper + I(exper^2)|exper + I(exper^2) + marriagerate)
 
-ivreg_whole6 <- ivreg(fm_tsls, data = rlms18)
-ivreg_whole6
-
+RLMS_ivreg_whole6 <- ivreg(fm_tsls, data = rlms18_15[rlms18_15$YEAR == 2018,])
 
 #
 fm_tsls <- formula(log(wage) ~ edu_yrs + exper + I(exper^2)|exper + I(exper^2) + fem_ind_prop)
 
-ivreg_whole7 <- ivreg(fm_tsls, data = rlms18)
-ivreg_whole7
+RLMS_ivreg_whole7 <- ivreg(fm_tsls, data = rlms18_15[rlms18_15$YEAR == 2018,])
+
+#
+fm_tsls <- formula(log(wage) ~ edu_yrs + exper + I(exper^2)|exper + I(exper^2) + Literacy_97)
+
+RLMS_ivreg_whole8 <- ivreg(fm_tsls, data = rlms18_15[rlms18_15$YEAR == 2018,])
+
+
+
+
+# 2015
+fm_tsls <- formula(log(wage) ~ edu_yrs + exper + I(exper^2)|exper + I(exper^2) + high_n)
+
+RLMS_ivreg_whole1_15 <- ivreg(fm_tsls, data = rlms18_15[rlms18_15$YEAR == 2015,])
+
+#
+fm_tsls <- formula(log(wage) ~ edu_yrs + exper + I(exper^2)|exper + I(exper^2) + HSGPER)
+
+RLMS_ivreg_whole2_15 <- ivreg(fm_tsls, data = rlms18_15[rlms18_15$YEAR == 2015,])
+
+#
+fm_tsls <- formula(log(wage) ~ edu_yrs + exper + I(exper^2)|exper + I(exper^2) + s1z)
+
+RLMS_ivreg_whole3_15 <- ivreg(fm_tsls, data = rlms18_15[rlms18_15$YEAR == 2015,])
+
+#
+fm_tsls <- formula(log(wage) ~ edu_yrs + exper + I(exper^2)|exper + I(exper^2) + migrationrate)
+
+RLMS_ivreg_whole4_15 <- ivreg(fm_tsls, data = rlms18_15[rlms18_15$YEAR == 2015,])
+
+#
+fm_tsls <- formula(log(wage) ~ edu_yrs + exper + I(exper^2)|exper + I(exper^2) + women2menratio)
+
+RLMS_ivreg_whole5_15 <- ivreg(fm_tsls, data = rlms18_15[rlms18_15$YEAR == 2015,])
+
+#
+fm_tsls <- formula(log(wage) ~ edu_yrs + exper + I(exper^2)|exper + I(exper^2) + marriagerate)
+
+RLMS_ivreg_whole6_15 <- ivreg(fm_tsls, data = rlms18_15[rlms18_15$YEAR == 2015,])
+
+#
+fm_tsls <- formula(log(wage) ~ edu_yrs + exper + I(exper^2)|exper + I(exper^2) + fem_ind_prop)
+
+RLMS_ivreg_whole7_15 <- ivreg(fm_tsls, data = rlms18_15[rlms18_15$YEAR == 2015,])
+
+#
+fm_tsls <- formula(log(wage) ~ edu_yrs + exper + I(exper^2)|exper + I(exper^2) + Literacy_97)
+
+RLMS_ivreg_whole8_15 <- ivreg(fm_tsls, data = rlms18_15[rlms18_15$YEAR == 2015,])
+
+### OLS
+
+RLMS_ols_whole_18 <- lm(log(wage) ~ edu_yrs + exper + I(exper^2),
+                        data = rlms[rlms$YEAR == 2018,])
+RLMS_ols_whole_15 <- lm(log(wage) ~ edu_yrs + exper + I(exper^2),
+                        data = rlms[rlms$YEAR == 2015,])
+
 
