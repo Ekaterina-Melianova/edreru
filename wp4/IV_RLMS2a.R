@@ -103,6 +103,9 @@ rlms18_15 <- rlms18_15 %>%
 rlms18_15$lnwage <- log(rlms18_15$wage)
 rlms18_15$exper2 <- (rlms18_15$exper)^2
 
+rlms18_15 <- haven::zap_labels(rlms18_15)
+export(rlms18_15, 'C:/Country/Russia/Data/SEASHELL/SEABYTE/edreru/wp4/rlms18_15.dta')
+
 ##################################################################################################3
 # Analysis
 

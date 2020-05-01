@@ -30,6 +30,12 @@ names(Grig)[4] <- 'OKATO'
 # Merging with the main df
 df <- df %>%
   left_join(Grig[, c('Literacy_97', 'OKATO')], by = 'OKATO')
+
+# Adding transformed vars
+df$lnwage <- log(df$wage)
+df$exper2 <- (df$exper)^2
+
+#export(df, 'Rosstat15.dta')
 ########################################################################################
 
 #
