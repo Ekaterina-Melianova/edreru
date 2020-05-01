@@ -40,7 +40,8 @@ df_ <- selectFromSQL(c("REGION", "AGE", "J13_2", "J10", "J40", "EDUC", "J1",
                        "J23", "I2", "I4", "YEAR", "J40", "J35_2Y", "J35_2M",
                        "total_exper", "exper_main_", "exper_add_",
                        "J5A_", "J5B_", "J35_2Y_", "J35_2M_", 
-                       "EDUC"))
+                       "EDUC", 'J72_5C', 'J72_6A', 'J72_4C', 'J72_3C',
+                       'J70', 'J70_1', 'J72_2C', 'J72_18A'))
 
 
 dbDisconnect(db)
@@ -124,9 +125,11 @@ df$exper <- df$AGE - df$edu_yrs - 6
 summary(df$exper)
 
 # Generating a final dataset for the analysis
+
 df_mincer <- df[, c("REGION", "IDIND", "YEAR", "edu_4", "wage",
                     "exper", "non_russ", "female",
-                    "edu_yrs", 'AGE')]
+                    "edu_yrs", 'AGE', 'J72_5C', 'J72_6A', 'J72_4C', 'J72_3C',
+                    'J70', 'J70_1', 'J72_2C', 'J72_18A')]
 summary(df_mincer)
 
 # Filtering the missings left
@@ -142,8 +145,87 @@ df_mincer$edu_4 <- factor(df_mincer$edu_4, levels=c(1,2,3),
                           labels=c("Secondary",
                                    "Vocational",
                                    "Higher"))
-setwd("C:/Country/Russia/Data/SEASHELL/SEABYTE/edreru/wp1")
+
+################################################ Education revised (VG)
+df_mincer <- haven::zap_labels(df_mincer)
+
+# to numeric
+df_mincer[, c('J72_5C', 'J72_6A', 'J72_4C', 'J72_3C',
+              'J70', 'J70_1', 'J72_2C', 'J72_18A')] <-
+  sapply(df_mincer[, c('J72_5C', 'J72_6A', 'J72_4C', 'J72_3C',
+                       'J70', 'J70_1', 'J72_2C', 'J72_18A')], as.numeric)
+
+df_mincer$educ_level <- NA
+df_mincer$educ_level <- ifelse(df_mincer$J72_5C==1 | df_mincer$J72_6A==1, 7, df_mincer$educ_level)
+df_mincer$educ_level <- ifelse(is.na(df_mincer$educ_level) & df_mincer$J72_4C==1, 6, df_mincer$educ_level)
+df_mincer$educ_level <- ifelse(is.na(df_mincer$educ_level) & df_mincer$J72_3C==1, 5, df_mincer$educ_level)
+df_mincer$educ_level <- ifelse(is.na(df_mincer$educ_level) & (df_mincer$J70 == 1 & 
+                                                  df_mincer$J70_1 > 9 & df_mincer$J70_1 < 97), 4, df_mincer$educ_level)
+df_mincer$educ_level <- ifelse(is.na(df_mincer$educ_level) & df_mincer$J72_2C==1, 3, df_mincer$educ_level)
+df_mincer$educ_level <- ifelse(is.na(df_mincer$educ_level) & df_mincer$J72_18A==1, 2, df_mincer$educ_level)
+df_mincer$educ_level <- ifelse(is.na(df_mincer$educ_level) & df_mincer$J72_18A==3, 2, df_mincer$educ_level)
+
+table(df_mincer$educ_level)
+summary(df_mincer$educ_level)
+
+# 4 categories for the revised education
+df_mincer$educ_level_4 <- ifelse(df_mincer$educ_level == 2, 0,
+                          ifelse(df_mincer$educ_level == 4, 1,
+                          ifelse(df_mincer$educ_level == 3 |df_mincer$educ_level == 5 |df_mincer$educ_level == 6, 2,
+                          ifelse(df_mincer$educ_level == 7, 3, df_mincer$educ_level))))
+table(df_mincer$educ_level_4)
+table(df_mincer$edu_4, df_mincer$educ_level_4)
+table(df_mincer$edu_4, df_mincer$educ_level)
+
+
+################## Generating a table for vocational education ###############################
+# Select Vocational only
+df_mincer_voc <- df_mincer %>% filter(edu_4 == 'Vocational' & educ_level %in% c(3,5,6))
+table(df_mincer_voc$educ_level)
+
+df_mincer_voc$edu_yrs_9 <- df_mincer_voc$edu_yrs - 9 
+
+# Creating xtab for mean vocational years after 9 years of schooling
+mean_yrs_voc <- data.frame(xtabs(edu_yrs_9 ~ YEAR + educ_level,
+      aggregate(edu_yrs_9 ~ YEAR + educ_level, df_mincer_voc, mean)))
+# Computing totals
+mean_yrs_voc <- mean_yrs_voc  %>%
+  group_by(YEAR) %>%
+  dplyr::mutate(Total_mean = mean(Freq))
+names(mean_yrs_voc)[3] <- 'm_yrs'
+margins1 <- unique(mean_yrs_voc[, c('YEAR', 'Total_mean')])
+names(margins1)[2] <- 'm_yrs'
+mean_yrs_voc$Total_mean <- NULL
+
+# Computing counts for a table with vocational years after 9 years of schooling
+freq_yrs_voc <- data.frame(xtabs( ~ YEAR + educ_level, df_mincer_voc))
+freq_yrs_voc$YEAR <- as.character(freq_yrs_voc$YEAR)
+# Computing totals
+freq_yrs_voc <- freq_yrs_voc  %>%
+  dplyr::group_by(YEAR) %>%
+  dplyr::mutate(Total = sum(Freq))
+margins2 <- unique(freq_yrs_voc[, c('YEAR', 'Total')])
+names(margins2)[2] <- 'Freq'
+freq_yrs_voc$Total <- NULL
+
+# Merging all totals
+margins <- margins1 %>%
+  left_join(margins2, by = 'YEAR')
+
+# Final table
+voc_smry <- mean_yrs_voc  %>%
+  full_join(freq_yrs_voc, by = c('YEAR', 'educ_level'))
+margins$educ_level <- 'Total'
+voc_smry <- rbind.data.frame(voc_smry, margins)
+voc_smry$m_yrs <- round(voc_smry$m_yrs, 2)
+names(voc_smry) <- c('Year', 'VG_level', 'Mean_Edu_Years_after_9', 'N')
+
+# Arragning
+voc_smry <- voc_smry %>% arrange(Year)
+
 ########################################################################
+
+setwd("C:/Country/Russia/Data/SEASHELL/SEABYTE/edreru/wp1")
 # Earnings Ratio by Educational Level
 
 # Average earnings secondary level
