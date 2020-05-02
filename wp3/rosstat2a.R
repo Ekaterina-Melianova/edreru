@@ -11,6 +11,14 @@ setwd(wd)
 Rosstat18 <- readRDS('Rosstat18.rds')
 names(Rosstat18)[1] <- 'OKATO'
 
+# Agerages for edu and lnwage for corplot
+Rosstat18$lnwage <- log(Rosstat18$wage)
+
+Rosstat18 <- Rosstat18 %>%
+  group_by(OKATO) %>%
+  mutate(edu_yrs_region = mean(edu_yrs),
+         lnwage_region = mean(lnwage))
+
 #### QUANTITY
 # % workforce 25-65 with univ. degree 
 Rosstat18 <- Rosstat18 %>%
@@ -57,7 +65,8 @@ Rosstat18 <- Rosstat18 %>%
 
 # Selecting only ranks
 Rosstat18 <- Rosstat18 %>%
-  select(OKATO, en_rgnames, univ_deg_share, ege_score, demand_sum, all_of(demand_vars))
+  select(OKATO, en_rgnames, univ_deg_share, ege_score,
+         demand_sum, all_of(demand_vars), edu_yrs_region, lnwage_region)
 
 # Remove duplicates
 Ranks_demand_supply <- Rosstat18[!duplicated(Rosstat18$en_rgnames),]
@@ -78,9 +87,6 @@ Ranks[Ranks$en_rgnames == 'Nenetskiy Aok', 'ege_score'] <-
 
 # NA removing
 Ranks <- na.omit(Ranks)
-
-# df for corplot
-cormat_df <- Ranks
 
 # adding ranks
 Ranks$rank_univ <- rank(-Ranks$univ_deg_share)
@@ -129,10 +135,22 @@ export(Ranks, 'Ranks.xlsx')
 
 
 library(PerformanceAnalytics)
-cormat_df <- cormat_df %>% select(univ_deg_share, ege_score, all_of(demand_vars))
-names(cormat_df) <- c('univ_share', 'EGE', 'agric_gdp', 'fishery_gdp',
-                              'mining_gdp', 'manuf_gdp', 'sale_gdp', 'horeca_gdp', 'transp_gdp')
 
+# df for corplot
+cormat_df <- Ranks
+cormat_df <- cormat_df %>% select(en_rgnames, univ_deg_share, ege_score, all_of(demand_vars))
+cormat_df <- cormat_df %>%
+  left_join(Rosstat18[, c('en_rgnames', 'edu_yrs_region', 'lnwage_region')], by = "en_rgnames")
+cormat_df <- cormat_df[!duplicated(cormat_df$en_rgnames),]
+cormat_df[1] <- NULL
+names(cormat_df) <- c('univ_share', 'EGE', 'agric_gdp', 'fishery_gdp',
+                      'mining_gdp', 'manuf_gdp', 'sale_gdp',
+                      'horeca_gdp', 'transp_gdp',
+                      "edu_yrs", "lnwage" )
+cormat_df <- cormat_df[,c("edu_yrs", "lnwage", 'univ_share', 'EGE',
+                         'agric_gdp', 'fishery_gdp',
+                         'mining_gdp', 'manuf_gdp', 'sale_gdp',
+                         'horeca_gdp', 'transp_gdp')]
 # Elements of the plot
 hist.panel = function (x, ...) {
   par(new = TRUE)

@@ -112,8 +112,8 @@ df$exper <- df$H01_02 - df$edu_yrs - 6
 df$exper <- ifelse(df$exper < 0, 0, df$exper)
 summary(df$exper)
 
-#df_15 <- df[df$YEAR == 2015,]
-#saveRDS(df_15, 'Rosstat15.rds')
+#df_18 <- df[df$YEAR == 2018,]
+#saveRDS(df_18, 'Rosstat18.rds')
 
 ###########################################################################################################
 ########################################### Regression ####################################################
@@ -952,10 +952,20 @@ mean(df$cov_VE, na.rm = T) - 1*sd(df$cov_VE, na.rm = T)
 
 
 library(PerformanceAnalytics)
-var_names <- c('migr', 'grp', 'urban', 'cov_VE',
-               'cov_HE','unemploy','nat_res', 's1z')
-rgvars_selected <- rgvars[,var_names]
+df$lnwage <- log(df$wage)
 
+df <- df %>%
+  group_by(OKATO) %>%
+  mutate(edu_yrs_region = mean(edu_yrs),
+                    lnwage_region = mean(lnwage))
+
+df_rgvars <- df[!duplicated(df$OKATO),]
+
+var_names <- c('edu_yrs_region', 'lnwage_region', 'migr', 'grp', 'urban', 'cov_VE',
+               'cov_HE','unemploy','nat_res', 's1z')
+rgvars_selected <- df_rgvars[,var_names]
+names(rgvars_selected)[c(1,2)] <- c('edu_yrs', 'lnwage')
+  
 # Elements of the plot
 hist.panel = function (x, ...) {
   par(new = TRUE)
