@@ -950,10 +950,6 @@ mean(df$cov_VE, na.rm = T) - 1*sd(df$cov_VE, na.rm = T)
 # 'extraction of minerals' area, thousands of people (2017)
 # s1z - sd from the national mean of EGE scores (2014?)
 
-# demand_vars - Mirkina variables (demand side) (2015)
-# EGE - EGE scores in a region (2018)
-# univ_degree_share - proportion of people with university degree in the sample (2018)
-
 
 library(PerformanceAnalytics)
 var_names <- c('migr', 'grp', 'urban', 'cov_VE',

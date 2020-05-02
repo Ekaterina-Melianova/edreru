@@ -130,7 +130,8 @@ export(Ranks, 'Ranks.xlsx')
 
 library(PerformanceAnalytics)
 cormat_df <- cormat_df %>% select(univ_deg_share, ege_score, all_of(demand_vars))
-names(cormat_df)[c(1,2)] <- c('univ_share', 'EGE')
+names(cormat_df) <- c('univ_share', 'EGE', 'agric_gdp', 'fishery_gdp',
+                              'mining_gdp', 'manuf_gdp', 'sale_gdp', 'horeca_gdp', 'transp_gdp')
 
 # Elements of the plot
 hist.panel = function (x, ...) {
@@ -157,12 +158,12 @@ panel.cor <- function(x, y, digits=2, prefix="", use="pairwise.complete.obs",
                    cutpoints = c(0, 0.001, 0.01, 0.05, 0.1, 1),
                    symbols = c("***", "**", "*", ".", " "))
   # MG: add abs here and also include a 30% buffer for small numbers
-  text(0.6, 0.6, txt, cex = cex)
+  text(0.5, 0.5, txt, cex = cex)
   text(.8, .8, Signif, cex=cex, col=2)
 }
 
 # Plotting cor matrix
 pairs(cormat_df, gap=0, lower.panel=panel.smooth,
       upper.panel=panel.cor, diag.panel=hist.panel,
-      cex.labels = 2.1, font.labels = 2)
+      cex.labels = 1.8, font.labels = 2)
 
