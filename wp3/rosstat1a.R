@@ -937,4 +937,59 @@ mean(df$cov_VE, na.rm = T) - 1*sd(df$cov_VE, na.rm = T)
 100*(exp(summary(M18_12)$coefficients[7])-1) -
   100*(exp(summary(M18_12)$coefficients[9])-1) # returns for HE
 
+########################################## Cor matrix
 
+# migr - migration rate (2017)
+# grp - gross regional product (2016)
+# urban - urbanization level (2017)
+#### Coverage (number of students enrolled per 10,000 residents):
+# cov_VE - coverage by vocational education (2017)
+# cov_HE - coverage by higher education (2017)
+# unemploy - unemployment level (2017)
+# nat_res - average number of employees in the 
+# 'extraction of minerals' area, thousands of people (2017)
+# s1z - sd from the national mean of EGE scores (2014?)
+
+# demand_vars - Mirkina variables (demand side) (2015)
+# EGE - EGE scores in a region (2018)
+# univ_degree_share - proportion of people with university degree in the sample (2018)
+
+
+library(PerformanceAnalytics)
+var_names <- c('migr', 'grp', 'urban', 'cov_VE',
+               'cov_HE','unemploy','nat_res', 's1z')
+rgvars_selected <- rgvars[,var_names]
+
+# Elements of the plot
+hist.panel = function (x, ...) {
+  par(new = TRUE)
+  hist(x,
+       col = "light gray",
+       probability = T,
+       axes = FALSE,
+       main = "",
+       breaks = "FD")
+}
+panel.cor <- function(x, y, digits=2, prefix="", use="pairwise.complete.obs",
+                      method = 'pearson', cex.cor, ...){
+  usr <- par("usr"); on.exit(par(usr))
+  par(usr = c(0, 1, 0, 1))
+  r <- cor(x, y, use=use, method=method) # MG: remove abs here
+  txt <- format(c(r, 0.123456789), digits=digits)[1]
+  txt <- paste(prefix, txt, sep="")
+  if(missing(cex.cor)) cex <- 0.5/strwidth(txt)
+  
+  test <- cor.test(x,y, method=method)
+  # borrowed from printCoefmat
+  Signif <- symnum(test$p.value, corr = FALSE, na = FALSE,
+                   cutpoints = c(0, 0.001, 0.01, 0.05, 0.1, 1),
+                   symbols = c("***", "**", "*", ".", " "))
+  # MG: add abs here and also include a 30% buffer for small numbers
+  text(0.5, 0.5, txt, cex = cex)
+  text(.8, .8, Signif, cex=cex, col=2)
+}
+
+# Plotting cor matrix
+pairs(rgvars_selected, gap=0, lower.panel=panel.smooth,
+      upper.panel=panel.cor, diag.panel=hist.panel,
+      cex.labels = 2.1, font.labels = 2)

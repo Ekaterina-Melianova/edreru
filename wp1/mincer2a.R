@@ -126,7 +126,7 @@ summary(df$exper)
 
 # Generating a final dataset for the analysis
 
-df_mincer <- df[, c("REGION", "IDIND", "YEAR", "edu_4", "wage",
+df_mincer <- df[, c("REGION", "IDIND", "YEAR", "edu_4", "wage", 'EDUC',
                     "exper", "non_russ", "female",
                     "edu_yrs", 'AGE', 'J72_5C', 'J72_6A', 'J72_4C', 'J72_3C',
                     'J70', 'J70_1', 'J72_2C', 'J72_18A')]
@@ -222,6 +222,18 @@ names(voc_smry) <- c('Year', 'VG_level', 'Mean_Edu_Years_after_9', 'N')
 
 # Arragning
 voc_smry <- voc_smry %>% arrange(Year)
+
+# Plotting
+voc_smry <- voc_smry %>% filter(VG_level %in% c(3,5,6))
+ggplot(voc_smry, aes(Year, Mean_Edu_Years_after_9, color = VG_level, group = VG_level)) +
+  geom_line(size = 1) +
+  theme(axis.text.x = element_text(angle = 30, hjust = 1, size = 12)) +
+  scale_y_continuous(limits = c(1.8, 3.2)) +
+  scale_color_manual(values = c('red', 'darkgreen', 'blue'),
+                     labels = c('incomplete secondary + vocational training',
+                                'secondary school + vocational training',
+                                'college '))+ 
+  guides(color=guide_legend(title="Vocational Education Level"))
 
 ########################################################################
 
