@@ -168,7 +168,7 @@ panel.cor <- function(x, y, digits=2, prefix="", use="pairwise.complete.obs",
   r <- cor(x, y, use=use, method=method) # MG: remove abs here
   txt <- format(c(r, 0.123456789), digits=digits)[1]
   txt <- paste(prefix, txt, sep="")
-  if(missing(cex.cor)) cex <- 0.5/strwidth(txt)
+  if(missing(cex.cor)) cex <- 2
   
   test <- cor.test(x,y, method=method)
   # borrowed from printCoefmat
@@ -183,5 +183,5 @@ panel.cor <- function(x, y, digits=2, prefix="", use="pairwise.complete.obs",
 # Plotting cor matrix
 pairs(cormat_df, gap=0, lower.panel=panel.smooth,
       upper.panel=panel.cor, diag.panel=hist.panel,
-      cex.labels = 1.8, font.labels = 2)
+      cex.labels = 1.5, font.labels = 2)
 
