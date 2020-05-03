@@ -961,10 +961,13 @@ df <- df %>%
 
 df_rgvars <- df[!duplicated(df$OKATO),]
 
-var_names <- c('edu_yrs_region', 'lnwage_region', 'migr', 'grp', 'urban', 'cov_VE',
-               'cov_HE','unemploy','nat_res', 's1z')
+var_names <- c('edu_yrs_region', 'lnwage_region', 'cov_HE',
+               'cov_VE', 's1z', 'grp', 'urban','unemploy','nat_res', 'migr')
+
 rgvars_selected <- df_rgvars[,var_names]
-names(rgvars_selected)[c(1,2)] <- c('edu_yrs', 'lnwage')
+names(rgvars_selected) <- c('edu_yrs', 'lnwage', 'voc_edc',
+                            'high_edc', 'EGE', 'grp', 'urban',
+                            'unemploy','nat_res', 'migr')
   
 # Elements of the plot
 hist.panel = function (x, ...) {
