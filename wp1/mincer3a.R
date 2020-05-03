@@ -3,6 +3,11 @@
 
 library(dplyr)
 library(ggplot2)
+library(reshape2)
+
+
+wd <- "C:/Country/Russia/Data/SEASHELL/SEABYTE/edreru/wp1"
+setwd(wd) 
 
 hp <-
 
@@ -34,72 +39,28 @@ Year	S	     r
 "
 )
 
+hp2 <- reshape2::melt(hp,id.vars=c("Year")) %>% mutate(Year=as.factor(Year))
+str(hp2)
+
+hp2$fvar[hp2$variable=="S"] <- "Number of years of Schooling"
+hp2$fvar[hp2$variable=="r"] <- "Rate of Returns in percentage"
+
+hp2$fvar <- factor(hp2$fvar,levels=c("Number of years of Schooling",
+                                     "Rate of Returns in percentage"))
 
 
+ggplot(data=hp2,aes(x=Year,y=value,group=fvar,color=fvar))+
+  geom_line()+
+  facet_wrap(~fvar,scales="free")+
+  scale_x_discrete(x_axis)+
+  theme(axis.text.x = element_text(angle = 30, hjust = 1, vjust=1, size = 8),
+        axis.text.y = element_text(size = 14, color="black"),
+        axis.title.x = element_blank(),
+        axis.title.y = element_blank())+ 
+  theme(strip.text.x = element_text(size = 14, color = "black"))+
+  scale_color_manual(values = c("purple", "brown"))+
+  theme(legend.position = "none")
+ggsave("hp_rs.png", width = 10, height = 7,
+       units = "in")
 
-
-p <- ggplot(obs, aes(x = Timestamp))
-p <- p + geom_line(aes(y = air_temp))
-p
-
-
-ggplot(data=hp, aes(x = Year))+
-       geom_line(aes(y=r,color="r"))+
-       geom_line(aes(y=S*(10/14),color="S"))
-                          
-
-
-p <- ggplot(obs, aes(x = Timestamp))
-p <- p + geom_line(aes(y = air_temp, colour = "Temperature"))
-
-# adding the relative humidity data, transformed to match roughly the range of the temperature
-p <- p + geom_line(aes(y = rel_hum/5, colour = "Humidity"))
-
-# now adding the secondary axis, following the example in the help file ?scale_y_continuous
-# and, very important, reverting the above transformation
-p <- p + scale_y_continuous(sec.axis = sec_axis(~.*5, name = "Relative humidity [%]"))
-
-# modifying colours and theme options
-p <- p + scale_colour_manual(values = c("blue", "red"))
-p <- p + labs(y = "Air temperature [°C]",
-              x = "Date and time",
-              colour = "Parameter")
-p <- p + theme(legend.position = c(0.8, 0.9))
-p
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-                          
-                          
-geom_bar(stat="identity") +
-  scale_fill_manual(values = c('grey', 'darkgreen', 'darkgreen')) +
-  geom_text(aes(y = edu_ratio, label = edu_ratio, vjust = -0.5), color="black", size = 5) +
-  theme(axis.title = element_blank(),
-        axis.text.x = element_text(size = 14, face = 'bold'),
-        axis.text.y = element_blank(),
-        axis.line = element_blank(),
-        axis.ticks = element_blank(),
-        legend.position="none",
-        plot.title = element_text(hjust = 0.5, size = 20)) +
-  ggtitle('1998')
-
-
-
-
+       

@@ -490,6 +490,9 @@ M18_2 <- lmer(log(wage) ~ edu_4 + scale(exper) + I(scale(exper)^2) +
               weights = df[df$YEAR == 2018, "KVZV"],
               control=lmerControl(optimizer="bobyqa"))
 
+performance::icc(M18_1)
+performance::icc(M18_2)
+summary(M18_1)
 anova(M18_1, M18_2) # renef for edu_4 is worth adding!
 summary(M18_2)
 
