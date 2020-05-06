@@ -30,13 +30,19 @@
 \counterwithin{figure}{section}
 \counterwithin{table}{section}
 
+
 %% Additional links for hyperref
 \usepackage[unicode=true,pdfusetitle,
- bookmarks=false,bookmarksnumbered=false,bookmarksopen=true,bookmarksopenlevel=2,
+ bookmarks=true,bookmarksnumbered=true,bookmarksopen=true,bookmarksopenlevel=2,
  breaklinks=false,pdfborder={0 0 1},backref=false,colorlinks=false]
  {hyperref}
 \hypersetup{pdfstartview={XYZ null null 1}}
 
+
+%% For fillers
+\usepackage{lipsum}
+
+%% For references 
 \usepackage[backend=bibtex,
 			natbib=true, 
 			style=chicago-authordate]{biblatex}
@@ -54,6 +60,7 @@
 \usepackage{booktabs} % for vertically partitioned table
 
 
+
 %%%%%%%%#################################################################################%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 % Update article type if known
@@ -62,17 +69,16 @@
 \paperfield{Russian Federation: Analytical Services and Advisory Activity: 
 P170978}
 
-\title{Returns to Education in the Russian Federation: Variation across Regions }
+\title{Returns to Education in the Russian Federation: Variation across regions and implications for policy development in priority regions}
 
 % List acknowledgements here.
-\fundinginfo{Thanks are due to the Higher School of Economics, Moscow for making the Russian Longitudinal Monitoring Study (RLMS) Household data readily available for reseachers around the world. The code used for this paper is made freely available for all researchers at \url{https://bitbucket.org/zagamog/edreru/src/master/}}
+\fundinginfo{Thanks are due to the Higher School of Economics, Moscow for making the Russian Longitudinal Monitoring Study (RLMS) Household data readily available for researchers around the world. The code used for this paper is made freely available for all researchers at \url{https://bitbucket.org/zagamog/edreru/src/master/}}
 
 % Include full author names and degrees, when required by the journal.
 % Use the \authfn to add symbols for additional footnotes and present addresses, if any. Usually start with 1 for notes about author contributions; then continuing with 2 etc if any author has a different present address.
 
 \author[*]{Ekaterina Melianova}
 \author[*]{\hspace{-1em}Suhas Parandekar}
-\author[*]{\hspace{-1em}Harry Patrinos}
 \author[*]{\hspace{-1em}Art\"{e}m Volgin}
 
 % List abbreviations here, if any. Please note that it is preferred that abbreviations be defined at the first instance they appear in the text, rather than creating an abbreviations list.
@@ -106,18 +112,35 @@ This is a generic template designed for use by multiple journals, which includes
 \end{abstract}
 
 
-\section{Regional Returns to Education in the Russian Federation: Role of access to Vocational and Higher Education}
+\section{Estimating Regional Returns to Education}
+
+\subsection{Motivation for this study}
+The diversity of economic conditions across Russian regions suggests fruitful policy analytical use of regional level returns to education. Regional economic development in the Russian Federation is a heavily studied topic, with numerous studies focused on macroeconomic issues and investigations regarding convergence of growth trajectories, decomposition of inequality and efficiency of public spending. Examples of these studies are: \cite{lugovoy2007}, \cite{hauner2008}, \cite{gluschenko2011} and \cite{kufenko2014}. A recent World Bank report described the three main factors that explain the wide scale of diversities in Russia's regions, so that some regions have income levels that match Singapore or New Zealand, and others match Bolivia or Honduras: (i) the persistent Soviet legacy; (ii) diverse physical geography; and (iii) dominance of oil and gas in some regions \parencite{worldbank2018}. The report analyzed the determinants of Economic Potential Index (EPI) of Russian regions (excluding remote regions and oil and gas producing Eastern regions). 
+
+An important finding from the analysis of the  EPI: the four factors of urbanization; the presence of high-tech industries; advanced human capital; and connectivity (access to markets) \textendash  explain 60\% of the variation in EPI. For the EPI analysis, the measure of advanced human capital was the regional percentage of population with a higher education degree. While that report examined regional development with an overview of all sectors, and recommended that regional development can be spurred through investment in human capital, this paper seeks to derive deeper insights regarding human capital. It seeks to answer three questions - what is the variation of the returns to education across regions in Russia, what are the regional variables that may be causing the regional variation (as determined through a random effects regression model) and what are the policy implications of this variation? 
+
+
+Paragraph about structure of this paper \lipsum[1]
+
+\subsection{Previous estimates of regional returns for Russia}
+
+Until quite recently, the only tried and tested set of available survey data that contained adequate information to calculate the rate of returns to education was the Russian Longitudinal Monitoring Survey (RLMS), implemented by the Higher School of Economics (HSE). The RLMS is a nationally representative household survey, but the survey size and design is too small to include regionally representative samples. \cite{cheidvasser2007} had used the RLMS to derive rates of return at a level that roughly corresponded to Russia's eight federal districts. The authors had examine data from the 1995 to 1998 rounds of the RLMS. In this period of time, of substantive economic and social upheaval following the collapse of the Soviet Union in 1991, the returns of the education were low overall, and they were relatively even lower for metropolitan Moscow and St. Petersburg. 
+
+\cite{baeva2013} examined returns to education for regions in the Siberian Federal district. Using data from the enterprise based Survey of Wages by Occupation by Rosstat for the years 2007, 2009 and 2011, she found that the premium to Higher education was 61\% for the Russian Federation and 56\% for the Siberian Federal District. At the regional level, the premium ranged from 40\% for Krasnoyarsk to 72\% for Novosibirsk. The author also presents details about considerable variation in the returns to vocational education and a closer examination of returns for the Irkutsk region. \cite{oshchepkov2018} also utilized data from the Survey of Wages by Occupation by Rosstat, for the years 2005, 2007, 2009, 2011, 2013 and 2015. Only returns to Higher education are computed in this paper, and a typical specifications results in estimates of a wage premium for Higher education for all of the Russian Federation as 81\%. The dispersion indicates a range from 54\% return for the Republic of Modovia to 127\% for the Tuva Republic. A very useful practice in this paper is the correct interpretation of coefficients on dummy variables in semi-logarithmic regressions that was recommended by \cite{halvorsen1980}. The author presents the regional estimates of returns to education using ordinary least squares (OLS) regression, with a modifed Mincerian specification that includes gender, public or private sector and broad classification of industry. 
+
+An interesting aspect of \cite{oshchepkov2018} is the use of data from all five rounds of the occupational wage survey for 79 of the Russian regions, that results in (79 x 6) or 474 coefficient estimates from which wage premium style returns (i.e., not dividing by the years of higher education) can be computed. The author reports a second stage regression, using the computed coefficient estimates as dependent variables and regressing them on a set of region level variables, with a specification that includes fixed effects for each region and each year. If there are unobserved regional or temporal fixed effects that are correlated with the error term in this second stage regression, the specification is said to result in valid estimates of effects of regional characteristics. Treating regression coefficients as dependent variables could be perilous if there is a systematic time-varying relationship between regional returns to education and the regional characteristics. From a policy analytic perspective, one hopes this would be the case, as policy makers can seek to influence the returns to education. In spite of the possible methodological issues, the paper provides an interesting perspective to the topic of returns to education in the Russian Federation. The literature in this field is likely to grow as more regionally representative household or enterprise data sets become available for the Russian Federation. 
+
 
 \subsection{Data}
-To estimate returns to education in Russian regions, we use the most recent (2018) round of the Statistical Survey of Income and Participation in Social Programs, collected by Rosstat. The primary purpose of the Rosstat survey was to obtain statistical information, reflecting the role of wages, income from self-employment, property income, pensions, and social benefits in ensuring the material well-being of families. The survey contains data on trends in income and poverty variation among households with different socio-economic status. There are also variables on people's participation in social programs, their pension and health insurance, material and social security of low-income families, and the impact of social policy measures on people's well-being. The sample selected for the empirical modeling is identical to the one used for the RLMS analysis: individuals aged 25-64 who are out of school and have positive labor market experience and income.
+To estimate returns to education in Russian regions, we use the most recent (2018) round of the Statistical Survey of Income and Participation in Social Programs, collected by Rosstat. The primary purpose of the Rosstat survey was to obtain statistical information, reflecting the role of wages, income from self-employment, property income, pensions, and social benefits in ensuring the material well-being of families. The survey contains data on trends in income and poverty variation among households with different socio-economic status. There are also variables on people's participation in social programs, their pension and health insurance, material and social security of low-income families, and the impact of social policy measures on people's well-being. The sample selected for the empirical modeling consists of individuals aged 25-64 who are out of school and have positive labor market experience and income.
 
 \subsection{Methods}
 
-The classical Mincerian equation (described in the previous sections) is the main focus in the regional investigation of returns to education in Russia: in this section we look at how these returns vary across regions. Additionally, we explore the determinants of the established variation through a random effects regression analysis.  The equations of interest are as follows:
+The Mincerian equation with an added gender dummy  is the main focus in the regional investigation of returns to education in Russia: in this section we look at how these returns vary across regions. Additionally, we explore the determinants of the established variation through a random effects regression analysis.  The equations of interest are as follows:
 
 \textbf{First level:}
 \begin{flalign}\label{eq:4.1} 
-Log(Wage)_{ij} = b_{0j} + b_{1j}\cdot Educ + b_{2j}\cdot Exp + b_{3j}\cdot Exp^2 + b_{4j}\cdot Gender + \epsilon_{ij} &&
+Log $(Wage)$_{ij} = b_{0j} + b_{1j}\cdot $Educ$ + b_{2j}\cdot $Exp$ + b_{3j}\cdot $Exp^2$ + b_{4j}\cdot $Gender$ + \epsilon_{ij} &&
 \end{flalign}
 
 \textbf{Second Level:}
@@ -128,17 +151,105 @@ b_{ij} = \gamma_{i0} \quad for \quad i \neq 0   &&
 \end{flalign}
  
 \noindent
-where an individual $i$ is nested withing a region $j$, $Log(Wage)$ is a logarithm of monthly wage, $Educ$ stands for highest attained level of education, $Exp$ and $Exp^2$ reflect the years of working experience and its quadratic term respectively, $Gender$ is a dummy variable for gender, $Z$ is an $n\times i$ matrix of regional characteristics, $\epsilon$ and $u_{00}$, $u_{10}$ are the first- and second-level errors respectively.
+where an individual $i$ is nested withing a region $j$, $Log$(Wage) is the logarithm of monthly wage, $Educ$ stands for highest attained level of education, $Exp$ and $Exp^2$ reflect the years of working experience and its quadratic term respectively, $Gender$ is a dummy variable for gender, $Z$ is an $n\times i$ matrix of regional characteristics, $\epsilon$ and $u_{00}$, $u_{10}$ are the first- and second-level errors respectively.
 
 The random effects models were estimated using restricted maximum likelihood (REML). Individual Wald tests and likelihood ratio tests were exploited to evaluate the significance of fixed and random effects, respectively. Weights were used in the modeling to ensure the representativeness of the sample across Russian regions (the weighting variable was divided by 1000 to allow the convergence of the multilevel models). 
 
 \subsubsection{Left Hand Side (LHS) variable}
-Similar to the previous analyses, the outcome to be investigated is the logarithm of monthly monetary remuneration before income tax payment at the main place of work.
+The outcome to be investigated is the logarithm of monthly monetary remuneration before income tax payment at the main place of work.
 
 \subsubsection{Right Hand Side (RHS) variables}
-Education, experience, and gender are the first-level  variables. Education is included in the random effects models as the focus of interest with a set of regional level variables - equation \ref{eq:4.2}. 
+Education, experience, and gender are the first-level variables as in an OLS equation. We then computed the intra-class correlation coefficient (ICC) on a base model of the logarithm of earnings  to examine the percentage variance of earnings explained due to variation across regions. In the base model with covariates, we find an ICC value of 0.20, which is high enough to justify modeling regional random effects. We then compare the base model with a model including Education as a random regional effect, and used Wald tests, likelihood ratio tests and other information tests (AIC, BIC) to determine which model provides a better fit. These criteria point to the inclusion of Education as a random regional effect in addition to the fixed effect of Education. 
 
-The random effects model seeks to estimate the magnitude of influence of regional level educational quantity and educational quality measures to explain the variation in returns to education across Russian regions. To measure educational quanity or access, we use the number of students enrolled in vocational education per 10,000 residents and the number of students enrolled in higher education per 10,000 residents. As a measure of educational quality, we use standard deviations from the national mean of the Russian school-leaving and university entrance examination, the EGE. We also add control variables regarding economic development and the labor market - these are respectively the gross regional product, the level of urbanization, the regional unemployment level and the the share of employment in jobs related to natural resource exploitation. Table \ref{tab:4.1} demonstrates the descriptive statistics by region.
+
+Next we tested a set of random regional effects. We checked for the influence of regional level \textit{educational quantity} and \textit{educational quality} measures to explain the variation in education payoffs across Russian regions, and also included a set of variables to represent labor market conditions. To measure educational quantity or access, we used the number of students enrolled in vocational education per 10,000 residents ($voc\_edc$) and the number of students enrolled in higher education per 10,000 residents ($high\_edc$). As a measure of educational quality, standard deviations from the national mean of the Russian school-leaving and university entrance examination, the EGE, were incorporated. We also added variables regarding economic development and the labor market - these are the gross regional product, the level of urbanization, the regional unemployment level, the share of employment in jobs related to natural resources exploitation and the ratio of recent graduates who migrated to other states compared to the graduates who stayed in the same region. 
+
+
+\vspace{-0.2in}
+
+\begin{center}
+	\begin{figure}[htbp!]
+\begin{minipage}[b]{1\linewidth}
+			\centering
+			%\hspace*{-0.7in}
+			\includegraphics[width=6in]{cor_rgvars1.png}
+			% plot 1
+		\end{minipage}
+			\caption{Correlations of Regional Level Variables with Wages and Education}\label{fig:1.1}
+	\end{figure}
+\end{center}
+
+
+\vspace{-2em}
+
+Figure \ref{fig:1.1} shows descriptive statistics of the variables used - the univariate distribution of each variable, and their respective bivariate correlations. For improved context, the matrix represented in \ref{fig:1.1} also includes regional aggregates for the main variables of interest - education (in years) and logarithm of monthly wage. The figure indicates a rich and varied pattern of correlations - some of these are straightforward - such as the relationship between wages and regional product ($grp$). The sparklines and bi-variate scatter plots in \ref{fig:1.1} also indicate the presence of a number of outliers for almost every variable. In a regional context, random effects regression deals effectively with such a data structure. All region-level variables were normalized with Z-standardization before being plugged into the analysis to obtain meaningfully interpretable moderation effects in cross-level interaction models. For the statistically significant interactions, marginal returns to schooling, conditioned on thresholds of region-level characteristics (-1, 0, 1 standard deviations), were evaluated:
+
+\begin{flalign}\label{eq:4.3} 
+\{b_{1j}| Z = 1\} = \gamma_{10} + 1 \times \gamma_{1n}&&
+\{b_{1j}| Z = 0\} = \gamma_{10}&&
+\{b_{1j}| Z = -1\} = \gamma_{10} - 1 \times \gamma_{1n}&&
+\end{flalign}
+
+Appendix Table \ref{tab:4.1} demonstrates descriptive statistics of the key variables of interest by regions.
+
+\subsection{Estimation Results of Regional Analysis}
+
+Of the eight variables tested for random regional effects, it turned out that six of the eight variables passed the test - the only variables that did not meet the criteria was the migration ratio and the standardized EGE score variable. After adding these six random effects to the specification, the next step was to check for interactions of the second level variables with education levels. The investigation revealed that with one exception, none of the second-level characteristics have a statistically signficant interaction with education as a random effect. The only variable that had an independent random effect at the regional level as well as a statistically significant regional interaction with education was $voc\_edc$, the regional coverage of vocational education. Substantively, it was found that growth in the number of students covered by vocational programs leads to higher schooling premiums concerning both vocational and university education. 
+
+The results from the final specification and the mean values of the random effects are presented in Appendix Table \ref{tab:4.1}. From this table, we focus on the finding regarding vocational education. In addition to the independent random effect coefficient value of -0.14 which is statistically significant, we find the positive coefficient of 0.05 and 0.08 for coverage of vocational education and coverage of higher education respectively.  Particularly, sufficiently high vocational degree coverage (when this variable is equal to 1 standard deviation above the national mean) corresponds to the average return rate of 35.8\%. Medium vocational degree coverage (when the coverage is at the national mean) corresponds to the average return rate of 30.6\%. Low vocational degree coverage (when the coverage of vocational education is 1 standard deviation lower than the national mean) corresponds to the average return rate of 25.5\%. 
+
+
+We then explored regional diversity in education payoffs in Russia by extracting region-specific estimates of rates of returns to schooling and their respective 95\% confidence intervals, presenting the combinations of the random effects mentioned earlier. (see Figure \ref{fig:4.1}). Red color on the picture highlights region called by the Russian Federal Government as priority regions that were ranked lowest regarding poverty, income, and investment climate. A visual inspection of this graph illustrates that premiums to education in Russian regions are rather heterogeneous, varying from 5.2\% (Chechenskaya Respublika) to 58.2\% (Tyumenskaya Oblast) for university level and from -1\% (Chechenskaya Respublika) to 29.6\% (Tyumenskaya Oblast) for vocational level.
+
+\begin{figure}[htp]
+	\begin{minipage}[b]{.5\linewidth}
+		\centering
+		\hspace*{-0.4in}
+		\includegraphics[width=250pt]{reg_he_18.png}
+		% plot 1
+		\subcaption{Higher Education}\label{}
+	\end{minipage}
+	\hfill
+	\begin{minipage}[b]{.5\linewidth}
+		\centering
+		\hspace*{-0.2in}
+		\includegraphics[width=250pt]{reg_ve_18.png}
+		% plot 2
+		\subcaption{Vocational Education}\label{}
+	\end{minipage}
+	\caption{Rates of Returns (Percentages) to Higher and Vocational Education in Russian Regions, Rosstat 2018}\label{fig:4.1}
+\end{figure}
+
+
+
+\section{Categorization of Priority Regions} 
+
+\lipsum[1]
+
+\subsection{Quantity and Quality of Labor Supply}
+
+
+\lipsum[2]
+
+\subsection{Quantity and Quality of Labor Demand}
+
+\lipsum[3]
+
+\subsection{Bringing Demand and Supply rankings together}
+
+\lipsum[4]
+
+\section{Policy Recommendations for Priority Regions} 
+
+\printbibliography
+
+\newpage
+\section*{Appendix}
+\addcontentsline{toc}{section}{Appendix}%
+
+\setcounter{table}{0}
+\renewcommand{\thetable}{A\arabic{table}}
+
 
 \hspace{-1in}
 \fontsize{9}{11}{
@@ -241,121 +352,11 @@ Regions & N & mean & sd & mean & sd & SE & VE & HE & Males & Females  \\
 	\end{longtable}
 }
 
-\subsection{Estimation Results of Regional Analysis}
-First, simple linear regression models were fitted to the observations in each region, and 95\% confidence intervals for the education variable coefficients were returned to examine the overall pattern of regional diversity in education payoffs. A visual inspection of Figure \ref{fig:4.1} is illustrative of the fact that Russian regions are rather heterogeneous in terms of premiums to education. Following the basic Mincerian equation, we present the results of the multilevel regression.
-
-\begin{figure}[htp]
-	\begin{minipage}[b]{.5\linewidth}
-		\centering
-		\hspace*{-0.4in}
-		\includegraphics[width=250pt]{reg_he_18.png}
-		% plot 1
-		\subcaption{Higher Education}\label{}
-	\end{minipage}
-	\hfill
-	\begin{minipage}[b]{.5\linewidth}
-		\centering
-		\hspace*{-0.2in}
-		\includegraphics[width=250pt]{reg_ve_18.png}
-		% plot 2
-		\subcaption{Vocational Education}\label{}
-	\end{minipage}
-	\caption{Rates of Returns (Percentages) to Higher and Vocational Education in Russian Regions, Rosstat 2018}\label{fig:4.1}
-\end{figure}
-
-A two-level model without covariates was initially specified and indicated that the Intra-class Correlation (ICC) was equal to 16\%, i.e., 16\% of the variation in wage outcome was between regions. This is a high enough level to justify the estimation of a random effects model with covariates. Nested models comparison showed that there is a statistically significant regional variation in the effect of education on people's earnings ($-2\bigtriangleup LL(1) = 413.54, p < .001$).
-
-Next, we examined the possible causes of this variation by adding the second-level independent variables and their interactions with education. The investigation revealed that none of the second-level characteristics are capable of changing the association between education and the amount of money Russians earn, except for \textit{the coverage by vocational education}. Substantively, it means that growth in the number of students covered by vocational programs leads to higher schooling premiums concerning both vocational and university education. As for the estimates obtained, sufficiently high vocational education coverage degree (when its standardized version is 1) corresponds to the average return rate of 30.6\%; medium vocational education coverage degree (when its standardized version is 0) corresponds to the average return rate of 35.8\%; low vocational education coverage degree (when its standardized version is -1) corresponds to the average return rate of 25.5\%. The interpretation of such a finding can imply that this quantity-related dimension of vocational education has the potential to serve as an instrument of boosting financial payoffs from post-secondary education in Russian regions. 
-
-
-\printbibliography
-
-\newpage
-\section*{Appendix}
-\addcontentsline{toc}{section}{Appendix}%
-
-\setcounter{table}{0}
-\renewcommand{\thetable}{A\arabic{table}}
-
 
 \begin{table}[!htbp] \centering 
-\caption{Results of Estimating Human Capital Depreciation for the Female sample, RLMS} 
-	\label{tab:A1}
-\begin{tabular}{@{\extracolsep{5pt}}lcccccc} 
-\\[-1.8ex]\hline 
-\hline \\[-1.8ex] 
-& \textbf{1994} & \textbf{1998} & \textbf{2003} & \textbf{2006} & \textbf{2012} & \textbf{2018} \\ 
-\\[-1.8ex] & (1) & (2) & (3) & (4) & (5) & (6)\\ 
-\hline \\[-1.8ex] 
- Constant & 9.725$^{***}$ & 3.786$^{***}$ & 5.464$^{***}$ & 6.946$^{***}$ & 8.133$^{***}$ & 8.767$^{***}$ \\ 
-  & (0.381) & (0.322) & (0.301) & (0.247) & (0.186) & (0.242) \\ 
-  & & & & & & \\ 
- Educ, years ($S$) & 0.122$^{***}$ & 0.153$^{***}$ & 0.158$^{***}$ & 0.118$^{***}$ & 0.087$^{***}$ & 0.066$^{***}$ \\ 
-  & (0.025) & (0.022) & (0.020) & (0.016) & (0.012) & (0.015) \\ 
-  & & & & & & \\ 
- Educ X Exper ($TS$) & $-$0.002$^{*}$ & $-$0.002$^{***}$ & $-$0.002$^{**}$ & $-$0.0002 & $-$0.0001 & 0.0004 \\ 
-  & (0.001) & (0.001) & (0.001) & (0.001) & (0.0005) & (0.001) \\ 
-  & & & & & & \\ 
- Exper ($T$) & 0.074$^{***}$ & 0.080$^{***}$ & 0.055$^{***}$ & 0.013 & 0.020$^{**}$ & 0.020$^{*}$ \\ 
-  & (0.019) & (0.016) & (0.015) & (0.013) & (0.010) & (0.011) \\ 
-  & & & & & & \\ 
- Exper squared ($T^2$) & $-$0.001$^{***}$ & $-$0.001$^{***}$ & $-$0.001$^{***}$ & $-$0.0003$^{**}$ & $-$0.0005$^{***}$ & $-$0.001$^{***}$ \\ 
-  & (0.0002) & (0.0002) & (0.0002) & (0.0001) & (0.0001) & (0.0001) \\ 
-  & & & & & & \\ 
-\hline \\[-1.8ex] 
-Observations & 1,645 & 1,667 & 2,093 & 2,630 & 4,057 & 3,312 \\ 
-R$^{2}$ & 0.051 & 0.089 & 0.110 & 0.139 & 0.104 & 0.092 \\ 
-Adjusted R$^{2}$ & 0.049 & 0.087 & 0.108 & 0.138 & 0.103 & 0.091 \\ 
-Residual Std. Error & 0.853 & 0.728 & 0.731 & 0.664 & 0.641 & 0.597 \\ 
-F Statistic & 22.179$^{***}$ & 40.520$^{***}$ & 64.342$^{***}$ & 106.385$^{***}$ & 117.366$^{***}$ & 83.993$^{***}$ \\ 
-\hline 
-\hline \\[-1.8ex] 
-\textit{Note:}  & \multicolumn{6}{r}{$^{*}$p$<$0.1; $^{**}$p$<$0.05; $^{***}$p$<$0.01} \\ 
-\end{tabular} 
-\end{table} 
-
-
-\begin{table}[!htbp] \centering 
-\caption{Results of Estimating Human Capital Depreciation for the Male sample, RLMS} 
-	\label{tab:A2}
-\begin{tabular}{@{\extracolsep{5pt}}lcccccc} 
-\\[-1.8ex]\hline 
-\hline \\[-1.8ex] 
-& \textbf{1994} & \textbf{1998} & \textbf{2003} & \textbf{2006} & \textbf{2012} & \textbf{2018} \\ 
-\\[-1.8ex] & (1) & (2) & (3) & (4) & (5) & (6)\\ 
-\hline \\[-1.8ex] 
- Constant & 10.357$^{***}$ & 5.029$^{***}$ & 7.334$^{***}$ & 8.067$^{***}$ & 8.771$^{***}$ & 9.094$^{***}$ \\ 
-  & (0.433) & (0.360) & (0.282) & (0.243) & (0.157) & (0.185) \\ 
-  & & & & & & \\ 
- Educ, years ($S$) & 0.136$^{***}$ & 0.123$^{***}$ & 0.080$^{***}$ & 0.077$^{***}$ & 0.077$^{***}$ & 0.077$^{***}$ \\ 
-  & (0.028) & (0.024) & (0.019) & (0.016) & (0.010) & (0.012) \\ 
-  & & & & & & \\ 
- Educ X Exper ($TS$) & $-$0.002$^{*}$ & $-$0.001 & 0.0004 & $-$0.0003 & $-$0.0004 & $-$0.001 \\ 
-  & (0.001) & (0.001) & (0.001) & (0.001) & (0.0005) & (0.001) \\ 
-  & & & & & & \\ 
- Exper ($T$) & 0.054$^{**}$ & 0.032$^{*}$ & 0.002 & 0.007 & 0.035$^{***}$ & 0.037$^{***}$ \\ 
-  & (0.023) & (0.017) & (0.014) & (0.013) & (0.009) & (0.010) \\ 
-  & & & & & & \\ 
- Exper squared ($T^2$) & $-$0.001$^{***}$ & $-$0.0004$^{**}$ & $-$0.0003$^{*}$ & $-$0.0003$^{*}$ & $-$0.001$^{***}$ & $-$0.001$^{***}$ \\ 
-  & (0.0003) & (0.0002) & (0.0002) & (0.0001) & (0.0001) & (0.0001) \\ 
-  & & & & & & \\ 
-\hline \\[-1.8ex] 
-Observations & 1,392 & 1,433 & 1,763 & 2,170 & 3,360 & 2,800 \\ 
-R$^{2}$ & 0.057 & 0.070 & 0.078 & 0.074 & 0.153 & 0.110 \\ 
-Adjusted R$^{2}$ & 0.054 & 0.067 & 0.076 & 0.072 & 0.152 & 0.108 \\ 
-Residual Std. Error & 0.951 & 0.803 & 0.754 & 0.688 & 0.598 & 0.570 \\ 
-F Statistic & 20.989$^{***}$ & 26.879$^{***}$ & 37.362$^{***}$ & 43.281$^{***}$ & 151.868$^{***}$ & 86.125$^{***}$ \\ 
-\hline 
-\hline \\[-1.8ex] 
-\textit{Note:}  & \multicolumn{6}{r}{$^{*}$p$<$0.1; $^{**}$p$<$0.05; $^{***}$p$<$0.01} \\ 
-\end{tabular} 
-\end{table} 
-
-
-
-\begin{table}[!htbp] \centering 
-	\caption{Results of Multilevel Modeling with Coverage by Vocational Education, Rosstat 2018} 
-	\label{tab:A2} 
+	\caption{} 
+		\label{tab:4.2}\\
+	\label{} 
 	\begin{tabular}{@{\extracolsep{5pt}}lcccc} 
 		\\[-1.8ex]\hline 
 		\hline \\[-1.8ex] 
@@ -389,14 +390,15 @@ F Statistic & 20.989$^{***}$ & 26.879$^{***}$ & 37.362$^{***}$ & 43.281$^{***}$ 
 		Coverage VE &  &  & $-$0.101$^{***}$ & $-$0.142$^{***}$ \\ 
 		&  &  & (0.039) & (0.043) \\ 
 		& & & & \\ 
-		\hline
-		\hline
+		\hline \\[-1.8ex] 
 		Variance of Intecept & 0.09 & 0.08 & 0.09 & 0.09 \\ 
 		Variance of Vocational &  &  & 0.02 & 0.02 \\ 
 		Variance of Higher &  &  & 0.04 & 0.04 \\ 
+		\hline \\
 		Residual Deviance & 0.45 & 0.35 & 0.34 & 0.34 \\ 
-		\hline
-		\hline
+		sigma & 0.67 & 0.587 & 0.584 & 0.584 \\ 
+		deviance & 119505.212 & 106528.235 & 106137.315 & 106129.127 \\ 
+		df.residual & 49184 & 49179 & 49173 & 49171 \\ 
 		Observations & 49,187 & 49,187 & 49,187 & 49,187 \\ 
 		Log Likelihood & $-$59,755.060 & $-$53,289.500 & $-$53,094.620 & $-$53,096.640 \\ 
 		Akaike Inf. Crit. & 119,516.100 & 106,595.000 & 106,217.200 & 106,225.300 \\ 
@@ -406,7 +408,6 @@ F Statistic & 20.989$^{***}$ & 26.879$^{***}$ & 37.362$^{***}$ & 43.281$^{***}$ 
 		\textit{Note:}  & \multicolumn{4}{r}{$^{*}$p$<$0.1; $^{**}$p$<$0.05; $^{***}$p$<$0.01} \\ 
 	\end{tabular} 
 \end{table} 
-
 
 
 \newpage

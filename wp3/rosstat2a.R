@@ -11,11 +11,19 @@ setwd(wd)
 Rosstat18 <- readRDS('Rosstat18.rds')
 names(Rosstat18)[1] <- 'OKATO'
 
+# Agerages for edu and lnwage for corplot
+Rosstat18$lnwage <- log(Rosstat18$wage)
+
+Rosstat18 <- Rosstat18 %>%
+  group_by(OKATO) %>%
+  mutate(edu_yrs_region = mean(edu_yrs),
+         lnwage_region = mean(lnwage))
+
 #### QUANTITY
 # % workforce 25-65 with univ. degree 
 Rosstat18 <- Rosstat18 %>%
   group_by(OKATO) %>%
-  mutate(univ_degree_share = sum(edu_4 == "Higher")/n())
+  mutate(univ_deg_share = sum(edu_4 == "Higher")/n())
 
 #### QUALITY
 # EGE scores (Artem's database)
@@ -48,7 +56,7 @@ demand_vars <- paste0('chapter_', letters[c(1:4, 7:9)])
 # Taking last year
 RoR_15 <- RoR_1990_2015_rub %>% filter(year == 2015) %>% select (region, all_of(demand_vars)) 
 RoR_15$demand_sum <- rowSums(RoR_15[,demand_vars])
-RoR_15 <- RoR_15 %>% select (region, demand_sum)
+RoR_15 <- RoR_15 %>% select (region, demand_sum, all_of(demand_vars))
 names(RoR_15)[which(names(RoR_15) == 'region')] <- 'RoR_names'
 
 # Merging with the main Rosstat data
@@ -57,7 +65,8 @@ Rosstat18 <- Rosstat18 %>%
 
 # Selecting only ranks
 Rosstat18 <- Rosstat18 %>%
-  select(OKATO, en_rgnames, univ_degree_share, ege_score, demand_sum)
+  select(OKATO, en_rgnames, univ_deg_share, ege_score,
+         demand_sum, all_of(demand_vars), edu_yrs_region, lnwage_region)
 
 # Remove duplicates
 Ranks_demand_supply <- Rosstat18[!duplicated(Rosstat18$en_rgnames),]
@@ -80,7 +89,7 @@ Ranks[Ranks$en_rgnames == 'Nenetskiy Aok', 'ege_score'] <-
 Ranks <- na.omit(Ranks)
 
 # adding ranks
-Ranks$rank_univ <- rank(-Ranks$univ_degree_share)
+Ranks$rank_univ <- rank(-Ranks$univ_deg_share)
 Ranks$rank_ege <- rank(-Ranks$ege_score)
 Ranks$rank_demand <- rank(-Ranks$demand_sum)
 Ranks$rank_re_HE <- rank(-Ranks$re_HE_all_2018)
@@ -116,3 +125,63 @@ Ranks$Ql_re_low_dem_lower <- ifelse(Ranks$rank_re_HE >= 28 &
 
 export(Ranks, 'Ranks.xlsx')
 # in Ranks_modified the regions are arranged manually according to our classification
+
+
+############ Overall correlations matrix for IV
+
+# demand_vars - Mirkina variables (demand side)
+# EGE - EGE scores in a region
+# univ_degree_share - proportion of people with university degree in the sample
+
+
+library(PerformanceAnalytics)
+
+# df for corplot
+cormat_df <- Ranks
+cormat_df <- cormat_df %>% select(en_rgnames, univ_deg_share, ege_score, all_of(demand_vars))
+cormat_df <- cormat_df %>%
+  left_join(Rosstat18[, c('en_rgnames', 'edu_yrs_region', 'lnwage_region')], by = "en_rgnames")
+cormat_df <- cormat_df[!duplicated(cormat_df$en_rgnames),]
+cormat_df[1] <- NULL
+names(cormat_df) <- c('univ_share', 'EGE', 'agric_gdp', 'fishery_gdp',
+                      'mining_gdp', 'manuf_gdp', 'sale_gdp',
+                      'horeca_gdp', 'transp_gdp',
+                      "edu_yrs", "lnwage" )
+cormat_df <- cormat_df[,c("edu_yrs", "lnwage", 'univ_share', 'EGE',
+                         'agric_gdp', 'fishery_gdp',
+                         'mining_gdp', 'manuf_gdp', 'sale_gdp',
+                         'horeca_gdp', 'transp_gdp')]
+# Elements of the plot
+hist.panel = function (x, ...) {
+  par(new = TRUE)
+  hist(x,
+       col = "light gray",
+       probability = T,
+       axes = FALSE,
+       main = "",
+       breaks = "FD")
+}
+panel.cor <- function(x, y, digits=2, prefix="", use="pairwise.complete.obs",
+                      method = 'pearson', cex.cor, ...){
+  usr <- par("usr"); on.exit(par(usr))
+  par(usr = c(0, 1, 0, 1))
+  r <- cor(x, y, use=use, method=method) # MG: remove abs here
+  txt <- format(c(r, 0.123456789), digits=digits)[1]
+  txt <- paste(prefix, txt, sep="")
+  if(missing(cex.cor)) cex <- 2
+  
+  test <- cor.test(x,y, method=method)
+  # borrowed from printCoefmat
+  Signif <- symnum(test$p.value, corr = FALSE, na = FALSE,
+                   cutpoints = c(0, 0.001, 0.01, 0.05, 0.1, 1),
+                   symbols = c("***", "**", "*", ".", " "))
+  # MG: add abs here and also include a 30% buffer for small numbers
+  text(0.5, 0.5, txt, cex = cex)
+  text(.8, .8, Signif, cex=cex, col=2)
+}
+
+# Plotting cor matrix
+pairs(cormat_df, gap=0, lower.panel=panel.smooth,
+      upper.panel=panel.cor, diag.panel=hist.panel,
+      cex.labels = 1.5, font.labels = 2)
+

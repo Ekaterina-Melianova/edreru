@@ -40,7 +40,8 @@ df_ <- selectFromSQL(c("REGION", "AGE", "J13_2", "J10", "J40", "EDUC", "J1",
                        "J23", "I2", "I4", "YEAR", "J40", "J35_2Y", "J35_2M",
                        "total_exper", "exper_main_", "exper_add_",
                        "J5A_", "J5B_", "J35_2Y_", "J35_2M_", 
-                       "EDUC"))
+                       "EDUC", 'J72_5C', 'J72_6A', 'J72_4C', 'J72_3C',
+                       'J70', 'J70_1', 'J72_2C', 'J72_18A'))
 
 
 dbDisconnect(db)
@@ -83,16 +84,6 @@ df$edu_4 <- car::recode(df$EDUC, "0:7=0; 8:9=1; 10:11=2; 12=1; 13=2;
 Freq(df$edu_4)
 df <- UserMisFix(df) # fixing missings after creating a new variable
 
-# Filtering 3 education levels
-df <- df[df$edu_4>0,]
-Freq(df$edu_4)
-
-# Education as factor
-df$edu_4 <- factor(df$edu_4, levels=c(1,2,3),
-                              labels=c("Secondary",
-                                       "Vocational",
-                                       "Higher"))
-
 # Wage
 
 # Select max wage if there is an additional job
@@ -134,15 +125,290 @@ df$exper <- df$AGE - df$edu_yrs - 6
 summary(df$exper)
 
 # Generating a final dataset for the analysis
-df_mincer <- df[, c("REGION", "IDIND", "YEAR", "edu_4", "wage",
+
+df_mincer <- df[, c("REGION", "IDIND", "YEAR", "edu_4", "wage", 'EDUC',
                     "exper", "non_russ", "female",
-                    "edu_yrs")]
+                    "edu_yrs", 'AGE', 'J72_5C', 'J72_6A', 'J72_4C', 'J72_3C',
+                    'J70', 'J70_1', 'J72_2C', 'J72_18A')]
 summary(df_mincer)
-# df[which(df$wage == 0), "ID_I"]
 
 # Filtering the missings left
 df_mincer <- df_mincer %>%
   filter(!is.na(wage) & !is.na(exper) & wage > 0)
+
+# Filtering 3 education levels
+df_mincer <- df_mincer[df_mincer$edu_4>0,]
+Freq(df_mincer$edu_4)
+
+# Education as factor
+df_mincer$edu_4 <- factor(df_mincer$edu_4, levels=c(1,2,3),
+                          labels=c("Secondary",
+                                   "Vocational",
+                                   "Higher"))
+
+################################################ Education revised (VG)
+df_mincer <- haven::zap_labels(df_mincer)
+
+# to numeric
+df_mincer[, c('J72_5C', 'J72_6A', 'J72_4C', 'J72_3C',
+              'J70', 'J70_1', 'J72_2C', 'J72_18A')] <-
+  sapply(df_mincer[, c('J72_5C', 'J72_6A', 'J72_4C', 'J72_3C',
+                       'J70', 'J70_1', 'J72_2C', 'J72_18A')], as.numeric)
+
+df_mincer$educ_level <- NA
+df_mincer$educ_level <- ifelse(df_mincer$J72_5C==1 | df_mincer$J72_6A==1, 7, df_mincer$educ_level)
+df_mincer$educ_level <- ifelse(is.na(df_mincer$educ_level) & df_mincer$J72_4C==1, 6, df_mincer$educ_level)
+df_mincer$educ_level <- ifelse(is.na(df_mincer$educ_level) & df_mincer$J72_3C==1, 5, df_mincer$educ_level)
+df_mincer$educ_level <- ifelse(is.na(df_mincer$educ_level) & (df_mincer$J70 == 1 & 
+                                                  df_mincer$J70_1 > 9 & df_mincer$J70_1 < 97), 4, df_mincer$educ_level)
+df_mincer$educ_level <- ifelse(is.na(df_mincer$educ_level) & df_mincer$J72_2C==1, 3, df_mincer$educ_level)
+df_mincer$educ_level <- ifelse(is.na(df_mincer$educ_level) & df_mincer$J72_18A==1, 2, df_mincer$educ_level)
+df_mincer$educ_level <- ifelse(is.na(df_mincer$educ_level) & df_mincer$J72_18A==3, 2, df_mincer$educ_level)
+
+table(df_mincer$educ_level)
+summary(df_mincer$educ_level)
+
+# 4 categories for the revised education
+df_mincer$educ_level_4 <- ifelse(df_mincer$educ_level == 2, 0,
+                          ifelse(df_mincer$educ_level == 4, 1,
+                          ifelse(df_mincer$educ_level == 3 |df_mincer$educ_level == 5 |df_mincer$educ_level == 6, 2,
+                          ifelse(df_mincer$educ_level == 7, 3, df_mincer$educ_level))))
+table(df_mincer$educ_level_4)
+table(df_mincer$edu_4, df_mincer$educ_level_4)
+table(df_mincer$edu_4, df_mincer$educ_level)
+
+
+################## Generating a table for vocational education ###############################
+# Select Vocational only
+df_mincer_voc <- df_mincer %>% filter(edu_4 == 'Vocational' & educ_level %in% c(3,5,6))
+table(df_mincer_voc$educ_level)
+
+df_mincer_voc$edu_yrs_9 <- df_mincer_voc$edu_yrs - 9 
+
+# Creating xtab for mean vocational years after 9 years of schooling
+mean_yrs_voc <- data.frame(xtabs(edu_yrs_9 ~ YEAR + educ_level,
+      aggregate(edu_yrs_9 ~ YEAR + educ_level, df_mincer_voc, mean)))
+# Computing totals
+mean_yrs_voc <- mean_yrs_voc  %>%
+  group_by(YEAR) %>%
+  dplyr::mutate(Total_mean = mean(Freq))
+names(mean_yrs_voc)[3] <- 'm_yrs'
+margins1 <- unique(mean_yrs_voc[, c('YEAR', 'Total_mean')])
+names(margins1)[2] <- 'm_yrs'
+mean_yrs_voc$Total_mean <- NULL
+
+# Computing counts for a table with vocational years after 9 years of schooling
+freq_yrs_voc <- data.frame(xtabs( ~ YEAR + educ_level, df_mincer_voc))
+freq_yrs_voc$YEAR <- as.character(freq_yrs_voc$YEAR)
+# Computing totals
+freq_yrs_voc <- freq_yrs_voc  %>%
+  dplyr::group_by(YEAR) %>%
+  dplyr::mutate(Total = sum(Freq))
+margins2 <- unique(freq_yrs_voc[, c('YEAR', 'Total')])
+names(margins2)[2] <- 'Freq'
+freq_yrs_voc$Total <- NULL
+
+# Merging all totals
+margins <- margins1 %>%
+  left_join(margins2, by = 'YEAR')
+
+# Final table
+voc_smry <- mean_yrs_voc  %>%
+  full_join(freq_yrs_voc, by = c('YEAR', 'educ_level'))
+margins$educ_level <- 'Total'
+voc_smry <- rbind.data.frame(voc_smry, margins)
+voc_smry$m_yrs <- round(voc_smry$m_yrs, 2)
+names(voc_smry) <- c('Year', 'VG_level', 'Mean_Edu_Years_after_9', 'N')
+
+# Arragning
+voc_smry <- voc_smry %>% arrange(Year)
+
+# Plotting
+voc_smry <- voc_smry %>% filter(VG_level %in% c(3,5,6))
+ggplot(voc_smry, aes(Year, Mean_Edu_Years_after_9, color = VG_level, group = VG_level)) +
+  geom_line(size = 1) +
+  theme(axis.text.x = element_text(angle = 30, hjust = 1, size = 12)) +
+  scale_y_continuous(limits = c(1.8, 3.2)) +
+  scale_color_manual(values = c('red', 'darkgreen', 'blue'),
+                     labels = c('incomplete secondary + vocational training',
+                                'secondary school + vocational training',
+                                'college '))+ 
+  guides(color=guide_legend(title="Vocational Education Level"))
+
+########################################################################
+
+setwd("C:/Country/Russia/Data/SEASHELL/SEABYTE/edreru/wp1")
+# Earnings Ratio by Educational Level
+
+# Average earnings secondary level
+edu_0 <- df_mincer %>%
+  group_by(edu_4, YEAR) %>%
+  filter(edu_4 == "Secondary" & YEAR %in% c(1998, 2006, 2018)) %>%
+  summarise(wage_sec = mean(wage))
+
+# Average earnings for all levels
+edu_ratio <- df_mincer %>%
+  group_by(edu_4, YEAR) %>%
+  filter(YEAR %in% c(1998, 2006, 2018))  %>%
+  summarise(wage_by_level = mean(wage))
+
+# Merging and computing ratios
+edu_ratio <- edu_ratio %>%
+  left_join(edu_0, by = 'YEAR')
+edu_ratio$edu_ratio <- 100*round(edu_ratio$wage_by_level/edu_ratio$wage_sec, 2)
+
+# Plotting for a subset of years
+g1 <- ggplot(data=edu_ratio[edu_ratio$YEAR == 1998,], aes(x = edu_4.x, y = edu_ratio,
+                                                          fill = edu_4.x)) + 
+  geom_bar(stat="identity") +
+  scale_fill_manual(values = c('grey', 'darkgreen', 'darkgreen')) +
+  geom_text(aes(y = edu_ratio, label = edu_ratio, vjust = -0.5), color="black", size = 5) +
+  theme(axis.title = element_blank(),
+        axis.text.x = element_text(size = 14, face = 'bold'),
+        axis.text.y = element_blank(),
+        axis.line = element_blank(),
+        axis.ticks = element_blank(),
+        legend.position="none",
+        plot.title = element_text(hjust = 0.5, size = 20)) +
+  ggtitle('1998')
+
+g2 <- ggplot(data=edu_ratio[edu_ratio$YEAR == 2006,], aes(x = edu_4.x, y = edu_ratio,
+                                                          fill = edu_4.x)) + 
+  geom_bar(stat="identity") +
+  scale_fill_manual(values = c('grey', 'darkgreen', 'darkgreen')) +
+  geom_text(aes(y = edu_ratio, label = edu_ratio, vjust = -0.5), color="black", size = 5) +
+  theme(axis.title = element_blank(),
+        axis.text.x = element_text(size = 14, face = 'bold'),
+        axis.text.y = element_blank(),
+        axis.line.y = element_line(color = 'black'),
+        axis.ticks = element_blank(),
+        legend.position="none",
+        plot.title = element_text(hjust = 0.5, size = 20)) +
+  ggtitle('2006')
+
+g3 <- ggplot(data=edu_ratio[edu_ratio$YEAR == 2018,], aes(x = edu_4.x, y = edu_ratio,
+                                                          fill = edu_4.x)) + 
+  geom_bar(stat="identity") +
+  scale_fill_manual(values = c('grey', 'darkgreen', 'darkgreen')) +
+  geom_text(aes(y = edu_ratio, label = edu_ratio, vjust = -0.5), color="black", size = 5) +
+  theme(axis.title = element_blank(),
+        axis.text.x = element_text(size = 14, face = 'bold'),
+        axis.text.y = element_blank(),
+        axis.line.y = element_line(color = 'black'),
+        axis.ticks = element_blank(),
+        legend.position="none",
+        plot.title = element_text(hjust = 0.5, size = 20)) +
+  ggtitle('2018')
+
+g <- gridExtra::grid.arrange(g1, g2, g3, nrow = 1, ncol = 3)
+
+# saving 
+ggsave("earnings_ratio.png", g, width = 10, height = 6,
+       units = "in")
+
+################### Age-earning Profiles by Level of Education
+############
+# Adjusting to prices in 2018
+cpi <- rio::import("cpi_revised.xlsx")[, c(1,6)]
+df_mincer <- df_mincer %>% left_join(cpi, by="YEAR")
+df_mincer2 <- df_mincer %>% 
+  mutate(wage_c18=ifelse(YEAR >=1998,wage*cons_wb,(wage*cons_wb/1000)))
+df_mincer2 <- haven::zap_labels(df_mincer2)
+############
+
+## Now the same plot, arranged with years together
+
+temp_ <- df_mincer2 %>% filter(YEAR==1998) 
+g1 <- ggplot(temp_,aes(x=AGE,y=wage_c18,group=as.factor(edu_4),color=as.factor(edu_4))) +
+  geom_smooth(aes(linetype = edu_4), se=FALSE, lwd=2, method=loess)+
+  scale_linetype_manual(values = c('longdash', 'dotted', 'solid'), guide = 'none') +
+  coord_cartesian(ylim=c(5000,40000))+
+  scale_color_manual(values=c("#D50B53","#824CA7","#B9C406"),
+                     breaks = rev(levels(as.factor(temp_$edu_4))))+
+  xlab("Age") + ylab("Monthly wages in 2018 Rubles")+
+  theme(panel.background = element_rect(fill = "#eeecec")) +
+  theme(panel.grid.major = element_line(color="white")) +
+  theme(panel.grid.major = element_line(size=1)) +
+  theme(panel.grid.minor = element_line(color="white")) +
+  theme(panel.grid.minor = element_line(size=1))+
+  theme(legend.position = c(0.2, 0.8),
+        legend.background = element_rect(fill = "#F4D993"),
+        legend.key = element_rect(fill = "#F4D993"),
+        legend.title=element_blank(),
+        axis.text = element_text(size = 18, face = 'bold'),
+        axis.title = element_text(size = 18, face = 'bold'),
+        legend.text = element_text(size = 14, face = 'bold'),
+        legend.key.size = unit(3,"line"),
+        plot.title = element_text(hjust = 0.5, size = 20)) +
+  ggtitle('1998') +
+  guides(shape = FALSE,
+         colour = guide_legend(override.aes = list(color = c("#D50B53","#824CA7","#B9C406"),
+                                                   linetype = c('longdash', 'dotted', 'solid'))))
+
+###
+
+temp_ <- df_mincer2 %>% filter(YEAR==2006) 
+g2 <- ggplot(temp_,aes(x=AGE,y=wage_c18,group=as.factor(edu_4),color=as.factor(edu_4))) +
+  geom_smooth(aes(linetype = edu_4), se=FALSE, lwd=2, method=loess)+
+  scale_linetype_manual(values = c('longdash', 'dotted', 'solid'), guide = 'none') +
+  coord_cartesian(ylim=c(5000,40000))+
+  scale_color_manual(values=c("#D50B53","#824CA7","#B9C406"),
+                     breaks = rev(levels(as.factor(temp_$edu_4))))+
+  xlab("Age") + 
+  theme(panel.background = element_rect(fill = "#eeecec")) +
+  theme(panel.grid.major = element_line(color="white")) +
+  theme(panel.grid.major = element_line(size=1)) +
+  theme(panel.grid.minor = element_line(color="white")) +
+  theme(panel.grid.minor = element_line(size=1))+
+  theme(axis.text = element_text(size = 18, face = 'bold'),
+        axis.title.x = element_text(size = 18, face = 'bold'),
+        axis.title.y = element_blank(),
+        legend.position = 'none',
+        plot.title = element_text(hjust = 0.5, size = 20)) +
+  ggtitle('2006')
+
+
+###
+
+temp_ <- df_mincer2 %>% filter(YEAR==2018) 
+g3 <- ggplot(temp_,aes(x=AGE,y=wage_c18,group=as.factor(edu_4),color=as.factor(edu_4))) +
+  geom_smooth(aes(linetype = edu_4), se=FALSE, lwd=2, method=loess)+
+  scale_linetype_manual(values = c('longdash', 'dotted', 'solid'), guide = 'none') +
+  coord_cartesian(ylim=c(5000,40000))+
+  scale_color_manual(values=c("#D50B53","#824CA7","#B9C406"),
+                     breaks = rev(levels(as.factor(temp_$edu_4))))+
+  xlab("Age") + 
+  theme(panel.background = element_rect(fill = "#eeecec")) +
+  theme(panel.grid.major = element_line(color="white")) +
+  theme(panel.grid.major = element_line(size=1)) +
+  theme(panel.grid.minor = element_line(color="white")) +
+  theme(panel.grid.minor = element_line(size=1))+
+  theme(axis.text = element_text(size = 18, face = 'bold'),
+        axis.title.x = element_text(size = 18, face = 'bold'),
+        axis.title.y = element_blank(),
+        legend.position = 'none',
+        plot.title = element_text(hjust = 0.5, size = 20)) +
+  ggtitle('2018')
+
+g <- gridExtra::grid.arrange(g1, g2, g3, nrow = 1, ncol = 3)
+
+# saving 
+ggsave("earnings_by_level.png", g, width = 20, height = 8,
+       units = "in")
+
+########################################################################
+####### Descriptive stat
+library(tables)
+desc_rst <- tabular((Year = factor(YEAR) )~ (N=1) + 
+                      Format(digits=2)*((Wage = wage*((Mean = mean) + (SD = sd))) +
+                                          (Experience = exper*((Mean = mean) + (SD = sd))) +
+                                          (Education_years = edu_yrs*((Mean = mean) + (SD = sd))) +
+                                          (Education = factor(edu_4)*Percent("row"))),
+                    data = df_mincer)
+
+#desc_rst
+
+latex(desc_rst)
 
 ################################## Data with occupation to save ###########################################
 

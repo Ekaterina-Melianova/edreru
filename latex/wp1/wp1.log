@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.21 (MiKTeX 2.9.7300 64-bit) (preloaded format=pdflatex 2020.2.29)  9 APR 2020 11:17
+This is pdfTeX, Version 3.14159265-2.6-1.40.21 (MiKTeX 2.9.7300 64-bit) (preloaded format=pdflatex 2020.2.29)  28 APR 2020 23:19
 entering extended mode
 **./wp1.tex
 (wp1.tex
@@ -1888,12 +1888,7 @@ Package biblatex Info: ... file 'wp1.bbl' found.
  (wp1.bbl
 
 Package biblatex Warning: BibTeX reported the following issues
-(biblatex)                with 'Montenegro_Patrinos14':
-(biblatex)                - Invalid format of field 'month'.
-
-
-Package biblatex Warning: BibTeX reported the following issues
-(biblatex)                with 'Psacharopoulos_Patrinos18':
+(biblatex)                with 'Gimpelson2019':
 (biblatex)                - Invalid format of field 'month'.
 
 )
@@ -2016,231 +2011,291 @@ Underfull \hbox (badness 10000) has occurred while \output is active
 [1
 
 {C:/Users/wb164718/AppData/Local/MiKTeX/2.9/pdftex/config/pdftex.map}]
-<graph_1c.png, id=43, 581.5326pt x 390.258pt>
+<graph_1c.png, id=47, 581.5326pt x 390.258pt>
 File: graph_1c.png Graphic file (type png)
 <use graph_1c.png>
 Package pdftex.def Info: graph_1c.png  used on input line 121.
 (pdftex.def)             Requested size: 361.34999pt x 242.5053pt.
 
 [2 <./graph_1c.png>]
-Underfull \hbox (badness 10000) in paragraph at lines 148--150
+Overfull \hbox (1.74774pt too wide) in paragraph at lines 140--141
+\T1/lato-TLF/m/n/8 In a world-wide per-spec-tive, the lat-est find-ings on re-t
+urns to ed-u-ca-tion can be con-densed to the fol-low-ing (Psacharopou-
+ []
+
+
+Underfull \vbox (badness 1558) has occurred while \output is active []
+
+ [3]
+LaTeX Font Info:    Trying to load font information for TS1+lato-TLF on input l
+ine 149.
+
+(C:\Users\wb164718\AppData\Roaming\MiKTeX\2.9\tex/latex/lato\ts1lato-tlf.fd
+File: TS1lato-TLF.fd 2019/06/24 Font definitions for TS1/lato-TLF.
+)
+LaTeX Font Info:    Font shape `TS1/lato-TLF/m/n' will be
+(Font)              scaled to size 8.0pt on input line 149.
+Package microtype Info: Loading generic protrusion settings for font family
+(microtype)             `lato-TLF' (encoding: TS1).
+(microtype)             For optimal results, create family-specific settings.
+(microtype)             See the microtype manual for details.
+
+Underfull \hbox (badness 10000) in paragraph at lines 159--161
 
  []
 
-[3]
-<re_edu.png, id=71, 722.7pt x 505.89pt>
-File: re_edu.png Graphic file (type png)
-<use re_edu.png>
-Package pdftex.def Info: re_edu.png  used on input line 178.
-(pdftex.def)             Requested size: 405.1724pt x 275.00598pt.
-<re_HE_all.png, id=77, 505.89pt x 505.89pt>
+
+Underfull \vbox (badness 7221) has occurred while \output is active []
+
+ [4]
+LaTeX Font Info:    Font shape `T1/lato-TLF/m/n' will be
+(Font)              scaled to size 7.5pt on input line 164.
+
+Underfull \vbox (badness 10000) has occurred while \output is active []
+
+ [5]
+Underfull \vbox (badness 2213) has occurred while \output is active []
+
+ [6]
+<hp_rs.png, id=150, 722.7pt x 505.89pt>
+File: hp_rs.png Graphic file (type png)
+<use hp_rs.png>
+Package pdftex.def Info: hp_rs.png  used on input line 250.
+(pdftex.def)             Requested size: 361.34999pt x 252.94437pt.
+<earnings_ratio.png, id=152, 722.7pt x 433.62pt>
+File: earnings_ratio.png Graphic file (type png)
+<use earnings_ratio.png>
+Package pdftex.def Info: earnings_ratio.png  used on input line 267.
+(pdftex.def)             Requested size: 361.34999pt x 216.80946pt.
+<earnings_by_level.png, id=153, 1445.4pt x 578.16pt>
+File: earnings_by_level.png Graphic file (type png)
+<use earnings_by_level.png>
+Package pdftex.def Info: earnings_by_level.png  used on input line 281.
+(pdftex.def)             Requested size: 433.62pt x 173.44933pt.
+
+Overfull \hbox (8.13715pt too wide) in paragraph at lines 280--283
+ []|  [] 
+ []
+
+[7 <./hp_rs.png>] [8 <./earnings_ratio.png> <./earnings_by_level.png>]
+<re_HE_all.png, id=179, 505.89pt x 505.89pt>
 File: re_HE_all.png Graphic file (type png)
 <use re_HE_all.png>
-Package pdftex.def Info: re_HE_all.png  used on input line 195.
+Package pdftex.def Info: re_HE_all.png  used on input line 300.
 (pdftex.def)             Requested size: 202.5836pt x 202.58398pt.
 LaTeX Font Info:    Font shape `T1/lato-TLF/m/n' will be
-(Font)              scaled to size 4.0pt on input line 196.
+(Font)              scaled to size 4.0pt on input line 301.
 LaTeX Font Info:    Font shape `T1/lato-TLF/b/n' will be
-(Font)              scaled to size 4.0pt on input line 196.
+(Font)              scaled to size 4.0pt on input line 301.
 
 
 LaTeX Font Warning: Font shape `T1/cmss/bx/n' in size <4> not available
-(Font)              size <5> substituted on input line 196.
+(Font)              size <5> substituted on input line 301.
 
-<telezhkina.png, id=78, 1014.79124pt x 517.935pt>
+<telezhkina.png, id=180, 1014.79124pt x 517.935pt>
 File: telezhkina.png Graphic file (type png)
 <use telezhkina.png>
-Package pdftex.def Info: telezhkina.png  used on input line 202.
+Package pdftex.def Info: telezhkina.png  used on input line 307.
 (pdftex.def)             Requested size: 202.5836pt x 103.39548pt.
 
-Overfull \hbox (2.73116pt too wide) in paragraph at lines 194--206
+Overfull \hbox (2.73116pt too wide) in paragraph at lines 299--311
  [][]  [] 
  []
 
-[4] [5 <./re_edu.png> <./re_HE_all.png> <./telezhkina.png>]
-<re_HE_f.png, id=97, 505.89pt x 505.89pt>
+<re_edu.png, id=181, 722.7pt x 505.89pt>
+File: re_edu.png Graphic file (type png)
+<use re_edu.png>
+Package pdftex.def Info: re_edu.png  used on input line 316.
+(pdftex.def)             Requested size: 405.1724pt x 275.00598pt.
+<re_HE_f.png, id=182, 505.89pt x 505.89pt>
 File: re_HE_f.png Graphic file (type png)
 <use re_HE_f.png>
-Package pdftex.def Info: re_HE_f.png  used on input line 215.
+Package pdftex.def Info: re_HE_f.png  used on input line 323.
 (pdftex.def)             Requested size: 202.5836pt x 202.58398pt.
-<re_HE_m.png, id=98, 505.89pt x 505.89pt>
+<re_HE_m.png, id=183, 505.89pt x 505.89pt>
 File: re_HE_m.png Graphic file (type png)
 <use re_HE_m.png>
-Package pdftex.def Info: re_HE_m.png  used on input line 222.
+Package pdftex.def Info: re_HE_m.png  used on input line 330.
 (pdftex.def)             Requested size: 202.5836pt x 202.58398pt.
 
-Overfull \hbox (1.36557pt too wide) in paragraph at lines 213--226
+Overfull \hbox (1.36557pt too wide) in paragraph at lines 321--334
 [][]  [] 
  []
 
+
+Underfull \vbox (badness 10000) has occurred while \output is active []
+
+ [9 <./re_HE_all.png> <./telezhkina.png>] [10 <./re_edu.png> <./re_HE_f.png> <.
+/re_HE_m.png>] [11]
 LaTeX Font Info:    Font shape `T1/lato-TLF/m/sc' will be
-(Font)              scaled to size 10.0pt on input line 229.
+(Font)              scaled to size 10.0pt on input line 354.
+
 
 LaTeX Font Warning: Font shape `T1/lato-TLF/b/sc' undefined
-(Font)              using `T1/lato-TLF/b/n' instead on input line 229.
+(Font)              using `T1/lato-TLF/b/n' instead on input line 354.
 
 LaTeX Font Info:    Font shape `T1/lato-TLF/b/sc' will be
-(Font)              scaled to size 10.0pt on input line 229.
-[6 <./re_HE_f.png> <./re_HE_m.png>] [7] [8]
-LaTeX Font Info:    Font shape `T1/lato-TLF/m/n' will be
-(Font)              scaled to size 7.5pt on input line 242.
-
-Overfull \hbox (2.57976pt too wide) in paragraph at lines 246--279
+(Font)              scaled to size 10.0pt on input line 354.
+[12]
+LaTeX Font Info:    Font shape `T1/lato-TLF/m/sc' will be
+(Font)              scaled to size 8.0pt on input line 354.
+ [13]
+Overfull \hbox (2.57976pt too wide) in paragraph at lines 367--400
  [][] 
  []
 
 
-LaTeX Warning: Float too large for page by 1.65074pt on input line 279.
-
-[9]
-
-LaTeX Warning: Float too large for page by 1.65074pt on input line 327.
-
-[10]
-
-LaTeX Warning: Float too large for page by 1.65074pt on input line 375.
-
-[11]
-
-LaTeX Warning: Float too large for page by 1.65074pt on input line 423.
-
-[12]
-
-LaTeX Warning: Float too large for page by 1.65074pt on input line 472.
-
-[13]
-
-LaTeX Warning: Float too large for page by 1.65074pt on input line 520.
+LaTeX Warning: Float too large for page by 1.65074pt on input line 400.
 
 [14]
-Overfull \hbox (2.57976pt too wide) in paragraph at lines 535--568
- [][] 
- []
 
-
-LaTeX Warning: Float too large for page by 1.65074pt on input line 568.
+LaTeX Warning: Float too large for page by 1.65074pt on input line 448.
 
 [15]
-Overfull \hbox (7.21976pt too wide) in paragraph at lines 583--616
- [][] 
- []
 
-
-LaTeX Warning: Float too large for page by 1.65074pt on input line 616.
+LaTeX Warning: Float too large for page by 1.65074pt on input line 496.
 
 [16]
-Overfull \hbox (6.77176pt too wide) in paragraph at lines 631--664
- [][] 
- []
 
-
-LaTeX Warning: Float too large for page by 1.65074pt on input line 664.
+LaTeX Warning: Float too large for page by 1.65074pt on input line 544.
 
 [17]
-Overfull \hbox (9.61977pt too wide) in paragraph at lines 679--712
- [][] 
- []
 
-
-LaTeX Warning: Float too large for page by 1.65074pt on input line 712.
+LaTeX Warning: Float too large for page by 1.65074pt on input line 593.
 
 [18]
-Overfull \hbox (20.69176pt too wide) in paragraph at lines 727--760
- [][] 
- []
 
-
-LaTeX Warning: Float too large for page by 1.65074pt on input line 760.
+LaTeX Warning: Float too large for page by 1.65074pt on input line 641.
 
 [19]
-Overfull \hbox (25.33176pt too wide) in paragraph at lines 775--808
+Overfull \hbox (2.57976pt too wide) in paragraph at lines 656--689
  [][] 
  []
 
 
-LaTeX Warning: Float too large for page by 1.65074pt on input line 808.
+LaTeX Warning: Float too large for page by 1.65074pt on input line 689.
 
 [20]
-Overfull \hbox (2.57976pt too wide) in paragraph at lines 823--856
+Overfull \hbox (7.21976pt too wide) in paragraph at lines 704--737
  [][] 
  []
 
 
-LaTeX Warning: Float too large for page by 1.65074pt on input line 856.
+LaTeX Warning: Float too large for page by 1.65074pt on input line 737.
 
 [21]
-Overfull \hbox (2.57976pt too wide) in paragraph at lines 871--904
+Overfull \hbox (6.77176pt too wide) in paragraph at lines 752--785
  [][] 
  []
 
 
-LaTeX Warning: Float too large for page by 1.65074pt on input line 904.
+LaTeX Warning: Float too large for page by 1.65074pt on input line 785.
 
 [22]
-Overfull \hbox (2.57976pt too wide) in paragraph at lines 919--952
+Overfull \hbox (9.61977pt too wide) in paragraph at lines 800--833
  [][] 
  []
 
 
-LaTeX Warning: Float too large for page by 1.65074pt on input line 952.
+LaTeX Warning: Float too large for page by 1.65074pt on input line 833.
 
 [23]
-Overfull \hbox (2.57976pt too wide) in paragraph at lines 967--1000
+Overfull \hbox (20.69176pt too wide) in paragraph at lines 848--881
  [][] 
  []
 
 
-LaTeX Warning: Float too large for page by 1.65074pt on input line 1000.
+LaTeX Warning: Float too large for page by 1.65074pt on input line 881.
 
 [24]
+Overfull \hbox (25.33176pt too wide) in paragraph at lines 896--929
+ [][] 
+ []
 
-LaTeX Warning: Float too large for page by 1.65074pt on input line 1048.
+
+LaTeX Warning: Float too large for page by 1.65074pt on input line 929.
 
 [25]
+Overfull \hbox (2.57976pt too wide) in paragraph at lines 944--977
+ [][] 
+ []
 
-LaTeX Warning: Float too large for page by 1.65074pt on input line 1096.
+
+LaTeX Warning: Float too large for page by 1.65074pt on input line 977.
 
 [26]
+Overfull \hbox (2.57976pt too wide) in paragraph at lines 992--1025
+ [][] 
+ []
 
-LaTeX Warning: Float too large for page by 1.65074pt on input line 1144.
+
+LaTeX Warning: Float too large for page by 1.65074pt on input line 1025.
 
 [27]
+Overfull \hbox (2.57976pt too wide) in paragraph at lines 1040--1073
+ [][] 
+ []
 
-LaTeX Warning: Float too large for page by 1.65074pt on input line 1192.
+
+LaTeX Warning: Float too large for page by 1.65074pt on input line 1073.
 
 [28]
-Overfull \hbox (2.57976pt too wide) in paragraph at lines 1207--1240
+Overfull \hbox (2.57976pt too wide) in paragraph at lines 1088--1121
  [][] 
  []
 
 
-LaTeX Warning: Float too large for page by 1.65074pt on input line 1240.
+LaTeX Warning: Float too large for page by 1.65074pt on input line 1121.
 
 [29]
-Overfull \hbox (2.57976pt too wide) in paragraph at lines 1255--1288
- [][] 
- []
 
-
-LaTeX Warning: Float too large for page by 1.65074pt on input line 1288.
+LaTeX Warning: Float too large for page by 1.65074pt on input line 1169.
 
 [30]
-Overfull \hbox (2.57976pt too wide) in paragraph at lines 1303--1336
+
+LaTeX Warning: Float too large for page by 1.65074pt on input line 1217.
+
+[31]
+
+LaTeX Warning: Float too large for page by 1.65074pt on input line 1265.
+
+[32]
+
+LaTeX Warning: Float too large for page by 1.65074pt on input line 1313.
+
+[33]
+Overfull \hbox (2.57976pt too wide) in paragraph at lines 1328--1361
  [][] 
  []
 
 
-LaTeX Warning: Float too large for page by 1.65074pt on input line 1336.
+LaTeX Warning: Float too large for page by 1.65074pt on input line 1361.
 
-[31]
-Package atveryend Info: Empty hook `BeforeClearDocument' on input line 1342.
-Package atveryend Info: Empty hook `AfterLastShipout' on input line 1342.
+[34]
+Overfull \hbox (2.57976pt too wide) in paragraph at lines 1376--1409
+ [][] 
+ []
+
+
+LaTeX Warning: Float too large for page by 1.65074pt on input line 1409.
+
+[35]
+Overfull \hbox (2.57976pt too wide) in paragraph at lines 1424--1457
+ [][] 
+ []
+
+
+LaTeX Warning: Float too large for page by 1.65074pt on input line 1457.
+
+[36]
+Package atveryend Info: Empty hook `BeforeClearDocument' on input line 1464.
+Package atveryend Info: Empty hook `AfterLastShipout' on input line 1464.
  (wp1.aux)
-Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 1342.
-Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 1342.
+Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 1464.
+Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 1464.
 
 Package rerunfilecheck Info: File `wp1.out' has not changed.
-(rerunfilecheck)             Checksum: EE94B39C0A87F5D9386F832D2D250DAF;473.
+(rerunfilecheck)             Checksum: B48BBDB47BCA63548970AD8ECDAF3340;595.
 
 
 LaTeX Font Warning: Size substitutions with differences
@@ -2260,30 +2315,31 @@ Package logreq Info: Writing requests to 'wp1.run.xml'.
 
  ) 
 Here is how much of TeX's memory you used:
- 41723 strings out of 481280
- 803724 string characters out of 2916512
- 1588822 words of memory out of 3000000
- 56390 multiletter control sequences out of 15000+200000
- 1330208 words of font info for 209 fonts, out of 3000000 for 9000
+ 41915 strings out of 481280
+ 809098 string characters out of 2916512
+ 1619426 words of memory out of 3000000
+ 56540 multiletter control sequences out of 15000+200000
+ 1330889 words of font info for 211 fonts, out of 3000000 for 9000
  1141 hyphenation exceptions out of 8191
- 81i,21n,110p,1519b,1921s stack positions out of 5000i,500n,10000p,200000b,50000s
+ 81i,21n,110p,1780b,1917s stack positions out of 5000i,500n,10000p,200000b,50000s
  <C:\Users\wb164718\AppData\Local\MiKTeX\2.9\fonts/pk/ljfour/jknappen/ec/dpi6
 00\ectt0800.pk> <C:\Users\wb164718\AppData\Local\MiKTeX\2.9\fonts/pk/ljfour/jkn
 appen/ec/dpi600\ecsx0500.pk>{C:/Users/wb164718/AppData/Roaming/MiKTeX/2.9/fonts
-/enc/dvips/lato/a_cl4kdn.enc} <C:\Users\wb164718\AppData\Local\MiKTeX\2.9\fonts
-/pk/ljfour/jknappen/ec/dpi525\ectt0800.pk><C:/Users/wb164718/AppData/Roaming/Mi
-KTeX/2.9/fonts/type1/typoland/lato/Lato-Bold.pfb><C:/Users/wb164718/AppData/Roa
-ming/MiKTeX/2.9/fonts/type1/typoland/lato/Lato-Heavy.pfb><C:/Users/wb164718/App
-Data/Roaming/MiKTeX/2.9/fonts/type1/typoland/lato/Lato-Italic.pfb><C:/Users/wb1
-64718/AppData/Roaming/MiKTeX/2.9/fonts/type1/typoland/lato/Lato-Regular.pfb><C:
-/Users/wb164718/AppData/Roaming/MiKTeX/2.9/fonts/type1/public/txfonts/rtxmi.pfb
-><C:/Users/wb164718/AppData/Roaming/MiKTeX/2.9/fonts/type1/public/newtx/txsys.p
-fb><C:/Users/wb164718/AppData/Roaming/MiKTeX/2.9/fonts/type1/public/newtxsf/zsf
-mi-reg.pfb><C:/Users/wb164718/AppData/Roaming/MiKTeX/2.9/fonts/type1/public/new
-txsf/zsfmia-reg.pfb>
-Output written on wp1.pdf (31 pages, 632435 bytes).
+/enc/dvips/lato/a_rt66h3.enc}{C:/Users/wb164718/AppData/Roaming/MiKTeX/2.9/font
+s/enc/dvips/lato/a_cl4kdn.enc} <C:\Users\wb164718\AppData\Local\MiKTeX\2.9\font
+s/pk/ljfour/jknappen/ec/dpi525\ectt0800.pk><C:/Users/wb164718/AppData/Roaming/M
+iKTeX/2.9/fonts/type1/typoland/lato/Lato-Bold.pfb><C:/Users/wb164718/AppData/Ro
+aming/MiKTeX/2.9/fonts/type1/typoland/lato/Lato-Heavy.pfb><C:/Users/wb164718/Ap
+pData/Roaming/MiKTeX/2.9/fonts/type1/typoland/lato/Lato-Italic.pfb><C:/Users/wb
+164718/AppData/Roaming/MiKTeX/2.9/fonts/type1/typoland/lato/Lato-Regular.pfb><C
+:/Users/wb164718/AppData/Roaming/MiKTeX/2.9/fonts/type1/public/txfonts/rtxmi.pf
+b><C:/Users/wb164718/AppData/Roaming/MiKTeX/2.9/fonts/type1/public/newtx/txsys.
+pfb><C:/Users/wb164718/AppData/Roaming/MiKTeX/2.9/fonts/type1/public/newtxsf/zs
+fmi-reg.pfb><C:/Users/wb164718/AppData/Roaming/MiKTeX/2.9/fonts/type1/public/ne
+wtxsf/zsfmia-reg.pfb>
+Output written on wp1.pdf (36 pages, 892314 bytes).
 PDF statistics:
- 348 PDF objects out of 1000 (max. 8388607)
- 72 named destinations out of 1000 (max. 500000)
- 34387 words of extra memory for PDF output out of 35830 (max. 10000000)
+ 471 PDF objects out of 1000 (max. 8388607)
+ 106 named destinations out of 1000 (max. 500000)
+ 34922 words of extra memory for PDF output out of 35830 (max. 10000000)
 

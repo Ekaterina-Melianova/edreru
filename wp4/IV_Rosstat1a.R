@@ -9,6 +9,7 @@ library(naivereg)
 library(rio)
 library(npsr)
 library(ggplot2)
+library(AER)
 
 #install.packages('readstata13', dependencies = T)
 ########################################### Data  ################################################
@@ -52,7 +53,7 @@ women2menratio <- RoR_15[, c('RoR_names', 'women2menratio')]
 marriagerate <- RoR_15[, c('RoR_names', 'marriagerate')]
 
 # fem_industry share
-# fem_ind_prop <- rgvars_2[, c('RoR_names', 'fem_ind_prop', 'OKATO')] %>% drop_na()
+#fem_ind_prop <- rgvars_2[, c('RoR_names', 'fem_ind_prop', 'OKATO')] %>% drop_na()
 
 # all IV candidates
 ivs <- high_n %>%
@@ -60,8 +61,7 @@ ivs <- high_n %>%
   left_join(EGE, by = 'RoR_names') %>%
   left_join(migrationrate, by = 'RoR_names') %>%
   left_join(women2menratio, by = 'RoR_names') %>%
-  left_join(marriagerate, by = 'RoR_names')
-
+  left_join(marriagerate, by = 'RoR_names') 
 # Adding them to the Rosstat df
 ###### Rosstat main dataset
 
@@ -85,7 +85,7 @@ df <- na.omit(df)
 
 # Literacy 1897
 Grig <- rio::import('C:/Country/Russia/Data/SEASHELL/SEABYTE/Databases/Regional/Grigoriev.xlsx')
-names(Grig)[4] <- 'OKATO'
+names(Grig)[3] <- 'OKATO' # changed from 4 to 3 SP
 
 # Merging with the main df
 df <- df %>%
@@ -109,6 +109,7 @@ cor_fem_all_yonger <- c()
 cor_fem_all_older <- c()
 cor_male_all_yonger <- c()
 cor_male_all_older <- c()
+cor_all <- c()
 
 for (i in 1:length(Z)){
   # Females all
@@ -125,14 +126,18 @@ for (i in 1:length(Z)){
   cor_male_all_older <- rbind.data.frame(cor_male_all_older,
                           eval(parse(text = paste0('as.data.frame(cor.test(df_o[df_o$H01_01 == 1, "edu_yrs"], df_o[df_o$H01_01 == 1, ',
                                                  paste(" '", Z[i], "' ", sep = ''), '])[c(4,3)])'))))
+  # All
+  cor_all <- rbind.data.frame(cor_all, eval(parse(text = paste0('as.data.frame(cor.test(df[, "edu_yrs"], df[, ',
+                                                                  paste(" '", Z[i], "' ", sep = ''), '])[c(4,3)])'))))
 }
 
-cor_df <- cbind.data.frame(IV = rep(Z, 4), Cohort = rep(c('Females younger', 'Females older',
-                                                        'Males younger', 'Males older'), each = 8),
+cor_df <- cbind.data.frame(IV = rep(Z, 5), Cohort = rep(c('Females younger', 'Females older',
+                                                        'Males younger', 'Males older', 'Total'), each = 8),
                            round(rbind.data.frame(cor_fem_all_yonger,
                            cor_fem_all_older,
                            cor_male_all_yonger,
-                           cor_male_all_older), 2))
+                           cor_male_all_older,
+                           cor_all), 2))
 
 # Create a column with the stars
 cor_df$stars <- cut(cor_df$p.value, breaks=c(-Inf, 0.001, 0.01, 0.05, Inf), 
@@ -161,7 +166,7 @@ g <- grid.arrange(cor_plot1, bottom = textGrob("Signif. codes:  0 '***' 0.001 '*
                                                gp = gpar(fontface = 3L,
                                                          fontsize = 17)))
 # saving 
-ggsave("cor_by_cohorts.png", g, width = 20, height = 8,
+ggsave("cor_by_cohorts_18.png", g, width = 20, height = 8,
        units = "in")
 
 ############3 Overall correlations matrix for IV
@@ -208,6 +213,68 @@ pairs(df_iv, gap=0, lower.panel=panel.smooth,
       cex.labels = 2.1, font.labels = 2)
 ggsave("cor_matrix.png", width = 20, height = 8,
        units = "in")
+
+###################################################################################################
+# Post-Lasso whole sample
+fm_postLasso <- formula(log(wage) ~ edu_yrs + exper + I(exper^2)|exper + I(exper^2) + high_n + HSGPER + s1z +
+                          migrationrate + women2menratio + marriagerate + fem_ind_prop)
+
+pLasso_whole <- rlassoIVselectZ(fm_postLasso, data = df)
+pLasso_whole
+pLasso_whole$selected
+
+#
+fm_tsls <- formula(log(wage) ~ edu_yrs + exper + I(exper^2)|exper + I(exper^2) + high_n)
+
+ivreg_whole1 <- ivreg(fm_tsls, data = df)
+ivreg_whole1
+
+#
+fm_tsls <- formula(log(wage) ~ edu_yrs + exper + I(exper^2)|exper + I(exper^2) + HSGPER)
+
+ivreg_whole2 <- ivreg(fm_tsls, data = df)
+ivreg_whole2
+
+#
+fm_tsls <- formula(log(wage) ~ edu_yrs + exper + I(exper^2)|exper + I(exper^2) + s1z)
+
+ivreg_whole3 <- ivreg(fm_tsls, data = df)
+ivreg_whole3
+
+#
+fm_tsls <- formula(log(wage) ~ edu_yrs + exper + I(exper^2)|exper + I(exper^2) + migrationrate)
+
+ivreg_whole4 <- ivreg(fm_tsls, data = df)
+ivreg_whole4
+
+#
+fm_tsls <- formula(log(wage) ~ edu_yrs + exper + I(exper^2)|exper + I(exper^2) + women2menratio)
+
+ivreg_whole5 <- ivreg(fm_tsls, data = df)
+ivreg_whole5
+
+#
+fm_tsls <- formula(log(wage) ~ edu_yrs + exper + I(exper^2)|exper + I(exper^2) + marriagerate)
+
+ivreg_whole6 <- ivreg(fm_tsls, data = df)
+ivreg_whole6
+
+
+#
+fm_tsls <- formula(log(wage) ~ edu_yrs + exper + I(exper^2)|exper + I(exper^2) + fem_ind_prop)
+
+ivreg_whole7 <- ivreg(fm_tsls, data = df)
+ivreg_whole7
+
+#
+fm_tsls <- formula(log(wage) ~ edu_yrs + exper + I(exper^2)|exper + I(exper^2) + Literacy_97)
+
+ivreg_whole8 <- ivreg(fm_tsls, data = df)
+ivreg_whole8
+
+# OLS
+Rosstat_ols_whole_18 <- lm(log(wage) ~ edu_yrs + exper + I(exper^2), data = Rosstat18,
+                           weights = Rosstat18$KVZV)
 
 ###################################################################################################
 ###########################  (ii) Use Kang et al ivmodel for running ols, TSLS standard with all IVs;

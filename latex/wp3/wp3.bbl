@@ -16,5 +16,287 @@
   {}
 \endgroup
 
-\datalist[entry]{nty/global//global/global}\enddatalist
+\datalist[entry]{nty/global//global/global}
+  \entry{baeva2013}{article}{}
+    \name{author}{1}{}{%
+      {{hash=BON}{%
+         family={Baeva},
+         familyi={B\bibinitperiod},
+         given={Olga\bibnamedelima Nikolaevna},
+         giveni={O\bibinitperiod\bibinitdelim N\bibinitperiod},
+      }}%
+    }
+    \strng{namehash}{BON1}
+    \strng{fullhash}{BON1}
+    \field{labelnamesource}{author}
+    \field{labeltitlesource}{title}
+    \field{labelyear}{2013}
+    \field{labeldatesource}{}
+    \field{sortinit}{B}
+    \field{sortinithash}{B}
+    \field{number}{42}
+    \field{pages}{64\bibrangedash 69}
+    \field{title}{Assessment of the return on education at the regional level
+  (Otsenka otdachi ot obrazovaniya na urovne regiona)}
+    \field{volume}{2}
+    \field{journaltitle}{Manager (Upravlenets)}
+    \field{year}{2013}
+  \endentry
+
+  \entry{cheidvasser2007}{article}{}
+    \name{author}{2}{}{%
+      {{hash=CS}{%
+         family={Cheidvasser},
+         familyi={C\bibinitperiod},
+         given={Sofia},
+         giveni={S\bibinitperiod},
+      }}%
+      {{hash=BH}{%
+         family={{Ben{\'i}tez-Silva}},
+         familyi={B\bibinitperiod},
+         given={Hugo},
+         giveni={H\bibinitperiod},
+      }}%
+    }
+    \strng{namehash}{CSBH1}
+    \strng{fullhash}{CSBH1}
+    \field{labelnamesource}{author}
+    \field{labeltitlesource}{shorttitle}
+    \field{labelyear}{2007}
+    \field{labeldatesource}{}
+    \field{sortinit}{C}
+    \field{sortinithash}{C}
+    \field{number}{1}
+    \field{pages}{1\bibrangedash 41}
+    \field{shorttitle}{The Educated {{Russian}}'s Curse}
+    \field{title}{006. {{The}} Educated {{Russian}}'s Curse: {{Returns}} to
+  Education in the {{Russian Federation}} during the 1990s}
+    \field{volume}{21}
+    \verb{file}
+    \verb C\:\\Users\\1\\Zotero\\storage\\AZRI7EJ6\\Cheidvasser и Benítez-Sil
+    \verb va - 2007 - The educated Russian's curse Returns to education.pdf
+    \endverb
+    \field{journaltitle}{Labour}
+    \field{year}{2007}
+  \endentry
+
+  \entry{gluschenko2011}{article}{}
+    \name{author}{1}{}{%
+      {{hash=GKP}{%
+         family={Gluschenko},
+         familyi={G\bibinitperiod},
+         given={Konstantin\bibnamedelima P},
+         giveni={K\bibinitperiod\bibinitdelim P\bibinitperiod},
+      }}%
+    }
+    \list{publisher}{1}{%
+      {Springer}%
+    }
+    \strng{namehash}{GKP1}
+    \strng{fullhash}{GKP1}
+    \field{labelnamesource}{author}
+    \field{labeltitlesource}{title}
+    \field{labelyear}{2011}
+    \field{labeldatesource}{}
+    \field{sortinit}{G}
+    \field{sortinithash}{G}
+    \field{number}{4}
+    \field{pages}{319\bibrangedash 330}
+    \field{title}{Studies on income inequality among Russian regions}
+    \field{volume}{1}
+    \field{journaltitle}{Regional Research of Russia}
+    \field{year}{2011}
+  \endentry
+
+  \entry{halvorsen1980}{article}{}
+    \true{moreauthor}
+    \true{morelabelname}
+    \name{author}{2}{}{%
+      {{hash=HR}{%
+         family={Halvorsen},
+         familyi={H\bibinitperiod},
+         given={Robert},
+         giveni={R\bibinitperiod},
+      }}%
+      {{hash=PR}{%
+         family={Palmquist},
+         familyi={P\bibinitperiod},
+         given={Raymond},
+         giveni={R\bibinitperiod},
+      }}%
+    }
+    \list{publisher}{1}{%
+      {American Economic Association}%
+    }
+    \strng{namehash}{HRPR+1}
+    \strng{fullhash}{HRPR+1}
+    \field{labelnamesource}{author}
+    \field{labeltitlesource}{title}
+    \field{labelyear}{1980}
+    \field{labeldatesource}{}
+    \field{sortinit}{H}
+    \field{sortinithash}{H}
+    \field{number}{3}
+    \field{pages}{474\bibrangedash 475}
+    \field{title}{The interpretation of dummy variables in semilogarithmic
+  equations}
+    \field{volume}{70}
+    \field{journaltitle}{American Economic Review}
+    \field{year}{1980}
+  \endentry
+
+  \entry{hauner2008}{article}{}
+    \name{author}{1}{}{%
+      {{hash=HD}{%
+         family={Hauner},
+         familyi={H\bibinitperiod},
+         given={David},
+         giveni={D\bibinitperiod},
+      }}%
+    }
+    \list{publisher}{1}{%
+      {Elsevier}%
+    }
+    \strng{namehash}{HD1}
+    \strng{fullhash}{HD1}
+    \field{labelnamesource}{author}
+    \field{labeltitlesource}{title}
+    \field{labelyear}{2008}
+    \field{labeldatesource}{}
+    \field{sortinit}{H}
+    \field{sortinithash}{H}
+    \field{number}{10}
+    \field{pages}{1745\bibrangedash 1765}
+    \field{title}{Explaining differences in public sector efficiency: evidence
+  from Russia’s regions}
+    \field{volume}{36}
+    \field{journaltitle}{World Development}
+    \field{year}{2008}
+  \endentry
+
+  \entry{kufenko2014}{book}{}
+    \name{author}{1}{}{%
+      {{hash=KV}{%
+         family={Kufenko},
+         familyi={K\bibinitperiod},
+         given={Vadim},
+         giveni={V\bibinitperiod},
+      }}%
+    }
+    \list{publisher}{1}{%
+      {Springer}%
+    }
+    \strng{namehash}{KV1}
+    \strng{fullhash}{KV1}
+    \field{labelnamesource}{author}
+    \field{labeltitlesource}{title}
+    \field{labelyear}{2014}
+    \field{labeldatesource}{}
+    \field{sortinit}{K}
+    \field{sortinithash}{K}
+    \field{title}{Economic growth and inequality: Empirical analysis for the
+  Russian regions}
+    \field{year}{2014}
+  \endentry
+
+  \entry{lugovoy2007}{article}{}
+    \name{author}{5}{}{%
+      {{hash=LO}{%
+         family={Lugovoy},
+         familyi={L\bibinitperiod},
+         given={O},
+         giveni={O},
+      }}%
+      {{hash=DV}{%
+         family={Dashkeyev},
+         familyi={D\bibinitperiod},
+         given={V},
+         giveni={V},
+      }}%
+      {{hash=MI}{%
+         family={Mazayev},
+         familyi={M\bibinitperiod},
+         given={I},
+         giveni={I},
+      }}%
+      {{hash=FD}{%
+         family={Fomchenko},
+         familyi={F\bibinitperiod},
+         given={D},
+         giveni={D},
+      }}%
+      {{hash=PA}{%
+         family={Polyakov},
+         familyi={P\bibinitperiod},
+         given={A},
+         giveni={A},
+      }}%
+    }
+    \strng{namehash}{LO+1}
+    \strng{fullhash}{LODVMIFDPA1}
+    \field{labelnamesource}{author}
+    \field{labeltitlesource}{title}
+    \field{labelyear}{2007}
+    \field{labeldatesource}{}
+    \field{sortinit}{L}
+    \field{sortinithash}{L}
+    \field{title}{Economic, geographical, and institutional aspects of regional
+  economic growth in Russia}
+    \field{journaltitle}{Tech-nical Report, Institute for the Economy in
+  Transition, Moscow (in Russian)}
+    \field{year}{2007}
+  \endentry
+
+  \entry{oshchepkov2018}{article}{}
+    \name{author}{1}{}{%
+      {{hash=OA}{%
+         family={Oshchepkov},
+         familyi={O\bibinitperiod},
+         given={Aleksey},
+         giveni={A\bibinitperiod},
+      }}%
+    }
+    \strng{namehash}{OA1}
+    \strng{fullhash}{OA1}
+    \field{labelnamesource}{author}
+    \field{labeltitlesource}{title}
+    \field{labelyear}{2018}
+    \field{labeldatesource}{}
+    \field{sortinit}{O}
+    \field{sortinithash}{O}
+    \field{title}{What Drives Returns to Higher Education: Evidence from
+  Russian Regions}
+    \field{journaltitle}{Center for Labour Market Studies, Higher School of
+  Economics, Moscow}
+    \field{year}{2018}
+  \endentry
+
+  \entry{worldbank2018}{book}{}
+    \name{author}{1}{}{%
+      {{hash=W}{%
+         family={{World Bank}},
+         familyi={W\bibinitperiod},
+      }}%
+    }
+    \list{publisher}{1}{%
+      {{World Bank}}%
+    }
+    \strng{namehash}{W1}
+    \strng{fullhash}{W1}
+    \field{labelnamesource}{author}
+    \field{labeltitlesource}{title}
+    \field{labelyear}{2018}
+    \field{labeldatesource}{}
+    \field{sortinit}{W}
+    \field{sortinithash}{W}
+    \verb{doi}
+    \verb 10.1596/29866
+    \endverb
+    \field{title}{Rolling Back Russia's Spatial Disparities}
+    \verb{url}
+    \verb https://elibrary.worldbank.org/doi/abs/10.1596/29866
+    \endverb
+    \field{year}{2018}
+  \endentry
+\enddatalist
 \endinput
