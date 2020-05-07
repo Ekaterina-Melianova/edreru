@@ -302,9 +302,11 @@ setwd("C:/Country/Russia/Data/SEASHELL/SEABYTE/edreru/wp5")
 plot1 <- ggplot(df_universities, aes(reorder(specialization_type, salary_2014/12), salary_2014/12)) +
   geom_boxplot(outlier.shape = NA, fill="deepskyblue2") + 
   coord_flip() +
-  ggtitle("Salary of University Graduates in 2014 by Specialization") + 
+  ggtitle("Salary of Univ Graduates in 2014 \n by Specialization") + 
   labs(y="Average salary", x = "Specialization of university") + 
-  theme_light(base_size = 18) + theme(plot.title = element_text(size = 24), axis.text = element_text(size=22)) + 
+  theme_light(base_size = 18) + 
+  theme(plot.title = element_text(size = 18), 
+        axis.text = element_text(size=18)) + 
   scale_y_continuous(limits=c(20000, 80000))
 
 ggsave(filename = "sal_spnu.png")
@@ -313,9 +315,11 @@ ggsave(filename = "sal_spnu.png")
 plot2 <- ggplot(df_colleges, aes(reorder(speciality_type, graduate_salary_2014/12), graduate_salary_2014/12)) +
   geom_boxplot(outlier.shape = NA, fill="lightcoral") + 
    coord_flip() +
-  ggtitle("Salary of College Graduates in 2014 by Specialization") +
+  ggtitle("Salary of College Graduates in 2014 \n  by Specialization") +
   labs(y="Average salary", x = "Specialization of college") + 
-  theme_light(base_size = 18) + theme(plot.title = element_text(size = 24), axis.text = element_text(size=22)) + 
+  theme_light(base_size = 18) +
+  theme(plot.title = element_text(size = 18), 
+        axis.text = element_text(size=18)) + 
   scale_y_continuous(limits=c(20000, 80000)) 
 
 ggsave(filename = "sal_spnc.png")
