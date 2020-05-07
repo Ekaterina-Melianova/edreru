@@ -64,7 +64,7 @@ Sys.setlocale("LC_CTYPE", "russian")
 
 ```{r Data loading, warning=FALSE, include=FALSE}
 
-setwd('C:/Users/Artem/Google Drive/dataframes_colleges_universities')
+setwd("C:/Country/Russia/Data/SEASHELL/SEABYTE/Databases/Tertiary")
 
 # Load dataframes
 df_colleges <- rio::import("dataframe_colleges.xlsx")
@@ -619,7 +619,7 @@ In the first part of our research, we focus on calculating the social and privat
 ```{r Load Rosstat Data, include=FALSE, warning=FALSE}
 
 # Working directory
-wd <- "C:/ROSSTAT"
+wd <- "C:/Country/Russia/Data/SEASHELL/SEABYTE/Databases/ROSSTAT"
 setwd(wd) 
 
 ######################################### Data ###########################################################
@@ -911,6 +911,8 @@ ggplot(df_region_returns_university_full, aes(x=reorder(region_name, returns), y
   labs(x="Region", y = "Internal rate of return") + 
   ggtitle("Social and Private IRR by Region, Higher Educaton")
 
+ggsave(filename = "returns_by_region_plot1.png")
+
 ```
 
 The next graph demonstrates the social and private IRR of colleges. As you may notice the regional variation is still present, but not to the same extent as in universities - returns are lying between 20-30% in most of the regions. 
@@ -925,6 +927,8 @@ ggplot(df_region_returns_college_full, aes(x=reorder(region_name, returns), y=re
   theme(plot.title = element_text(size = 22, hjust = 0.9), axis.text = element_text(size=12), legend.text = element_text(size = 14), legend.title=element_text(size=14)) +
   labs(x="Region", y = "Internal rate of return") + 
   ggtitle("Social and Private IRR by Region, Vocational Educaton")
+
+ggsave(filename = "returns_by_region_plot2.png")
 
 ```
 
@@ -957,7 +961,8 @@ plot1 <- ggplot(df_region_returns_university_college, aes(x=social_returns_unive
   ggtitle("Social Returns in Universities and Colleges by regions") + 
   geom_text(aes(label = point_labels), size = 3.5, nudge_x = -0.032, nudge_y = 0.001)
 
-plot1
+
+ggsave(filename = "returns_by_region_scatterplot.png")
 
 ```
 
@@ -1098,7 +1103,6 @@ df_universities_table <- df_universities %>%
   arrange(-social_returns)
 df_universities_table <- df_universities_table[c(1:select_top_bottom_n,
                         (nrow(df_universities_table)-select_top_bottom_n+1):nrow(df_universities_table)),]
-
 ```
 
 
@@ -1127,12 +1131,15 @@ df_universities_table <- rbind(df_universities_table[1:select_top_bottom_n,], se
 # Remove row index
 row.names(df_universities_table) <- NULL
 
-df_universities_table %>%
-  kable() %>%
-  # kable_styling(bootstrap_options = "striped", full_width = F)
-  kable_styling(bootstrap_options = c("striped", "hover", "condensed", "responsive"),
-                full_width = F, font_size = 10) %>% 
-  column_spec(1:2, bold = T)
+# df_universities_table %>%
+#   kable() %>%
+#   # kable_styling(bootstrap_options = "striped", full_width = F)
+#   kable_styling(bootstrap_options = c("striped", "hover", "condensed", "responsive"),
+#                 full_width = F, font_size = 10) %>% 
+#   column_spec(1:2, bold = T)
+
+xtable(df_universities_table)
+
 
 
 ```
@@ -1160,12 +1167,15 @@ df_colleges_table <- rbind(df_colleges_table[1:select_top_bottom_n,], sep_row, d
 # Remove row index
 row.names(df_colleges_table) <- NULL
 
-df_colleges_table %>%
-  kable() %>%
-  # kable_styling(bootstrap_options = "striped", full_width = F)
-  kable_styling(bootstrap_options = c("striped", "hover", "condensed", "responsive"),
-                full_width = F, font_size = 10) %>% 
-  column_spec(1:2, bold = T)
+# df_colleges_table %>%
+#   kable() %>%
+#   # kable_styling(bootstrap_options = "striped", full_width = F)
+#   kable_styling(bootstrap_options = c("striped", "hover", "condensed", "responsive"),
+#                 full_width = F, font_size = 10) %>% 
+#   column_spec(1:2, bold = T)
+
+
+xtable(df_colleges_table)
 
 ```
 
@@ -1197,6 +1207,7 @@ ggmap(map_mo) +
   ggtitle("Social IRR of Universities in Moscow") + 
   theme(plot.title = element_text(size=18, face="bold"))
 
+ggsave(filename = "social_returns_moscow.png")
 
 ```
 
@@ -1227,6 +1238,9 @@ ggmap(map_spb) +
   ggtitle("Social IRR of Colleges in Saint Petersburg") + 
   theme(plot.title = element_text(size=18, face="bold"))
 
+ggsave(filename = "social_returns_spb.png")
+
+
 ```
 
 
@@ -1254,15 +1268,18 @@ plot2 <- ggplot(df_colleges, aes(reorder(speciality_type, social_returns), socia
   # scale_y_continuous(limits=c(20000, 80000)) 
 
 # Arrange in one plot
-grid.arrange(plot2, plot1, ncol=2)
+plot_grid <- grid.arrange(plot2, plot1, ncol=2)
+
+plot(plot_grid)
+
+ggsave(filename = "returns_by_areas.png", plot_grid, width=25, height=12)
 
 
 ```
 
 We estimate the factors which are explaining the difference in returns between organization by conducting 4 separate linear regression models with 1) Social IRR in colleges, 2) Private IRR in colleges, 3) Social IRR in universities, and 4) Private IRR in universities as dependent variables. We are going to use 1) the specialization of organization, 2) the number of graduates, 3) the number of staff, 4) the average wage in the organization, 5) the proportion of income obtained from paid services and 6) the average wage in the region as the main predictors for these models.
 
-
-Table with Linear Regression estimates for the Colleges
+Tables with Linear Regression estimates for the Social/Private returns of Higher/Vocational education are depicted below.
 
 ```{r Liniear regression with returns as DV Colleges, echo=FALSE}
 
@@ -1279,8 +1296,12 @@ lr_model_social <- lm(formula = social_returns ~ speciality_type  + graduates_nu
 # Linear Regression Estimates, Private Returns
 lr_model_private <- lm(formula = private_returns ~ speciality_type  + graduates_number + staff_endYear_2017 + staff_averageSalary_2017  + paidServices_ratio + annual_wage_region, data = df_colleges)
 
-summary(lr_model_social)
-summary(lr_model_private)
+stargazer(lr_model_social, lr_model_private, type = "latex",
+          dep.var.caption = "",
+          dep.var.labels.include = F,
+          df = F,
+          header = F,
+          intercept.bottom = F)
 
 ```
 
@@ -1304,13 +1325,16 @@ lr_model_social <- lm(formula = social_returns ~ specialization_type  + graduate
 lr_model_private <- lm(formula = private_returns ~ specialization_type + graduates_number + staff_averageSalary_2017 +  paidServices_ratio + annual_wage_region,
                        data = df_universities)
 
-summary(lr_model_social)
-summary(lr_model_private)
+stargazer(lr_model_social, lr_model_private, type = "latex",
+          dep.var.caption = "",
+          dep.var.labels.include = F,
+          df = F,
+          header = F,
+          intercept.bottom = F)
+
 
 ```
 
-
-# Conclusion
 
  
 
