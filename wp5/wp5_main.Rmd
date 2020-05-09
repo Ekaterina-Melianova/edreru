@@ -305,6 +305,8 @@ plot1 <- ggplot(df_universities, aes(reorder(specialization_type, salary_2014/12
   theme_light(base_size = 18) + theme(plot.title = element_text(size = 24), axis.text = element_text(size=22)) + 
   scale_y_continuous(limits=c(20000, 80000))
 
+ggsave(filename = "sal_spnu.png")
+
 # 2. Colleges
 plot2 <- ggplot(df_colleges, aes(reorder(speciality_type, graduate_salary_2014/12), graduate_salary_2014/12)) +
   geom_boxplot(outlier.shape = NA, fill="lightcoral") + 
@@ -313,6 +315,9 @@ plot2 <- ggplot(df_colleges, aes(reorder(speciality_type, graduate_salary_2014/1
   labs(y="Average salary", x = "Specialization of college") + 
   theme_light(base_size = 18) + theme(plot.title = element_text(size = 24), axis.text = element_text(size=22)) + 
   scale_y_continuous(limits=c(20000, 80000)) 
+
+ggsave(filename = "sal_spnc.png")
+
 
 # Arrange in one plot
 grid.arrange(plot2, plot1, ncol=2)

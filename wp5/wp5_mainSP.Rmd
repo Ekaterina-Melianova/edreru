@@ -728,8 +728,9 @@ df_rosstat$exper <- ifelse(df_rosstat$exper < 0, 0, df_rosstat$exper)
 ```{r Add foregone earnings, include=FALSE, warning=FALSE}
 
 # Calculate mean annual wage in each region
-wage_regions <- df_rosstat %>%
-                    filter(YEAR == 2014) %>%
+# Foregone wage of Secondary only
+wage_regions <- df_rosstat %>% filter(YEAR == 2014) %>% 
+                    filter(edu_4 == "Secondary") %>%
                     group_by(H00_02) %>%
                     summarise(annual_wage_region=mean(wage)*12) %>%
                     rename(region_code=H00_02)
@@ -761,7 +762,6 @@ df_colleges$private_cost <- df_colleges$private_cost + df_colleges$annual_wage_r
 
 # Create dataframe with aggregated salary by year, edu level, region and age
 df_year_edu_region_age_salary <- df_rosstat %>% group_by(YEAR, edu_4, H00_02, H01_02) %>% summarise(average_salary=weighted.mean(wage, w=KVZV)) %>% filter(edu_4 != "Secondary") %>% ungroup()
-
 df_year_edu_region_age_salary <- df_year_edu_region_age_salary[!(df_year_edu_region_age_salary$H01_02 == 22 & df_year_edu_region_age_salary$edu_4 == "Higher"),]
 
 # Calculate annual wage
