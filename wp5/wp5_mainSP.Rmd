@@ -889,8 +889,8 @@ temp_df <- temp_df[!duplicated(temp_df$OKATO),]
 df_region_returns_university <- left_join(df_region_returns_university, temp_df, by=c("region"="OKATO"))
 df_region_returns_college <- left_join(df_region_returns_college, temp_df, by=c("region"="OKATO"))
 
-saveRDS(df_region_returns_college, "def_reg_ret_coll.rds")
-saveRDS(df_region_returns_university,"def_reg_ret_univ.rds")
+saveRDS(df_region_returns_college, "df_reg_ret_coll.rds")
+saveRDS(df_region_returns_university,"df_reg_ret_univ.rds")
 
 
 # Select only 2018 for plotting
