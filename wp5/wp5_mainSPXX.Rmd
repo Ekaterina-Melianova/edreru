@@ -1,12 +1,12 @@
 ---
 title: "Working Paper 5"
 output:
+  html_document:
+    df_print: paged
+  html_notebook: default
   pdf_document:
     keep_tex: yes
     latex_engine: xelatex
-  html_notebook: default
-  html_document:
-    df_print: paged
 ---
 
 
@@ -99,7 +99,6 @@ df_universities_areas <- df_universities_areas[df_universities_areas$graduates_n
 
 
 ```{r GRADUATE.EDU.RU Data Preprocessing, include=FALSE, warning=FALSE}
-
 
 ### Remove outliers of salaries
 
@@ -294,6 +293,58 @@ kableExtra::kable(df_desc)
 
 ```
 
+```{r Translate russian names}
+
+### 1. Create dataframes with russian-english names
+
+# University names
+university_specialization_names <- data.frame(russian_name=c("аграрный", "классический", "педагогический", "медицинский",
+                                                      "специализированный", "социально-экономический", "технический",
+                                                      "художественный"),
+                                       english_name=c("Agricultural", "Classical", "Pedagogical", "Medical",
+                                                      "Specialized", "Socio-economic", "Technical", "Art"))
+
+# College names
+college_specialization_names <- data.frame(russian_name=c("аграрный", "педагогический", "медицинский",
+                                                      "общий", "социально-экономический", "технический",
+                                                      "художественный"),
+                                          english_name=c("Agricultural", "Pedagogical", "Medical",
+                                                      "General", "Socio-economic", "Technical", "Art"))
+
+# Study area names
+area_names <- rio::import("C:/Country/Russia/Data/SEASHELL/SEABYTE/edreru/wp5/area_names.xlsx", "xlsx")
+
+# Region names
+region_names <- rio::import("C:/Country/Russia/Data/SEASHELL/SEABYTE/edreru/wp3/rgnames2.xlsx", "xlsx")
+region_names <- region_names %>% rename(region_name = en_rgnames)
+
+df_universities <- df_universities[nchar(df_universities$OKATO) == 2,]
+df_colleges <- df_colleges[nchar(df_colleges$OKATO) == 2,]
+
+df_colleges$region_name <- (df_colleges %>% dplyr::select(OKATO) %>% left_join(region_names))$region_name
+df_universities$region_name <- (df_universities %>% dplyr::select(OKATO) %>% left_join(region_names))$region_name
+
+
+### 2. Rename 
+
+# Universities
+df_temp <- df_universities %>% dplyr::select(specialization_type) %>% left_join(university_specialization_names,
+                                                             by=c("specialization_type"="russian_name"))
+df_universities$specialization_type <- df_temp$english_name
+
+# Colleges
+df_temp <- df_colleges %>% dplyr::select(speciality_type) %>% left_join(college_specialization_names,
+                                                             by=c("speciality_type"="russian_name"))
+df_colleges$speciality_type <- df_temp$english_name
+
+# Study areas
+df_temp <- df_universities_areas %>% dplyr::select(area_name) %>% left_join(area_names,
+                                                                 by=c("area_name"="russian_name"))
+df_universities_areas$area_name <- df_temp$english_name
+
+```
+
+
 
 ```{r Plot 1. Salary of graduates by specialization type, echo=FALSE, warning=FALSE, fig.width = 25, fig.height = 12}
 
@@ -310,6 +361,7 @@ plot1 <- ggplot(df_universities, aes(reorder(specialization_type, salary_2014/12
   scale_y_continuous(limits=c(20000, 80000))
 
 ggsave(filename = "sal_spnu.png")
+
 
 # 2. Colleges
 plot2 <- ggplot(df_colleges, aes(reorder(speciality_type, graduate_salary_2014/12), graduate_salary_2014/12)) +
@@ -876,6 +928,8 @@ df_region_returns_university <- data.frame(region=region_vec,
                                     private_returns=private_returns_vec)
 df_region_returns_university$year <- as.character(df_region_returns_university$year)
 
+saveRDS(df_region_returns_college,file="df_reg_ret_coll.rds")
+saveRDS(df_region_returns_university,file="df_reg_ret_univ.rds")
 ```
 
 
@@ -889,37 +943,23 @@ temp_df <- temp_df[!duplicated(temp_df$OKATO),]
 df_region_returns_university <- left_join(df_region_returns_university, temp_df, by=c("region"="OKATO"))
 df_region_returns_college <- left_join(df_region_returns_college, temp_df, by=c("region"="OKATO"))
 
-saveRDS(df_region_returns_college, "def_reg_ret_coll.rds")
-saveRDS(df_region_returns_university,"def_reg_ret_univ.rds")
-
+saveRDS(df_region_returns_college,file="df_reg_ret_coll.rds")
+saveRDS(df_region_returns_university,file="df_reg_ret_univ.rds")
 
 # Select only 2018 for plotting
-df_region_returns_university <- df_region_returns_university %>% filter(year == 2018)
-df_region_returns_college <- df_region_returns_college %>% filter(year == 2018)
+df_region_returns_univ18 <- df_region_returns_university %>% filter(year == 2018)
+df_region_returns_coll18 <- df_region_returns_college %>% filter(year == 2018)
 
 # Double universities dataframe
-df_region_returns_university_full <- rbind(df_region_returns_university, df_region_returns_university)
-df_region_returns_university_full$returns <- c(df_region_returns_university$social_returns, df_region_returns_university$private_returns)
-df_region_returns_university_full$returns_type <- c(rep("Social", nrow(df_region_returns_university)), rep("Private", nrow(df_region_returns_university)))
+df_region_returns_univ18_full <- rbind(df_region_returns_univ18, df_region_returns_univ18)
+df_region_returns_univ18_full$returns <- c(df_region_returns_univ18$social_returns, df_region_returns_univ18$private_returns)
+df_region_returns_univ18_full$returns_type <- c(rep("Social", nrow(df_region_returns_univ18)), rep("Private", nrow(df_region_returns_univ18)))
 
 # Double colleges dataframe
-df_region_returns_college_full <- rbind(df_region_returns_college, df_region_returns_college)
-df_region_returns_college_full$returns <- c(df_region_returns_college$social_returns, df_region_returns_college$private_returns)
-df_region_returns_college_full$returns_type <- c(rep("Social", nrow(df_region_returns_college)), rep("Private", nrow(df_region_returns_college)))
+df_region_returns_coll18_full <- rbind(df_region_returns_coll18, df_region_returns_coll18)
+df_region_returns_coll18_full$returns <- c(df_region_returns_coll18$social_returns, df_region_returns_coll18$private_returns)
+df_region_returns_coll18_full$returns_type <- c(rep("Social", nrow(df_region_returns_coll18)), rep("Private", nrow(df_region_returns_coll18)))
 
-## Now add regional names in English
-
-reg_wp3 <- openxlsx::read.xlsx("C:/Country/Russia/Data/SEASHELL/SEABYTE/edreru/wp3/RoREs_cleaned.xlsx")
-
-df_region_returns_university_full <-
-  left_join(df_region_returns_university_full,
-             reg_wp3,
-             by=c("region"="OKATO"))
-
-df_region_returns_college_full <-
-  left_join(df_region_returns_college_full,
-             reg_wp3,
-             by=c("region"="OKATO"))
 
 ```
 
@@ -931,7 +971,7 @@ Below you can see an estimate of social and private IRR of university graduates 
 ```{r Plot 1. Mean Social and Private Returns by regions, fig.height=14, fig.width=14, echo=FALSE}
 
 # Plot the salaries by the areas
-ggplot(df_region_returns_university_full, aes(x=reorder(en_rgnames, returns), y=returns, color=returns_type)) +
+ggplot(df_region_returns_univ18_full, aes(x=reorder(region_name, returns), y=returns, color=returns_type)) +
   geom_point(size=3) +
   coord_flip() + theme_light() + 
   theme(plot.title = element_text(size = 22, hjust = 0.9), axis.text = element_text(size=12), legend.text = element_text(size = 14), legend.title=element_text(size=14)) +
@@ -949,7 +989,7 @@ The next graph demonstrates the social and private IRR of colleges. As you may n
 ```{r Plot 2. Mean Social and Private Returns by regions, fig.height=14, fig.width=14, echo=FALSE}
 
 # Plot the salaries by the areas
-ggplot(df_region_returns_college_full, aes(x=reorder(en_rgnames, returns), y=returns, color=returns_type)) +
+ggplot(df_region_returns_coll18_full, aes(x=reorder(region_name, returns), y=returns, color=returns_type)) +
   geom_point(size=3) +
   coord_flip() + theme_light() + 
   theme(plot.title = element_text(size = 22, hjust = 0.9), axis.text = element_text(size=12), legend.text = element_text(size = 14), legend.title=element_text(size=14)) +
@@ -958,38 +998,36 @@ ggplot(df_region_returns_college_full, aes(x=reorder(en_rgnames, returns), y=ret
 ggsave(filename = "returns_by_region_plot2.png")
 ```
 
-The average levels of social returns of college and university graduates in a region are highly correlated - regions with a high level of university returns tend to have higher rates of college returns. Nonetheless, there are some exceptions: for example, Respublika Tatarstan has above average social returns of college graduates, but lacking behind in university returns. The situation in Sahalinskaya Oblast is directly the opposite - the region is characterized by one of the highest levels of social university returns, but the college returns are a lot lower than in most of the other regions. You can see a distribution of returns by two levels of education on the scatterplot below.
+The average levels of social returns of college and university graduates in a region are highly correlated - regions with a high level of university returns tend to have higher rates of college returns. Nonetheless, there are some exceptions: for example, Primorskiy Kray has above average social returns of college graduates, but lacking behind in university returns. The situation in Kamchatskiy Kray is directly the opposite - the region is characterized by one of the highest levels of social university returns, but the college returns are a lot lower than in most of the other regions. You can see a distribution of returns by two levels of education on the scatterplot below.
 
 
 ```{r Plot 3. Scatterplot. Social Returns by regions, echo=FALSE, fig.height=8, fig.width=8}
 
-setwd("C:/Country/Russia/Data/SEASHELL/SEABYTE/edreru/wp5")
-
 # Preprocessing for plotting
-df_temp.1 <- df_region_returns_university_full %>%
+df_temp.1 <- df_region_returns_univ18_full %>%
   filter(returns_type == "Social") %>%
   dplyr::select(region_name, social_returns) %>%
   rename(social_returns_university=social_returns)
-df_temp.2 <- df_region_returns_college_full %>%
+df_temp.2 <- df_region_returns_coll18_full %>%
   filter(returns_type == "Social") %>%
   dplyr::select(region_name, social_returns) %>%
   rename(social_returns_college=social_returns)
-df_region_returns_university_college <- left_join(df_temp.1, df_temp.2, by="region_name")
+df_region_returns_univ18_college <- left_join(df_temp.1, df_temp.2, by="region_name")
 
 
-region_names <- df_region_returns_university_college$region_name
-point_labels <- ifelse("Республика Татарстан" == region_names, "Республика Татарстан",
-                       ifelse("Сахалинская область" == region_names, "Сахалинская область",
+region_names <- df_region_returns_univ18_college$region_name
+point_labels <- ifelse("Respublika Tatarstan" == region_names, "Respublika Tatarstan",
+                       ifelse("Sakhalinskaya Oblast" == region_names, "Sakhalinskaya Oblast",
                               NA))
 
 # Plot the scatterplot
-plot1 <- ggplot(df_region_returns_university_college, aes(x=social_returns_university, y=social_returns_college)) +
-  geom_point(size=4, color='gray') + theme_minimal() + theme(plot.title = element_text(size = 18), axis.text = element_text(size=14)) + geom_hline(yintercept=mean(df_region_returns_university_college$social_returns_college, na.rm=T), linetype="dashed", color = "red", size=1) + geom_vline(xintercept=mean(df_region_returns_university_college$social_returns_university, na.rm=T), linetype="dashed", color = "red", size=1) +
+plot1 <- ggplot(df_region_returns_univ18_college, aes(x=social_returns_university, y=social_returns_college)) +
+  geom_point(size=4, color='gray') + theme_minimal() + theme(plot.title = element_text(size = 18), axis.text = element_text(size=14)) + geom_hline(yintercept=mean(df_region_returns_univ18_college$social_returns_college, na.rm=T), linetype="dashed", color = "red", size=1) + geom_vline(xintercept=mean(df_region_returns_univ18_college$social_returns_university, na.rm=T), linetype="dashed", color = "red", size=1) +
   labs(x="Social Returns, University", y = "Social Returns, College") + 
   ggtitle("Social Returns in Universities and Colleges by regions") + 
-  geom_text(aes(label = point_labels), size = 3.5, nudge_x = -0.032, nudge_y = 0.001)
+  geom_text(aes(label = point_labels), size = 3.5, nudge_x = -0.035, nudge_y = 0.001)
 
-#plot1
+plot1
 ggsave(filename = "returns_by_region_scatterplot.png")
 ```
 
@@ -1114,19 +1152,14 @@ select_top_bottom_n <- 10
 
 ### 1. Colleges
 df_colleges_table <- df_colleges %>%
-  dplyr::select(social_returns, private_returns, name, region_name, income_total_mean, paidServices_mean,
-                graduates_number,
-                graduate_salary_2014, graduate_salary_2015, graduate_salary_2016) %>%
+  dplyr::select(social_returns, private_returns, name, region_name, graduates_number) %>%
   arrange(-social_returns)
 df_colleges_table <- df_colleges_table[c(1:select_top_bottom_n,
                     (nrow(df_colleges_table)-select_top_bottom_n+1):nrow(df_colleges_table)),]
 
 ### 2. Universities
 df_universities_table <- df_universities %>%
-  dplyr::select(social_returns, private_returns, 
-                name, region_name, income_total_mean, paidServices_mean,
-                graduates_number,
-                salary_2014, salary_2015, salary_2016) %>%
+  dplyr::select(social_returns, private_returns, name, region_name, graduates_number) %>%
   arrange(-social_returns)
 df_universities_table <- df_universities_table[c(1:select_top_bottom_n,
                         (nrow(df_universities_table)-select_top_bottom_n+1):nrow(df_universities_table)),]
@@ -1141,12 +1174,7 @@ Bellow, you can the tables with Top-10 and Bottom-10 universities/colleges ranke
 
 # Change columns for visualization
 colnames(df_universities_table) <- c("social returns", "private returns", 
-                                     "name", "region", 'income', 'fee income', "graduates number",
-                                     "salary 2014", "salary 2015", "salary 2016")
-
-# Income to integer
-df_universities_table$income <- round(as.numeric(df_universities_table$income), 0)
-df_universities_table$`fee income` <- round(as.numeric(df_universities_table$`fee income`), 0)
+                                     "name", "region", "graduates number")
 
 # Round up returns by 2 digits
 df_universities_table$`social returns` <- round(as.numeric(df_universities_table$`social returns`), 2)
@@ -1174,13 +1202,7 @@ xtable(df_universities_table)
 ```{r Plot 2. Kable Table with Top-10/Bottom-10 Colleges by social returns, echo=FALSE}
 
 # Change columns for visualization
-colnames(df_colleges_table) <- c("social returns", "private returns", 
-                                 "name", "region", 'income', 'fee income', "graduates number",
-                                     "salary 2014", "salary 2015", "salary 2016")
-
-# Income to integer
-df_colleges_table$income <- round(as.numeric(df_colleges_table$income), 0)
-df_colleges_table$`fee income` <- round(as.numeric(df_colleges_table$`fee income`), 0)
+colnames(df_colleges_table) <- c("social returns", "private returns", "name", "region", "graduates number")
 
 # Round up returns by 2 digits
 df_colleges_table$`social returns` <- round(as.numeric(df_colleges_table$`social returns`), 2)
