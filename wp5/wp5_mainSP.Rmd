@@ -65,7 +65,8 @@ Sys.setlocale("LC_CTYPE", "russian")
 
 ```{r Data loading, warning=FALSE, include=FALSE}
 
-setwd('C:/Country/Russia/Data/SEASHELL/SEABYTE/Databases/Tertiary')
+# setwd('C:/Country/Russia/Data/SEASHELL/SEABYTE/Databases/Tertiary')
+setwd('C:/dataframes_colleges_universities')
 
 # Load dataframes
 df_colleges <- rio::import("dataframe_colleges.xlsx")
@@ -237,7 +238,6 @@ df_colleges$graduate_salary_2016 <- df_colleges$graduate_salary_2016*12
 df_universities$salary_2014 <- df_universities$salary_2014*12
 df_universities$salary_2015 <- df_universities$salary_2015*12
 df_universities$salary_2016 <- df_universities$salary_2016*12
-
 
 ```
 
@@ -629,7 +629,8 @@ In the first part of our research, we focus on calculating the social and privat
 ```{r Load Rosstat Data, include=FALSE, warning=FALSE}
 
 # Working directory
-wd <- "C:/Country/Russia/Data/SEASHELL/SEABYTE/Databases/ROSSTAT"
+# wd <- "C:/Country/Russia/Data/SEASHELL/SEABYTE/Databases/ROSSTAT"
+wd <- "C:/ROSSTAT"
 setwd(wd) 
 
 ######################################### Data ###########################################################
@@ -957,28 +958,36 @@ Below you can see an estimate of social and private IRR of university graduates 
 
 ```{r Plot 1. Mean Social and Private Returns by regions, fig.height=14, fig.width=10, echo=FALSE}
 # For color of depressed regions
-col_HE <- ifelse(df_region_returns_university_full$Dep_reg==1, "red", "black")
 
+priority_regions <- c('Respublika Adygeya', 'Pskovskaya Oblast',
+                       'Altayskiy Kray', 'Kurganskaya Oblast',
+                       'Respublika Kalmykiya', 'Chuvashskaya Respublika', 
+                       'Respublika Altay', 'Respublika Karelia',
+                       'Respublika Tyva', 'Respublika Mariy El')
 
+# Arranging by Social returns only
+df_region_returns_university_full1 <- df_region_returns_university_full[df_region_returns_university_full$returns_type == 'Social',]
+df_region_returns_university_full1 <- df_region_returns_university_full1 %>% arrange(returns)
+
+# Assinging levels to a factor with regions
+df_region_returns_university_full$en_rgnames <-
+  factor(df_region_returns_university_full$en_rgnames,
+         levels = df_region_returns_university_full1$en_rgnames)
+
+# Obtaining a vector with colors
+df_region_returns_university_full <- df_region_returns_university_full %>% arrange(returns)
+col_HE <- ifelse(levels(df_region_returns_university_full$en_rgnames) %in% priority_regions, "red", "black")
 
 # Plot the salaries by the areas
-ggplot(df_region_returns_university_full, aes(x=reorder(en_rgnames, psgapu,group=returns_type), y=returns)) +
-  geom_point(aes(color=returns_type),size=3) +
-  geom_line(aes(color=as.factor(Dep_reg)))+
+ggplot(df_region_returns_university_full, aes(x=en_rgnames, 
+                                              y=returns, color=returns_type)) +
+  geom_point(size=3) +
   coord_flip() + theme_light() + 
-  theme(plot.title = element_blank(),
-        axis.title.y = element_blank(),
-        axis.text.x = element_text(size=12), 
-        axis.text.y = element_text(color = "black", size = 14),
-        legend.text = element_text(size=14),                      
-        legend.title=element_text(size=14),legend.position=c(0.80,0.40)) +
-    labs(y = "Internal rate of return") + 
-   scale_color_manual(values=c("deepskyblue1", "green","red",
-                               "black"), 
-                    name="",labels=c("Social","Private"))
+  theme(plot.title = element_text(size = 22, hjust = 0.9), axis.text = element_text(size=12), legend.text = element_text(size = 14), legend.title=element_text(size=14), axis.text.y = element_text(color = col_HE, size = 14)) +
+  labs(x="Region", y = "Internal rate of return") + 
+  ggtitle("Social and Private IRR by Region, Higher Educaton")
 
-ggsave(filename = "returns_by_region_plot1.png")
-
+ggsave(filename="returns_by_region_plot1.png")
 
 ```
 
@@ -1033,9 +1042,56 @@ plot1 <- ggplot(df_region_returns_university_college, aes(x=social_returns_unive
   ggtitle("Social Returns in Universities and Colleges by regions") + 
   geom_text(aes(label = point_labels), size = 3.5, nudge_x = -0.032, nudge_y = 0.001)
 
-#plot1
+plot1
 ggsave(filename = "returns_by_region_scatterplot.png")
 ```
+
+```{r Plot 4.1. Scatterplot. Social-Private gap with income gap HE, echo=FALSE, fig.height=8, fig.width=8}
+
+# Load dataset
+df_russia_economic <- openxlsx::read.xlsx("ICSID Russia Regions economic database v121.xlsx")
+df_russia_economic <- df_russia_economic %>%
+  filter(reg_year == 2013) %>% dplyr::select(reg_minckfd, reg_name)
+
+# Calculate rerurns difference
+df_region_returns_university$diff_returns <- df_region_returns_university$private_returns - df_region_returns_university$social_returns
+
+# Add reg_minckfd
+df_region_returns_university <- df_region_returns_university %>% left_join(df_russia_economic, by = c("region_name"="reg_name"))
+
+# Plot the scatterplot
+plot1 <- ggplot(df_region_returns_university, aes(x=reg_minckfd, y=diff_returns)) +
+  geom_point(size=4, color='gray') + theme_minimal() + theme(plot.title = element_text(size = 18), axis.text = element_text(size=14)) + 
+  labs(x="Income gap", y = "Social-Private gap") + 
+  ggtitle("Social-Private gap and Income gap, Higher Education")
+
+plot1
+
+```
+
+
+
+```{r Plot 4.2. Scatterplot. Social-Private gap with income gap VE, echo=FALSE, fig.height=8, fig.width=8}
+
+# Calculate rerurns difference
+df_region_returns_college$diff_returns <- df_region_returns_college$private_returns - df_region_returns_college$social_returns
+
+# Add reg_minckfd
+df_region_returns_college <- df_region_returns_college %>% left_join(df_russia_economic, by = c("region_name"="reg_name"))
+
+
+# Plot the scatterplot
+plot1 <- ggplot(df_region_returns_college, aes(x=reg_minckfd, y=diff_returns)) +
+  geom_point(size=4, color='gray') + theme_minimal() + theme(plot.title = element_text(size = 18), axis.text = element_text(size=14)) + 
+  labs(x="Income gap", y = "Social-Private gap") + 
+  ggtitle("Social-Private gap and Income gap, Vocational Education")
+
+plot1
+
+
+
+```
+
 
 
 # 3. Organizational Returns
