@@ -65,8 +65,7 @@ Sys.setlocale("LC_CTYPE", "russian")
 
 ```{r Data loading, warning=FALSE, include=FALSE}
 
-# setwd('C:/Country/Russia/Data/SEASHELL/SEABYTE/Databases/Tertiary')
-setwd('C:/dataframes_colleges_universities')
+setwd('C:/Country/Russia/Data/SEASHELL/SEABYTE/Databases/Tertiary')
 
 # Load dataframes
 df_colleges <- rio::import("dataframe_colleges.xlsx")
@@ -629,8 +628,7 @@ In the first part of our research, we focus on calculating the social and privat
 ```{r Load Rosstat Data, include=FALSE, warning=FALSE}
 
 # Working directory
-# wd <- "C:/Country/Russia/Data/SEASHELL/SEABYTE/Databases/ROSSTAT"
-wd <- "C:/ROSSTAT"
+wd <- "C:/Country/Russia/Data/SEASHELL/SEABYTE/Databases/ROSSTAT"
 setwd(wd) 
 
 ######################################### Data ###########################################################
