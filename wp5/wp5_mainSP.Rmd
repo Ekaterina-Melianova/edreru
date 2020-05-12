@@ -928,15 +928,19 @@ df_region_returns_college_full <-
 Below you can see an estimate of social and private IRR of university graduates by regions of Russia. Both types of returns have high dispersion across the country: from around 40% IRR in Magadanskaya and Ulyanovskaya oblast to the less than 15% in Kurganskaya and Kurskaya oblast. It is interesting to notice that although Moscovskaya oblast has substantially high social and private returns, the Moscow lacking behind in that ranking with only 20% of IRR. That may happen due to the circular migration from Moscovskaya Oblast to Moscow - people in Moscovskaya Oblast can get access to the cheaper education inside their region and still be able to work in the nearby capital.
 
 
-```{r Plot 1. Mean Social and Private Returns by regions, fig.height=14, fig.width=14, echo=FALSE}
+```{r Plot 1. Mean Social and Private Returns by regions, fig.height=14, fig.width=10, echo=FALSE}
 
 # Plot the salaries by the areas
 ggplot(df_region_returns_university_full, aes(x=reorder(en_rgnames, returns), y=returns, color=returns_type)) +
   geom_point(size=3) +
   coord_flip() + theme_light() + 
-  theme(plot.title = element_text(size = 22, hjust = 0.9), axis.text = element_text(size=12), legend.text = element_text(size = 14), legend.title=element_text(size=14)) +
-  labs(x="Region", y = "Internal rate of return") + 
-  ggtitle("Social and Private IRR by Region, Higher Educaton")
+  theme(plot.title = element_blank(),
+        axis.title.y = element_blank(),
+        axis.text = element_text(size=12), legend.text = element_text(size=14),                      
+        legend.title=element_text(size=14),legend.position=c(0.20,0.80)) +
+    labs(y = "Internal rate of return") + 
+   scale_color_manual(values=c("deepskyblue1", "green"), 
+                    name="",labels=c("Social","Private"))
 
 ggsave(filename = "returns_by_region_plot1.png")
 
@@ -946,15 +950,20 @@ ggsave(filename = "returns_by_region_plot1.png")
 The next graph demonstrates the social and private IRR of colleges. As you may notice the regional variation is still present, but not to the same extent as in universities - returns are lying between 20-30% in most of the regions. 
 
 
-```{r Plot 2. Mean Social and Private Returns by regions, fig.height=14, fig.width=14, echo=FALSE}
+```{r Plot 2. Mean Social and Private Returns by regions, fig.height=14, fig.width=10, echo=FALSE}
 
 # Plot the salaries by the areas
 ggplot(df_region_returns_college_full, aes(x=reorder(en_rgnames, returns), y=returns, color=returns_type)) +
   geom_point(size=3) +
   coord_flip() + theme_light() + 
-  theme(plot.title = element_text(size = 22, hjust = 0.9), axis.text = element_text(size=12), legend.text = element_text(size = 14), legend.title=element_text(size=14)) +
-  labs(x="Region", y = "Internal rate of return") + 
-  ggtitle("Social and Private IRR by Region, Vocational Educaton")
+  theme(plot.title = element_blank(),
+        axis.title.y = element_blank(),
+        axis.text = element_text(size=12), legend.text = element_text(size=14),                      
+        legend.title=element_text(size=14),legend.position=c(0.20,0.80)) +
+    labs(y = "Internal rate of return") + 
+   scale_color_manual(values=c("deepskyblue1", "green"), 
+                    name="",labels=c("Social","Private"))
+
 ggsave(filename = "returns_by_region_plot2.png")
 ```
 
