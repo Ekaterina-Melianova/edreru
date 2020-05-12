@@ -881,6 +881,8 @@ df_region_returns_university$year <- as.character(df_region_returns_university$y
 
 ```{r Preprocessing for plotting, include=FALSE}
 
+setwd("C:/Country/Russia/Data/SEASHELL/SEABYTE/edreru/wp5")
+
 # Extract region names for plotting
 temp_df <- rbind(df_colleges %>% dplyr::select(OKATO, region_name), df_universities %>% dplyr::select(OKATO, region_name))
 temp_df <- temp_df[!duplicated(temp_df$OKATO),]
@@ -888,6 +890,42 @@ temp_df <- temp_df[!duplicated(temp_df$OKATO),]
 # Add region names for plotting
 df_region_returns_university <- left_join(df_region_returns_university, temp_df, by=c("region"="OKATO"))
 df_region_returns_college <- left_join(df_region_returns_college, temp_df, by=c("region"="OKATO"))
+
+## Now add regional names in English
+
+reg_wp3 <- openxlsx::read.xlsx("C:/Country/Russia/Data/SEASHELL/SEABYTE/edreru/wp3/RoREs_cleaned.xlsx")
+
+df_region_returns_university <-
+  left_join(df_region_returns_university,
+             reg_wp3,
+             by=c("region"="OKATO"))
+
+df_region_returns_college <-
+  left_join(df_region_returns_college,
+             reg_wp3,
+             by=c("region"="OKATO"))
+
+depressed_regions <- c('Respublika Adygeya', 'Pskovskaya Oblast',
+                       'Altayskiy Kray', 'Kurganskaya Oblast',
+                       'Respublika Kalmykiya', 'Chuvashskaya Respublika', 
+                       'Respublika Altay', 'Respublika Karelia',
+                       'Respublika Tyva', 'Respublika Mariy El')
+
+ 
+df_region_returns_university  <- df_region_returns_university  %>% mutate(Dep_reg=ifelse(en_rgnames %in% depressed_regions,1,0))
+
+df_region_returns_college <-
+df_region_returns_college %>%
+mutate(Dep_reg=ifelse(en_rgnames %in% depressed_regions,1,0))
+
+
+# define a variable of difference between private and social 
+df_region_returns_university$psgapu <- df_region_returns_university$private_returns-
+  df_region_returns_university$social_returns
+
+df_region_returns_college$psgapc <- 
+df_region_returns_college$private_returns-
+ df_region_returns_college$social_returns   
 
 saveRDS(df_region_returns_college, "df_reg_ret_coll.rds")
 saveRDS(df_region_returns_university,"df_reg_ret_univ.rds")
@@ -907,19 +945,8 @@ df_region_returns_college_full <- rbind(df_region_returns_college, df_region_ret
 df_region_returns_college_full$returns <- c(df_region_returns_college$social_returns, df_region_returns_college$private_returns)
 df_region_returns_college_full$returns_type <- c(rep("Social", nrow(df_region_returns_college)), rep("Private", nrow(df_region_returns_college)))
 
-## Now add regional names in English
 
-reg_wp3 <- openxlsx::read.xlsx("C:/Country/Russia/Data/SEASHELL/SEABYTE/edreru/wp3/RoREs_cleaned.xlsx")
 
-df_region_returns_university_full <-
-  left_join(df_region_returns_university_full,
-             reg_wp3,
-             by=c("region"="OKATO"))
-
-df_region_returns_college_full <-
-  left_join(df_region_returns_college_full,
-             reg_wp3,
-             by=c("region"="OKATO"))
 
 ```
 
@@ -929,17 +956,25 @@ Below you can see an estimate of social and private IRR of university graduates 
 
 
 ```{r Plot 1. Mean Social and Private Returns by regions, fig.height=14, fig.width=10, echo=FALSE}
+# For color of depressed regions
+col_HE <- ifelse(df_region_returns_university_full$Dep_reg==1, "red", "black")
+
+
 
 # Plot the salaries by the areas
-ggplot(df_region_returns_university_full, aes(x=reorder(en_rgnames, returns), y=returns, color=returns_type)) +
-  geom_point(size=3) +
+ggplot(df_region_returns_university_full, aes(x=reorder(en_rgnames, psgapu,group=returns_type), y=returns)) +
+  geom_point(aes(color=returns_type),size=3) +
+  geom_line(aes(color=as.factor(Dep_reg)))+
   coord_flip() + theme_light() + 
   theme(plot.title = element_blank(),
         axis.title.y = element_blank(),
-        axis.text = element_text(size=12), legend.text = element_text(size=14),                      
-        legend.title=element_text(size=14),legend.position=c(0.20,0.80)) +
+        axis.text.x = element_text(size=12), 
+        axis.text.y = element_text(color = "black", size = 14),
+        legend.text = element_text(size=14),                      
+        legend.title=element_text(size=14),legend.position=c(0.80,0.40)) +
     labs(y = "Internal rate of return") + 
-   scale_color_manual(values=c("deepskyblue1", "green"), 
+   scale_color_manual(values=c("deepskyblue1", "green","red",
+                               "black"), 
                     name="",labels=c("Social","Private"))
 
 ggsave(filename = "returns_by_region_plot1.png")
