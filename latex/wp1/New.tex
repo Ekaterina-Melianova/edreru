@@ -1,0 +1,38 @@
+\documentclass{article}
+\usepackage{tabularx}
+\usepackage{enumitem}
+\newlist{tabitemize}{itemize}{1}
+\setlist[tabitemize]{label=\textbullet,leftmargin=*,topsep=0ex,parsep=0pt,
+                  after=\vspace{-\baselineskip},before=\vspace{-0.75\baselineskip}}    
+\begin{document}
+
+\begin{table}
+\centering
+\begin{tabularx}{\textwidth}{|p{15mm}|p{30mm}|X@{}|}
+\hline
+  & column 1 &  column 2 \\ \hline 
+Row 1
+&
+\begin{tabitemize}
+\item item text foo bla zoo
+\item item text foo bla zoo
+\end{tabitemize}
+&
+\begin{tabitemize}
+\item item text foo bla zoo
+\item item text foo bla zoo
+\end{tabitemize} \\ \hline
+Row 2
+&
+\begin{tabitemize}
+\item item text foo bla zoo
+\item item text foo bla zoo
+\end{tabitemize}
+&
+\begin{tabitemize}
+\item item text foo bla zoo
+\item item text foo bla zoo
+\end{tabitemize} \\ \hline
+\end{tabularx}
+\end{table}
+\end{document}

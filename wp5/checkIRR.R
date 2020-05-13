@@ -64,5 +64,5 @@ class(tempin)
 length(tempin)
 
 
-FinCal::irr(c(-7.13,tempin))
+FinCal::irr(c(0,tempin))
 

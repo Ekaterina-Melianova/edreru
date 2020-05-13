@@ -4,6 +4,7 @@ library(dplyr)
 library(tidyr)
 library(lme4)
 library(rio)
+library(ggrepel)
 
 ###### Rosstat main 2018 dataset
 wd <- 'C:/Country/Russia/Data/SEASHELL/SEABYTE/edreru/wp3'
@@ -34,7 +35,7 @@ EGE_full$mean_ege_score_2018_free_ <- ifelse(is.na(EGE_full$mean_ege_score_2018_
                                              EGE_full$mean_ege_score_2018_free)
 # Ranking by ege scores   
 EGE <- EGE_full %>% 
-  select(region_name, mean_ege_score_2018_free_)  %>% 
+  dplyr::select(region_name, mean_ege_score_2018_free_)  %>% 
   group_by(region_name) %>%
   summarise(ege_score = mean(mean_ege_score_2018_free_, na.rm = T)) 
 
@@ -54,9 +55,11 @@ RoR_1990_2015_rub <- readstata13::read.dta13('C:/Country/Russia/Data/SEASHELL/SE
 demand_vars <- paste0('chapter_', letters[c(1:4, 7:9)])
 
 # Taking last year
-RoR_15 <- RoR_1990_2015_rub %>% filter(year == 2015) %>% select (region, all_of(demand_vars)) 
+RoR_15 <- RoR_1990_2015_rub %>% filter(year == 2015) %>% 
+  dplyr::select (region, all_of(demand_vars)) 
 RoR_15$demand_sum <- rowSums(RoR_15[,demand_vars])
-RoR_15 <- RoR_15 %>% select (region, demand_sum, all_of(demand_vars))
+RoR_15 <- RoR_15 %>% 
+  dplyr::select (region, demand_sum, all_of(demand_vars))
 names(RoR_15)[which(names(RoR_15) == 'region')] <- 'RoR_names'
 
 # Merging with the main Rosstat data
@@ -65,14 +68,15 @@ Rosstat18 <- Rosstat18 %>%
 
 # Selecting only ranks
 Rosstat18 <- Rosstat18 %>%
-  select(OKATO, en_rgnames, univ_deg_share, ege_score,
+  dplyr::select(OKATO, en_rgnames, univ_deg_share, ege_score,
          demand_sum, all_of(demand_vars), edu_yrs_region, lnwage_region)
 
 # Remove duplicates
 Ranks_demand_supply <- Rosstat18[!duplicated(Rosstat18$en_rgnames),]
 
 # Reading RoREs
-RoREs <- import('RoREs_cleaned.xlsx') %>% select(en_rgnames, re_HE_all_2018, re_VE_all_2018) 
+RoREs <- import('RoREs_cleaned.xlsx') %>% 
+  dplyr::select(en_rgnames, re_HE_all_2018, re_VE_all_2018) 
 
 # Merging with demand and supply side variables
 Ranks <- RoREs %>%
@@ -91,6 +95,66 @@ Ranks <- na.omit(Ranks)
 # adding ranks
 Ranks$rank_univ <- rank(-Ranks$univ_deg_share)
 Ranks$rank_ege <- rank(-Ranks$ege_score)
+
+# Depressed regions
+depressed_regions <- c('Respublika Adygeya', 'Pskovskaya Oblast',
+                       'Altayskiy Kray', 'Kurganskaya Oblast',
+                       'Respublika Kalmykiya', 'Chuvashskaya Respublika', 
+                       'Respublika Altay', 'Respublika Karelia',
+                       'Respublika Tyva', 'Respublika Mariy El')
+
+ 
+Ranks <- Ranks %>% mutate(Dep_reg=ifelse(en_rgnames %in% depressed_regions,1,0))
+
+# get eci data from BOFIT Lyubimov 2018 
+
+eci18 <- read.csv("C:/Country/Russia/Data/SEASHELL/SEABYTE/edreru/wp3/eci18.csv")
+names(eci18)[1] <- "bofit_name"
+eci18 <- eci18 %>% transmute(bofit_name=bofit_name,
+                             ECI=ECI,en_rgnames=en_rgnames,
+                             OKATO=as.character(sprintf("%02d",OKATO))) %>%
+                 dplyr::select(en_rgnames, ECI)
+
+
+Ranks <- left_join(Ranks,eci18, by="en_rgnames")
+
+Ranks$rank_eci <- rank(-Ranks$ECI)
+  
+# get labor markt demand quantity sectors
+# source(edreru_package.R)
+# Selecting the variables of interest
+df_ <- selectFromSQL(c("J1", "AGE", "J4_1", "YEAR"))
+df <- df_[df_$AGE >= 25 & df_$AGE < 65,]
+df <- df %>% filter(!is.na(J4_1) & J4_1 !="NA" & J4_1 <99)
+options(frequency_open_output = TRUE)
+library(frequency)
+freq(df$J4_1)
+
+# I make a scatter plot of ranks by quantity and quality of supply
+
+ggplot(data=Ranks, aes(x=rank_univ,y=rank_ege, color=as.factor(Dep_reg)))+
+  geom_point() +
+  geom_text_repel(data=Ranks[Ranks$Dep_reg==1,], 
+                  aes(label=en_rgnames,color="blue"))+
+  geom_abline(intercept=0,linetype="dotted")+
+  geom_hline(yintercept=40)+
+  geom_vline(xintercept=40)+
+  xlab("Rank by University educated")+
+  ylab("Rank by mean EGE scores")+
+  scale_color_manual(values=c("black", "red","blue"))+
+  scale_x_reverse()+
+  scale_y_reverse()+
+  theme(legend.position = "none",
+        axis.text.x = element_text(color = "black", size = 14),
+        axis.text.y = element_text(color = "black", size = 14),
+        axis.title.x = element_text(color = "black", size = 14),
+        axis.title.y = element_text(color = "black", size = 14))
+
+ggsave("ranks1a.png", width = 4, height = 4,
+       units = "in")
+
+
+
 Ranks$rank_demand <- rank(-Ranks$demand_sum)
 Ranks$rank_re_HE <- rank(-Ranks$re_HE_all_2018)
 Ranks$rank_re_VE <- rank(-Ranks$re_VE_all_2018)
@@ -98,9 +162,36 @@ Ranks$rank_re_VE <- rank(-Ranks$re_VE_all_2018)
 Ranks$rank_supply <- rowMeans(Ranks[, c('rank_univ', 'rank_ege')])
 
 # Arranging
-Ranks <- Ranks %>% select(en_rgnames, OKATO, rank_supply,
-                        rank_demand, rank_re_HE, rank_re_VE)
+#Ranks <- Ranks %>% select(en_rgnames, OKATO, rank_supply,
+#                        rank_demand, rank_re_HE, rank_re_VE)
 
+
+# I make a scatter plot of ranks by quantity and quality of demand
+
+ggplot(data=Ranks, aes(x=rank_demand,y=rank_eci, color=as.factor(Dep_reg)))+
+  geom_point() +
+  geom_text_repel(data=Ranks[Ranks$Dep_reg==1,], 
+                  aes(label=en_rgnames,color="blue"))+
+  geom_abline(intercept=0,linetype="dotted")+
+  geom_hline(yintercept=40)+
+  geom_vline(xintercept=40)+
+  xlab("Rank by Quantity Demand (GRP shares)")+
+  ylab("Rank by Quality Demand (ECI)")+
+  scale_color_manual(values=c("black", "red","blue"))+
+  scale_x_reverse()+
+  scale_y_reverse()+
+  theme(legend.position = "none",
+        axis.text.x = element_text(color = "black", size = 14),
+        axis.text.y = element_text(color = "black", size = 14),
+        axis.title.x = element_text(color = "black", size = 14),
+        axis.title.y = element_text(color = "black", size = 14))
+
+ggsave("ranks1b.png", width = 4, height = 4,
+       units = "in")
+
+temp <- Ranks %>% dplyr::select(en_rgnames,rank_demand,demand_sum,rank_eci) %>%
+       arrange(desc(demand_sum))
+temp
 
 ###############################################################################################
 # Depressed regions

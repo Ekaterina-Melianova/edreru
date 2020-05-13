@@ -350,29 +350,34 @@ df_universities_areas$area_name <- df_temp$english_name
 
 setwd("C:/Country/Russia/Data/SEASHELL/SEABYTE/edreru/wp5") 
 # 1. Universities
+#median(df_universities$salary_2014)/12
+# 30521.12
 plot1 <- ggplot(df_universities, aes(reorder(specialization_type, salary_2014/12), salary_2014/12)) +
   geom_boxplot(outlier.shape = NA, fill="deepskyblue2") + 
+  geom_hline(yintercept = 30521,linetype="dashed",color="blue",size=1)+
   coord_flip() +
-  ggtitle("Salary of Univ Graduates in 2014 \n by Specialization") + 
-  labs(y="Average salary", x = "Specialization of university") + 
+  ggtitle("University Graduates") + 
+  labs(y="Median monthly salary", x = "Specialization of university") + 
   theme_light(base_size = 18) + 
   theme(plot.title = element_text(size = 18), 
-        axis.text = element_text(size=18)) + 
-  scale_y_continuous(limits=c(20000, 80000))
-
+        axis.text = element_text(size=14)) + 
+  scale_y_continuous(limits=c(0, 50000),breaks = c(10000,30521,40000))
+plot1
 ggsave(filename = "sal_spnu.png")
 
+median(df_colleges$graduate_salary_2014)
 
 # 2. Colleges
 plot2 <- ggplot(df_colleges, aes(reorder(speciality_type, graduate_salary_2014/12), graduate_salary_2014/12)) +
   geom_boxplot(outlier.shape = NA, fill="lightcoral") + 
-   coord_flip() +
-  ggtitle("Salary of College Graduates in 2014 \n  by Specialization") +
-  labs(y="Average salary", x = "Specialization of college") + 
+  geom_hline(yintercept = 23273,linetype="dashed",color="blue",size=1)+
+  coord_flip() +
+  ggtitle("College Graduates") +
+  labs(y="Median monthly salary", x = "Specialization of college") + 
   theme_light(base_size = 18) +
   theme(plot.title = element_text(size = 18), 
-        axis.text = element_text(size=18)) + 
-  scale_y_continuous(limits=c(20000, 80000)) 
+        axis.text = element_text(size=14)) + 
+  scale_y_continuous(limits=c(0, 50000),breaks = c(10000,23723,40000)) 
 
 ggsave(filename = "sal_spnc.png")
 
@@ -384,6 +389,7 @@ grid.arrange(plot2, plot1, ncol=2)
 
 ```{r Plot 2. Salary of university graduates by study area, echo=FALSE, warning=FALSE, fig.width = 14, fig.height = 14}
 
+setwd("C:/Country/Russia/Data/SEASHELL/SEABYTE/edreru/wp5")
 
 # Mean salary by areas in 2014
 area_salary_2014 <- df_universities_areas %>%
@@ -417,9 +423,32 @@ ggplot(area_salary_full, aes(x=reorder(area_name, salary_diff), y=mean_salary, c
                      yend = mean_salary_2016, 
                      xend = area_name), 
                color = "black") +
-  coord_flip() + theme_light() + theme(plot.title = element_text(size = 22, hjust = 0.9), axis.text = element_text(size=14), legend.text = element_text(size = 14), legend.title=element_text(size=14)) +
-  labs(x="Study area", y = "Average salary") + 
-  ggtitle("Salary of University Graduates by Study Area in 2014 and 2016")
+  coord_flip() + theme_light() + 
+  theme(plot.title = element_text(size = 22, hjust = 0.9), 
+        axis.text.x = element_text(color="black",size=18),
+        axis.text.y = element_text(color="black",size=18),
+        axis.title.y = element_blank(),
+        legend.text = element_text(size = 18),
+        legend.title=element_text(size=18),
+        legend.position=c(0.80,0.20)) +
+             labs(y = "Average salary") 
+
+ggsave(filename = "sal_area.png")
+#+ 
+#  ggtitle("Salary of University Graduates by Study Area in 2014 and #2016")
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 ```
 

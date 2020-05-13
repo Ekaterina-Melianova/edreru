@@ -956,6 +956,7 @@ Below you can see an estimate of social and private IRR of university graduates 
 
 ```{r Plot 1. Mean Social and Private Returns by regions, fig.height=14, fig.width=10, echo=FALSE}
 # For color of depressed regions
+setwd("C:/Country/Russia/Data/SEASHELL/SEABYTE/edreru/wp5")
 
 priority_regions <- c('Respublika Adygeya', 'Pskovskaya Oblast',
                        'Altayskiy Kray', 'Kurganskaya Oblast',
@@ -994,6 +995,7 @@ The next graph demonstrates the social and private IRR of colleges. As you may n
 
 ```{r Plot 2. Mean Social and Private Returns by regions, fig.height=14, fig.width=10, echo=FALSE}
 
+setwd("C:/Country/Russia/Data/SEASHELL/SEABYTE/edreru/wp5")
 # Plot the salaries by the areas
 ggplot(df_region_returns_college_full, aes(x=reorder(en_rgnames, returns), y=returns, color=returns_type)) +
   geom_point(size=3) +
@@ -1045,6 +1047,7 @@ ggsave(filename = "returns_by_region_scatterplot.png")
 ```
 
 ```{r Plot 4.1. Scatterplot. Social-Private gap with income gap HE, echo=FALSE, fig.height=8, fig.width=8}
+setwd("C:/Country/Russia/Data/SEASHELL/SEABYTE/edreru/wp5")
 
 # Load dataset
 df_russia_economic <- openxlsx::read.xlsx("ICSID Russia Regions economic database v121.xlsx")
@@ -1064,6 +1067,7 @@ plot1 <- ggplot(df_region_returns_university, aes(x=reg_minckfd, y=diff_returns)
   ggtitle("Social-Private gap and Income gap, Higher Education")
 
 plot1
+ggsave("igap_u.png")
 
 ```
 

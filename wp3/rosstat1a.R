@@ -112,8 +112,8 @@ df$exper <- df$H01_02 - df$edu_yrs - 6
 df$exper <- ifelse(df$exper < 0, 0, df$exper)
 summary(df$exper)
 
-#df_18 <- df[df$YEAR == 2018,]
-#saveRDS(df_18, 'Rosstat18.rds')
+df_18 <- df[df$YEAR == 2018,]
+saveRDS(df_18, 'Rosstat18.rds')
 
 ###########################################################################################################
 ########################################### Regression ####################################################
@@ -631,6 +631,7 @@ M18_7 <- lmer(log(wage) ~ edu_4 + scale(exper) + I(scale(exper)^2) + female +
 anova(M18_2, M18_7) # grp is worth adding
 summary(M18_7)
 
+
 # Cross-level interaction
 M18_8 <- lmer(log(wage) ~ scale(exper) + I(scale(exper)^2) + female + 
                  scale(grp)*edu_4 + (1 + edu_4|en_rgnames),
@@ -772,6 +773,32 @@ M18_17 <- lmer(log(wage) ~ scale(exper) + I(scale(exper)^2) + female +
 
 anova(M18_16, M18_17) # nat_res does not work as a moderator
 summary(M18_17)
+
+#################
+# EGE
+M18_18 <- lmer(log(wage) ~ edu_4 + scale(exper) + I(scale(exper)^2) + female + 
+                 scale(s1z) + (1 + edu_4|en_rgnames),
+               data = df[df$YEAR == 2018,],
+               weights = df[df$YEAR == 2018, "KVZV"],
+               control=lmerControl(optimizer="bobyqa"))
+
+anova(M18_2, M18_18) # Cannot test because EGE available only for 67 regions
+summary(M18_18)
+performance(M18_18)
+
+## combining altogether
+M18_19 <- lmer(log(wage) ~ edu_4 + scale(exper) + I(scale(exper)^2) + female + 
+                 scale(cov_VE) + scale(cov_VE)*edu_4 + scale(grp)+
+                 scale(urban)+ scale(unemploy)+scale(nat_res)+
+                  (1 + edu_4|en_rgnames),
+               data = df[df$YEAR == 2018,],
+               weights = df[df$YEAR == 2018, "KVZV"],
+               control=lmerControl(optimizer="bobyqa"))
+
+summary(M18_19)
+performance(M18_19)
+
+
 
 #################
 # Just for a rough look 

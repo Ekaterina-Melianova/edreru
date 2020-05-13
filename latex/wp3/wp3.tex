@@ -23,7 +23,7 @@
 %For captions - even though template has complex caption commands
 \usepackage[labelfont=bf,justification=centering]{caption}
 \usepackage[font=small,labelfont=bf]{subcaption}
-\captionsetup[sub]{font=tiny,labelfont={bf,sf}}
+\captionsetup[sub]{font=small,labelfont={bf,sf}}
 
 %% For figures numbered by section
 \usepackage{chngcntr}
@@ -59,6 +59,13 @@
 
 \usepackage{booktabs} % for vertically partitioned table
 
+% for  table with itemized list
+\usepackage{tabularx}
+\usepackage{enumitem}
+\newlist{tabitemize}{itemize}{1}
+\setlist[tabitemize]{label=\textbullet,leftmargin=*,topsep=0ex,parsep=0pt,
+                  after=\vspace{-\baselineskip},before=\vspace{-0.75\baselineskip}}  
+
 
 
 %%%%%%%%#################################################################################%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -72,7 +79,7 @@ P170978}
 \title{Returns to Education in the Russian Federation: Variation across regions and implications for policy development in priority regions}
 
 % List acknowledgements here.
-\fundinginfo{Thanks are due to the Higher School of Economics, Moscow for making the Russian Longitudinal Monitoring Study (RLMS) Household data readily available for researchers around the world. The code used for this paper is made freely available for all researchers at \url{https://bitbucket.org/zagamog/edreru/src/master/}}
+\fundinginfo{Thanks are due to Rosstat for making the anonymized Statistical Survey of Income and Participation in Social Programs micro-data readily available for researchers around the world. The code used for this paper is made freely available for all researchers at \url{https://bitbucket.org/zagamog/edreru/src/master/}}
 
 % Include full author names and degrees, when required by the journal.
 % Use the \authfn to add symbols for additional footnotes and present addresses, if any. Usually start with 1 for notes about author contributions; then continuing with 2 etc if any author has a different present address.
@@ -105,10 +112,11 @@ P170978}
 \maketitle
 
 \begin{abstract}
-This is a generic template designed for use by multiple journals, which includes several options for customization. Please consult the author guidelines for the journal to which you are submitting in order to confirm that your manuscript will comply with the journal's requirements. Please replace this text with your abstract.
+This paper is the third in a series of working papers investigating the returns to education in the Russian Federation. This paper uses regionally representative household survey data to determine the rates of return to education in different regions. Returns show a wide dispersion together with the labor market context. With a view to support development of specially selected depressed regions, the paper provides a set of policy conclusions to improve the human capital in the regions. This paper will support policy directed towards reducing development disparities between Russian regions.
 
 % Please include a maximum of seven keywords
-\keywords{keyword 1, \emph{keyword 2}, keyword 3, keyword 4, keyword 5, keyword 6, keyword 7}
+\keywords{Returns to Education, Russian Federation, Regional Analysis \emph{JEL Codes: I26, 
+I28, J240, R110}}
 \end{abstract}
 
 
@@ -119,16 +127,15 @@ The diversity of economic conditions across Russian regions suggests fruitful po
 
 An important finding from the analysis of the  EPI: the four factors of urbanization; the presence of high-tech industries; advanced human capital; and connectivity (access to markets) \textendash  explain 60\% of the variation in EPI. For the EPI analysis, the measure of advanced human capital was the regional percentage of population with a higher education degree. While that report examined regional development with an overview of all sectors, and recommended that regional development can be spurred through investment in human capital, this paper seeks to derive deeper insights regarding human capital. It seeks to answer three questions - what is the variation of the returns to education across regions in Russia, what are the regional variables that may be causing the regional variation (as determined through a random effects regression model) and what are the policy implications of this variation? 
 
-
-Paragraph about structure of this paper \lipsum[1]
+After concluding this introductory section with a review of available regional estimates of the returns to education in the Russian Federation, we present our own estimates of the regional returns to education. We compute regional returns to education as a combination of a fixed coefficient and random coefficients, using the levels of education. The returns can also be termed as the wage premium to the respective levels of education. The final section of the paper presents the returns to education in context of regional conditions related to the labor market supply and demand. In light of the government strategy to target depressed regions, we suggest that human capital development may benefit from an examination of the differential returns to education by region.
 
 \subsection{Previous estimates of regional returns for Russia}
 
 Until quite recently, the only tried and tested set of available survey data that contained adequate information to calculate the rate of returns to education was the Russian Longitudinal Monitoring Survey (RLMS), implemented by the Higher School of Economics (HSE). The RLMS is a nationally representative household survey, but the survey size and design is too small to include regionally representative samples. \cite{cheidvasser2007} had used the RLMS to derive rates of return at a level that roughly corresponded to Russia's eight federal districts. The authors had examine data from the 1995 to 1998 rounds of the RLMS. In this period of time, of substantive economic and social upheaval following the collapse of the Soviet Union in 1991, the returns of the education were low overall, and they were relatively even lower for metropolitan Moscow and St. Petersburg. 
 
-\cite{baeva2013} examined returns to education for regions in the Siberian Federal district. Using data from the enterprise based Survey of Wages by Occupation by Rosstat for the years 2007, 2009 and 2011, she found that the premium to Higher education was 61\% for the Russian Federation and 56\% for the Siberian Federal District. At the regional level, the premium ranged from 40\% for Krasnoyarsk to 72\% for Novosibirsk. The author also presents details about considerable variation in the returns to vocational education and a closer examination of returns for the Irkutsk region. \cite{oshchepkov2018} also utilized data from the Survey of Wages by Occupation by Rosstat, for the years 2005, 2007, 2009, 2011, 2013 and 2015. Only returns to Higher education are computed in this paper, and a typical specifications results in estimates of a wage premium for Higher education for all of the Russian Federation as 81\%. The dispersion indicates a range from 54\% return for the Republic of Modovia to 127\% for the Tuva Republic. A very useful practice in this paper is the correct interpretation of coefficients on dummy variables in semi-logarithmic regressions that was recommended by \cite{halvorsen1980}. The author presents the regional estimates of returns to education using ordinary least squares (OLS) regression, with a modifed Mincerian specification that includes gender, public or private sector and broad classification of industry. 
+\cite{baeva2013} examined returns to education for regions in the Siberian Federal district. Using data from the enterprise based Survey of Wages by Occupation by Rosstat for the years 2007, 2009 and 2011, she found that the premium to Higher education was 61\% for the Russian Federation and 56\% for the Siberian Federal District. At the regional level, the premium ranged from 40\% for Krasnoyarsk to 72\% for Novosibirsk. The author also presents details about considerable variation in the returns to vocational education and a closer examination of returns for the Irkutsk region. \cite{oshchepkov2018} also utilized data from the Survey of Wages by Occupation by Rosstat, for the years 2005, 2007, 2009, 2011, 2013 and 2015. Only returns to Higher education are computed in this paper, and a typical specifications results in estimates of a wage premium for Higher education for all of the Russian Federation as 81\%. The dispersion indicates a range from 54\% return for the Republic of Modovia to 127\% for the Tuva Republic. A very useful practice in this paper is the correct interpretation of coefficients on dummy variables in semi-logarithmic regressions that was recommended by \cite{halvorsen1980}. The author presents the regional estimates of returns to education using ordinary least squares (OLS) regression, with a modified Mincerian specification that includes gender, public or private sector and broad classification of industry. 
 
-An interesting aspect of \cite{oshchepkov2018} is the use of data from all five rounds of the occupational wage survey for 79 of the Russian regions, that results in (79 x 6) or 474 coefficient estimates from which wage premium style returns (i.e., not dividing by the years of higher education) can be computed. The author reports a second stage regression, using the computed coefficient estimates as dependent variables and regressing them on a set of region level variables, with a specification that includes fixed effects for each region and each year. If there are unobserved regional or temporal fixed effects that are correlated with the error term in this second stage regression, the specification is said to result in valid estimates of effects of regional characteristics. Treating regression coefficients as dependent variables could be perilous if there is a systematic time-varying relationship between regional returns to education and the regional characteristics. From a policy analytic perspective, one hopes this would be the case, as policy makers can seek to influence the returns to education. In spite of the possible methodological issues, the paper provides an interesting perspective to the topic of returns to education in the Russian Federation. The literature in this field is likely to grow as more regionally representative household or enterprise data sets become available for the Russian Federation. 
+An interesting aspect of \cite{oshchepkov2018} is the use of data from all five rounds of the occupational wage survey for 79 of the Russian regions, that results in (79 x 6) or 474 coefficient estimates from which wage premium style returns (i.e., not dividing by the years of higher education) can be computed. The author reports a second stage regression, using the computed coefficient estimates as dependent variables and regressing them on a set of region level variables, with a specification that includes fixed effects for each region and each year. If there are unobserved regional or temporal fixed effects that are correlated with the error term in this second stage regression, the specification is said to result in valid estimates of effects of regional characteristics. Treating regression coefficients as dependent variables could be perilous if there is a systematic time-varying relationship between regional returns to education and the regional characteristics. From a policy analytic perspective, it is of particular interest to trace the time- and region- varying effects as policy makers can use such effects to proactively influence the returns to education. In spite of the possible methodological issues, the paper provides an interesting perspective to the topic of returns to education in the Russian Federation. The literature in this field is likely to grow as more regionally representative household or enterprise data sets become available for the Russian Federation. 
 
 
 \subsection{Data}
@@ -151,7 +158,7 @@ b_{ij} = \gamma_{i0} \quad for \quad i \neq 0   &&
 \end{flalign}
  
 \noindent
-where an individual $i$ is nested withing a region $j$, $Log$(Wage) is the logarithm of monthly wage, $Educ$ stands for highest attained level of education, $Exp$ and $Exp^2$ reflect the years of working experience and its quadratic term respectively, $Gender$ is a dummy variable for gender, $Z$ is an $n\times i$ matrix of regional characteristics, $\epsilon$ and $u_{00}$, $u_{10}$ are the first- and second-level errors respectively.
+where an individual $i$ is nested within a region $j$, $Log$(Wage) is the logarithm of monthly wage, $Educ$ stands for highest attained level of education, $Exp$ and $Exp^2$ reflect the years of working experience and its quadratic term respectively, $Gender$ is a dummy variable for gender, $Z$ is an $n\times i$ matrix of regional characteristics, $\epsilon$ and $u_{00}$, $u_{10}$ are the first- and second-level errors respectively.
 
 The random effects models were estimated using restricted maximum likelihood (REML). Individual Wald tests and likelihood ratio tests were exploited to evaluate the significance of fixed and random effects, respectively. Weights were used in the modeling to ensure the representativeness of the sample across Russian regions (the weighting variable was divided by 1000 to allow the convergence of the multilevel models). 
 
@@ -162,7 +169,7 @@ The outcome to be investigated is the logarithm of monthly monetary remuneration
 Education, experience, and gender are the first-level variables as in an OLS equation. We then computed the intra-class correlation coefficient (ICC) on a base model of the logarithm of earnings  to examine the percentage variance of earnings explained due to variation across regions. In the base model with covariates, we find an ICC value of 0.20, which is high enough to justify modeling regional random effects. We then compare the base model with a model including Education as a random regional effect, and used Wald tests, likelihood ratio tests and other information tests (AIC, BIC) to determine which model provides a better fit. These criteria point to the inclusion of Education as a random regional effect in addition to the fixed effect of Education. 
 
 
-Next we tested a set of random regional effects. We checked for the influence of regional level \textit{educational quantity} and \textit{educational quality} measures to explain the variation in education payoffs across Russian regions, and also included a set of variables to represent labor market conditions. To measure educational quantity or access, we used the number of students enrolled in vocational education per 10,000 residents ($voc\_edc$) and the number of students enrolled in higher education per 10,000 residents ($high\_edc$). As a measure of educational quality, standard deviations from the national mean of the Russian school-leaving and university entrance examination, the EGE, were incorporated. We also added variables regarding economic development and the labor market - these are the gross regional product, the level of urbanization, the regional unemployment level, the share of employment in jobs related to natural resources exploitation and the ratio of recent graduates who migrated to other states compared to the graduates who stayed in the same region. 
+Next we tested a set of fixed regional effects. We checked for the influence of regional level \textit{educational quantity} and \textit{educational quality} measures to explain the variation in education payoffs across Russian regions, and also included a set of variables to represent labor market conditions. To measure educational quantity or access, we used the number of students enrolled in vocational education per 10,000 residents ($voc\_edc$) and the number of students enrolled in higher education per 10,000 residents ($high\_edc$). As a measure of educational quality, standard deviations from the national mean of the Russian school-leaving and university entrance examination, the EGE, were incorporated. We also added variables regarding economic development and the labor market - these are the gross regional product, the level of urbanization, the regional unemployment level, the share of employment in jobs related to natural resources exploitation and the ratio of recent graduates who migrated to other states compared to the graduates who stayed in the same region. 
 
 
 \vspace{-0.2in}
@@ -194,12 +201,11 @@ Appendix Table \ref{tab:4.1} demonstrates descriptive statistics of the key vari
 
 \subsection{Estimation Results of Regional Analysis}
 
-Of the eight variables tested for random regional effects, it turned out that six of the eight variables passed the test - the only variables that did not meet the criteria was the migration ratio and the standardized EGE score variable. After adding these six random effects to the specification, the next step was to check for interactions of the second level variables with education levels. The investigation revealed that with one exception, none of the second-level characteristics have a statistically signficant interaction with education as a random effect. The only variable that had an independent random effect at the regional level as well as a statistically significant regional interaction with education was $voc\_edc$, the regional coverage of vocational education. Substantively, it was found that growth in the number of students covered by vocational programs leads to higher schooling premiums concerning both vocational and university education. 
+Of the eight variables tested for regional effects, it turned out that six of the eight variables passed the test - the only variables that did not meet the criteria was the migration ratio and the standardized EGE score variable. After adding these six regional fixed effects to the specification, the next step was to check for interactions of the second level variables with education levels. The investigation revealed that with one exception, none of the second-level characteristics have a statistically significant interaction with education as a random effect. The only variable that had an independent random effect at the regional level as well as a statistically significant regional interaction with education was $voc\_edc$, the regional coverage of vocational education. Substantively, it was found that growth in the number of students covered by vocational programs leads to higher schooling premiums concerning both vocational and university education. However, the independent second level effect is negative and four time larger in magnitude, so the finding about the interaction effect does not seem to be significant from a policy analytical viewpoint.  The results from the random effects regression and the mean values of the random effects are presented in Appendix Table \ref{tab:4.2}. 
 
-The results from the final specification and the mean values of the random effects are presented in Appendix Table \ref{tab:4.1}. From this table, we focus on the finding regarding vocational education. In addition to the independent random effect coefficient value of -0.14 which is statistically significant, we find the positive coefficient of 0.05 and 0.08 for coverage of vocational education and coverage of higher education respectively.  Particularly, sufficiently high vocational degree coverage (when this variable is equal to 1 standard deviation above the national mean) corresponds to the average return rate of 35.8\%. Medium vocational degree coverage (when the coverage is at the national mean) corresponds to the average return rate of 30.6\%. Low vocational degree coverage (when the coverage of vocational education is 1 standard deviation lower than the national mean) corresponds to the average return rate of 25.5\%. 
+The addition of the fixed effects for education together with the random effects described in Appendix Table \ref{tab:4.2} leads to an estimation of the marginal effect for education for each region. We utilize the correction for dummy variables as recommended by \cite{halvorsen1980}. The results are presented in 
+Figure \ref{fig:4.1}.
 
-
-We then explored regional diversity in education payoffs in Russia by extracting region-specific estimates of rates of returns to schooling and their respective 95\% confidence intervals, presenting the combinations of the random effects mentioned earlier. (see Figure \ref{fig:4.1}). Red color on the picture highlights region called by the Russian Federal Government as priority regions that were ranked lowest regarding poverty, income, and investment climate. A visual inspection of this graph illustrates that premiums to education in Russian regions are rather heterogeneous, varying from 5.2\% (Chechenskaya Respublika) to 58.2\% (Tyumenskaya Oblast) for university level and from -1\% (Chechenskaya Respublika) to 29.6\% (Tyumenskaya Oblast) for vocational level.
 
 \begin{figure}[htp]
 	\begin{minipage}[b]{.5\linewidth}
@@ -221,25 +227,115 @@ We then explored regional diversity in education payoffs in Russia by extracting
 \end{figure}
 
 
-
 \section{Categorization of Priority Regions} 
 
-\lipsum[1]
+The Presidential Executive Order on National Goals and Strategic Objectives of the Russian Federation (2018-2024) defined in December 2018 a set of 13 National Projects and 9 National Development Goals with a budget of nearly 26 trillion rubles for a six-year period. This substantive amount is the equivalent of 17\% of GDP every year. The national goals include cutting poverty by half by 2024, to improve housing conditions for 5 million people annually and to improve life expectancy. Given Russia's size and uneven geographic and economic conditions, the success of the strategic goal depends on the implementation performance at the regional and municipal levels. A sub-national focus will enhance the probability of success of the three pillars of the country's development strategy: growth, the environment and human capital. 
 
-\subsection{Quantity and Quality of Labor Supply}
+The Federal Government identified ten poor regions as strategic priorities in Russia. These are the lowest ranking regions according to indicators of regional income, poverty levels, unemployment rates and investment climate: Adygea, Republic (Maykop), Pskov Oblast, Altai Krai (Barnaul), Kurgan Oblast, Kalmykia, Republic, Chuvashia, Republic, Altai, Republic, Karelia, Republic, Tyva, Republic, and Mary El, Republic. The Federal Government is working on a strategy for inclusive growth and job creation in these regions. As Human Capital is expected to be an important element of the development strategy for these regions, it will be useful to examine the variation in the rates of return to education in these ten regions. Accordingly, in Figure \ref{fig:4.1}, the names of nine of the ten regions for which data was available are highlighted in red color.  It should be recalled that these returns are not simply the OLS returns, but are calculated after aggregating the fixed and random effects taking account of regional characteristics and hence are expected to be more accurate than OLS results. The 95\% confidence intervals are also presented in the figure. The priority regions are dispersed across the distribution of the rates of return to education both for vocational and higher education. Premiums to education range from 10.1 \% (Karelia Republic) to 38.2\% (Altai Republic) for university level and from 10.4\% to 20.6\% for vocational level for the same two regions. The returns for vocational and higher education are roughly moving in step, with the exception of higher returns for higher education for Kurgansk Oblast and the Tuva Republic. 
 
+\subsection{Quantity and Quality of Skilled Labor Supply}
 
-\lipsum[2]
+In order to better place policy recommendations for regions in context of their particular situation, we devised an algorithm or heuristic to classify regions according to certain variables of interest. We identified a set of variables that capture the quantity and quality of skilled labor supply and the quantity and quality of skilled labor demand. For skilled labor supply quantity, we utilized the  proportion of the labor force with a higher education degree and for skilled labor supply quality we utilized the mean university entrance exam (EGE) score for the region. Both of these are proxy variables for underlying constructs. In order to have a reasonable comparison across dimensions, the variables were standardized. In the case of the EGE score, we standardized the score to 500 for the mean for all of the Russian Federation and 100 standard deviation. For all other variables we use a mean 0 and standard deviation of 1. The plot of regions according to the two dimensions of labor supply quantity and quality is presented in Panel (a) of Figure \ref{fig:4.2}. Four regions are outliers and are not seen in the graph - St. Petersburg and Moscow in Quadrant I  and Ingushetiya Republic and Karachayevo-Cherkessiya in Quadrant IV. The graph also presents the numbers of regions in each of the quadrants. Quadrant membership, or tags from quadrants is the central piece of our classification of regions.
 
 \subsection{Quantity and Quality of Labor Demand}
 
-\lipsum[3]
+To match the classification of regions by quantity and quality of labor supply, we also carry out a similar classification for labor demand. For the quantity dimension of labor demand, we use the total share of set of specific industries in the regional GRP from Rosstat (latest available figures). We include the industries that are likely to contribute most in terms of labor force demand, excluding the oil and gas industry and excluding the mostly public sector education and health sectors. The objective is to arrive at a qualitative grouping of regions, but future research can also test sensitivity of the classification to alternative choices of sectors. The sectors chosen for this purpose were: agriculture, hunting, forestry, fishery and fish breeding, manufacturing, wholesale, retail trade and repair services, hotels and restaurants, transport and communications. The percentage contribution to GDP for these sectors by region ranged from 35\% (Tuva Republic) to 81\% (Khanty-Mansisk). 
 
-\subsection{Bringing Demand and Supply rankings together}
+As a measure of quality of labor demand we utilize an indicator of product complexity computed by \cite{lyubimov2018}. This paper is based on a methodology that was initially proposed and implemented by the economists Ricardo Hausmann and C\’{e}esar Hidalgo to capture the productive potential of an economy on the basis of the diversity of its products and exports \parencite{hausmann2011, hausmann2014}. \cite{lyubimov2018} develop an ``Economic Complexity Index'' (ECI) utilizing production as well as export data. It is possible to explain intuitively the conceptualization of the complexity index on the basis of product diversity and the export basket. When we compare less developed economies with more developed ones, we see that more developed economies are able to manufacture a more diverse range of products because they have stronger production networks. Also, given the competitive international marketplace, the quality of products can be gauged by the prevalence of that product in the mix of traded goods. This method takes care of two problems - if a country has high exports of commodities, example from natural resource extraction, it does not score high on diversity; and if a country does manufacture a diverse range of goods, but these are not internationally competitive, it would also get a low score. \cite{lyubimov2018} extend the logic to regional measures of complexity. As human capital quality is closely linked to the complexity of products, the ECI is a very useful variable for purposes of classification of regions. The position of regions along the two standardized dimensions is shown in Panel (b) of Figure \ref{fig:4.2}.
 
-\lipsum[4]
+
+\begin{figure}[htbp!]
+	\begin{minipage}[b]{.5\linewidth}
+		\centering
+		#\hspace*{-0.2in}
+		\includegraphics[width=175pt]{ranks1a.png}
+		% plot 1
+		\subcaption{\large{Labor Supply}}
+	\end{minipage}
+	\hfill
+	\begin{minipage}[b]{.5\linewidth}
+		\centering
+		#\hspace*{-0.2in}
+		\includegraphics[width=175pt]{ranks1b.png}
+		% plot 2
+		\subcaption{\large{Labor Demand}}
+	\end{minipage}
+	\caption{Ranking of Regions on Quantity and Quality dimensions}\label{fig:4.2}
+\end{figure}
+
+
+\subsection{Bringing Demand and Supply classification together}
+
+The purpose of classifying regions according to proximate measures of labor demand and labor supply is to situate the variation in regional returns to education in context. We seek to combine the quadrant classification displayed in Figure \ref{fig:4.2} with the pattern regarding returns to education. In order to do so, we compare a region's position in the demand panel on the left hand side and the supply panel on the right hand side. If a region is better placed on the demand dimension than it is with regard to the supply dimension, we term it as demand dominated; and vice versa. With four quadrants for each of the classifications, there are 4 times 4 or 16 categories that need to be simplified into 2 groups (supply or demand dominated). The decision is straightforward when a region is high on both quality and quantity of demand parameters (Quadrant I in Panel (a)) or low on both quality and quantity of supply parameters (Quadrant IV in Panel (b)). In case of ties, for 28 of the 80 regions with available data, we use the quality dimension to break ties.
+
+We also generate a two-fold classification of the returns to education, using the classification of regions above and below the median for both returns to higher education and returns to vocational education for each region, presented in Figure \ref{fig:1.1}. When reducing from four dimensions to two, we use the returns to higher education to break ties. The result of this heuristic is a combined table that examines the returns to education in the context of labor supply or demand dominance. The classification is presented in \ref{fig:3.1} for the 80 regions for which data was available, with the priority regions highlighted using red color for the region names. Even though the priority regions are economically disadvantaged, it is very useful to note how they are spread across the four cell of Figure \ref{fig:3.1}. Policy analysis to aid development of strategies for the regions will benefit from the kind of analysis presented in this paper and even more fine-tuned analysis in the future for devising policies for specific regions. 
+
+\vspace{-0.2in}
+
+\begin{center}
+	\begin{figure}[htbp!]
+\begin{minipage}[b]{1\linewidth}
+			\centering
+			\hspace*{-0.3in}
+			\includegraphics[width=6in]{ranks2a.png}
+			% plot 1
+		\end{minipage}
+			\caption{Variation of Education Returns and Regional Labor Market Context}\label{fig:3.1}
+	\end{figure}
+\end{center}
+
+\vspace{-2em}
+
 
 \section{Policy Recommendations for Priority Regions} 
+
+Returns to education tend to fall with level of economic development when comparing across countries \parencite{Psacharopoulos_Patrinos2018}. When examining the case of differential returns within the Russian Federation, we do find that St. Petersburg and Moscow city figure in the ranks of low returns. However, as studied by \cite{lyubimov2018}, the more well-off regions in the Russian Federation as well as the no so well-off regions are diverse in the make-up of their productive networks. We attempt to exploit this diversity to come up with tailored policy recommendations for regions. These are preliminary and demonstrative recommendations for groups of regions. Further analysis would need to be carried out for a specific region as the grouping used here is quite wide. For sake of brevity the analysis presented here combines the findings regarding returns to higher education and returns to vocational education, but it would be beneficial to separate them for a more granular view. 
+
+The Table \ref{tab:4.0} provides an indicative list of policies that would be useful on the basis of an examination of the returns to education and the context of a region. Higher returns in general indicate the scope for greater investment in the supply or quantity of education as more people would be attracted to obtain higher levels of education. Lower returns to education indicate a scope for increased investment in the quality of education provision, and making better industry-education connections in terms of skills provided. When labor supply conditions are relatively good and labor demand conditions are lagging from other regions, it is an indication towards job creation policies, through innovation and entrepreneurship. When labor demand conditions are dominant, it would be an indication for better matching between jobs and skills, innovation to enhance labor productivity and diversify educational offerings. Other things constant, one would expect returns to be high when labor demand conditions are dominant and competition between employers drive up wages. However, as other things change with regional diversity, we find cases where labor supply is dominant at the same time as returns are high. With better availability of data at the regional level in the future, it would be feasible to come up with better targeted policy decision making.
+
+
+\begin{table}[htbp!]
+\centering
+\renewcommand{\arraystretch}{1.5}
+\setlength{\tabcolsep}{0.5em} % for the horizontal padding
+	\caption{Policies fitting Regional Context}
+		\label{tab:4.0}\\
+\begin{tabularx}{\textwidth}{|p{20mm}|X@{}|X@{}|}
+\hline
+  & \textbf{High Returns to Education} & \textbf{Low Returns to Education} \\ \hline 
+\textbf{Labor Demand dominates Labor Supply}
+&
+\begin{tabitemize}
+\item Improved career guidance for high school graduates
+\item Policies to encourage deeper teacher professional development in general and university education
+\item Investments and policies on the industrial side – private sector firm formation; diversification or cluster specialization etc. 
+
+\end{tabitemize}
+&
+\begin{tabitemize}
+\item Policies to improve quality of professional colleges, higher investment in World Skills
+\item Deepen supply of extra-curricular activities for better soft-skills
+\item Investments in general education and policies to improve quality of provision of general education so students come out with skills needed by the market
+
+\end{tabitemize} \\ \hline
+\textbf{Labor Supply dominates Labor Demand}
+&
+\begin{tabitemize}
+\item Policies to develop entrepreneurship and encourage job creation, including innovation policies
+\item Policies to develop problem solving skills and financial literacy, including strengthening extra-curricular education
+\item Investments in university quality, e.g. internationalization of universities
+\end{tabitemize}
+&
+\begin{tabitemize}
+\item Policies to integrate industries to become part of global value chains, support specific industry clusters 
+\item Policies for dissemination and connectivity of educational systems like university  consortiums
+\item Investments in industrial development, identification of economic activities for which region may have comparative advantage
+\end{tabitemize} \\ \hline
+\end{tabularx}
+\end{table}
+
+
+\newpage
 
 \printbibliography
 
@@ -409,8 +505,5 @@ Regions & N & mean & sd & mean & sd & SE & VE & HE & Males & Females  \\
 	\end{tabular} 
 \end{table} 
 
-
-\newpage
-\printbibliography
 
 \end{document}

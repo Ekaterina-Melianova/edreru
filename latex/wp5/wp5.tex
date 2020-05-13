@@ -68,6 +68,8 @@
 
 %\usepackage{makecell}  % for cell alignment
 
+\usepackage[export]{adjustbox} % for figure in frame
+
 %%%%%%%%#################################################################################%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 % Update article type if known
@@ -112,20 +114,43 @@ P170978}
 \maketitle
 
 \begin{abstract}
-This paper is the fourth and final one in a series of working papers investigating the returns to education in the Russian Federation. This paper uses institution level information about graduate earnings and estimates of social and private costs to obtain social and private returns to education using an internal rates of return calculation. As data has been collected so far only on earnings trajectories for four years, these are not lifetime returns, but they are adequate to provide relative estimates. Tomsk Industrial University is the leading university in the Russian Federation by this measure, and 
+This paper is the fourth and final one in a series of working papers investigating the returns to education in the Russian Federation. This paper uses institution level information about graduate earnings and estimates of social and private costs to obtain social and private returns to education using an internal rates of return calculation. As data has been collected so far only on earnings trajectories for three years following graduation, these are not lifetime returns, but they are adequate to provide relative estimates. Samara Energy College \url{https://sam-ek.ru/} with private returns of 35\% and social returns of 13\%. V. R. Fillipova Buryat State Agricultural Academy in Ulan Ude \url{http://www.bgsha.ru/} leads the universities list with a private returns of 9\% and social return of 7\%. Even though the results presented here are of a preliminary nature, the data length and model sophistication can only grow in the future.The resulting information on returns to investment will serve government stakeholders as well as individual students.  
 
 % Please include a maximum of seven keywords
 \keywords{Returns to Education, Russian Federation, Universities, Colleges \emph{JEL Codes: I23, I26}}
 \end{abstract}
 
+\section{Data Sources}
 
-\section{Estimating Regional Returns to Education}
+This paper provides a practical demonstration of the efficacy of open data and the possibility of combining open data from different sources to provide valuable information. The data pertain to the return to investment in a college or university education, one of the most important decisions made by an individual, and collectively of critical importance to Russia's future growth and social prosperity. Two different open data sources are used for this paper. The data are not officially linked and one of the technically challenging but tedious tasks performed by the authors of this paper was the merging of two data sets - one from the Ministry of Education, and the other from the Minisry of Finance. This paper provides a brief overview of the datasets in this section, followed by two sections of substantive results. The next section combines earnings data from Rosstat's Survey of Income and Social Programs with cost data from the Ministry of Finance to provide regional estimates of social and private returns to education. To the best of our knowledge, social returns have not been published before for the Russian Federation. The third section presents data at an institutional level, with returns to education that could guide students making decisions to enroll in a college or university. The information could also serve public officials to benchmark returns as a means to improve systemic efficiency. 
 
-\subsection{Motivation for this study}
+\subsection{Graduate.edu.ru from the Ministry of Education}
 
-\lipsum[1]
+\url{Graduate.edu.ru} is the official graduate employment monitoring portal created and maintained by the Ministry of Education of the Russian Federation. The website was launched in 2015 to provide information targeted mainly to propsective graduates about the employment record of graduates from tertiary education institutions - including universities and vocational education colleges. The official record is contained in Minutes No. DL-57, dated December 22, 2014 of the Interdepartmental Commission for Monitoring the Efficiency of Higher Education Educational Organizations. It is a complex organizational feat to carry out accurate and valid data collection of this nature. Figure \ref{fig:1.1} is a translation of an infographich that explains the process of data collection. 
 
-\lipsum[2}
+\vspace{0.5em}
+
+Rosobrnadzor (Federal Service for Supervision in Education and Science) registers graduation certificates from issuing institutions. After verification, a request for salary information for the graduates is sent to the PFRF (Pension Fund for the Russian Federation).  There is a high degree of compliance from educational institutions and the high fidelity in terms of obtaining information from graduates. For example, for the year 2014, information was provided by 2,841 colleges and 834 universities, which tracks quite well with the 2,909 colleges and 950 universities that existed in 2014 according to Rosstat, including both public and private institutions. The number of graduates in 2014 from Rosstat (just over 1 million from universities; around half a million graduates for vocational education) conforms to the number of Rosobrnadzor records of graduates. Interestingly only a miniscule portion of individuals were not able to be tracked by the PFRF because of filing errors - 0.78 \% for colleges and 0.15 \% for universities. Further, in relation to the scale and complexity of the task, only a  small number of domestic working graduates were not able to be matched with income information from PFRF - 8\% for colleges and 5\% for universities. In other words, 92\% of college graduates and 95\% of university graduates had their salary information recorded in graduate.edu. 
+
+\vspace{0.5em}
+
+To get the maximum possible span from the available data,  we use the information of graduates in 2013 in each university and college and their corresponding salaries in 2014, 2015 and 2016. Our final set of data consists of 1909 colleges, 423 universities, and 2975 pairs of university-study areas with information about the graduates earning in them. We filtered out universities and colleges with less than 100 and 50 graduates in 2013, respectively. Salaries in 2014 and 2015 were adjusted to the prices of 2016. 
+
+\begin{center}
+	\begin{figure}[htbp!]
+\begin{minipage}[b]{1\linewidth}
+			\centering
+			\hspace*{-0.2in}
+         \includegraphics[scale=0.88, frame]{gedu_cap1b.png}
+			% plot 1
+		\end{minipage}
+			\caption{Four step process of data collection - Infographic from graduate.edu.ru}\label{fig:1.1}
+	\end{figure}
+\end{center}
+
+\vspace{-0.35in}
+
+Table \ref{tab:1.1} provides mean earnings in 2016 rubles, for college and university graduates. These numbers are consistent with the wage earnings information reported in Rosstat's Statistical Survey of Income and Participation in Social Programs. An interesting fact to note from the table is that university graduates just 3 years from graduation earn about 1/3rd more than vocational school graduates; overt the lifecycle this difference tends to grow to 50\% or 60\% more. The purpose of this paper is to compare between private and social costs across regions and institutions. The lower differentials reported in Table \ref{tab:1.1} point to the fact that the returns presented in this paper should not be considered as life-time returns. 
 
 \begin{table}[htbp!]
     \centering
@@ -143,66 +168,35 @@ This paper is the fourth and final one in a series of working papers investigati
     \end{tabular}
 \end{table}
 
+\vspace{-0.3in}
 
-\subsection{Previous estimates of regional returns for Russia}
+\subsection{Bus.gov.ru from the Ministry of Finance}
 
-\lipsum[1]
+The next data source used in this paper is from \url{bus.gov.ru}, the transparency promoting website managed by the Ministry of Finance, with more than 160,000 institutions from many sectors including health and education. 
 
-\lipsum[2}
-
-\begin{figure}[htbp!]
-	\begin{minipage}[b]{.5\linewidth}
-		\centering
-		#\hspace*{-0.2in}
-		\includegraphics[width=150pt]{sal_spnc.png}
-		% plot 1
-		\subcaption{\large{College}}
-	\end{minipage}
-	\hfill
-	\begin{minipage}[b]{.5\linewidth}
-		\centering
-		#\hspace*{-0.2in}
-		\includegraphics[width=150pt]{sal_spnu.png}
-		% plot 2
-		\subcaption{\large{University}}
-	\end{minipage}
-	\caption{Salary of Graduates by Study Specialization}\label{fig:1.1}
-\end{figure}
-
-
-\lipsum[1]
-
-\lipsum[2}
-
-
-\vspace{-0.2in}
+\vspace{-0.25in}
 
 \begin{center}
 	\begin{figure}[htbp!]
 \begin{minipage}[b]{1\linewidth}
 			\centering
-			%\hspace*{-0.7in}
-			\includegraphics[width=6in]{sal_inc.png}
+			\hspace*{-0.1in}
+         \includegraphics[scale=0.4, width=5.6in, frame]{busg_cap1c.png}
 			% plot 1
 		\end{minipage}
-			\caption{Salary of Univ Graduates 2014 to 2016}\label{fig:1.2}
+			\caption{Website for bus.gov.ru}\label{fig:1.2}
 	\end{figure}
 \end{center}
 
+\vspace{-0.2in}
 
+The bus.gov.ru website is indicated to be the official website of the Russian Federation for provision of information by public institutions, based on Order No. 86n of the Ministry of Finance of the Russian Federation, dated July 21, 2011. The objective as stated on the website is ``to increase the openness and accessibility of information about state (municipal) institutions, as well as about their activities and property''. As with the elaborate process between Rosobrnadzor and PFRF, the bus.gov.ru website appears to be created with great attention to detail. One of the features that makes the site function effectively is the automation of procedures for posting information. Information with significant level of detail is collected at the website, including service quality ratings, financial information and information about the financial capital where relevant. \footnote{Recently, the World Bank published a report looking at a portion of the data from the website - the independent evaluation ratings on 16 service quality dimensions - to compute efficiency measurements of extra-curricular activities, a big expenditure item for the education sector. See \textit{Russian Federation: Doing Extra-Curricular Education: Blending Traditional and Digital Activities for Equitable Learning}}
 
-\lipsum[1]
+\vspace{0.5em}
 
-\lipsum[2}
+This paper is based on use of the information pertaining to the annual revenues of colleges and universities. Information is available for the total annual revenue from different sources including government transfers and grants, as well as revenue from service payments made by private individuals. For education institutions (colleges and universities) we assume that the revenues from service payments are tuition fee payments.\footnote{This is an approximation in some cases where educational institution charge fees for non-educational services.} Revenue information is used to estimate costs rather than expenditure information because we need to separate between overall costs of an institution, and the portion of costs that are subsidized by the State. Table \ref{tab:1.2} provides a summary of the information from bus.gov.ru used for this paper. 
 
-\subsection{Data}
-
-\lipsum[1]
-
-\lipsum[2}
-
-
-\begin{table}
+\begin{table}[htbp!]
     \centering
 		\caption{Derivation of College and University costs from bus.gov.ru data}
 		\label{tab:1.2}\\
@@ -228,6 +222,122 @@ This paper is the fourth and final one in a series of working papers investigati
     \end{tabular}
 \end{table}
 
+\vspace{-0.2in}
+
+\section{Regional Private and Social Returns to Education for the Russian Federation}
+
+\subsection{Background}
+
+The returns to education that are calculated by the classical Mincerian equation are private returns that accrue to individuals \parencite{mincer1974}. This paper presents the `narrow social returns to education' as defined in \cite{psacharopoulos2019}. The classical computation implicitly includes only the indirect cost of education. This is the opportunity cost to an individual of being in school rather than working in the labor market and earning a wage. The standard Mincerian formulation does not include the direct costs of education to an individual - tuition fees, textbooks and other associated expenditures. The Mincerian formulation also does not include the public or social costs incurred in the provision of education. The `full-discounting method' of calculating returns is the name given to the internal rate of return used to discount the future stream of earnings to equal the costs of education \parencite{psacharopoulos1995}. When the costs include only the costs incurred by individuals, these are private returns to education; when the costs also include the public subsidies usually provided for education, they are termed as the social return to education. They are termed as the 'narrow' social returns because they do not include the possible social benefits of education due to externalities such as reduced crime, better financial decisions and effects on the environment and the innovative capabilties of a society, to name a few of the external effects \parencite{wolfe2002,mcmahon2004,owens2004}.  The utility of computing the narrow social returns of education is to measure the efficiency of public spending. \cite{Psacharopoulos_Patrinos2018} present global estimates of both private and social returns for a comparison between levels of education across countries. In this paper we extend the computation of private and social returns within the Russian Federation. 
+
+\subsection{Limitations of the data} 
+
+The computation of social rates of return involve some simplifications that constitute a limitation of this paper. With a sample size in excess of 50,000 individuals, the Rosstat Statistical Survey of Income and Participation in Social Programs for 2018 (latest year available) provides regionally representative estimates of the age earnings profile for individuals. The cost side of the full discounting method comes from the regional weighted average costs of institutions within a region. This abstacts away from migration of individuals for the purpose of education and obtaining a job. Individuals might move away from a region only for the purpose of studying in another region and then return to the region for work. Typically, this education would take place in Moscow or St. Petersburg, where the costs would be higher than the `sending' region. However, our method attributes the costs of the sending region as the default cost, thus tending to overestimate the returns to education for Moscow and St. Peterburg. Unobserved abilities or motivation that affects migration decisions would further complicate the scenario. There are a range of other migration effects. Individuals might migrate to study and then settle down in the same region where they study, example in Moscow. In this case, there would be no bias in the regional estimates of returns to education. Individuals might also study in one region and then migrate only for work, and the relative costs of education in the two regions would determine the sign of the bias in the estimation of returns.  Future improvements of this paper should incorporate the effects of migration to estimate more accurate returns to education. 
+Another simplification is entailed in the cost calculations used in this paper. There is no ready way to validate the cost figures for colleges and universities as a cost database does not yet exist for the Russian Federation. Instead, we are using revenues of the institutions divided by an approximate measure of the number of students to arrive at an estimate of unit costs. 
+
+\vspace{-0.5em}
+
+\begin{center}
+	\begin{figure}[htbp!]
+\begin{minipage}[b]{1\linewidth}
+			\centering
+			%\hspace*{-0.7in}
+			\includegraphics[scale=0.55]{returns_by_region_plot2.png}
+			% plot 1
+		\end{minipage}
+			\caption{Social and Private Returns to Education - Vocational Education}\label{fig:1.3}
+	\end{figure}
+
+	\begin{figure}[htbp!]
+\begin{minipage}[b]{1\linewidth}
+			\centering
+			%\hspace*{-0.7in}
+			\includegraphics[scale=0.52]{returns_by_region_plot1.png}
+			% plot 1
+		\end{minipage}
+			\caption{Social and Private Returns to Education - University Education}\label{fig:1.4}
+	\end{figure}
+\end{center}
+
+\vspace{-2em}
+
+Yet another simplification is the merging of ISCED levels 3, 4 and 5 as vocational education which entails combining different number of years after lower secondary education (Grade 9). In spite of these limitations, the returns estimates do present valid relative scenarios as the measurement problems are not specific or selective about regions and the databases are quite large, reducing sampling errors. Figure \ref{fig:1.3}  shows the returns to Vocational Education and Figure \ref{fig:1.4} the returns to Higher Education. 
+
+\subsection{Estimation Results} 
+
+Figures \ref{fig:1.3} and \ref{fig:1.4} show the gap between social and private returns to education rangines from a very small gap of 3 or 4 \% at the bottom of the graphs to 20 to 30\% gap towards the top of the graph. Since the social and private returns differ only on the cost side, the size of the gap is an indication of the extent of subsidization by the government. Subsidization of vocational education could be related to efforts of regional governments to make vocational education more attractive. The graphs also highlight the high priority regions that are slated to receive targeted support from the federal government. Working Paper No. 3 in this series provides more details about the priority regions. None of the priority regions appear amongst the top one-third of high subsidy regions for vocational education, but two of them do appear in Figure \ref{fig:1.4} for university education. It is useful to examine the subsidization of vocational and university education a bit more closely, which is done in Figure \ref{fig:1.5}. 
+
+\begin{figure}[htbp!]
+	\begin{minipage}[b]{.5\linewidth}
+		\centering
+		#\hspace*{-0.2in}
+		\includegraphics[width=175pt]{igap_c.png}
+		% plot 1
+		\subcaption{\large{College}}
+	\end{minipage}
+	\hfill
+	\begin{minipage}[b]{.5\linewidth}
+		\centering
+		#\hspace*{-0.2in}
+		\includegraphics[width=175pt]{igap_u.png}
+		% plot 2
+		\subcaption{\large{University}}
+	\end{minipage}
+	\caption{Social-Private Returns Gap and Regional Individual Income Gap}\label{fig:1.5}
+\end{figure}
+
+The magnitude of the gap between social and private returns is lower for the university level (with mean gap of about 7\%) compared to the vocational education or college level (with mean gap of about 11\%). From a policy viewpoint, this is a correct tendency for at least two reasons - the government does want to encourage greater participation in vocational education and subsidies attract more people by lowering the price; it is also well known that there are more individuals from lower income backgrounds who attend vocational education and subsidizing such a good is progressive fiscally \footnote{An example of literature examining the choice of vocational education is  the recent World Bank report: Education Equity in Russian Federation. The report found that lower income of families of students in Grade 9 more strongly predicts vocational education choice than it does academic performance.} As discussed at length in Working Paper 3 of this series, the federal government is interested in promoting the development of the least developed regions in the country. Human capital is a crucial piece of the puzzle and spending public resources wisely would be better for growth as well as equity.  
+
+The  International Center for the Study of Institutions and Development (ICSID) database provided by the Higher School of Economics includes data on income distribution within Russian regions \url{https://iims.hse.ru/en/csid/databases/}. We use a variable termed \textit{reg\_minckfd} that measures the ratio of mean income of the top decile of earners to the mean income of the bottom decile of earners. For this variable, Moscow region is an outlier with a value of 26 times income of 10th decile as compared to the first decile and the graph shows regions only for the rest of the range, from 10 times to 20 times on the x-axis. The gap between social and private returns is presented on the y-axis, the point representing each region is only a central tendency. Figure\ref{fig:1.5} indicates a slightly more positive slope for vocational education (in the left panel) as compared to university education. It can also be seen that the red points representing priority regions in both of the panels lie mostly below the black least squares regression line which is shown with a shaded 90\% confidence interval.
+
+\section{Returns at Institutional Level for Vocational Education and Universities} 
+
+\subsection{Descriptives}
+
+We turn now to the data from graduate.edu.ru on salaries of graduates from colleges and universities. Whether to study in a vocational college or a university, what course of specialization to choose, and which is the optimal institute for an individual are complex decisions. However, it appears to now be a generally accepted view to consider this choice using the conceptualization of an investment decision. In the present case, even though we only have three years of data regarding graduates, we show that the information can be productively utilized. 
+
+\begin{figure}[htbp!]
+	\begin{minipage}[b]{.5\linewidth}
+		\centering
+		#\hspace*{-0.2in}
+		\includegraphics[width=150pt]{sal_spnc.png}
+		% plot 1
+		\subcaption{\large{College}}
+	\end{minipage}
+	\hfill
+	\begin{minipage}[b]{.5\linewidth}
+		\centering
+		#\hspace*{-0.2in}
+		\includegraphics[width=150pt]{sal_spnu.png}
+		% plot 2
+		\subcaption{\large{University}}
+	\end{minipage}
+	\caption{Salary of Graduates by Study Specialization}\label{fig:1.6}
+\end{figure}
+
+
+
+Appendix Figure \ref{fig:7.6} shows a plot of real salary increases from 2014 to 2016 for university graduates who graduated in 2014. As might be expected, specialized scientific and technical disciplines garnered the biggest increases. In some cases there were zero increases or even declines, with `education and pedagogical sciences' one of the notable cases registering a decline. If a longer time period of data had been available from graduate.edu, there might have been some movement in the relative placement of the specializations.  However, it seems unlikely that there would have been large scale movements. The information presented in Appendix Figure \ref{fig:7.6} makes intuitive sense and provides some reassurance that the availability of only three years or earnings data does not make it totally dominated by noise. This also makes sense given the fact that the raw data on which the information is based is almost a census data, with graduate.edu.ru publishing institutional level means based on salaries from over 1 million individual records. 
+
+We turn now to the data from graduate.edu.ru on salaries of graduates from colleges and universities.
+
+
+
+
+We turn now to the data from graduate.edu.ru on salaries of graduates from colleges and universities.
+
+
+cases there were zero increases or even declines, with `education and pedagogical sciences' one of the notable cases registering a decline. If a longer time period of data had been available from graduate.edu, there might have been some movement in the relative placement of the specializations.  
+cases there were zero increases or even declines, with `education and pedagogical sciences' one of the notable cases registering a decline. If a longer time period of data had been available from graduate.edu, there might have been some movement in the relative placement of the specializations. 
+
+cases there were zero increases or even declines, with `education and pedagogical sciences' one of the notable cases registering a decline. If a longer time period of data had been available from graduate.edu, there might have been some movement in the relative placement of the specializations. 
+
+
+
+
+\lipsum[1]
+
+\lipsum[2}
 
 \subsection{Methods}
 
@@ -263,17 +373,7 @@ where an individual $i$ is nested within a region $j$, $Log$(Wage) is the logari
 
 \vspace{-0.2in}
 
-\begin{center}
-	\begin{figure}[htbp!]
-\begin{minipage}[b]{1\linewidth}
-			\centering
-			%\hspace*{-0.7in}
-			\includegraphics[width=6in]{returns_by_region_plot1.png}
-			% plot 1
-		\end{minipage}
-			\caption{Salary of Univ Graduates 2014 to 2016}\label{fig:1.3}
-	\end{figure}
-\end{center}
+
 
 
 
@@ -290,7 +390,7 @@ where an individual $i$ is nested within a region $j$, $Log$(Wage) is the logari
 			\includegraphics[width=6in]{returns_by_region_plot2.png}
 			% plot 1
 		\end{minipage}
-			\caption{Salary of Univ Graduates 2014 to 2016}\label{fig:1.3}
+			\caption{Salary of Univ Graduates 2014 to 2016}\label{fig:1.15}
 	\end{figure}
 \end{center}
 
@@ -325,7 +425,7 @@ Appendix Table \ref{tab:4.1} demonstrates descriptive statistics of the key vari
 			\includegraphics[width=6in]{returns_by_region_scatterplot.png}
 			% plot 1
 		\end{minipage}
-			\caption{Salary of Univ Graduates 2014 to 2016}\label{fig:1.3}
+			\caption{Salary of Univ Graduates 2014 to 2016}\label{fig:1.16}
 	\end{figure}
 \end{center}
 
@@ -424,7 +524,7 @@ social  & private  & Name & region  & n graduates \\ \hline
 		% plot 2
 		\subcaption{Vocational Education}\label{}
 	\end{minipage}
-	\caption{Social IRR of Universities in Moscow and St. Petersburg}\label{fig:4.1}
+	\caption{Social IRR of Universities in Moscow and St. Petersburg}\label{fig:1.17}
 \end{figure}
 
 
@@ -445,7 +545,7 @@ social  & private  & Name & region  & n graduates \\ \hline
 			\includegraphics[width=6in]{returns_by_areas.png}
 			% plot 1
 		\end{minipage}
-			\caption{Salary of Univ Graduates 2014 to 2016}\label{fig:1.3}
+			\caption{Salary of Univ Graduates 2014 to 2016}\label{fig:1.18}
 	\end{figure}
 \end{center}
 
@@ -461,108 +561,97 @@ social  & private  & Name & region  & n graduates \\ \hline
 \setcounter{table}{0}
 \renewcommand{\thetable}{A\arabic{table}}
 
+\setcounter{figure}{0}
+\renewcommand{\thefigure}{A\arabic{figure}}
+
 
 \hspace{-1in}
 \fontsize{9}{11}{
 	\selectfont
 	\setlength{\tabcolsep}{2pt}
-	\begin{longtable}{lcccccccccc}
-		\caption{Descriptive Statistics for Regions in Russia, Rosstat 2018}
+	\begin{longtable}{lcccccc}
+		\caption{Mincerian, Private and Social Returns by Region}
 		\label{tab:4.1}\\
-&  & \multicolumn{2}{c}{\textbf{Wage}} & \multicolumn{2}{c}{\textbf{Experience}} & \multicolumn{3}{c}{\textbf{Education}, \%} & \multicolumn{2}{c}{\textbf{Gender}, \%} \\ 
+&   \multicolumn{2}{c}{\textbf{Mincerian }} & \multicolumn{2}{c}{\textbf{Private}} & \multicolumn{2}{c}{\textbf{Social}} \\ 
 	    \hline
-Regions & N & mean & sd & mean & sd & SE & VE & HE & Males & Females  \\
+Regions & Vocational & University & Vocational & University & Vocational & University  \\
 		\hline
 		\endhead
-		Altayskiy Kray  & $\phantom{0}4646$ & $22127.6$ & $11952.2$ & $\phantom{000}23.6$ & $\phantom{000}11.0$ & $17.456$ & $54.50$ & $28.05$ & $48.90$ & $51.10$ \\
-		Amurskaya Oblast  & $\phantom{0}2557$ & $33441.2$ & $17409.0$ & $\phantom{000}23.2$ & $\phantom{000}11.2$ & $16.347$ & $50.65$ & $33.01$ & $49.59$ & $50.41$ \\
-		Arkhangelskaya Oblast  & $\phantom{0}3183$ & $33438.1$ & $16884.2$ & $\phantom{000}22.6$ & $\phantom{000}10.6$ & $12.692$ & $54.95$ & $32.36$ & $44.17$ & $55.83$ \\
-		Astrakhanskaya Oblast  & $\phantom{0}2836$ & $26474.1$ & $13737.6$ & $\phantom{000}23.0$ & $\phantom{000}11.3$ & $13.646$ & $55.08$ & $31.28$ & $50.99$ & $49.01$ \\
-		Belgorodskaya Oblast  & $\phantom{0}3692$ & $26281.0$ & $10811.9$ & $\phantom{000}23.8$ & $\phantom{000}11.1$ & $12.351$ & $54.47$ & $33.18$ & $49.76$ & $50.24$ \\
-		Bryanskaya Oblast  & $\phantom{0}3087$ & $22482.3$ & $\phantom{0}9634.1$ & $\phantom{000}23.5$ & $\phantom{000}10.9$ & $19.631$ & $50.66$ & $29.71$ & $48.66$ & $51.34$ \\
-		Chechenskaya Respublika  & $\phantom{0}2010$ & $27718.4$ & $11793.2$ & $\phantom{000}18.7$ & $\phantom{000}10.6$ & $25.721$ & $26.37$ & $47.91$ & $65.37$ & $34.63$ \\
-		Chelyabinskaya Oblast  & $\phantom{0}6717$ & $27990.8$ & $14280.9$ & $\phantom{000}23.9$ & $\phantom{000}11.2$ & $12.104$ & $54.53$ & $33.36$ & $47.39$ & $52.61$ \\
-		Chukotskiy Aok  & $\phantom{0}1535$ & $65574.1$ & $32370.8$ & $\phantom{000}23.6$ & $\phantom{000}10.6$ & $13.941$ & $46.06$ & $40.00$ & $43.97$ & $56.03$ \\
-		Chuvashskaya Respublika  & $\phantom{0}3248$ & $21453.7$ & $12602.2$ & $\phantom{000}24.3$ & $\phantom{000}11.0$ & $19.119$ & $50.80$ & $30.08$ & $50.18$ & $49.82$ \\
-		Evreyskaya AOb  & $\phantom{0}1536$ & $28532.1$ & $17385.1$ & $\phantom{000}23.8$ & $\phantom{000}11.2$ & $22.005$ & $50.33$ & $27.67$ & $50.00$ & $50.00$ \\
-		Irkutskaya Oblast  & $\phantom{0}4686$ & $29967.6$ & $17443.1$ & $\phantom{000}22.3$ & $\phantom{000}11.2$ & $17.520$ & $47.06$ & $35.42$ & $47.57$ & $52.43$ \\
-		Ivanovskaya Oblast  & $\phantom{0}2876$ & $24881.8$ & $12496.8$ & $\phantom{000}23.3$ & $\phantom{000}10.9$ & $20.341$ & $49.90$ & $29.76$ & $47.77$ & $52.23$ \\
-		Kabardino-Balkarskaya Res.  & $\phantom{0}2006$ & $23592.3$ & $10766.2$ & $\phantom{000}21.7$ & $\phantom{000}11.6$ & $21.137$ & $40.53$ & $38.33$ & $52.04$ & $47.96$ \\
-		Kaliningradskaya Oblast  & $\phantom{0}2838$ & $29749.2$ & $15489.1$ & $\phantom{000}23.5$ & $\phantom{000}11.4$ & $13.495$ & $52.40$ & $34.11$ & $50.07$ & $49.93$ \\
-		Kaluzhskaya Oblast  & $\phantom{0}3155$ & $29662.1$ & $12879.5$ & $\phantom{000}24.1$ & $\phantom{000}11.2$ & $13.312$ & $52.11$ & $34.58$ & $47.92$ & $52.08$ \\
-		Kamchatskaya Kray  & $\phantom{0}2203$ & $51160.5$ & $29997.7$ & $\phantom{000}23.1$ & $\phantom{000}11.2$ & $13.118$ & $42.99$ & $43.89$ & $47.89$ & $52.11$ \\
-		Karachayevo-Cherkessiya  & $\phantom{0}1510$ & $22900.6$ & $12540.8$ & $\phantom{000}22.0$ & $\phantom{000}11.8$ & $17.152$ & $40.07$ & $42.78$ & $48.01$ & $51.99$ \\
-		Kemerovskaya Oblast  & $\phantom{0}5056$ & $26287.0$ & $13774.4$ & $\phantom{000}23.6$ & $\phantom{000}11.3$ & $18.137$ & $52.99$ & $28.88$ & $48.04$ & $51.96$ \\
-		Khabarovskiy Kray  & $\phantom{0}3731$ & $42008.8$ & $21837.8$ & $\phantom{000}22.3$ & $\phantom{000}11.2$ & $11.900$ & $44.33$ & $43.77$ & $46.15$ & $53.85$ \\
-		Khanty-Mansiyskiy Aok  & $\phantom{0}4335$ & $50837.9$ & $22261.7$ & $\phantom{000}22.8$ & $\phantom{000}10.5$ & $13.564$ & $46.78$ & $39.65$ & $49.60$ & $50.40$ \\
-		Kirovskaya Oblast  & $\phantom{0}3284$ & $22941.0$ & $13674.6$ & $\phantom{000}25.1$ & $\phantom{000}11.2$ & $20.128$ & $55.33$ & $24.54$ & $47.69$ & $52.31$ \\
-		Kostromskaya Oblast  & $\phantom{0}2518$ & $23993.1$ & $12090.9$ & $\phantom{000}23.6$ & $\phantom{000}11.1$ & $12.669$ & $61.28$ & $26.05$ & $47.82$ & $52.18$ \\
-		Krasnodarskiy Kray  & $\phantom{0}8730$ & $32563.7$ & $17499.8$ & $\phantom{000}23.0$ & $\phantom{000}10.9$ & $15.888$ & $48.57$ & $35.54$ & $50.02$ & $49.98$ \\
-		Krasnoyarskiy Kray  & $\phantom{0}5540$ & $33954.6$ & $21199.2$ & $\phantom{000}23.0$ & $\phantom{000}11.0$ & $21.588$ & $48.05$ & $30.36$ & $49.64$ & $50.36$ \\
-		Kurganskaya Oblast  & $\phantom{0}2468$ & $20896.9$ & $11539.5$ & $\phantom{000}24.4$ & $\phantom{000}10.7$ & $21.394$ & $52.47$ & $26.13$ & $48.38$ & $51.62$ \\
-		Kurskaya Oblast  & $\phantom{0}2956$ & $23622.6$ & $11475.0$ & $\phantom{000}23.9$ & $\phantom{000}11.0$ & $14.783$ & $52.17$ & $33.05$ & $50.30$ & $49.70$ \\
-		Leningradskaya Oblast  & $\phantom{0}4506$ & $32124.3$ & $17227.4$ & $\phantom{000}24.2$ & $\phantom{000}11.5$ & $\phantom{0}7.723$ & $54.77$ & $37.51$ & $46.03$ & $53.97$ \\
-		Lipetskaya Oblast  & $\phantom{0}2869$ & $25037.8$ & $10813.5$ & $\phantom{000}24.1$ & $\phantom{000}11.0$ & $13.106$ & $53.82$ & $33.08$ & $49.60$ & $50.40$ \\
-		Magadanskaya Oblast  & $\phantom{0}1841$ & $51000.8$ & $23729.4$ & $\phantom{000}24.1$ & $\phantom{000}11.4$ & $18.523$ & $43.02$ & $38.46$ & $43.24$ & $56.76$ \\
-		Moscow  & $29921$ & $66263.5$ & $26437.9$ & $\phantom{000}20.8$ & $\phantom{000}10.8$ & $\phantom{0}4.953$ & $32.18$ & $62.86$ & $47.06$ & $52.94$ \\
-		Moskovskaya Oblast  & $13431$ & $46725.1$ & $20563.7$ & $\phantom{000}22.6$ & $\phantom{000}11.4$ & $10.975$ & $39.13$ & $49.89$ & $47.51$ & $52.49$ \\
-		Murmanskaya Oblast  & $\phantom{0}3078$ & $43992.5$ & $28841.9$ & $\phantom{000}23.4$ & $\phantom{000}11.2$ & $12.801$ & $50.45$ & $36.74$ & $49.84$ & $50.16$ \\
-		Nenetskiy Aok  & $\phantom{0}1118$ & $54467.3$ & $23147.1$ & $\phantom{000}22.6$ & $\phantom{000}10.8$ & $17.263$ & $49.73$ & $33.01$ & $39.98$ & $60.02$ \\
-		Nizhegorodskaya Oblast  & $\phantom{0}6139$ & $30912.9$ & $13291.8$ & $\phantom{000}23.4$ & $\phantom{000}11.2$ & $16.941$ & $49.31$ & $33.75$ & $47.42$ & $52.58$ \\
-		Novgorodskaya Oblast  & $\phantom{0}2673$ & $26856.0$ & $12683.0$ & $\phantom{000}24.6$ & $\phantom{000}11.2$ & $15.638$ & $55.74$ & $28.62$ & $45.16$ & $54.84$ \\
-		Novosibirskaya Oblast  & $\phantom{0}5374$ & $29229.9$ & $14687.7$ & $\phantom{000}23.9$ & $\phantom{000}11.6$ & $16.561$ & $49.33$ & $34.11$ & $47.06$ & $52.94$ \\
-		Omskaya Oblast  & $\phantom{0}3978$ & $25337.5$ & $14613.1$ & $\phantom{000}23.6$ & $\phantom{000}10.9$ & $22.197$ & $51.31$ & $26.50$ & $51.11$ & $48.89$ \\
-		Orenburgskaya Oblast  & $\phantom{0}4190$ & $24207.0$ & $12519.9$ & $\phantom{000}23.3$ & $\phantom{000}11.0$ & $15.131$ & $53.68$ & $31.19$ & $51.29$ & $48.71$ \\
-		Orlovskaya Oblast  & $\phantom{0}2424$ & $21901.2$ & $10561.0$ & $\phantom{000}24.7$ & $\phantom{000}11.1$ & $15.017$ & $50.66$ & $34.32$ & $46.99$ & $53.01$ \\
-		Penzenskaya Oblast  & $\phantom{0}3103$ & $23478.4$ & $10982.9$ & $\phantom{000}24.2$ & $\phantom{000}11.0$ & $20.722$ & $51.40$ & $27.88$ & $51.02$ & $48.98$ \\
-		Permskiy Krai  & $\phantom{0}5290$ & $29176.6$ & $14449.4$ & $\phantom{000}23.4$ & $\phantom{000}11.0$ & $13.894$ & $58.32$ & $27.79$ & $48.17$ & $51.83$ \\
-		Primorskiy Kray  & $\phantom{0}4104$ & $37839.9$ & $18420.2$ & $\phantom{000}23.8$ & $\phantom{000}11.3$ & $14.985$ & $52.97$ & $32.04$ & $49.98$ & $50.02$ \\
-		Pskovskaya Oblast  & $\phantom{0}2382$ & $23838.4$ & $12015.3$ & $\phantom{000}25.0$ & $\phantom{000}11.0$ & $17.632$ & $55.33$ & $27.04$ & $48.11$ & $51.89$ \\
-		Respublika Adygeya  & $\phantom{0}2013$ & $21350.3$ & $10505.9$ & $\phantom{000}23.4$ & $\phantom{000}11.3$ & $20.666$ & $43.67$ & $35.67$ & $49.53$ & $50.47$ \\
-		Respublika Altay  & $\phantom{0}1381$ & $20285.3$ & $12029.5$ & $\phantom{000}23.0$ & $\phantom{000}10.6$ & $23.027$ & $45.26$ & $31.72$ & $43.08$ & $56.92$ \\
-		Respublika Bashkortostan  & $\phantom{0}7126$ & $31100.8$ & $15175.2$ & $\phantom{000}23.4$ & $\phantom{000}11.0$ & $12.167$ & $56.67$ & $31.17$ & $51.98$ & $48.02$ \\
-		Respublika Buryatia  & $\phantom{0}2469$ & $29536.3$ & $17237.4$ & $\phantom{000}22.1$ & $\phantom{000}10.6$ & $17.173$ & $45.61$ & $37.22$ & $48.12$ & $51.88$ \\
-		Respublika Crimea  & $\phantom{0}2895$ & $19916.2$ & $\phantom{0}9743.9$ & $\phantom{000}22.8$ & $\phantom{000}11.0$ & $21.244$ & $43.90$ & $34.85$ & $52.99$ & $47.01$ \\
-		Respublika Dagestan  & $\phantom{0}3388$ & $26377.3$ & $11971.9$ & $\phantom{000}23.0$ & $\phantom{000}10.7$ & $30.519$ & $30.79$ & $38.70$ & $55.99$ & $44.01$ \\
-		Respublika Ingushetiya  & $\phantom{0}1207$ & $23740.2$ & $10168.5$ & $\phantom{000}18.2$ & $\phantom{0000}9.6$ & $10.025$ & $18.89$ & $71.09$ & $61.14$ & $38.86$ \\
-		Respublika Kalmykiya  & $\phantom{0}1751$ & $18568.8$ & $11749.1$ & $\phantom{000}23.6$ & $\phantom{000}11.4$ & $15.762$ & $40.89$ & $43.35$ & $46.43$ & $53.57$ \\
-		Respublika Karelia  & $\phantom{0}2164$ & $28510.2$ & $16639.5$ & $\phantom{000}23.7$ & $\phantom{000}10.8$ & $17.144$ & $55.45$ & $27.40$ & $47.00$ & $53.00$ \\
-		Respublika Khakasiya  & $\phantom{0}2064$ & $27288.1$ & $16613.3$ & $\phantom{000}23.3$ & $\phantom{000}11.1$ & $22.045$ & $51.11$ & $26.84$ & $50.97$ & $49.03$ \\
-		Respublika Komi  & $\phantom{0}2972$ & $35891.6$ & $21554.4$ & $\phantom{000}23.8$ & $\phantom{000}11.0$ & $16.689$ & $53.47$ & $29.85$ & $46.67$ & $53.33$ \\
-		Respublika Mariy El  & $\phantom{0}2486$ & $21133.1$ & $11941.6$ & $\phantom{000}24.1$ & $\phantom{000}11.2$ & $18.785$ & $52.98$ & $28.24$ & $47.87$ & $52.13$ \\
-		Respublika Mordovia  & $\phantom{0}2236$ & $21221.0$ & $10837.3$ & $\phantom{000}23.1$ & $\phantom{000}11.2$ & $15.519$ & $49.11$ & $35.38$ & $48.35$ & $51.65$ \\
-		Respublika Saha (Yakutia)  & $\phantom{0}3243$ & $45763.1$ & $25001.6$ & $\phantom{000}23.2$ & $\phantom{000}11.3$ & $18.440$ & $45.76$ & $35.80$ & $46.69$ & $53.31$ \\
-		Respublika Severnaya Osetiya  & $\phantom{0}2114$ & $22993.1$ & $12762.5$ & $\phantom{000}21.8$ & $\phantom{000}11.3$ & $12.677$ & $40.92$ & $46.40$ & $48.91$ & $51.09$ \\
-		Respublika Tatarstan  & $\phantom{0}7212$ & $30327.9$ & $12928.8$ & $\phantom{000}23.5$ & $\phantom{000}11.1$ & $18.691$ & $48.64$ & $32.67$ & $51.48$ & $48.52$ \\
-		Respublika Tyva  & $\phantom{0}1704$ & $23421.9$ & $16851.3$ & $\phantom{000}21.4$ & $\phantom{000}10.0$ & $19.777$ & $44.78$ & $35.45$ & $40.43$ & $59.57$ \\
-		Rostovskaya Oblast  & $\phantom{0}6985$ & $28287.2$ & $12779.9$ & $\phantom{000}23.1$ & $\phantom{000}11.0$ & $15.476$ & $48.03$ & $36.49$ & $50.68$ & $49.32$ \\
-		Ryazanskaya Oblast  & $\phantom{0}2609$ & $25889.2$ & $11760.9$ & $\phantom{000}24.7$ & $\phantom{000}11.1$ & $12.457$ & $59.37$ & $28.17$ & $49.18$ & $50.82$ \\
-		Saint-Petersburg  & $11352$ & $48520.8$ & $23771.0$ & $\phantom{000}22.8$ & $\phantom{000}11.4$ & $\phantom{0}5.259$ & $38.15$ & $56.59$ & $46.04$ & $53.96$ \\
-		Sakhalinskaya Oblast  & $\phantom{0}2258$ & $50325.1$ & $25563.0$ & $\phantom{000}23.6$ & $\phantom{000}11.2$ & $17.493$ & $48.23$ & $34.28$ & $46.94$ & $53.06$ \\
-		Samarskaya Oblast  & $\phantom{0}6275$ & $32584.4$ & $15015.6$ & $\phantom{000}23.8$ & $\phantom{000}11.1$ & $11.331$ & $47.87$ & $40.80$ & $47.71$ & $52.29$ \\
-		Saratovskaya Oblast  & $\phantom{0}4572$ & $23698.6$ & $12322.4$ & $\phantom{000}23.7$ & $\phantom{000}10.8$ & $14.961$ & $50.22$ & $34.82$ & $50.42$ & $49.58$ \\
-		Sevastopol  & $\phantom{0}1489$ & $24811.3$ & $13498.9$ & $\phantom{000}22.4$ & $\phantom{000}11.2$ & $\phantom{0}9.671$ & $44.93$ & $45.40$ & $53.32$ & $46.68$ \\
-		Smolenskaya Oblast  & $\phantom{0}2726$ & $25517.8$ & $12104.9$ & $\phantom{000}24.6$ & $\phantom{000}11.3$ & $14.380$ & $52.31$ & $33.31$ & $46.04$ & $53.96$ \\
-		Stavropolskiy Kray  & $\phantom{0}4945$ & $25263.6$ & $12696.7$ & $\phantom{000}22.6$ & $\phantom{000}11.3$ & $16.946$ & $43.80$ & $39.25$ & $47.48$ & $52.52$ \\
-		Sverdlovskaya Oblast  & $\phantom{0}7712$ & $35983.2$ & $15242.7$ & $\phantom{000}23.6$ & $\phantom{000}11.3$ & $16.779$ & $54.94$ & $28.28$ & $48.59$ & $51.41$ \\
-		Tambovskaya Oblast  & $\phantom{0}2781$ & $22698.6$ & $10440.1$ & $\phantom{000}24.1$ & $\phantom{000}11.0$ & $16.397$ & $53.54$ & $30.06$ & $50.67$ & $49.33$ \\
-		Tomskaya Oblast  & $\phantom{0}3074$ & $29580.6$ & $16745.7$ & $\phantom{000}22.1$ & $\phantom{000}11.1$ & $13.500$ & $47.56$ & $38.94$ & $46.78$ & $53.22$ \\
-		Tulskaya Oblast  & $\phantom{0}3516$ & $27687.4$ & $11814.7$ & $\phantom{000}24.3$ & $\phantom{000}11.3$ & $17.491$ & $54.69$ & $27.82$ & $48.98$ & $51.02$ \\
-		Tverskaya Oblast  & $\phantom{0}3157$ & $26310.0$ & $15025.1$ & $\phantom{000}25.5$ & $\phantom{000}11.1$ & $14.824$ & $56.57$ & $28.60$ & $44.73$ & $55.27$ \\
-		Tyumenskaya Oblast  & $\phantom{0}3095$ & $31441.2$ & $17278.6$ & $\phantom{000}22.7$ & $\phantom{000}11.2$ & $16.123$ & $52.89$ & $30.99$ & $50.05$ & $49.95$ \\
-		Udmurtskaya Respublika  & $\phantom{0}4073$ & $24044.6$ & $11540.9$ & $\phantom{000}23.9$ & $\phantom{000}11.3$ & $20.108$ & $51.04$ & $28.85$ & $46.99$ & $53.01$ \\
-		Ul'yanovskaya Oblast  & $\phantom{0}3109$ & $23215.3$ & $10596.4$ & $\phantom{000}24.8$ & $\phantom{000}10.9$ & $19.170$ & $53.84$ & $26.99$ & $50.37$ & $49.63$ \\
-		Vladimirskaya Oblast  & $\phantom{0}3502$ & $25001.4$ & $12605.8$ & $\phantom{000}24.5$ & $\phantom{000}11.4$ & $19.503$ & $50.77$ & $29.73$ & $46.49$ & $53.51$ \\
-		Volgogradskaya Oblast  & $\phantom{0}4836$ & $24459.0$ & $12915.8$ & $\phantom{000}23.2$ & $\phantom{000}11.0$ & $15.881$ & $50.91$ & $33.21$ & $49.69$ & $50.31$ \\
-		Vologodskaya Oblast  & $\phantom{0}2965$ & $28248.9$ & $16693.8$ & $\phantom{000}23.9$ & $\phantom{000}11.2$ & $17.302$ & $57.47$ & $25.23$ & $49.61$ & $50.39$ \\
-		Voronezhskaya Oblast  & $\phantom{0}4348$ & $26261.9$ & $11813.9$ & $\phantom{000}23.6$ & $\phantom{000}11.5$ & $22.700$ & $43.38$ & $33.92$ & $48.37$ & $51.63$ \\
-		Yamalo-Nenetskiy Aok  & $\phantom{0}3164$ & $69356.7$ & $28075.6$ & $\phantom{000}21.0$ & $\phantom{000}10.4$ & $10.683$ & $40.27$ & $49.05$ & $48.74$ & $51.26$ \\
-		Yaroslavskaya Oblast  & $\phantom{0}3361$ & $30261.4$ & $14682.8$ & $\phantom{000}24.1$ & $\phantom{000}11.4$ & $16.215$ & $53.73$ & $30.05$ & $47.01$ & $52.99$ \\
-		Zabaykalskiy Kray  & $\phantom{0}3017$ & $28336.6$ & $16350.4$ & $\phantom{000}23.0$ & $\phantom{000}10.6$ & $24.561$ & $47.40$ & $28.04$ & $47.07$ & $52.93$ \\
+Altayskiy Kray  & $\phantom{0}\phantom{-}35.6117$ & $104.28$ & $25.77$ & $29.18$ & $18.713$ & $22.82$ \\
+Amurskaya Oblast  & $\phantom{0}\phantom{-}54.6300$ & $135.14$ & $36.72$ & $34.14$ & $27.068$ & $25.86$ \\
+Arkhangelskaya Oblast  & $\phantom{0}\phantom{-}86.6825$ & $186.32$ & $35.00$ & $31.52$ & $23.407$ & $23.45$ \\
+Astrakhanskaya Oblast  & $\phantom{-}123.0480$ & $228.68$ & $20.45$ & $21.01$ & $18.403$ & $17.72$ \\
+Bryanskaya Oblast  & $\phantom{0}\phantom{-}31.4061$ & $\phantom{0}76.75$ & $31.26$ & $34.57$ & $23.259$ & $25.88$ \\
+Chechenskaya Respublika  & $\phantom{00}\phantom{-}8.5306$ & $\phantom{0}15.07$ & $27.98$ & $28.32$ & $23.022$ & $22.41$ \\
+Chelyabinskaya Oblast  & $\phantom{0}\phantom{-}25.8489$ & $\phantom{0}82.98$ & $16.11$ & $18.86$ & $13.719$ & $15.72$ \\
+Chukotskiy Aok  & $\phantom{0}\phantom{-}22.4758$ & $\phantom{0}55.16$ & $44.52$ & $\phantom{000}NA$ & $\phantom{0}9.742$ & $\phantom{000}NA$ \\
+Chuvashskaya Respublika  & $\phantom{0}\phantom{-}31.5513$ & $102.20$ & $26.83$ & $26.24$ & $19.515$ & $22.32$ \\
+Evreyskaya AOb  & $\phantom{0}\phantom{-}36.1407$ & $109.63$ & $31.46$ & $33.91$ & $19.195$ & $24.42$ \\
+Irkutskaya Oblast  & $\phantom{0}\phantom{-}39.1235$ & $129.45$ & $28.55$ & $36.67$ & $19.941$ & $28.63$ \\
+Ivanovskaya Oblast  & $\phantom{0}\phantom{-}16.0425$ & $\phantom{0}56.23$ & $32.93$ & $40.47$ & $20.984$ & $21.28$ \\
+Kaliningradskaya Oblast  & $\phantom{0}\phantom{-}20.3191$ & $\phantom{0}57.20$ & $30.24$ & $27.05$ & $20.869$ & $21.97$ \\
+Kaluzhskaya Oblast  & $\phantom{0}\phantom{-}19.2983$ & $\phantom{0}62.37$ & $20.89$ & $23.41$ & $15.925$ & $21.20$ \\
+Kamchatskaya Kray  & $\phantom{0}\phantom{-}35.8895$ & $106.29$ & $39.26$ & $44.74$ & $21.232$ & $34.86$ \\
+Kemerovskaya Oblast  & $\phantom{0}\phantom{-}28.0464$ & $\phantom{0}76.21$ & $40.00$ & $29.93$ & $24.212$ & $23.27$ \\
+Khabarovskiy Kray  & $\phantom{0}\phantom{-}59.8920$ & $153.14$ & $32.52$ & $37.88$ & $21.508$ & $29.75$ \\
+Khanty-Mansiyskiy Aok  & $\phantom{0}\phantom{-}50.1452$ & $118.32$ & $54.37$ & $51.20$ & $23.741$ & $28.96$ \\
+Kirovskaya Oblast  & $\phantom{00}\phantom{-}9.2090$ & $\phantom{0}81.50$ & $29.35$ & $24.18$ & $20.630$ & $19.49$ \\
+Kostromskaya Oblast  & $\phantom{0}\phantom{-}42.6683$ & $107.65$ & $17.96$ & $19.72$ & $15.363$ & $17.14$ \\
+Krasnodarskiy Kray  & $\phantom{00}\phantom{-}9.2547$ & $\phantom{0}94.33$ & $30.48$ & $29.40$ & $21.451$ & $24.33$ \\
+Krasnoyarskiy Kray  & $\phantom{0}\phantom{-}28.2208$ & $\phantom{0}63.64$ & $42.31$ & $35.53$ & $25.562$ & $23.30$ \\
+Kurganskaya Oblast  & $\phantom{0}\phantom{-}23.6786$ & $119.31$ & $15.28$ & $14.24$ & $11.714$ & $13.53$ \\
+Kurskaya Oblast  & $\phantom{0}\phantom{-}43.1486$ & $\phantom{0}93.43$ & $21.86$ & $17.99$ & $17.055$ & $16.17$ \\
+Leningradskaya Oblast  & $\phantom{0}\phantom{-}58.2302$ & $100.19$ & $30.34$ & $32.65$ & $18.887$ & $27.82$ \\
+Lipetskaya Oblast  & $\phantom{0}\phantom{-}41.6088$ & $107.96$ & $30.69$ & $29.98$ & $23.169$ & $24.46$ \\
+Moscow  & $\phantom{00}\phantom{-}9.5503$ & $\phantom{0}55.65$ & $32.59$ & $34.86$ & $20.193$ & $24.76$ \\
+Murmanskaya Oblast  & $\phantom{0}\phantom{-}30.5068$ & $107.80$ & $32.83$ & $36.61$ & $21.522$ & $28.64$ \\
+Nenetskiy Aok  & $\phantom{0}\phantom{-}88.3374$ & $175.64$ & $57.12$ & $\phantom{000}NA$ & $18.737$ & $\phantom{000}NA$ \\
+Nizhegorodskaya Oblast  & $\phantom{0}\phantom{-}18.1549$ & $\phantom{0}85.31$ & $45.19$ & $38.53$ & $25.478$ & $29.55$ \\
+Novgorodskaya Oblast  & $\phantom{0}\phantom{-}20.5742$ & $\phantom{0}66.75$ & $32.94$ & $33.85$ & $25.034$ & $26.07$ \\
+Novosibirskaya Oblast  & $\phantom{0}\phantom{-}75.2078$ & $137.75$ & $44.75$ & $36.63$ & $29.225$ & $27.67$ \\
+Omskaya Oblast  & $\phantom{0}\phantom{-}36.7901$ & $\phantom{0}64.86$ & $28.54$ & $23.70$ & $19.238$ & $19.29$ \\
+Orenburgskaya Oblast  & $\phantom{0}\phantom{-}47.3624$ & $\phantom{0}97.24$ & $28.75$ & $28.99$ & $22.446$ & $23.51$ \\
+Orlovskaya Oblast  & $\phantom{0}\phantom{-}16.9054$ & $\phantom{0}70.80$ & $29.46$ & $31.55$ & $22.305$ & $23.43$ \\
+Penzenskaya Oblast  & $\phantom{00}\phantom{-}5.4499$ & $\phantom{0}19.22$ & $37.20$ & $35.71$ & $25.621$ & $30.65$ \\
+Permskiy Krai  & $\phantom{0}\phantom{-}47.4043$ & $104.89$ & $34.55$ & $32.45$ & $26.654$ & $26.69$ \\
+Primorskiy Kray  & $\phantom{0}\phantom{-}26.8830$ & $104.89$ & $41.39$ & $37.60$ & $33.279$ & $24.48$ \\
+Pskovskaya Oblast  & $\phantom{0}\phantom{-}19.1578$ & $\phantom{0}72.85$ & $31.53$ & $25.48$ & $23.623$ & $20.84$ \\
+Respublika Adygeya  & $\phantom{0}\phantom{-}21.1613$ & $\phantom{0}40.15$ & $32.22$ & $35.76$ & $23.017$ & $25.87$ \\
+Respublika Altay  & $\phantom{0}\phantom{-}47.3321$ & $202.43$ & $20.45$ & $29.13$ & $10.785$ & $22.56$ \\
+Respublika Buryatia  & $\phantom{0}\phantom{-}32.7424$ & $\phantom{0}55.87$ & $37.60$ & $33.10$ & $23.601$ & $27.50$ \\
+Respublika Kalmykiya  & $\phantom{0}\phantom{-}53.7437$ & $127.49$ & $19.91$ & $\phantom{000}NA$ & $15.754$ & $\phantom{000}NA$ \\
+Respublika Karelia  & $\phantom{0}\phantom{-}17.7606$ & $\phantom{0}42.27$ & $32.91$ & $30.49$ & $23.299$ & $20.83$ \\
+Respublika Khakasiya  & $\phantom{0}\phantom{-}47.3759$ & $125.62$ & $28.60$ & $31.15$ & $19.527$ & $24.72$ \\
+Respublika Komi  & $\phantom{0}\phantom{-}42.3682$ & $115.35$ & $43.55$ & $36.78$ & $26.769$ & $31.00$ \\
+Respublika Mariy El  & $\phantom{0}\phantom{-}20.6738$ & $\phantom{0}73.38$ & $31.53$ & $28.72$ & $23.151$ & $22.65$ \\
+Respublika Mordovia  & $\phantom{0}\phantom{-}18.6844$ & $\phantom{0}51.72$ & $15.87$ & $18.50$ & $13.186$ & $15.58$ \\
+Respublika Saha (Yakutia)  & $\phantom{0}\phantom{-}31.0007$ & $\phantom{0}95.71$ & $37.58$ & $42.78$ & $22.142$ & $27.40$ \\
+Respublika Severnaya Osetiya  & $\phantom{00}-4.6462$ & $\phantom{0}38.53$ & $42.56$ & $34.57$ & $30.019$ & $26.41$ \\
+Respublika Tatarstan  & $\phantom{0}\phantom{-}42.6535$ & $100.88$ & $32.50$ & $28.06$ & $26.922$ & $22.20$ \\
+Rostovskaya Oblast  & $\phantom{0}\phantom{-}54.8784$ & $131.19$ & $34.24$ & $31.47$ & $23.995$ & $20.25$ \\
+Ryazanskaya Oblast  & $\phantom{0}\phantom{-}18.9791$ & $\phantom{0}90.79$ & $34.81$ & $29.92$ & $25.270$ & $24.81$ \\
+Saint-Petersburg  & $\phantom{00}\phantom{-}0.8399$ & $\phantom{0}38.48$ & $44.68$ & $40.00$ & $22.098$ & $28.01$ \\
+Sakhalinskaya Oblast  & $\phantom{0}\phantom{-}33.2860$ & $176.91$ & $35.62$ & $44.33$ & $17.853$ & $31.94$ \\
+Samarskaya Oblast  & $\phantom{0}\phantom{-}40.4262$ & $115.60$ & $36.93$ & $37.40$ & $26.895$ & $28.82$ \\
+Smolenskaya Oblast  & $\phantom{0}\phantom{-}18.5241$ & $\phantom{0}85.55$ & $27.01$ & $18.00$ & $20.954$ & $18.15$ \\
+Stavropolskiy Kray  & $\phantom{0}\phantom{-}16.4360$ & $\phantom{0}90.99$ & $27.72$ & $27.73$ & $23.933$ & $23.44$ \\
+Sverdlovskaya Oblast  & $\phantom{0}\phantom{-}47.3084$ & $137.55$ & $32.74$ & $33.17$ & $22.039$ & $23.60$ \\
+Tambovskaya Oblast  & $\phantom{00}\phantom{-}2.5801$ & $\phantom{0}42.60$ & $32.74$ & $45.09$ & $21.456$ & $37.41$ \\
+Tomskaya Oblast  & $\phantom{0}\phantom{-}63.9402$ & $175.02$ & $26.96$ & $27.34$ & $20.205$ & $19.20$ \\
+Tulskaya Oblast  & $\phantom{0}\phantom{-}34.3715$ & $\phantom{0}80.53$ & $36.90$ & $36.40$ & $24.753$ & $28.54$ \\
+Tverskaya Oblast  & $\phantom{00}\phantom{-}5.0335$ & $\phantom{0}46.01$ & $32.76$ & $27.27$ & $23.193$ & $22.60$ \\
+Tyumenskaya Oblast  & $\phantom{-}142.9216$ & $244.89$ & $27.58$ & $20.22$ & $18.337$ & $18.56$ \\
+Ul'yanovskaya Oblast  & $\phantom{0}\phantom{-}50.6008$ & $\phantom{0}97.46$ & $30.36$ & $47.52$ & $24.978$ & $39.53$ \\
+Vladimirskaya Oblast  & $\phantom{00}\phantom{-}8.4301$ & $\phantom{0}58.59$ & $37.42$ & $45.47$ & $23.893$ & $34.26$ \\
+Volgogradskaya Oblast  & $\phantom{0}\phantom{-}58.1734$ & $115.78$ & $28.06$ & $23.50$ & $21.873$ & $18.42$ \\
+Vologodskaya Oblast  & $\phantom{0}\phantom{-}42.0563$ & $148.48$ & $36.11$ & $37.62$ & $27.850$ & $31.95$ \\
+Voronezhskaya Oblast  & $\phantom{0}\phantom{-}14.9261$ & $\phantom{0}72.07$ & $30.06$ & $27.75$ & $22.511$ & $23.00$ \\
+Yaroslavskaya Oblast  & $\phantom{0}\phantom{-}32.1941$ & $142.41$ & $31.83$ & $35.69$ & $21.751$ & $28.06$ \\
 		\hline 
 	\end{longtable}
+ 
 }
-
+ 
 
 \begin{table}[!htbp] \centering 
 	\caption{} 
@@ -619,6 +708,20 @@ Regions & N & mean & sd & mean & sd & SE & VE & HE & Males & Females  \\
 		\textit{Note:}  & \multicolumn{4}{r}{$^{*}$p$<$0.1; $^{**}$p$<$0.05; $^{***}$p$<$0.01} \\ 
 	\end{tabular} 
 \end{table} 
+
+
+\begin{center}
+	\begin{figure}[htbp!]
+\begin{minipage}[b]{1\linewidth}
+			\centering
+			%\hspace*{-0.7in}
+			\includegraphics[width=6in]{sal_area.png}
+			% plot 1
+		\end{minipage}
+			\caption{Salary of Univ Graduates 2014 to 2016}\label{fig:7.6}
+	\end{figure}
+\end{center}
+
 
 
 \end{document}
