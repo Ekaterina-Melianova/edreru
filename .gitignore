@@ -1,3 +1,4 @@
+.gitignore
 *.RdataTmp
 *.Rproj.user
 *.Rhistory
