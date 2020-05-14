@@ -70,6 +70,12 @@
 
 \usepackage[export]{adjustbox} % for figure in frame
 
+
+\usepackage{array}
+\newcolumntype{L}[1]{>{\raggedright\let\newline\\\arraybackslash\hspace{0pt}}m{#1}}
+\newcolumntype{C}[1]{>{\centering\let\newline\\\arraybackslash\hspace{0pt}}m{#1}}
+\newcolumntype{R}[1]{>{\raggedleft\let\newline\\\arraybackslash\hspace{0pt}}m{#1}}
+
 %%%%%%%%#################################################################################%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 % Update article type if known
@@ -114,6 +120,7 @@ P170978}
 \maketitle
 
 \begin{abstract}
+\vspace{.5em}
 This paper is the fourth and final one in a series of working papers investigating the returns to education in the Russian Federation. This paper uses institution level information about graduate earnings and estimates of social and private costs to obtain social and private returns to education using an internal rates of return calculation. As data has been collected so far only on earnings trajectories for three years following graduation, these are not lifetime returns, but they are adequate to provide relative estimates. Samara Energy College \url{https://sam-ek.ru/} with private returns of 35\% and social returns of 13\%. V. R. Fillipova Buryat State Agricultural Academy in Ulan Ude \url{http://www.bgsha.ru/} leads the universities list with a private returns of 9\% and social return of 7\%. Even though the results presented here are of a preliminary nature, the data length and model sophistication can only grow in the future.The resulting information on returns to investment will serve government stakeholders as well as individual students.  
 
 % Please include a maximum of seven keywords
@@ -312,132 +319,18 @@ We turn now to the data from graduate.edu.ru on salaries of graduates from colle
 		% plot 2
 		\subcaption{\large{University}}
 	\end{minipage}
-	\caption{Salary of Graduates by Study Specialization}\label{fig:1.6}
+	\caption{Monthly Salary in year 2014 of Graduates by Study Specialization}\label{fig:1.6}
 \end{figure}
 
+Figure \ref{fig:1.6} provides a summary of the graduate salary information for 2014 (in 2016 rubles) by broad area of specialization, separately for those who attended vocational college or university. These are the categories of colleges or universities only as we do not have information by department or faculty within a college or university. Overall medians are also presented that show a median graduate monthly salary of 23,723 rubles for vocational education and 30,521. The boxplots ends are the 25th percentile and 75th percentile. It is immediately apparent from Figure \ref{fig:1.6} that the dispersion of salaries is lower for vocational education graduates, both across and within specializations. For university graduates on the other hand, even the 75th percentile wage for some specializations, such as agrarian or pedagogical, barely make it to the overall median. Data from graduate.edu is available for 2014 graduates for two more years. Interestingly, patterns of variation can be seen even in this short interval, which generates confidence in using the data to compare across institutions. Appendix Figure \ref{fig:7.6} shows a plot of real salary increases from 2014 to 2016 for university graduates who graduated in 2014. As might be expected, specialized scientific and technical disciplines garnered the biggest increases.  In some cases there were zero increases or even declines, with `education and pedagogical sciences' one of the notable cases registering a decline. Low starting salaries for pedagogical specializations may persist over an early probation period of two to three years, possibly be made up later in the career. If a longer time period of data had been available from graduate.edu, there might have been some movement in the relative placement of the specializations.  However, it seems unlikely that there would have been large scale movements. The information presented in Appendix Figure \ref{fig:7.6} makes intuitive sense and provides some reassurance that the availability of only three years or earnings data does not make it totally dominated by noise. This also makes sense given the fact that the raw data on which the information is based is almost a census data, with graduate.edu.ru publishing institutional level means based on salaries from over 1 million individual records. 
 
+\subsection{Social and Private Returns by Institution}
 
-Appendix Figure \ref{fig:7.6} shows a plot of real salary increases from 2014 to 2016 for university graduates who graduated in 2014. As might be expected, specialized scientific and technical disciplines garnered the biggest increases. In some cases there were zero increases or even declines, with `education and pedagogical sciences' one of the notable cases registering a decline. If a longer time period of data had been available from graduate.edu, there might have been some movement in the relative placement of the specializations.  However, it seems unlikely that there would have been large scale movements. The information presented in Appendix Figure \ref{fig:7.6} makes intuitive sense and provides some reassurance that the availability of only three years or earnings data does not make it totally dominated by noise. This also makes sense given the fact that the raw data on which the information is based is almost a census data, with graduate.edu.ru publishing institutional level means based on salaries from over 1 million individual records. 
+Productive investments, such as education in a college or university, can be evaluated or ranked in terms of optimality by examining the cash flows that result from alternative investment choices. There is a negative cash flow during the period of study - made up of direct costs such as tuition fees, transportation and textbooks, as well as the indirect costs of foregone income. In considering social costs these include the subsidies provided by government so that students pay low or sometimes no tuition. In the Russian Federation, some students are completely subsidized while other students pay partial or full fees. In the computations presented in this paper, we only use institution level means for both private and social costs. Some of the data points appear to be outliers and we `trim' the bottom and top 1\% of observations. We also exclude colleges with less than 50 students and unversities with less than 100 students. As stated before, there are a number of simplifications used to compute unit costs per student from the aggregate financial information of a college or university. For foregone earnings we utilize the regional level mean earnings for those who did not go beyond Secondary education. 
 
-We turn now to the data from graduate.edu.ru on salaries of graduates from colleges and universities.
-
-
-
-
-We turn now to the data from graduate.edu.ru on salaries of graduates from colleges and universities.
-
-
-cases there were zero increases or even declines, with `education and pedagogical sciences' one of the notable cases registering a decline. If a longer time period of data had been available from graduate.edu, there might have been some movement in the relative placement of the specializations.  
-cases there were zero increases or even declines, with `education and pedagogical sciences' one of the notable cases registering a decline. If a longer time period of data had been available from graduate.edu, there might have been some movement in the relative placement of the specializations. 
-
-cases there were zero increases or even declines, with `education and pedagogical sciences' one of the notable cases registering a decline. If a longer time period of data had been available from graduate.edu, there might have been some movement in the relative placement of the specializations. 
-
-
-
-
-\lipsum[1]
-
-\lipsum[2}
-
-\subsection{Methods}
-
-The Mincerian equation with an added gender dummy  is the main focus in the regional investigation of returns to education in Russia: in this section we look at how these returns vary across regions. Additionally, we explore the determinants of the established variation through a random effects regression analysis.  The equations of interest are as follows:
-
-\textbf{First level:}
-\begin{flalign}\label{eq:4.1} 
-Log $(Wage)$_{ij} = b_{0j} + b_{1j}\cdot $Educ$ + b_{2j}\cdot $Exp$ + b_{3j}\cdot $Exp^2$ + b_{4j}\cdot $Gender$ + \epsilon_{ij} &&
-\end{flalign}
-
-\textbf{Second Level:}
-\begin{flalign}\label{eq:4.2} 
-b_{0j} = \gamma_{00} + \gamma_{0n}\cdot Z + u_{00} ;&&
-b_{1j} = \gamma_{10} + \gamma_{1n}\cdot Z + u_{10} ;&&
-b_{ij} = \gamma_{i0} \quad for \quad i \neq 0   &&
-\end{flalign}
+The negative stream of cash flows at the beginning are evaluated against the positive stream of cash flows when graduates begin to earn in the labor market. Employment is a probabilistic outcome but we do not have information about the specific employment rate for each institute. The classical internal rate of return would be the discount rate applied to the future stream of lifetime earnings to equal the value of the negative stream during the schooling period. The same method can be applied to calculate an internal rate of return with only three years of positive earnings. Even though most rates are negative, the method still yields a relative ranking of colleges and separately, of universities. The main purpose of this analysis is to provide the processed information to the public. The graduate.edu.ru website provides useful information in varied forms about the salaries of graduates. This information would become even more valuable when combined with the cost information to provide an internal rate of return. If updates can be made to the graduate.edu with more recent salary data since 2016, the internal rate of return can be updated. For dedicated evidence based decision making, it is also possible in the future to get more accurate information ion the cost side. For instance, it would be very useful to build on the bus.gov.ru data used here with a primary data collection effort. 
  
-\noindent
-where an individual $i$ is nested within a region $j$, $Log$(Wage) is the logarithm of monthly wage, $Educ$ stands for highest attained level of education, $Exp$ and $Exp^2$ reflect the years of working experience and its quadratic term respectively, $Gender$ is a dummy variable for gender, $Z$ is an $n\times i$ matrix of regional characteristics, $\epsilon$ and $u_{00}$, $u_{10}$ are the first- and second-level errors respectively.
 
-
-\subsubsection{Left Hand Side (LHS) variable}
-
-\lipsum[1]
-
-\lipsum[2}
-
-\subsubsection{Right Hand Side (RHS) variables}
-\lipsum[1]
-
-\lipsum[2}
-\textcolor{red}{SOCIAL AND PRIVATE IRR UNIVERSITIES}
-
-\vspace{-0.2in}
-
-
-
-
-
-
-\textcolor{blue}{SOCIAL AND PRIVATE IRR COLLEGES}
-
-\vspace{-0.2in}
-
-\begin{center}
-	\begin{figure}[htbp!]
-\begin{minipage}[b]{1\linewidth}
-			\centering
-			%\hspace*{-0.7in}
-			\includegraphics[width=6in]{returns_by_region_plot2.png}
-			% plot 1
-		\end{minipage}
-			\caption{Salary of Univ Graduates 2014 to 2016}\label{fig:1.15}
-	\end{figure}
-\end{center}
-
-
-\vspace{-2em}
-
-
-\lipsum[1]
-
-\lipsum[2}
-
-\begin{flalign}\label{eq:4.3} 
-\{b_{1j}| Z = 1\} = \gamma_{10} + 1 \times \gamma_{1n}&&
-\{b_{1j}| Z = 0\} = \gamma_{10}&&
-\{b_{1j}| Z = -1\} = \gamma_{10} - 1 \times \gamma_{1n}&&
-\end{flalign}
-
-Appendix Table \ref{tab:4.1} demonstrates descriptive statistics of the key variables of interest by regions.
-
-\subsection{Estimation Results of Regional Analysis}
-
-
-\textcolor{GREEN}{ZE SCATTER PLOT}
-
-\vspace{-0.2in}
-
-\begin{center}
-	\begin{figure}[htbp!]
-\begin{minipage}[b]{1\linewidth}
-			\centering
-			%\hspace*{-0.7in}
-			\includegraphics[width=6in]{returns_by_region_scatterplot.png}
-			% plot 1
-		\end{minipage}
-			\caption{Salary of Univ Graduates 2014 to 2016}\label{fig:1.16}
-	\end{figure}
-\end{center}
-
-
-\vspace{-2em}
-
-\lipsum[1]
-
-\lipsum[2}
-
-
-\section{Organizational Returns}
 
 
 \begin{table}
@@ -446,64 +339,64 @@ Appendix Table \ref{tab:4.1} demonstrates descriptive statistics of the key vari
     \centering
 		\caption{Social and Private Returns by Instititution: Top and Bottom 10}
 		\label{tab:1.3}\\
-    \begin{tabular}{|p{1.3cm}|p{1.3cm}|p{7cm}|p{2cm}|p{1.5cm}|}
+    \begin{tabular}{|p{.75cm}|p{.75cm}|p{7cm}|p{3cm}|R{1.25cm}|}
     \hline
 \multicolumn{5}{|c|}{\textbf{Top 10 Colleges}} \\ \hline
-social  & private  & Name & region  & n graduates \\ \hline
--0.01 & 0.01 & Tomsk Industrial University & Tomsk & 6655 \\ \hline
--0.01 & 0.01 & Tomsk Industrial University & Tomsk & 6655 \\ \hline
--0.01 & 0.01 & Tomsk Industrial University & Tomsk & 6655 \\ \hline
--0.01 & 0.01 & Tomsk Industrial University & Tomsk & 6655 \\ \hline
--0.01 & 0.01 & Tomsk Industrial University & Tomsk & 6655 \\ \hline 
--0.01 & 0.01 & Tomsk Industrial University & Tomsk & 6655 \\ \hline
--0.01 & 0.01 & Tomsk Industrial University & Tomsk & 6655 \\ \hline
--0.01 & 0.01 & Tomsk Industrial University & Tomsk & 6655 \\ \hline
--0.01 & 0.01 & Tomsk Industrial University & Tomsk & 6655 \\ \hline
+social  & private  & Name & Region  & Number graduates\\ \hline
+0.13 & 0.35 & Samara Power Engineering College & Samarskaya Oblast & 140 \\ 
+0.13 & 0.22 & Tomsk Polytechnic Technical School & Tomskaya Oblast & 306 \\ 
+0.12 & 0.24 & Novocherkassk Geological Exploration College & Rostovskaya Oblast & 244 \\ 
+0.12 & 0.28 & Vilyui Technical School & Resp. Sakha (Yakutia) & 156 \\ 
+0.11 & 0.21 & Kiselevsky Mining College & Kemerovskaya Oblast & 280 \\ 
+0.11 & 0.25 & Higher Banking School & Saint-Petersburg & 229 \\ 
+0.11 & 0.24 & Industrial and Technological College & Saint-Petersburg & 305 \\ 
+0.10 & 0.18 & Perm Oil College & Permskiy Krai & 171 \\ 
+0.10 & 0.30 & Yakut Road Technical School & Resp. Sakha (Yakutia) & 220 \\ 
+0.10 & 0.19 & Sakhalin Indus. \& Economic College & Sakhalinskaya Oblast & 489 \\ 
 -0.01 & 0.01 & Tomsk Industrial University & Tomsk & 6655 \\ \hline 
 \multicolumn{5}{|c|}{\textbf{Bottom 10 Colleges}} \\ \hline
-social  & private  & Name & region  & n graduates \\ \hline
--0.01 & 0.01 & Tomsk Industrial University & Tomsk & 6655 \\ \hline
--0.01 & 0.01 & Tomsk Industrial University & Tomsk & 6655 \\ \hline
--0.01 & 0.01 & Tomsk Industrial University & Tomsk & 6655 \\ \hline
--0.01 & 0.01 & Tomsk Industrial University & Tomsk & 6655 \\ \hline
--0.01 & 0.01 & Tomsk Industrial University & Tomsk & 6655 \\ \hline 
--0.01 & 0.01 & Tomsk Industrial University & Tomsk & 6655 \\ \hline
--0.01 & 0.01 & Tomsk Industrial University & Tomsk & 6655 \\ \hline
--0.01 & 0.01 & Tomsk Industrial University & Tomsk & 6655 \\ \hline
--0.01 & 0.01 & Tomsk Industrial University & Tomsk & 6655 \\ \hline
--0.01 & 0.01 & Tomsk Industrial University & Tomsk & 6655 \\ \hline 
+social  & private  & Name & Region  & Number graduates \\ \hline
+-0.32 & -0.04 & Abakan Construction College & Respublika Khakasiya & 70 \\ 
+-0.32 & -0.24 & Ichalkovsky Pedagogical College & Respublika Mordovia & 62 \\ 
+-0.32 & -0.19 & Ozersk Technical College & Chelyabinskaya Oblast & 154 \\ 
+-0.32 & 0.04 & Metrostroy College & Saint-Petersburg & 55 \\ 
+-0.32 & -0.16 & Kaluga Technical College & Kaluzhskaya Oblast & 154 \\ 
+-0.33 & -0.02 & Yemelyanov Road Cnstruction Technical School & Krasnoyarskiy Kray & 73 \\ 
+-0.33 & -0.14 & Technology College No. 21 & Moscow & 216 \\ 
+-0.33 & 0.12 & Sakhalin Technical School of Agricultural Mechanization & Sakhalinskaya Oblast & 82 \\ 
+-0.34 & 0.15 & Krasnoselsky College & Saint-Petersburg & 74 \\ 
+-0.34 & -0.02 & Krasnodar Pedagogical College & Krasnodarskiy Kray & 148 \\ \hline
 \multicolumn{5}{|c|}{\textbf{Top 10 Universities}} \\ \hline
-social  & private  & Name & region  & n graduates \\ \hline
--0.01 & 0.01 & Tomsk Industrial University & Tomsk & 6655 \\ \hline
--0.01 & 0.01 & Tomsk Industrial University & Tomsk & 6655 \\ \hline
--0.01 & 0.01 & Tomsk Industrial University & Tomsk & 6655 \\ \hline
--0.01 & 0.01 & Tomsk Industrial University & Tomsk & 6655 \\ \hline
--0.01 & 0.01 & Tomsk Industrial University & Tomsk & 6655 \\ \hline 
--0.01 & 0.01 & Tomsk Industrial University & Tomsk & 6655 \\ \hline
--0.01 & 0.01 & Tomsk Industrial University & Tomsk & 6655 \\ \hline
--0.01 & 0.01 & Tomsk Industrial University & Tomsk & 6655 \\ \hline
--0.01 & 0.01 & Tomsk Industrial University & Tomsk & 6655 \\ \hline
--0.01 & 0.01 & Tomsk Industrial University & Tomsk & 6655 \\ \hline 
+social  & private  & Name & Region  & Number graduates \\ \hline
+0.07 & 0.09 & Buryat State Agricultural Academy & Respublika Buryatia & 415 \\ 
+0.05 & 0.09 & Russian State Univ. of Tourism and Service & Moskovskaya Oblast & 3019 \\ 
+0.05 & 0.07 & Tyumen Industrial University & Tyumenskaya Oblast & 6655 \\ 
+0.04 & 0.07 & Samara Sate Univ. of Economics & Samarskaya Oblast & 1826 \\ 
+0.04 & 0.20 & Northeastern State University & Magadanskaya Oblast & 573 \\ 
+0.04 & 0.10 & Siberian State Industrial University & Kemerovskaya Oblast & 1727 \\ 
+0.04 & 0.13 & Samara State Technical University & Samarskaya Oblast & 2879 \\ 
+0.03 & 0.09 & Siberian State Univ. of Geosystems \& Technologies & Novosibirskaya Oblast & 1768 \\ 
+0.03 & 0.10 & Kamchatka State Technical University & Kamchatskaya Kray & 826 \\ 
+0.02 & 0.15 & Arctic State Inst. of Culture and Arts & Resp. Sakha (Yakutia) & 366 \\ 
+\hline
 \multicolumn{5}{|c|}{\textbf{Bottom 10 Universities}} \\ \hline
-social  & private  & Name & region  & n graduates \\ \hline
--0.01 & 0.01 & Tomsk Industrial University & Tomsk & 6655 \\ \hline
--0.01 & 0.01 & Tomsk Industrial University & Tomsk & 6655 \\ \hline
--0.01 & 0.01 & Tomsk Industrial University & Tomsk & 6655 \\ \hline
--0.01 & 0.01 & Tomsk Industrial University & Tomsk & 6655 \\ \hline
--0.01 & 0.01 & Tomsk Industrial University & Tomsk & 6655 \\ \hline 
--0.01 & 0.01 & Tomsk Industrial University & Tomsk & 6655 \\ \hline
--0.01 & 0.01 & Tomsk Industrial University & Tomsk & 6655 \\ \hline
--0.01 & 0.01 & Tomsk Industrial University & Tomsk & 6655 \\ \hline
--0.01 & 0.01 & Tomsk Industrial University & Tomsk & 6655 \\ \hline
--0.01 & 0.01 & Tomsk Industrial University & Tomsk & 6655 \\ \hline 
+social  & private  & Name & Region  & Number graduates \\ \hline
+-0.29 & -0.18 & Samara State Medical University  & Samarskaya Oblast & 1169 \\ 
+-0.30 & -0.13 & Pirogov Russian National Research Medical University & Moscow & 1165 \\ 
+-0.30 & -0.22 & Astrakhan State Univ. of Arch. \& Civil Eng. & Astrakhanskaya Oblast & 282 \\ 
+-0.30 & -0.10 & Stroganov Moscow State Acad. of Art \& Industry & Moscow & 196 \\ 
+-0.30 & -0.17 & Siberian State Medical University  & Tomskaya Oblast & 630 \\ 
+-0.31 & -0.16 & Bryansk State Agrarian University & Bryanskaya Oblast & 408 \\ 
+-0.31 & -0.14 & National Research Technological University  & Moscow & 1394 \\ 
+-0.32 & -0.18 & North-Western Sate Medical University  & Saint-Petersburg & 949 \\ 
+-0.34 & -0.16 & Saratov State Conservatory & Saratovskaya Oblast & 116 \\ 
+-0.35 & -0.15 & Ural State Agrarian University & Sverdlovskaya Oblast & 260 \\ 
+\hline
 \end{tabular}
 \end{table}
 
 
 
-\lipsum[1]
-
-\lipsum[2}
 
 
 
@@ -528,11 +421,6 @@ social  & private  & Name & region  & n graduates \\ \hline
 \end{figure}
 
 
-\section{Categorization of Priority Regions} 
-
-\lipsum[1]
-
-\lipsum[2}
 
 
 \vspace{-0.2in}
@@ -652,63 +540,6 @@ Yaroslavskaya Oblast  & $\phantom{0}\phantom{-}32.1941$ & $142.41$ & $31.83$ & $
  
 }
  
-
-\begin{table}[!htbp] \centering 
-	\caption{} 
-		\label{tab:4.2}\\
-	\label{} 
-	\begin{tabular}{@{\extracolsep{5pt}}lcccc} 
-		\\[-1.8ex]\hline 
-		\hline \\[-1.8ex] 
-		& Null model & Mincerian & Random Slope & Cross-Level Interaction \\ 
-		\\[-1.8ex] & (1) & (2) & (3) & (4)\\ 
-		\hline \\[-1.8ex] 
-		Constant & 10.178$^{***}$ & 10.032$^{***}$ & 10.056$^{***}$ & 10.065$^{***}$ \\ 
-		& (0.034) & (0.034) & (0.036) & (0.036) \\ 
-		& & & & \\ 
-		Vocational &  & 0.283$^{***}$ & 0.279$^{***}$ & 0.267$^{***}$ \\ 
-		&  & (0.009) & (0.021) & (0.021) \\ 
-		& & & & \\ 
-		Higher &  & 0.638$^{***}$ & 0.641$^{***}$ & 0.622$^{***}$ \\ 
-		&  & (0.009) & (0.025) & (0.025) \\ 
-		& & & & \\ 
-		Coverage VE X Vocational &  &  &  & 0.050$^{**}$ \\ 
-		&  &  &  & (0.025) \\ 
-		& & & & \\ 
-		Coverage VE X Higher &  &  &  & 0.083$^{***}$ \\ 
-		&  &  &  & (0.030) \\ 
-		& & & & \\ 
-		Experience &  & $-$0.026$^{***}$ & $-$0.027$^{***}$ & $-$0.027$^{***}$ \\ 
-		&  & (0.002) & (0.002) & (0.002) \\ 
-		& & & & \\ 
-		Experience squared &  & $-$0.065$^{***}$ & $-$0.065$^{***}$ & $-$0.065$^{***}$ \\ 
-		&  & (0.002) & (0.002) & (0.002) \\ 
-		& & & & \\ 
-		Females &  & $-$0.403$^{***}$ & $-$0.404$^{***}$ & $-$0.404$^{***}$ \\ 
-		&  & (0.005) & (0.005) & (0.005) \\ 
-		& & & & \\ 
-		Coverage VE &  &  & $-$0.101$^{***}$ & $-$0.142$^{***}$ \\ 
-		&  &  & (0.039) & (0.043) \\ 
-		& & & & \\ 
-		\hline \\[-1.8ex] 
-		Variance of Intecept & 0.09 & 0.08 & 0.09 & 0.09 \\ 
-		Variance of Vocational &  &  & 0.02 & 0.02 \\ 
-		Variance of Higher &  &  & 0.04 & 0.04 \\ 
-		\hline \\
-		Residual Deviance & 0.45 & 0.35 & 0.34 & 0.34 \\ 
-		sigma & 0.67 & 0.587 & 0.584 & 0.584 \\ 
-		deviance & 119505.212 & 106528.235 & 106137.315 & 106129.127 \\ 
-		df.residual & 49184 & 49179 & 49173 & 49171 \\ 
-		Observations & 49,187 & 49,187 & 49,187 & 49,187 \\ 
-		Log Likelihood & $-$59,755.060 & $-$53,289.500 & $-$53,094.620 & $-$53,096.640 \\ 
-		Akaike Inf. Crit. & 119,516.100 & 106,595.000 & 106,217.200 & 106,225.300 \\ 
-		Bayesian Inf. Crit. & 119,542.500 & 106,665.400 & 106,340.500 & 106,366.100 \\ 
-		\hline 
-		\hline \\[-1.8ex] 
-		\textit{Note:}  & \multicolumn{4}{r}{$^{*}$p$<$0.1; $^{**}$p$<$0.05; $^{***}$p$<$0.01} \\ 
-	\end{tabular} 
-\end{table} 
-
 
 \begin{center}
 	\begin{figure}[htbp!]

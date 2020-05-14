@@ -328,6 +328,103 @@ grid.arrange(plot2, plot1, ncol=2)
 
 ```
 
+```{r Translate russian names}
+
+### 1. Create dataframes with russian-english names
+
+# University names
+university_specialization_names <- data.frame(russian_name=c("аграрный", "классический", "педагогический", "медицинский",
+                                                      "специализированный", "социально-экономический", "технический",
+                                                      "художественный"),
+                                       english_name=c("Agricultural", "Classical", "Pedagogical", "Medical",
+                                                      "Specialized", "Socio-economic", "Technical", "Art"))
+
+# College names
+college_specialization_names <- data.frame(russian_name=c("аграрный", "педагогический", "медицинский",
+                                                      "общий", "социально-экономический", "технический",
+                                                      "художественный"),
+                                          english_name=c("Agricultural", "Pedagogical", "Medical",
+                                                      "General", "Socio-economic", "Technical", "Art"))
+
+# Study area names
+area_names <- rio::import("C:/Country/Russia/Data/SEASHELL/SEABYTE/edreru/wp5/area_names.xlsx", "xlsx")
+
+# Region names
+region_names <- rio::import("C:/Country/Russia/Data/SEASHELL/SEABYTE/edreru/wp3/rgnames2.xlsx", "xlsx")
+region_names <- region_names %>% rename(region_name = en_rgnames)
+
+df_universities <- df_universities[nchar(df_universities$OKATO) == 2,]
+df_colleges <- df_colleges[nchar(df_colleges$OKATO) == 2,]
+
+df_colleges$region_name <- (df_colleges %>% dplyr::select(OKATO) %>% left_join(region_names))$region_name
+df_universities$region_name <- (df_universities %>% dplyr::select(OKATO) %>% left_join(region_names))$region_name
+
+
+### 2. Rename 
+
+# Universities
+df_temp <- df_universities %>% dplyr::select(specialization_type) %>% left_join(university_specialization_names,
+                                                             by=c("specialization_type"="russian_name"))
+df_universities$specialization_type <- df_temp$english_name
+
+# Colleges
+df_temp <- df_colleges %>% dplyr::select(speciality_type) %>% left_join(college_specialization_names,
+                                                             by=c("speciality_type"="russian_name"))
+df_colleges$speciality_type <- df_temp$english_name
+
+# Study areas
+df_temp <- df_universities_areas %>% dplyr::select(area_name) %>% left_join(area_names,
+                                                                 by=c("area_name"="russian_name"))
+df_universities_areas$area_name <- df_temp$english_name
+
+```
+
+
+
+```{r Plot 51. Boxplots Social Returns by areas, echo=FALSE, fig.height=12, fig.width=25}
+
+# 1. Universities
+plot1 <- ggplot(df_universities, aes(reorder(specialization_type, social_returns), social_returns)) +
+  geom_boxplot(outlier.shape = NA, fill="deepskyblue2") + 
+  coord_flip() +
+  ggtitle("Social IRR after 3 years by Specialization of University") + 
+  labs(y="Average Social IRR", x = "Specialization of university") + 
+  theme_light(base_size = 18) + theme(plot.title = element_text(size = 24), axis.text = element_text(size=22))
+  # scale_y_continuous(limits=c(20000, 80000))
+
+# 2. Colleges
+plot2 <- ggplot(df_colleges, aes(reorder(speciality_type, social_returns), social_returns)) +
+  geom_boxplot(outlier.shape = NA, fill="lightcoral") + 
+   coord_flip() +
+  ggtitle("Social IRR after 3 years by Specialization of College") +
+  labs(y="Average Social IRR", x = "Specialization of college") + 
+  theme_light(base_size = 18) + theme(plot.title = element_text(size = 24), axis.text = element_text(size=22)) 
+  # scale_y_continuous(limits=c(20000, 80000)) 
+
+# Arrange in one plot
+plot_grid <- grid.arrange(plot2, plot1, ncol=2)
+
+plot(plot_grid)
+
+ggsave(filename = "returns_by_areas.png", plot_grid, width=25, height=12)
+
+
+```
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 ```{r Plot 2. Salary of university graduates by study area, echo=FALSE, warning=FALSE, fig.width = 14, fig.height = 14}
 
@@ -367,6 +464,8 @@ ggplot(area_salary_full, aes(x=reorder(area_name, salary_diff), y=mean_salary, c
   coord_flip() + theme_light() + theme(plot.title = element_text(size = 22, hjust = 0.9), axis.text = element_text(size=14), legend.text = element_text(size = 14), legend.title=element_text(size=14)) +
   labs(x="Study area", y = "Average salary") + 
   ggtitle("Salary of University Graduates by Study Area in 2014 and 2016")
+
+
 
 ```
 
@@ -1220,6 +1319,7 @@ df_colleges_table <- df_colleges %>%
                 graduates_number,
                 graduate_salary_2014, graduate_salary_2015, graduate_salary_2016) %>%
   arrange(-social_returns)
+
 df_colleges_table <- df_colleges_table[c(1:select_top_bottom_n,
                     (nrow(df_colleges_table)-select_top_bottom_n+1):nrow(df_colleges_table)),]
 

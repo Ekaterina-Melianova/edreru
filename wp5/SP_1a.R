@@ -38,6 +38,37 @@ library(tables)
 dfcu_t <- tabular((Regions = factor(en_rgnames)) ~  All(dfcu)*(mean),data = dfcu)
 latex(dfcu_t)
 
+
+library(openxlsx)
+
+# line 1218 in wp5_mainSP.Rmd of May 13, 2020
+
+df_colleges_table
+
+write.xlsx(df_colleges_table,file="blix.xlsx",asTable = TRUE)
+
+
+df_universities_table <- df_universities %>%
+  dplyr::select(social_returns, private_returns, 
+                name, region_name, region_code, income_total_mean, paidServices_mean,
+                graduates_number,
+                salary_2014, salary_2015, salary_2016) %>%
+  arrange(region_code,name) %>% 
+  
+  transmute(social_returns=round(social_returns,4),
+            private_returns=round(private_returns,4),
+            name=name,
+            region_name=region_name,
+            tot_revenue=round((income_total_mean/1000000),2),
+            tot_pdfees=round((paidServices_mean/1000000),2),
+            graduates=graduates_number,
+            sal14=round(salary_2014/1000),
+            sal15=round(salary_2015/1000),
+            sal16=round(salary_2016/1000))
+
+write.xlsx(df_universities_table,file="WP5_Universities Social Private Returns.xlsx",asTable = TRUE)
+
+
 tabular( Species ~
            All(iris)*(mean + sd), data=iris )
 
@@ -97,3 +128,18 @@ col_HE2b
 glimpse(arr_name)
 
 class(col_HE2b)
+
+glimpse(df_universities)
+
+
+temp <- df_colleges %>% distinct(name)
+
+glimpse(df_colleges)
+
+table(df_universities$specialization_type)
+
+##
+
+glimpse(df_universities)
+table(df_universities$specialization_type)
+
