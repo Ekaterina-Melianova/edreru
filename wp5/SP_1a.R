@@ -143,3 +143,5 @@ table(df_universities$specialization_type)
 glimpse(df_universities)
 table(df_universities$specialization_type)
 
+##
+

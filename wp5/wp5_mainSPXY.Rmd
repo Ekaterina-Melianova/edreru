@@ -1290,8 +1290,9 @@ ggmap(map_mo) +
   geom_point(aes(coordinates_long, coordinates_lat, color = social_returns_cat),
              data = df_universities_moscow, alpha=1, size=3, shape=16) + 
   scale_color_manual(values = c("coral2", "cornflowerblue", "green3")) + 
-  ggtitle("Social IRR of Universities in Moscow") + 
-  theme(plot.title = element_text(size=18, face="bold"))
+  ggtitle("Social IRR (3 years) Universities in Moscow") + 
+  theme(plot.title = element_text(size=18, face="bold"),
+        legend.position = "none")
 ggsave(filename = "social_returns_moscow.png")
 
 ```
@@ -1320,8 +1321,9 @@ ggmap(map_spb) +
   geom_point(aes(coordinates_long, coordinates_lat, color = social_returns_cat),
              data = df_colleges_spb, alpha=1, size=3, shape=16)  + 
   scale_color_manual(values = c("coral2", "cornflowerblue", "green3")) +
-  ggtitle("Social IRR of Colleges in Saint Petersburg") + 
-  theme(plot.title = element_text(size=18, face="bold"))
+  ggtitle("Social IRR (3 years) Colleges in Saint Petersburg") + 
+  theme(plot.title = element_text(size=18, face="bold"),
+        legend.position = c(0.80,0.80))
 ggsave(filename = "social_returns_spb.png")
 ```
 
@@ -1335,18 +1337,21 @@ Another aspect that can influence the rate of returns substantially is the educa
 plot1 <- ggplot(df_universities, aes(reorder(specialization_type, social_returns), social_returns)) +
   geom_boxplot(outlier.shape = NA, fill="deepskyblue2") + 
   coord_flip() +
-  ggtitle("Social IRR after 3 years by Specialization of University") + 
+  ggtitle("Social IRR (3 years) by Specialization of University") + 
   labs(y="Average Social IRR", x = "Specialization of university") + 
-  theme_light(base_size = 18) + theme(plot.title = element_text(size = 24), axis.text = element_text(size=22))
+  theme_light(base_size = 18) + theme(
+    plot.title = element_text(size=18, face="bold"), axis.text = element_text(size=22))
   # scale_y_continuous(limits=c(20000, 80000))
 
 # 2. Colleges
 plot2 <- ggplot(df_colleges, aes(reorder(speciality_type, social_returns), social_returns)) +
   geom_boxplot(outlier.shape = NA, fill="lightcoral") + 
    coord_flip() +
-  ggtitle("Social IRR after 3 years by Specialization of College") +
+  ggtitle("Social IRR (3 years) by Specialization of College") +
   labs(y="Average Social IRR", x = "Specialization of college") + 
-  theme_light(base_size = 18) + theme(plot.title = element_text(size = 24), axis.text = element_text(size=22)) 
+  theme_light(base_size = 18) + 
+  theme(plot.title = element_text(size=18, face="bold"),
+        axis.text = element_text(size=22)) 
   # scale_y_continuous(limits=c(20000, 80000)) 
 
 # Arrange in one plot
