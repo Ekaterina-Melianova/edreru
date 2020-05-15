@@ -1,0 +1,102 @@
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% A template for Wiley article submissions.
+% Developed by Overleaf. 
+%
+% Please note that whilst this template provides a 
+% preview of the typeset manuscript for submission, it 
+% will not necessarily be the final publication layout.
+%
+% Usage notes:
+% The "blind" option will make anonymous all author, affiliation, correspondence and funding information.
+% Use "num-refs" option for numerical citation and references style.
+% Use "alpha-refs" option for author-year citation and references style.
+
+\documentclass[alpha-refs]{wiley-article-04t}
+% \documentclass[blind,num-refs]{wiley-article}
+
+% Add additional packages here if required
+\usepackage{siunitx}
+
+% For figures
+\usepackage{graphics}
+
+%For captions - even though template has complex caption commands
+\usepackage[labelfont=bf,justification=centering]{caption}
+\usepackage[font=small,labelfont=bf]{subcaption}
+\captionsetup[sub]{font=tiny,labelfont={bf,sf}}
+
+%% For figures numbered by section
+\usepackage{chngcntr}
+\counterwithin{figure}{section}
+\counterwithin{table}{section}
+
+%% Additional links for hyperref
+\usepackage[unicode=true,pdfusetitle,
+ bookmarks=false,bookmarksnumbered=false,bookmarksopen=true,bookmarksopenlevel=2,
+ breaklinks=false,pdfborder={0 0 1},backref=false,colorlinks=false]
+ {hyperref}
+\hypersetup{pdfstartview={XYZ null null 1}}
+
+\usepackage[backend=bibtex,
+			natbib=true, 
+			style=chicago-authordate]{biblatex}
+\addbibresource{wp4.bib}
+
+\usepackage{array}
+\usepackage{longtable}
+%\usepackage{fullpage}
+
+\usepackage{lmodern}
+\newcommand{\graph}[3]{
+\raisebox{-#1mm}{\includegraphics[height=#2em,width=3cm]{#3}}
+}
+
+\usepackage{booktabs} % for vertically partitioned table
+
+\usepackage{lipsum}  % for fillers
+
+% Additional
+\usepackage{amsmath}
+\usepackage{tabularx}
+\usepackage{tabulary}
+\usepackage{float}
+\usepackage[flushleft]{threeparttable}
+%%%%%%%%#################################################################################%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+% Update article type if known
+\papertype{WORLD BANK EDUCATION GLOBAL PRACTICE}
+% Include section in journal if known, otherwise delete
+\paperfield{Russian Federation: Analytical Services and Advisory Activity: 
+P170978}
+
+\title{Returns to Education in the Russian Federation: Application of a machine learning instrumental variable technique for policy development in priority regions}
+
+\author[]{}
+
+% List abbreviations here, if any. Please note that it is preferred that abbreviations be defined at the first instance they appear in the text, rather than creating an abbreviations list.
+\acks{\begin{normalsize}
+\emph{Country Director:} Renaud Seligman; \emph{Regional Director:} Fadia Saadah; \emph{Practice Manager:} Harry Patrinos; \emph{Program Leader:} Dorota Nowak; \emph{Peer Reviewers}: Cristian Aedo; Ruslan Yemtsov; Husein Abdul-Hamid; \emph{Team members:} Polina Zavalina; Zhanna Terlyga. Thanks to seminar participants at the World Bank Moscow office on Jan. 29, 2020 for useful feedback. Any errors are a responsibility of the authors.
+\end{normalsize}
+\vspace{-0.2in}}
+
+
+%\presentadd[\authfn{2}]{Department, Institution, City, State or Province, Postal Code, Country}
+
+% Include the name of the author that should appear in the running header
+
+
+\begin{document}
+
+\maketitle
+
+\section{Motivation for this paper}
+
+\subsection{Stylized fact 1: Returns trend and looking at cohorts}
+
+\subsection{Stylized fact 2: Priority regions and policy options for education}
+
+
+\newpage
+\printbibliography
+
+\end{document}

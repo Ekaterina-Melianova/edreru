@@ -6,7 +6,8 @@ library(plyr); library(dplyr)
 library(gmodels)
 library(lmtest)
 library(sqldf)
-library(XLConnectJars)
+# library(XLConnectJars) Not on Cran as of April 28, 2020
+library("XLConnectJars",lib.loc="C:/Users/wb164718/Documents/R/win-library/3.5")
 library(questionr)
 library(labelled)
 library(tidyr)
@@ -32,10 +33,15 @@ source("C:/Country/Russia/Data/SEASHELL/SEABYTE/edreru/edreru_package.R")
 db <- dbConnect(SQLite(), dbname="C:/Country/Russia/Data/SEASHELL/SEABYTE/Databases/RLMS/sqlite/rlms.db")
 
 ############################################################################################################
+## WARNING - Depending on how the R environments are set up.
+## re-running this command or running this command after dbDisconnect(db)
+## and then connecting again - gives cryptic and wrong error message
+
+## Hence, running in one go and saving zdf_  SP May 14, 2020
 
 # below took system.time() about 15 seconds elapsed time
 # Selecting the variables of interest
-df_ <- selectFromSQL(c("REGION", "AGE", "J13_2", "J10", "J40", "EDUC", "J1",
+zdf_ <- selectFromSQL(c("REGION", "AGE", "J13_2", "J10", "J40", "EDUC", "J1",
                        "J5A", "J5B", "H7_2", "H5", "J2COD08",
                        "J23", "I2", "I4", "YEAR", "J40", "J35_2Y", "J35_2M",
                        "total_exper", "exper_main_", "exper_add_",
@@ -43,9 +49,13 @@ df_ <- selectFromSQL(c("REGION", "AGE", "J13_2", "J10", "J40", "EDUC", "J1",
                        "EDUC", 'J72_5C', 'J72_6A', 'J72_4C', 'J72_3C',
                        'J70', 'J70_1', 'J72_2C', 'J72_18A'))
 
+saveRDS(zdf_,file="C:/Country/Russia/Data/SEASHELL/SEABYTE/edreru/wp1/zdf_")
+
 
 dbDisconnect(db)
 # Fixing system and user-defined missings in the RLMS database
+
+df_ <- zdf_
 
 df_ <- SysMisFix(df_) # determining system missings
 df_ <- UserMisFix(df_) # labelling user-defined missings
@@ -220,8 +230,13 @@ voc_smry <- rbind.data.frame(voc_smry, margins)
 voc_smry$m_yrs <- round(voc_smry$m_yrs, 2)
 names(voc_smry) <- c('Year', 'VG_level', 'Mean_Edu_Years_after_9', 'N')
 
-# Arragning
-voc_smry <- voc_smry %>% arrange(Year)
+# Arranging
+hist(voc_smry$Mean_Edu_Years_after_9)
+
+names(voc_smry) <- c("Year","VG_level","Mean_Edu_Years_after_9","N")
+#voc_smry <- voc_smry %>% dplyr::arrange(Year)
+# Weird error message "YEAR" not found 
+voc_smry <- voc_smry[order(voc_smry$Year),]
 
 # Plotting
 voc_smry <- voc_smry %>% filter(VG_level %in% c(3,5,6))
@@ -538,9 +553,11 @@ RoREs_edu <- melt(RoREs, measure=c("returns_to_edu_all",
                                  "returns_to_edu_m"))
 RoREs_edu$value <- as.numeric(substr(RoREs_edu$value, 1, nchar(RoREs_edu$value)-1))
 RoREs_edu$variable <- factor(RoREs_edu$variable,
-                           labels = c("Total",
+                           labels = c("Males",
                                       "Females",
-                                      "Males"))
+                                      "Total"))
+# Factor corrected by SP - earlier version of paper 
+# Prior to May 14 showed total in middle which makes sense
 
 # Plotting all
 ggplot(RoREs_edu, aes(YEAR, value, group = variable, color = variable,
@@ -557,7 +574,7 @@ ggplot(RoREs_edu, aes(YEAR, value, group = variable, color = variable,
         axis.title = element_text(size = 16),
         legend.text = element_text(size = 16),
         legend.key = element_rect(size = 16)) +
-  scale_color_manual(values = c("darkgray", "red3", "darkgreen")) +
+  scale_color_manual(values = c("black","purple","darkgray")) +
   #scale_shape_manual(values=c(2,4)) +
   scale_x_discrete(breaks = x_axis) +
   ylab("Rate of returns, %") +

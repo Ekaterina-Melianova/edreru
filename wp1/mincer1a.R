@@ -122,8 +122,8 @@ df_temp1 <-  df %>%
   arrange(YEAR, IDIND) %>% # making sure the waves are listed sequentially
   filter(J1 < 5)
 
-Freq(df$J1)
-Freq(df_temp1$J1)
+FreqEM(df$J1)
+FreqEM(df_temp1$J1)
 
 # Splitting a dataframe to a list by IDIND
 list <- split(df_temp1 , f = df_temp1$IDIND) 
@@ -426,3 +426,5 @@ for (name in var_names_to_csv){
   print(i)
   i = i + 1
 }
+
+

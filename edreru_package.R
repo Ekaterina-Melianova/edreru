@@ -202,5 +202,3 @@ FreqSP <- function(var){
 }
 
 
-
-                     
