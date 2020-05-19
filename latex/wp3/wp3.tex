@@ -65,6 +65,9 @@
 \newlist{tabitemize}{itemize}{1}
 \setlist[tabitemize]{label=\textbullet,leftmargin=*,topsep=0ex,parsep=0pt,
                   after=\vspace{-\baselineskip},before=\vspace{-0.75\baselineskip}}  
+%% For landscape pages 
+
+\usepackage{lscape}
 
 
 
@@ -112,7 +115,13 @@ P170978}
 \maketitle
 
 \begin{abstract}
-This paper is the third in a series of working papers investigating the returns to education in the Russian Federation. This paper uses regionally representative household survey data to determine the rates of return to education in different regions. Returns show a wide dispersion together with the labor market context. With a view to support development of specially selected depressed regions, the paper provides a set of policy conclusions to improve the human capital in the regions. This paper will support policy directed towards reducing development disparities between Russian regions.
+This paper is the third in a series of working papers investigating the 
+returns to education in the Russian Federation. This paper uses regionally 
+representative household survey data to determine the rates of return to 
+education in different regions. Returns show a wide dispersion together 
+with the labor market context. The paper's policy recommendations would be 
+particularly helpful to support human capital development of federally 
+targeted economically and socially depressed regions.
 
 % Please include a maximum of seven keywords
 \keywords{Returns to Education, Russian Federation, Regional Analysis \emph{JEL Codes: I26, 
@@ -123,9 +132,37 @@ I28, J240, R110}}
 \section{Estimating Regional Returns to Education}
 
 \subsection{Motivation for this study}
-The diversity of economic conditions across Russian regions suggests fruitful policy analytical use of regional level returns to education. Regional economic development in the Russian Federation is a heavily studied topic, with numerous studies focused on macroeconomic issues and investigations regarding convergence of growth trajectories, decomposition of inequality and efficiency of public spending. Examples of these studies are: \cite{lugovoy2007}, \cite{hauner2008}, \cite{gluschenko2011} and \cite{kufenko2014}. A recent World Bank report described the three main factors that explain the wide scale of diversities in Russia's regions, so that some regions have income levels that match Singapore or New Zealand, and others match Bolivia or Honduras: (i) the persistent Soviet legacy; (ii) diverse physical geography; and (iii) dominance of oil and gas in some regions \parencite{worldbank2018}. The report analyzed the determinants of Economic Potential Index (EPI) of Russian regions (excluding remote regions and oil and gas producing Eastern regions). 
+The diversity of economic conditions across Russian regions suggests 
+fruitful policy analytical use of regional level returns to education. 
+Regional economic development in the Russian Federation is a heavily 
+studied topic, with numerous studies focused on macroeconomic issues and 
+investigations regarding convergence of growth trajectories, decomposition 
+of inequality and efficiency of public spending. Examples of these studies 
+are: \cite{lugovoy2007}, \cite{hauner2008}, \cite{gluschenko2011} and 
+\cite{kufenko2014}. A recent World Bank report described the three main 
+factors that explain the wide scale of diversity in Russia's regions, so 
+that some regions have income levels that match Singapore or New Zealand, 
+and others match Bolivia or Honduras: (i) the persistent Soviet legacy; 
+(ii) diverse physical geography; and (iii) dominance of oil and gas in some 
+regions \parencite{worldbank2018}. The report analyzed the determinants of 
+the Economic Potential Index (EPI) of Russian regions: urbanization; the 
+presence of high-tech industries; advanced human capital; and connectivity 
+(access to markets). These four factors explain 60\% of the variation in 
+EPI. In this study we create a typology of regions using various measures 
+for the quantity and quality of labor demand and supply, including a 
+measure related to the EPI. 
 
-An important finding from the analysis of the  EPI: the four factors of urbanization; the presence of high-tech industries; advanced human capital; and connectivity (access to markets) \textendash  explain 60\% of the variation in EPI. For the EPI analysis, the measure of advanced human capital was the regional percentage of population with a higher education degree. While that report examined regional development with an overview of all sectors, and recommended that regional development can be spurred through investment in human capital, this paper seeks to derive deeper insights regarding human capital. It seeks to answer three questions - what is the variation of the returns to education across regions in Russia, what are the regional variables that may be causing the regional variation (as determined through a random effects regression model) and what are the policy implications of this variation? 
+
+ For the EPI analysis, the measure of advanced human capital was the 
+ regional percentage of population with a higher education degree. While 
+ that report examined regional development with an overview of all sectors, 
+ and recommended that regional development can be spurred through 
+ investment in human capital, this paper seeks to derive deeper insights 
+ regarding human capital. It seeks to answer three questions: What is the 
+ variation of the returns to education across regions in Russia? What are 
+ the regional variables that may be causing the regional variation (as 
+ determined through a random effects regression model)? and What are the 
+ policy implications of this regional variation? 
 
 After concluding this introductory section with a review of available regional estimates of the returns to education in the Russian Federation, we present our own estimates of the regional returns to education. We compute regional returns to education as a combination of a fixed coefficient and random coefficients, using the levels of education. The returns can also be termed as the wage premium to the respective levels of education. The final section of the paper presents the returns to education in context of regional conditions related to the labor market supply and demand. In light of the government strategy to target depressed regions, we suggest that human capital development may benefit from an examination of the differential returns to education by region.
 
@@ -192,24 +229,23 @@ Education, experience, and gender are the first-level variables as in an OLS equ
 Next we tested a set of fixed regional effects. We checked for the influence of regional level \textit{educational quantity} and \textit{educational quality} measures to explain the variation in education payoffs across Russian regions, and also included a set of variables to represent labor market conditions. To measure educational quantity or access, we used the number of students enrolled in vocational education per 10,000 residents ($voc\_edc$) and the number of students enrolled in higher education per 10,000 residents ($high\_edc$). As a measure of educational quality, standard deviations from the national mean of the Russian school-leaving and university entrance examination, the EGE, were incorporated. We also added variables regarding economic development and the labor market - these are the gross regional product, the level of urbanization, the regional unemployment level, the share of employment in jobs related to natural resources exploitation and the ratio of recent graduates who migrated to other states compared to the graduates who stayed in the same region. 
 
 
-\vspace{-0.2in}
 
-\begin{center}
-	\begin{figure}[htbp!]
-\begin{minipage}[b]{1\linewidth}
-			\centering
-			%\hspace*{-0.7in}
-			\includegraphics[width=6in]{cor_rgvars1.png}
-			% plot 1
-		\end{minipage}
-			\caption{Correlations of Regional Level Variables with Wages and Education}\label{fig:1.1}
-	\end{figure}
-\end{center}
-
-
-\vspace{-2em}
-
-Figure \ref{fig:1.1} shows descriptive statistics of the variables used - the univariate distribution of each variable, and their respective bivariate correlations. For improved context, the matrix represented in \ref{fig:1.1} also includes regional aggregates for the main variables of interest - education (in years) and logarithm of monthly wage. The figure indicates a rich and varied pattern of correlations - some of these are straightforward - such as the relationship between wages and regional product ($grp$). The sparklines and bi-variate scatter plots in \ref{fig:1.1} also indicate the presence of a number of outliers for almost every variable. In a regional context, random effects regression deals effectively with such a data structure. All region-level variables were normalized with Z-standardization before being plugged into the analysis to obtain meaningfully interpretable moderation effects in cross-level interaction models. For the statistically significant interactions, marginal returns to schooling, conditioned on thresholds of region-level characteristics (-1, 0, 1 standard deviations), were evaluated:
+Appendix Figure \ref{fig:1.1} shows descriptive statistics of the variables 
+used - the univariate distribution of each variable, and their respective 
+bivariate correlations. For improved context, the matrix represented in 
+\ref{fig:1.1} also includes regional aggregates for the main variables of 
+interest - education (in years) and logarithm of monthly wage. The figure 
+indicates a rich and varied pattern of correlations - some of these are 
+straightforward - such as the relationship between wages and regional 
+product ($grp$). The sparklines and bi-variate scatter plots in 
+\ref{fig:1.1} also indicate the presence of a number of outliers for almost 
+every variable. In a regional context, random effects regression deals 
+effectively with such a data structure. All region-level variables were 
+normalized with Z-standardization before being plugged into the analysis to 
+obtain meaningfully interpretable moderation effects in cross-level 
+interaction models. For the statistically significant interactions, 
+marginal returns to schooling, conditioned on thresholds of region-level 
+characteristics (-1, 0, 1 standard deviations), were evaluated:
 
 \begin{flalign}\label{eq:4.3} 
 \{b_{1j}| Z = 1\} = \gamma_{10} + 1 \times \gamma_{1n}&&
@@ -217,14 +253,23 @@ Figure \ref{fig:1.1} shows descriptive statistics of the variables used - the un
 \{b_{1j}| Z = -1\} = \gamma_{10} - 1 \times \gamma_{1n}&&
 \end{flalign}
 
-Appendix Table \ref{tab:4.1} demonstrates descriptive statistics of the key variables of interest by regions.
+Appendix Table \ref{tab:4.1} demonstrates descriptive statistics of the key 
+variables of interest by regions.
+
+Appendix Figures A2 to A6 present maps of the basic Mincerian specification 
+for each region, using the same color code so as to depict the transition 
+over the years. The figures show the declining returns over the years.  
 
 \subsection{Estimation Results of Regional Analysis}
 
 Of the eight variables tested for regional effects, it turned out that six of the eight variables passed the test - the only variables that did not meet the criteria was the migration ratio and the standardized EGE score variable. After adding these six regional fixed effects to the specification, the next step was to check for interactions of the second level variables with education levels. The investigation revealed that with one exception, none of the second-level characteristics have a statistically significant interaction with education as a random effect. The only variable that had an independent random effect at the regional level as well as a statistically significant regional interaction with education was $voc\_edc$, the regional coverage of vocational education. Substantively, it was found that growth in the number of students covered by vocational programs leads to higher schooling premiums concerning both vocational and university education. However, the independent second level effect is negative and four time larger in magnitude, so the finding about the interaction effect does not seem to be significant from a policy analytical viewpoint.  The results from the random effects regression and the mean values of the random effects are presented in Appendix Table \ref{tab:4.2}. 
 
-The addition of the fixed effects for education together with the random effects described in Appendix Table \ref{tab:4.2} leads to an estimation of the marginal effect for education for each region. We utilize the correction for dummy variables as recommended by \cite{halvorsen1980}. The results are presented in 
-Figure \ref{fig:4.1}.
+The addition of the fixed effects for education together with the random 
+effects described in Appendix Table \ref{tab:4.2} leads to an estimation of 
+the marginal effect for education for each region. We utilize the 
+correction for dummy variables as recommended by \cite{halvorsen1980}. The 
+results are presented in Figure 1.1. The error bars represent 95\% 
+confidence intervals around the estimates. 
 
 
 \begin{figure}[htp]
@@ -233,7 +278,8 @@ Figure \ref{fig:4.1}.
 		\hspace*{-0.4in}
 		\includegraphics[width=250pt]{reg_he_18.png}
 		% plot 1
-		\subcaption{Higher Education}\label{}
+		\subcaption{Higher Education \hspace{10em}   \textbf{Figure 
+		1.1}}\label{}
 	\end{minipage}
 	\hfill
 	\begin{minipage}[b]{.5\linewidth}
@@ -261,7 +307,29 @@ In order to better place policy recommendations for regions in context of their 
 
 To match the classification of regions by quantity and quality of labor supply, we also carry out a similar classification for labor demand. For the quantity dimension of labor demand, we use the total share of set of specific industries in the regional GRP from Rosstat (latest available figures). We include the industries that are likely to contribute most in terms of labor force demand, excluding the oil and gas industry and excluding the mostly public sector education and health sectors. The objective is to arrive at a qualitative grouping of regions, but future research can also test sensitivity of the classification to alternative choices of sectors. The sectors chosen for this purpose were: agriculture, hunting, forestry, fishery and fish breeding, manufacturing, wholesale, retail trade and repair services, hotels and restaurants, transport and communications. The percentage contribution to GDP for these sectors by region ranged from 35\% (Tuva Republic) to 81\% (Khanty-Mansisk). 
 
-As a measure of quality of labor demand we utilize an indicator of product complexity computed by \cite{lyubimov2018}. This paper is based on a methodology that was initially proposed and implemented by the economists Ricardo Hausmann and C\’{e}esar Hidalgo to capture the productive potential of an economy on the basis of the diversity of its products and exports \parencite{hausmann2011, hausmann2014}. \cite{lyubimov2018} develop an ``Economic Complexity Index'' (ECI) utilizing production as well as export data. It is possible to explain intuitively the conceptualization of the complexity index on the basis of product diversity and the export basket. When we compare less developed economies with more developed ones, we see that more developed economies are able to manufacture a more diverse range of products because they have stronger production networks. Also, given the competitive international marketplace, the quality of products can be gauged by the prevalence of that product in the mix of traded goods. This method takes care of two problems - if a country has high exports of commodities, example from natural resource extraction, it does not score high on diversity; and if a country does manufacture a diverse range of goods, but these are not internationally competitive, it would also get a low score. \cite{lyubimov2018} extend the logic to regional measures of complexity. As human capital quality is closely linked to the complexity of products, the ECI is a very useful variable for purposes of classification of regions. The position of regions along the two standardized dimensions is shown in Panel (b) of Figure \ref{fig:4.2}.
+As a measure of quality of labor demand we utilize an indicator of product 
+complexity computed by \cite{lyubimov2018}. This paper is based on a 
+methodology that was initially proposed and implemented by the economists 
+Ricardo Hausmann and C\'{e}esar Hidalgo to capture the productive potential 
+of an economy on the basis of the diversity of its products and exports 
+\parencite{hausmann2011, hausmann2014}. \cite{lyubimov2018} develop an 
+``Economic Complexity Index'' (ECI) utilizing production as well as export 
+data. It is possible to explain intuitively the conceptualization of the 
+complexity index on the basis of product diversity and the export basket. 
+When we compare less developed economies with more developed ones, we see 
+that more developed economies are able to manufacture a more diverse range 
+of products because they have stronger production networks. Also, given the 
+competitive international marketplace, the quality of products can be 
+gauged by the prevalence of that product in the mix of traded goods. This 
+method takes care of two problems - if a country has high exports of 
+commodities, example from natural resource extraction, it does not score 
+high on diversity; and if a country does manufacture a diverse range of 
+goods, but these are not internationally competitive, it would also get a 
+low score. \cite{lyubimov2018} extend the logic to regional measures of 
+complexity. As human capital quality is closely linked to the complexity of 
+products, the ECI is a very useful variable for purposes of classification 
+of regions. The position of regions along the two standardized dimensions 
+is shown in Panel (b) of Figure \ref{fig:4.2}.
 
 
 \begin{figure}[htbp!]
@@ -309,10 +377,13 @@ We also generate a two-fold classification of the returns to education, using th
 
 \section{Policy Recommendations for Priority Regions} 
 
+\vspace{-1em}
+
 Returns to education tend to fall with level of economic development when comparing across countries \parencite{Psacharopoulos_Patrinos2018}. When examining the case of differential returns within the Russian Federation, we do find that St. Petersburg and Moscow city figure in the ranks of low returns. However, as studied by \cite{lyubimov2018}, the more well-off regions in the Russian Federation as well as the no so well-off regions are diverse in the make-up of their productive networks. We attempt to exploit this diversity to come up with tailored policy recommendations for regions. These are preliminary and demonstrative recommendations for groups of regions. Further analysis would need to be carried out for a specific region as the grouping used here is quite wide. For sake of brevity the analysis presented here combines the findings regarding returns to higher education and returns to vocational education, but it would be beneficial to separate them for a more granular view. 
 
 The Table \ref{tab:4.0} provides an indicative list of policies that would be useful on the basis of an examination of the returns to education and the context of a region. Higher returns in general indicate the scope for greater investment in the supply or quantity of education as more people would be attracted to obtain higher levels of education. Lower returns to education indicate a scope for increased investment in the quality of education provision, and making better industry-education connections in terms of skills provided. When labor supply conditions are relatively good and labor demand conditions are lagging from other regions, it is an indication towards job creation policies, through innovation and entrepreneurship. When labor demand conditions are dominant, it would be an indication for better matching between jobs and skills, innovation to enhance labor productivity and diversify educational offerings. Other things constant, one would expect returns to be high when labor demand conditions are dominant and competition between employers drive up wages. However, as other things change with regional diversity, we find cases where labor supply is dominant at the same time as returns are high. With better availability of data at the regional level in the future, it would be feasible to come up with better targeted policy decision making.
 
+\vspace{-1em}
 
 \begin{table}[htbp!]
 \centering
@@ -366,6 +437,8 @@ The Table \ref{tab:4.0} provides an indicative list of policies that would be us
 \setcounter{table}{0}
 \renewcommand{\thetable}{A\arabic{table}}
 
+\setcounter{figure}{0}
+\renewcommand{\thefigure}{A\arabic{figure}}
 
 \hspace{-1in}
 \fontsize{9}{11}{
@@ -524,6 +597,100 @@ Regions & N & mean & sd & mean & sd & SE & VE & HE & Males & Females  \\
 		\textit{Note:}  & \multicolumn{4}{r}{$^{*}$p$<$0.1; $^{**}$p$<$0.05; $^{***}$p$<$0.01} \\ 
 	\end{tabular} 
 \end{table} 
+
+
+\newpage
+\begin{landscape}
+\begin{center}
+	\begin{figure}[htbp!]
+		\begin{minipage}[b]{1\linewidth}
+			\centering
+			\hspace*{-0.7in}
+			\includegraphics[width=8in]{cor_rgvars1.png}
+			% plot 1
+		\end{minipage}
+		\caption{Correlations of Regional Level Variables with Wages and 
+			Education}\label{fig:1.1}
+	\end{figure}
+\end{center}
+\end{landscape}
+
+\newpage
+\begin{landscape}
+	\begin{center}
+		\begin{figure}[htbp!]
+			\begin{minipage}[b]{1\linewidth}
+				\centering
+				\hspace*{-0.7in}
+				\includegraphics[width=7.5in]{map14.png}
+				% plot 1
+			\end{minipage}
+			\caption{Mincerian Returns Basic Specification 
+			2014}\label{fig:11.4}
+		\end{figure}
+	\end{center}
+\end{landscape}
+
+\begin{landscape}
+	\begin{center}
+		\begin{figure}[htbp!]
+			\begin{minipage}[b]{1\linewidth}
+				\centering
+				\hspace*{-0.7in}
+				\includegraphics[width=7.5in]{map15.png}
+				% plot 1
+			\end{minipage}
+			\caption{Mincerian Returns Basic Specification 
+				2014}\label{fig:11.5}
+		\end{figure}
+	\end{center}
+\end{landscape}
+
+\begin{landscape}
+	\begin{center}
+		\begin{figure}[htbp!]
+			\begin{minipage}[b]{1\linewidth}
+				\centering
+				\hspace*{-0.7in}
+				\includegraphics[width=7.5in]{map16.png}
+				% plot 1
+			\end{minipage}
+			\caption{Mincerian Returns Basic Specification 
+				2014}\label{fig:11.6}
+		\end{figure}
+	\end{center}
+\end{landscape}
+
+\begin{landscape}
+	\begin{center}
+		\begin{figure}[htbp!]
+			\begin{minipage}[b]{1\linewidth}
+				\centering
+				\hspace*{-0.7in}
+				\includegraphics[width=7.25in]{map17.png}
+				% plot 1
+			\end{minipage}
+			\caption{Mincerian Returns Basic Specification 
+				2014}\label{fig:11.7}
+		\end{figure}
+	\end{center}
+\end{landscape}
+
+\begin{landscape}
+	\begin{center}
+		\begin{figure}[htbp!]
+			\begin{minipage}[b]{1\linewidth}
+				\centering
+				\hspace*{-0.7in}
+				\includegraphics[width=7.25in]{map18.png}
+				% plot 1
+			\end{minipage}
+			\caption{Mincerian Returns Basic Specification 
+				2014}\label{fig:11.8}
+		\end{figure}
+	\end{center}
+\end{landscape}
+
 
 
 \end{document}

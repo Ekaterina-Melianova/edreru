@@ -43,6 +43,8 @@ bookmarks=true,bookmarksnumbered=true,bookmarksopen=true,bookmarksopenlevel=2,
 \addbibresource{Returns.bib}
 
 
+\usepackage{lipsum}
+
 \usepackage{lmodern}
 \newcommand{\graph}[3]{
 \raisebox{-#1mm}{\includegraphics[height=#2em,width=3cm]{#3}}
@@ -94,7 +96,12 @@ P170978}
 \maketitle
 
 \begin{abstract}
-This paper explores the topic of depreciation of human capital as a possible explanation for observed trends in the returns to education in the Russian Federation. Estimates of depreciation are presented for various sample groups. Depreciation first decreased and then increased in the period 1994-2018. Post education investment in human capital is found to be higher amongst university educated workers. 
+This paper explores the topic of depreciation of human capital as a 
+possible explanation for observed trends in the returns to education in the 
+Russian Federation. Estimates of depreciation are presented for various 
+sample groups. Depreciation first decreased and then increased in the 
+period 1994-2018. University educated workers add human capital even after 
+they stop full-time studies; this happens less with vocational graduates. 
 % Please include a maximum of seven keywords
 \keywords{Returns to Education, Depreciation, Gender segregation, Automation, \emph{JEL Codes: I26, I28, J16, J29}}
 \end{abstract}
@@ -107,7 +114,7 @@ to education in the Russian Federation between 1994 and 2018
 \parencite{Patrinos_2020}. The analysis showed how returns climbed and then 
 declined, forming a gently curved inverse-U shape. The figure from that 
 working paper is reproduced in Appendix Figure \ref{fig:7.6}. From a policy 
-viewpoint, it is very important to try and understand the reason for this 
+viewpoint, it is very important to try to understand the reason for this 
 trend as a first step to reverse the trend if possible. One of the 
 candidate explanations is the rate of depreciation of human capital. A 
 short conceptual understanding will help to recognize why depreciation 
@@ -457,9 +464,47 @@ Substituting \ref{eq:2.13} and \ref{eq:2.14} into \ref{eq:2.12}, adding an error
 \end{multline}
 
 \noindent
-where $t$ shows a time period, $\ln Y$ is a logarithm of the observed earnings, $\ln W$ is a logarithm of a return per certain period on a unit of earnings capacity, $\beta_{K}$ is the effect of the human capital stock on earnings, $\beta_{Z}$ is the effect of other covariates in the model on earning, $\delta$ is the human capital depreciation rate, $X_{i t}$ is the labor market experience, $L_{i}$ is the total working life length, $\alpha$ is a parameter reflecting the share of time invested in training immediately after leaving school, $Z_{i t}$ is a set of observable attributes hypothesized to have an impact on earnings, $u_{i t}$ is an error term. In this model, the share of time invested in training after school starts at alpha and declines to zero at the end of the working period. The parameter alpha is notional, a parameter that helps to explain observed empirical patterns - it should not be considered literally as time devoted in explicit training programs, nor as a continuously determined behavioral parameter that responds to a worker's perceived depreciation. 
+where $t$ shows a time period, $\ln Y$ is a logarithm of the observed 
+earnings, $\ln W$ is a logarithm of a return per certain period on a unit 
+of earnings capacity, $\beta_{K}$ is the effect of the human capital stock 
+on earnings, $\beta_{Z}$ is the effect of other covariates in the model on 
+earning, $\delta$ is the human capital depreciation rate, $X_{i t}$ is the 
+labor market experience, $L_{i}$ is the total working life length, $\alpha$ 
+is a parameter reflecting the share of time invested in training 
+immediately after leaving school, $Z_{i t}$ is a set of observable 
+attributes hypothesized to have an impact on earnings, $u_{i t}$ is an 
+error term. In this model, the share of time invested in training after 
+school starts at alpha and declines to zero at the end of the working 
+period. 
 
-Table \ref{tab:1.3} reports empirical findings for the estimation of the \ref{eq:2.16} equation using NLS with robust standard errors for the same range of years as presented in the previous section. Unlike that earlier model, the Arrazola model does not allow for a different treatment of depreciation of human capital acquired from schooling or from experience - only a single $\delta$ (depreciation rate of the human capital) parameter is estimated. However, the model does allow the identification of an  $\alpha$ parameter (related to post-school investment in human capital).
+The parameter alpha is notional, a parameter that helps to explain 
+observed empirical patterns - it should not be considered literally as time 
+devoted in explicit training programs. Post-schooling increments to human 
+capital can also be understood by examining another group of workers that 
+is not included in the model of Equation \ref{eq:2.16}.  \cite{Mincer_1982} 
+document a most interesting phenomenon with regard to workers who leave and 
+then return to the workforce: ``It is rather surprising to find that 
+returnees from the non-market appear to incur greater job investments upon 
+return to the market than do stayers of the same age and education.'' The 
+authors also refer to a similar phenomenon of re-investment amongst 
+international migrants - they attribute the significant increases in wage 
+earnings in the first years of international migrants to the USA to post 
+school reinvestment. The authors characterize such investment as a 
+re-adaptation or repair of skills. It is straightforward to extend this 
+process of continuous `repair of skill damage' as being a phenomenon that 
+affects all workers, not just intermittent workers or migrants. 
+
+
+Table \ref{tab:1.3} reports empirical findings for the estimation of the 
+\ref{eq:2.16} equation using NLS with robust standard errors for the same 
+range of years as presented in the previous section. Unlike that earlier 
+model, the Arrazola model does not allow for a different treatment of 
+depreciation of human capital acquired from schooling or from experience - 
+only a single $\delta$ (depreciation rate of the human capital) parameter 
+is estimated. However, the model does allow the identification of an  
+$\alpha$ parameter (related to post-school investment in human capital). 
+
+\newpage
 
 
 \begin{center}
@@ -637,7 +682,7 @@ in occupations
 (\citet{Klimova_2009},\citet{Klimova_2012},\citet{Kosyakova_2015}). The 
 bulk of this literature is concerned with the issue of the possible 
 inequities and inefficiencies arising from gender segregation. However, for 
-purpose of this paper is to exploit the presence in the data of 
+the purpose of this paper is to exploit the presence in the data of 
 occupational gender segregation to obtain insights into human capital 
 depreciation.
 
@@ -647,7 +692,7 @@ section to compare the estimated depreciation rates between female- and
 male-dominated groups in various industries and occupations. The RLMS 2018 
 database contains information about sector or industry and standardized 
 ISCO-08 classification of jobs. These were used  to tag gender-based 
-industrial sectors and occupations, respectively. The average female 
+industrial sectors and occupations. The average female 
 representation by sector was 54\%.  Using a range of $\pm$ 10\% from the 
 average, a sector was marked as female-dominated if it contained more than 
 64\% of women workers, and male-dominated if it contained less than 44\% of 
@@ -658,19 +703,19 @@ gender-related occupations a similar tactic was applied based on the
 2-digit ISCO-08 classification (see Figure \ref{fig:2.2} and Table 
 \ref{tab:2.2}). 
 
-\begin{figure}[H]
+\begin{figure}[htbp!]
 	\centering
 	\includegraphics[width=400pt]{gen_ind18.png}
 	\caption{Distribution of Employment in RLMS 2018 by Industry and Gender}\label{fig:2.1}
 \end{figure}
 
-\begin{figure}[H]
+\begin{figure}[htbp!]
 	\centering
 	\includegraphics[width=400pt]{gen_occ18.png}
 	\caption{Distribution of Employment in RLMS 2018 by Occupation and Gender}\label{fig:2.2}
 \end{figure}
 	
-\begin{table}[H]
+\begin{table}[htbp!]
 		\centering
 		\def\arraystretch{1} 
 		\caption{Industries by Strength of Female Proportion, RLMS 2018}
@@ -762,21 +807,55 @@ gender-related occupations a similar tactic was applied based on the
 		\end{small}
 	\end{table}
 
+
+
+\hspace{-1.8em} \textbf{Adaptation of Neuman and Weiss}
+
 The Neuman and Weiss model provides an estimation of the depreciation rate 
 for human capital, but by itself is unable to identify how much of that  
 depreciation is external or internal. External depreciation is due to 
 obsolescence (as new technologies make skills redundant) and internal 
-depreciation is due to factors related to the individual. The previous 
-section reported the finding that depreciation for female workers first 
-exceeded and  then was exceeded by depreciation for male workers. Examining 
-differences in depreciation rate by the segregation classification helps 
-identify between internal and external depreciation based on a conjecture. 
-The conjecture is that external depreciation would have a greater affect by 
-industry sector, as technological change would propagate more rapidly 
-through a sector rather than through occupations, which are dispersed 
-across sectors. 
+depreciation is due to factors related to the individual. Neuman and Weiss 
+had access in their empirical application to data about the technology 
+level of the Israeli firms to which the workers belonged. They were able to 
+show the differential effect on depreciation of workers in `high-tech 
+firms', thus providing evidence in support of their model. If depreciation 
+is greater for the workers in high technology industries, the amount by 
+which depreciation is greater for such workers can be attributed to 
+obsolescence, which is what they find. In the present paper, we do not have 
+access to data about the technology level of firms, but we are able to 
+exploit two variations that also help us to understand better the 
+depreciation phenomenon: gender segregation is the first one of these two 
+variations. Examining differences in depreciation rate by the gender 
+segregation classification helps us to identify internal and external 
+depreciation based on a conjecture. The conjecture is that external 
+depreciation would have a greater affect by  industry sector, as 
+technological change would propagate more rapidly through a sector rather 
+than through occupations, which are dispersed across sectors. 
 
-Table \ref{tab:2.3} depicts average rates of human capital loss due to experience and education by the female- and male-dominated industrial sectors and occupations. Industry or sector related differences does show difference in the depreciation rate, with depreciation rate being higher for male dominated industrial sectors. These are engineering and technology oriented sectors, compared to administration, services, and education which are the female dominated sectors. The depreciation does not appear to vary across occupational groupings - male dominated and female dominated occupation groupings have similar depreciation rates. These findings need to be treated as preliminary findings as they are only point estimates of depreciation, evaluated at mean values. 
+Table \ref{tab:2.3} depicts average rates of human capital loss due to 
+experience and education by the female- and male-dominated industrial 
+sectors and occupations. Industry or sector related differences does show 
+difference in the depreciation rate, with depreciation rate being higher 
+for male dominated industrial sectors. These are engineering and technology 
+oriented sectors, compared to administration, services, and education which 
+are the female dominated sectors. The depreciation does not appear to vary 
+across occupational groupings - male dominated and female dominated 
+occupation groupings have similar depreciation rates. These findings need 
+to be treated as preliminary findings as they are only point estimates of 
+depreciation, evaluated at mean values. 
+
+A second adaptation of the Neuman and Weiss approach is to consider data on 
+occupational routineness. In the next sub-section we follow a research path 
+that was first laid out by \cite{acemoglu2011} to understand the impact of 
+automation on the labor market. Following the Neuman and Weiss logic, the 
+prior hypothesis would be that obsolescence will have higher effect on jobs 
+with more routine tasks. To the extent that there is less of a difference 
+in depreciation according to routineness measures, we can infer that there 
+is less effect of obsolescence and more effect of intrinsic depreciation;  
+or that obsolescence of human capital is less related to routineness and 
+threat of automation. 
+
 
 \begin{table}[htbp!]
 	\centering 
@@ -850,16 +929,50 @@ Table \ref{tab:2.4} shows the results of comparing depreciation rates between in
 	\end{tabular}
 \end{table}
 
-\section{Summarized Findings}
+\section{Summarized Findings and Policy Conclusions}
+
+
+\subsection{Summarized Findings}
+
+This paper has covered substantive technical material. The main finding are 
+summarized in the points below:- 
+
 
 \begin{itemize}
-\item \textbf{Depreciation of 2\%} The topic of depreciation of human capital is important from the policy perspective because increasing the human capital can be made both by the creation of human capital as well as reducing the depreciation of human capital to the extent possible. In this paper per first presented an overview of the literature regarding depreciation of human capital and present estimates of depreciation in the Russian Federation. Depreciation appears to be around 2\% per year in the most recent finding, with the depreciation mostly attributed to depreciation of human capital acquired with experience (Table\ref{tab:1.2}).
 
-\item \textbf{Depreciation declining then increasing}  The pattern of the depreciation rate indicates a gentle decline followed by an increase in the period 1994-2018 (Table \ref{tab:1.2} and Table \ref{tab:1.3}). This pattern is a reflection of the inverted-U shaped pattern of the rates of return to education. It is possible that depreciation may be an explanation for the observed tendency in the returns to education.
+\item \textbf{Depreciation of 2\%} The topic of depreciation of 
+human capital is important from the policy perspective because increasing 
+the human capital can be made both by the creation of human capital as well 
+as reducing the depreciation of human capital to the extent possible. In 
+this paper per first presented an overview of the literature regarding 
+depreciation of human capital and present estimates of depreciation in the 
+Russian Federation. Depreciation appears to be around 2\% per year in the 
+most recent finding, with the depreciation mostly attributed to 
+depreciation of human capital acquired with experience (Table\ref{tab:1.2}).
 
-\item \textbf{University educated individuals make more post-school investment too} In estimating rates of depreciation, we undertake an exploration of a related parameter that represents post-schooling investment in human capital. The data indicates that post-schooling investment for those with vocational education is indistinguishable from those with only secondary education. However, those with university education appear to be investing more in their working period (Table \ref{tab:1.4}).
 
-\item \textbf{Males may be experiencing higher depreciation than females} 
+\item \textbf{Depreciation declining then increasing}  The 
+pattern of the depreciation rate indicates a gentle decline followed by an 
+increase in the period 1994-2018 (Table \ref{tab:1.2} and Table 
+\ref{tab:1.3}). This pattern is a reflection of the inverted-U shaped 
+pattern of the rates of return to education. It is possible that 
+depreciation may be an explanation for the observed tendency in the returns 
+to education.
+
+
+\item  \textbf{University educated individuals make more 
+post-school investment too} In estimating rates of depreciation, we 
+undertake an exploration of a related parameter that represents 
+post-schooling investment in human capital. The data indicates that 
+post-schooling investment for those with vocational education is 
+indistinguishable from those with only secondary education. However, those 
+with university education appear to be investing more in their working 
+period (Table \ref{tab:1.4}).
+
+
+\item  \textbf{Males may be experiencing higher depreciation 
+than 
+females} 
 The paper explored differences in depreciation rates across industrial and 
 occupation groupings denoted by levels of gender segregation Depreciation 
 rates appear to be higher in male dominated industrial sectors but gender 
@@ -867,9 +980,66 @@ related occupational groupings do not show this differential. The evidence
 suggests that external depreciation due to obsolescence may be a dominant 
 component of the depreciation of human capital (Table \ref{tab:2.3}). 
 
-\item \textbf{Automation possibilities of jobs may not be related to depreciation} The paper used a relatively recent classification of jobs regarding the potential for automation depending on the routine or non-routine nature of tasks. It was hypothesized that routine intensive jobs which are more likely to be taken overy by computers may suffer from a higher depreciation rate, but the data do not reveal differences in depreciation rate by routine task intensity (Table \ref{tab:2.4}).
+
+\item \textbf{Automation possibilities of jobs may not be 
+related 
+to depreciation} The paper used a relatively recent classification of jobs 
+regarding the potential for automation depending on the routine or 
+non-routine nature of tasks. It was hypothesized that routine intensive 
+jobs which are more likely to be taken overy by computers may suffer from a 
+higher depreciation rate, but the data do not reveal differences in 
+depreciation rate by routine task intensity (Table \ref{tab:2.4}).
 
 \end{itemize}
+
+
+\subsection{Policy Conclusions}
+
+These findings and the context of the larger literature on depreciation and 
+the returns to education results in the following policy conclusions:
+
+\begin{itemize}
+
+\item  \textbf{Emphasize lifelong learning to augment human 
+capital 
+wealth} Non-cognitive skills that are 
+formed throughout the lifetime have equally strong effects on productivity  
+\parencite{kautz2014}. Research in Norway backs up this claim 
+\parencite{midtsundstad2019}. Investment in lifelong learning will be more 
+relevant for the Russian Federation as the average age of retirement moves 
+out \parencite{kilpi2012, paccagnella2016}.
+ 
+
+\item \textbf{Renovate curriculum and stress extra-curricular education at 
+all levels to emphasize 
+learning to learn} Enhanced lifelong learning capacity begins at an early 
+age \parencite{kautz2014}. Curriculum from early grades to university will 
+benefit from greater emphasis on application of critical thinking and 
+problem solving skills. Extra-curricular education is geared towards 
+non-cognitive skills and the Russian Federation is already a world leader 
+in this area. 
+
+\item  \textbf{Support internal migration which brings better efficiency 
+and equity to the labor market} The Russian Federation benefits from 
+substantive internal migration and migration from the former Soviet 
+republics that are now independent \parencite{tarasyev2018}. Policies 
+should support this migration by easing restrictions on worker movements 
+\parencite{oshchepkov2015}. 
+
+\item \textbf{Investigate more closely the determinants and the impact of 
+depreciation of human capital in the Russian context} There are a number of 
+areas where further inquiry will provide useful insights. In addition to 
+the areas already mentioned above of migration, curriculum and life-long 
+learning programs, the following research areas are promising: (i) How 
+returns to education over the lifetime vary for STEM disciplines 
+\parencite{deming2018}; (ii) How digitization of jobs in relation to 
+automation may or may be related to the findings regarding routineness 
+\parencite{evangelista2014,cirillo2019}; (iii) How is aging related to 
+changes in productivity and what are effective programs to counter the 
+effect of aging, such as deployment of specific equipment and 
+infrastructure for older people and the formation of mixed-age work teams 
+\parencite{gobel2009,gobel2013}.
+
 
 \printbibliography
 

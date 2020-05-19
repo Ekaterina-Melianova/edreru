@@ -279,10 +279,10 @@
 
 
 % Formatting of footer for first page
-\RequirePackage[para,bottom]{footmisc} % [para] will generate full width text
+\RequirePackage[para]{footmisc} % [para] will generate full width text
 \def\blfootnote{\gdef\@thefnmark{}\@footnotetext}
 \appto{\footnotelayout}{\fontsize{9\p@}{11\p@}\selectfont}
-\renewcommand{\footnoterule}{\noindent\textcolor{blue!50}{\rule{\textwidth}{0.5\p@}}\vskip2\p@}
+\renewcommand{\footnoterule}{\noindent\textcolor{blue!50}{\rule{\textwidth}{0.5\p@}}\vskip10pt\p@}
 
 %% Headers
 \RequirePackage{fancyhdr}
