@@ -49,13 +49,15 @@ zdf_ <- selectFromSQL(c("REGION", "AGE", "J13_2", "J10", "J40", "EDUC", "J1",
                        "EDUC", 'J72_5C', 'J72_6A', 'J72_4C', 'J72_3C',
                        'J70', 'J70_1', 'J72_2C', 'J72_18A'))
 
-saveRDS(zdf_,file="C:/Country/Russia/Data/SEASHELL/SEABYTE/edreru/wp1/zdf_")
-
+# saveRDS(zdf_,file="C:/Country/Russia/Data/SEASHELL/SEABYTE/edreru/wp1/zdf_.rds")
+zdf_ <- readRDS("C:/Country/Russia/Data/SEASHELL/SEABYTE/edreru/wp1/zdf_.rds")
 
 dbDisconnect(db)
 # Fixing system and user-defined missings in the RLMS database
 
 df_ <- zdf_
+
+
 
 df_ <- SysMisFix(df_) # determining system missings
 df_ <- UserMisFix(df_) # labelling user-defined missings
@@ -141,6 +143,7 @@ df_mincer <- df[, c("REGION", "IDIND", "YEAR", "edu_4", "wage", 'EDUC',
                     "edu_yrs", 'AGE', 'J72_5C', 'J72_6A', 'J72_4C', 'J72_3C',
                     'J70', 'J70_1', 'J72_2C', 'J72_18A')]
 summary(df_mincer)
+glimpse(df_m)
 
 # Filtering the missings left
 df_mincer <- df_mincer %>%
@@ -259,13 +262,13 @@ setwd("C:/Country/Russia/Data/SEASHELL/SEABYTE/edreru/wp1")
 edu_0 <- df_mincer %>%
   group_by(edu_4, YEAR) %>%
   filter(edu_4 == "Secondary" & YEAR %in% c(1998, 2006, 2018)) %>%
-  summarise(wage_sec = mean(wage))
+  dplyr::summarise(wage_sec = mean(wage))
 
 # Average earnings for all levels
 edu_ratio <- df_mincer %>%
   group_by(edu_4, YEAR) %>%
   filter(YEAR %in% c(1998, 2006, 2018))  %>%
-  summarise(wage_by_level = mean(wage))
+  dplyr::summarise(wage_by_level = mean(wage))
 
 # Merging and computing ratios
 edu_ratio <- edu_ratio %>%
@@ -276,7 +279,7 @@ edu_ratio$edu_ratio <- 100*round(edu_ratio$wage_by_level/edu_ratio$wage_sec, 2)
 g1 <- ggplot(data=edu_ratio[edu_ratio$YEAR == 1998,], aes(x = edu_4.x, y = edu_ratio,
                                                           fill = edu_4.x)) + 
   geom_bar(stat="identity") +
-  scale_fill_manual(values = c('grey', 'darkgreen', 'darkgreen')) +
+  scale_fill_manual(values = c('grey', 'darkgreen', 'darkred')) +
   geom_text(aes(y = edu_ratio, label = edu_ratio, vjust = -0.5), color="black", size = 5) +
   theme(axis.title = element_blank(),
         axis.text.x = element_text(size = 14, face = 'bold'),
@@ -290,7 +293,7 @@ g1 <- ggplot(data=edu_ratio[edu_ratio$YEAR == 1998,], aes(x = edu_4.x, y = edu_r
 g2 <- ggplot(data=edu_ratio[edu_ratio$YEAR == 2006,], aes(x = edu_4.x, y = edu_ratio,
                                                           fill = edu_4.x)) + 
   geom_bar(stat="identity") +
-  scale_fill_manual(values = c('grey', 'darkgreen', 'darkgreen')) +
+  scale_fill_manual(values = c('grey', 'darkgreen', 'darkred')) +
   geom_text(aes(y = edu_ratio, label = edu_ratio, vjust = -0.5), color="black", size = 5) +
   theme(axis.title = element_blank(),
         axis.text.x = element_text(size = 14, face = 'bold'),
@@ -304,7 +307,7 @@ g2 <- ggplot(data=edu_ratio[edu_ratio$YEAR == 2006,], aes(x = edu_4.x, y = edu_r
 g3 <- ggplot(data=edu_ratio[edu_ratio$YEAR == 2018,], aes(x = edu_4.x, y = edu_ratio,
                                                           fill = edu_4.x)) + 
   geom_bar(stat="identity") +
-  scale_fill_manual(values = c('grey', 'darkgreen', 'darkgreen')) +
+  scale_fill_manual(values = c('grey', 'darkgreen', 'darkred')) +
   geom_text(aes(y = edu_ratio, label = edu_ratio, vjust = -0.5), color="black", size = 5) +
   theme(axis.title = element_blank(),
         axis.text.x = element_text(size = 14, face = 'bold'),
@@ -318,7 +321,7 @@ g3 <- ggplot(data=edu_ratio[edu_ratio$YEAR == 2018,], aes(x = edu_4.x, y = edu_r
 g <- gridExtra::grid.arrange(g1, g2, g3, nrow = 1, ncol = 3)
 
 # saving 
-ggsave("earnings_ratio.png", g, width = 10, height = 6,
+ggsave("earnings_ratio.png", g, width = 12, height = 6,
        units = "in")
 
 ################### Age-earning Profiles by Level of Education
@@ -585,6 +588,41 @@ setwd(wd)
 # Saving
 ggsave("re_edu.png", width = 10, height = 7,
        units = "in")
+
+
+
+RoREs_edu2 <- RoREs_edu %>% filter(variable=="Males"|variable=="Females")
+
+##################
+# Plotting all
+ggplot(RoREs_edu2, aes(YEAR, value, group = variable, color = variable,
+                      shape = variable)) +
+   geom_smooth(se = F, method = 'loess') +
+  scale_y_continuous(limits = c(5, 15)) +
+  theme(legend.title = element_blank(),
+        legend.position = c(0.70,0.70),
+        panel.grid.major = element_blank(),
+        panel.grid.minor = element_blank(),
+        axis.text.x = element_text(angle = 30, hjust = 1, size = 16),
+        axis.text.y = element_text(size = 16),
+        axis.title = element_text(size = 16),
+        legend.text = element_text(size = 18),
+        legend.key = element_rect(size = 20),
+        legend.key.width = unit(2, "cm")) + 
+    scale_color_manual(values = c("black","purple")) +
+  #scale_shape_manual(values=c(2,4)) +
+  scale_x_discrete(breaks = x_axis) +
+  ylab("Rate of returns, %") +
+  xlab("Year")
+
+wd <- "C:/Country/Russia/Data/SEASHELL/SEABYTE/edreru/wp1"
+setwd(wd)
+# Saving
+ggsave("re_edu2.png", width = 10, height = 7,
+       units = "in")
+
+
+
 
 #####################################################################################
 RoREs_HE_VE_all <- melt(RoREs, measure=c("returns_to_HE_all", "returns_to_VE_all"))
