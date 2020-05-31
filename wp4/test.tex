@@ -1,0 +1,28 @@
+{
+\def\sym#1{\ifmmode^{#1}\else\(^{#1}\)\fi}
+\begin{tabular}{l*{2}{c}}
+\hline\hline
+            &\multicolumn{1}{c}{(1)}&\multicolumn{1}{c}{(2)}\\
+            &\multicolumn{1}{c}{lnwage}&\multicolumn{1}{c}{lnwage}\\
+\hline
+edu\_yrs     &       0.143\sym{***}&       0.143\sym{***}\\
+            &      (8.19)         &      (8.19)         \\
+[1em]
+exper       &      0.0313\sym{***}&      0.0313\sym{***}\\
+            &      (5.65)         &      (5.65)         \\
+[1em]
+exper2      &   -0.000598\sym{***}&   -0.000598\sym{***}\\
+            &     (-5.99)         &     (-5.99)         \\
+[1em]
+urban       &       0.161\sym{***}&       0.161\sym{***}\\
+            &      (5.51)         &      (5.51)         \\
+[1em]
+\_cons      &       7.501\sym{***}&       7.501\sym{***}\\
+            &     (27.00)         &     (27.00)         \\
+\hline
+\(N\)       &        2222         &        2222         \\
+\hline\hline
+\multicolumn{3}{l}{\footnotesize \textit{t} statistics in parentheses}\\
+\multicolumn{3}{l}{\footnotesize \sym{*} \(p<0.05\), \sym{**} \(p<0.01\), \sym{***} \(p<0.001\)}\\
+\end{tabular}
+}

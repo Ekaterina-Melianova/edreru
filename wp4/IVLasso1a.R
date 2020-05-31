@@ -12,7 +12,7 @@ library(tidyr)
 ############################################################################################################
 
 # Loading data
-wd <- 'C:/Country/Russia/Data/SEASHELL/SEABYTE/edreru/wp2'
+wd <- 'C:/Country/Russia/Data/SEASHELL/SEABYTE/edreru/wp4'
 setwd(wd)
 df <- readRDS('Rosstat18.rds')
 
@@ -145,14 +145,15 @@ ses$edu_family <- apply(cbind.data.frame(ses$edu_yrs_father, ses$edu_yrs_mother)
 
 ######################################### Birth Year Dummies #############################################
 # Dummy set for a birth year
-ses$birth_ <- ifelse(ses$YEAR == 2006, 2006 - ses$AGE, 2011 - ses$AGE) 
-ses$birth_ <- as.factor(ses$birth_)
-ses <- cbind(ses, model.matrix( ~ birth_ - 1, data = ses))
-ses_fin <- ses[, c(2, 6, 11, 16, 19:ncol(ses))]
+#ses$birth_ <- ifelse(ses$YEAR == 2006, 2006 - ses$AGE, 2011 - ses$AGE) 
+#ses$birth_ <- as.factor(ses$birth_)
+#ses <- cbind(ses, model.matrix( ~ birth_ - 1, data = ses))
+#ses_fin <- ses[, c(2, 6, 11, 16, 19:ncol(ses))]
+ses_fin <- ses[, c(2, 6, 16, 19)]
 names(ses_fin)[2] <- 'YEAR_ses'
 
 # Renaming AGE not to confuse it further in 2018
-names(ses_fin)[3] <- 'AGE_2006_2011'
+#names(ses_fin)[3] <- 'AGE_2006_2011'
 
 ### Main RLMS data
 rlms <- readRDS('C:/Country/Russia/Data/SEASHELL/SEABYTE/edreru/wp1/df_mincer.rds')
@@ -165,38 +166,38 @@ rlms18 <- filter(rlms, YEAR == 2018)
 
 ##########################################################################
 # Region
-Region_rlms <- selectFromSQL(c("IDIND", "YEAR", "Region", "AGE")) %>% filter(YEAR == 2018)
+Region_rlms <- selectFromSQL(c("IDIND", "YEAR", "REGION", "AGE", 'STATUS')) %>% filter(YEAR == 2018)
 
 # Merging
 rlms18 <- rlms18 %>%
-  left_join(Region_rlms[,c("IDIND", "YEAR", "REGION", "AGE")], by = c("IDIND", "YEAR"))
+  left_join(Region_rlms[,c("IDIND", "YEAR", "REGION", "AGE", 'STATUS')], by = c("IDIND", "YEAR"))
 
 # Literacy 1897
-Grig <- rio::import('C:/Country/Russia/Data/SEASHELL/SEABYTE/Databases/Regional/Grigoriev.xlsx')
-Grig <- na.omit(Grig)
-names(Grig)[5] <- 'REGION'
+#Grig <- rio::import('C:/Country/Russia/Data/SEASHELL/SEABYTE/Databases/Regional/Grigoriev.xlsx')
+#Grig <- na.omit(Grig)
+#names(Grig)[5] <- 'REGION'
 
 # Merging with rlms18
-rlms18_Grig <- rlms18 %>%
-  left_join(Grig[, c('Literacy_97', 'REGION')], by = 'REGION')
+#rlms18_Grig <- rlms18 %>%
+#  left_join(Grig[, c('Literacy_97', 'REGION')], by = 'REGION')
 
 # Cor
 # Whole sample
-cor.test(rlms18_Grig$edu_yrs, rlms18_Grig$Literacy_97, na.action = no.omit) # 0.07740857 
+#cor.test(rlms18_Grig$edu_yrs, rlms18_Grig$Literacy_97, na.action = no.omit) # 0.07740857 
 # By age groups
-cor.test(rlms18_Grig$edu_yrs[rlms18_Grig$AGE >=25 & rlms18_Grig$AGE <=35],
-         rlms18_Grig$Literacy_97[(rlms18_Grig$AGE >=25) & (rlms18_Grig$AGE <=35)],
-         na.action = no.omit) # 0.06750083
-cor.test(rlms18_Grig$edu_yrs[rlms18_Grig$AGE > 35],
-         rlms18_Grig$Literacy_97[(rlms18_Grig$AGE > 35)],
-         na.action = no.omit) # 0.0844305
+#cor.test(rlms18_Grig$edu_yrs[rlms18_Grig$AGE >=25 & rlms18_Grig$AGE <=35],
+#         rlms18_Grig$Literacy_97[(rlms18_Grig$AGE >=25) & (rlms18_Grig$AGE <=35)],
+#         na.action = no.omit) # 0.06750083
+#cor.test(rlms18_Grig$edu_yrs[rlms18_Grig$AGE > 35],
+#         rlms18_Grig$Literacy_97[(rlms18_Grig$AGE > 35)],
+#         na.action = no.omit) # 0.0844305
 
 ##########################################################################
 
 
 
 
-# Merging with the 2018 RLMS data
+# Merging ses with the 2018 RLMS data
 rlms18_ <- rlms18 %>%
   left_join(ses_fin, by = 'IDIND')
 
@@ -217,43 +218,43 @@ rlms18 <- rlms18_ %>% drop_na()
 ### Further cleaning
 # Droping birth dummies that lost variation due to the preceding filtering
 summary(rlms18) # those are 1946 - 1952, 1994 - 1997
-rlms18 <- rlms18[, !names(rlms18) %in% paste0("birth_19", c(46:52, 94:97))]
+#rlms18 <- rlms18[, !names(rlms18) %in% paste0("birth_19", c(46:52, 94:97))]
 
 # Generating age
-rlms18$age <- 2018 - rlms18$birth_year
-summary(rlms18$age)
-
-# Birth decades
-
-paste(paste0("rlms18$birth_19", 53:59), '==1', collapse = '|') # manually pasting this expression to ifelse()
-rlms18$birth_50 <- ifelse(rlms18$birth_1950 ==1|rlms18$birth_1951 ==1|
-                            rlms18$birth_1952 ==1|rlms18$birth_1953 ==1|rlms18$birth_1954 ==1|rlms18$birth_1955 ==1|
-                            rlms18$birth_1956 ==1|rlms18$birth_1957 ==1|rlms18$birth_1958 ==1|rlms18$birth_1959 ==1, 1, 0)
-
-paste(paste0("rlms18$birth_19", 60:69), '==1', collapse = '|')
-rlms18$birth_60 <- ifelse(rlms18$birth_1960 ==1|rlms18$birth_1961 ==1|
-                            rlms18$birth_1962 ==1|rlms18$birth_1963 ==1|rlms18$birth_1964 ==1|rlms18$birth_1965 ==1|
-                            rlms18$birth_1966 ==1|rlms18$birth_1967 ==1|rlms18$birth_1968 ==1|rlms18$birth_1969 ==1, 1, 0)
-
-paste(paste0("rlms18$birth_19", 70:79), '==1', collapse = '|')
-rlms18$birth_70 <- ifelse(rlms18$birth_1970 ==1|rlms18$birth_1971 ==1|
-                            rlms18$birth_1972 ==1|rlms18$birth_1973 ==1|rlms18$birth_1974 ==1|rlms18$birth_1975 ==1|
-                            rlms18$birth_1976 ==1|rlms18$birth_1977 ==1|rlms18$birth_1978 ==1|rlms18$birth_1979 ==1, 1, 0)
-
-paste(paste0("rlms18$birth_19", 80:89), '==1', collapse = '|')
-rlms18$birth_80 <- ifelse(rlms18$birth_1980 ==1|rlms18$birth_1981 ==1|
-                            rlms18$birth_1982 ==1|rlms18$birth_1983 ==1|rlms18$birth_1984 ==1|rlms18$birth_1985 ==1|
-                            rlms18$birth_1986 ==1|rlms18$birth_1987 ==1|rlms18$birth_1988 ==1|rlms18$birth_1989 ==1, 1, 0)
-
-paste(paste0("rlms18$birth_19", 90:93), '==1', collapse = '|')
-rlms18$birth_90 <- ifelse(rlms18$birth_1990 ==1|rlms18$birth_1991 ==1|rlms18$birth_1992 ==1|rlms18$birth_1993 ==1, 1, 0)
-
-
-table(rlms18$birth_50)
-table(rlms18$birth_60)
-table(rlms18$birth_70)
-table(rlms18$birth_80)
-table(rlms18$birth_90)
+#rlms18$age <- 2018 - rlms18$birth_year
+#summary(rlms18$age)
+#
+## Birth decades
+#
+#paste(paste0("rlms18$birth_19", 53:59), '==1', collapse = '|') # manually pasting this expression to ifelse()
+#rlms18$birth_50 <- ifelse(rlms18$birth_1950 ==1|rlms18$birth_1951 ==1|
+#                            rlms18$birth_1952 ==1|rlms18$birth_1953 ==1|rlms18$birth_1954 ==1|rlms18$birth_1955 ==1|
+#                            rlms18$birth_1956 ==1|rlms18$birth_1957 ==1|rlms18$birth_1958 ==1|rlms18$birth_1959 ==1, 1, 0)
+#
+#paste(paste0("rlms18$birth_19", 60:69), '==1', collapse = '|')
+#rlms18$birth_60 <- ifelse(rlms18$birth_1960 ==1|rlms18$birth_1961 ==1|
+#                            rlms18$birth_1962 ==1|rlms18$birth_1963 ==1|rlms18$birth_1964 ==1|rlms18$birth_1965 ==1|
+#                            rlms18$birth_1966 ==1|rlms18$birth_1967 ==1|rlms18$birth_1968 ==1|rlms18$birth_1969 ==1, 1, 0)
+#
+#paste(paste0("rlms18$birth_19", 70:79), '==1', collapse = '|')
+#rlms18$birth_70 <- ifelse(rlms18$birth_1970 ==1|rlms18$birth_1971 ==1|
+#                            rlms18$birth_1972 ==1|rlms18$birth_1973 ==1|rlms18$birth_1974 ==1|rlms18$birth_1975 ==1|
+#                            rlms18$birth_1976 ==1|rlms18$birth_1977 ==1|rlms18$birth_1978 ==1|rlms18$birth_1979 ==1, 1, 0)
+#
+#paste(paste0("rlms18$birth_19", 80:89), '==1', collapse = '|')
+#rlms18$birth_80 <- ifelse(rlms18$birth_1980 ==1|rlms18$birth_1981 ==1|
+#                            rlms18$birth_1982 ==1|rlms18$birth_1983 ==1|rlms18$birth_1984 ==1|rlms18$birth_1985 ==1|
+#                            rlms18$birth_1986 ==1|rlms18$birth_1987 ==1|rlms18$birth_1988 ==1|rlms18$birth_1989 ==1, 1, 0)
+#
+#paste(paste0("rlms18$birth_19", 90:93), '==1', collapse = '|')
+#rlms18$birth_90 <- ifelse(rlms18$birth_1990 ==1|rlms18$birth_1991 ==1|rlms18$birth_1992 ==1|rlms18$birth_1993 ==1, 1, 0)
+#
+#
+#table(rlms18$birth_50)
+#table(rlms18$birth_60)
+#table(rlms18$birth_70)
+#table(rlms18$birth_80)
+#table(rlms18$birth_90)
 
 # Transformed variables
 rlms18 <- haven::zap_labels(rlms18) 
@@ -263,16 +264,16 @@ rlms18$exper2 <- (rlms18$exper)^2
 ################################################## Region #######################################################
 
 # Connecting with SQLite
-db <- dbConnect(SQLite(), dbname="C:/Country/Russia/Data/SEASHELL/SEABYTE/Databases/RLMS/sqlite/rlms.db")
-region_ <- selectFromSQL(c("IDIND", "YEAR", "REGION"))
-dbDisconnect(db)
-region_ <- SysMisFix(region_)
-region <- region_ %>% filter(YEAR == 2018) %>% select(c("IDIND", "REGION"))
-region$REGION <- as.factor(region$REGION)
-
-# Merging with the main data
-rlms18 <- rlms18 %>%
-  left_join(region, by = 'IDIND')
+#db <- dbConnect(SQLite(), dbname="C:/Country/Russia/Data/SEASHELL/SEABYTE/Databases/RLMS/sqlite/rlms.db")
+#region_ <- selectFromSQL(c("IDIND", "YEAR", "REGION"))
+#dbDisconnect(db)
+#region_ <- SysMisFix(region_)
+#region <- region_ %>% filter(YEAR == 2018) %>% select(c("IDIND", "REGION"))
+#region$REGION <- as.factor(region$REGION)
+#
+## Merging with the main data
+#rlms18 <- rlms18 %>%
+#  left_join(region, by = 'IDIND')
 
 ################################################## Strenght of IVs ##############################################
 
@@ -282,70 +283,105 @@ cor.test(rlms18$edu_family, rlms18$edu_yrs) # 0.35 ok
 ################################################## Lasso ########################################################
 
 # Creating a combination of instruments for interactions
-ses <- c("prestige_family","edu_family", 'factor(REGION)')
-# birth <- paste0("birth_19", 53:92) # 93 - ref category
-birth_dec <- paste0("birth_", seq(50, 80, 10)) # 90 - ref category
-ses_birth <- expand.grid(ses, birth_dec, stringsAsFactors = FALSE)
+#ses <- c("prestige_family","edu_family", 'factor(REGION)')
+## birth <- paste0("birth_19", 53:92) # 93 - ref category
+#birth_dec <- paste0("birth_", seq(50, 80, 10)) # 90 - ref category
+#ses_birth <- expand.grid(ses, birth_dec, stringsAsFactors = FALSE)
+#
+## Interactions 
+#zinteract <- paste(do.call(paste, c(ses_birth, sep="*")), collapse = " + ")
+#
+## Formula
+#forminteract <-  formula(paste("log(wage) ~ ", "edu_yrs + exper + I(exper^2)",
+#                             "|", "exper + I(exper^2) + prestige_family*edu_family + factor(REGION)*prestige_family + factor(REGION)*edu_family +",
+#                             zinteract, sep = ""))
+#
+#### Estimating post-lasso
+## Females
+#postLasso.fem <- rlassoIVselectZ(forminteract, data = rlms18[rlms18$female == 1,])
+#selected.fem <- as.data.frame(postLasso.fem$selected)
+#summary(postLasso.fem)
+#confint(postLasso.fem)
+#
+## Males
+#postLasso.male <- rlassoIVselectZ(forminteract, data = rlms18[rlms18$female == 0,])
+#selected.mal <- as.data.frame(postLasso.male$selected)
+#summary(postLasso.male)
+#confint(postLasso.male)
+#
 
-# Interactions 
-zinteract <- paste(do.call(paste, c(ses_birth, sep="*")), collapse = " + ")
-
-# Formula
-forminteract <-  formula(paste("log(wage) ~ ", "edu_yrs + exper + I(exper^2)",
-                             "|", "exper + I(exper^2) + prestige_family*edu_family + factor(REGION)*prestige_family + factor(REGION)*edu_family +",
-                             zinteract, sep = ""))
-
-### Estimating post-lasso
-# Females
-postLasso.fem <- rlassoIVselectZ(forminteract, data = rlms18[rlms18$female == 1,])
-selected.fem <- as.data.frame(postLasso.fem$selected)
-summary(postLasso.fem)
-confint(postLasso.fem)
-
-# Males
-postLasso.male <- rlassoIVselectZ(forminteract, data = rlms18[rlms18$female == 0,])
-selected.mal <- as.data.frame(postLasso.male$selected)
-summary(postLasso.male)
-confint(postLasso.male)
-
-################################################################# Additionally
-### Estimating 2SLS based on what lasso selected (quite different estimates)
+### Urban/Rural
+table(rlms18$STATUS)
+rlms18$urban <- ifelse(rlms18$STATUS == 1 | rlms18$STATUS == 2, 1, 0)
+table(rlms18$urban)
+        
+################################################################# 
+### Estimating 2SLS 
 
 library(AER)
 
-# generating dummies for the selected regions
-rlms18$region71 <- ifelse(rlms18$REGION == 71, 1, 0)
-rlms18$region73 <- ifelse(rlms18$REGION == 73, 1, 0)
-
 # Running the model for females
-twoSLS.fem <- ivreg(log(wage) ~ edu_yrs + exper + I(exper^2)|
-                    exper + I(exper^2) +
-                    edu_family + birth_50 +
-                    prestige_family:edu_family +
-                    edu_family:region71 + 
-                    edu_family:region73,
+
+# 1st stage
+summary(lm(edu_yrs ~ exper + I(exper^2) + urban + edu_family + prestige_family + 
+             factor(REGION),
+           data = rlms18[rlms18$female == 1,]))
+
+# generating dummies for the selected regions
+rlms18$Permskiy_Krai <- ifelse(rlms18$REGION == 12, 1, 0)
+#rlms18$region48 <- ifelse(rlms18$REGION == 48, 1, 0)
+rlms18$Tverskaya_Oblast <- ifelse(rlms18$REGION == 67, 1, 0)
+rlms18$Krasnoyarskiy_Kray <- ifelse(rlms18$REGION == 73, 1, 0)
+#rlms18$region129 <- ifelse(rlms18$REGION == 129, 1, 0)
+rlms18$Rostovskaya_Oblast <- ifelse(rlms18$REGION == 137, 1, 0)
+
+# Cheking
+summary(lm(edu_yrs ~ exper + I(exper^2) + urban + edu_family + prestige_family +
+             Permskiy_Krai + Tverskaya_Oblast + Krasnoyarskiy_Kray + Rostovskaya_Oblast,
+           data = rlms18[rlms18$female == 1,]))
+
+# IV
+twoSLS.fem <- ivreg(log(wage) ~ edu_yrs + exper + I(exper^2) + urban|
+                    exper + I(exper^2) + urban +
+                    edu_family + 
+                    prestige_family +
+                    Permskiy_Krai + Tverskaya_Oblast + Krasnoyarskiy_Kray + Rostovskaya_Oblast,
                   data = rlms18[rlms18$female == 1,])
 summary(twoSLS.fem, vcov = sandwich, diagnostics = T) 
 
-# generating dummies for the selected regions
-rlms18$region9 <- ifelse(rlms18$REGION == 9, 1, 0)
-rlms18$region117 <- ifelse(rlms18$REGION == 117, 1, 0)
-rlms18$region136 <- ifelse(rlms18$REGION == 136, 1, 0)
-rlms18$region137 <- ifelse(rlms18$REGION == 137, 1, 0)
-rlms18$region138 <- ifelse(rlms18$REGION == 138, 1, 0)
 
-# Running the model for females
-twoSLS.mal <- ivreg(log(wage) ~ edu_yrs + exper + I(exper^2)|
-                      exper + I(exper^2) +
-                      prestige_family:edu_family +
-                      edu_family:region138 +
-                      region9:birth_50 +
-                      region137:birth_50 +
-                      region117:birth_80 +
-                      region136:birth_80,
+
+# Running the model for males
+
+# 1st stage
+summary(lm(edu_yrs ~ exper + I(exper^2) + urban + edu_family + prestige_family + 
+             factor(REGION),
+           data = rlms18[rlms18$female == 0,]))
+
+#rlms18$region12 <- ifelse(rlms18$REGION == 12, 1, 0)
+rlms18$Tambovskaya_Oblast <- ifelse(rlms18$REGION == 33, 1, 0)
+rlms18$Kabardino_Balkarskaya_Resp <- ifelse(rlms18$REGION == 77, 1, 0)
+
+# Cheking
+summary(lm(edu_yrs ~ exper + I(exper^2) + urban + edu_family + prestige_family +
+             Permskiy_Krai + Tambovskaya_Oblast + Kabardino_Balkarskaya_Resp,
+           data = rlms18[rlms18$female == 0,]))
+
+# IV
+twoSLS.mal <- ivreg(log(wage) ~ edu_yrs + exper + I(exper^2) + urban|
+                      exper + I(exper^2) + urban +
+                      edu_family +
+                      prestige_family +
+                      Permskiy_Krai + Tambovskaya_Oblast + Kabardino_Balkarskaya_Resp,
                     data = rlms18[rlms18$female == 0,])
 summary(twoSLS.mal, vcov = sandwich, diagnostics = T) 
 
 
 
 
+
+################33 STATA df
+wd <- 'C:/Country/Russia/Data/SEASHELL/SEABYTE/edreru/wp4'
+setwd(wd)
+library(readstata13)
+save.dta13(rlms18, 'rlms18.dta')
