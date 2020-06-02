@@ -593,6 +593,18 @@ ggsave("re_edu.png", width = 10, height = 7,
 
 RoREs_edu2 <- RoREs_edu %>% filter(variable=="Males"|variable=="Females")
 
+# Extract points
+loess.fem <- stats::loess(value ~ YEAR, data = RoREs_edu[RoREs_edu$variable == 'Females',])
+loess.predict.fem <- predict(loess.fem, se = F)
+
+loess.male <- stats::loess(value ~ YEAR, data = RoREs_edu[RoREs_edu$variable == 'Males',])
+loess.predict.male <- predict(loess.male, se = F)
+
+loess.df <- data.frame(YEAR = RoREs_edu[RoREs_edu$variable == 'Females', "YEAR"],
+                       loess.fem = loess.predict.fem, 
+                       loess.male = loess.predict.male)
+
+
 ##################
 # Plotting all
 ggplot(RoREs_edu2, aes(YEAR, value, group = variable, color = variable,

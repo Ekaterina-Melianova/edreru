@@ -35,7 +35,7 @@ label values female fem
 
 * Prestige
 
-twoway (scatter edu_yrs prestige_family, jitter (0.4) ) (lfit edu_yrs prestige_family), /// 
+twoway (lfit  edu_yrs prestige_family), /// 
 by(female, leg(off))  ytitle(Years of education for an individual) xtitle(Occupational prestige of the family (maximum between parents) at 15 years old) /// 
 scheme(s1mono)
 
@@ -43,9 +43,11 @@ graph export fam_prestige_schooling.png, replace
 
 * Edu
 
-twoway (scatter edu_yrs edu_family, jitter (0.5)) (lfit edu_yrs edu_family), /// 
+twoway  (lfit edu_yrs edu_family), /// 
 by(female, leg(off)) ytitle(Years of education for an individual) xtitle(Years of education for the family (maximum between parents) at 15 years old) /// 
 scheme(s1mono)
+
+*(scatter edu_yrs edu_family, jitter (0.5))
 
 graph export fam_edu_schooling.png, replace
 
