@@ -1279,7 +1279,7 @@ df_universities$social_returns_cat <- cut(
   df_universities$social_returns, 3, labels=c("low", "medium", "high"))
 
 # Subset of Moscow and MO colleges
-df_universities_moscow <- df_universities %>% filter(region_name == "Москва")
+df_universities_moscow <- df_universities %>% filter(region_name == "Moscow")
 
 # Create 3 categories of social returns based on Moscow data
 # df_universities_moscow$social_returns_cat <- cut(
@@ -1290,7 +1290,7 @@ ggmap(map_mo) +
   geom_point(aes(coordinates_long, coordinates_lat, color = social_returns_cat),
              data = df_universities_moscow, alpha=1, size=3, shape=16) + 
   scale_color_manual(values = c("coral2", "cornflowerblue", "green3")) + 
-  ggtitle("Social IRR (3 years) Universities in Moscow") + 
+  ggtitle("Fiscal IRR (3 years) Universities in Moscow") + 
   theme(plot.title = element_text(size=18, face="bold"),
         legend.position = "none")
 ggsave(filename = "social_returns_moscow.png")
@@ -1310,7 +1310,7 @@ df_colleges$social_returns_cat <- cut(
   df_colleges$social_returns, 3, labels=c("low", "medium", "high"))
 
 # Subset of SPB colleges
-df_colleges_spb <- df_colleges %>% filter(region_name == "Санкт-Петербург")
+df_colleges_spb <- df_colleges %>% filter(region_name == "Saint-Petersburg")
 
 ## Create 3 categories of social returns based on Spb data
 # df_colleges_spb$social_returns_cat <- cut(
@@ -1321,7 +1321,7 @@ ggmap(map_spb) +
   geom_point(aes(coordinates_long, coordinates_lat, color = social_returns_cat),
              data = df_colleges_spb, alpha=1, size=3, shape=16)  + 
   scale_color_manual(values = c("coral2", "cornflowerblue", "green3")) +
-  ggtitle("Social IRR (3 years) Colleges in Saint Petersburg") + 
+  ggtitle("Fiscal IRR (3 years) Colleges in Saint Petersburg") + 
   theme(plot.title = element_text(size=18, face="bold"),
         legend.position = c(0.80,0.80))
 ggsave(filename = "social_returns_spb.png")

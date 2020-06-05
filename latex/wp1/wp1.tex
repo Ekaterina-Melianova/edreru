@@ -98,6 +98,9 @@ P170978}
 \maketitle
 
 \begin{abstract}
+	
+\vspace{.5em} \today	
+
 This paper presents new estimates of the returns to education in the Russian Federation. Private returns to education are three times greater for higher education compared to vocational education, and the returns to education for females are higher than for males. Returns for females show an inverse U-shaped curve over the past two decades. Female education is a policy priority and there is a need to investigate the labor market relevance of vocational education. Higher education may have reached an expansion limit and it may be necessary to investigate options for increasing the productivity of schooling.
 
 % Please include a maximum of seven keywords
@@ -142,7 +145,7 @@ In a worldwide perspective, the latest findings on returns to education can be c
 
 A separate, albeit scarce in terms of quantity, quality, and reliability, corpus of research focused on the Russian\slash USSR case. In the USSR during the period before education reforms the rates of return to schooling were strikingly low: 2-3\% for secondary and 5\% for higher education levels \parencite{Graeser1988}. Low returns to human capital were in line with a planned economy offering free education, centralized allocation of labor, and the ideology of proletariat superiority; a similar picture was observed in other (at the time) socialist countries (see, for example, \cite{Munich2005}).
 
-However, an earlier attempt to establish the contribution of education to productivity took place during Soviet times. Strumilin showed that those who were more educated contributed more.  He even calculated earnings benefits, and though his calculations did not discount earnings, the estimates of the returns were high, at about 17 percent in 1919 \parencite{Strumilin1924}. 
+However, an earlier attempt to establish the contribution of education to productivity took place during Soviet times. Strumilin showed that those who were more educated contributed more.  He even calculated earnings benefits, and though his calculations did not discount earnings, the estimates of the returns were high, at about 17 \% in 1919 \parencite{Strumilin1924}. 
 
 A group of scholars reported that during the transition period from a planned to market economy in Russia rates of returns to schooling rose sharply \parencite{Brainerd1998,Clark2003,Vernon2002}. The upsurge in wage premiums to education (especially university education) was asserted to be a pivotal factor that exacerbated wage dispersion: salaries of highly skilled and trained workers had gone up in absolute terms and compared to less-educated workers \parencite{Fleisher2005}. However, returns to schooling declined for those people who took advantage of higher education expansion in a post-communist Russia (1990-2005) in comparison to youths who obtained university degrees in the preceding periods \parencite{Kyui2016}. One researcher exploited data about the average education level at the end of a Soviet period as an instrument and inferred that the growth in the proportion of city dwellers with university degree was associated with a rise in the wages of  city residents \parencite{ Muravyev2008}.
 Despite enhancements in premiums to tertiary (professional and higher) education in the Russian Federation at the beginning of the 2000s, the labor market was shown to be different from that of developed countries. Comparing Russia with France, the existence of a vertical education-occupation mismatch in Russia was demonstrated \parencite{Kyui2010}. A recent paper claims that horizontal education-job mismatch negatively impacts upon the earnings of university graduates in all fields except for the lowest-paid ones \parencite{Rudakov2019}. Studies also suggest that education-job mismatch during studentship for individuals obtaining vocational education is "penalizing": combining studies with a job unrelated to a person's specialty entails a mismatch after his/her graduation \parencite{Dudyrev2018}.
@@ -166,8 +169,9 @@ Table \ref{tab:1.1} shows descriptive statistics for the key variables under foc
 		\begin{tabular}{lcccccccccc}
 			\hline
 			&  &  &  &  &  &  &  & \multicolumn{3}{c}{Education} \\ 
-			&  & \multicolumn{2}{c}{Wage} & \multicolumn{2}{c}{Experience} & \multicolumn{2}{c}{Education years} & Secondary & Vocational & \multicolumn{1}{c}{Higher} \\ 
-			Year  & N & Mean & SD & Mean & SD & Mean & SD & Percent & Percent & \multicolumn{1}{c}{Percent} \\ 
+			&  & \multicolumn{2}{c}{Wage} & \multicolumn{2}{c}{Experience} & \multicolumn{2}{c}{Education years} & \phantom{000} Secondary & \phantom{000} Vocational & \multicolumn{1}{c}{\phantom{00}Higher} \\ 
+			Year  & N & Mean & SD &  \phantom{000} Mean & \phantom{0000}SD & \phantom{000} Mean & \phantom{0000} SD & 
+		\phantom{000}	Percent & \phantom{000} Percent & \multicolumn{1}{c}{\phantom{00} Percent} \\ 
 			\hline
 			1994  & $3044$ & $\phantom{0}272761.9$ & $\phantom{0}347856.1$ & $\phantom{00000}21.4$ & $\phantom{000000}9.6$ & $\phantom{00000}12.7$ & $\phantom{000000}2.3$ & $\phantom{00000}22.3$ & $\phantom{00000}50.4$ & $\phantom{00000}27.3$ \\
 			1995  & $2694$ & $\phantom{0}557844.7$ & $\phantom{0}621599.5$ & $\phantom{00000}21.7$ & $\phantom{000000}9.6$ & $\phantom{00000}12.7$ & $\phantom{000000}2.2$ & $\phantom{00000}22.3$ & $\phantom{00000}47.8$ & $\phantom{00000}29.8$ \\
@@ -337,9 +341,28 @@ A similar comparative picture is observed with respect to vocational education, 
 
 \section{Instrumental Variable Specification}
 
-The conventional Mincerian OLS estimates of education returns are believed to be generally understated due to the presence of the omitted variable bias (endogeneity) and heterogeneity in the net benefits of additional schooling across individuals \parencite[e.g.,][]{Sakellariou2004, Akhmedjonov2011}. Instrumental variable regression is a method that is often implemented to deal with these issues \parencite[e.g.,][]{Angrist1991, Card2001}.
+A strand of the literature holds that returns estimated from Ordinary Least 
+Squares (OLS)  may be understated due to the possible presence of an 
+omitted variable bias and resulting heterogeneity in the net benefits of 
+additional schooling across individuals 
+\parencite[e.g.,][]{Sakellariou2004, Akhmedjonov2011}. Instrumental 
+variable (IV) regression is a method used to deal with these issues 
+\parencite[e.g.,][]{Angrist1991, Card2001}.
 
-In this study, we leveraged indicators of a person's parental socio-economic status (SES) when one was 15 years old as instrumental variables in the Two-Stage Least Squares (TSLS) estimation of education payoffs in Russia. In many investigations, family background attributes have been frequently utilized as instruments in earnings functions \parencite[e.g.,][]{Sakellariou2004, Parker2006, Hoogerheide2012}. Parental SES as an IV is advantageous since it is relatively strongly associated with the endogenous schooling, allowing to overcome a problem of weak instruments. Despite being criticized for not meeting the required exclusion restriction assumption -- affecting the earnings only through schooling \parencite{Trostel2002} -- family SES was justified to operate as a viable instrument for education. Particularly, it was illustrated that under the moderate direct effects of family background on one's wages, the findings do not substantially deviate from the benchmark case of strictly exogenous instrument \parencite{Hoogerheide2012}.
+In this study, we use indicators of the Parental Socio-Economic Status 
+(SES) of individuals when the individuals were 15 year olds, as 
+instrumental variables. Even though some authors think that family 
+background related variables may suffer the same problem as an endogenous 
+education variable, variables such as Father's education have been used 
+instruments in earnings functions \parencite[e.g.,][]{Trostel2002, 
+Sakellariou2004, Parker2006, Hoogerheide2012}. The reasoning is that 
+variables such as parental education are related to the schooling level of 
+an individual through genetic or environmental effects when an individual 
+is a dependent child in a parent's household. However, parental variable 
+direct influence on \textit{adult} earnings, independent of the influence 
+on schooling, would be mild. In such a case it has been shown that the 
+findings would not substantially deviate from the benchmark case of a
+strictly exogenous instrument \parencite{Hoogerheide2012}.
 
 The current paper exploited retrospective RLMS questions, asked in 2006 and 2011, about the mother's and father's occupation (J216AC08, J216BC08), and their highest achieved education level (J217A, J217B) at a respondent's age of 15. Occupational categories were converted to indices with the help of The Standard Occupational Prestige Scale (SIOPS). The final family background measures represented maximum values for the two SES dimensions between two parents. Besides, following the lead of several past studies \parencite[e.g.,][]{Angrist1991, Card1999, Kim2019} we make use of dummies for the Russian regions, in which individuals reside at the time of the interview (STATUS), as instruments. The analysis was performed, using 2018 RLMS data to capture the most recent labor market situation.
 
@@ -374,7 +397,10 @@ Figures \ref{fig:6.1} and \ref{fig:6.2} portray the relationship between years o
 	\caption{Individual Years of Education and Occupational Prestige (SIOPS) of the Family at 15 Years Old}\label{fig:6.2}
 \end{figure}
 
-Table \ref{tab:6.1} presents the estimated schooling equation for males and females. The results demonstrate that after controlling for the labor market experience, its quadratic term, and type of settlement individuals, whose parents had higher occupational prestige and more completed years of education during his or her adolescence, study longer. Statistically insignificant regional dummies were removed from the models, therefore, only a fraction of regions was specified as instruments. The findings imply that the monotonicity identifying assumption (the absence of defiers) may be satisfied, although, in general, it is considered untestable.
+Table \ref{tab:6.1} presents the estimated schooling equation for males and 
+females. The results demonstrate that individuals, whose parents had higher 
+occupational prestige and more completed years of education, study longer. 
+Only statistically significant regional dummies are maintained in the model.
 
 \begin{table}[h!]\centering
 	\caption{Schooling Equations: Russia, 2018}
@@ -460,7 +486,20 @@ The IV estimation results, using the parental SES and regional dummies, are show
 	\end{tabular}
 \end{table}
 
-To ascertain the statistical validity of the implemented instruments we conducted an array of diagnostic tests (see Table \ref{tab:6.2}). First, a weak identification F-test indicates that the instruments under focus are strongly correlated with the endogenous regressor. Similar information is illustrated by the Kleibergen-Paap under-identification test: a rejection of the null hypothesis means that the instruments are relevant. Likewise, a Stock and Yogo's test points out that even if we are willing to tolerate a 5\% IV relative bias or 10\% IV rejection rate at maximum, then we can conclude that our instruments are not weak because the Cragg-Donald Wald F statistic in both models exceeds the corresponding critical values. Second, the Hausman endogeneity test shows that for the subsample of males education variable does not seem to be endogenous ($p>0.05$), therefore, the use of instruments in this model may be unjustified. Third, the IV's orthogonality to the error process in the structural equation was checked by Sargan's test of overidentifying restrictions. At a 95\% confidence level a set of instruments for the females model can be considered valid (albeit marginally) and uncorrelated with the error term, whereas for males the situation is the opposite. Overall, the diagnostics contends that the OLS estimates of returns to schooling for males in the given specification are more preferable over the IV estimates, whereas for females the IV parameters are appropriate.
+To ascertain the statistical validity of the implemented instruments we 
+conducted an array of diagnostic tests (see Table \ref{tab:6.2}). An F-test 
+indicates that the instruments under focus are strongly correlated with the 
+endogenous regressor (schooling). Next,  Stock and Yogo's critical values 
+test points out that even if we are willing to tolerate a 5\% IV relative 
+bias or 10\% IV rejection rate at maximum, our instruments are not weak 
+because the Cragg-Donald Wald F statistic in both models exceeds the 
+corresponding critical values. The Hausman endogeneity test shows that for 
+the sub-sample of males, the education variable does not seem to be 
+endogenous ($p>0.05$), therefore, the use of instruments is valid only for 
+females. The Sargan-Hansen test also supports this conclusion. Overall, the 
+diagnostics contend that the OLS estimates of returns to schooling for 
+males in the given specification are more preferable over the IV estimates, 
+whereas for females the IV parameters are appropriate.
 
 \section{Conclusions}
 

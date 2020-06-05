@@ -36,6 +36,10 @@ df_ <- selectFromSQL(c("J1", "AGE", "J5A","J5B","H7_2", "YEAR", "J35_2Y", "J35_2
 dbDisconnect(db) # Don't need the sqlite connection anymore
 # Fixing system and user-defined missings in the RLMS database
 
+# saveRDS(zdf_,file="C:/Country/Russia/Data/SEASHELL/SEABYTE/edreru/wp1/zdf_.rds")
+zdf_ <- readRDS("C:/Country/Russia/Data/SEASHELL/SEABYTE/edreru/wp1/zdf_.rds")
+df_ <- zdf_
+
 df_ <- SysMisFix(df_) # determining system missings
 df_ <- UserMisFix(df_) # labelling user-defined missings
 

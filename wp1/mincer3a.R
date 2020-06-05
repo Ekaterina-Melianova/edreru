@@ -48,12 +48,13 @@ hp2$fvar[hp2$variable=="r"] <- "Rate of Returns in percentage"
 hp2$fvar <- factor(hp2$fvar,levels=c("Number of years of Schooling",
                                      "Rate of Returns in percentage"))
 
+xb <- seq(1994,2018, by = 2) # has no effect as we are using facets
 
 ggplot(data=hp2,aes(x=Year,y=value,group=fvar,color=fvar))+
   geom_line()+
   facet_wrap(~fvar,scales="free")+
-  scale_x_discrete(x_axis)+
-  theme(axis.text.x = element_text(angle = 30, hjust = 1, vjust=1, size = 8),
+  scale_x_discrete(xb)+
+  theme(axis.text.x = element_text(angle = 90, hjust = 1, vjust=1, size = 8),
         axis.text.y = element_text(size = 14, color="black"),
         axis.title.x = element_blank(),
         axis.title.y = element_blank())+ 
@@ -62,5 +63,4 @@ ggplot(data=hp2,aes(x=Year,y=value,group=fvar,color=fvar))+
   theme(legend.position = "none")
 ggsave("hp_rs.png", width = 10, height = 7,
        units = "in")
-
-       
+      

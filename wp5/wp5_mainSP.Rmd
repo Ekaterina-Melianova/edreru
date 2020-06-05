@@ -1,12 +1,12 @@
 ---
 title: "Working Paper 5"
 output:
+  html_document:
+    df_print: paged
+  html_notebook: default
   pdf_document:
     keep_tex: yes
     latex_engine: xelatex
-  html_notebook: default
-  html_document:
-    df_print: paged
 ---
 
 

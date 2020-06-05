@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.21 (MiKTeX 2.9.7300 64-bit) (preloaded format=pdflatex 2020.2.29)  19 MAY 2020 15:37
+This is pdfTeX, Version 3.14159265-2.6-1.40.21 (MiKTeX 2.9.7300 64-bit) (preloaded format=pdflatex 2020.2.29)  5 JUN 2020 15:35
 entering extended mode
 **./wp2.tex
 (wp2.tex
@@ -1915,11 +1915,11 @@ Package biblatex Info: Data encoding 'utf8' specified.
 \openout4 = `wp2-blx.bib'.
 
 Package biblatex Info: Trying to load bibliographic data...
-Package biblatex Info: ... file 'wp2.bbl' not found.
-
-No file wp2.bbl.
+Package biblatex Info: ... file 'wp2.bbl' found.
+ (wp2.bbl)
 Package biblatex Info: Reference section=0 on input line 94.
 Package biblatex Info: Reference segment=0 on input line 94.
+
 (C:\Users\wb164718\AppData\Roaming\MiKTeX\2.9\tex/latex/microtype\mt-cmr.cfg
 File: mt-cmr.cfg 2013/05/19 v2.2 microtype config. file: Computer Modern Roman 
 (RS)
@@ -1988,12 +1988,12 @@ LaTeX Font Info:    Font shape `T1/lato-TLF/b/n' will be
 (Font)              scaled to size 8.8pt on input line 99.
 Missing character: There is no ¹ in font lmsy8!
 LaTeX Font Info:    Font shape `T1/lato-TLF/m/n' will be
-(Font)              scaled to size 7.0pt on input line 109.
+(Font)              scaled to size 7.0pt on input line 112.
 Missing character: There is no ¹ in font lmsy7!
 LaTeX Font Info:    Font shape `T1/lato-TLF/m/n' will be
-(Font)              scaled to size 5.5pt on input line 109.
+(Font)              scaled to size 5.5pt on input line 112.
 LaTeX Font Info:    Font shape `T1/lato-TLF/b/n' will be
-(Font)              scaled to size 7.0pt on input line 109.
+(Font)              scaled to size 7.0pt on input line 112.
 
 
 ! LaTeX Error: There's no line here to end.
@@ -2002,14 +2002,14 @@ See the LaTeX manual or LaTeX Companion for explanation.
 Type  H <return>  for immediate help.
  ...                                              
                                                   
-l.109 \end{abstract}
+l.112 \end{abstract}
                     
 Your command was ignored.
 Type  I <command> <return>  to replace it with another command,
 or  <return>  to continue without it.
 
 LaTeX Font Info:    Trying to load font information for T1+lmtt on input line 1
-09.
+12.
 ("C:\Program Files\MiKTeX 2.9\tex/latex/lm\t1lmtt.fd"
 File: t1lmtt.fd 2009/10/30 v1.6 Font defs for Latin Modern
 )
@@ -2019,14 +2019,14 @@ Package microtype Info: Loading generic protrusion settings for font family
 (microtype)             See the microtype manual for details.
 Missing character: There is no ¹ in font lmsy8!
 \wiley@abstractbox=\box82
-Package mdframed Info: mdframed works in twoside mode on input line 109.
+Package mdframed Info: mdframed works in twoside mode on input line 112.
 LaTeX Font Info:    Font shape `T1/lato-TLF/m/n' will be
-(Font)              scaled to size 9.0pt on input line 109.
+(Font)              scaled to size 9.0pt on input line 112.
 LaTeX Font Info:    Font shape `T1/lato-TLF/b/n' will be
-(Font)              scaled to size 9.0pt on input line 109.
+(Font)              scaled to size 9.0pt on input line 112.
 Missing character: There is no ¹ in font lmsy7!
 Package mdframed Info: mdframed inside a box 
- mdframed uses option nobreak mdframed on input line 109.
+ mdframed uses option nobreak mdframed on input line 112.
 Missing character: There is no ¹ in font lmsy8!
 Missing character: There is no ¹ in font lmsy7!
 
@@ -2037,52 +2037,40 @@ See the LaTeX manual or LaTeX Companion for explanation.
 Type  H <return>  for immediate help.
  ...                                              
                                                   
-l.109 \end{abstract}
+l.112 \end{abstract}
                     
 Your command was ignored.
 Type  I <command> <return>  to replace it with another command,
 or  <return>  to continue without it.
 
-Package mdframed Info: mdframed works in twoside mode on input line 109.
+Package mdframed Info: mdframed works in twoside mode on input line 112.
 Missing character: There is no ¹ in font lmsy7!
 LaTeX Font Info:    Font shape `T1/lato-TLF/b/n' will be
-(Font)              scaled to size 10.0pt on input line 112.
+(Font)              scaled to size 10.0pt on input line 115.
 LaTeX Font Info:    Font shape `T1/lato-TLF/m/n' will be
-(Font)              scaled to size 10.0pt on input line 112.
+(Font)              scaled to size 10.0pt on input line 115.
 LaTeX Font Info:    External font `lmex10' loaded for size
-(Font)              <10> on input line 112.
+(Font)              <10> on input line 115.
 Missing character: There is no ¹ in font lmsy10!
-
-LaTeX Warning: Citation 'Patrinos_2020' on page 37 undefined on input line 116.
-
-
 Missing character: There is no ¹ in font lmsy7!
 
 Underfull \hbox (badness 10000) has occurred while \output is active
 [][][] 
  []
 
-[37
+[1
 
 {C:/Users/wb164718/AppData/Local/MiKTeX/2.9/pdftex/config/pdftex.map}]
-
-LaTeX Warning: Citation 'Rosen_1976' on page 38 undefined on input line 144.
-
-
-LaTeX Warning: Citation 'Mincer_1982' on page 38 undefined on input line 144.
-
-
-LaTeX Warning: Citation 'Neuman_1995' on page 38 undefined on input line 144.
-
-<dp01_he.png, id=70, 216.81pt x 252.945pt>
+<dp01_he.png, id=75, 216.81pt x 252.945pt>
 File: dp01_he.png Graphic file (type png)
 <use dp01_he.png>
-Package pdftex.def Info: dp01_he.png  used on input line 153.
+Package pdftex.def Info: dp01_he.png  used on input line 167.
 (pdftex.def)             Requested size: 150.0pt x 175.00697pt.
 LaTeX Font Info:    Font shape `T1/lato-TLF/m/n' will be
-(Font)              scaled to size 7.30005pt on input line 155.
+(Font)              scaled to size 7.30005pt on input line 169.
 LaTeX Font Info:    Trying to load font information for T1+lmss on input line 1
-55.
+69.
+
 ("C:\Program Files\MiKTeX 2.9\tex/latex/lm\t1lmss.fd"
 File: t1lmss.fd 2009/10/30 v1.6 Font defs for Latin Modern
 )
@@ -2090,58 +2078,47 @@ Package microtype Info: Loading generic protrusion settings for font family
 (microtype)             `lmss' (encoding: T1).
 (microtype)             For optimal results, create family-specific settings.
 (microtype)             See the microtype manual for details.
-<dp01_ve.png, id=71, 216.81pt x 252.945pt>
+<dp01_ve.png, id=76, 216.81pt x 252.945pt>
 File: dp01_ve.png Graphic file (type png)
 <use dp01_ve.png>
-Package pdftex.def Info: dp01_ve.png  used on input line 161.
+Package pdftex.def Info: dp01_ve.png  used on input line 175.
 (pdftex.def)             Requested size: 150.0pt x 175.00697pt.
-<dp01_se.png, id=72, 216.81pt x 252.945pt>
+<dp01_se.png, id=77, 216.81pt x 252.945pt>
 File: dp01_se.png Graphic file (type png)
 <use dp01_se.png>
-Package pdftex.def Info: dp01_se.png  used on input line 169.
+Package pdftex.def Info: dp01_se.png  used on input line 183.
 (pdftex.def)             Requested size: 150.0pt x 175.00697pt.
 Missing character: There is no ¹ in font lmsy8!
 Missing character: There is no ¹ in font lmsy8!
-
-
-LaTeX Warning: Citation 'Murillo_2006' on page 38 undefined on input line 184.
-
-
-LaTeX Warning: Citation 'Arrazola_2005' on page 38 undefined on input line 185.
-
-
-<dp01_98.png, id=75, 216.81pt x 252.945pt>
+<dp01_98.png, id=82, 216.81pt x 252.945pt>
 File: dp01_98.png Graphic file (type png)
 <use dp01_98.png>
-Package pdftex.def Info: dp01_98.png  used on input line 192.
+Package pdftex.def Info: dp01_98.png  used on input line 207.
 (pdftex.def)             Requested size: 150.0pt x 175.00697pt.
-<dp01_06.png, id=76, 216.81pt x 252.945pt>
+<dp01_06.png, id=83, 216.81pt x 252.945pt>
 File: dp01_06.png Graphic file (type png)
 <use dp01_06.png>
-Package pdftex.def Info: dp01_06.png  used on input line 200.
+Package pdftex.def Info: dp01_06.png  used on input line 215.
 (pdftex.def)             Requested size: 150.0pt x 175.00697pt.
-<dp01_18.png, id=77, 216.81pt x 252.945pt>
+<dp01_18.png, id=84, 216.81pt x 252.945pt>
 File: dp01_18.png Graphic file (type png)
 <use dp01_18.png>
-Package pdftex.def Info: dp01_18.png  used on input line 208.
+Package pdftex.def Info: dp01_18.png  used on input line 223.
 (pdftex.def)             Requested size: 150.0pt x 175.00697pt.
 Missing character: There is no ¹ in font lmsy8!
 Missing character: There is no ¹ in font lmsy8!
 
-LaTeX Warning: Citation 'Murillo_2006' on page 38 undefined on input line 219.
-
-Missing character: There is no ¹ in font lmsy8!
-Missing character: There is no º in font lmsy8!
-Missing character: There is no ¹ in font lmsy8!
-Missing character: There is no º in font lmsy8!
-
-Underfull \vbox (badness 3168) has occurred while \output is active []
+Underfull \vbox (badness 10000) has occurred while \output is active []
 
 Missing character: There is no ¹ in font lmsy7!
- [38]
-[39 <./dp01_he.png> <./dp01_ve.png> <./dp01_se.png> <./dp01_98.png> <./dp01_06.
-png> <./dp01_18.png>]
+ [2]
+[3 <./dp01_he.png> <./dp01_ve.png> <./dp01_se.png> <./dp01_98.png> <./dp01_06.p
+ng> <./dp01_18.png>]
 Missing character: There is no ¹ in font lmsy8!
+Missing character: There is no ¹ in font lmsy8!
+Missing character: There is no º in font lmsy8!
+Missing character: There is no ¹ in font lmsy8!
+Missing character: There is no º in font lmsy8!
 Missing character: There is no ¹ in font lmsy8!
 Missing character: There is no º in font lmsy8!
 Missing character: There is no ¹ in font lmsy8!
@@ -2172,26 +2149,30 @@ Missing character: There is no ¹ in font lmsy8!
 Missing character: There is no º in font lmsy8!
 
 ! Too many }'s.
-l.252 ...the rates of return over the time period}
+l.267 ...the rates of return over the time period}
                                                   .
 You've closed more groups than you opened.
 Such booboos are generally harmless, so keep going.
 
+
+Underfull \vbox (badness 2042) has occurred while \output is active []
+
 Missing character: There is no ¹ in font lmsy7!
-[40]
+ [4]
 Missing character: There is no ¹ in font lmsy8!
 Missing character: There is no ¹ in font lmsy8!
 Missing character: There is no ¹ in font lmsy7!
- [41]
+
+[5] [6]
 
 Package caption Warning: The option `hypcap=true' will be ignored for this
-(caption)                particular \caption on input line 325.
+(caption)                particular \caption on input line 340.
 See the caption package documentation for explanation.
 
 Missing character: There is no ¹ in font lmsy8!
 Missing character: There is no ¹ in font lmsy8!
 ! Undefined control sequence.
-l.326 \keepXColumns
+l.341 \keepXColumns
                    
 The control sequence at the end of the top line
 of your error message was never \def'ed. If you have
@@ -2201,71 +2182,61 @@ and I'll forget about whatever was undefined.
 
 File: all2-1.pdf Graphic file (type pdf)
 <use all2-1.pdf>
-Package pdftex.def Info: all2-1.pdf  used on input line 343.
+Package pdftex.def Info: all2-1.pdf  used on input line 358.
 (pdftex.def)             Requested size: 85.36276pt x 8.00002pt.
 File: all2-2.pdf Graphic file (type pdf)
 <use all2-2.pdf>
-Package pdftex.def Info: all2-2.pdf  used on input line 343.
+Package pdftex.def Info: all2-2.pdf  used on input line 358.
 (pdftex.def)             Requested size: 85.36276pt x 8.00002pt.
 File: all2-3.pdf Graphic file (type pdf)
 <use all2-3.pdf>
-Package pdftex.def Info: all2-3.pdf  used on input line 343.
-(pdftex.def)             Requested size: 85.36276pt x 8.00002pt.
-
-Underfull \hbox (badness 10000) in alignment at lines 343--343
-[] [] [] [] [] [] [] [] [] 
- []
-
-File: female2-1.pdf Graphic file (type pdf)
-<use female2-1.pdf>
-Package pdftex.def Info: female2-1.pdf  used on input line 358.
-(pdftex.def)             Requested size: 85.36276pt x 8.00002pt.
-File: female2-2.pdf Graphic file (type pdf)
-<use female2-2.pdf>
-Package pdftex.def Info: female2-2.pdf  used on input line 358.
-(pdftex.def)             Requested size: 85.36276pt x 8.00002pt.
-File: female2-3.pdf Graphic file (type pdf)
-<use female2-3.pdf>
-Package pdftex.def Info: female2-3.pdf  used on input line 358.
+Package pdftex.def Info: all2-3.pdf  used on input line 358.
 (pdftex.def)             Requested size: 85.36276pt x 8.00002pt.
 
 Underfull \hbox (badness 10000) in alignment at lines 358--358
 [] [] [] [] [] [] [] [] [] 
  []
 
-File: male2-1.pdf Graphic file (type pdf)
-<use male2-1.pdf>
-Package pdftex.def Info: male2-1.pdf  used on input line 375.
+File: female2-1.pdf Graphic file (type pdf)
+<use female2-1.pdf>
+Package pdftex.def Info: female2-1.pdf  used on input line 373.
 (pdftex.def)             Requested size: 85.36276pt x 8.00002pt.
-File: male2-2.pdf Graphic file (type pdf)
-<use male2-2.pdf>
-Package pdftex.def Info: male2-2.pdf  used on input line 375.
+File: female2-2.pdf Graphic file (type pdf)
+<use female2-2.pdf>
+Package pdftex.def Info: female2-2.pdf  used on input line 373.
 (pdftex.def)             Requested size: 85.36276pt x 8.00002pt.
-File: male2-3.pdf Graphic file (type pdf)
-<use male2-3.pdf>
-Package pdftex.def Info: male2-3.pdf  used on input line 375.
+File: female2-3.pdf Graphic file (type pdf)
+<use female2-3.pdf>
+Package pdftex.def Info: female2-3.pdf  used on input line 373.
 (pdftex.def)             Requested size: 85.36276pt x 8.00002pt.
 
-Underfull \hbox (badness 10000) in alignment at lines 375--375
+Underfull \hbox (badness 10000) in alignment at lines 373--373
 [] [] [] [] [] [] [] [] [] 
  []
 
+File: male2-1.pdf Graphic file (type pdf)
+<use male2-1.pdf>
+Package pdftex.def Info: male2-1.pdf  used on input line 390.
+(pdftex.def)             Requested size: 85.36276pt x 8.00002pt.
+File: male2-2.pdf Graphic file (type pdf)
+<use male2-2.pdf>
+Package pdftex.def Info: male2-2.pdf  used on input line 390.
+(pdftex.def)             Requested size: 85.36276pt x 8.00002pt.
+File: male2-3.pdf Graphic file (type pdf)
+<use male2-3.pdf>
+Package pdftex.def Info: male2-3.pdf  used on input line 390.
+(pdftex.def)             Requested size: 85.36276pt x 8.00002pt.
 
-LaTeX Warning: Citation 'Arrazola_2005' on page 42 undefined on input line 383.
-
-
-
-LaTeX Warning: Citation 'Weber_2008' on page 42 undefined on input line 383.
-
-
-LaTeX Warning: Citation 'Weber_2011' on page 42 undefined on input line 383.
+Underfull \hbox (badness 10000) in alignment at lines 390--390
+[] [] [] [] [] [] [] [] [] 
+ []
 
 LaTeX Font Info:    Font shape `T1/lato-TLF/m/n' will be
-(Font)              scaled to size 6.2pt on input line 391.
+(Font)              scaled to size 6.2pt on input line 406.
 ! Undefined control sequence.
 <argument> \mathlarger 
                        {\alpha }
-l.391 \end{flalign}
+l.406 \end{flalign}
                    
 The control sequence at the end of the top line
 of your error message was never \def'ed. If you have
@@ -2276,7 +2247,7 @@ and I'll forget about whatever was undefined.
 ! Undefined control sequence.
 <argument> \mathlarger 
                        {\alpha }
-l.391 \end{flalign}
+l.406 \end{flalign}
                    
 The control sequence at the end of the top line
 of your error message was never \def'ed. If you have
@@ -2288,8 +2259,8 @@ and I'll forget about whatever was undefined.
 Underfull \vbox (badness 10000) has occurred while \output is active []
 
 Missing character: There is no ¹ in font lmsy7!
- [42 <./all2-1.pdf> <./all2-2.pdf> <./all2-3.pdf> <./female2-1.pdf> <./female2-
-2.pdf> <./female2-3.pdf> <./male2-1.pdf> <./male2-2.pdf> <./male2-3.pdf>]
+ [7 <./all2-1.pdf> <./all2-2.pdf> <./all2-3.pdf> <./female2-1.pdf> <./female2-2
+.pdf> <./female2-3.pdf> <./male2-1.pdf> <./male2-2.pdf> <./male2-3.pdf>]
 Missing character: There is no ¹ in font lmsy8!
 Missing character: There is no ¹ in font lmsy8!
 Missing character: There is no º in font lmsy8!
@@ -2326,7 +2297,7 @@ Missing character: There is no Í in font lmex10!
 Missing character: There is no ¹ in font lmsy8!
 Missing character: There is no º in font lmsy8!
 Missing character: There is no ¹ in font lmsy7!
- [43]
+ [8]
 Missing character: There is no ¹ in font lmsy8!
 Missing character: There is no ¹ in font lmsy6!
 Missing character: There is no º in font lmsy6!
@@ -2356,21 +2327,17 @@ Missing character: There is no ¹ in font lmsy8!
 Missing character: There is no º in font lmsy8!
 Missing character: There is no ¹ in font lmsy8!
 Missing character: There is no º in font lmsy8!
-
-
-LaTeX Warning: Citation 'Mincer_1982' on page 44 undefined on input line 486.
-
 Missing character: There is no ¹ in font lmsy7!
-[44]
+ [9]
 
 Package caption Warning: The option `hypcap=true' will be ignored for this
-(caption)                particular \caption on input line 513.
+(caption)                particular \caption on input line 528.
 See the caption package documentation for explanation.
 
 Missing character: There is no ¹ in font lmsy8!
 Missing character: There is no ¹ in font lmsy8!
 ! Undefined control sequence.
-l.515 	\keepXColumns
+l.530 	\keepXColumns
                     
 The control sequence at the end of the top line
 of your error message was never \def'ed. If you have
@@ -2383,17 +2350,17 @@ all2-1.pdf Graphic file (type pdf)
 <use C:/Country/Russia/Data/SEASHELL/SEABYTE/Edreru/wp1/sparklines/Weber_sprk_a
 ll2-1.pdf>
 Package pdftex.def Info: C:/Country/Russia/Data/SEASHELL/SEABYTE/Edreru/wp1/spa
-rklines/Weber_sprk_all2-1.pdf  used on input line 534.
+rklines/Weber_sprk_all2-1.pdf  used on input line 549.
 (pdftex.def)             Requested size: 85.36276pt x 8.00002pt.
 File: C:/Country/Russia/Data/SEASHELL/SEABYTE/Edreru/wp1/sparklines/Weber_sprk_
 all2-2.pdf Graphic file (type pdf)
 <use C:/Country/Russia/Data/SEASHELL/SEABYTE/Edreru/wp1/sparklines/Weber_sprk_a
 ll2-2.pdf>
 Package pdftex.def Info: C:/Country/Russia/Data/SEASHELL/SEABYTE/Edreru/wp1/spa
-rklines/Weber_sprk_all2-2.pdf  used on input line 534.
+rklines/Weber_sprk_all2-2.pdf  used on input line 549.
 (pdftex.def)             Requested size: 85.36276pt x 8.00002pt.
 
-Underfull \hbox (badness 10000) in alignment at lines 534--534
+Underfull \hbox (badness 10000) in alignment at lines 549--549
 [][][][][][][][][] 
  []
 
@@ -2402,17 +2369,17 @@ f2-1.pdf Graphic file (type pdf)
 <use C:/Country/Russia/Data/SEASHELL/SEABYTE/Edreru/wp1/sparklines/Weber_sprk_f
 2-1.pdf>
 Package pdftex.def Info: C:/Country/Russia/Data/SEASHELL/SEABYTE/Edreru/wp1/spa
-rklines/Weber_sprk_f2-1.pdf  used on input line 554.
+rklines/Weber_sprk_f2-1.pdf  used on input line 569.
 (pdftex.def)             Requested size: 85.36276pt x 8.00002pt.
 File: C:/Country/Russia/Data/SEASHELL/SEABYTE/Edreru/wp1/sparklines/Weber_sprk_
 f2-2.pdf Graphic file (type pdf)
 <use C:/Country/Russia/Data/SEASHELL/SEABYTE/Edreru/wp1/sparklines/Weber_sprk_f
 2-2.pdf>
 Package pdftex.def Info: C:/Country/Russia/Data/SEASHELL/SEABYTE/Edreru/wp1/spa
-rklines/Weber_sprk_f2-2.pdf  used on input line 554.
+rklines/Weber_sprk_f2-2.pdf  used on input line 569.
 (pdftex.def)             Requested size: 85.36276pt x 8.00002pt.
 
-Underfull \hbox (badness 10000) in alignment at lines 554--554
+Underfull \hbox (badness 10000) in alignment at lines 569--569
 [][][][][][][][][] 
  []
 
@@ -2421,22 +2388,22 @@ m2-1.pdf Graphic file (type pdf)
 <use C:/Country/Russia/Data/SEASHELL/SEABYTE/Edreru/wp1/sparklines/Weber_sprk_m
 2-1.pdf>
 Package pdftex.def Info: C:/Country/Russia/Data/SEASHELL/SEABYTE/Edreru/wp1/spa
-rklines/Weber_sprk_m2-1.pdf  used on input line 574.
+rklines/Weber_sprk_m2-1.pdf  used on input line 589.
 (pdftex.def)             Requested size: 85.36276pt x 8.00002pt.
 File: C:/Country/Russia/Data/SEASHELL/SEABYTE/Edreru/wp1/sparklines/Weber_sprk_
 m2-2.pdf Graphic file (type pdf)
 <use C:/Country/Russia/Data/SEASHELL/SEABYTE/Edreru/wp1/sparklines/Weber_sprk_m
 2-2.pdf>
 Package pdftex.def Info: C:/Country/Russia/Data/SEASHELL/SEABYTE/Edreru/wp1/spa
-rklines/Weber_sprk_m2-2.pdf  used on input line 574.
+rklines/Weber_sprk_m2-2.pdf  used on input line 589.
 (pdftex.def)             Requested size: 85.36276pt x 8.00002pt.
 
-Underfull \hbox (badness 10000) in alignment at lines 574--574
+Underfull \hbox (badness 10000) in alignment at lines 589--589
 [][][][][][][][][] 
  []
 
 Missing character: There is no ¹ in font lmsy7!
-[45 <C:/Country/Russia/Data/SEASHELL/SEABYTE/Edreru/wp1/sparklines/Weber_sprk_a
+[10 <C:/Country/Russia/Data/SEASHELL/SEABYTE/Edreru/wp1/sparklines/Weber_sprk_a
 ll2-1.pdf> <C:/Country/Russia/Data/SEASHELL/SEABYTE/Edreru/wp1/sparklines/Weber
 _sprk_all2-2.pdf> <C:/Country/Russia/Data/SEASHELL/SEABYTE/Edreru/wp1/sparkline
 s/Weber_sprk_f2-1.pdf> <C:/Country/Russia/Data/SEASHELL/SEABYTE/Edreru/wp1/spar
@@ -2444,10 +2411,6 @@ klines/Weber_sprk_f2-2.pdf> <C:/Country/Russia/Data/SEASHELL/SEABYTE/Edreru/wp1
 /sparklines/Weber_sprk_m2-1.pdf> <C:/Country/Russia/Data/SEASHELL/SEABYTE/Edrer
 u/wp1/sparklines/Weber_sprk_m2-2.pdf>]
 Missing character: There is no ¹ in font lmsy8!
-
-
-LaTeX Warning: Citation 'Weber_2008' on page 46 undefined on input line 599.
-
 Missing character: There is no ¹ in font lmsy8!
 Missing character: There is no ¹ in font lmsy8!
 Missing character: There is no ¹ in font lmsy7!
@@ -2463,36 +2426,20 @@ Missing character: There is no ¹ in font lmsy8!
 Missing character: There is no ¹ in font lmsy7!
 Missing character: There is no ¹ in font lmsy8!
 Missing character: There is no ¹ in font lmsy10!
-
-LaTeX Warning: Citation 'Preston_1999' on page 46 undefined on input line 681.
-
-
-LaTeX Warning: Citation 'Blau_2013' on page 46 undefined on input line 681.
-
-
-LaTeX Warning: Citation 'Klimova_2009' on page 46 undefined on input line 684.
-
-
-LaTeX Warning: Citation 'Klimova_2012' on page 46 undefined on input line 684.
-
-
-LaTeX Warning: Citation 'Kosyakova_2015' on page 46 undefined on input line 684
-.
-
 Missing character: There is no ¹ in font lmsy8!
 Missing character: There is no ¹ in font lmsy7!
-[46] [47]
-<gen_ind18.png, id=270, 542.025pt x 289.08pt>
+ [11] [12]
+<gen_ind18.png, id=303, 542.025pt x 289.08pt>
 File: gen_ind18.png Graphic file (type png)
 <use gen_ind18.png>
-Package pdftex.def Info: gen_ind18.png  used on input line 710.
+Package pdftex.def Info: gen_ind18.png  used on input line 737.
 (pdftex.def)             Requested size: 400.0pt x 213.3424pt.
 Missing character: There is no ¹ in font lmsy8!
 Missing character: There is no ¹ in font lmsy8!
-<gen_occ18.png, id=271, 542.025pt x 289.08pt>
+<gen_occ18.png, id=304, 542.025pt x 289.08pt>
 File: gen_occ18.png Graphic file (type png)
 <use gen_occ18.png>
-Package pdftex.def Info: gen_occ18.png  used on input line 716.
+Package pdftex.def Info: gen_occ18.png  used on input line 743.
 (pdftex.def)             Requested size: 400.0pt x 213.3424pt.
 Missing character: There is no ¹ in font lmsy8!
 Missing character: There is no ¹ in font lmsy8!
@@ -2500,158 +2447,116 @@ Missing character: There is no ¹ in font lmsy8!
 Missing character: There is no ¹ in font lmsy8!
 Missing character: There is no ¹ in font lmsy8!
 Missing character: There is no ¹ in font lmsy8!
-LaTeX Font Info:    Calculating math sizes for size <7.30005> on input line 765
+LaTeX Font Info:    Calculating math sizes for size <7.30005> on input line 792
 .
 LaTeX Font Info:    External font `lmex10' loaded for size
-(Font)              <7.30005> on input line 765.
+(Font)              <7.30005> on input line 792.
 LaTeX Font Info:    External font `lmex10' loaded for size
-(Font)              <5.329> on input line 765.
+(Font)              <5.329> on input line 792.
 LaTeX Font Info:    External font `lmex10' loaded for size
-(Font)              <4.01505> on input line 765.
+(Font)              <4.01505> on input line 792.
 
 
 LaTeX Font Warning: Font shape `OT1/cmr/bx/n' in size <4.01505> not available
-(Font)              size <5> substituted on input line 765.
+(Font)              size <5> substituted on input line 792.
 
 
 LaTeX Font Warning: Font shape `OML/cmm/b/it' in size <4.01505> not available
-(Font)              size <5> substituted on input line 765.
+(Font)              size <5> substituted on input line 792.
 
 
 LaTeX Font Warning: Font shape `OMS/cmsy/b/n' in size <4.01505> not available
-(Font)              size <5> substituted on input line 765.
+(Font)              size <5> substituted on input line 792.
 
 Missing character: There is no ¹ in font lmsy7!
 LaTeX Font Info:    Font shape `T1/lato-TLF/b/n' will be
-(Font)              scaled to size 7.30005pt on input line 767.
+(Font)              scaled to size 7.30005pt on input line 794.
 
 Underfull \vbox (badness 10000) has occurred while \output is active []
 
 Missing character: There is no ¹ in font lmsy7!
- [48 <./gen_ind18.png> <./gen_occ18.png>] [49]
+ [13 <./gen_ind18.png> <./gen_occ18.png>] [14]
 Underfull \vbox (badness 10000) has occurred while \output is active []
 
- [50]
-
-LaTeX Warning: Citation 'acemoglu2011' on page 51 undefined on input line 852.
-
+ [15]
 Missing character: There is no ¹ in font lmsy8!
 Missing character: There is no ¹ in font lmsy8!
-
-LaTeX Warning: Citation 'Mihaylov_2019' on page 51 undefined on input line 889.
-
-
-Missing character: There is no ¹ in font lmsy8!
-Missing character: There is no º in font lmsy8!
-Missing character: There is no ¹ in font lmsy8!
-Missing character: There is no º in font lmsy8!
 Missing character: There is no ¹ in font lmsy7!
-[51]
+
+[16]
+Missing character: There is no ¹ in font lmsy8!
+Missing character: There is no ¹ in font lmsy8!
+Missing character: There is no º in font lmsy8!
+Missing character: There is no ¹ in font lmsy8!
+Missing character: There is no º in font lmsy8!
 Missing character: There is no ¹ in font lmsy8!
 Missing character: There is no ¹ in font lmsy8!
 Missing character: There is no ¹ in font lmsy10!
 LaTeX Font Info:    Trying to load font information for TS1+lato-TLF on input l
-ine 945.
+ine 972.
 
 (C:\Users\wb164718\AppData\Roaming\MiKTeX\2.9\tex/latex/lato\ts1lato-tlf.fd
 File: TS1lato-TLF.fd 2019/06/24 Font definitions for TS1/lato-TLF.
 )
 LaTeX Font Info:    Font shape `TS1/lato-TLF/m/n' will be
-(Font)              scaled to size 8.0pt on input line 945.
+(Font)              scaled to size 8.0pt on input line 972.
 Package microtype Info: Loading generic protrusion settings for font family
 (microtype)             `lato-TLF' (encoding: TS1).
 (microtype)             For optimal results, create family-specific settings.
 (microtype)             See the microtype manual for details.
 Missing character: There is no ¹ in font lmsy7!
 
-[52]
-
-LaTeX Warning: Citation 'kautz2014' on page 53 undefined on input line 1009.
-
-
-LaTeX Warning: Citation 'midtsundstad2019' on page 53 undefined on input line 1
-010.
-
-
-LaTeX Warning: Citation 'kilpi2012' on page 53 undefined on input line 1012.
-
-
-LaTeX Warning: Citation 'paccagnella2016' on page 53 undefined on input line 10
-12.
-
-
-LaTeX Warning: Citation 'kautz2014' on page 53 undefined on input line 1018.
-
-
-LaTeX Warning: Citation 'tarasyev2018' on page 53 undefined on input line 1027.
-
-
-
-LaTeX Warning: Citation 'oshchepkov2015' on page 53 undefined on input line 102
-9.
-
-
-LaTeX Warning: Citation 'deming2018' on page 53 undefined on input line 1037.
-
-
-LaTeX Warning: Citation 'evangelista2014' on page 53 undefined on input line 10
-39.
-
-
-LaTeX Warning: Citation 'cirillo2019' on page 53 undefined on input line 1039.
-
-
-LaTeX Warning: Citation 'gobel2009' on page 53 undefined on input line 1043.
-
-
-LaTeX Warning: Citation 'gobel2013' on page 53 undefined on input line 1043.
-
-
-LaTeX Warning: Empty bibliography on input line 1046.
-
-[53]
+[17]
 LaTeX Font Info:    Font shape `T1/lato-TLF/m/sc' will be
-(Font)              scaled to size 10.0pt on input line 1049.
+(Font)              scaled to size 10.0pt on input line 1073.
 
 
 LaTeX Font Warning: Font shape `T1/lato-TLF/b/sc' undefined
-(Font)              using `T1/lato-TLF/b/n' instead on input line 1049.
+(Font)              using `T1/lato-TLF/b/n' instead on input line 1073.
 
 LaTeX Font Info:    Font shape `T1/lato-TLF/b/sc' will be
-(Font)              scaled to size 10.0pt on input line 1049.
+(Font)              scaled to size 10.0pt on input line 1073.
 Missing character: There is no ¹ in font lmsy10!
-<re_edu.png, id=310, 722.7pt x 505.89pt>
+Missing character: There is no ¹ in font lmsy7!
+[18]
+
+Package biblatex Warning: Bibliography string 'numbers' undefined
+(biblatex)                at entry 'gobel2009' on input line 1073.
+
+[19] [20]
+Missing character: There is no ¹ in font lmsy10!
+<re_edu.png, id=380, 722.7pt x 505.89pt>
 File: re_edu.png Graphic file (type png)
 <use re_edu.png>
-Package pdftex.def Info: re_edu.png  used on input line 1063.
+Package pdftex.def Info: re_edu.png  used on input line 1090.
 (pdftex.def)             Requested size: 433.62pt x 303.53633pt.
 
-Overfull \hbox (28.45277pt too wide) in paragraph at lines 1063--1065
+Overfull \hbox (28.45277pt too wide) in paragraph at lines 1090--1092
  [][] 
  []
 
 Missing character: There is no ¹ in font lmsy8!
 Missing character: There is no ¹ in font lmsy8!
 Missing character: There is no ¹ in font lmsy7!
-[54 <./re_edu.png>]
+[21 <./re_edu.png>]
 
-! LaTeX Error: \begin{itemize} on input line 1003 ended by \end{document}.
+! LaTeX Error: \begin{itemize} on input line 1030 ended by \end{document}.
 
 See the LaTeX manual or LaTeX Companion for explanation.
 Type  H <return>  for immediate help.
  ...                                              
                                                   
-l.1071 \end{document}
+l.1098 \end{document}
                      
 Your command was ignored.
 Type  I <command> <return>  to replace it with another command,
 or  <return>  to continue without it.
 
-Package atveryend Info: Empty hook `BeforeClearDocument' on input line 1071.
-Package atveryend Info: Empty hook `AfterLastShipout' on input line 1071.
+Package atveryend Info: Empty hook `BeforeClearDocument' on input line 1098.
+Package atveryend Info: Empty hook `AfterLastShipout' on input line 1098.
 (wp2.aux)
-Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 1071.
-Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 1071.
+Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 1098.
+Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 1098.
 
 Package rerunfilecheck Info: File `wp2.out' has not changed.
 (rerunfilecheck)             Checksum: B09D5A47BF3BAB28876FF47F85736B2B;3127.
@@ -2669,27 +2574,22 @@ LaTeX Warning: There were undefined references.
 
 LaTeX Warning: Label(s) may have changed. Rerun to get cross-references right.
 
-
-Package biblatex Warning: Please (re)run BibTeX on the file(s):
-(biblatex)                wp2
-(biblatex)                and rerun LaTeX afterwards.
-
 Package logreq Info: Writing requests to 'wp2.run.xml'.
 \openout1 = `wp2.run.xml'.
 
  )
 (\end occurred inside a group at level 1)
 
-### semi simple group (level 1) entered at line 1003 (\begingroup)
+### semi simple group (level 1) entered at line 1030 (\begingroup)
 ### bottom level 
 Here is how much of TeX's memory you used:
- 42265 strings out of 481280
- 815609 string characters out of 2916512
- 1611609 words of memory out of 3000000
- 56873 multiletter control sequences out of 15000+200000
+ 42402 strings out of 481280
+ 820144 string characters out of 2916512
+ 1609330 words of memory out of 3000000
+ 56979 multiletter control sequences out of 15000+200000
  1281278 words of font info for 251 fonts, out of 3000000 for 9000
  1141 hyphenation exceptions out of 8191
- 81i,21n,110p,1506b,1403s stack positions out of 5000i,500n,10000p,200000b,50000s
+ 81i,21n,110p,1506b,2045s stack positions out of 5000i,500n,10000p,200000b,50000s
 {C:/Users/wb164718/AppData/Roaming/MiKTeX/2.9/fonts/enc/dvips/l
 ato/a_rt66h3.enc}{C:/Program Files/MiKTeX 2.9/fonts/enc/dvips/lm/lm-mathit.enc}
 {C:/Program Files/MiKTeX 2.9/fonts/enc/dvips/lm/lm-mathsy.enc}{C:/Program Files
@@ -2710,9 +2610,9 @@ ogram Files/MiKTeX 2.9/fonts/type1/public/lm/lmsy6.pfb><C:/Program Files/MiKTeX
  2.9/fonts/type1/public/lm/lmsy8.pfb><C:/Program Files/MiKTeX 2.9/fonts/type1/p
 ublic/lm/lmtt8.pfb><C:/Users/wb164718/AppData/Roaming/MiKTeX/2.9/fonts/type1/pu
 blic/newtxsf/zsfmia-reg.pfb>
-Output written on wp2.pdf (18 pages, 585867 bytes).
+Output written on wp2.pdf (21 pages, 610139 bytes).
 PDF statistics:
- 386 PDF objects out of 1000 (max. 8388607)
- 59 named destinations out of 1000 (max. 500000)
+ 462 PDF objects out of 1000 (max. 8388607)
+ 88 named destinations out of 1000 (max. 500000)
  53989 words of extra memory for PDF output out of 61914 (max. 10000000)
 
