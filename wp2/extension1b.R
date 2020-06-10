@@ -22,7 +22,7 @@ library(sjmisc)
 library(segregation)
 library(reshape2)
 
-# Some functions -later to be edreru package
+# Some functions
 source("C:/Country/Russia/Data/SEASHELL/SEABYTE/edreru/edreru_package.R")
 
 # Specify the default working directory for this script

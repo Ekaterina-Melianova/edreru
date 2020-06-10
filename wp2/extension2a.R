@@ -30,11 +30,11 @@ library(arules)
 library(stargazer)
 library(sparkTable)
 
-# Some functions -later to be edreru package
+# Some functions
 source("C:/Country/Russia/Data/SEASHELL/SEABYTE/edreru/edreru_package.R")
 
 # Specify the default working directory for this script
-setwd("C:/Country/Russia/Data/SEASHELL/SEABYTE/edreru/wp1")
+setwd("C:/Country/Russia/Data/SEASHELL/SEABYTE/edreru/wp2")
 
 # import the robust standard error function
 # download.file(url="https://raw.githubusercontent.com/IsidoreBeautrelet/economictheoryblog/master/robust_summary.R",destfile = "robust_summary.R")

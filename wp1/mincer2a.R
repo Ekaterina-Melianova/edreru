@@ -1,5 +1,5 @@
 # mincer2a.R
-# A file to generate the rest of the variables for the mincer equation based on RLMS and run the equation.
+# A file to do mincerian analysis for the WP1.
 
 library(foreign)
 library(plyr); library(dplyr)
@@ -26,7 +26,7 @@ library(xtable)
 wd <- "C:/Country/Russia/Data/SEASHELL/SEABYTE/Databases/RLMS/sqlite"
 setwd(wd) 
 
-# Some functions -later to be edreru package
+# Some functions 
 source("C:/Country/Russia/Data/SEASHELL/SEABYTE/edreru/edreru_package.R")
 
 # Connecting with SQLite
@@ -56,8 +56,6 @@ dbDisconnect(db)
 # Fixing system and user-defined missings in the RLMS database
 
 df_ <- zdf_
-
-
 
 df_ <- SysMisFix(df_) # determining system missings
 df_ <- UserMisFix(df_) # labelling user-defined missings
@@ -812,178 +810,5 @@ df_mincer$REGION <- as.numeric(df_mincer$REGION)
 df_mincer$exper <- as.numeric(df_mincer$REGION) 
 df_mincer$edu_yrs <- as.numeric(df_mincer$REGION) 
 haven::write_sav(df_mincer, "df_mincer.sav")
-
-##############################################################################
-##############################################################################
-##############################################################################
-# Tagging instances (tag1) and unique respondents (tag2)
-
-# If a month of the start of work is missing but a year is not, let us use 1 (January) as an approximation
-df[is.na(df$J5B)&is.na(df$J5A)==F, "J5B"] <- 1 # for a main work
-df[is.na(df$J35_2M)&is.na(df$J35_2Y)==F, "J35_2M"] <- 1 # for an additional work
-
-df$tag1 <- ifelse(df$exper_main_ > df$exper_add_ & 
-                    is.na(df$exper_main_) == F & 
-                    is.na(df$exper_add_) == F &
-                    df$J5A == df$J5A_ &
-                    df$J5B == df$J5B_, 1, 
-                  ifelse(df$exper_main_ < df$exper_add_ & 
-                           is.na(df$exper_main_) == F & 
-                           is.na(df$exper_add_) == F &
-                           df$J35_2Y == df$J35_2Y_ & 
-                           df$J35_2M == df$J35_2M_, 1, 
-                         ifelse(is.na(df$exper_main_) & 
-                                is.na(df$exper_add_) == F &
-                                df$J35_2Y == df$J35_2Y_ & 
-                                df$J35_2M == df$J35_2M_, 1,
-                              ifelse(is.na(df$exper_add_) & 
-                                     is.na(df$exper_main_) == F &
-                                     df$J5A == df$J5A_ &
-                                     df$J5B == df$J5B_, 1, 
-                                   ifelse(is.na(df$exper_main_) == T 
-                                              & is.na(df$exper_add_) == T, -1, 0)))))
-
-table(df$tag1) # 51850 instances with inconsistencies, 77903 - without
-# sum(table(df$tag1))
-
-resp <- df %>%
-  group_by(IDIND) %>%
-  summarise(tag2 = ifelse(any(tag1 == 0), 0, 1))
-
-table(resp$tag2) # 13670 respondents with inconsistencies, 12674 - without
-
-#########################################################################################################
-wd <- "C:/Country/Russia/Data/SEASHELL/SEABYTE/edreru/wp1"
-setwd(wd)
-# Generating the initial experience (without inconsistencies fixing)
-# Note: safe is a df from mincer1a.R file
-safe <- readRDS("safe.rds")
-df_ini <- safe
-# A function to do that
-TotalExper_ini <- function(df, year = "YEAR", ID = "IDIND", int_m = "H7_2", main_y_ = "J5A",
-                           main_m_ = "J5B", add_y_ = "J35_2Y", add_m_ = "J35_2M", status = "J1"){
-  
-  # Computing work experience with CORRECTED data
-  df[,"imths"] <- (df[,year]*12) + df[,int_m]
-  df[,"exper_main_"] <- (df[,main_y_]*12) + (df[,main_m_])
-  df[,"exper_add_"] <- (df[,add_y_]*12) + (df[,add_m_])
-  
-  # Accounting for negative values (some people named a starting year of their work 
-  # which ostensibly happened after the interview date)
-  df[,"exper_main_"] <- ifelse(df[,"exper_main_"] > df[,"imths"], NA, df[,"exper_main_"])
-  df[,"exper_add_"] <- ifelse(df[,"exper_add_"] > df[,"imths"], NA, df[,"exper_add_"])
-  
-  # Computing a variable for the experience in a current job, additional job is accounted for
-  df[,"exper_temp_"] <- round((df[,"imths"] - apply(df[,c("exper_main_", "exper_add_")], 1, min, na.rm=T))/12,2)
-  
-  # -Inf values are returned for unemployed since max(NA,NA)=-Inf, replacing those values with 0
-  df[,"exper_temp_"] <- ifelse(is.infinite(df[,"exper_temp_"]), 0, df[,"exper_temp_"])
-  
-  # Setting the initial value for total experience
-  df[1, "total_exper"] <- df[1, "exper_temp_"]
-  
-  # Creating a distance between successive interview dates
-  df <- df %>%
-    group_by(IDIND) %>%
-    arrange(IDIND, YEAR) %>%
-    mutate(dist_int = (imths - lag(imths, default = first(imths)))/12) %>%
-    ungroup()
-  df <- as.data.frame(df)
-  
-  # Calculating the final variable. 
-  # The logic in this calculation is the following: I take a temporary experience and see 
-  # if I need to add the ones in the previous years. I need to do that if and only if 
-  # the previous temporary experience falls in the distance between the successive interview
-  # dates, meaning that a person gained this experience at a new job. Otherwise, his/her
-  # current experience is just a continuation of the previous one so I do not need to add anything.
-  
-  if (length(df[, "exper_temp_"]) > 1){
-    for (i in seq(length(df[, "exper_temp_"]) - 1) ){
-      vec1 <- df[1:(i + 1), "dist_int"]
-      vec2 <- df[1:(i + 1), "exper_temp_"]
-      df[(i + 1), "total_exper"] <- df[(i + 1), "exper_temp_"] + sum(vec2[(which(vec1 >= vec2) - 1)])
-    }
-    
-  }
-  return(df)
-}
-
-# We need a list splitted by IDIND
-list_ini <- split(df_ini, f = df_ini$IDIND) 
-
-# Appending TotalExper function to this list
-list3lap_ini <- pblapply(list_ini, TotalExper_ini) # takes ~ 3 min
-
-# Converting the list back to a dataframe
-df_ini <- do.call(rbind.data.frame, list3lap_ini) # takes ~ 2 min
-
-# Naming
-names(df_ini)[which(colnames(df_ini) == "total_exper")] <- "exper_ini"
-
-#########################################################################################################
-
-# A table with instancies
-
-# Merging experience computed on the basis of initial variables
-df_t <- df %>%
-  left_join(df_ini[, c("IDIND", "ID_W", "exper_ini")], by = c("IDIND", "ID_W"))
-df_t <- df_t[-which(is.na(df_t$exper)),]
-
-# Formatting
-df_t$exper <- as.numeric(df_t$exper)
-df_t$exper_ini <- as.numeric(df_t$exper_ini)
-
-# rlms_tbl0: means are aggregated by unique IDIND
-rlms_tbl0 <- df_t  %>%
-  group_by(IDIND) %>%
-  summarise(N = n(),
-            exp_mean_ = mean(exper, na.rm = T),
-            exp_mean_ini_ = mean(exper_ini, na.rm = T)) 
-
-# rlms_tbl: means are aggregated by the number of instances
-rlms_tbl <- rlms_tbl0 %>%
-  group_by(N) %>%
-  summarise(N_resp = n(),
-            exp_mean = mean(exp_mean_, na.rm = T),
-            exp_mean_ini = mean(exp_mean_ini_, na.rm = T))
-
-# Checking the distribution  
-rlms_tbl$mult <- rlms_tbl$N_*rlms_tbl$N  
-sum(rlms_tbl$mult) # ok  
-
-# A list to which a t-test will be applied
-list_splt_by_N <- split(rlms_tbl0, f = rlms_tbl0$N)
-
-# Conducting a t-test
-t.test.pval <- c() 
-for (i in 1:length(list_splt_by_N)){
-  base <- list_splt_by_N[[i]][['exp_mean_']]
-  against <- list_splt_by_N[[i]][['exp_mean_ini_']]
-  test <- t.test(base, against)
-  t.test.pval[i] <- round(test$p.value,3)
-}  
-cbind.data.frame(rlms_tbl$N, t.test.pval)
-
-# Resulting table
-rlms_tbl_res <- cbind.data.frame(rlms_tbl, t.test.pval)
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 

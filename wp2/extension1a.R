@@ -20,7 +20,7 @@ library(sjPlot)
 library(sjmisc)
 
 # wd
-wd <- "C:/Country/Russia/Data/SEASHELL/SEABYTE/edreru/wp1"
+wd <- "C:/Country/Russia/Data/SEASHELL/SEABYTE/edreru/wp2"
 setwd(wd)
 
 # Data

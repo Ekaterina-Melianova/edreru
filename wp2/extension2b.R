@@ -96,16 +96,16 @@ spk_m_out <- newSparkTable(spk_m, content, varType)
 
 # Latex
 sparkTable::export(spk_all_out, outputType="tex", 
-       filename="C:/Country/Russia/Data/SEASHELL/SEABYTE/Edreru/wp1/sparklines/Weber_sprk_all",
-       graphNames="C:/Country/Russia/Data/SEASHELL/SEABYTE/Edreru/wp1/sparklines/Weber_sprk_all")
+       filename="C:/Country/Russia/Data/SEASHELL/SEABYTE/Edreru/wp2/sparklines/Weber_sprk_all",
+       graphNames="C:/Country/Russia/Data/SEASHELL/SEABYTE/Edreru/wp2/sparklines/Weber_sprk_all")
 
 sparkTable::export(spk_f_out, outputType="tex", 
-       filename="C:/Country/Russia/Data/SEASHELL/SEABYTE/Edreru/wp1/sparklines/Weber_sprk_f",
-       graphNames="C:/Country/Russia/Data/SEASHELL/SEABYTE/Edreru/wp1/sparklines/Weber_sprk_f")
+       filename="C:/Country/Russia/Data/SEASHELL/SEABYTE/Edreru/wp2/sparklines/Weber_sprk_f",
+       graphNames="C:/Country/Russia/Data/SEASHELL/SEABYTE/Edreru/wp2/sparklines/Weber_sprk_f")
 
 sparkTable::export(spk_m_out, outputType="tex", 
-       filename="C:/Country/Russia/Data/SEASHELL/SEABYTE/Edreru/wp1/sparklines/Weber_sprk_m",
-       graphNames="C:/Country/Russia/Data/SEASHELL/SEABYTE/Edreru/wp1/sparklines/Weber_sprk_m")
+       filename="C:/Country/Russia/Data/SEASHELL/SEABYTE/Edreru/wp2/sparklines/Weber_sprk_m",
+       graphNames="C:/Country/Russia/Data/SEASHELL/SEABYTE/Edreru/wp2/sparklines/Weber_sprk_m")
 
 
 

@@ -21,12 +21,11 @@ library(segregation)
 library(reshape2)
 library(arules) 
 
-# Some functions -later to be edreru package
+# Some functions
 source("C:/Country/Russia/Data/SEASHELL/SEABYTE/edreru/edreru_package.R")
 
 # Specify the default working directory for this script
-setwd("C:/Country/Russia/Data/SEASHELL/SEABYTE/edreru/wp1")
-
+setwd("C:/Country/Russia/Data/SEASHELL/SEABYTE/edreru/wp2")
 
 # Adjusting to prices in 2018
 mt19 <- rio::import("mt19_table.xlsx")
