@@ -1,0 +1,1324 @@
+{\rtf1\ansi\ansicpg1252{\fonttbl{\f0\froman\fcharset0 Times New Roman;}{\f1\fswiss\fcharset0 Arial;}{\f2\fswiss\fcharset0 Calibri;}{\f3\fswiss\fcharset0 Arial;}{\f4\fswiss\fcharset0 Calibri;}{\f5\fnil\fcharset2 Wingdings;}}{\colortbl ;\red0 \green0 \blue0;\red124 \green175 \blue26;\red38 \green38 \blue38;\red59 \green55 \blue55;\red0 \green32 \blue96;\red118 \green113 \blue113;\red31 \green78 \blue121;\red126 \green126 \blue126;\red127 \green127 \blue127;\red165 \green165 \blue165;\red4 \green99 \blue193;\red223 \green223 \blue223;\red242 \green242 \blue242;\red222 \green235 \blue245;\red255 \green255 \blue255;\red255 \green255 \blue255;}{\stylesheet{\fs22\f4\sqformat\spriority1 Normal}{\s1\f4\fs24\sbasedon0\sqformat\spriority1 Body Text}{\s2\li20\sb1\outlinelevel0\f2\fs24\b1\sbasedon0\sqformat\spriority1 Heading 1}{\s3\li558\fi-216\sb19\f4\sbasedon0\sqformat\spriority1 List Paragraph}{\s4\f4\sbasedon0\sqformat\spriority1 Table Paragraph}}{\*\listtable{\list\listtemplateid2181{\listlevel\levelnfc23\leveljc0\li558\fi-215{\leveltext\'01\uc1\u61548 ?;}{\levelnumbers;}\f5\fs22\b0\charscalex100\cf2}{\listlevel\levelnfc23\leveljc0\li1642\fi-215{\leveltext\'01\'95;}{\levelnumbers;}}{\listlevel\levelnfc23\leveljc0\li2724\fi-215{\leveltext\'01\'95;}{\levelnumbers;}}{\listlevel\levelnfc23\leveljc0\li3806\fi-215{\leveltext\'01\'95;}{\levelnumbers;}}{\listlevel\levelnfc23\leveljc0\li4888\fi-215{\leveltext\'01\'95;}{\levelnumbers;}}{\listlevel\levelnfc23\leveljc0\li5970\fi-215{\leveltext\'01\'95;}{\levelnumbers;}}{\listlevel\levelnfc23\leveljc0\li7052\fi-215{\leveltext\'01\'95;}{\levelnumbers;}}{\listlevel\levelnfc23\leveljc0\li8134\fi-215{\leveltext\'01\'95;}{\levelnumbers;}}{\listlevel\levelnfc23\leveljc0\li9216\fi-215{\leveltext\'01\'95;}{\levelnumbers;}}\listid1026}}{\*\listoverridetable{\listoverride\listoverridecount0\listid1026\ls1}}\jexpand\dntblnsbdb\viewkind1\noxlattoyen\nospaceforul\useltbaln\paperw12240\paperh15840\margl520\margr340\margt1560\margb1320\noindnmbrts\sectd\sbkpage\pgnrestart\pgnstarts1\headery728\footery1137
+{\header 
+{\shp{\*\shpinst\shplid25
+\shpleft738\shptop763\shpright1178\shpbottom1203\shpfhdr0\shpbxpage\shpbypage\shpwr3\shpz0\shpwr3\shpfblwtxt1{\sp{\sn posrelh}{\sv 1}}
+{\sp{\sn posrelv}{\sv 1}}
+{\sp{\sn shapeType}{\sv 1}}{\sp{\sn lTxid}{\sv 65536}}{\sp{\sn fFilled}{\sv 0}}{\sp{\sn fLine}{\sv 0}}{
+\sp{\sn dxTextLeft}{\sv 0}}{\sp{\sn dyTextTop}{\sv 0}}{\sp{\sn dxTextRight}{\sv 0}}{\sp{\sn dyTextBottom}{\sv 0}}{\sp{\sn fBehindDocument}{\sv 1}}
+{\shptxt\pard\plain \ql\li0\ri0\widctlpar\sl440\slmult0\pvpara\aspalpha\aspnum\faauto\adjustright\rin0\lin0\itap0
+{{\*\shppict{\pict
+{\*\picprop\shplid25{\sp{\sn shapeType}{\sv 75}}{\sp{\sn fFlipH}{\sv 0}}{\sp{\sn fFlipV}{\sv 0}}{\sp{\sn pibFlags}{\sv 2}}{\sp{\sn fLine}{\sv 0}}
+}\picscalex93\picscaley96\piccropl0\piccropr0\piccropt0\piccropb0\picw820\pich793\picwgoal465\pichgoal450
+\jpegblip{\*\blipuid bd12f7234cbcee48b00bc67d5f2172d0}
+ffd8ffe000104a46494600010101006000600000ffdb00430003020203020203
+03030304030304050805050404050a070706080c0a0c0c0b0a0b0b0d0e12100d
+0e110e0b0b1016101113141515150c0f171816141812141514ffdb0043010304
+0405040509050509140d0b0d1414141414141414141414141414141414141414
+141414141414141414141414141414141414141414141414141414141414ffc0
+001108001e001f03012200021101031101ffc4001f0000010501010101010100
+000000000000000102030405060708090a0bffc400b510000201030302040305
+0504040000017d01020300041105122131410613516107227114328191a10823
+42b1c11552d1f02433627282090a161718191a25262728292a3435363738393a
+434445464748494a535455565758595a636465666768696a737475767778797a
+838485868788898a92939495969798999aa2a3a4a5a6a7a8a9aab2b3b4b5b6b7
+b8b9bac2c3c4c5c6c7c8c9cad2d3d4d5d6d7d8d9dae1e2e3e4e5e6e7e8e9eaf1
+f2f3f4f5f6f7f8f9faffc4001f01000301010101010101010100000000000001
+02030405060708090a0bffc400b5110002010204040304070504040001027700
+0102031104052131061241510761711322328108144291a1b1c109233352f015
+6272d10a162434e125f11718191a262728292a35363738393a43444546474849
+4a535455565758595a636465666768696a737475767778797a82838485868788
+898a92939495969798999aa2a3a4a5a6a7a8a9aab2b3b4b5b6b7b8b9bac2c3c4
+c5c6c7c8c9cad2d3d4d5d6d7d8d9dae2e3e4e5e6e7e8e9eaf2f3f4f5f6f7f8f9
+faffda000c03010002110311003f00fac7f6affda8356f0058f88f42f024ba7c
+1ace8964975ac6bba9b0fb3e9c651fe8f6b129ff005b772805963e8a8bb9b390
+2bcaf57f86ba8788bc2d67e2cb95f135e2cc2116bac78d356124faacd200116d
+b4d447082427e55665c2f3db35b7fb08fc368fe2d69dac7c67f19795ac4faceb
+9a95d68da6cc0490d98925292cec8720ccc1442091948a2455c0635d57803c01
+adcff11b5abbf87d756b77e09f056a5369ba468be229a57b68eeca0fb5fd95d0
+1645889f2903070a4ca1702beb3015a183a8d46c9c356df5f2bfaf7d2d776d35
+f89ce70b3cc28da576a7a24b5b7f7ade4b5d2cdb4927a8cf835e19f14f86b58b
+8b496f7fb1a682e3fb3d0acce6d9ee2355668dc0250b32b290587cdd8e6beaad
+366b896d13ed6891dd2f122c6d919f51f5eb5e21e1a4f17f883c4de3dd1e4d1b
+46b333de5bcb78d2df492adb3b5b4783185405ce15581257078ed5d4e87e2c6d
+2edec4dd4ef25f45aadce99a8ee6ff00592ac4ceadf42a8847b35699b2a98da9
+ed1f2f3593d2cf78dfa74e9d75b3ea797c36e8e5543d8a72e4e6924e575b4dc7
+6696bb3d12d2e9eb13e4bf879078a7f651b5f8af6fe0f9ece75f084d79a8eb7e
+0ed6ae4c51de69efbe5b3d5ac25c1d8fe5621963c1476b7232af8cfae7ecddfb
+407c39f86df0a7c2be0ff156b373e0bf13c168b2dfc3e2fb3974d6b8ba949967
+99659008e45791dd81573c11d2bd17f68dfd9a746fda0bc3d2c4da95df863c4a
+9653d85b6bfa6ffad16f32ed96da65e04d03f78dbb8054a9e6bc17e26fed9daa
+7ecc36563e0ff8b9e0bd2fc53731dbac515ff876f0b45761570ad2417110f289
+c7203b81938af1935898e8aefaf4ff0080faf99f6ce3f579277b2b69a5ff00ae
+87a8fc3cf8fbf0f6c7c6df14f58bff001be836f6971ac410da13a844cd711c56
+502978d4125d4b1600a820906b33e1b78ba1f8cff1efc49fd8914b2f83f4cba5
+d46e2ea785e22f726cc5b2c7b5802b9cc8dc8070bdb8af1ffd90358f187c5ff0
+0c89e0ed2fc2be0dbab8bebabed67c597107dab50496799a42b676c2258d1503
+2a21791800a0eced5f69fc34f867a2fc29f0c268ba2a4cead235c5d5eddc865b
+9bdb87399279a43cbbb1e49fa000000576cf130c27b4e54f9e5151577b2d15f6
+decb4d4f1165f3c73a2a6d7b384dd4765ab936ddb7daf277d3ef3fffd9}}
+\par}\pard \ql \li0\ri0\nowidctlpar\faauto\rin0\lin0\itap0 {
+\par}}}}
+{\shp{\*\shpinst
+\shpleft599\shptop1365\shpright11744\shpbottom1385
+\shpfhdr0\shpwr3\shpwrk0\shplid27\shpz1
+\shpbxpage\shpbypage\shpwr3\shpfblwtxt1{\sp{\sn fFlipH}{\sv 0}}
+{\sp{\sn fFlipV}{\sv 0}}
+{\sp{\sn shapeType}{\sv 0}}
+{\sp{\sn rotation}{\sv 0}}
+{\sp{\sn geoRight}{\sv 11145}}
+{\sp{\sn geoBottom}{\sv 20}}
+{\sp{\sn shapePath}{\sv 4}}
+{\sp{\sn pVerticies}{\sv 8;2;(0,0);(11145,0)}}
+{\sp{\sn pSegmentInfo}{\sv 2;5;16384;45824;1;45824;32768}}
+{\sp{\sn fFillOK}{\sv 1}}
+{\sp{\sn fFilled}{\sv 0}}
+{\sp{\sn lineWidth}{\sv 57150}}
+{\sp{\sn lineColor}{\sv 13734478}}
+{\sp{\sn fLine}{\sv 1}}{\sp{\sn lineType}{\sv 0}}
+{\sp{\sn posrelh}{\sv 1}}
+{\sp{\sn posrelv}{\sv 1}}
+{\sp{\sn fArrowheadsOK}{\sv 1}}
+{\sp{\sn fBehindDocument}{\sv 1}}
+}}
+
+{\shp{\*\shpinst\shpleft1546\shpright7691\shptop708\shpbottom1253\shpbxpage\shpbypage\shpwr3\shpfblwtxt1\shpz2\shplid28{\sp{\sn fBehindDocument}{\sv 1}}
+{\sp{\sn shapeType}{\sv 202}}{\sp{\sn fFlipH}{\sv 0}}{\sp{\sn fFlipV}{\sv 0}}
+{\sp{\sn txflTextFlow}{\sv 0}}
+{\sp{\sn fFilled}{\sv 0}}
+{\sp{\sn fLine}{\sv 0}}
+{\sp{\sn dxTextLeft}{\sv 0}}{\sp{\sn dxTextRight}{\sv 0}}{\sp{\sn dyTextTop}{\sv 0}}{\sp{\sn dyTextBottom}{\sv 0}}
+{\sp{\sn posrelh}{\sv 1}}
+{\sp{\sn posrelv}{\sv 1}}
+{\shptxt\pard\plain\s1\nooverflow\nocwrap\lnbrkrule\li20\sl240\slmult1\sb12\f3\fs24\b1 The World Bank\par\pard\plain\s1\nooverflow\nocwrap\lnbrkrule\li20\sl240\slmult1\sb6\f1\fs20\b0 Skills and Returns to Education in the Russian Federation (P170978)\par}}}
+\pard\plain\s1\nooverflow\nocwrap\lnbrkrule\sl14\slmult1\fs20\par}
+{\footer 
+{\shp{\*\shpinst
+\shpleft720\shptop14430\shpright11664\shpbottom14450
+\shpfhdr0\shpwr3\shpwrk0\shplid35\shpz3
+\shpbxpage\shpbypage\shpwr3\shpfblwtxt1{\sp{\sn fFlipH}{\sv 0}}
+{\sp{\sn fFlipV}{\sv 0}}
+{\sp{\sn shapeType}{\sv 0}}
+{\sp{\sn rotation}{\sv 0}}
+{\sp{\sn geoRight}{\sv 10944}}
+{\sp{\sn geoBottom}{\sv 20}}
+{\sp{\sn shapePath}{\sv 4}}
+{\sp{\sn pVerticies}{\sv 8;2;(0,0);(10944,0)}}
+{\sp{\sn pSegmentInfo}{\sv 2;5;16384;45824;1;45824;32768}}
+{\sp{\sn fFillOK}{\sv 1}}
+{\sp{\sn fFilled}{\sv 0}}
+{\sp{\sn lineWidth}{\sv 9525}}
+{\sp{\sn lineColor}{\sv 13734734}}
+{\sp{\sn fLine}{\sv 1}}{\sp{\sn lineType}{\sv 0}}
+{\sp{\sn posrelh}{\sv 1}}
+{\sp{\sn posrelv}{\sv 1}}
+{\sp{\sn fArrowheadsOK}{\sv 1}}
+{\sp{\sn fBehindDocument}{\sv 1}}
+}}
+
+{\shp{\*\shpinst\shpleft700\shpright1666\shptop14563\shpbottom14782\shpbxpage\shpbypage\shpwr3\shpfblwtxt1\shpz4\shplid36{\sp{\sn fBehindDocument}{\sv 1}}
+{\sp{\sn shapeType}{\sv 202}}{\sp{\sn fFlipH}{\sv 0}}{\sp{\sn fFlipV}{\sv 0}}
+{\sp{\sn txflTextFlow}{\sv 0}}
+{\sp{\sn fFilled}{\sv 0}}
+{\sp{\sn fLine}{\sv 0}}
+{\sp{\sn dxTextLeft}{\sv 0}}{\sp{\sn dxTextRight}{\sv 0}}{\sp{\sn dyTextTop}{\sv 0}}{\sp{\sn dyTextBottom}{\sv 0}}
+{\sp{\sn posrelh}{\sv 1}}
+{\sp{\sn posrelv}{\sv 1}}
+{\shptxt\pard\plain\s1\nooverflow\nocwrap\lnbrkrule\li20\sl240\slmult1\sb14\f1\fs16\b0\cf4 Jun 09, 2020\par}}}
+
+{\shp{\*\shpinst\shpleft10862\shpright11721\shptop14563\shpbottom14782\shpbxpage\shpbypage\shpwr3\shpfblwtxt1\shpz5\shplid40{\sp{\sn fBehindDocument}{\sv 1}}
+{\sp{\sn shapeType}{\sv 202}}{\sp{\sn fFlipH}{\sv 0}}{\sp{\sn fFlipV}{\sv 0}}
+{\sp{\sn txflTextFlow}{\sv 0}}
+{\sp{\sn fFilled}{\sv 0}}
+{\sp{\sn fLine}{\sv 0}}
+{\sp{\sn dxTextLeft}{\sv 0}}{\sp{\sn dxTextRight}{\sv 0}}{\sp{\sn dyTextTop}{\sv 0}}{\sp{\sn dyTextBottom}{\sv 0}}
+{\sp{\sn posrelh}{\sv 1}}
+{\sp{\sn posrelv}{\sv 1}}
+{\shptxt\pard\plain\s1\nooverflow\nocwrap\lnbrkrule\li20\sl240\slmult1\sb14\f1\fs16\b0\cf4 Page \f1\fs16\b0\i0{\field {\*\fldinst { PAGE }}}  of 9\par}}}
+\pard\plain\s1\nooverflow\nocwrap\lnbrkrule\sl14\slmult1\fs20\par}
+{\shp{\*\shpinst\shpleft314\shpright554\shptop6154\shpbottom7850\shpbxpage\shpbypage\shpwr3\shpfblwtxt0\shpz0\shplid71
+{\sp{\sn shapeType}{\sv 202}}{\sp{\sn fFlipH}{\sv 0}}{\sp{\sn fFlipV}{\sv 0}}
+{\sp{\sn txflTextFlow}{\sv 2}}
+{\sp{\sn fFilled}{\sv 0}}
+{\sp{\sn fLine}{\sv 0}}
+{\sp{\sn dxTextLeft}{\sv 0}}{\sp{\sn dxTextRight}{\sv 0}}{\sp{\sn dyTextTop}{\sv 0}}{\sp{\sn dyTextBottom}{\sv 0}}
+{\sp{\sn posrelh}{\sv 1}}
+{\sp{\sn posrelv}{\sv 1}}
+{\shptxt\pard\plain\s1\nooverflow\nocwrap\lnbrkrule\li20\sl-224\f4\fs20\b0\cf6 For Official Use Only\par}}}
+\pard\plain\s1\nooverflow\nocwrap\lnbrkrule\sl240\slmult1\f0\fs20\b0\i0\par\pard\plain\s1\nooverflow\nocwrap\lnbrkrule\sl240\slmult1\f0\fs20\b0\i0\par\pard\plain\s1\nooverflow\nocwrap\lnbrkrule\sl240\slmult1\f0\fs20\b0\i0\par\pard\plain\s1\nooverflow\nocwrap\lnbrkrule\sl240\slmult1\f0\fs20\b0\i0\par\pard\plain\s1\nooverflow\nocwrap\lnbrkrule\sl240\slmult1\f0\fs20\b0\i0\par\pard\plain\s1\nooverflow\nocwrap\lnbrkrule\sl240\slmult1\f0\fs20\b0\i0\par\pard\plain\s1\nooverflow\nocwrap\lnbrkrule\sl240\slmult1\f0\fs20\b0\i0\par\pard\plain\s1\nooverflow\nocwrap\lnbrkrule\sl240\slmult1\f0\fs20\b0\i0\par\pard\plain\s1\nooverflow\nocwrap\lnbrkrule\sl240\slmult1\f0\fs20\b0\i0\par\pard\plain\s1\nooverflow\nocwrap\lnbrkrule\sl240\slmult1\f0\fs20\b0\i0\par\pard\plain\s1\nooverflow\nocwrap\lnbrkrule\sl240\slmult1\f0\fs20\b0\i0\par\pard\plain\s1\nooverflow\nocwrap\lnbrkrule\sl240\slmult1\f0\fs20\b0\i0\par\pard\plain\s1\nooverflow\nocwrap\lnbrkrule\sl240\slmult1\f0\fs20\b0\i0\par\pard\plain\s1\nooverflow\nocwrap\lnbrkrule\sl240\slmult1\f0\fs20\b0\i0\par\pard\plain\s1\nooverflow\nocwrap\lnbrkrule\sl240\slmult1\f0\fs20\b0\i0\par\pard\plain\s1\nooverflow\nocwrap\lnbrkrule\sl240\slmult1\f0\fs20\b0\i0\par\pard\plain\s1\nooverflow\nocwrap\lnbrkrule\sl240\slmult1\f0\fs20\b0\i0\par\pard\plain\s1\nooverflow\nocwrap\lnbrkrule\sl240\slmult1\f0\fs20\b0\i0\par\pard\plain\s1\nooverflow\nocwrap\lnbrkrule\sl240\slmult1\f0\fs20\b0\i0\par\pard\plain\s1\nooverflow\nocwrap\lnbrkrule\sl240\slmult1\f0\fs20\b0\i0\par\pard\plain\s1\nooverflow\nocwrap\lnbrkrule\sl240\slmult1\f0\fs20\b0\i0\par\pard\plain\s1\nooverflow\nocwrap\lnbrkrule\sl240\slmult1\sb11\f0\fs24\b0\i0\par\pard\plain\s1\nooverflow\nocwrap\lnbrkrule\li659\ri838\qc\sl240\slmult1\sb3\f4\fs48\b0\cf3 ACTIVITY COMPLETION SUMMARY (ACS)\par\pard\plain\s1\nooverflow\nocwrap\lnbrkrule\li659\ri838\qc\sl240\slmult1\f4\fs40\b0\cf7 Skills and Returns to Education in the Russian Federation (ID: P170978)\par\pard\plain\s1\nooverflow\nocwrap\lnbrkrule\li659\ri838\qc\sl240\slmult1\f4\fs32\b0\cf7 Russian Federation (EUROPE AND CENTRAL ASIA)\par\sect\sectd\sbkpage\headery728\footery1137
+{\shp{\*\shpinst\shpleft314\shpright554\shptop6154\shpbottom7850\shpbxpage\shpbypage\shpwr3\shpfblwtxt0\shpz6\shplid158
+{\sp{\sn shapeType}{\sv 202}}{\sp{\sn fFlipH}{\sv 0}}{\sp{\sn fFlipV}{\sv 0}}
+{\sp{\sn txflTextFlow}{\sv 2}}
+{\sp{\sn fFilled}{\sv 0}}
+{\sp{\sn fLine}{\sv 0}}
+{\sp{\sn dxTextLeft}{\sv 0}}{\sp{\sn dxTextRight}{\sv 0}}{\sp{\sn dyTextTop}{\sv 0}}{\sp{\sn dyTextBottom}{\sv 0}}
+{\sp{\sn posrelh}{\sv 1}}
+{\sp{\sn posrelv}{\sv 1}}
+{\shptxt\pard\plain\s1\nooverflow\nocwrap\lnbrkrule\li20\sl-224\f4\fs20\b0\cf6 For Official Use Only\par}}}
+\pard\plain\s1\nooverflow\nocwrap\lnbrkrule\sl240\slmult1\sb1\f4\fs17\b0\i0\par\pard\plain\s1\nooverflow\nocwrap\lnbrkrule\li195\sl240\slmult1\f4\fs20
+{\field\fldlock
+{\*\fldinst SHAPE  \\* MERGEFORMAT}
+{\fldrslt 
+{\shp{\*\shpinst\shpleft0\shpright10895\shptop0\shpbottom432\shpbxcolumn\shpbxignore\shpbypara\shpbyignore\shplockanchor\shpwr3\shpwrk0\shpfblwtxt1\shpz1\shplid79{\sp{\sn fBehindDocument}{\sv 0}}{\sp{\sn fPseudoInline}{\sv 1}}
+{\sp{\sn shapeType}{\sv 202}}{\sp{\sn fFlipH}{\sv 0}}{\sp{\sn fFlipV}{\sv 0}}
+{\sp{\sn txflTextFlow}{\sv 0}}
+{\sp{\sn fFilled}{\sv 1}}{\sp{\sn fillColor}{\sv 15921906}}{\sp{\sn fillOpacity}{\sv 65536}}
+{\sp{\sn fLine}{\sv 0}}
+{\sp{\sn dxTextLeft}{\sv 0}}{\sp{\sn dxTextRight}{\sv 0}}{\sp{\sn dyTextTop}{\sv 0}}{\sp{\sn dyTextBottom}{\sv 0}}
+{\sp{\sn posrelh}{\sv 3}}
+{\sp{\sn posrelv}{\sv 3}}
+{\shptxt\pard\plain\s1\nooverflow\nocwrap\lnbrkrule\li115\sl240\slmult1\sb81\f2\fs22\b1 BASIC INFORMATION\par}}}
+{\pict
+{\*\picprop\defshp\shplid79
+{\sp{\sn shapeType}{\sv 75}}
+{\sp{\sn fFlipH}{\sv 0}}
+{\sp{\sn fFlipV}{\sv 0}}
+{\sp{\sn fPseudoInline}{\sv 1}}
+{\sp{\sn fLayoutInCell}{\sv 1}}
+{\sp{\sn fLockPosition}{\sv 1}}
+{\sp{\sn fLockRotation}{\sv 1}}
+}
+\piccropl0\piccropr0\piccropt-432\piccropb432\picwgoal10895\pichgoal432
+\wmetafile8\bliptag-1003278350\blipupi72
+}
+}}
+\par\pard\plain\s1\nooverflow\nocwrap\lnbrkrule\sl240\slmult1\sb11\f4\fs15\b0\i0\par\pard\plain\s1\nooverflow\nocwrap\lnbrkrule\li346\sl240\slmult1\sb56\f2\fs22\b1\cf5 Activity Information\par\pard\plain\s1\nooverflow\nocwrap\lnbrkrule\sl240\slmult1\sb5\f2\fs13\b1\i0\par
+\trowd\irow0\trgaph0\trrh806\trql\trleft198
+\clvertalt\clbrdrt\brdrnone\brdrw15\clbrdrl\brdrnone\brdrw15\clbrdrr\brdrs\brdrcf12\brdrw5\clbrdrb\brdrs\brdrcf12\brdrw5\cltxlrtb\cellx3600
+\clvertalt\clbrdrt\brdrnone\brdrw15\clbrdrl\brdrs\brdrcf12\brdrw5\clbrdrr\brdrnone\brdrw15\clbrdrb\brdrs\brdrcf12\brdrw5\cltxlrtb\cellx11088
+{\pard\plain\intbl\s4\nooverflow\nocwrap\lnbrkrule\li117\sl240\slmult1\sb43\f4\fs22\b0\cf6 Project ID\par\pard\plain\intbl\s4\nooverflow\nocwrap\lnbrkrule\li117\sl240\slmult1\sb135\f4\fs22\b0 P170978\cell}
+{\pard\plain\intbl\s4\nooverflow\nocwrap\lnbrkrule\li205\sl240\slmult1\sb43\f4\fs22\b0\cf6 Product Line\par\pard\plain\intbl\s4\nooverflow\nocwrap\lnbrkrule\li205\sl240\slmult1\sb135\f4\fs22\b0 Advisory Services & Analytics\cell}\row
+\trowd\irow1\trgaph0\trrh863\trql\trleft198
+\clvertalt\clbrdrt\brdrs\brdrcf12\brdrw5\clbrdrl\brdrnone\brdrw15\clbrdrr\brdrs\brdrcf12\brdrw5\clbrdrb\brdrs\brdrcf12\brdrw5\cltxlrtb\cellx3600
+\clvertalt\clbrdrt\brdrs\brdrcf12\brdrw5\clbrdrl\brdrs\brdrcf12\brdrw5\clbrdrr\brdrnone\brdrw15\clbrdrb\brdrs\brdrcf12\brdrw5\cltxlrtb\cellx11088
+{\pard\plain\intbl\s4\nooverflow\nocwrap\lnbrkrule\li117\sl240\slmult1\sb72\f4\fs22\b0\cf6 Short Name\par\pard\plain\intbl\s4\nooverflow\nocwrap\lnbrkrule\li117\sl240\slmult1\sb164\f4\fs22\b0 Russia Skills And Returns\cell}
+{\pard\plain\intbl\s4\nooverflow\nocwrap\lnbrkrule\li205\sl240\slmult1\sb72\f4\fs22\b0\cf9 Full Name\par\pard\plain\intbl\s4\nooverflow\nocwrap\lnbrkrule\li205\sl240\slmult1\sb164\f4\fs22\b0 Skills and Returns to Education in the Russian Federation\cell}\row
+\trowd\irow2\trgaph0\trrh864\trql\trleft198
+\clvertalt\clbrdrt\brdrs\brdrcf12\brdrw5\clbrdrl\brdrnone\brdrw15\clbrdrr\brdrs\brdrcf12\brdrw5\clbrdrb\brdrs\brdrcf12\brdrw5\cltxlrtb\cellx3600
+\clvertalt\clbrdrt\brdrs\brdrcf12\brdrw5\clbrdrl\brdrs\brdrcf12\brdrw5\clbrdrr\brdrnone\brdrw15\clbrdrb\brdrs\brdrcf12\brdrw5\cltxlrtb\cellx11088
+{\pard\plain\intbl\s4\nooverflow\nocwrap\lnbrkrule\li117\sl240\slmult1\sb72\f4\fs22\b0\cf9 Project Status\par\pard\plain\intbl\s4\nooverflow\nocwrap\lnbrkrule\li117\sl240\slmult1\sb164\f4\fs22\b0 Active\cell}
+{\pard\plain\intbl\s4\nooverflow\nocwrap\lnbrkrule\li205\sl240\slmult1\sb72\f4\fs22\b0\cf6 Completion Fiscal Year\par\pard\plain\intbl\s4\nooverflow\nocwrap\lnbrkrule\li205\sl240\slmult1\sb164\f4\fs22\b0 2020\cell}\row\pard\pard\plain\s1\nooverflow\nocwrap\lnbrkrule\sl240\slmult1\sb6\f2\fs30\b1\i0\par\pard\plain\s1\nooverflow\nocwrap\lnbrkrule\li296\sl240\slmult1\f2\fs22\b1\cf5 Processing\par
+{\shp{\*\shpinst
+\shpleft720\shptop875\shpright11610\shpbottom895
+\shpfhdr0\shpwr3\shpwrk0\shplid155\shpz3
+\shpbxpage\shpbypara\shpwr3\shpfblwtxt0{\sp{\sn fFlipH}{\sv 0}}
+{\sp{\sn fFlipV}{\sv 0}}
+{\sp{\sn shapeType}{\sv 0}}
+{\sp{\sn rotation}{\sv 0}}
+{\sp{\sn geoRight}{\sv 10890}}
+{\sp{\sn geoBottom}{\sv 20}}
+{\sp{\sn shapePath}{\sv 4}}
+{\sp{\sn pVerticies}{\sv 8;2;(0,0);(10890,0)}}
+{\sp{\sn pSegmentInfo}{\sv 2;5;16384;45824;1;45824;32768}}
+{\sp{\sn fFillOK}{\sv 1}}
+{\sp{\sn fFilled}{\sv 0}}
+{\sp{\sn lineWidth}{\sv 6350}}
+{\sp{\sn lineColor}{\sv 14277081}}
+{\sp{\sn fLine}{\sv 1}}{\sp{\sn lineType}{\sv 0}}
+{\sp{\sn posrelh}{\sv 1}}
+{\sp{\sn posrelv}{\sv 2}}
+{\sp{\sn fArrowheadsOK}{\sv 1}}
+}}
+\pard\plain\s1\nooverflow\nocwrap\lnbrkrule\li315\ri6950\sl333\slmult1\sb166\f4\fs22\b0\cf6 Is this a Reimbursable Advisory Service (RAS)? \f4\fs22\b0\i0\cf1 No\par\pard\plain\s1\nooverflow\nocwrap\lnbrkrule\li315\sl240\slmult1\sb12\f4\fs22\b0\cf6 What kind of task description is needed?\par
+{\shp{\*\shpinst
+\shpleft720\shptop495\shpright11610\shpbottom515
+\shpfhdr0\shpwr3\shpwrk0\shplid156\shpz4
+\shpbxpage\shpbypara\shpwr3\shpfblwtxt1{\sp{\sn fFlipH}{\sv 0}}
+{\sp{\sn fFlipV}{\sv 0}}
+{\sp{\sn shapeType}{\sv 0}}
+{\sp{\sn rotation}{\sv 0}}
+{\sp{\sn geoRight}{\sv 10890}}
+{\sp{\sn geoBottom}{\sv 20}}
+{\sp{\sn shapePath}{\sv 4}}
+{\sp{\sn pVerticies}{\sv 8;2;(0,0);(10890,0)}}
+{\sp{\sn pSegmentInfo}{\sv 2;5;16384;45824;1;45824;32768}}
+{\sp{\sn fFillOK}{\sv 1}}
+{\sp{\sn fFilled}{\sv 0}}
+{\sp{\sn lineWidth}{\sv 3175}}
+{\sp{\sn lineColor}{\sv 14671839}}
+{\sp{\sn fLine}{\sv 1}}{\sp{\sn lineType}{\sv 0}}
+{\sp{\sn posrelh}{\sv 1}}
+{\sp{\sn posrelv}{\sv 2}}
+{\sp{\sn fArrowheadsOK}{\sv 1}}
+{\sp{\sn fBehindDocument}{\sv 1}}
+}}
+\pard\plain\s1\nooverflow\nocwrap\lnbrkrule\li315\ri5458\sl391\slmult1\sb134\f4\fs22\b0 Concept Note with a Review (Track 2, including Programmatic) \f4\fs22\b0\i0\cf6 Is this a Programmatic activity?\par
+{\shp{\*\shpinst
+\shpleft720\shptop355\shpright11610\shpbottom375
+\shpfhdr0\shpwr3\shpwrk0\shplid117\shpz2
+\shpbxpage\shpbypara\shpwr1{\sp{\sn fFlipH}{\sv 0}}
+{\sp{\sn fFlipV}{\sv 0}}
+{\sp{\sn dxWrapDistLeft}{\sv 0}}{\sp{\sn dxWrapDistRight}{\sv 0}}{\sp{\sn shapeType}{\sv 0}}
+{\sp{\sn rotation}{\sv 0}}
+{\sp{\sn geoRight}{\sv 10890}}
+{\sp{\sn geoBottom}{\sv 20}}
+{\sp{\sn shapePath}{\sv 4}}
+{\sp{\sn pVerticies}{\sv 8;2;(0,0);(10890,0)}}
+{\sp{\sn pSegmentInfo}{\sv 2;5;16384;45824;1;45824;32768}}
+{\sp{\sn fFillOK}{\sv 1}}
+{\sp{\sn fFilled}{\sv 0}}
+{\sp{\sn lineWidth}{\sv 3175}}
+{\sp{\sn lineColor}{\sv 14671839}}
+{\sp{\sn fLine}{\sv 1}}{\sp{\sn lineType}{\sv 0}}
+{\sp{\sn posrelh}{\sv 1}}
+{\sp{\sn posrelv}{\sv 2}}
+{\sp{\sn fArrowheadsOK}{\sv 1}}
+}}
+\pard\plain\s1\nooverflow\nocwrap\lnbrkrule\li315\sl-262\f4\fs22\b0 No\par\pard\plain\s1\nooverflow\nocwrap\lnbrkrule\li315\ri8285\sl386\slmult1\sb43\f4\fs22\b0\cf6 Is this a joint Bank-IFC activity? \f4\fs22\b0\i0\cf1 No\par\pard\plain\s1\nooverflow\nocwrap\lnbrkrule\sl240\slmult1\f4\fs20\b0\i0\par\pard\plain\s1\nooverflow\nocwrap\lnbrkrule\sl240\slmult1\sb5\f4\fs23\b0\i0\par
+{\shp{\*\shpinst
+\shpleft720\shptop-601\shpright11610\shpbottom-581
+\shpfhdr0\shpwr3\shpwrk0\shplid157\shpz5
+\shpbxpage\shpbypara\shpwr3\shpfblwtxt1{\sp{\sn fFlipH}{\sv 0}}
+{\sp{\sn fFlipV}{\sv 0}}
+{\sp{\sn shapeType}{\sv 0}}
+{\sp{\sn rotation}{\sv 0}}
+{\sp{\sn geoRight}{\sv 10890}}
+{\sp{\sn geoBottom}{\sv 20}}
+{\sp{\sn shapePath}{\sv 4}}
+{\sp{\sn pVerticies}{\sv 8;2;(0,0);(10890,0)}}
+{\sp{\sn pSegmentInfo}{\sv 2;5;16384;45824;1;45824;32768}}
+{\sp{\sn fFillOK}{\sv 1}}
+{\sp{\sn fFilled}{\sv 0}}
+{\sp{\sn lineWidth}{\sv 3175}}
+{\sp{\sn lineColor}{\sv 14671839}}
+{\sp{\sn fLine}{\sv 1}}{\sp{\sn lineType}{\sv 0}}
+{\sp{\sn posrelh}{\sv 1}}
+{\sp{\sn posrelv}{\sv 2}}
+{\sp{\sn fArrowheadsOK}{\sv 1}}
+{\sp{\sn fBehindDocument}{\sv 1}}
+}}
+\pard\plain\s1\nooverflow\nocwrap\lnbrkrule\li296\sl240\slmult1\sb55\f2\fs22\b1\cf5 Accountability\par\pard\plain\s1\nooverflow\nocwrap\lnbrkrule\sl240\slmult1\sb1\f2\fs5\b1\i0\par
+\trowd\irow0\trgaph0\trrh805\trql\trleft198
+\clvertalt\clbrdrt\brdrnone\brdrw15\clbrdrl\brdrnone\brdrw15\clbrdrr\brdrs\brdrcf12\brdrw5\clbrdrb\brdrs\brdrcf12\brdrw5\cltxlrtb\cellx3612
+\clvertalt\clbrdrt\brdrnone\brdrw15\clbrdrl\brdrs\brdrcf12\brdrw5\clbrdrr\brdrnone\brdrw15\clbrdrb\brdrs\brdrcf12\brdrw5\cltxlrtb\cellx11088
+{\pard\plain\intbl\s4\nooverflow\nocwrap\lnbrkrule\li117\sl240\slmult1\sb43\f4\fs22\b0\cf6 Region\par\pard\plain\intbl\s4\nooverflow\nocwrap\lnbrkrule\li117\sl240\slmult1\sb135\f4\fs22\b0 EUROPE AND CENTRAL ASIA\cell}
+{\pard\plain\intbl\s4\nooverflow\nocwrap\lnbrkrule\li204\sl240\slmult1\sb43\f4\fs22\b0\cf6 Country, Regional or World\par\pard\plain\intbl\s4\nooverflow\nocwrap\lnbrkrule\li204\sl240\slmult1\sb135\f4\fs22\b0 Russian Federation\cell}\row
+\trowd\irow1\trgaph0\trrh863\trql\trleft198
+\clvertalt\clbrdrt\brdrs\brdrcf12\brdrw5\clbrdrl\brdrnone\brdrw15\clbrdrr\brdrs\brdrcf12\brdrw5\clbrdrb\brdrs\brdrcf12\brdrw5\cltxlrtb\cellx3612
+\clvertalt\clbrdrt\brdrs\brdrcf12\brdrw5\clbrdrl\brdrs\brdrcf12\brdrw5\clbrdrr\brdrnone\brdrw15\clbrdrb\brdrs\brdrcf12\brdrw5\cltxlrtb\cellx11088
+{\pard\plain\intbl\s4\nooverflow\nocwrap\lnbrkrule\li117\sl240\slmult1\sb72\f4\fs22\b0\cf6 Requesting Unit\par\pard\plain\intbl\s4\nooverflow\nocwrap\lnbrkrule\li117\sl240\slmult1\sb164\f4\fs22\b0 ECCRU(1522)\cell}
+{\pard\plain\intbl\s4\nooverflow\nocwrap\lnbrkrule\li204\sl240\slmult1\sb72\f4\fs22\b0\cf6 Team Leader\par\pard\plain\intbl\s4\nooverflow\nocwrap\lnbrkrule\li204\sl240\slmult1\sb164\f4\fs22\b0 Suhas D. Parandekar\cell}\row
+\trowd\irow2\trgaph0\trrh863\trql\trleft198
+\clvertalt\clbrdrt\brdrs\brdrcf12\brdrw5\clbrdrl\brdrnone\brdrw15\clbrdrr\brdrs\brdrcf12\brdrw5\clbrdrb\brdrs\brdrcf12\brdrw5\cltxlrtb\cellx3612
+\clvertalt\clbrdrt\brdrs\brdrcf12\brdrw5\clbrdrl\brdrs\brdrcf12\brdrw5\clbrdrr\brdrnone\brdrw15\clbrdrb\brdrs\brdrcf12\brdrw5\cltxlrtb\cellx11088
+{\pard\plain\intbl\s4\nooverflow\nocwrap\lnbrkrule\li117\sl240\slmult1\sb72\f4\fs22\b0\cf6 Responsible Unit\par\pard\plain\intbl\s4\nooverflow\nocwrap\lnbrkrule\li117\sl240\slmult1\sb164\f4\fs22\b0 HECED(9252)\cell}
+{\pard\plain\intbl\s4\nooverflow\nocwrap\lnbrkrule\sl240\slmult1\f0\fs20\cell}\row
+\trowd\irow3\trgaph0\trrh864\trql\trleft198
+\clvertalt\clbrdrt\brdrs\brdrcf12\brdrw5\clbrdrl\brdrnone\brdrw15\clbrdrr\brdrs\brdrcf12\brdrw5\clbrdrb\brdrs\brdrcf12\brdrw5\cltxlrtb\cellx3612
+\clvertalt\clbrdrt\brdrs\brdrcf12\brdrw5\clbrdrl\brdrs\brdrcf12\brdrw5\clbrdrr\brdrnone\brdrw15\clbrdrb\brdrs\brdrcf12\brdrw5\cltxlrtb\cellx11088
+{\pard\plain\intbl\s4\nooverflow\nocwrap\lnbrkrule\li117\sl240\slmult1\sb72\f4\fs22\b0\cf6 Practice Area (Lead)\par\pard\plain\intbl\s4\nooverflow\nocwrap\lnbrkrule\li117\sl240\slmult1\sb164\f4\fs22\b0 Education\cell}
+{\pard\plain\intbl\s4\nooverflow\nocwrap\lnbrkrule\li185\sl240\slmult1\sb72\f4\fs22\b0\cf6 Contributing Practice Areas\par\pard\plain\intbl\s4\nooverflow\nocwrap\lnbrkrule\li185\sl240\slmult1\sb164\f4\fs22\b0 Social Protection & Jobs\cell}\row\pard\sect\sectd\sbkpage\headery728\footery1137
+{\shp{\*\shpinst\shpleft314\shpright554\shptop6154\shpbottom7850\shpbxpage\shpbypage\shpwr3\shpfblwtxt0\shpz7\shplid185
+{\sp{\sn shapeType}{\sv 202}}{\sp{\sn fFlipH}{\sv 0}}{\sp{\sn fFlipV}{\sv 0}}
+{\sp{\sn txflTextFlow}{\sv 2}}
+{\sp{\sn fFilled}{\sv 0}}
+{\sp{\sn fLine}{\sv 0}}
+{\sp{\sn dxTextLeft}{\sv 0}}{\sp{\sn dxTextRight}{\sv 0}}{\sp{\sn dyTextTop}{\sv 0}}{\sp{\sn dyTextBottom}{\sv 0}}
+{\sp{\sn posrelh}{\sv 1}}
+{\sp{\sn posrelv}{\sv 1}}
+{\shptxt\pard\plain\s1\nooverflow\nocwrap\lnbrkrule\li20\sl-224\f4\fs20\b0\cf6 For Official Use Only\par}}}
+\pard\plain\s1\nooverflow\nocwrap\lnbrkrule\sl240\slmult1\f2\fs20\b1\i0\par\pard\plain\s1\nooverflow\nocwrap\lnbrkrule\sl240\slmult1\f2\fs17\b1\i0\par\pard\plain\s1\nooverflow\nocwrap\lnbrkrule\li200\sl240\slmult1\tx11089\f2\fs22\b1{\chcbpat13  \expnd-3\expndtw-14  \expnd0\expndtw0 BRIEF ACTIVITY\expnd-1\expndtw-7  \f2\fs22\b1\i0\expnd0\expndtw0 DESCRIPTION\tab }\par\pard\plain\s1\nooverflow\nocwrap\lnbrkrule\sl240\slmult1\sb10\f2\fs29\b1\i0\par\pard\plain\s1\nooverflow\nocwrap\lnbrkrule\li200\ri371\sl240\slmult1\sb1\f4\fs24\b0 This ASA consists of a summary and four working papers. A key finding from the research is the inverse-U shape of returns to education shown in the attached graph, which also shows that females benefit from higher returns to education, though females earn substantively lower wages than men with the same level of education. The relative pay gap between men and women has improved over time, but is still substantial.\par\pard\plain\s1\nooverflow\nocwrap\lnbrkrule\sl240\slmult1\sb7\f4\fs19\b0\i0\par\pard\plain\s2\nooverflow\nocwrap\lnbrkrule\li200\sl240\slmult1\sb1\f2\fs24\b1 Summary with main findings and conclusions\par\pard\plain\s1\nooverflow\nocwrap\lnbrkrule\sl240\slmult1\sb8\f2\fs19\b1\i0\par\pard\plain\s1\nooverflow\nocwrap\lnbrkrule\li200\ri325\sl240\slmult1\f2\fs24\b1 Working Paper 1: Returns to Education in the Russian Federation: Some New Estimates: \f4\fs24\b0\i0 This paper presents new estimates of the returns to education in the Russian Federation. Private returns to education are three times greater for higher education compared to vocational education, and the returns to education for females are higher than for males.\par\pard\plain\s1\nooverflow\nocwrap\lnbrkrule\sl240\slmult1\sb8\f4\fs19\b0\i0\par\pard\plain\s1\nooverflow\nocwrap\lnbrkrule\li200\ri276\sl240\slmult1\f2\fs24\b1 Working Paper 2: Does depreciation explain some recent trends? \f4\fs24\b0\i0 This paper explores the topic of depreciation of human capital as a possible explanation for observed trends in the returns to education in the Russian Federation. Estimates of depreciation are presented for various sample groups. Depreciation first decreased and then increased in the period 1994-2018. University educated workers add human capital even after they stop full-time studies; this happens less with vocational graduates.\par\pard\plain\s1\nooverflow\nocwrap\lnbrkrule\sl240\slmult1\sb8\f4\fs19\b0\i0\par\pard\plain\s1\nooverflow\nocwrap\lnbrkrule\li200\ri323\sl240\slmult1\f2\fs24\b1 Working Paper 3: Variation across regions and implications for policy development in priority regions. \f4\fs24\b0\i0 This paper is the third in a series of working papers investigating the returns to education in the Russian Federation. This paper uses regionally representative household survey data to determine the rates of return to education in different regions. Returns show a wide dispersion together with the labor market context. The paper\'92s policy recommendations would be particularly helpful to support human capital development of federally targeted economically and socially depressed regions.\par\pard\plain\s1\nooverflow\nocwrap\lnbrkrule\sl240\slmult1\sb8\f4\fs19\b0\i0\par\pard\plain\s1\nooverflow\nocwrap\lnbrkrule\li200\ri280\sl240\slmult1\f2\fs24\b1 Working Paper 4: Towards Evidence Based Decision Making with Fiscal and Private Returns to Education. \f4\fs24\b0\i0 This paper is the fourth in a series of working papers investigating the returns to education in the Russian Federation. This paper uses institution level information about graduate earnings and estimates of social and private costs to obtain fiscal and private returns to education using an internal rate of return calculation. As data has been collected so far only on earnings trajectories for three years following graduation, these are not lifetime returns, but they are adequate to provide relative estimates. The resulting information on returns to investment will serve government stakeholders as well as individual students\par\pard\plain\s1\nooverflow\nocwrap\lnbrkrule\sl240\slmult1\f4\fs20\b0\i0\par\pard\plain\s1\nooverflow\nocwrap\lnbrkrule\sl240\slmult1\f4\fs20\b0\i0\par\pard\plain\s1\nooverflow\nocwrap\lnbrkrule\sl240\slmult1\sb12\f4\fs18\b0\i0\par\pard\plain\s1\nooverflow\nocwrap\lnbrkrule\li200\sl240\slmult1\sb55\tx11089\f2\fs22\b1{\chcbpat13  \expnd2\expndtw8  \expnd0\expndtw0 DEVELOPMENT\expnd-3\expndtw-14  \f2\fs22\b1\i0\expnd0\expndtw0 OBJECTIVE\tab }\par\pard\plain\s1\nooverflow\nocwrap\lnbrkrule\sl240\slmult1\sb6\f2\fs23\b1\i0\par\pard\plain\s1\nooverflow\nocwrap\lnbrkrule\li308\ri378\sl256\slmult1\f4\fs22\b0 To develop policy recommendations for the Russian Federation based on a detailed analysis of the returns to education and identification of feasible pathways for robust growth in Russia\'92s human capital wealth.\par\sect\sectd\sbkpage\headery728\footery1137\pard\plain\s1\nooverflow\nocwrap\lnbrkrule\sl240\slmult1\f4\fs20\b0\i0\par\pard\plain\s1\nooverflow\nocwrap\lnbrkrule\sl240\slmult1\f4\fs20\b0\i0\par\pard\plain\s1\nooverflow\nocwrap\lnbrkrule\sl240\slmult1\sb1\f4\fs21\b0\i0\par\pard\plain\s1\nooverflow\nocwrap\lnbrkrule\li200\sl240\slmult1\f4\fs20
+{\field\fldlock
+{\*\fldinst SHAPE  \\* MERGEFORMAT}
+{\fldrslt 
+{\shp{\*\shpinst\shpleft0\shpright10874\shptop0\shpbottom437\shpbxcolumn\shpbxignore\shpbypara\shpbyignore\shplockanchor\shpwr3\shpwrk0\shpfblwtxt1\shpz8\shplid195{\sp{\sn fBehindDocument}{\sv 0}}{\sp{\sn fPseudoInline}{\sv 1}}
+{\sp{\sn shapeType}{\sv 202}}{\sp{\sn fFlipH}{\sv 0}}{\sp{\sn fFlipV}{\sv 0}}
+{\sp{\sn txflTextFlow}{\sv 0}}
+{\sp{\sn fFilled}{\sv 1}}{\sp{\sn fillColor}{\sv 15921906}}{\sp{\sn fillOpacity}{\sv 65536}}
+{\sp{\sn fLine}{\sv 0}}
+{\sp{\sn dxTextLeft}{\sv 0}}{\sp{\sn dxTextRight}{\sv 0}}{\sp{\sn dyTextTop}{\sv 0}}{\sp{\sn dyTextBottom}{\sv 0}}
+{\sp{\sn posrelh}{\sv 3}}
+{\sp{\sn posrelv}{\sv 3}}
+{\shptxt\pard\plain\s1\nooverflow\nocwrap\lnbrkrule\li108\sl240\slmult1\sb84\f2\fs22\b1 ACTIVITY TYPE\par}}}
+{\pict
+{\*\picprop\defshp\shplid195
+{\sp{\sn shapeType}{\sv 75}}
+{\sp{\sn fFlipH}{\sv 0}}
+{\sp{\sn fFlipV}{\sv 0}}
+{\sp{\sn fPseudoInline}{\sv 1}}
+{\sp{\sn fLayoutInCell}{\sv 1}}
+{\sp{\sn fLockPosition}{\sv 1}}
+{\sp{\sn fLockRotation}{\sv 1}}
+}
+\piccropl0\piccropr0\piccropt-437\piccropb437\picwgoal10874\pichgoal437
+\wmetafile8\bliptag-1003278350\blipupi72
+}
+}}
+\par\pard\plain\s1\nooverflow\nocwrap\lnbrkrule\sl240\slmult1\sb3\f4\fs10\b0\i0\par\pard\plain\s1\nooverflow\nocwrap\lnbrkrule\li308\ri6608\sl292\slmult1\sb56\f4\fs22\b0\cf6 Is this mainly an analytical or an advisory activity? \f4\fs22\b0\i0\cf1 Advisory\par\pard\plain\s1\nooverflow\nocwrap\lnbrkrule\li308\ri7374\sl381\slmult1\sb178\f4\fs22\b0\cf6 What does this task primarily focus on? \f4\fs22\b0\i0\cf1 Implementation advice/Capacity building\par\pard\plain\s1\nooverflow\nocwrap\lnbrkrule\sl240\slmult1\f4\fs20\b0\i0\par\pard\plain\s1\nooverflow\nocwrap\lnbrkrule\li200\sl240\slmult1\sb182\tx11089\f2\fs22\b1{\chcbpat13  \expnd2\expndtw8  \expnd0\expndtw0 DELIVERABLES\tab }\par\pard\plain\s1\nooverflow\nocwrap\lnbrkrule\sl240\slmult1\sb5\f2\fs19\b1\i0\par\pard\plain\s1\nooverflow\nocwrap\lnbrkrule\ri647\qr\sl240\slmult1\f2\fs19\b1\cf9 Group By: \f4\fs19\b0\i0\cf1 Pillar\par\pard\plain\s1\nooverflow\nocwrap\lnbrkrule\sl240\slmult1\f4\fs20\b0\i0\par\pard\plain\s1\nooverflow\nocwrap\lnbrkrule\sl240\slmult1\f4\fs20\b0\i0\par\sect\sectd\sbknone\cols4\colno1\colw6233\colsr40\colno2\colw1486\colsr39\colno3\colw2025\colsr39\colno4\colw1518\pard\plain\s1\nooverflow\nocwrap\lnbrkrule\sl240\slmult1\sb9\f4\fs17\b0\i0\par\pard\plain\s1\nooverflow\nocwrap\lnbrkrule\li5170\fi-4610\sl168\slmult1\tx3399\tx5169\f2\fs22\b1\dn14\cf9 Name\tab Lead\tab \f2\fs22\b1\i0\expnd0\expndtw-1\up0 Completion \f2\fs22\b1\i0\expnd0\expndtw0 Date\par\pard\plain\s1\nooverflow\nocwrap\lnbrkrule\li517\ri-20\sl256\slmult1\sb196 \column \f2\fs22\b1\cf9 Processing Type\par\pard\plain\s1\nooverflow\nocwrap\lnbrkrule\li322\ri-20\sl256\slmult1\sb196 \column \f2\fs22\b1\cf9 Modification Since last Milestone\par\pard\plain\s1\nooverflow\nocwrap\lnbrkrule\sl240\slmult1\sb10 \column \f2\fs27\b1\i0\par\pard\plain\s1\nooverflow\nocwrap\lnbrkrule\li147\sl240\slmult1\f2\fs22\b1\cf9 Status\par\sect\sectd\sbknone\cols1\colno1\colw11380\pard\plain\s1\nooverflow\nocwrap\lnbrkrule\li205\sl240\slmult1\sb79\tx559\tx11184\f2\fs22\b1{\chcbpat14  \tab Pillar: Not\expnd-3\expndtw-13  \f2\fs22\b1\i0\expnd0\expndtw0 Categorized\tab }\par\pard\plain\s1\nooverflow\nocwrap\lnbrkrule\sl240\slmult1\sb2\f2\fs8\b1\i0\par\sect\sectd\sbknone\cols3\colno1\colw2767\colsr40\colno2\colw1340\colsr123\colno3\colw7110\pard\plain\s1\nooverflow\nocwrap\lnbrkrule\li583\ri-20\sl256\slmult1\sb56\f4\fs22\b0 Russia Skills and Returns to Education\par\pard\plain\s1\nooverflow\nocwrap\lnbrkrule\li276\ri20\sl256\slmult1\sb56 \column \f4\fs22\b0 Suhas D. Parandekar\par\pard\plain\s1\nooverflow\nocwrap\lnbrkrule\li583\sl240\slmult1\sb56\tx2202 \column \f4\fs22\b0 10-Jun-2020(P)\tab DR\par\pard\plain\s1\nooverflow\nocwrap\lnbrkrule\li2203\sl240\slmult1\sb18\f4\fs22\b0 Required\par\sect\sectd\sbknone\cols1\colno1\colw11380\pard\plain\s1\nooverflow\nocwrap\lnbrkrule\sl240\slmult1\f4\fs20\b0\i0\par\pard\plain\s1\nooverflow\nocwrap\lnbrkrule\sl240\slmult1\sb3\f4\fs15\b0\i0\par\pard\plain\s1\nooverflow\nocwrap\lnbrkrule\li200\sl-20\f4\fs2
+{\field\fldlock
+{\*\fldinst SHAPE  \\* MERGEFORMAT}
+{\fldrslt 
+{\shpgrp{\*\shpinst\shplid231
+\shpleft0\shptop0\shpright10980\shpbottom20\shpfhdr0
+\shpbxcolumn\shpbxignore\shpbypara\shpbyignore\shpwr3\shpwrk0\shpfblwtxt1\shpz9
+\shplockanchor
+\shpwr3\shpwrk0\shpfblwtxt1{\sp{\sn groupLeft}{\sv 0}}
+{\sp{\sn groupTop}{\sv 0}}
+{\sp{\sn groupRight}{\sv 10980}}
+{\sp{\sn groupBottom}{\sv 20}}
+{\sp{\sn fFlipH}{\sv 0}}
+{\sp{\sn fFlipV}{\sv 0}}
+{\sp{\sn fPseudoInline}{\sv 1}}
+{\sp{\sn lidRegroup}{\sv 0}}
+{\sp{\sn posrelh}{\sv 3}}
+{\sp{\sn posrelv}{\sv 3}}
+
+{\shp{\*\shpinst\shplid232
+{\sp{\sn relLeft}{\sv 0}}
+{\sp{\sn relTop}{\sv 5}}
+{\sp{\sn relRight}{\sv 10980}}
+{\sp{\sn relBottom}{\sv 25}}
+{\sp{\sn fRelFlipH}{\sv 0}}
+{\sp{\sn fRelFlipV}{\sv 0}}
+{\sp{\sn shapeType}{\sv 0}}
+{\sp{\sn rotation}{\sv 0}}
+{\sp{\sn geoRight}{\sv 10980}}
+{\sp{\sn geoBottom}{\sv 20}}
+{\sp{\sn shapePath}{\sv 4}}
+{\sp{\sn pVerticies}{\sv 8;2;(0,0);(10980,0)}}
+{\sp{\sn pSegmentInfo}{\sv 2;5;16384;45824;1;45824;32768}}
+{\sp{\sn fFillOK}{\sv 1}}
+{\sp{\sn fFilled}{\sv 0}}
+{\sp{\sn lineWidth}{\sv 6350}}
+{\sp{\sn lineColor}{\sv 14277081}}
+{\sp{\sn fLine}{\sv 1}}{\sp{\sn lineType}{\sv 0}}
+{\sp{\sn posrelh}{\sv 1}}
+{\sp{\sn posrelv}{\sv 1}}
+{\sp{\sn fArrowheadsOK}{\sv 1}}
+{\sp{\sn fBehindDocument}{\sv 1}}
+}}
+}}
+{\pict
+{\*\picprop\defshp\shplid231
+{\sp{\sn shapeType}{\sv 75}}
+{\sp{\sn fFlipH}{\sv 0}}
+{\sp{\sn fFlipV}{\sv 0}}
+{\sp{\sn fPseudoInline}{\sv 1}}
+{\sp{\sn fLayoutInCell}{\sv 1}}
+{\sp{\sn fLockPosition}{\sv 1}}
+{\sp{\sn fLockRotation}{\sv 1}}
+}
+\piccropl0\piccropr0\piccropt-20\piccropb20\picwgoal10980\pichgoal20
+\wmetafile8\bliptag-1003278350\blipupi72
+}
+}}
+\par\pard\plain\s1\nooverflow\nocwrap\lnbrkrule\sl240\slmult1\sb6\f4\fs24\b0\i0\par\sect\sectd\sbknone\cols3\colno1\colw2767\colsr40\colno2\colw1341\colsr122\colno3\colw7110\pard\plain\s1\nooverflow\nocwrap\lnbrkrule\li583\ri-20\sl256\slmult1\sb55\f4\fs22\b0 Four Working Papers for Returns to Education in the Russian Federation\par\pard\plain\s1\nooverflow\nocwrap\lnbrkrule\li276\ri21\sl256\slmult1\sb55 \column \f4\fs22\b0 Suhas D. Parandekar\par\pard\plain\s1\nooverflow\nocwrap\lnbrkrule\li583\sl240\slmult1\sb55\tx2202 \column \f4\fs22\b0 15-Jun-2020(A)\tab DR\expnd0\expndtw-2  \f4\fs22\b0\i0\expnd0\expndtw0 Not\par\pard\plain\s1\nooverflow\nocwrap\lnbrkrule\li2203\sl240\slmult1\sb18\f4\fs22\b0 Required\par\sect\sectd\sbknone\cols1\colno1\colw11380\pard\plain\s1\nooverflow\nocwrap\lnbrkrule\sl240\slmult1\f4\fs20\b0\i0\par\pard\plain\s1\nooverflow\nocwrap\lnbrkrule\sl240\slmult1\sb2\f4\fs15\b0\i0\par\pard\plain\s1\nooverflow\nocwrap\lnbrkrule\li200\sl-20\f4\fs2
+{\field\fldlock
+{\*\fldinst SHAPE  \\* MERGEFORMAT}
+{\fldrslt 
+{\shpgrp{\*\shpinst\shplid245
+\shpleft0\shptop0\shpright10980\shpbottom20\shpfhdr0
+\shpbxcolumn\shpbxignore\shpbypara\shpbyignore\shpwr3\shpwrk0\shpfblwtxt1\shpz10
+\shplockanchor
+\shpwr3\shpwrk0\shpfblwtxt1{\sp{\sn groupLeft}{\sv 0}}
+{\sp{\sn groupTop}{\sv 0}}
+{\sp{\sn groupRight}{\sv 10980}}
+{\sp{\sn groupBottom}{\sv 20}}
+{\sp{\sn fFlipH}{\sv 0}}
+{\sp{\sn fFlipV}{\sv 0}}
+{\sp{\sn fPseudoInline}{\sv 1}}
+{\sp{\sn lidRegroup}{\sv 0}}
+{\sp{\sn posrelh}{\sv 3}}
+{\sp{\sn posrelv}{\sv 3}}
+
+{\shp{\*\shpinst\shplid246
+{\sp{\sn relLeft}{\sv 0}}
+{\sp{\sn relTop}{\sv 5}}
+{\sp{\sn relRight}{\sv 10980}}
+{\sp{\sn relBottom}{\sv 25}}
+{\sp{\sn fRelFlipH}{\sv 0}}
+{\sp{\sn fRelFlipV}{\sv 0}}
+{\sp{\sn shapeType}{\sv 0}}
+{\sp{\sn rotation}{\sv 0}}
+{\sp{\sn geoRight}{\sv 10980}}
+{\sp{\sn geoBottom}{\sv 20}}
+{\sp{\sn shapePath}{\sv 4}}
+{\sp{\sn pVerticies}{\sv 8;2;(0,0);(10980,0)}}
+{\sp{\sn pSegmentInfo}{\sv 2;5;16384;45824;1;45824;32768}}
+{\sp{\sn fFillOK}{\sv 1}}
+{\sp{\sn fFilled}{\sv 0}}
+{\sp{\sn lineWidth}{\sv 6350}}
+{\sp{\sn lineColor}{\sv 14277081}}
+{\sp{\sn fLine}{\sv 1}}{\sp{\sn lineType}{\sv 0}}
+{\sp{\sn posrelh}{\sv 1}}
+{\sp{\sn posrelv}{\sv 1}}
+{\sp{\sn fArrowheadsOK}{\sv 1}}
+{\sp{\sn fBehindDocument}{\sv 1}}
+}}
+
+{\shp{\*\shpinst\shplid247
+{\sp{\sn relLeft}{\sv 0}}
+{\sp{\sn relTop}{\sv 14}}
+{\sp{\sn relRight}{\sv 10980}}
+{\sp{\sn relBottom}{\sv 34}}
+{\sp{\sn fRelFlipH}{\sv 0}}
+{\sp{\sn fRelFlipV}{\sv 0}}
+{\sp{\sn shapeType}{\sv 0}}
+{\sp{\sn rotation}{\sv 0}}
+{\sp{\sn geoRight}{\sv 10980}}
+{\sp{\sn geoBottom}{\sv 20}}
+{\sp{\sn shapePath}{\sv 4}}
+{\sp{\sn pVerticies}{\sv 8;2;(0,0);(10980,0)}}
+{\sp{\sn pSegmentInfo}{\sv 2;5;16384;45824;1;45824;32768}}
+{\sp{\sn fFillOK}{\sv 1}}
+{\sp{\sn fFilled}{\sv 0}}
+{\sp{\sn lineWidth}{\sv 6350}}
+{\sp{\sn lineColor}{\sv 14277081}}
+{\sp{\sn fLine}{\sv 1}}{\sp{\sn lineType}{\sv 0}}
+{\sp{\sn posrelh}{\sv 1}}
+{\sp{\sn posrelv}{\sv 1}}
+{\sp{\sn fArrowheadsOK}{\sv 1}}
+{\sp{\sn fBehindDocument}{\sv 1}}
+}}
+}}
+{\pict
+{\*\picprop\defshp\shplid245
+{\sp{\sn shapeType}{\sv 75}}
+{\sp{\sn fFlipH}{\sv 0}}
+{\sp{\sn fFlipV}{\sv 0}}
+{\sp{\sn fPseudoInline}{\sv 1}}
+{\sp{\sn fLayoutInCell}{\sv 1}}
+{\sp{\sn fLockPosition}{\sv 1}}
+{\sp{\sn fLockRotation}{\sv 1}}
+}
+\piccropl0\piccropr0\piccropt-20\piccropb20\picwgoal10980\pichgoal20
+\wmetafile8\bliptag-1003278350\blipupi72
+}
+}}
+\par\pard\plain\s1\nooverflow\nocwrap\lnbrkrule\sl240\slmult1\f4\fs20\b0\i0\par\pard\plain\s1\nooverflow\nocwrap\lnbrkrule\sl240\slmult1\sb4\f4\fs18\b0\i0\par\pard\plain\s1\nooverflow\nocwrap\lnbrkrule\li290\sl240\slmult1\sb56\f2\fs22\b1\cf5 Comments\par\pard\plain\s1\nooverflow\nocwrap\lnbrkrule\li290\sl240\slmult1\sb91\f4\fs22\b0 No comments have been entered\par\pard\plain\s1\nooverflow\nocwrap\lnbrkrule\sl240\slmult1\f4\fs20\b0\i0\par
+{\shp{\*\shpinst\shpleft630\shpright11768\shptop261\shpbottom738\shpbxpage\shpbypara\shpwr1\shpz11\shplid254{\sp{\sn dxWrapDistLeft}{\sv 0}}{\sp{\sn dxWrapDistRight}{\sv 0}}
+{\sp{\sn shapeType}{\sv 202}}{\sp{\sn fFlipH}{\sv 0}}{\sp{\sn fFlipV}{\sv 0}}
+{\sp{\sn txflTextFlow}{\sv 0}}
+{\sp{\sn fFilled}{\sv 1}}{\sp{\sn fillColor}{\sv 15921906}}{\sp{\sn fillOpacity}{\sv 65536}}
+{\sp{\sn fLine}{\sv 0}}
+{\sp{\sn dxTextLeft}{\sv 0}}{\sp{\sn dxTextRight}{\sv 0}}{\sp{\sn dyTextTop}{\sv 0}}{\sp{\sn dyTextBottom}{\sv 0}}
+{\sp{\sn posrelh}{\sv 1}}
+{\sp{\sn posrelv}{\sv 2}}
+{\shptxt\pard\plain\s1\nooverflow\nocwrap\lnbrkrule\li108\sl240\slmult1\sb95\f2\fs22\b1 DELIVERABLE DOCUMENTS\par}}}
+\pard\plain\s1\nooverflow\nocwrap\lnbrkrule\sl240\slmult1\sb4\f4\fs19\b0\i0\par\pard\plain\s1\nooverflow\nocwrap\lnbrkrule\sl240\slmult1\sb8\f4\fs17\b0\i0\par\sect\sectd\sbknone\cols2\colno1\colw6973\colsr40\colno2\colw4367
+{\shp{\*\shpinst
+\shpleft630\shptop648\shpright11790\shpbottom678
+\shpfhdr0\shpwr3\shpwrk0\shplid274\shpz13
+\shpbxpage\shpbypara\shpwr3\shpfblwtxt0{\sp{\sn fFlipH}{\sv 0}}
+{\sp{\sn fFlipV}{\sv 0}}
+{\sp{\sn shapeType}{\sv 0}}
+{\sp{\sn rotation}{\sv 0}}
+{\sp{\sn geoRight}{\sv 11160}}
+{\sp{\sn geoBottom}{\sv 30}}
+{\sp{\sn shapePath}{\sv 4}}
+{\sp{\sn pVerticies}{\sv 8;5;(0,0);(11160,0);(11160,30);(0,30);(0,0)}}
+{\sp{\sn pSegmentInfo}{\sv 2;12;16384;45824;1;45824;1;45824;1;45824;1;45824;24577;32768}}
+{\sp{\sn fFillOK}{\sv 1}}
+{\sp{\sn fFilled}{\sv 1}}
+{\sp{\sn fillColor}{\sv 14671839}}
+{\sp{\sn fLine}{\sv 0}}{\sp{\sn lineType}{\sv 0}}
+{\sp{\sn posrelh}{\sv 1}}
+{\sp{\sn posrelv}{\sv 2}}
+{\sp{\sn fArrowheadsOK}{\sv 1}}
+}}
+\pard\plain\s1\nooverflow\nocwrap\lnbrkrule\li5312\fi-5094\sl127\slmult1\sb157\tx3529\tx5311\f2\fs22\b1\cf9 Document\expnd-1\expndtw-3  \f2\fs22\b1\i0\expnd0\expndtw0 Title\tab Document\expnd-1\expndtw-3  \f2\fs22\b1\i0\expnd0\expndtw0 Type\tab \f2\fs22\b1\i0\up14 Document \f2\fs22\b1\i0\expnd-1\expndtw-3 Upload \f2\fs22\b1\i0\expnd0\expndtw0\up0 Date\par\pard\plain\s1\nooverflow\nocwrap\lnbrkrule\sl240\slmult1\sb3 \column \f2\fs16\b1\i0\par\pard\plain\s1\nooverflow\nocwrap\lnbrkrule\li207\sl240\slmult1\sb1\f2\fs22\b1\cf9 Classification\par\sect\sectd\sbknone\cols1\colno1\colw11380
+{\shp{\*\shpinst\shpleft314\shpright554\shptop6154\shpbottom7850\shpbxpage\shpbypage\shpwr3\shpfblwtxt0\shpz14\shplid275
+{\sp{\sn shapeType}{\sv 202}}{\sp{\sn fFlipH}{\sv 0}}{\sp{\sn fFlipV}{\sv 0}}
+{\sp{\sn txflTextFlow}{\sv 2}}
+{\sp{\sn fFilled}{\sv 0}}
+{\sp{\sn fLine}{\sv 0}}
+{\sp{\sn dxTextLeft}{\sv 0}}{\sp{\sn dxTextRight}{\sv 0}}{\sp{\sn dyTextTop}{\sv 0}}{\sp{\sn dyTextBottom}{\sv 0}}
+{\sp{\sn posrelh}{\sv 1}}
+{\sp{\sn posrelv}{\sv 1}}
+{\shptxt\pard\plain\s1\nooverflow\nocwrap\lnbrkrule\li20\sl-224\f4\fs20\b0\cf6 For Official Use Only\par}}}
+\pard\plain\s1\nooverflow\nocwrap\lnbrkrule\sl240\slmult1\sb11\f2\fs7\b1\i0\par\pard\plain\s1\nooverflow\nocwrap\lnbrkrule\li110\sl240\slmult1\f2\fs20
+{\field\fldlock
+{\*\fldinst SHAPE  \\* MERGEFORMAT}
+{\fldrslt 
+{\shp{\*\shpinst\shpleft0\shpright11160\shptop0\shpbottom314\shpbxcolumn\shpbxignore\shpbypara\shpbyignore\shplockanchor\shpwr3\shpwrk0\shpfblwtxt1\shpz12\shplid268{\sp{\sn fBehindDocument}{\sv 0}}{\sp{\sn fPseudoInline}{\sv 1}}
+{\sp{\sn shapeType}{\sv 202}}{\sp{\sn fFlipH}{\sv 0}}{\sp{\sn fFlipV}{\sv 0}}
+{\sp{\sn txflTextFlow}{\sv 0}}
+{\sp{\sn fFilled}{\sv 1}}{\sp{\sn fillColor}{\sv 16116702}}{\sp{\sn fillOpacity}{\sv 65536}}
+{\sp{\sn fLine}{\sv 0}}
+{\sp{\sn dxTextLeft}{\sv 0}}{\sp{\sn dxTextRight}{\sv 0}}{\sp{\sn dyTextTop}{\sv 0}}{\sp{\sn dyTextBottom}{\sv 0}}
+{\sp{\sn posrelh}{\sv 3}}
+{\sp{\sn posrelv}{\sv 3}}
+{\shptxt\pard\plain\s1\nooverflow\nocwrap\lnbrkrule\li71\sl240\slmult1\f4\fs2\b0\cf15 DELIV_DOC_HEADER\par\pard\plain\s1\nooverflow\nocwrap\lnbrkrule\li71\sl240\slmult1\sb1\f2\fs22\b1 Deliverable: Four Working Papers for Returns to Education in the Russian Federation\par}}}
+{\pict
+{\*\picprop\defshp\shplid268
+{\sp{\sn shapeType}{\sv 75}}
+{\sp{\sn fFlipH}{\sv 0}}
+{\sp{\sn fFlipV}{\sv 0}}
+{\sp{\sn fPseudoInline}{\sv 1}}
+{\sp{\sn fLayoutInCell}{\sv 1}}
+{\sp{\sn fLockPosition}{\sv 1}}
+{\sp{\sn fLockRotation}{\sv 1}}
+}
+\piccropl0\piccropr0\piccropt-314\piccropb314\picwgoal11160\pichgoal314
+\wmetafile8\bliptag-1003278350\blipupi72
+}
+}}
+\par\pard\plain\s1\nooverflow\nocwrap\lnbrkrule\li181\sl240\slmult1\sb7\tx3529\tx5329\tx7219\f4\fs22\b0 Working\expnd0\expndtw-2  \f4\fs22\b0\i0\expnd0\expndtw0 Papers\expnd0\expndtw-1  \f4\fs22\b0\i0\expnd0\expndtw0 Abstract\tab Report\tab 06/09/2020\tab Public after\expnd0\expndtw-2  \f4\fs22\b0\i0\expnd0\expndtw0 approval\par\sect\sectd\sbkpage\headery728\footery1137
+{\shp{\*\shpinst\shpleft314\shpright554\shptop6154\shpbottom7850\shpbxpage\shpbypage\shpwr3\shpfblwtxt0\shpz19\shplid509
+{\sp{\sn shapeType}{\sv 202}}{\sp{\sn fFlipH}{\sv 0}}{\sp{\sn fFlipV}{\sv 0}}
+{\sp{\sn txflTextFlow}{\sv 2}}
+{\sp{\sn fFilled}{\sv 0}}
+{\sp{\sn fLine}{\sv 0}}
+{\sp{\sn dxTextLeft}{\sv 0}}{\sp{\sn dxTextRight}{\sv 0}}{\sp{\sn dyTextTop}{\sv 0}}{\sp{\sn dyTextBottom}{\sv 0}}
+{\sp{\sn posrelh}{\sv 1}}
+{\sp{\sn posrelv}{\sv 1}}
+{\shptxt\pard\plain\s1\nooverflow\nocwrap\lnbrkrule\li20\sl-224\f4\fs20\b0\cf6 For Official Use Only\par}}}
+\pard\plain\s1\nooverflow\nocwrap\lnbrkrule\sl240\slmult1\sb8\f4\fs11\b0\i0\par\pard\plain\s1\nooverflow\nocwrap\lnbrkrule\sl240\slmult1\f4\fs2\b0\i0\par\pard\plain\s1\nooverflow\nocwrap\lnbrkrule\sl240\slmult1\f4\fs2\b0\i0\par\pard\plain\s1\nooverflow\nocwrap\lnbrkrule\sl240\slmult1\f4\fs2\b0\i0\par\pard\plain\s1\nooverflow\nocwrap\lnbrkrule\sl240\slmult1\f4\fs2\b0\i0\par
+{\shpgrp{\*\shpinst\shplid504
+\shpleft630\shptop-29\shpright11790\shpbottom314\shpfhdr0
+\shpbxpage\shpbypara\shpwr3\shpwrk0\shpfblwtxt1\shpz17
+\shpwr3\shpfblwtxt1{\sp{\sn groupLeft}{\sv 630}}
+{\sp{\sn groupTop}{\sv -29}}
+{\sp{\sn groupRight}{\sv 11790}}
+{\sp{\sn groupBottom}{\sv 314}}
+{\sp{\sn fFlipH}{\sv 0}}
+{\sp{\sn fFlipV}{\sv 0}}
+{\sp{\sn posrelh}{\sv 1}}
+{\sp{\sn posrelv}{\sv 2}}
+{\sp{\sn fBehindDocument}{\sv 1}}
+
+{\shp{\*\shpinst\shplid505
+{\sp{\sn relLeft}{\sv 630}}
+{\sp{\sn relTop}{\sv 0}}
+{\sp{\sn relRight}{\sv 11790}}
+{\sp{\sn relBottom}{\sv 27}}
+{\sp{\sn fRelFlipH}{\sv 0}}
+{\sp{\sn fRelFlipV}{\sv 0}}
+{\sp{\sn shapeType}{\sv 0}}
+{\sp{\sn rotation}{\sv 0}}
+{\sp{\sn geoRight}{\sv 11160}}
+{\sp{\sn geoBottom}{\sv 27}}
+{\sp{\sn shapePath}{\sv 4}}
+{\sp{\sn pVerticies}{\sv 8;5;(0,26);(11160,26);(11160,0);(0,0);(0,26)}}
+{\sp{\sn pSegmentInfo}{\sv 2;12;16384;45824;1;45824;1;45824;1;45824;1;45824;24577;32768}}
+{\sp{\sn fFillOK}{\sv 1}}
+{\sp{\sn fFilled}{\sv 1}}
+{\sp{\sn fillColor}{\sv 16116702}}
+{\sp{\sn fLine}{\sv 0}}{\sp{\sn lineType}{\sv 0}}
+{\sp{\sn posrelh}{\sv 1}}
+{\sp{\sn posrelv}{\sv 2}}
+{\sp{\sn fArrowheadsOK}{\sv 1}}
+{\sp{\sn fBehindDocument}{\sv 1}}
+}}
+
+{\shp{\*\shpinst\shplid506
+{\sp{\sn relLeft}{\sv 630}}
+{\sp{\sn relTop}{\sv 26}}
+{\sp{\sn relRight}{\sv 11790}}
+{\sp{\sn relBottom}{\sv 314}}
+{\sp{\sn fRelFlipH}{\sv 0}}
+{\sp{\sn fRelFlipV}{\sv 0}}
+{\sp{\sn shapeType}{\sv 0}}
+{\sp{\sn rotation}{\sv 0}}
+{\sp{\sn geoRight}{\sv 11160}}
+{\sp{\sn geoBottom}{\sv 288}}
+{\sp{\sn shapePath}{\sv 4}}
+{\sp{\sn pVerticies}{\sv 8;5;(0,0);(11160,0);(11160,287);(0,287);(0,0)}}
+{\sp{\sn pSegmentInfo}{\sv 2;12;16384;45824;1;45824;1;45824;1;45824;1;45824;24577;32768}}
+{\sp{\sn fFillOK}{\sv 1}}
+{\sp{\sn fFilled}{\sv 1}}
+{\sp{\sn fillColor}{\sv 16116702}}
+{\sp{\sn fLine}{\sv 0}}{\sp{\sn lineType}{\sv 0}}
+{\sp{\sn posrelh}{\sv 1}}
+{\sp{\sn posrelv}{\sv 2}}
+{\sp{\sn fArrowheadsOK}{\sv 1}}
+{\sp{\sn fBehindDocument}{\sv 1}}
+}}
+
+{\shp{\*\shpinst\shplid507
+{\sp{\sn relLeft}{\sv 630}}
+{\sp{\sn relTop}{\sv -29}}
+{\sp{\sn relRight}{\sv 11790}}
+{\sp{\sn relBottom}{\sv 0}}
+{\sp{\sn fRelFlipH}{\sv 0}}
+{\sp{\sn fRelFlipV}{\sv 0}}
+{\sp{\sn shapeType}{\sv 0}}
+{\sp{\sn rotation}{\sv 0}}
+{\sp{\sn geoRight}{\sv 11160}}
+{\sp{\sn geoBottom}{\sv 29}}
+{\sp{\sn shapePath}{\sv 4}}
+{\sp{\sn pVerticies}{\sv 8;5;(0,0);(11160,0);(11160,30);(0,30);(0,0)}}
+{\sp{\sn pSegmentInfo}{\sv 2;12;16384;45824;1;45824;1;45824;1;45824;1;45824;24577;32768}}
+{\sp{\sn fFillOK}{\sv 1}}
+{\sp{\sn fFilled}{\sv 1}}
+{\sp{\sn fillColor}{\sv 14671839}}
+{\sp{\sn fLine}{\sv 0}}{\sp{\sn lineType}{\sv 0}}
+{\sp{\sn posrelh}{\sv 1}}
+{\sp{\sn posrelv}{\sv 2}}
+{\sp{\sn fArrowheadsOK}{\sv 1}}
+{\sp{\sn fBehindDocument}{\sv 1}}
+}}
+}}
+\pard\plain\s1\nooverflow\nocwrap\lnbrkrule\li181\sl240\slmult1\sa45\f4\fs2\b0\cf15 DELIV_DOC_HEADER\par
+\trowd\irow0\trgaph0\trrh265\trql\trleft132
+\clvertalt\clbrdrt\brdrnone\brdrw15\clbrdrl\brdrnone\brdrw15\clbrdrr\brdrnone\brdrw15\clbrdrb\brdrnone\brdrw15\clcbpat14\cltxlrtb\cellx9125
+{\pard\plain\intbl\s4\nooverflow\nocwrap\lnbrkrule\li50\sl-224\f2\fs22\b1 Deliverable: Russia Skills and Returns to Education\cell}\row
+\trowd\irow1\trgaph0\trrh310\trql\trleft132
+\clvertalt\clbrdrt\brdrnone\brdrw15\clbrdrl\brdrnone\brdrw15\clbrdrr\brdrnone\brdrw15\clbrdrb\brdrnone\brdrw15\cltxlrtb\cellx3142
+\clvertalt\clbrdrt\brdrnone\brdrw15\clbrdrl\brdrnone\brdrw15\clbrdrr\brdrnone\brdrw15\clbrdrb\brdrnone\brdrw15\cltxlrtb\cellx4735
+\clvertalt\clbrdrt\brdrnone\brdrw15\clbrdrl\brdrnone\brdrw15\clbrdrr\brdrnone\brdrw15\clbrdrb\brdrnone\brdrw15\cltxlrtb\cellx6806
+\clvertalt\clbrdrt\brdrnone\brdrw15\clbrdrl\brdrnone\brdrw15\clbrdrr\brdrnone\brdrw15\clbrdrb\brdrnone\brdrw15\cltxlrtb\cellx9125
+{\pard\plain\intbl\s4\nooverflow\nocwrap\lnbrkrule\li50\sl-264\f4\fs22\b0 P170978_Official Cover Page\cell}
+{\pard\plain\intbl\s4\nooverflow\nocwrap\lnbrkrule\li388\sl-264\f4\fs22\b0 Report\cell}
+{\pard\plain\intbl\s4\nooverflow\nocwrap\lnbrkrule\ri411\qr\sl-264\f4\fs22\b0 06/09/2020\cell}
+{\pard\plain\intbl\s4\nooverflow\nocwrap\lnbrkrule\ri47\qr\sl-264\f4\fs22\b0 Public after approval\cell}\row
+\trowd\irow2\trgaph0\trrh597\trql\trleft132
+\clvertalt\clbrdrt\brdrnone\brdrw15\clbrdrl\brdrnone\brdrw15\clbrdrr\brdrnone\brdrw15\clbrdrb\brdrnone\brdrw15\cltxlrtb\cellx3142
+\clvertalt\clbrdrt\brdrnone\brdrw15\clbrdrl\brdrnone\brdrw15\clbrdrr\brdrnone\brdrw15\clbrdrb\brdrnone\brdrw15\cltxlrtb\cellx4735
+\clvertalt\clbrdrt\brdrnone\brdrw15\clbrdrl\brdrnone\brdrw15\clbrdrr\brdrnone\brdrw15\clbrdrb\brdrnone\brdrw15\cltxlrtb\cellx6806
+\clvertalt\clbrdrt\brdrnone\brdrw15\clbrdrl\brdrnone\brdrw15\clbrdrr\brdrnone\brdrw15\clbrdrb\brdrnone\brdrw15\cltxlrtb\cellx9125
+{\pard\plain\intbl\s4\nooverflow\nocwrap\lnbrkrule\li50\ri491\sl256\slmult1\f4\fs22\b0 Summary Russia Returns to Education ASA P170978\cell}
+{\pard\plain\intbl\s4\nooverflow\nocwrap\lnbrkrule\li388\sl240\slmult1\sb144\f4\fs22\b0 Report\cell}
+{\pard\plain\intbl\s4\nooverflow\nocwrap\lnbrkrule\ri411\qr\sl240\slmult1\sb144\f4\fs22\b0 06/09/2020\cell}
+{\pard\plain\intbl\s4\nooverflow\nocwrap\lnbrkrule\ri47\qr\sl240\slmult1\sb144\f4\fs22\b0 Public after approval\cell}\row
+\trowd\irow3\trgaph0\trrh321\trql\trleft132
+\clvertalt\clbrdrt\brdrnone\brdrw15\clbrdrl\brdrnone\brdrw15\clbrdrr\brdrnone\brdrw15\clbrdrb\brdrnone\brdrw15\cltxlrtb\cellx3142
+\clvertalt\clbrdrt\brdrnone\brdrw15\clbrdrl\brdrnone\brdrw15\clbrdrr\brdrnone\brdrw15\clbrdrb\brdrnone\brdrw15\cltxlrtb\cellx4735
+\clvertalt\clbrdrt\brdrnone\brdrw15\clbrdrl\brdrnone\brdrw15\clbrdrr\brdrnone\brdrw15\clbrdrb\brdrnone\brdrw15\cltxlrtb\cellx6806
+\clvertalt\clbrdrt\brdrnone\brdrw15\clbrdrl\brdrnone\brdrw15\clbrdrr\brdrnone\brdrw15\clbrdrb\brdrnone\brdrw15\cltxlrtb\cellx9125
+{\pard\plain\intbl\s4\nooverflow\nocwrap\lnbrkrule\li50\sl240\slmult1\f4\fs22\b0 Working Paper 1\cell}
+{\pard\plain\intbl\s4\nooverflow\nocwrap\lnbrkrule\li388\sl240\slmult1\f4\fs22\b0 Report\cell}
+{\pard\plain\intbl\s4\nooverflow\nocwrap\lnbrkrule\ri411\qr\sl240\slmult1\f4\fs22\b0 06/09/2020\cell}
+{\pard\plain\intbl\s4\nooverflow\nocwrap\lnbrkrule\ri47\qr\sl240\slmult1\f4\fs22\b0 Public after approval\cell}\row
+\trowd\irow4\trgaph0\trrh332\trql\trleft132
+\clvertalt\clbrdrt\brdrnone\brdrw15\clbrdrl\brdrnone\brdrw15\clbrdrr\brdrnone\brdrw15\clbrdrb\brdrnone\brdrw15\cltxlrtb\cellx3142
+\clvertalt\clbrdrt\brdrnone\brdrw15\clbrdrl\brdrnone\brdrw15\clbrdrr\brdrnone\brdrw15\clbrdrb\brdrnone\brdrw15\cltxlrtb\cellx4735
+\clvertalt\clbrdrt\brdrnone\brdrw15\clbrdrl\brdrnone\brdrw15\clbrdrr\brdrnone\brdrw15\clbrdrb\brdrnone\brdrw15\cltxlrtb\cellx6806
+\clvertalt\clbrdrt\brdrnone\brdrw15\clbrdrl\brdrnone\brdrw15\clbrdrr\brdrnone\brdrw15\clbrdrb\brdrnone\brdrw15\cltxlrtb\cellx9125
+{\pard\plain\intbl\s4\nooverflow\nocwrap\lnbrkrule\li50\sl240\slmult1\sb12\f4\fs22\b0 Working Paper 2\cell}
+{\pard\plain\intbl\s4\nooverflow\nocwrap\lnbrkrule\li388\sl240\slmult1\sb12\f4\fs22\b0 Report\cell}
+{\pard\plain\intbl\s4\nooverflow\nocwrap\lnbrkrule\ri411\qr\sl240\slmult1\sb12\f4\fs22\b0 06/09/2020\cell}
+{\pard\plain\intbl\s4\nooverflow\nocwrap\lnbrkrule\ri47\qr\sl240\slmult1\sb12\f4\fs22\b0 Public after approval\cell}\row
+\trowd\irow5\trgaph0\trrh332\trql\trleft132
+\clvertalt\clbrdrt\brdrnone\brdrw15\clbrdrl\brdrnone\brdrw15\clbrdrr\brdrnone\brdrw15\clbrdrb\brdrnone\brdrw15\cltxlrtb\cellx3142
+\clvertalt\clbrdrt\brdrnone\brdrw15\clbrdrl\brdrnone\brdrw15\clbrdrr\brdrnone\brdrw15\clbrdrb\brdrnone\brdrw15\cltxlrtb\cellx4735
+\clvertalt\clbrdrt\brdrnone\brdrw15\clbrdrl\brdrnone\brdrw15\clbrdrr\brdrnone\brdrw15\clbrdrb\brdrnone\brdrw15\cltxlrtb\cellx6806
+\clvertalt\clbrdrt\brdrnone\brdrw15\clbrdrl\brdrnone\brdrw15\clbrdrr\brdrnone\brdrw15\clbrdrb\brdrnone\brdrw15\cltxlrtb\cellx9125
+{\pard\plain\intbl\s4\nooverflow\nocwrap\lnbrkrule\li50\sl240\slmult1\sb12\f4\fs22\b0 Working Paper 3\cell}
+{\pard\plain\intbl\s4\nooverflow\nocwrap\lnbrkrule\li388\sl240\slmult1\sb12\f4\fs22\b0 Report\cell}
+{\pard\plain\intbl\s4\nooverflow\nocwrap\lnbrkrule\ri411\qr\sl240\slmult1\sb12\f4\fs22\b0 06/09/2020\cell}
+{\pard\plain\intbl\s4\nooverflow\nocwrap\lnbrkrule\ri47\qr\sl240\slmult1\sb12\f4\fs22\b0 Public after approval\cell}\row
+\trowd\irow6\trgaph0\trrh326\trql\trleft132
+\clvertalt\clbrdrt\brdrnone\brdrw15\clbrdrl\brdrnone\brdrw15\clbrdrr\brdrnone\brdrw15\clbrdrb\brdrnone\brdrw15\cltxlrtb\cellx3142
+\clvertalt\clbrdrt\brdrnone\brdrw15\clbrdrl\brdrnone\brdrw15\clbrdrr\brdrnone\brdrw15\clbrdrb\brdrnone\brdrw15\cltxlrtb\cellx4735
+\clvertalt\clbrdrt\brdrnone\brdrw15\clbrdrl\brdrnone\brdrw15\clbrdrr\brdrnone\brdrw15\clbrdrb\brdrnone\brdrw15\cltxlrtb\cellx6806
+\clvertalt\clbrdrt\brdrnone\brdrw15\clbrdrl\brdrnone\brdrw15\clbrdrr\brdrnone\brdrw15\clbrdrb\brdrnone\brdrw15\cltxlrtb\cellx9125
+{\pard\plain\intbl\s4\nooverflow\nocwrap\lnbrkrule\li50\sl-264\sb12\f4\fs22\b0 Working Paper 4\cell}
+{\pard\plain\intbl\s4\nooverflow\nocwrap\lnbrkrule\li388\sl-264\sb12\f4\fs22\b0 Report\cell}
+{\pard\plain\intbl\s4\nooverflow\nocwrap\lnbrkrule\ri411\qr\sl-264\sb12\f4\fs22\b0 06/09/2020\cell}
+{\pard\plain\intbl\s4\nooverflow\nocwrap\lnbrkrule\ri47\qr\sl-264\sb12\f4\fs22\b0 Public after approval\cell}\row\pard\pard\plain\s1\nooverflow\nocwrap\lnbrkrule\sl240\slmult1\f4\fs20\b0\i0\par\pard\plain\s1\nooverflow\nocwrap\lnbrkrule\sl240\slmult1\f4\fs20\b0\i0\par
+{\shp{\*\shpinst\shpleft720\shpright11768\shptop239\shpbottom707\shpbxpage\shpbypara\shpwr1\shpz15\shplid372{\sp{\sn dxWrapDistLeft}{\sv 0}}{\sp{\sn dxWrapDistRight}{\sv 0}}
+{\sp{\sn shapeType}{\sv 202}}{\sp{\sn fFlipH}{\sv 0}}{\sp{\sn fFlipV}{\sv 0}}
+{\sp{\sn txflTextFlow}{\sv 0}}
+{\sp{\sn fFilled}{\sv 1}}{\sp{\sn fillColor}{\sv 15132391}}{\sp{\sn fillOpacity}{\sv 65536}}
+{\sp{\sn fLine}{\sv 0}}
+{\sp{\sn dxTextLeft}{\sv 0}}{\sp{\sn dxTextRight}{\sv 0}}{\sp{\sn dyTextTop}{\sv 0}}{\sp{\sn dyTextBottom}{\sv 0}}
+{\sp{\sn posrelh}{\sv 1}}
+{\sp{\sn posrelv}{\sv 2}}
+{\shptxt\pard\plain\s1\nooverflow\nocwrap\lnbrkrule\li115\sl240\slmult1\sb90\f2\fs22\b1 AGE AND BUDGET\par}}}
+\pard\plain\s1\nooverflow\nocwrap\lnbrkrule\sl240\slmult1\sb7\f4\fs17\b0\i0\par\pard\plain\s1\nooverflow\nocwrap\lnbrkrule\sl240\slmult1\f4\fs20\b0\i0\par\pard\plain\s1\nooverflow\nocwrap\lnbrkrule\sl240\slmult1\sb2\f4\fs18\b0\i0\par
+\trowd\irow0\trgaph0\trrh1039\trql\trleft200
+\clvmgf\clvertalt\clbrdrt\brdrnone\brdrw15\clbrdrl\brdrnone\brdrw15\clbrdrr\brdrnone\brdrw15\clbrdrb\brdrs\brdrcf12\brdrw10\cltxlrtb\cellx290
+\clvertalt\clbrdrt\brdrnone\brdrw15\clbrdrl\brdrnone\brdrw15\clbrdrr\brdrnone\brdrw15\clbrdrb\brdrs\brdrcf10\brdrw30\cltxlrtb\cellx4584
+\clvertalt\clbrdrt\brdrnone\brdrw15\clbrdrl\brdrnone\brdrw15\clbrdrr\brdrnone\brdrw15\clbrdrb\brdrs\brdrcf10\brdrw30\cltxlrtb\cellx7178
+\clvertalt\clbrdrt\brdrnone\brdrw15\clbrdrl\brdrnone\brdrw15\clbrdrr\brdrnone\brdrw15\clbrdrb\brdrs\brdrcf10\brdrw30\cltxlrtb\cellx9205
+\clvertalt\clbrdrt\brdrnone\brdrw15\clbrdrl\brdrnone\brdrw15\clbrdrr\brdrnone\brdrw15\clbrdrb\brdrs\brdrcf10\brdrw30\cltxlrtb\cellx11250
+{\pard\plain\intbl\s4\nooverflow\nocwrap\lnbrkrule\sl240\slmult1\f0\fs20\cell}
+{\pard\plain\intbl\s4\nooverflow\nocwrap\lnbrkrule\li67\sl240\slmult1\sb5\f2\fs22\b1\cf5 Activity Age (See Annex A for details)\par\pard\plain\intbl\s4\nooverflow\nocwrap\lnbrkrule\sl240\slmult1\f4\fs22\b0\i0\par\pard\plain\intbl\s4\nooverflow\nocwrap\lnbrkrule\li121\sl240\slmult1\sb188\f2\fs22\b1\cf6 At CN sign-off\cell}
+{\pard\plain\intbl\s4\nooverflow\nocwrap\lnbrkrule\sl240\slmult1\f0\fs20\cell}
+{\pard\plain\intbl\s4\nooverflow\nocwrap\lnbrkrule\sl240\slmult1\f4\fs22\b0\i0\par\pard\plain\intbl\s4\nooverflow\nocwrap\lnbrkrule\sl240\slmult1\f4\fs22\b0\i0\par\pard\plain\intbl\s4\nooverflow\nocwrap\lnbrkrule\ri107\qr\sl240\slmult1\sb193\f2\fs22\b1\cf6 Actual\cell}
+{\pard\plain\intbl\s4\nooverflow\nocwrap\lnbrkrule\sl240\slmult1\f0\fs20\cell}\row
+\trowd\irow1\trgaph0\trrh1241\trql\trleft200
+\clvmrg\clvertalt\clbrdrt\brdrnone\clbrdrl\brdrnone\brdrw15\clbrdrr\brdrnone\brdrw15\clbrdrb\brdrs\brdrcf12\brdrw10\cltxlrtb\cellx290
+\clvertalt\clbrdrt\brdrs\brdrcf10\brdrw30\clbrdrl\brdrnone\brdrw15\clbrdrr\brdrnone\brdrw15\clbrdrb\brdrs\brdrcf12\brdrw10\cltxlrtb\cellx4584
+\clvertalt\clbrdrt\brdrs\brdrcf10\brdrw30\clbrdrl\brdrnone\brdrw15\clbrdrr\brdrnone\brdrw15\clbrdrb\brdrs\brdrcf12\brdrw10\cltxlrtb\cellx7178
+\clvertalt\clbrdrt\brdrs\brdrcf10\brdrw30\clbrdrl\brdrnone\brdrw15\clbrdrr\brdrnone\brdrw15\clbrdrb\brdrs\brdrcf12\brdrw10\cltxlrtb\cellx9205
+\clvertalt\clbrdrt\brdrs\brdrcf10\brdrw30\clbrdrl\brdrnone\brdrw15\clbrdrr\brdrnone\brdrw15\clbrdrb\brdrs\brdrcf12\brdrw10\cltxlrtb\cellx11172
+\clvertalt\clbrdrt\brdrs\brdrcf10\brdrw30\clbrdrl\brdrnone\brdrw15\clbrdrr\brdrnone\brdrw15\clbrdrb\brdrnone\brdrw15\cltxlrtb\cellx11250
+{\fs2\cell}
+{\pard\plain\intbl\s4\nooverflow\nocwrap\lnbrkrule\li2820\sl240\slmult1\sb32\f4\fs22\b0 13.7\par\pard\plain\intbl\s4\nooverflow\nocwrap\lnbrkrule\sl240\slmult1\f4\fs22\b0\i0\par\pard\plain\intbl\s4\nooverflow\nocwrap\lnbrkrule\sl240\slmult1\sb8\f4\fs21\b0\i0\par\pard\plain\intbl\s4\nooverflow\nocwrap\lnbrkrule\li-19\sl240\slmult1\f2\fs22\b1\cf5 Budget (See Annex B for details)\cell}
+{\pard\plain\intbl\s4\nooverflow\nocwrap\lnbrkrule\sl240\slmult1\f0\fs20\cell}
+{\pard\plain\intbl\s4\nooverflow\nocwrap\lnbrkrule\ri203\qr\sl240\slmult1\sb43\f4\fs22\b0 13.5\cell}
+{\pard\plain\intbl\s4\nooverflow\nocwrap\lnbrkrule\sl240\slmult1\f0\fs20\cell}
+{\pard\plain\intbl\s4\nooverflow\nocwrap\lnbrkrule\sl240\slmult1\f0\fs20\cell}\row
+\trowd\irow2\trgaph0\trrh422\trql\trleft200
+\clvertalt\clbrdrt\brdrs\brdrcf12\brdrw10\clbrdrl\brdrnone\brdrw15\clbrdrr\brdrnone\brdrw15\clbrdrb\brdrs\brdrcf12\brdrw10\cltxlrtb\cellx290
+\clvertalt\clbrdrt\brdrs\brdrcf12\brdrw10\clbrdrl\brdrnone\brdrw15\clbrdrr\brdrnone\brdrw15\clbrdrb\brdrs\brdrcf12\brdrw10\cltxlrtb\cellx4584
+\clvertalt\clbrdrt\brdrs\brdrcf12\brdrw10\clbrdrl\brdrnone\brdrw15\clbrdrr\brdrnone\brdrw15\clbrdrb\brdrs\brdrcf12\brdrw10\cltxlrtb\cellx7178
+\clvertalt\clbrdrt\brdrs\brdrcf12\brdrw10\clbrdrl\brdrnone\brdrw15\clbrdrr\brdrnone\brdrw15\clbrdrb\brdrs\brdrcf12\brdrw10\cltxlrtb\cellx9205
+\clvertalt\clbrdrt\brdrs\brdrcf12\brdrw10\clbrdrl\brdrnone\brdrw15\clbrdrr\brdrnone\brdrw15\clbrdrb\brdrs\brdrcf12\brdrw10\cltxlrtb\cellx11172
+\clvertalt\clbrdrt\brdrnone\brdrw15\clbrdrl\brdrnone\brdrw15\clbrdrr\brdrnone\brdrw15\clbrdrb\brdrnone\brdrw15\cltxlrtb\cellx11250
+{\pard\plain\intbl\s4\nooverflow\nocwrap\lnbrkrule\sl240\slmult1\f0\fs20\cell}
+{\pard\plain\intbl\s4\nooverflow\nocwrap\lnbrkrule\li-19\sl240\slmult1\sb14\f2\fs22\b1\cf6 Source of Fund\cell}
+{\pard\plain\intbl\s4\nooverflow\nocwrap\lnbrkrule\ri502\qr\sl240\slmult1\sb14\f2\fs22\b1\cf6 At CN sign-off\cell}
+{\pard\plain\intbl\s4\nooverflow\nocwrap\lnbrkrule\li504\sl240\slmult1\sb14\f2\fs22\b1\cf6 Revised Plan\cell}
+{\pard\plain\intbl\s4\nooverflow\nocwrap\lnbrkrule\ri111\qr\sl240\slmult1\sb14\f2\fs22\b1\cf6 Actual Expenditure\cell}
+{\pard\plain\intbl\s4\nooverflow\nocwrap\lnbrkrule\sl240\slmult1\f0\fs20\cell}\row
+\trowd\irow3\trgaph0\trrh422\trql\trleft200
+\clvertalt\clbrdrt\brdrs\brdrcf12\brdrw10\clbrdrl\brdrnone\brdrw15\clbrdrr\brdrnone\brdrw15\clbrdrb\brdrs\brdrcf12\brdrw10\cltxlrtb\cellx290
+\clvertalt\clbrdrt\brdrs\brdrcf12\brdrw10\clbrdrl\brdrnone\brdrw15\clbrdrr\brdrnone\brdrw15\clbrdrb\brdrs\brdrcf12\brdrw10\cltxlrtb\cellx4584
+\clvertalt\clbrdrt\brdrs\brdrcf12\brdrw10\clbrdrl\brdrnone\brdrw15\clbrdrr\brdrnone\brdrw15\clbrdrb\brdrs\brdrcf12\brdrw10\cltxlrtb\cellx7178
+\clvertalt\clbrdrt\brdrs\brdrcf12\brdrw10\clbrdrl\brdrnone\brdrw15\clbrdrr\brdrnone\brdrw15\clbrdrb\brdrs\brdrcf12\brdrw10\cltxlrtb\cellx9205
+\clvertalt\clbrdrt\brdrs\brdrcf12\brdrw10\clbrdrl\brdrnone\brdrw15\clbrdrr\brdrnone\brdrw15\clbrdrb\brdrs\brdrcf12\brdrw10\cltxlrtb\cellx11172
+\clvertalt\clbrdrt\brdrnone\brdrw15\clbrdrl\brdrnone\brdrw15\clbrdrr\brdrnone\brdrw15\clbrdrb\brdrnone\brdrw15\cltxlrtb\cellx11250
+{\pard\plain\intbl\s4\nooverflow\nocwrap\lnbrkrule\sl240\slmult1\f0\fs20\cell}
+{\pard\plain\intbl\s4\nooverflow\nocwrap\lnbrkrule\li-19\sl240\slmult1\sb67\f4\fs22\b0 Bank Budget\cell}
+{\pard\plain\intbl\s4\nooverflow\nocwrap\lnbrkrule\ri501\qr\sl240\slmult1\sb67\f4\fs22\b0 175,000\cell}
+{\pard\plain\intbl\s4\nooverflow\nocwrap\lnbrkrule\li937\sl240\slmult1\sb67\f4\fs22\b0 175,000\cell}
+{\pard\plain\intbl\s4\nooverflow\nocwrap\lnbrkrule\ri111\qr\sl240\slmult1\sb67\f4\fs22\b0 197,474\cell}
+{\pard\plain\intbl\s4\nooverflow\nocwrap\lnbrkrule\sl240\slmult1\f0\fs20\cell}\row
+\trowd\irow4\trgaph0\trrh421\trql\trleft200
+\clvertalt\clbrdrt\brdrs\brdrcf12\brdrw10\clbrdrl\brdrnone\brdrw15\clbrdrr\brdrnone\brdrw15\clbrdrb\brdrs\brdrcf12\brdrw10\cltxlrtb\cellx290
+\clvertalt\clbrdrt\brdrs\brdrcf12\brdrw10\clbrdrl\brdrnone\brdrw15\clbrdrr\brdrnone\brdrw15\clbrdrb\brdrs\brdrcf12\brdrw10\cltxlrtb\cellx4584
+\clvertalt\clbrdrt\brdrs\brdrcf12\brdrw10\clbrdrl\brdrnone\brdrw15\clbrdrr\brdrnone\brdrw15\clbrdrb\brdrs\brdrcf12\brdrw10\cltxlrtb\cellx7178
+\clvertalt\clbrdrt\brdrs\brdrcf12\brdrw10\clbrdrl\brdrnone\brdrw15\clbrdrr\brdrnone\brdrw15\clbrdrb\brdrs\brdrcf12\brdrw10\cltxlrtb\cellx9205
+\clvertalt\clbrdrt\brdrs\brdrcf12\brdrw10\clbrdrl\brdrnone\brdrw15\clbrdrr\brdrnone\brdrw15\clbrdrb\brdrs\brdrcf12\brdrw10\cltxlrtb\cellx11172
+\clvertalt\clbrdrt\brdrnone\brdrw15\clbrdrl\brdrnone\brdrw15\clbrdrr\brdrnone\brdrw15\clbrdrb\brdrnone\brdrw15\cltxlrtb\cellx11250
+{\pard\plain\intbl\s4\nooverflow\nocwrap\lnbrkrule\sl240\slmult1\f0\fs20\cell}
+{\pard\plain\intbl\s4\nooverflow\nocwrap\lnbrkrule\li-19\sl240\slmult1\sb67\f4\fs22\b0 Grand Total Cost\cell}
+{\pard\plain\intbl\s4\nooverflow\nocwrap\lnbrkrule\ri501\qr\sl240\slmult1\sb67\f4\fs22\b0 175,000\cell}
+{\pard\plain\intbl\s4\nooverflow\nocwrap\lnbrkrule\li937\sl240\slmult1\sb67\f4\fs22\b0 175,000\cell}
+{\pard\plain\intbl\s4\nooverflow\nocwrap\lnbrkrule\ri111\qr\sl240\slmult1\sb67\f4\fs22\b0 197,474\cell}
+{\pard\plain\intbl\s4\nooverflow\nocwrap\lnbrkrule\sl240\slmult1\f0\fs20\cell}\row\pard\pard\plain\s1\nooverflow\nocwrap\lnbrkrule\sl240\slmult1\f4\fs2\b0\i0\par\pard\plain\s1\nooverflow\nocwrap\lnbrkrule\sl240\slmult1\f4\fs2\b0\i0\par\pard\plain\s1\nooverflow\nocwrap\lnbrkrule\sl240\slmult1\f4\fs2\b0\i0\par\pard\plain\s1\nooverflow\nocwrap\lnbrkrule\sl240\slmult1\f4\fs2\b0\i0\par\pard\plain\s1\nooverflow\nocwrap\lnbrkrule\sl240\slmult1\f4\fs2\b0\i0\par\pard\plain\s1\nooverflow\nocwrap\lnbrkrule\sl240\slmult1\f4\fs2\b0\i0\par\pard\plain\s1\nooverflow\nocwrap\lnbrkrule\sl240\slmult1\f4\fs2\b0\i0\par\pard\plain\s1\nooverflow\nocwrap\lnbrkrule\sl240\slmult1\f4\fs2\b0\i0\par\pard\plain\s1\nooverflow\nocwrap\lnbrkrule\sl240\slmult1\f4\fs2\b0\i0\par\pard\plain\s1\nooverflow\nocwrap\lnbrkrule\sl240\slmult1\f4\fs2\b0\i0\par\pard\plain\s1\nooverflow\nocwrap\lnbrkrule\sl240\slmult1\f4\fs2\b0\i0\par\pard\plain\s1\nooverflow\nocwrap\lnbrkrule\sl240\slmult1\f4\fs2\b0\i0\par\pard\plain\s1\nooverflow\nocwrap\lnbrkrule\sl240\slmult1\f4\fs2\b0\i0\par\pard\plain\s1\nooverflow\nocwrap\lnbrkrule\sl240\slmult1\f4\fs2\b0\i0\par\pard\plain\s1\nooverflow\nocwrap\lnbrkrule\sl240\slmult1\f4\fs2\b0\i0\par\pard\plain\s1\nooverflow\nocwrap\lnbrkrule\sl240\slmult1\f4\fs2\b0\i0\par\pard\plain\s1\nooverflow\nocwrap\lnbrkrule\sl240\slmult1\f4\fs2\b0\i0\par\pard\plain\s1\nooverflow\nocwrap\lnbrkrule\sl240\slmult1\f4\fs2\b0\i0\par\pard\plain\s1\nooverflow\nocwrap\lnbrkrule\sl240\slmult1\f4\fs2\b0\i0\par\pard\plain\s1\nooverflow\nocwrap\lnbrkrule\sl240\slmult1\f4\fs2\b0\i0\par\pard\plain\s1\nooverflow\nocwrap\lnbrkrule\sl240\slmult1\f4\fs2\b0\i0\par
+{\shpgrp{\*\shpinst\shplid508
+\shpleft5890\shptop4867\shpright5910\shpbottom5658\shpfhdr0
+\shpbxpage\shpbypara\shpwr3\shpwrk0\shpfblwtxt1\shpz18
+\shpwr3\shpfblwtxt0{\sp{\sn groupLeft}{\sv 5890}}
+{\sp{\sn groupTop}{\sv 4867}}
+{\sp{\sn groupRight}{\sv 5910}}
+{\sp{\sn groupBottom}{\sv 5658}}
+{\sp{\sn fFlipH}{\sv 0}}
+{\sp{\sn fFlipV}{\sv 0}}
+{\sp{\sn posrelh}{\sv 1}}
+{\sp{\sn posrelv}{\sv 2}}
+
+{\shp{\*\shpinst\shplid508
+{\sp{\sn relLeft}{\sv 5890}}
+{\sp{\sn relTop}{\sv 4867}}
+{\sp{\sn relRight}{\sv 5910}}
+{\sp{\sn relBottom}{\sv 5658}}
+{\sp{\sn fRelFlipH}{\sv 0}}
+{\sp{\sn fRelFlipV}{\sv 0}}
+{\sp{\sn shapeType}{\sv 0}}
+{\sp{\sn rotation}{\sv 0}}
+{\sp{\sn geoRight}{\sv 20}}
+{\sp{\sn geoBottom}{\sv 791}}
+{\sp{\sn shapePath}{\sv 4}}
+{\sp{\sn pVerticies}{\sv 8;2;(828,-8350);(828,-7962)}}
+{\sp{\sn pSegmentInfo}{\sv 2;5;16384;45824;1;45824;32768}}
+{\sp{\sn fFillOK}{\sv 1}}
+{\sp{\sn fFilled}{\sv 0}}
+{\sp{\sn lineWidth}{\sv 3175}}
+{\sp{\sn lineColor}{\sv 14671839}}
+{\sp{\sn fLine}{\sv 1}}{\sp{\sn lineType}{\sv 0}}
+{\sp{\sn posrelh}{\sv 1}}
+{\sp{\sn posrelv}{\sv 2}}
+{\sp{\sn fArrowheadsOK}{\sv 1}}
+}}
+
+{\shp{\*\shpinst\shplid508
+{\sp{\sn relLeft}{\sv 5890}}
+{\sp{\sn relTop}{\sv 4867}}
+{\sp{\sn relRight}{\sv 5910}}
+{\sp{\sn relBottom}{\sv 5658}}
+{\sp{\sn fRelFlipH}{\sv 0}}
+{\sp{\sn fRelFlipV}{\sv 0}}
+{\sp{\sn shapeType}{\sv 0}}
+{\sp{\sn rotation}{\sv 0}}
+{\sp{\sn geoRight}{\sv 20}}
+{\sp{\sn geoBottom}{\sv 791}}
+{\sp{\sn shapePath}{\sv 4}}
+{\sp{\sn pVerticies}{\sv 8;2;(828,-7932);(828,-7559)}}
+{\sp{\sn pSegmentInfo}{\sv 2;5;16384;45824;1;45824;32768}}
+{\sp{\sn fFillOK}{\sv 1}}
+{\sp{\sn fFilled}{\sv 0}}
+{\sp{\sn lineWidth}{\sv 3175}}
+{\sp{\sn lineColor}{\sv 14671839}}
+{\sp{\sn fLine}{\sv 1}}{\sp{\sn lineType}{\sv 0}}
+{\sp{\sn posrelh}{\sv 1}}
+{\sp{\sn posrelv}{\sv 2}}
+{\sp{\sn fArrowheadsOK}{\sv 1}}
+}}
+}}
+\pard\plain\s1\nooverflow\nocwrap\lnbrkrule\li308\sl240\slmult1\sb16\f2\fs22\b1\cf5 Comments\par\pard\plain\s1\nooverflow\nocwrap\lnbrkrule\li308\sl240\slmult1\sb154\f4\fs22\b0 No comments have been entered\par\pard\plain\s1\nooverflow\nocwrap\lnbrkrule\sl240\slmult1\f4\fs20\b0\i0\par
+{\shp{\*\shpinst\shpleft720\shpright11768\shptop299\shpbottom731\shpbxpage\shpbypara\shpwr1\shpz16\shplid499{\sp{\sn dxWrapDistLeft}{\sv 0}}{\sp{\sn dxWrapDistRight}{\sv 0}}
+{\sp{\sn shapeType}{\sv 202}}{\sp{\sn fFlipH}{\sv 0}}{\sp{\sn fFlipV}{\sv 0}}
+{\sp{\sn txflTextFlow}{\sv 0}}
+{\sp{\sn fFilled}{\sv 1}}{\sp{\sn fillColor}{\sv 15921906}}{\sp{\sn fillOpacity}{\sv 65536}}
+{\sp{\sn fLine}{\sv 0}}
+{\sp{\sn dxTextLeft}{\sv 0}}{\sp{\sn dxTextRight}{\sv 0}}{\sp{\sn dyTextTop}{\sv 0}}{\sp{\sn dyTextBottom}{\sv 0}}
+{\sp{\sn posrelh}{\sv 1}}
+{\sp{\sn posrelv}{\sv 2}}
+{\shptxt\pard\plain\s1\nooverflow\nocwrap\lnbrkrule\li108\sl240\slmult1\sb81\f2\fs22\b1 RESULTS\par}}}
+\pard\plain\s1\nooverflow\nocwrap\lnbrkrule\sl240\slmult1\sb6\f4\fs22\b0\i0\par\pard\plain\s1\nooverflow\nocwrap\lnbrkrule\li308\ri6203\sl240\slmult1\sb107\f4\fs22\b0\cf6 Do you want to track result indicators for this activity? \f4\fs22\b0\i0\cf1 No\par\sect\sectd\sbkpage\headery728\footery1137\pard\plain\s1\nooverflow\nocwrap\lnbrkrule\sl240\slmult1\sb1\f4\fs17\b0\i0\par\pard\plain\s1\nooverflow\nocwrap\lnbrkrule\li200\sl240\slmult1\f4\fs20
+{\field\fldlock
+{\*\fldinst SHAPE  \\* MERGEFORMAT}
+{\fldrslt 
+{\shp{\*\shpinst\shpleft0\shpright10890\shptop0\shpbottom353\shpbxcolumn\shpbxignore\shpbypara\shpbyignore\shplockanchor\shpwr3\shpwrk0\shpfblwtxt1\shpz20\shplid517{\sp{\sn fBehindDocument}{\sv 0}}{\sp{\sn fPseudoInline}{\sv 1}}
+{\sp{\sn shapeType}{\sv 202}}{\sp{\sn fFlipH}{\sv 0}}{\sp{\sn fFlipV}{\sv 0}}
+{\sp{\sn txflTextFlow}{\sv 0}}
+{\sp{\sn fFilled}{\sv 1}}{\sp{\sn fillColor}{\sv 15921906}}{\sp{\sn fillOpacity}{\sv 65536}}
+{\sp{\sn fLine}{\sv 0}}
+{\sp{\sn dxTextLeft}{\sv 0}}{\sp{\sn dxTextRight}{\sv 0}}{\sp{\sn dyTextTop}{\sv 0}}{\sp{\sn dyTextBottom}{\sv 0}}
+{\sp{\sn posrelh}{\sv 3}}
+{\sp{\sn posrelv}{\sv 3}}
+{\shptxt\pard\plain\s1\nooverflow\nocwrap\lnbrkrule\li143\sl240\slmult1\sb42\f2\fs22\b1 ASSESSMENT\par}}}
+{\pict
+{\*\picprop\defshp\shplid517
+{\sp{\sn shapeType}{\sv 75}}
+{\sp{\sn fFlipH}{\sv 0}}
+{\sp{\sn fFlipV}{\sv 0}}
+{\sp{\sn fPseudoInline}{\sv 1}}
+{\sp{\sn fLayoutInCell}{\sv 1}}
+{\sp{\sn fLockPosition}{\sv 1}}
+{\sp{\sn fLockRotation}{\sv 1}}
+}
+\piccropl0\piccropr0\piccropt-353\piccropb353\picwgoal10890\pichgoal353
+\wmetafile8\bliptag-1003278350\blipupi72
+}
+}}
+\par\pard\plain\s1\nooverflow\nocwrap\lnbrkrule\sl240\slmult1\sb10\f4\fs15\b0\i0\par\pard\plain\s1\nooverflow\nocwrap\lnbrkrule\li343\sl240\slmult1\sb55\f2\fs22\b1\cf5 Development Effectiveness Rating\par\pard\plain\s3\ls1\ilvl0\nooverflow\nocwrap\lnbrkrule\li558\fi-216\sl240\slmult1\sb19\tx559\f4\fs22\b0\i0\cf1 Satisfactory(5)\par\pard\plain\s1\nooverflow\nocwrap\lnbrkrule\sl240\slmult1\sb8\f4\fs28\b0\i0\par\pard\plain\s1\nooverflow\nocwrap\lnbrkrule\li343\sl240\slmult1\f2\fs22\b1\cf5 Outcomes\par\pard\plain\s1\nooverflow\nocwrap\lnbrkrule\li343\ri292\sl240\slmult1\sb19\f4\fs24\b0 Four papers and a summary paper were produced. Seminar presentations were made with participants from academia and the government: January 2020 in Moscow Office; April 20 Virtual Presentations at the Higher School of Economics Annual April Conference and at the Moscow International Education Fair; Another virtual academic seminar planned as IZA-HSE Panel on June 16, 2020; with further dissemination activities planned for FY21.\par\pard\plain\s1\nooverflow\nocwrap\lnbrkrule\sl240\slmult1\f4\fs24\b0\i0\par\pard\plain\s1\nooverflow\nocwrap\lnbrkrule\sl240\slmult1\f4\fs24\b0\i0\par\pard\plain\s1\nooverflow\nocwrap\lnbrkrule\li343\sl240\slmult1\sb199\f2\fs22\b1\cf5 Lessons Learned\par\pard\plain\s1\nooverflow\nocwrap\lnbrkrule\sl240\slmult1\f2\fs20\b1\i0\par\pard\plain\s1\nooverflow\nocwrap\lnbrkrule\sl240\slmult1\f2\fs20\b1\i0\par
+{\shp{\*\shpinst\shpleft720\shpright11610\shptop299\shpbottom702\shpbxpage\shpbypara\shpwr1\shpz21\shplid533{\sp{\sn dxWrapDistLeft}{\sv 0}}{\sp{\sn dxWrapDistRight}{\sv 0}}
+{\sp{\sn shapeType}{\sv 202}}{\sp{\sn fFlipH}{\sv 0}}{\sp{\sn fFlipV}{\sv 0}}
+{\sp{\sn txflTextFlow}{\sv 0}}
+{\sp{\sn fFilled}{\sv 1}}{\sp{\sn fillColor}{\sv 15921906}}{\sp{\sn fillOpacity}{\sv 65536}}
+{\sp{\sn fLine}{\sv 0}}
+{\sp{\sn dxTextLeft}{\sv 0}}{\sp{\sn dxTextRight}{\sv 0}}{\sp{\sn dyTextTop}{\sv 0}}{\sp{\sn dyTextBottom}{\sv 0}}
+{\sp{\sn posrelh}{\sv 1}}
+{\sp{\sn posrelv}{\sv 2}}
+{\shptxt\pard\plain\s1\nooverflow\nocwrap\lnbrkrule\li108\sl240\slmult1\sb58\f2\fs22\b1 ANNEX A. DETAILED SCHEDULE\par}}}
+\pard\plain\s1\nooverflow\nocwrap\lnbrkrule\sl240\slmult1\sb6\f2\fs22\b1\i0\par\pard\plain\s1\nooverflow\nocwrap\lnbrkrule\sl240\slmult1\sb2\f2\fs21\b1\i0\par\sect\sectd\sbknone\cols3\colno1\colw6881\colsr1009\colno2\colw1150\colsr988\colno3\colw1352\pard\plain\s1\nooverflow\nocwrap\lnbrkrule\li5931\fi-5567\ri38\qr\sl168\slmult1\sb77\tx4044\tx5164\f2\fs22\b1\dn14\cf6 Name\tab Original\tab \f2\fs22\b1\i0\up0 Revised at\expnd0\expndtw-1  \f2\fs22\b1\i0\expnd0\expndtw0 the \f2\fs22\b1\i0\expnd-1\expndtw-4 last\f2\fs22\b1\i0\expnd0\expndtw0  \expnd0\expndtw-1 milestone\par\pard\plain\s1\nooverflow\nocwrap\lnbrkrule\li364\fi191\ri21\sl256\slmult1\sb56 \column \f2\fs22\b1\cf6 Latest Planned\par\pard\plain\s1\nooverflow\nocwrap\lnbrkrule\sl240\slmult1\sb4 \column \f2\fs16\b1\i0\par\pard\plain\s1\nooverflow\nocwrap\lnbrkrule\li364\sl240\slmult1\f2\fs22\b1\cf6 Actual\par\sect\sectd\sbknone\cols1\colno1\colw11380\pard\plain\s1\nooverflow\nocwrap\lnbrkrule\li195\sl-20\f2\fs2
+{\field\fldlock
+{\*\fldinst SHAPE  \\* MERGEFORMAT}
+{\fldrslt 
+{\shpgrp{\*\shpinst\shplid547
+\shpleft0\shptop0\shpright10890\shpbottom20\shpfhdr0
+\shpbxcolumn\shpbxignore\shpbypara\shpbyignore\shpwr3\shpwrk0\shpfblwtxt1\shpz22
+\shplockanchor
+\shpwr3\shpwrk0\shpfblwtxt1{\sp{\sn groupLeft}{\sv 0}}
+{\sp{\sn groupTop}{\sv 0}}
+{\sp{\sn groupRight}{\sv 10890}}
+{\sp{\sn groupBottom}{\sv 20}}
+{\sp{\sn fFlipH}{\sv 0}}
+{\sp{\sn fFlipV}{\sv 0}}
+{\sp{\sn fPseudoInline}{\sv 1}}
+{\sp{\sn lidRegroup}{\sv 0}}
+{\sp{\sn posrelh}{\sv 3}}
+{\sp{\sn posrelv}{\sv 3}}
+
+{\shp{\*\shpinst\shplid548
+{\sp{\sn relLeft}{\sv 0}}
+{\sp{\sn relTop}{\sv 5}}
+{\sp{\sn relRight}{\sv 10890}}
+{\sp{\sn relBottom}{\sv 25}}
+{\sp{\sn fRelFlipH}{\sv 0}}
+{\sp{\sn fRelFlipV}{\sv 0}}
+{\sp{\sn shapeType}{\sv 0}}
+{\sp{\sn rotation}{\sv 0}}
+{\sp{\sn geoRight}{\sv 10890}}
+{\sp{\sn geoBottom}{\sv 20}}
+{\sp{\sn shapePath}{\sv 4}}
+{\sp{\sn pVerticies}{\sv 8;2;(0,0);(10890,0)}}
+{\sp{\sn pSegmentInfo}{\sv 2;5;16384;45824;1;45824;32768}}
+{\sp{\sn fFillOK}{\sv 1}}
+{\sp{\sn fFilled}{\sv 0}}
+{\sp{\sn lineWidth}{\sv 6350}}
+{\sp{\sn lineColor}{\sv 14671839}}
+{\sp{\sn fLine}{\sv 1}}{\sp{\sn lineType}{\sv 0}}
+{\sp{\sn posrelh}{\sv 1}}
+{\sp{\sn posrelv}{\sv 1}}
+{\sp{\sn fArrowheadsOK}{\sv 1}}
+{\sp{\sn fBehindDocument}{\sv 1}}
+}}
+}}
+{\pict
+{\*\picprop\defshp\shplid547
+{\sp{\sn shapeType}{\sv 75}}
+{\sp{\sn fFlipH}{\sv 0}}
+{\sp{\sn fFlipV}{\sv 0}}
+{\sp{\sn fPseudoInline}{\sv 1}}
+{\sp{\sn fLayoutInCell}{\sv 1}}
+{\sp{\sn fLockPosition}{\sv 1}}
+{\sp{\sn fLockRotation}{\sv 1}}
+}
+\piccropl0\piccropr0\piccropt-20\piccropb20\picwgoal10890\pichgoal20
+\wmetafile8\bliptag-1003278350\blipupi72
+}
+}}
+\par
+{\shp{\*\shpinst
+\shpleft720\shptop469\shpright11610\shpbottom489
+\shpfhdr0\shpwr3\shpwrk0\shplid606\shpz26
+\shpbxpage\shpbypara\shpwr3\shpfblwtxt0{\sp{\sn fFlipH}{\sv 0}}
+{\sp{\sn fFlipV}{\sv 0}}
+{\sp{\sn shapeType}{\sv 0}}
+{\sp{\sn rotation}{\sv 0}}
+{\sp{\sn geoRight}{\sv 10890}}
+{\sp{\sn geoBottom}{\sv 20}}
+{\sp{\sn shapePath}{\sv 4}}
+{\sp{\sn pVerticies}{\sv 8;2;(0,0);(10890,0)}}
+{\sp{\sn pSegmentInfo}{\sv 2;5;16384;45824;1;45824;32768}}
+{\sp{\sn fFillOK}{\sv 1}}
+{\sp{\sn fFilled}{\sv 0}}
+{\sp{\sn lineWidth}{\sv 6350}}
+{\sp{\sn lineColor}{\sv 14671839}}
+{\sp{\sn fLine}{\sv 1}}{\sp{\sn lineType}{\sv 0}}
+{\sp{\sn posrelh}{\sv 1}}
+{\sp{\sn posrelv}{\sv 2}}
+{\sp{\sn fArrowheadsOK}{\sv 1}}
+}}
+\pard\plain\s1\nooverflow\nocwrap\lnbrkrule\li290\sl240\slmult1\sb91\tx9851\f4\fs22\b0 AIN\expnd-1\expndtw-3  \f4\fs22\b0\i0\expnd0\expndtw0 Sign-off\tab 30-Apr-2019\par\sect\sectd\sbknone\cols2\colno1\colw2622\colsr703\colno2\colw8055\pard\plain\s1\nooverflow\nocwrap\lnbrkrule\li290\ri21\sl256\slmult1\sb129\f4\fs22\b0 Management Approval of Concept\par\pard\plain\s1\nooverflow\nocwrap\lnbrkrule\sl240\slmult1\sb3 \column \f4\fs22\b0\i0\par\pard\plain\s1\nooverflow\nocwrap\lnbrkrule\li290\sl240\slmult1\sb1\tx2398\tx6520\f4\fs22\b0 12-Aug-2019\tab 01-Oct-2019\tab 27-Sep-2019\par\sect\sectd\sbknone\cols1\colno1\colw11380
+{\shp{\*\shpinst\shpleft314\shpright554\shptop6154\shpbottom7850\shpbxpage\shpbypage\shpwr3\shpfblwtxt0\shpz28\shplid608
+{\sp{\sn shapeType}{\sv 202}}{\sp{\sn fFlipH}{\sv 0}}{\sp{\sn fFlipV}{\sv 0}}
+{\sp{\sn txflTextFlow}{\sv 2}}
+{\sp{\sn fFilled}{\sv 0}}
+{\sp{\sn fLine}{\sv 0}}
+{\sp{\sn dxTextLeft}{\sv 0}}{\sp{\sn dxTextRight}{\sv 0}}{\sp{\sn dyTextTop}{\sv 0}}{\sp{\sn dyTextBottom}{\sv 0}}
+{\sp{\sn posrelh}{\sv 1}}
+{\sp{\sn posrelv}{\sv 1}}
+{\shptxt\pard\plain\s1\nooverflow\nocwrap\lnbrkrule\li20\sl-224\f4\fs20\b0\cf6 For Official Use Only\par}}}
+\pard\plain\s1\nooverflow\nocwrap\lnbrkrule\li195\sl-20\f4\fs2
+{\field\fldlock
+{\*\fldinst SHAPE  \\* MERGEFORMAT}
+{\fldrslt 
+{\shpgrp{\*\shpinst\shplid558
+\shpleft0\shptop0\shpright10890\shpbottom20\shpfhdr0
+\shpbxcolumn\shpbxignore\shpbypara\shpbyignore\shpwr3\shpwrk0\shpfblwtxt1\shpz23
+\shplockanchor
+\shpwr3\shpwrk0\shpfblwtxt1{\sp{\sn groupLeft}{\sv 0}}
+{\sp{\sn groupTop}{\sv 0}}
+{\sp{\sn groupRight}{\sv 10890}}
+{\sp{\sn groupBottom}{\sv 20}}
+{\sp{\sn fFlipH}{\sv 0}}
+{\sp{\sn fFlipV}{\sv 0}}
+{\sp{\sn fPseudoInline}{\sv 1}}
+{\sp{\sn lidRegroup}{\sv 0}}
+{\sp{\sn posrelh}{\sv 3}}
+{\sp{\sn posrelv}{\sv 3}}
+
+{\shp{\*\shpinst\shplid559
+{\sp{\sn relLeft}{\sv 0}}
+{\sp{\sn relTop}{\sv 5}}
+{\sp{\sn relRight}{\sv 10890}}
+{\sp{\sn relBottom}{\sv 25}}
+{\sp{\sn fRelFlipH}{\sv 0}}
+{\sp{\sn fRelFlipV}{\sv 0}}
+{\sp{\sn shapeType}{\sv 0}}
+{\sp{\sn rotation}{\sv 0}}
+{\sp{\sn geoRight}{\sv 10890}}
+{\sp{\sn geoBottom}{\sv 20}}
+{\sp{\sn shapePath}{\sv 4}}
+{\sp{\sn pVerticies}{\sv 8;2;(0,0);(10890,0)}}
+{\sp{\sn pSegmentInfo}{\sv 2;5;16384;45824;1;45824;32768}}
+{\sp{\sn fFillOK}{\sv 1}}
+{\sp{\sn fFilled}{\sv 0}}
+{\sp{\sn lineWidth}{\sv 6350}}
+{\sp{\sn lineColor}{\sv 14671839}}
+{\sp{\sn fLine}{\sv 1}}{\sp{\sn lineType}{\sv 0}}
+{\sp{\sn posrelh}{\sv 1}}
+{\sp{\sn posrelv}{\sv 1}}
+{\sp{\sn fArrowheadsOK}{\sv 1}}
+{\sp{\sn fBehindDocument}{\sv 1}}
+}}
+}}
+{\pict
+{\*\picprop\defshp\shplid558
+{\sp{\sn shapeType}{\sv 75}}
+{\sp{\sn fFlipH}{\sv 0}}
+{\sp{\sn fFlipV}{\sv 0}}
+{\sp{\sn fPseudoInline}{\sv 1}}
+{\sp{\sn fLayoutInCell}{\sv 1}}
+{\sp{\sn fLockPosition}{\sv 1}}
+{\sp{\sn fLockRotation}{\sv 1}}
+}
+\piccropl0\piccropr0\piccropt-20\piccropb20\picwgoal10890\pichgoal20
+\wmetafile8\bliptag-1003278350\blipupi72
+}
+}}
+\par
+{\shp{\*\shpinst
+\shpleft720\shptop467\shpright11610\shpbottom487
+\shpfhdr0\shpwr3\shpwrk0\shplid561\shpz24
+\shpbxpage\shpbypara\shpwr1{\sp{\sn fFlipH}{\sv 0}}
+{\sp{\sn fFlipV}{\sv 0}}
+{\sp{\sn dxWrapDistLeft}{\sv 0}}{\sp{\sn dxWrapDistRight}{\sv 0}}{\sp{\sn shapeType}{\sv 0}}
+{\sp{\sn rotation}{\sv 0}}
+{\sp{\sn geoRight}{\sv 10890}}
+{\sp{\sn geoBottom}{\sv 20}}
+{\sp{\sn shapePath}{\sv 4}}
+{\sp{\sn pVerticies}{\sv 8;2;(0,0);(10890,0)}}
+{\sp{\sn pSegmentInfo}{\sv 2;5;16384;45824;1;45824;32768}}
+{\sp{\sn fFillOK}{\sv 1}}
+{\sp{\sn fFilled}{\sv 0}}
+{\sp{\sn lineWidth}{\sv 6350}}
+{\sp{\sn lineColor}{\sv 14671839}}
+{\sp{\sn fLine}{\sv 1}}{\sp{\sn lineType}{\sv 0}}
+{\sp{\sn posrelh}{\sv 1}}
+{\sp{\sn posrelv}{\sv 2}}
+{\sp{\sn fArrowheadsOK}{\sv 1}}
+}}
+\pard\plain\s1\nooverflow\nocwrap\lnbrkrule\li290\sl240\slmult1\sb89\tx3591\tx5734\f4\fs22\b0 Completion\expnd-1\expndtw-4  \f4\fs22\b0\i0\expnd0\expndtw0 Summary\tab 31-Mar-2020\tab 15-Jun-2020\par\pard\plain\s1\nooverflow\nocwrap\lnbrkrule\sl240\slmult1\f4\fs20\b0\i0\par
+{\shp{\*\shpinst\shpleft720\shpright11610\shptop320\shpbottom673\shpbxpage\shpbypara\shpwr1\shpz25\shplid564{\sp{\sn dxWrapDistLeft}{\sv 0}}{\sp{\sn dxWrapDistRight}{\sv 0}}
+{\sp{\sn shapeType}{\sv 202}}{\sp{\sn fFlipH}{\sv 0}}{\sp{\sn fFlipV}{\sv 0}}
+{\sp{\sn txflTextFlow}{\sv 0}}
+{\sp{\sn fFilled}{\sv 1}}{\sp{\sn fillColor}{\sv 15921906}}{\sp{\sn fillOpacity}{\sv 65536}}
+{\sp{\sn fLine}{\sv 0}}
+{\sp{\sn dxTextLeft}{\sv 0}}{\sp{\sn dxTextRight}{\sv 0}}{\sp{\sn dyTextTop}{\sv 0}}{\sp{\sn dyTextBottom}{\sv 0}}
+{\sp{\sn posrelh}{\sv 1}}
+{\sp{\sn posrelv}{\sv 2}}
+{\shptxt\pard\plain\s1\nooverflow\nocwrap\lnbrkrule\li90\sl240\slmult1\sb33\f2\fs22\b1 ANNEX B. DETAILED BUDGET\par}}}
+\pard\plain\s1\nooverflow\nocwrap\lnbrkrule\sl240\slmult1\sb2\f4\fs24\b0\i0\par\pard\plain\s1\nooverflow\nocwrap\lnbrkrule\sl240\slmult1\sb8\f4\fs17\b0\i0\par\pard\plain\s1\nooverflow\nocwrap\lnbrkrule\li290\sl240\slmult1\sb56\f2\fs22\b1\cf5 Budget Plan vs Actual (USD)\par\pard\plain\s1\nooverflow\nocwrap\lnbrkrule\sl240\slmult1\sb4\f2\fs26\b1\i0\par\pard\plain\s1\nooverflow\nocwrap\lnbrkrule\li3983\sl240\slmult1\sb55\tx8177\f2\fs22\b1\cf9 Cumulative\expnd0\expndtw-2  \f2\fs22\b1\i0\expnd0\expndtw0 Budget\tab Current FY\expnd-1\expndtw-3  \f2\fs22\b1\i0\expnd0\expndtw0 (2020)\par\pard\plain\s1\nooverflow\nocwrap\lnbrkrule\sl240\slmult1\sb5\f2\fs7\b1\i0\par
+\trowd\irow0\trgaph0\trrh859\trql\trleft195
+\clvertalt\clbrdrt\brdrs\brdrcf12\brdrw30\clbrdrl\brdrnone\brdrw15\clbrdrr\brdrnone\brdrw15\clbrdrb\brdrs\brdrcf12\brdrw10\cltxlrtb\cellx2376
+\clvertalt\clbrdrt\brdrs\brdrcf12\brdrw30\clbrdrl\brdrnone\brdrw15\clbrdrr\brdrnone\brdrw15\clbrdrb\brdrs\brdrcf12\brdrw10\cltxlrtb\cellx4364
+\clvertalt\clbrdrt\brdrs\brdrcf12\brdrw30\clbrdrl\brdrnone\brdrw15\clbrdrr\brdrnone\brdrw15\clbrdrb\brdrs\brdrcf12\brdrw10\cltxlrtb\cellx5720
+\clvertalt\clbrdrt\brdrs\brdrcf12\brdrw30\clbrdrl\brdrnone\brdrw15\clbrdrr\brdrs\brdrcf12\brdrw10\clbrdrb\brdrs\brdrcf12\brdrw10\cltxlrtb\cellx6765
+\clvertalt\clbrdrt\brdrs\brdrcf12\brdrw30\clbrdrl\brdrs\brdrcf12\brdrw10\clbrdrr\brdrnone\brdrw15\clbrdrb\brdrs\brdrcf12\brdrw10\cltxlrtb\cellx7822
+\clvertalt\clbrdrt\brdrs\brdrcf12\brdrw30\clbrdrl\brdrnone\brdrw15\clbrdrr\brdrnone\brdrw15\clbrdrb\brdrs\brdrcf12\brdrw10\cltxlrtb\cellx8556
+\clvertalt\clbrdrt\brdrs\brdrcf12\brdrw30\clbrdrl\brdrnone\brdrw15\clbrdrr\brdrnone\brdrw15\clbrdrb\brdrs\brdrcf12\brdrw10\cltxlrtb\cellx9899
+\clvertalt\clbrdrt\brdrs\brdrcf12\brdrw30\clbrdrl\brdrnone\brdrw15\clbrdrr\brdrnone\brdrw15\clbrdrb\brdrs\brdrcf12\brdrw10\cltxlrtb\cellx11179
+{\pard\plain\intbl\s4\nooverflow\nocwrap\lnbrkrule\sl240\slmult1\sb5\f2\fs23\b1\i0\par\pard\plain\intbl\s4\nooverflow\nocwrap\lnbrkrule\li95\sl240\slmult1\f2\fs22\b1\cf9 Source of Fund\cell}
+{\pard\plain\intbl\s4\nooverflow\nocwrap\lnbrkrule\sl240\slmult1\sb5\f2\fs23\b1\i0\par\pard\plain\intbl\s4\nooverflow\nocwrap\lnbrkrule\li732\sl240\slmult1\f2\fs22\b1\cf9 Activity Plan\cell}
+{\pard\plain\intbl\s4\nooverflow\nocwrap\lnbrkrule\li125\fi528\ri100\sl256\slmult1\f2\fs22\b1\cf9 Actual Expenditure\par\pard\plain\intbl\s4\nooverflow\nocwrap\lnbrkrule\li557\sl-265\f2\fs22\b1\cf9 to\expnd0\expndtw-2  \f2\fs22\b1\i0\expnd0\expndtw0 Date\cell}
+{\pard\plain\intbl\s4\nooverflow\nocwrap\lnbrkrule\li210\fi-79\ri65\sl256\slmult1\sb143\f2\fs22\b1\cf9 Actual vs Plan (%)\cell}
+{\pard\plain\intbl\s4\nooverflow\nocwrap\lnbrkrule\ri207\qr\sl240\slmult1\sb143\f2\fs22\b1\expnd0\expndtw-1\cf9 Activity\par\pard\plain\intbl\s4\nooverflow\nocwrap\lnbrkrule\ri208\qr\sl240\slmult1\sb18\f2\fs22\b1\expnd0\expndtw-1\cf9 Plan\cell}
+{\pard\plain\intbl\s4\nooverflow\nocwrap\lnbrkrule\li218\sl240\slmult1\sb143\f2\fs22\b1\cf9 WPA\par\pard\plain\intbl\s4\nooverflow\nocwrap\lnbrkrule\li270\sl240\slmult1\sb18\f2\fs22\b1\cf9 Plan\cell}
+{\pard\plain\intbl\s4\nooverflow\nocwrap\lnbrkrule\li73\sl240\slmult1\sb143\f2\fs22\b1\cf9 Expenditure\par\pard\plain\intbl\s4\nooverflow\nocwrap\lnbrkrule\li685\sl240\slmult1\sb18\f2\fs22\b1\cf9 (YTD)\cell}
+{\pard\plain\intbl\s4\nooverflow\nocwrap\lnbrkrule\li334\fi-171\ri159\sl256\slmult1\sb143\f2\fs22\b1\cf9 WPA Burn Rate (%)\cell}\row\pard
+{\shp{\*\shpinst
+\shpleft720\shptop437\shpright11700\shpbottom457
+\shpfhdr0\shpwr3\shpwrk0\shplid607\shpz27
+\shpbxpage\shpbypara\shpwr3\shpfblwtxt0{\sp{\sn fFlipH}{\sv 0}}
+{\sp{\sn fFlipV}{\sv 0}}
+{\sp{\sn shapeType}{\sv 0}}
+{\sp{\sn rotation}{\sv 0}}
+{\sp{\sn geoRight}{\sv 10980}}
+{\sp{\sn geoBottom}{\sv 20}}
+{\sp{\sn shapePath}{\sv 4}}
+{\sp{\sn pVerticies}{\sv 8;2;(0,0);(10980,0)}}
+{\sp{\sn pSegmentInfo}{\sv 2;5;16384;45824;1;45824;32768}}
+{\sp{\sn fFillOK}{\sv 1}}
+{\sp{\sn fFilled}{\sv 0}}
+{\sp{\sn lineWidth}{\sv 6350}}
+{\sp{\sn lineColor}{\sv 14671839}}
+{\sp{\sn fLine}{\sv 1}}{\sp{\sn lineType}{\sv 0}}
+{\sp{\sn posrelh}{\sv 1}}
+{\sp{\sn posrelv}{\sv 2}}
+{\sp{\sn fArrowheadsOK}{\sv 1}}
+}}
+\pard\plain\s1\nooverflow\nocwrap\lnbrkrule\li290\sl240\slmult1\sb73\tx3525\tx4875\tx6345\tx7500\tx9015\tqr\tx10999\f4\fs22\b0 Bank\expnd0\expndtw-1  \f4\fs22\b0\i0\expnd0\expndtw0 Budget\tab 175,000\tab 197,474\tab 113\tab 0  \expnd1\expndtw4  \f4\fs22\b0\i0\expnd0\expndtw0 205,000\tab 197,474\tab 96\par\pard\plain\s1\nooverflow\nocwrap\lnbrkrule\li308\sl240\slmult1\sb408\f2\fs22\b1\cf5 Budget Plan (USD)\par\sect\sectd\sbkpage\headery728\footery1137
+{\shp{\*\shpinst\shpleft314\shpright554\shptop6154\shpbottom7850\shpbxpage\shpbypage\shpwr3\shpfblwtxt0\shpz29\shplid687
+{\sp{\sn shapeType}{\sv 202}}{\sp{\sn fFlipH}{\sv 0}}{\sp{\sn fFlipV}{\sv 0}}
+{\sp{\sn txflTextFlow}{\sv 2}}
+{\sp{\sn fFilled}{\sv 0}}
+{\sp{\sn fLine}{\sv 0}}
+{\sp{\sn dxTextLeft}{\sv 0}}{\sp{\sn dxTextRight}{\sv 0}}{\sp{\sn dyTextTop}{\sv 0}}{\sp{\sn dyTextBottom}{\sv 0}}
+{\sp{\sn posrelh}{\sv 1}}
+{\sp{\sn posrelv}{\sv 1}}
+{\shptxt\pard\plain\s1\nooverflow\nocwrap\lnbrkrule\li20\sl-224\f4\fs20\b0\cf6 For Official Use Only\par}}}
+\pard\plain\s1\nooverflow\nocwrap\lnbrkrule\sl240\slmult1\f2\fs20\b1\i0\par\pard\plain\s1\nooverflow\nocwrap\lnbrkrule\sl240\slmult1\f2\fs16\b1\i0\par\pard\plain\s1\nooverflow\nocwrap\lnbrkrule\li308\sl240\slmult1\sb55\f2\fs22\b1\cf5 Costing\par\pard\plain\s1\nooverflow\nocwrap\lnbrkrule\sl240\slmult1\sb11\f2\fs24\b1\i0\par\pard\plain\s1\nooverflow\nocwrap\lnbrkrule\li308\ri7585\sl285\slmult1\sb1\f4\fs22\b0\cf6 Do you want to plan the budget by FY? \f4\fs22\b0\i0\cf1 No\par\pard\plain\s1\nooverflow\nocwrap\lnbrkrule\sl240\slmult1\sb3\f4\fs23\b0\i0\par\pard\plain\s1\nooverflow\nocwrap\lnbrkrule\li308\sl240\slmult1\sb1\f4\fs22\b0\cf6 Do you want to plan your budget by Subtasks?\par\pard\plain\s1\nooverflow\nocwrap\lnbrkrule\sl240\slmult1\f4\fs22\b0\i0\par\pard\plain\s1\nooverflow\nocwrap\lnbrkrule\sl240\slmult1\f4\fs22\b0\i0\par\pard\plain\s1\nooverflow\nocwrap\lnbrkrule\sl240\slmult1\sb5\f4\fs17\b0\i0\par\pard\plain\s1\nooverflow\nocwrap\lnbrkrule\li315\sl240\slmult1\tx9206\f2\fs22\b1\cf6 Source\expnd0\expndtw-2  \f2\fs22\b1\i0\expnd0\expndtw0 of Fund\tab \f2\fs22\b1\i0\cf9 Cumulative\expnd0\expndtw-1  \f2\fs22\b1\i0\expnd0\expndtw0 Budget\par\pard\plain\s1\nooverflow\nocwrap\lnbrkrule\sl240\slmult1\sb4\f2\fs21\b1\i0\par\pard\plain\s1\nooverflow\nocwrap\lnbrkrule\li200\sl240\slmult1\sb55\tx11077\f2\fs22\b1{\chcbpat14  \expnd3\expndtw15  \expnd0\expndtw0 Grand\expnd-1\expndtw-4  \f2\fs22\b1\i0\expnd0\expndtw0 Total\tab }\par\pard\plain\s1\nooverflow\nocwrap\lnbrkrule\sl240\slmult1\sb11\f2\fs18\b1\i0\par\pard\plain\s1\nooverflow\nocwrap\lnbrkrule\li364\sl240\slmult1\sb55\tx10209\f4\fs22\b0 Grand\expnd0\expndtw-2  \f4\fs22\b0\i0\expnd0\expndtw0 Total\expnd0\expndtw-1  \f4\fs22\b0\i0\expnd0\expndtw0 Cost\tab \f4\fs22\b0\i0\up1 175,000\par\pard\plain\s1\nooverflow\nocwrap\lnbrkrule\sl240\slmult1\f4\fs22\b0\i0\par\pard\plain\s1\nooverflow\nocwrap\lnbrkrule\sl240\slmult1\sb1\f4\fs20\b0\i0\par\pard\plain\s1\nooverflow\nocwrap\lnbrkrule\li364\sl240\slmult1\sb1\tx10209\f4\fs22\b0 Bank\expnd0\expndtw-1  \f4\fs22\b0\i0\expnd0\expndtw0 Budget\tab \f4\fs22\b0\i0\up1 175,000\par\pard\plain\s1\nooverflow\nocwrap\lnbrkrule\sl240\slmult1\f4\fs20\b0\i0\par\pard\plain\s1\nooverflow\nocwrap\lnbrkrule\sl240\slmult1\f4\fs20\b0\i0\par\pard\plain\s1\nooverflow\nocwrap\lnbrkrule\sl240\slmult1\f4\fs20\b0\i0\par\pard\plain\s1\nooverflow\nocwrap\lnbrkrule\sl240\slmult1\f4\fs20\b0\i0\par\pard\plain\s1\nooverflow\nocwrap\lnbrkrule\sl240\slmult1\f4\fs20\b0\i0\par\pard\plain\s1\nooverflow\nocwrap\lnbrkrule\sl240\slmult1\f4\fs20\b0\i0\par\pard\plain\s1\nooverflow\nocwrap\lnbrkrule\sl240\slmult1\f4\fs20\b0\i0\par\pard\plain\s1\nooverflow\nocwrap\lnbrkrule\sl240\slmult1\f4\fs20\b0\i0\par\pard\plain\s1\nooverflow\nocwrap\lnbrkrule\sl240\slmult1\sb3\f4\fs15\b0\i0\par\pard\plain\s1\nooverflow\nocwrap\lnbrkrule\li200\sl240\slmult1\sb56\tx11179\f2\fs22\b1{\chcbpat13  \expnd2\expndtw8  \expnd0\expndtw0 ANNEX C. PAYMENT\expnd-2\expndtw-8  \f2\fs22\b1\i0\expnd0\expndtw0 SCHEDULE\tab }\par\pard\plain\s1\nooverflow\nocwrap\lnbrkrule\sl240\slmult1\f2\fs20\b1\i0\par\pard\plain\s1\nooverflow\nocwrap\lnbrkrule\sl240\slmult1\f2\fs20\b1\i0\par\pard\plain\s1\nooverflow\nocwrap\lnbrkrule\sl240\slmult1\sb4\f2\fs11\b1\i0\par
+\trowd\irow0\trgaph0\trrh422\trql\trleft198
+\clvertalt\clbrdrt\brdrnone\brdrw15\clbrdrl\brdrnone\brdrw15\clbrdrr\brdrnone\brdrw15\clbrdrb\brdrnone\brdrw15\clcbpat13\cltxlrtb\cellx11178
+{\pard\plain\intbl\s4\nooverflow\nocwrap\lnbrkrule\li110\sl240\slmult1\sb58\f2\fs22\b1 ANNEX D. DELIVERABLES DETAILS\cell}\row
+\trowd\irow1\trgaph0\trrh286\trql\trleft198
+\clvertalt\clbrdrt\brdrnone\brdrw15\clbrdrl\brdrnone\brdrw15\clbrdrr\brdrnone\brdrw15\clbrdrb\brdrnone\brdrw15\clcbpat14\cltxlrtb\cellx11178
+{\pard\plain\intbl\s4\nooverflow\nocwrap\lnbrkrule\li110\sl-266\f2\fs22\b1 Not Categorized\cell}\row
+\trowd\irow2\trgaph0\trrh864\trql\trleft198
+\clvertalt\clbrdrt\brdrnone\brdrw15\clbrdrl\brdrnone\brdrw15\clbrdrr\brdrs\brdrcf12\brdrw5\clbrdrb\brdrs\brdrcf12\brdrw5\cltxlrtb\cellx4878
+\clvertalt\clbrdrt\brdrnone\brdrw15\clbrdrl\brdrs\brdrcf12\brdrw5\clbrdrr\brdrnone\brdrw15\clbrdrb\brdrs\brdrcf12\brdrw5\cltxlrtb\cellx11178
+{\pard\plain\intbl\s4\nooverflow\nocwrap\lnbrkrule\li117\sl240\slmult1\sb72\f4\fs22\b0\cf6 Deliverable Name\par\pard\plain\intbl\s4\nooverflow\nocwrap\lnbrkrule\li117\sl240\slmult1\sb164{\field {\fldinst { HYPERLINK "http://operationsdashboard.worldbank.org/project/secure/sap/forms/aus?projId=P170978&stage=AUS&devliverableid=DLV0303044&deliverables" }}{\fldrslt \f4\fs22\b0\cf11{\ul Russia Skills and Returns to Education}}
+}\f4\fs22\b0\cf11 {\ul }\cell}
+{\pard\plain\intbl\s4\nooverflow\nocwrap\lnbrkrule\li115\sl240\slmult1\sb72\f4\fs22\b0\cf6 Decision Review Required?\par\pard\plain\intbl\s4\nooverflow\nocwrap\lnbrkrule\li115\sl240\slmult1\sb164\f4\fs22\b0 Yes\cell}\row
+\trowd\irow3\trgaph0\trrh863\trql\trleft198
+\clvertalt\clbrdrt\brdrs\brdrcf12\brdrw5\clbrdrl\brdrnone\brdrw15\clbrdrr\brdrs\brdrcf12\brdrw5\clbrdrb\brdrs\brdrcf12\brdrw5\cltxlrtb\cellx4878
+\clvertalt\clbrdrt\brdrs\brdrcf12\brdrw5\clbrdrl\brdrs\brdrcf12\brdrw5\clbrdrr\brdrnone\brdrw15\clbrdrb\brdrs\brdrcf12\brdrw5\cltxlrtb\cellx11178
+{\pard\plain\intbl\s4\nooverflow\nocwrap\lnbrkrule\li117\sl240\slmult1\sb72\f4\fs22\b0\cf6 Status\par\pard\plain\intbl\s4\nooverflow\nocwrap\lnbrkrule\li117\sl240\slmult1\sb164\f4\fs22\b0 Planned\cell}
+{\pard\plain\intbl\s4\nooverflow\nocwrap\lnbrkrule\li115\sl240\slmult1\sb72\f4\fs22\b0\cf8 Deliverable Creation Date\par\pard\plain\intbl\s4\nooverflow\nocwrap\lnbrkrule\li115\sl240\slmult1\sb164\f4\fs22\b0 30-Apr-2019\cell}\row
+\trowd\irow4\trgaph0\trrh864\trql\trleft198
+\clvertalt\clbrdrt\brdrs\brdrcf12\brdrw5\clbrdrl\brdrnone\brdrw15\clbrdrr\brdrs\brdrcf12\brdrw5\clbrdrb\brdrs\brdrcf12\brdrw5\cltxlrtb\cellx4878
+\clvertalt\clbrdrt\brdrs\brdrcf12\brdrw5\clbrdrl\brdrs\brdrcf12\brdrw5\clbrdrr\brdrnone\brdrw15\clbrdrb\brdrs\brdrcf12\brdrw5\cltxlrtb\cellx11178
+{\pard\plain\intbl\s4\nooverflow\nocwrap\lnbrkrule\li117\sl240\slmult1\sb72\f4\fs22\b0\cf6 Planned Completion Date\par\pard\plain\intbl\s4\nooverflow\nocwrap\lnbrkrule\li117\sl240\slmult1\sb164\f4\fs22\b0 10-Jun-2020\cell}
+{\pard\plain\intbl\s4\nooverflow\nocwrap\lnbrkrule\sl240\slmult1\f0\fs20\cell}\row
+\trowd\irow5\trgaph0\trrh864\trql\trleft198
+\clvertalt\clbrdrt\brdrs\brdrcf12\brdrw5\clbrdrl\brdrnone\brdrw15\clbrdrr\brdrs\brdrcf12\brdrw5\clbrdrb\brdrs\brdrcf12\brdrw5\cltxlrtb\cellx4878
+\clvertalt\clbrdrt\brdrs\brdrcf12\brdrw5\clbrdrl\brdrs\brdrcf12\brdrw5\clbrdrr\brdrnone\brdrw15\clbrdrb\brdrs\brdrcf12\brdrw5\cltxlrtb\cellx11178
+{\pard\plain\intbl\s4\nooverflow\nocwrap\lnbrkrule\li117\sl240\slmult1\sb72\f4\fs22\b0\cf6 Lead\par\pard\plain\intbl\s4\nooverflow\nocwrap\lnbrkrule\li117\sl240\slmult1\sb164\f4\fs22\b0 Suhas D. Parandekar\cell}
+{\pard\plain\intbl\s4\nooverflow\nocwrap\lnbrkrule\sl240\slmult1\f0\fs20\cell}\row\pard\sect\sectd\sbkpage\headery728\footery1137
+{\shp{\*\shpinst\shpleft314\shpright554\shptop6154\shpbottom7850\shpbxpage\shpbypage\shpwr3\shpfblwtxt0\shpz36\shplid763
+{\sp{\sn shapeType}{\sv 202}}{\sp{\sn fFlipH}{\sv 0}}{\sp{\sn fFlipV}{\sv 0}}
+{\sp{\sn txflTextFlow}{\sv 2}}
+{\sp{\sn fFilled}{\sv 0}}
+{\sp{\sn fLine}{\sv 0}}
+{\sp{\sn dxTextLeft}{\sv 0}}{\sp{\sn dxTextRight}{\sv 0}}{\sp{\sn dyTextTop}{\sv 0}}{\sp{\sn dyTextBottom}{\sv 0}}
+{\sp{\sn posrelh}{\sv 1}}
+{\sp{\sn posrelv}{\sv 1}}
+{\shptxt\pard\plain\s1\nooverflow\nocwrap\lnbrkrule\li20\sl-224\f4\fs20\b0\cf6 For Official Use Only\par}}}
+\pard\plain\s1\nooverflow\nocwrap\lnbrkrule\sl240\slmult1\sb11\f2\fs18\b1\i0\par
+{\shp{\*\shpinst
+\shpleft720\shptop843\shpright11700\shpbottom863
+\shpfhdr0\shpwr3\shpwrk0\shplid761\shpz34
+\shpbxpage\shpbypara\shpwr3\shpfblwtxt1{\sp{\sn fFlipH}{\sv 0}}
+{\sp{\sn fFlipV}{\sv 0}}
+{\sp{\sn shapeType}{\sv 0}}
+{\sp{\sn rotation}{\sv 0}}
+{\sp{\sn geoRight}{\sv 10980}}
+{\sp{\sn geoBottom}{\sv 20}}
+{\sp{\sn shapePath}{\sv 4}}
+{\sp{\sn pVerticies}{\sv 8;2;(0,0);(10980,0)}}
+{\sp{\sn pSegmentInfo}{\sv 2;5;16384;45824;1;45824;32768}}
+{\sp{\sn fFillOK}{\sv 1}}
+{\sp{\sn fFilled}{\sv 0}}
+{\sp{\sn lineWidth}{\sv 3175}}
+{\sp{\sn lineColor}{\sv 14671839}}
+{\sp{\sn fLine}{\sv 1}}{\sp{\sn lineType}{\sv 0}}
+{\sp{\sn posrelh}{\sv 1}}
+{\sp{\sn posrelv}{\sv 2}}
+{\sp{\sn fArrowheadsOK}{\sv 1}}
+{\sp{\sn fBehindDocument}{\sv 1}}
+}}
+\pard\plain\s1\nooverflow\nocwrap\lnbrkrule\li315\ri7343\sl381\slmult1\sb55\f4\fs22\b0\cf6 Deliverable document(s) will be disclosed \f4\fs22\b0\i0\cf1 Yes\par\pard\plain\s1\nooverflow\nocwrap\lnbrkrule\li315\sl240\slmult1\sb10\f4\fs22\b0\cf6 Provide a brief description of the\expnd-5\expndtw-24  \f4\fs22\b0\i0\expnd0\expndtw0 deliverable\par\pard\plain\s1\nooverflow\nocwrap\lnbrkrule\li315\sl240\slmult1\sb91\f4\fs24\b0 Summary note and four working\expnd-3\expndtw-14  \f4\fs24\b0\i0\expnd0\expndtw0 papers.\par\pard\plain\s1\nooverflow\nocwrap\lnbrkrule\sl240\slmult1\f4\fs20\b0\i0\par
+{\shp{\*\shpinst
+\shpleft720\shptop277\shpright11700\shpbottom297
+\shpfhdr0\shpwr3\shpwrk0\shplid699\shpz30
+\shpbxpage\shpbypara\shpwr1{\sp{\sn fFlipH}{\sv 0}}
+{\sp{\sn fFlipV}{\sv 0}}
+{\sp{\sn dxWrapDistLeft}{\sv 0}}{\sp{\sn dxWrapDistRight}{\sv 0}}{\sp{\sn shapeType}{\sv 0}}
+{\sp{\sn rotation}{\sv 0}}
+{\sp{\sn geoRight}{\sv 10980}}
+{\sp{\sn geoBottom}{\sv 20}}
+{\sp{\sn shapePath}{\sv 4}}
+{\sp{\sn pVerticies}{\sv 8;2;(0,0);(10980,0)}}
+{\sp{\sn pSegmentInfo}{\sv 2;5;16384;45824;1;45824;32768}}
+{\sp{\sn fFillOK}{\sv 1}}
+{\sp{\sn fFilled}{\sv 0}}
+{\sp{\sn lineWidth}{\sv 6350}}
+{\sp{\sn lineColor}{\sv 14671839}}
+{\sp{\sn fLine}{\sv 1}}{\sp{\sn lineType}{\sv 0}}
+{\sp{\sn posrelh}{\sv 1}}
+{\sp{\sn posrelv}{\sv 2}}
+{\sp{\sn fArrowheadsOK}{\sv 1}}
+}}
+\pard\plain\s1\nooverflow\nocwrap\lnbrkrule\sl240\slmult1\sb1\f4\fs19\b0\i0\par\pard\plain\s1\nooverflow\nocwrap\lnbrkrule\li328\fi-14\ri383\sl256\slmult1\f4\fs22\b0\cf6 Provide a brief summary of outputs before recommending decision review of the deliverable (if needed) or changing its status to Completed. If applicable, include links to external documents and websites.\par\pard\plain\s1\nooverflow\nocwrap\lnbrkrule\sl240\slmult1\f4\fs20\b0\i0\par
+{\shp{\*\shpinst
+\shpleft720\shptop230\shpright11700\shpbottom250
+\shpfhdr0\shpwr3\shpwrk0\shplid703\shpz31
+\shpbxpage\shpbypara\shpwr1{\sp{\sn fFlipH}{\sv 0}}
+{\sp{\sn fFlipV}{\sv 0}}
+{\sp{\sn dxWrapDistLeft}{\sv 0}}{\sp{\sn dxWrapDistRight}{\sv 0}}{\sp{\sn shapeType}{\sv 0}}
+{\sp{\sn rotation}{\sv 0}}
+{\sp{\sn geoRight}{\sv 10980}}
+{\sp{\sn geoBottom}{\sv 20}}
+{\sp{\sn shapePath}{\sv 4}}
+{\sp{\sn pVerticies}{\sv 8;2;(0,0);(10980,0)}}
+{\sp{\sn pSegmentInfo}{\sv 2;5;16384;45824;1;45824;32768}}
+{\sp{\sn fFillOK}{\sv 1}}
+{\sp{\sn fFilled}{\sv 0}}
+{\sp{\sn lineWidth}{\sv 3175}}
+{\sp{\sn lineColor}{\sv 14671839}}
+{\sp{\sn fLine}{\sv 1}}{\sp{\sn lineType}{\sv 0}}
+{\sp{\sn posrelh}{\sv 1}}
+{\sp{\sn posrelv}{\sv 2}}
+{\sp{\sn fArrowheadsOK}{\sv 1}}
+}}
+\pard\plain\s1\nooverflow\nocwrap\lnbrkrule\sl240\slmult1\sb5\f4\fs15\b0\i0\par\pard\plain\s1\nooverflow\nocwrap\lnbrkrule\sl240\slmult1\sb2\f4\fs21\b0\i0\par
+\trowd\irow0\trgaph0\trrh286\trql\trleft198
+\clvertalt\clbrdrt\brdrnone\brdrw15\clbrdrl\brdrnone\brdrw15\clbrdrr\brdrnone\brdrw15\clbrdrb\brdrnone\brdrw15\clcbpat14\cltxlrtb\cellx11178
+{\pard\plain\intbl\s4\nooverflow\nocwrap\lnbrkrule\li110\sl-266\f2\fs22\b1 Not Categorized\cell}\row
+\trowd\irow1\trgaph0\trrh1004\trql\trleft198
+\clvertalt\clbrdrt\brdrnone\brdrw15\clbrdrl\brdrnone\brdrw15\clbrdrr\brdrs\brdrcf12\brdrw5\clbrdrb\brdrs\brdrcf12\brdrw5\cltxlrtb\cellx4878
+\clvertalt\clbrdrt\brdrnone\brdrw15\clbrdrl\brdrs\brdrcf12\brdrw5\clbrdrr\brdrnone\brdrw15\clbrdrb\brdrs\brdrcf12\brdrw5\cltxlrtb\cellx11178
+{\pard\plain\intbl\s4\nooverflow\nocwrap\lnbrkrule\li117\sl240\slmult1\sb72\f4\fs22\b0\cf6 Deliverable Name\par\pard\plain\intbl\s4\nooverflow\nocwrap\lnbrkrule\li131\fi-14\ri213\sl280\sb80{\field {\fldinst { HYPERLINK "http://operationsdashboard.worldbank.org/project/secure/sap/forms/aus?projId=P170978&stage=AUS&devliverableid=DLV0333847&deliverables" }}{\fldrslt \f4\fs22\b0\cf11{\ul Four Working Papers for Returns to Education in}}
+}\f4\fs22\b0\cf11 {\ul } {\field {\fldinst { HYPERLINK "http://operationsdashboard.worldbank.org/project/secure/sap/forms/aus?projId=P170978&stage=AUS&devliverableid=DLV0333847&deliverables" }}{\fldrslt \f4\fs22\b0\i0{\ul the Russian Federation}}
+}\f4\fs22\b0\i0 {\ul }\cell}
+{\pard\plain\intbl\s4\nooverflow\nocwrap\lnbrkrule\li115\sl240\slmult1\sb72\f4\fs22\b0\cf6 Decision Review Required?\par\pard\plain\intbl\s4\nooverflow\nocwrap\lnbrkrule\sl240\slmult1\sb2\f4\fs19\b0\i0\par\pard\plain\intbl\s4\nooverflow\nocwrap\lnbrkrule\li115\sl240\slmult1\f4\fs22\b0 No\cell}\row
+\trowd\irow2\trgaph0\trrh863\trql\trleft198
+\clvertalt\clbrdrt\brdrs\brdrcf12\brdrw5\clbrdrl\brdrnone\brdrw15\clbrdrr\brdrs\brdrcf12\brdrw5\clbrdrb\brdrs\brdrcf12\brdrw5\cltxlrtb\cellx4878
+\clvertalt\clbrdrt\brdrs\brdrcf12\brdrw5\clbrdrl\brdrs\brdrcf12\brdrw5\clbrdrr\brdrnone\brdrw15\clbrdrb\brdrs\brdrcf12\brdrw5\cltxlrtb\cellx11178
+{\pard\plain\intbl\s4\nooverflow\nocwrap\lnbrkrule\li117\sl240\slmult1\sb72\f4\fs22\b0\cf6 Status\par\pard\plain\intbl\s4\nooverflow\nocwrap\lnbrkrule\li117\sl240\slmult1\sb164\f4\fs22\b0 Completed\cell}
+{\pard\plain\intbl\s4\nooverflow\nocwrap\lnbrkrule\li115\sl240\slmult1\sb72\f4\fs22\b0\cf8 Deliverable Creation Date\par\pard\plain\intbl\s4\nooverflow\nocwrap\lnbrkrule\li115\sl240\slmult1\sb164\f4\fs22\b0 25-Sep-2019\cell}\row
+\trowd\irow3\trgaph0\trrh864\trql\trleft198
+\clvertalt\clbrdrt\brdrs\brdrcf12\brdrw5\clbrdrl\brdrnone\brdrw15\clbrdrr\brdrs\brdrcf12\brdrw5\clbrdrb\brdrs\brdrcf12\brdrw5\cltxlrtb\cellx4878
+\clvertalt\clbrdrt\brdrs\brdrcf12\brdrw5\clbrdrl\brdrs\brdrcf12\brdrw5\clbrdrr\brdrnone\brdrw15\clbrdrb\brdrs\brdrcf12\brdrw5\cltxlrtb\cellx11178
+{\pard\plain\intbl\s4\nooverflow\nocwrap\lnbrkrule\li117\sl240\slmult1\sb72\f4\fs22\b0\cf6 Planned Completion Date\par\pard\plain\intbl\s4\nooverflow\nocwrap\lnbrkrule\li117\sl240\slmult1\sb164\f4\fs22\b0 15-Jun-2020\cell}
+{\pard\plain\intbl\s4\nooverflow\nocwrap\lnbrkrule\li115\sl240\slmult1\sb72\f4\fs22\b0\cf9 Actual Delivery Date\par\pard\plain\intbl\s4\nooverflow\nocwrap\lnbrkrule\li115\sl240\slmult1\sb164\f4\fs22\b0 19-May-2020\cell}\row
+\trowd\irow4\trgaph0\trrh864\trql\trleft198
+\clvertalt\clbrdrt\brdrs\brdrcf12\brdrw5\clbrdrl\brdrnone\brdrw15\clbrdrr\brdrs\brdrcf12\brdrw5\clbrdrb\brdrs\brdrcf12\brdrw5\cltxlrtb\cellx4878
+\clvertalt\clbrdrt\brdrs\brdrcf12\brdrw5\clbrdrl\brdrs\brdrcf12\brdrw5\clbrdrr\brdrnone\brdrw15\clbrdrb\brdrs\brdrcf12\brdrw5\cltxlrtb\cellx11178
+{\pard\plain\intbl\s4\nooverflow\nocwrap\lnbrkrule\li117\sl240\slmult1\sb72\f4\fs22\b0\cf6 Lead\par\pard\plain\intbl\s4\nooverflow\nocwrap\lnbrkrule\li117\sl240\slmult1\sb164\f4\fs22\b0 Suhas D. Parandekar\cell}
+{\pard\plain\intbl\s4\nooverflow\nocwrap\lnbrkrule\sl240\slmult1\f0\fs20\cell}\row\pard
+{\shp{\*\shpinst
+\shpleft720\shptop865\shpright11700\shpbottom885
+\shpfhdr0\shpwr3\shpwrk0\shplid762\shpz35
+\shpbxpage\shpbypara\shpwr3\shpfblwtxt1{\sp{\sn fFlipH}{\sv 0}}
+{\sp{\sn fFlipV}{\sv 0}}
+{\sp{\sn shapeType}{\sv 0}}
+{\sp{\sn rotation}{\sv 0}}
+{\sp{\sn geoRight}{\sv 10980}}
+{\sp{\sn geoBottom}{\sv 20}}
+{\sp{\sn shapePath}{\sv 4}}
+{\sp{\sn pVerticies}{\sv 8;2;(0,0);(10980,0)}}
+{\sp{\sn pSegmentInfo}{\sv 2;5;16384;45824;1;45824;32768}}
+{\sp{\sn fFillOK}{\sv 1}}
+{\sp{\sn fFilled}{\sv 0}}
+{\sp{\sn lineWidth}{\sv 3175}}
+{\sp{\sn lineColor}{\sv 14671839}}
+{\sp{\sn fLine}{\sv 1}}{\sp{\sn lineType}{\sv 0}}
+{\sp{\sn posrelh}{\sv 1}}
+{\sp{\sn posrelv}{\sv 2}}
+{\sp{\sn fArrowheadsOK}{\sv 1}}
+{\sp{\sn fBehindDocument}{\sv 1}}
+}}
+\pard\plain\s1\nooverflow\nocwrap\lnbrkrule\li315\ri7343\sl386\slmult1\sb72\f4\fs22\b0\cf6 Deliverable document(s) will be disclosed \f4\fs22\b0\i0\cf1 Yes\par\pard\plain\s1\nooverflow\nocwrap\lnbrkrule\li315\sl240\slmult1\sb4\f4\fs22\b0\cf6 Provide a brief description of the deliverable\par\pard\plain\s1\nooverflow\nocwrap\lnbrkrule\li315\sl240\slmult1\sb91\f4\fs24\b0 These are four working papers that will be reviewed at the Decision Meeting.\par\pard\plain\s1\nooverflow\nocwrap\lnbrkrule\sl240\slmult1\f4\fs20\b0\i0\par
+{\shp{\*\shpinst
+\shpleft720\shptop277\shpright11700\shpbottom297
+\shpfhdr0\shpwr3\shpwrk0\shplid750\shpz32
+\shpbxpage\shpbypara\shpwr1{\sp{\sn fFlipH}{\sv 0}}
+{\sp{\sn fFlipV}{\sv 0}}
+{\sp{\sn dxWrapDistLeft}{\sv 0}}{\sp{\sn dxWrapDistRight}{\sv 0}}{\sp{\sn shapeType}{\sv 0}}
+{\sp{\sn rotation}{\sv 0}}
+{\sp{\sn geoRight}{\sv 10980}}
+{\sp{\sn geoBottom}{\sv 20}}
+{\sp{\sn shapePath}{\sv 4}}
+{\sp{\sn pVerticies}{\sv 8;2;(0,0);(10980,0)}}
+{\sp{\sn pSegmentInfo}{\sv 2;5;16384;45824;1;45824;32768}}
+{\sp{\sn fFillOK}{\sv 1}}
+{\sp{\sn fFilled}{\sv 0}}
+{\sp{\sn lineWidth}{\sv 6350}}
+{\sp{\sn lineColor}{\sv 14671839}}
+{\sp{\sn fLine}{\sv 1}}{\sp{\sn lineType}{\sv 0}}
+{\sp{\sn posrelh}{\sv 1}}
+{\sp{\sn posrelv}{\sv 2}}
+{\sp{\sn fArrowheadsOK}{\sv 1}}
+}}
+\pard\plain\s1\nooverflow\nocwrap\lnbrkrule\sl240\slmult1\sb1\f4\fs19\b0\i0\par\pard\plain\s1\nooverflow\nocwrap\lnbrkrule\li328\fi-14\ri383\sl256\slmult1\f4\fs22\b0\cf6 Provide a brief summary of outputs before recommending decision review of the deliverable (if needed) or changing its status to Completed. If applicable, include links to external documents and websites.\par\pard\plain\s1\nooverflow\nocwrap\lnbrkrule\sl240\slmult1\f4\fs20\b0\i0\par
+{\shp{\*\shpinst
+\shpleft720\shptop230\shpright11700\shpbottom250
+\shpfhdr0\shpwr3\shpwrk0\shplid754\shpz33
+\shpbxpage\shpbypara\shpwr1{\sp{\sn fFlipH}{\sv 0}}
+{\sp{\sn fFlipV}{\sv 0}}
+{\sp{\sn dxWrapDistLeft}{\sv 0}}{\sp{\sn dxWrapDistRight}{\sv 0}}{\sp{\sn shapeType}{\sv 0}}
+{\sp{\sn rotation}{\sv 0}}
+{\sp{\sn geoRight}{\sv 10980}}
+{\sp{\sn geoBottom}{\sv 20}}
+{\sp{\sn shapePath}{\sv 4}}
+{\sp{\sn pVerticies}{\sv 8;2;(0,0);(10980,0)}}
+{\sp{\sn pSegmentInfo}{\sv 2;5;16384;45824;1;45824;32768}}
+{\sp{\sn fFillOK}{\sv 1}}
+{\sp{\sn fFilled}{\sv 0}}
+{\sp{\sn lineWidth}{\sv 3175}}
+{\sp{\sn lineColor}{\sv 14671839}}
+{\sp{\sn fLine}{\sv 1}}{\sp{\sn lineType}{\sv 0}}
+{\sp{\sn posrelh}{\sv 1}}
+{\sp{\sn posrelv}{\sv 2}}
+{\sp{\sn fArrowheadsOK}{\sv 1}}
+}}
+\pard\plain\s1\nooverflow\nocwrap\lnbrkrule\sl240\slmult1\sb5\f4\fs15\b0\i0\par\pard\plain\s1\nooverflow\nocwrap\lnbrkrule\sl240\slmult1\f4\fs20\b0\i0\par\pard\plain\s1\nooverflow\nocwrap\lnbrkrule\sl240\slmult1\f4\fs20\b0\i0\par\pard\plain\s1\nooverflow\nocwrap\lnbrkrule\sl240\slmult1\sb2\f4\fs16\b0\i0\par\pard\plain\s1\nooverflow\nocwrap\lnbrkrule\li290\sl240\slmult1\sb55\tx11269\f2\fs22\b1{\chcbpat13  \expnd2\expndtw8  \expnd0\expndtw0 ANNEX E.\expnd-1\expndtw-7  \f2\fs22\b1\i0\expnd0\expndtw0 CLIENTS\tab }\par\pard\plain\s1\nooverflow\nocwrap\lnbrkrule\sl240\slmult1\sb5\f2\fs31\b1\i0\par\pard\plain\s1\nooverflow\nocwrap\lnbrkrule\li398\sl240\slmult1\f2\fs22\b1\cf5 Clients or Audience\par\sect\sectd\sbkpage\headery728\footery1137\pard\plain\s1\nooverflow\nocwrap\lnbrkrule\sl240\slmult1\f2\fs20\b1\i0\par\pard\plain\s1\nooverflow\nocwrap\lnbrkrule\sl240\slmult1\f2\fs16\b1\i0\par\pard\plain\s1\nooverflow\nocwrap\lnbrkrule\li398\fi-18\ri8183\sl273\slmult1\sb55\f4\fs22\b0\cf6 Does this activity have a client? \f4\fs22\b0\i0\cf1 No\par\pard\plain\s1\nooverflow\nocwrap\lnbrkrule\sl240\slmult1\f4\fs20\b0\i0\par\sect\sectd\sbknone\cols2\colno1\colw5319\colsr308\colno2\colw5753\pard\plain\s1\nooverflow\nocwrap\lnbrkrule\sl240\slmult1\sb6\f4\fs16\b0\i0\par\pard\plain\s1\nooverflow\nocwrap\lnbrkrule\li380\sl240\slmult1\f4\fs22\b0\cf6 Please specify the audience type, check all that apply.\par\pard\plain\s1\nooverflow\nocwrap\lnbrkrule\sl240\slmult1\sb10\f4\fs19\b0\i0\par\pard\plain\s1\nooverflow\nocwrap\lnbrkrule\li4383\fi-3870\ri38\sl120\slmult1\tx1065\tx3752\tx4382\f4\fs22\b0 []\tab Central\expnd-1\expndtw-3  \f4\fs22\b0\i0\expnd0\expndtw0 Ministry\tab []\tab \f4\fs22\b0\i0\up13 Parastatal \f4\fs22\b0\i0\up0 Agency\par\pard\plain\s1\nooverflow\nocwrap\lnbrkrule\sl240\slmult1 \column \f4\fs22\b0\i0\par\pard\plain\s1\nooverflow\nocwrap\lnbrkrule\sl240\slmult1\f4\fs22\b0\i0\par\pard\plain\s1\nooverflow\nocwrap\lnbrkrule\sl240\slmult1\sb5\f4\fs16\b0\i0\par\pard\plain\s1\nooverflow\nocwrap\lnbrkrule\li380\sl240\slmult1\tx1189\f4\fs22\b0 []\tab Bilateral / Multilateral\expnd0\expndtw-2  \f4\fs22\b0\i0\expnd0\expndtw0 Agency\par\sect\sectd\sbknone\cols1\colno1\colw11380\pard\plain\s1\nooverflow\nocwrap\lnbrkrule\li513\sl157\slmult1\sb172\tx1065\tx3752\tx4382\tx6006\tx6816\f4\fs22\b0\dn13 []\tab Line\expnd-1\expndtw-3  \f4\fs22\b0\i0\expnd0\expndtw0 Ministry\tab []\tab NGO /\expnd0\expndtw-1  \f4\fs22\b0\i0\expnd0\expndtw0 CSO\tab []\tab \f4\fs22\b0\i0\up0 Academic / Research Institute\expnd-1\expndtw-4  \f4\fs22\b0\i0\expnd0\expndtw0 or\par\pard\plain\s1\nooverflow\nocwrap\lnbrkrule\li6817\sl-203\f4\fs22\b0 Think Tank\par\sect\sectd\sbknone\cols2\colno1\colw2813\colsr427\colno2\colw8140
+{\shp{\*\shpinst\shpleft314\shpright554\shptop6154\shpbottom7850\shpbxpage\shpbypage\shpwr3\shpfblwtxt0\shpz37\shplid792
+{\sp{\sn shapeType}{\sv 202}}{\sp{\sn fFlipH}{\sv 0}}{\sp{\sn fFlipV}{\sv 0}}
+{\sp{\sn txflTextFlow}{\sv 2}}
+{\sp{\sn fFilled}{\sv 0}}
+{\sp{\sn fLine}{\sv 0}}
+{\sp{\sn dxTextLeft}{\sv 0}}{\sp{\sn dxTextRight}{\sv 0}}{\sp{\sn dyTextTop}{\sv 0}}{\sp{\sn dyTextBottom}{\sv 0}}
+{\sp{\sn posrelh}{\sv 1}}
+{\sp{\sn posrelv}{\sv 1}}
+{\shptxt\pard\plain\s1\nooverflow\nocwrap\lnbrkrule\li20\sl-224\f4\fs20\b0\cf6 For Official Use Only\par}}}
+\pard\plain\s1\nooverflow\nocwrap\lnbrkrule\li1065\fi-553\ri38\sl160\slmult1\sb141\tx1065\f4\fs22\b0\dn13 []\tab \f4\fs22\b0\i0\up0 Subnational / \f4\fs22\b0\i0\expnd-1\expndtw-4 Local \f4\fs22\b0\i0\expnd0\expndtw0 Government\par\pard\plain\s1\nooverflow\nocwrap\lnbrkrule\sl240\slmult1\sb5 \column \f4\fs20\b0\i0\par\pard\plain\s1\nooverflow\nocwrap\lnbrkrule\li513\sl240\slmult1\tx1142\tx2766\tx3576\f4\fs22\b0 []\tab Private\expnd-1\expndtw-3  \f4\fs22\b0\i0\expnd0\expndtw0 Sector\tab []\tab Other\par}
