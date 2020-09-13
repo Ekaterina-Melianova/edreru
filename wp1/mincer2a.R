@@ -505,6 +505,9 @@ years_f <- df_mincer %>% filter(female==1) %>% group_by(YEAR) %>% summarise(mean
 years_m <- df_mincer %>% filter(female==0) %>% group_by(YEAR) %>% summarise(mean_edum= round(mean(edu_yrs),2))
 
 years_edu <- left_join(years_f,years_m,by="YEAR")
+wd <- "C:/Country/Russia/Data/SEASHELL/SEABYTE/edreru/wp1"
+setwd(wd)
+write.xlsx(years_edu, file="years_edu.xlsx")
 
 
 # Looping over each year (all and by gender)
