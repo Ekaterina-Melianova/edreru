@@ -1,5 +1,5 @@
 # mincer2a.R
-# A file to do mincerian analysis for the WP1.
+# Working Paper 1
 
 library(foreign)
 library(plyr); library(dplyr)
@@ -19,6 +19,7 @@ library(gridExtra)
 library(rio)
 library(stargazer)
 library(xtable)
+library(openxlsx)
 
 ############################################################################################################
 
@@ -49,10 +50,12 @@ zdf_ <- selectFromSQL(c("REGION", "AGE", "J13_2", "J10", "J40", "EDUC", "J1",
                        "EDUC", 'J72_5C', 'J72_6A', 'J72_4C', 'J72_3C',
                        'J70', 'J70_1', 'J72_2C', 'J72_18A'))
 
-# saveRDS(zdf_,file="C:/Country/Russia/Data/SEASHELL/SEABYTE/edreru/wp1/zdf_.rds")
-zdf_ <- readRDS("C:/Country/Russia/Data/SEASHELL/SEABYTE/edreru/wp1/zdf_.rds")
 
 dbDisconnect(db)
+
+#saveRDS(zdf_,file="C:/Country/Russia/Data/SEASHELL/SEABYTE/edreru/wp1/zdf_.rds")
+zdf_ <- readRDS("C:/Country/Russia/Data/SEASHELL/SEABYTE/edreru/wp1/zdf_.rds")
+
 # Fixing system and user-defined missings in the RLMS database
 
 df_ <- zdf_
@@ -70,10 +73,13 @@ Freq <- function(var){
 }
 
 ############################################################################################################
+# Running this code after R upgrade July 22 gives error message, labels need to be removed  SP
+df_ <- remove_labels(df_, user_na_to_na = TRUE, keep_var_label = FALSE)
 
 # Filtering age
 Freq(df_$AGE)
 df <- df_[df_$AGE >= 25 & df_$AGE < 65,]
+
 
 # Filtering employed
 df <- df[df$J1 >= 1 & df$J1 < 5,]
@@ -107,9 +113,12 @@ length(df[which(df$J40 > df$J13_2), "IDIND"]) # for 1998 - 2018
 length(df[which(df$J40 > df$J10), "IDIND"]) # for 1994 - 1996
 
 df <- UserMisFix(df) # fixing missings after creating a new variable
-tail(Freq(df$wage), n = 7L) # ~ 20k NAs
+tail(Freq(df$wage), n = 7L) # ~ 20k NAs exactly 22,427 in run of Jul 23
 
 # Socio-demographics
+
+# Running this code after R upgrade July 22 gives error message, labels need to be removed  SP
+df <- remove_labels(df, user_na_to_na = TRUE, keep_var_label = FALSE)
 
 # non-Russian
 Freq(df$I4)
@@ -141,14 +150,17 @@ df_mincer <- df[, c("REGION", "IDIND", "YEAR", "edu_4", "wage", 'EDUC',
                     "edu_yrs", 'AGE', 'J72_5C', 'J72_6A', 'J72_4C', 'J72_3C',
                     'J70', 'J70_1', 'J72_2C', 'J72_18A')]
 summary(df_mincer)
-glimpse(df_m)
+glimpse(df_mincer)
 
 # Filtering the missings left
-df_mincer <- df_mincer %>%
-  filter(!is.na(wage) & !is.na(exper) & wage > 0)
+df_mincer <- df_mincer %>%  filter(!is.na(wage)) # becomes 115162 from 137,446
+df_mincer <- df_mincer %>%  filter(!is.na(exper)) # stays 115162
+df_mincer <- df_mincer %>%  filter(wage!=0) # becomes 114149 ie, 1013 lost
+
+                                   
 
 # Filtering 3 education levels
-df_mincer <- df_mincer[df_mincer$edu_4>0,]
+df_mincer <- df_mincer[df_mincer$edu_4>0,] # becomes 113,337
 Freq(df_mincer$edu_4)
 
 # Education as factor
@@ -424,38 +436,76 @@ desc_rst <- tabular((Year = factor(YEAR) )~ (N=1) +
 
 #desc_rst
 
-latex(desc_rst)
+Hmisc::latex(desc_rst)
 
 ################################## Data with occupation to save ###########################################
 
 # Occupation
-Freq(df$J2COD08) # user 407 NAs
+
+tail(Freq(df$J2COD08), n = 7L)  # used to be user 407 NAs; now 403 simple NAs
+
+
 df$occup <- as.numeric(df$J2COD08)
 df <- df %>% filter(!((occup == 99999997)|
                        (occup == 99999998)|
                        (occup == 99999999)))
-Freq(df$occup) 
+tail(Freq(df$occup), n = 7L)
 
 df_mincer_save <- df[, c("IDIND", "YEAR", "edu_4", "wage",
                     "exper", "non_russ", "female", "occup",
                     "edu_yrs")]
+
 # Filtering the missings left
-df_mincer_save <- df_mincer_save %>%
-  filter(!is.na(wage) & !is.na(exper) & wage > 0)
+
+
+df_mincer_save <- df_mincer_save %>%  filter(!is.na(wage)) # less 22,027 so 137043 becomes 115,016
+df_mincer_save <- df_mincer_save %>%  filter(!is.na(exper)) # no change
+df_mincer_save <- df_mincer_save %>%  filter(wage>0) # less 1,011 so 115,016 becomes 114,005
+
+
 summary(df_mincer_save)
 
 # Saving the mincer database for the extension1.R
 wd <- "C:/Country/Russia/Data/SEASHELL/SEABYTE/edreru/wp1"
 setwd(wd)
-saveRDS(df_mincer_save, paste0(wd, "/", "df_mincer.rds"))
+#saveRDS(df_mincer_save, paste0(wd, "/", "df_mincer.rds"))
 
 ########################################### Regression ####################################################
+
+#df_mincer <- readRDS("C:/Country/Russia/Data/SEASHELL/SEABYTE/edreru/wp1/df_mincer.rds") # from May 17, 2020
+# New run for re-write, August 01, 2020
+df_mincer <- df_mincer_save
+
+
+## Need to get edu_4 as a factor
+# Education as factor
+df_mincer$edu_4 <- factor(df_mincer$edu_4, levels=c(1,2,3),
+                          labels=c("Secondary",
+                                   "Vocational",
+                                   "Higher"))
+
+df_mincer_HP <- haven::zap_labels(df_mincer)
+str(df_mincer_HP)
+
+haven::write_dta(data=df_mincer_HP, path="df_mincer.dta")
+
+
 
 # Empty list where the regression output will be written
 lm_mincer_all_1 <- vector("list", length(unique(df_mincer$YEAR)))
 lm_mincer_f_1 = lm_mincer_m_1 = lm_mincer_all_2 = lm_mincer_f_2 = lm_mincer_m_2 = lm_mincer_all_1
 
-seq_year <- unique(df_mincer$YEAR)
+(seq_year <- unique(df_mincer$YEAR))
+# [1] 1994 1995 1996 1998 2000 2001 2002 2003 2004 2005 2006 2007 2008 2009 2010 2011 2012 2013 2014 2015 2016 2017 2018
+# str(seq_year) # is an integer vector with 23 elements
+
+## MS-Excel data of years of education by gender by year
+
+years_f <- df_mincer %>% filter(female==1) %>% group_by(YEAR) %>% summarise(mean_eduf= round(mean(edu_yrs),2))
+years_m <- df_mincer %>% filter(female==0) %>% group_by(YEAR) %>% summarise(mean_edum= round(mean(edu_yrs),2))
+
+years_edu <- left_join(years_f,years_m,by="YEAR")
+
 
 # Looping over each year (all and by gender)
 
@@ -520,13 +570,13 @@ percent <- function(x, digits = 1, format = "f", ...) {
 for (i in seq(length(seq_year))){
   RoREs[i,] <- c(seq_year[i],
                  
-                 (percent(exp(smry_all_1[[i]]$coefficients[2,1]) - 1)),
+                 (percent(smry_all_1[[i]]$coefficients[2,1])),
                  formatC(smry_all_1[[i]]$coefficients[2,4], digits = 2),
                  
-                 (percent(exp(smry_f_1[[i]]$coefficients[2,1]) - 1)),
+                 (percent(smry_f_1[[i]]$coefficients[2,1])),
                  formatC(smry_f_1[[i]]$coefficients[2,4], digits = 2),
                  
-                 (percent(exp(smry_m_1[[i]]$coefficients[2,1]) - 1)),
+                 (percent(smry_m_1[[i]]$coefficients[2,1])),
                  formatC(smry_m_1[[i]]$coefficients[2,4], digits = 2),
                  
                  (percent((exp(smry_all_2[[i]]$coefficients[3,1]) - 1)/4)),
@@ -546,19 +596,28 @@ for (i in seq(length(seq_year))){
 }
 
 # RoREs
-x_axis <- c(c(1994, 1996), seq(2000, 2018, 2))
+(x_axis <- c(c(1994, 1996), seq(2000, 2018, 2)))
 # Converting to data.table and melting in order to visualize
 RoREs <- as.data.table(RoREs)
 RoREs_edu <- melt(RoREs, measure=c("returns_to_edu_all", 
                                  "returns_to_edu_f",
                                  "returns_to_edu_m"))
 RoREs_edu$value <- as.numeric(substr(RoREs_edu$value, 1, nchar(RoREs_edu$value)-1))
+
+## 
+write.xlsx(RoREs_edu,file="RoREs_edu.xlsx")
+
+
+
 RoREs_edu$variable <- factor(RoREs_edu$variable,
-                           labels = c("Males",
+                           labels = c("Total",
                                       "Females",
-                                      "Total"))
-# Factor corrected by SP - earlier version of paper 
-# Prior to May 14 showed total in middle which makes sense
+                                      "Males"))
+# All lines does not fall betweem males and females
+
+
+
+
 
 # Plotting all
 ggplot(RoREs_edu, aes(YEAR, value, group = variable, color = variable,
@@ -575,7 +634,7 @@ ggplot(RoREs_edu, aes(YEAR, value, group = variable, color = variable,
         axis.title = element_text(size = 16),
         legend.text = element_text(size = 16),
         legend.key = element_rect(size = 16)) +
-  scale_color_manual(values = c("black","purple","darkgray")) +
+  scale_color_manual(values = c("darkgray","purple","black"), labels=c("Total","Females","Males")) +
   #scale_shape_manual(values=c(2,4)) +
   scale_x_discrete(breaks = x_axis) +
   ylab("Rate of returns, %") +
@@ -592,6 +651,9 @@ ggsave("re_edu.png", width = 10, height = 7,
 RoREs_edu2 <- RoREs_edu %>% filter(variable=="Males"|variable=="Females")
 
 # Extract points
+loess.tot <- stats::loess(value ~ YEAR, data = RoREs_edu[RoREs_edu$variable == 'Total',])
+loess.predict.tot <- predict(loess.tot, se = F)
+
 loess.fem <- stats::loess(value ~ YEAR, data = RoREs_edu[RoREs_edu$variable == 'Females',])
 loess.predict.fem <- predict(loess.fem, se = F)
 
@@ -600,8 +662,11 @@ loess.predict.male <- predict(loess.male, se = F)
 
 loess.df <- data.frame(YEAR = RoREs_edu[RoREs_edu$variable == 'Females', "YEAR"],
                        loess.fem = loess.predict.fem, 
-                       loess.male = loess.predict.male)
+                       loess.male = loess.predict.male,
+                       loess.tot = loess.predict.tot)
 
+## 
+write.xlsx(loess.df,file="loess1.xlsx")
 
 ##################
 # Plotting all
@@ -657,7 +722,7 @@ ggplot(RoREs_HE_VE_all, aes(YEAR, value, group = variable, color = variable,
         axis.title = element_text(size = 16),
         legend.text = element_text(size = 16),
         legend.key = element_rect(size = 16)) +
-  scale_color_manual(values = c("darkgreen", "red")) +
+  scale_color_manual(values = c("darkred", "darkgreen")) +
   #scale_shape_manual(values=c(2,4)) +
   scale_x_discrete(breaks = x_axis) +
   ylab("Rate of returns, %") +
@@ -691,7 +756,7 @@ ggplot(RoREs_HE_VE_f, aes(YEAR, value, group = variable, color = variable)) +
         axis.title = element_text(size = 16),
         legend.text = element_text(size = 16),
         legend.key = element_rect(size = 16)) +
-  scale_color_manual(values = c("darkgreen", "red")) +
+  scale_color_manual(values = c("darkred", "darkgreen")) +
   scale_x_discrete(breaks = x_axis) +
   ylab("Rate of returns, %") +
   xlab("Year")
@@ -722,7 +787,7 @@ ggplot(RoREs_HE_VE_m, aes(YEAR, value, group = variable, color = variable)) +
         axis.title = element_text(size = 16),
         legend.text = element_text(size = 16),
         legend.key = element_rect(size = 16)) +
-  scale_color_manual(values = c("darkgreen", "red")) +
+  scale_color_manual(values = c("darkred", "darkgreen")) +
   scale_x_discrete(breaks = x_axis) +
   ylab("Rate of returns, %") +
   xlab("Year")
@@ -810,5 +875,10 @@ df_mincer$REGION <- as.numeric(df_mincer$REGION)
 df_mincer$exper <- as.numeric(df_mincer$REGION) 
 df_mincer$edu_yrs <- as.numeric(df_mincer$REGION) 
 haven::write_sav(df_mincer, "df_mincer.sav")
+
+
+
+
+
 
 

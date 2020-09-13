@@ -167,8 +167,6 @@ FreqEM <- function(var){
                   TotalNA = apply(result[c(99999997:99999999, "NA"),],2,sum, na.rm = T))
   return(result)
 }
-###
-#EM, I am not liking the output of this function as the rownames are messed up with order 1,10,2 etc,
 
 
 ##############################################################################################
