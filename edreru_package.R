@@ -1,7 +1,6 @@
 # edreru_package.R
 
-# These are functions we use often, in one place. With a package they will be 
-# automatically loaded, in initial stage it is included in other scripts as just another R script. 
+# These are functions we use often, in one place. 
 
 
 
@@ -9,6 +8,10 @@
 
 ######################################################################################
 # Modified cbind #####################################################################
+# We use this function as a sub-function in another user-defined function below, called "selectFromSQL"
+# cbind.all cbinds the penultimate return from selectFromSQL to generate an R dataframe
+# Ignore a "missing argument to function call" warning if your Rstudio IDE shows such a warning
+
 cbind.all <- function (...){
   nm <- list(...)
   nm <- lapply(nm, as.matrix)
@@ -20,9 +23,18 @@ cbind.all <- function (...){
 #######################################################################################
 # SysMisFix function ##################################################################
 
-# Defining functions for a proper treatment of missing values
+# Defining functions to differentiate between "user-defined" missing values which are generated because 
+# respondents did not answer a question they were supposed to answer, as different from
+# "system-defined" missing values generated automatically from the questionnaire flow structure. 
+
+# This is required when you use imputation to replace missing values - which only makes sense
+# for user-defined missing values
+
+
+
+## Convert alphanumeric or factor "NA" in the RLMS database to become R system NAs 
 SysMisFix <- function(df){
-  "SysMisFix changes chategorical NA to missing values"
+  "SysMisFix changes categorical NA to missing values"
   temp <- df
   for (i in colnames(df)){
     temp[,i] <- mapvalues(df[,i], "NA", NA, warn_missing = F)
@@ -48,6 +60,7 @@ UserMisFix <- function(df, na_range = 99999996:99999999){
   }
   return(df)
 } 
+
 
 ################################################################################################
 #selectFromSQL function ########################################################################
@@ -158,22 +171,12 @@ selectFromSQL <- function(column_names=NULL, column_blocks=NULL, wave_number=NUL
 }
 
 ##############################################################################################
-#FreqEM function - adaptation of Freq written by Ekaterina Melianova ###########################################
-# A function for calculating descriptive statistics: a slightly extended version of freq
-FreqEM <- function(var){
-  result <- freq(var, levels = "values", total = T)
-  result <- rbind(result, 
-                  UserNA = apply(result[as.character(99999997:99999999),],2,sum),
-                  TotalNA = apply(result[c(99999997:99999999, "NA"),],2,sum, na.rm = T))
-  return(result)
-}
-
-
 ##############################################################################################
-#FreqSP function - adaptation of Freq written by Suhas Parandekar ###########################################
+#Freq function -
 # A function for calculating descriptive statistics: a slightly extended version of freq
+# so that the resulting output is easier to comprehend 
 options(scipen=999) # to supress scientific notation
-FreqSP <- function(var){
+Freq <- function(var){
   a <- descr::freq(var,plot=FALSE)
   z <- sum(is.na(var)) # I want to display later this number of NA's 
   z2 <- z+sum(!is.na(var)) # I want to display later this total number
@@ -199,4 +202,6 @@ FreqSP <- function(var){
   axis(1,font=1,col="black",labels=FALSE)
 }
 
+### 
+# End of file
 

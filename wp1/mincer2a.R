@@ -22,27 +22,35 @@ library(xtable)
 library(openxlsx)
 
 ############################################################################################################
+# DATA DOWNLOAD AND CREATION OF SQLITE DATABASE 
+# The first step was to download the data from the RLMS website https://www.hse.ru/en/rlms/ 
+# Specifically https://www.hse.ru/fileaccess/e131584301/data/2020/09/09/1116873148/USER_RLMS-HSE_IND_1994_2019_v2_eng_SPSS.zip 
+# We created an SQLITE relational database called rlms.db from the SPSS file
+# The script for this file is called rlms_in.R, available in the repo
+# This scrript starts with a connection to rlms.db
+# The directory setting below would need to be changed to specify the directory location where rlms.db is stored
 
-# Working directory
+
+# Working directory  - please specify your own 
 wd <- "C:/Country/Russia/Data/SEASHELL/SEABYTE/Databases/RLMS/sqlite"
 setwd(wd) 
 
-# Some functions 
+# We have as set of user-created functions which are used often and stored separately
 source("C:/Country/Russia/Data/SEASHELL/SEABYTE/edreru/edreru_package.R")
+
+
+### Below this line, no changes to the code should be necessary to replicate the results 
 
 # Connecting with SQLite
 db <- dbConnect(SQLite(), dbname="C:/Country/Russia/Data/SEASHELL/SEABYTE/Databases/RLMS/sqlite/rlms.db")
 
 ############################################################################################################
-## WARNING - Depending on how the R environments are set up.
-## re-running this command or running this command after dbDisconnect(db)
-## and then connecting again - gives cryptic and wrong error message
 
-## Hence, running in one go and saving zdf_  SP May 14, 2020
-
-# below took system.time() about 15 seconds elapsed time
 # Selecting the variables of interest
-zdf_ <- selectFromSQL(c("REGION", "AGE", "J13_2", "J10", "J40", "EDUC", "J1",
+# The user-defined function generates the needed SQL SELECT command and uses that command to create 
+# an R dataframe
+
+df_ <- selectFromSQL(c("REGION", "AGE", "J13_2", "J10", "J40", "EDUC", "J1",
                        "J5A", "J5B", "H7_2", "H5", "J2COD08",
                        "J23", "I2", "I4", "YEAR", "J40", "J35_2Y", "J35_2M",
                        "total_exper", "exper_main_", "exper_add_",
@@ -51,37 +59,36 @@ zdf_ <- selectFromSQL(c("REGION", "AGE", "J13_2", "J10", "J40", "EDUC", "J1",
                        'J70', 'J70_1', 'J72_2C', 'J72_18A'))
 
 
+# After creating the R dataframe, we can disconnect the SQLITE connection
+
 dbDisconnect(db)
 
-#saveRDS(zdf_,file="C:/Country/Russia/Data/SEASHELL/SEABYTE/edreru/wp1/zdf_.rds")
-zdf_ <- readRDS("C:/Country/Russia/Data/SEASHELL/SEABYTE/edreru/wp1/zdf_.rds")
+# Can save the dataframe to avoid having to go back to SQLITE which may take time
+#saveRDS(df_,file="C:/Country/Russia/Data/SEASHELL/SEABYTE/edreru/wp1/zdf_.rds")
+# df_ <- readRDS("C:/Country/Russia/Data/SEASHELL/SEABYTE/edreru/wp1/zdf_.rds")
 
 # Fixing system and user-defined missings in the RLMS database
 
-df_ <- zdf_
 
-df_ <- SysMisFix(df_) # determining system missings
-df_ <- UserMisFix(df_) # labelling user-defined missings
+df_ <- SysMisFix(df_) # adding system missing information to the df_ dataframe 
+df_ <- UserMisFix(df_) # adding user-defined missing information to the df_dataframe
 
-# A function for calculating descriptive statistics: a slightly extended version of freq
-Freq <- function(var){
-  result <- freq(var, levels = "values", total = T)
-  result <- rbind(result, 
-                  UserNA = apply(result[as.character(99999997:99999999),],2,sum),
-                  TotalNA = apply(result[c(99999997:99999999, "NA"),],2,sum, na.rm = T))
-  return(result)
-}
-
-############################################################################################################
-# Running this code after R upgrade July 22 gives error message, labels need to be removed  SP
+# Remove labels that may be cumbersome in future output 
 df_ <- remove_labels(df_, user_na_to_na = TRUE, keep_var_label = FALSE)
 
-# Filtering age
+############################################################################################################
+## Now we are ready to work on the resulting dataframe and filter the sample to meet our specification 
+## and define new variables as required 
+
+# Look at the distribution of age - will generate a neat table, together with a graph
 Freq(df_$AGE)
+
+# Filtering age
 df <- df_[df_$AGE >= 25 & df_$AGE < 65,]
 
 
 # Filtering employed
+# Employed is 1, Maternal leave 2, Any other leave 3 and unpaid holiday is 4
 df <- df[df$J1 >= 1 & df$J1 < 5,]
 Freq(df$J1)
 
@@ -117,7 +124,7 @@ tail(Freq(df$wage), n = 7L) # ~ 20k NAs exactly 22,427 in run of Jul 23
 
 # Socio-demographics
 
-# Running this code after R upgrade July 22 gives error message, labels need to be removed  SP
+
 df <- remove_labels(df, user_na_to_na = TRUE, keep_var_label = FALSE)
 
 # non-Russian
@@ -125,7 +132,7 @@ Freq(df$I4)
 df$non_russ[df$I4 == 1] <- 0
 df$non_russ[df$I4 > 1] <- 1
 df$non_russ[is.na(df$I4)] <- 1
-Freq(df$non_russ)
+freq(df$non_russ)
 
 # Gender
 Freq(df$H5)
@@ -133,15 +140,17 @@ df$female[df$H5==2] <- 1
 df$female[df$H5==1] <- 0
 Freq(df$female)
 
-# Naive experience
+# Naive experience - assuming that experience is age - education - 6 years (age of starting school)
 df$edu_yrs <- car::recode(df$EDUC, "8=8; 9=9; 10=10; 11=11; 12=10;
                               13=10; 14=11; 15=11; 16=12; 17=11; 18=12;
                               19=13; 20=14; 21=16; 22=17; 23=18")
 df <- df %>%
   filter(is.na(edu_yrs) == F) # dropping user-defined missings
-Freq(df$edu_yrs)
+freq(df$edu_yrs)
 df$exper <- df$AGE - df$edu_yrs - 6
 summary(df$exper)
+
+
 
 # Generating a final dataset for the analysis
 
@@ -161,7 +170,7 @@ df_mincer <- df_mincer %>%  filter(wage!=0) # becomes 114149 ie, 1013 lost
 
 # Filtering 3 education levels
 df_mincer <- df_mincer[df_mincer$edu_4>0,] # becomes 113,337
-Freq(df_mincer$edu_4)
+freq(df_mincer$edu_4)
 
 # Education as factor
 df_mincer$edu_4 <- factor(df_mincer$edu_4, levels=c(1,2,3),
