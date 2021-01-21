@@ -7,7 +7,7 @@ library(gmodels)
 library(lmtest)
 library(sqldf)
 # library(XLConnectJars) Not on Cran as of April 28, 2020
-library("XLConnectJars",lib.loc="C:/Users/wb164718/Documents/R/win-library/3.5")
+library("XLConnectJars", lib.loc="C:/Users/wb164718/Documents/R/win-library/3.5")
 library(questionr)
 library(labelled)
 library(tidyr)
@@ -20,6 +20,7 @@ library(rio)
 library(stargazer)
 library(xtable)
 library(openxlsx)
+library(tables)
 
 ############################################################################################################
 # DATA DOWNLOAD AND CREATION OF SQLITE DATABASE 
@@ -69,12 +70,11 @@ dbDisconnect(db)
 
 # Fixing system and user-defined missings in the RLMS database
 
-
 df_ <- SysMisFix(df_) # adding system missing information to the df_ dataframe 
 df_ <- UserMisFix(df_) # adding user-defined missing information to the df_dataframe
 
 # Remove labels that may be cumbersome in future output 
-df_ <- remove_labels(df_, user_na_to_na = TRUE, keep_var_label = FALSE)
+df_ <- remove_labels(df_, user_na_to_na = T)
 
 ############################################################################################################
 ## Now we are ready to work on the resulting dataframe and filter the sample to meet our specification 
@@ -85,7 +85,6 @@ Freq(df_$AGE)
 
 # Filtering age
 df <- df_[df_$AGE >= 25 & df_$AGE < 65,]
-
 
 # Filtering employed
 # Employed is 1, Maternal leave 2, Any other leave 3 and unpaid holiday is 4
@@ -124,8 +123,7 @@ tail(Freq(df$wage), n = 7L) # ~ 20k NAs exactly 22,427 in run of Jul 23
 
 # Socio-demographics
 
-
-df <- remove_labels(df, user_na_to_na = TRUE, keep_var_label = FALSE)
+df <- remove_labels(df, user_na_to_na = T)
 
 # non-Russian
 Freq(df$I4)
@@ -150,10 +148,7 @@ freq(df$edu_yrs)
 df$exper <- df$AGE - df$edu_yrs - 6
 summary(df$exper)
 
-
-
 # Generating a final dataset for the analysis
-
 df_mincer <- df[, c("REGION", "IDIND", "YEAR", "edu_4", "wage", 'EDUC',
                     "exper", "non_russ", "female",
                     "edu_yrs", 'AGE', 'J72_5C', 'J72_6A', 'J72_4C', 'J72_3C',
@@ -166,8 +161,6 @@ df_mincer <- df_mincer %>%  filter(!is.na(wage)) # becomes 115162 from 137,446
 df_mincer <- df_mincer %>%  filter(!is.na(exper)) # stays 115162
 df_mincer <- df_mincer %>%  filter(wage!=0) # becomes 114149 ie, 1013 lost
 
-                                   
-
 # Filtering 3 education levels
 df_mincer <- df_mincer[df_mincer$edu_4>0,] # becomes 113,337
 freq(df_mincer$edu_4)
@@ -178,15 +171,16 @@ df_mincer$edu_4 <- factor(df_mincer$edu_4, levels=c(1,2,3),
                                    "Vocational",
                                    "Higher"))
 
-################################################ Education revised (VG)
+# Education revised (VG)
 df_mincer <- haven::zap_labels(df_mincer)
 
-# to numeric
+# Changing format to numeric
 df_mincer[, c('J72_5C', 'J72_6A', 'J72_4C', 'J72_3C',
               'J70', 'J70_1', 'J72_2C', 'J72_18A')] <-
   sapply(df_mincer[, c('J72_5C', 'J72_6A', 'J72_4C', 'J72_3C',
                        'J70', 'J70_1', 'J72_2C', 'J72_18A')], as.numeric)
 
+# Creating education level variable
 df_mincer$educ_level <- NA
 df_mincer$educ_level <- ifelse(df_mincer$J72_5C==1 | df_mincer$J72_6A==1, 7, df_mincer$educ_level)
 df_mincer$educ_level <- ifelse(is.na(df_mincer$educ_level) & df_mincer$J72_4C==1, 6, df_mincer$educ_level)
@@ -209,17 +203,17 @@ table(df_mincer$educ_level_4)
 table(df_mincer$edu_4, df_mincer$educ_level_4)
 table(df_mincer$edu_4, df_mincer$educ_level)
 
+## Generating a table for vocational education
 
-################## Generating a table for vocational education ###############################
-# Select Vocational only
+# Selecting vocational education
 df_mincer_voc <- df_mincer %>% filter(edu_4 == 'Vocational' & educ_level %in% c(3,5,6))
 table(df_mincer_voc$educ_level)
-
 df_mincer_voc$edu_yrs_9 <- df_mincer_voc$edu_yrs - 9 
 
 # Creating xtab for mean vocational years after 9 years of schooling
 mean_yrs_voc <- data.frame(xtabs(edu_yrs_9 ~ YEAR + educ_level,
       aggregate(edu_yrs_9 ~ YEAR + educ_level, df_mincer_voc, mean)))
+
 # Computing totals
 mean_yrs_voc <- mean_yrs_voc  %>%
   group_by(YEAR) %>%
@@ -232,6 +226,7 @@ mean_yrs_voc$Total_mean <- NULL
 # Computing counts for a table with vocational years after 9 years of schooling
 freq_yrs_voc <- data.frame(xtabs( ~ YEAR + educ_level, df_mincer_voc))
 freq_yrs_voc$YEAR <- as.character(freq_yrs_voc$YEAR)
+
 # Computing totals
 freq_yrs_voc <- freq_yrs_voc  %>%
   dplyr::group_by(YEAR) %>%
@@ -254,10 +249,7 @@ names(voc_smry) <- c('Year', 'VG_level', 'Mean_Edu_Years_after_9', 'N')
 
 # Arranging
 hist(voc_smry$Mean_Edu_Years_after_9)
-
 names(voc_smry) <- c("Year","VG_level","Mean_Edu_Years_after_9","N")
-#voc_smry <- voc_smry %>% dplyr::arrange(Year)
-# Weird error message "YEAR" not found 
 voc_smry <- voc_smry[order(voc_smry$Year),]
 
 # Plotting
@@ -272,22 +264,20 @@ ggplot(voc_smry, aes(Year, Mean_Edu_Years_after_9, color = VG_level, group = VG_
                                 'college '))+ 
   guides(color=guide_legend(title="Vocational Education Level"))
 
-########################################################################
-
-setwd("C:/Country/Russia/Data/SEASHELL/SEABYTE/edreru/wp1")
 # Earnings Ratio by Educational Level
+setwd("C:/Country/Russia/Data/SEASHELL/SEABYTE/edreru/wp1") # wd
 
 # Average earnings secondary level
 edu_0 <- df_mincer %>%
   group_by(edu_4, YEAR) %>%
   filter(edu_4 == "Secondary" & YEAR %in% c(1998, 2006, 2018)) %>%
-  dplyr::summarise(wage_sec = mean(wage))
+  dplyr::summarise(wage_sec = mean(wage), .groups = 'drop')
 
 # Average earnings for all levels
 edu_ratio <- df_mincer %>%
   group_by(edu_4, YEAR) %>%
   filter(YEAR %in% c(1998, 2006, 2018))  %>%
-  dplyr::summarise(wage_by_level = mean(wage))
+  dplyr::summarise(wage_by_level = mean(wage), .groups = 'drop')
 
 # Merging and computing ratios
 edu_ratio <- edu_ratio %>%
@@ -343,7 +333,8 @@ g <- gridExtra::grid.arrange(g1, g2, g3, nrow = 1, ncol = 3)
 ggsave("earnings_ratio.png", g, width = 12, height = 6,
        units = "in")
 
-################### Age-earning Profiles by Level of Education
+### Age-earning Profiles by Level of Education
+
 ############
 # Adjusting to prices in 2018
 cpi <- rio::import("cpi_revised.xlsx")[, c(1,6)]
@@ -353,8 +344,7 @@ df_mincer2 <- df_mincer %>%
 df_mincer2 <- haven::zap_labels(df_mincer2)
 ############
 
-## Now the same plot, arranged with years together
-
+# Now the same plot, arranged with years together
 temp_ <- df_mincer2 %>% filter(YEAR==1998) 
 g1 <- ggplot(temp_,aes(x=AGE,y=wage_c18,group=as.factor(edu_4),color=as.factor(edu_4))) +
   geom_smooth(aes(linetype = edu_4), se=FALSE, lwd=2, method=loess)+
@@ -381,7 +371,6 @@ g1 <- ggplot(temp_,aes(x=AGE,y=wage_c18,group=as.factor(edu_4),color=as.factor(e
   guides(shape = FALSE,
          colour = guide_legend(override.aes = list(color = c("#D50B53","#824CA7","#B9C406"),
                                                    linetype = c('longdash', 'dotted', 'solid'))))
-
 ###
 
 temp_ <- df_mincer2 %>% filter(YEAR==2006) 
@@ -403,7 +392,6 @@ g2 <- ggplot(temp_,aes(x=AGE,y=wage_c18,group=as.factor(edu_4),color=as.factor(e
         legend.position = 'none',
         plot.title = element_text(hjust = 0.5, size = 20)) +
   ggtitle('2006')
-
 
 ###
 
@@ -429,97 +417,79 @@ g3 <- ggplot(temp_,aes(x=AGE,y=wage_c18,group=as.factor(edu_4),color=as.factor(e
 
 g <- gridExtra::grid.arrange(g1, g2, g3, nrow = 1, ncol = 3)
 
-# saving 
+# Saving the graphs
 ggsave("earnings_by_level.png", g, width = 20, height = 8,
        units = "in")
 
-########################################################################
-####### Descriptive stat
-library(tables)
+# Descriptive statistics
 desc_rst <- tabular((Year = factor(YEAR) )~ (N=1) + 
                       Format(digits=2)*((Wage = wage*((Mean = mean) + (SD = sd))) +
                                           (Experience = exper*((Mean = mean) + (SD = sd))) +
                                           (Education_years = edu_yrs*((Mean = mean) + (SD = sd))) +
                                           (Education = factor(edu_4)*Percent("row"))),
                     data = df_mincer)
-
-#desc_rst
-
 Hmisc::latex(desc_rst)
 
-################################## Data with occupation to save ###########################################
+################################## Data with occupations to save ###########################################
 
 # Occupation
-
 tail(Freq(df$J2COD08), n = 7L)  # used to be user 407 NAs; now 403 simple NAs
-
-
 df$occup <- as.numeric(df$J2COD08)
 df <- df %>% filter(!((occup == 99999997)|
                        (occup == 99999998)|
                        (occup == 99999999)))
 tail(Freq(df$occup), n = 7L)
 
+# Selecting columns
 df_mincer_save <- df[, c("IDIND", "YEAR", "edu_4", "wage",
                     "exper", "non_russ", "female", "occup",
                     "edu_yrs")]
 
-# Filtering the missings left
-
-
+# Filtering the missing values left
 df_mincer_save <- df_mincer_save %>%  filter(!is.na(wage)) # less 22,027 so 137043 becomes 115,016
 df_mincer_save <- df_mincer_save %>%  filter(!is.na(exper)) # no change
 df_mincer_save <- df_mincer_save %>%  filter(wage>0) # less 1,011 so 115,016 becomes 114,005
-
-
 summary(df_mincer_save)
 
 # Saving the mincer database for the extension1.R
 wd <- "C:/Country/Russia/Data/SEASHELL/SEABYTE/edreru/wp1"
 setwd(wd)
-#saveRDS(df_mincer_save, paste0(wd, "/", "df_mincer.rds"))
+# saveRDS(df_mincer_save, paste0(wd, "/", "df_mincer.rds"))
 
-########################################### Regression ####################################################
 
-#df_mincer <- readRDS("C:/Country/Russia/Data/SEASHELL/SEABYTE/edreru/wp1/df_mincer.rds") # from May 17, 2020
-# New run for re-write, August 01, 2020
+################################## Mincerian Equations ##################################
+
+
 df_mincer <- df_mincer_save
 
-
-## Need to get edu_4 as a factor
 # Education as factor
 df_mincer$edu_4 <- factor(df_mincer$edu_4, levels=c(1,2,3),
                           labels=c("Secondary",
                                    "Vocational",
                                    "Higher"))
-
 df_mincer_HP <- haven::zap_labels(df_mincer)
 str(df_mincer_HP)
-
 haven::write_dta(data=df_mincer_HP, path="df_mincer.dta")
-
-
 
 # Empty list where the regression output will be written
 lm_mincer_all_1 <- vector("list", length(unique(df_mincer$YEAR)))
 lm_mincer_f_1 = lm_mincer_m_1 = lm_mincer_all_2 = lm_mincer_f_2 = lm_mincer_m_2 = lm_mincer_all_1
 
+# Generating a vector with years
 (seq_year <- unique(df_mincer$YEAR))
-# [1] 1994 1995 1996 1998 2000 2001 2002 2003 2004 2005 2006 2007 2008 2009 2010 2011 2012 2013 2014 2015 2016 2017 2018
-# str(seq_year) # is an integer vector with 23 elements
 
 ## MS-Excel data of years of education by gender by year
-
-years_f <- df_mincer %>% filter(female==1) %>% group_by(YEAR) %>% summarise(mean_eduf= round(mean(edu_yrs),2))
-years_m <- df_mincer %>% filter(female==0) %>% group_by(YEAR) %>% summarise(mean_edum= round(mean(edu_yrs),2))
-
-years_edu <- left_join(years_f,years_m,by="YEAR")
+years_f <- df_mincer %>% filter(female==1) %>% group_by(YEAR) %>%
+  summarise(mean_eduf= round(mean(edu_yrs),2), .groups = 'drop')
+years_m <- df_mincer %>% filter(female==0) %>% group_by(YEAR) %>%
+  summarise(mean_edum= round(mean(edu_yrs),2), .groups = 'drop')
+years_edu <- left_join(years_f, years_m, by="YEAR")
 wd <- "C:/Country/Russia/Data/SEASHELL/SEABYTE/edreru/wp1"
 setwd(wd)
 write.xlsx(years_edu, file="years_edu.xlsx")
 
-
-# Looping over each year (all and by gender)
+# Calculating regressions by years and gender in a loop
+# Storing the results in lists
 
 for(i in seq(length(seq_year))){
    # metric education - edu_yrs
@@ -547,6 +517,7 @@ for(i in seq(length(seq_year))){
                                              df_mincer$female == 0,]) 
 }
 
+# Naming the regression output
 names(lm_mincer_f_1) <- seq_year
 names(lm_mincer_m_1) <- seq_year
 names(lm_mincer_all_1) <- seq_year
@@ -554,6 +525,7 @@ names(lm_mincer_f_2) <- seq_year
 names(lm_mincer_m_2) <- seq_year
 names(lm_mincer_all_2) <- seq_year
 
+# Applying a summary function to the lists of outputs
 smry_all_1 <- lapply(lm_mincer_all_1, summary)
 smry_f_1 <- lapply(lm_mincer_f_1, summary)
 smry_m_1 <- lapply(lm_mincer_m_1, summary)
@@ -561,8 +533,9 @@ smry_all_2 <- lapply(lm_mincer_all_2, summary)
 smry_f_2 <- lapply(lm_mincer_f_2, summary)
 smry_m_2 <- lapply(lm_mincer_m_2, summary)
 
-# Calculating returns by year for higher and vocational education
+### Calculating returns by year for higher and vocational education
 
+# Creating an empty dataframe with the necessary column names
 RoREs <- as.data.frame((matrix(ncol = 19, nrow = length(seq_year))))
 colnames(RoREs) <-  c("YEAR",
                       "returns_to_edu_all", "p_for_edu_all",
@@ -578,7 +551,8 @@ percent <- function(x, digits = 1, format = "f", ...) {
   paste0(formatC(100 * x, format = format, digits = digits, ...), "%")
 }
 
-# Obtaining the values
+# Exracting the estimates of returns from the summarised regression outputs
+# and storing them to the empty dataframe
 for (i in seq(length(seq_year))){
   RoREs[i,] <- c(seq_year[i],
                  
@@ -607,8 +581,9 @@ for (i in seq(length(seq_year))){
                  formatC(smry_m_2[[i]]$coefficients[2,4], digits = 2))
 }
 
-# RoREs
+# x-axis with years for graphing
 (x_axis <- c(c(1994, 1996), seq(2000, 2018, 2)))
+
 # Converting to data.table and melting in order to visualize
 RoREs <- as.data.table(RoREs)
 RoREs_edu <- melt(RoREs, measure=c("returns_to_edu_all", 
@@ -616,22 +591,15 @@ RoREs_edu <- melt(RoREs, measure=c("returns_to_edu_all",
                                  "returns_to_edu_m"))
 RoREs_edu$value <- as.numeric(substr(RoREs_edu$value, 1, nchar(RoREs_edu$value)-1))
 
-## 
+# Storing in a spreadsheet the output with returns estimates
 write.xlsx(RoREs_edu,file="RoREs_edu.xlsx")
 
-
-
+# Coverting gender to a factor variable
 RoREs_edu$variable <- factor(RoREs_edu$variable,
                            labels = c("Total",
                                       "Females",
                                       "Males"))
-# All lines does not fall betweem males and females
-
-
-
-
-
-# Plotting all
+# Plotting
 ggplot(RoREs_edu, aes(YEAR, value, group = variable, color = variable,
                     shape = variable)) +
   geom_point(aes(shape = variable), size = 4) +
@@ -652,36 +620,35 @@ ggplot(RoREs_edu, aes(YEAR, value, group = variable, color = variable,
   ylab("Rate of returns, %") +
   xlab("Year")
 
+# Saving
 wd <- "C:/Country/Russia/Data/SEASHELL/SEABYTE/edreru/wp1"
 setwd(wd)
-# Saving
-ggsave("re_edu.png", width = 10, height = 7,
-       units = "in")
+ggsave("re_edu.png", width = 10, height = 7, units = "in")
 
-
-
-RoREs_edu2 <- RoREs_edu %>% filter(variable=="Males"|variable=="Females")
-
-# Extract points
+# Obtaining loess points to reproduce the graph in MS-Excel
+# Total
 loess.tot <- stats::loess(value ~ YEAR, data = RoREs_edu[RoREs_edu$variable == 'Total',])
 loess.predict.tot <- predict(loess.tot, se = F)
 
+# Females
 loess.fem <- stats::loess(value ~ YEAR, data = RoREs_edu[RoREs_edu$variable == 'Females',])
 loess.predict.fem <- predict(loess.fem, se = F)
 
+# Males
 loess.male <- stats::loess(value ~ YEAR, data = RoREs_edu[RoREs_edu$variable == 'Males',])
 loess.predict.male <- predict(loess.male, se = F)
 
+# Combining all points into a dataframe
 loess.df <- data.frame(YEAR = RoREs_edu[RoREs_edu$variable == 'Females', "YEAR"],
                        loess.fem = loess.predict.fem, 
                        loess.male = loess.predict.male,
                        loess.tot = loess.predict.tot)
 
-## 
-write.xlsx(loess.df,file="loess1.xlsx")
+# Saving in .xlsx format
+write.xlsx(loess.df, file="loess1.xlsx")
 
-##################
-# Plotting all
+# Plotting for males and females only
+RoREs_edu2 <- RoREs_edu %>% filter(variable=="Males"|variable=="Females")
 ggplot(RoREs_edu2, aes(YEAR, value, group = variable, color = variable,
                       shape = variable)) +
    geom_smooth(se = F, method = 'loess') +
@@ -702,16 +669,12 @@ ggplot(RoREs_edu2, aes(YEAR, value, group = variable, color = variable,
   ylab("Rate of returns, %") +
   xlab("Year")
 
+# Saving
 wd <- "C:/Country/Russia/Data/SEASHELL/SEABYTE/edreru/wp1"
 setwd(wd)
-# Saving
-ggsave("re_edu2.png", width = 10, height = 7,
-       units = "in")
+ggsave("re_edu2.png", width = 10, height = 7, units = "in")
 
-
-
-
-#####################################################################################
+# Graphs by levels of education: all
 RoREs_HE_VE_all <- melt(RoREs, measure=c("returns_to_HE_all", "returns_to_VE_all"))
 RoREs_HE_VE_all$value <- as.numeric(substr(RoREs_HE_VE_all$value, 1,
                                            nchar(RoREs_HE_VE_all$value)-1))
@@ -719,7 +682,7 @@ RoREs_HE_VE_all$variable <- factor(RoREs_HE_VE_all$variable,
                            labels = c("Higher education",
                                       "Vocational education"))
 
-# Plotting all
+# Plotting 
 ggplot(RoREs_HE_VE_all, aes(YEAR, value, group = variable, color = variable,
                           shape = variable)) +
   geom_point(aes(shape = variable), size = 4) +
@@ -744,8 +707,7 @@ ggplot(RoREs_HE_VE_all, aes(YEAR, value, group = variable, color = variable,
 ggsave("re_HE_all.png", width = 7, height = 7,
        units = "in")
 
-############################################################################
-# The same procedure for females
+# Graphs by levels of education: females
 RoREs_HE_VE_f <- melt(RoREs, measure=c("returns_to_HE_f",
                                        "returns_to_VE_f"))
 RoREs_HE_VE_f$value <- as.numeric(substr(RoREs_HE_VE_f$value, 1,
@@ -753,8 +715,7 @@ RoREs_HE_VE_f$value <- as.numeric(substr(RoREs_HE_VE_f$value, 1,
 RoREs_HE_VE_f$variable <- factor(RoREs_HE_VE_f$variable,
                             labels = c("Higher education",
                                        "Vocational education"))
-
-# Plotting females
+# Plotting
 ggplot(RoREs_HE_VE_f, aes(YEAR, value, group = variable, color = variable)) +
   geom_point(aes(shape = variable), size = 4) +
   geom_smooth(se = F, method = 'loess') +
@@ -777,7 +738,7 @@ ggplot(RoREs_HE_VE_f, aes(YEAR, value, group = variable, color = variable)) +
 ggsave("re_HE_f.png", width = 7, height = 7,
        units = "in")
 
-# The same procedure for males
+# Graphs by levels of education: males
 RoREs_HE_VE_m <- melt(RoREs, measure=c("returns_to_HE_m",
                                   "returns_to_VE_m"))
 RoREs_HE_VE_m$value <- as.numeric(substr(RoREs_HE_VE_m$value, 1,
@@ -785,7 +746,7 @@ RoREs_HE_VE_m$value <- as.numeric(substr(RoREs_HE_VE_m$value, 1,
 RoREs_HE_VE_m$variable <- factor(RoREs_HE_VE_m$variable,
                             labels = c("Higher education",
                                        "Vocational education"))
-# Plotting males
+# Plotting
 ggplot(RoREs_HE_VE_m, aes(YEAR, value, group = variable, color = variable)) +
   geom_point(aes(shape = variable), size = 4) +
   geom_smooth(se = F, method = 'loess') +
@@ -808,10 +769,9 @@ ggplot(RoREs_HE_VE_m, aes(YEAR, value, group = variable, color = variable)) +
 ggsave("re_HE_m.png", width = 7, height = 7,
        units = "in")
 
-
-###################################
-# TeX tables
-
+# Creating TeX tables in a loop for each regression specification by years.
+# Printing the first 4 years separately: this is necessary to be able to do a one-time 
+# copying of the remaining 18 regression outputs (TeX tables) from the colsole
 for (i in 1:4){
   cat("\n\\begin{landscape}\n")
   cat("\n\\fontsize{9}{11}\n\\selectfont\n")
@@ -880,17 +840,8 @@ for (i in 5:length(seq_year)){
   cat("\n\\newpage\n")
 }
 
-
-# For descriptive statistics
-sapply(df_mincer, class)
-df_mincer$REGION <- as.numeric(df_mincer$REGION) 
-df_mincer$exper <- as.numeric(df_mincer$REGION) 
-df_mincer$edu_yrs <- as.numeric(df_mincer$REGION) 
+# Saving the pre-processed dataset
 haven::write_sav(df_mincer, "df_mincer.sav")
 
-
-
-
-
-
-
+### 
+# End of file

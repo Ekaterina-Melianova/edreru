@@ -2,10 +2,6 @@
 
 # These are functions we use often, in one place. 
 
-
-
-
-
 ######################################################################################
 # Modified cbind #####################################################################
 # We use this function as a sub-function in another user-defined function below, called "selectFromSQL"

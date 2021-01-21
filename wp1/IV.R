@@ -1,18 +1,22 @@
 # IV.R
 # Instrumental Variable Specification using RLMS 2018
+# Working Paper 1
 
 # install.packages("hdm", repos = "http://R-Forge.R-project.org")
 library(hdm)
 library(sqldf)
 library(plyr); library(dplyr)
 library(tidyr)
+library(AER)
 
 # Data
 # wd
 wd <- "C:/Country/Russia/Data/SEASHELL/SEABYTE/Databases/RLMS/sqlite"
 setwd(wd) 
+
 # Some functions 
 source("C:/Country/Russia/Data/SEASHELL/SEABYTE/edreru/edreru_package.R")
+
 # Connecting with SQLite
 db <- dbConnect(SQLite(), dbname="C:/Country/Russia/Data/SEASHELL/SEABYTE/Databases/RLMS/sqlite/rlms.db")
 
@@ -133,8 +137,8 @@ rlms <- readRDS('C:/Country/Russia/Data/SEASHELL/SEABYTE/edreru/wp1/df_mincer.rd
 # Filtering 2018 
 rlms18 <- filter(rlms, YEAR == 2018)
 
-
 ##########################################################################
+
 # Region
 Region_rlms <- selectFromSQL(c("IDIND", "YEAR", "REGION", "AGE", 'STATUS')) %>% filter(YEAR == 2018)
 
@@ -175,11 +179,7 @@ table(rlms18$STATUS)
 rlms18$urban <- ifelse(rlms18$STATUS == 1 | rlms18$STATUS == 2, 1, 0)
 table(rlms18$urban)
         
-################################################################# 
 ### Estimating 2SLS 
-
-library(AER)
-
 # Running the model for females
 
 # 1st stage
@@ -187,7 +187,7 @@ summary(lm(edu_yrs ~ exper + I(exper^2) + urban + edu_family + prestige_family +
              factor(REGION),
            data = rlms18[rlms18$female == 1,]))
 
-# generating dummies for the selected regions
+# Generating dummies for the selected regions
 rlms18$Permskiy_Krai <- ifelse(rlms18$REGION == 12, 1, 0)
 rlms18$Tverskaya_Oblast <- ifelse(rlms18$REGION == 67, 1, 0)
 rlms18$Krasnoyarskiy_Kray <- ifelse(rlms18$REGION == 73, 1, 0)
@@ -234,7 +234,11 @@ summary(twoSLS.mal, vcov = sandwich, diagnostics = T)
 
 
 ################ STATA df
+
 wd <- 'C:/Country/Russia/Data/SEASHELL/SEABYTE/edreru/wp1'
 setwd(wd)
 library(readstata13)
 save.dta13(rlms18, 'rlms18.dta')
+
+### 
+# End of file
