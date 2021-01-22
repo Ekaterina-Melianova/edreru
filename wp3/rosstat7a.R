@@ -1,5 +1,5 @@
 # rosstat7a.R
-
+# Working paper 3
 # Map asked by Harry 
 
 library(foreign)
@@ -122,29 +122,20 @@ saveRDS(df_18, 'Rosstat18.rds')
 ###########################################################################################################
 
 # Empty list where the regression output will be written
-# The list is a list of 5 lists - one for each year of data
-# 2014, 2015, 2016, 2017, 2018
-# and for each year about 85 being the number of regions (H00_02)
-
 Rlm_mincer_all <- vector("list", length(unique(df$YEAR)))
 for (i in seq(length(Rlm_mincer_all))){
   Rlm_mincer_all[[i]] <- vector("list", length(unique(df$H00_02)))
 }
 Rlm_mincer_f = Rlm_mincer_m = Rlm_mincer_all 
 
-
-# define indices to simplify various loops 
+# Define indices to simplify loops coding 
 seq_year <- unique(df$YEAR)
 df$H00_02 <- as.numeric(as.character(df$H00_02))
 seq_region <- unique(df$H00_02) %>% sort()
 
-# Looping over each year and region
-# First loop is over year - and then regions within year 
-# and skip for regions 35 and 67 in year 2014
-# Then the algorithm starts filling in each i,j list
-# We are running 85*5 = 425-2 = 423 regressions
-# data we have to choose rows - YEAR from i & region from j, weights 
-# is the column KVZV ; print(i) is just to display the loop is working
+# Running loops over each year and region.
+# KVZV variable represents samplig weights.
+# print(i) is just to display the loop is working.
 
 # All
 # takes ~ 10 sec
@@ -196,10 +187,8 @@ names(Rlm_mincer_all) <- seq_year
 names(Rlm_mincer_m) <- seq_year
 names(Rlm_mincer_f) <- seq_year
 
-
-# We now run the regression for the whole country, without reference to region
-# five sets of regressions
 ##################################### FOR THE WHOLE SAMPLE ###############################
+
 # Empty list where the regression output will be written
 lm_mincer_all <- vector("list", length(unique(df$YEAR)))
 for (i in seq(length(lm_mincer_all))){
@@ -208,9 +197,7 @@ for (i in seq(length(lm_mincer_all))){
 lm_mincer_f = lm_mincer_m  = lm_mincer_all 
 seq_year <- unique(df$YEAR)
 
-
-
-# Looping over each year
+# Running loops over each year
 for(i in seq(length(seq_year))){
   lm_mincer_all[[i]] <- lm(log(wage) ~ edu_yrs + exper + I(exper^2),
                            data = df[df$YEAR == seq_year[i],],
@@ -232,7 +219,6 @@ names(lm_mincer_m) <- seq_year
 
 # Joining total results with the regression results by regions
 
-
 for (i in 1:length(Rlm_mincer_all)){
   Rlm_mincer_all[[i]][[length(Rlm_mincer_all[[i]]) + 1]] <- lm_mincer_all[[i]]
   Rlm_mincer_f[[i]][[length(Rlm_mincer_f[[i]]) + 1]] <- lm_mincer_f[[i]]
@@ -246,7 +232,7 @@ wd <- "C:/Country/Russia/Data/SEASHELL/SEABYTE/edreru/wp3"
 setwd(wd)
 rgvars <- rio::import("rgvars.xlsx") %>% arrange(OKATO)
 
-# Note the strict correspondence necessary between OKATO and H00_02
+# Note: the strict correspondence is necessary between OKATO and H00_02
 
 # Naming sublists with regression summary
 for (i in seq(length(seq_year))){
@@ -260,7 +246,5 @@ Rsmry_all <- lapply(Rlm_mincer_all, function(x) {lapply(x, summary)})
 Rsmry_f <- lapply(Rlm_mincer_m, function(x) {lapply(x, summary)})
 Rsmry_m <- lapply(Rlm_mincer_f, function(x) {lapply(x, summary)})
 
-
-
-
-
+### 
+# End of file

@@ -1,4 +1,6 @@
 # rosstat2b.R
+# Working paper 3
+# Depressed regions
 
 library(ggplot2)
 library(dplyr)
@@ -14,7 +16,7 @@ setwd(wd)
 Rosstat18 <- readRDS('Rosstat18.rds')
 names(Rosstat18)[1] <- 'OKATO'
 
-# Agerages for edu and lnwage for corplot
+# Averages for edu and lnwage for corplot
 Rosstat18$lnwage <- log(Rosstat18$wage)
 
 Rosstat18 <- Rosstat18 %>%
@@ -39,12 +41,10 @@ EGE_full$mean_ege_score_2018_free_ <- ifelse(is.na(EGE_full$mean_ege_score_2018_
 EGE <- EGE_full %>% 
   dplyr::select(region_name, mean_ege_score_2018_free_)  %>% 
   group_by(region_name) %>%
-  summarise(ege_score = mean(mean_ege_score_2018_free_, na.rm = T)) 
-
-#export(EGE$region_name, 'region_name.xlsx')
+  summarise(ege_score = mean(mean_ege_score_2018_free_, na.rm = T), .groups = 'drop') 
 region_name <- import('region_name.xlsx')
 
-# Joining OKATO to the EGE df
+# Joining OKATO with the EGE df
 EGE <- EGE %>% 
   left_join(region_name, by = 'region_name')
 
@@ -81,18 +81,12 @@ ege_zscore <- as.vector(round(psych::rescale(Ranks_demand_supply$ege_score,
                                                        mean=500, sd=100, df=FALSE)))
 
 Ranks_demand_supply$ege_zscore <- ege_zscore
-
 ege_uzscore <- as.vector(psych::rescale(Ranks_demand_supply$ege_score,
                                              mean=0, sd=1, df=FALSE))
-
 Ranks_demand_supply$ege_uzscore <- ege_uzscore
-
-
 univ_zcov <- as.vector(psych::rescale(Ranks_demand_supply$univ_deg_share,
                                             mean=0, sd=1, df=FALSE))
 Ranks_demand_supply$univ_zcov <- univ_zcov
-
-
 
 # Reading RoREs
 RoREs <- import('RoREs_cleaned.xlsx') %>% 
@@ -111,14 +105,10 @@ Ranks[Ranks$en_rgnames == 'Nenetskiy Aok', 'ege_zscore'] <-
 Ranks[Ranks$en_rgnames == 'Nenetskiy Aok', 'ege_uzscore'] <- 
   Ranks[Ranks$en_rgnames == 'Arkhangelskaya Oblast', 'ege_uzscore']
 
+Ranks <- Ranks[-c(86),] # deleting the entry for the Russian Federation
 
-Ranks <- Ranks[-c(86),] # deleting entry for Russian Federation
 # NA removing
 Ranks <- Ranks %>% filter(!is.na(ege_zscore) & !is.na(univ_zcov))
-
-# adding ranks
-#Ranks$rank_univ <- rank(-Ranks$univ_deg_share)
-#Ranks$rank_ege <- rank(-Ranks$ege_score)
 
 # Depressed regions
 depressed_regions <- c('Respublika Adygeya', 'Pskovskaya Oblast',
@@ -139,29 +129,22 @@ eci18 <- eci18 %>% transmute(bofit_name=bofit_name,
                              OKATO=as.character(sprintf("%02d",OKATO))) %>%
                  dplyr::select(en_rgnames, ECI)
 
-
 Ranks <- left_join(Ranks,eci18, by="en_rgnames")
-
 eci18_z <- as.vector(psych::rescale(Ranks$ECI,
                                       mean=0, sd=1, df=FALSE))
 Ranks$eci18_z <- eci18_z
-
 demand_z <- as.vector(psych::rescale(Ranks$demand_sum,
                                     mean=0, sd=1, df=FALSE))
 Ranks$demand_z <- demand_z
 
 
-
 temp <- Ranks %>% filter(ege_zscore > 500 & univ_zcov > 2)
+
 # Moscow and St. Pete's , of course
 temp <- Ranks %>% filter(ege_zscore <= 300 | univ_zcov >= 2)
-
 range(Ranks$demand_sum,na.rm = TRUE)
 Ranks %>% filter(demand_sum < 35) # Tuva
 Ranks %>% filter(demand_sum > 80) # Khanty-Mansisk
-
-
-#Ranks$rank_eci <- rank(-Ranks$ECI)
 
 # I make a scatter plot of ranks by quantity and quality of supply
 
@@ -186,20 +169,6 @@ ggplot(data=Ranks, aes(x=univ_zcov,y=ege_zscore, color=as.factor(Dep_reg)))+
 
 ggsave("ranks1a.png", width = 4, height = 4,
        units = "in")
-
-
-
-#Ranks$rank_demand <- rank(-Ranks$demand_sum)
-#Ranks$rank_re_HE <- rank(-Ranks$re_HE_all_2018)
-#Ranks$rank_re_VE <- rank(-Ranks$re_VE_all_2018)
-
-#Ranks$rank_supply <- rowMeans(Ranks[, c('rank_univ', 'rank_ege')])
-
-# Arranging
-#Ranks <- Ranks %>% select(en_rgnames, OKATO, rank_supply,
-#                        rank_demand, rank_re_HE, rank_re_VE)
-
-
 
 # Filling missings in Nenetskiy Aok by values in Arkhangelskaya Oblast
 # since the former is a part of the latter
@@ -252,24 +221,12 @@ table(Ranks$DQ)
 
 ###############################################################################################
 # Depressed regions
-#depressed_regions <- c('Respublika Adygeya', 'Pskovskaya Oblast',
-#                       'Altayskiy Kray', 'Kurganskaya Oblast',
-#                       'Respublika Kalmykiya', 'Chuvashskaya Respublika', 
-#                       'Respublika Altay', 'Respublika Karelia',
-#                       'Respublika Tyva', 'Respublika Mariy El')
-
-# Filtering depressed regions
-#Ranks_depressed <- filter(Ranks, en_rgnames %in% depressed_regions)
-
 # Groups 
-
 Ranks$DQ <- factor(Ranks$DQ,levels=c("I","II","IV","III")) 
 Ranks$SQ <- factor(Ranks$SQ,levels=c("I","II","IV","III")) 
 
 library(gmodels)
 gmodels::CrossTable(Ranks$DQ,Ranks$SQ)
-
-
 
 # I now get demand dominant or supply dominant classification
 
@@ -290,13 +247,10 @@ Ranks$TAG_[Ranks$DEMSUP==0] <- 1
 
 # Now get dem or sup for rest 28 cases
 
-
 Ranks$DEMSUP[Ranks$TAG_==1 & Ranks$ege_uzscore > Ranks$eci18_z] <- "SUPDOM"
 Ranks$DEMSUP[Ranks$TAG_==1 & Ranks$ege_uzscore < Ranks$eci18_z] <- "DEMDOM"
 
-
 table(Ranks$DEMSUP)
-
 
 # Returns
 
@@ -307,30 +261,23 @@ median(Ranks$re_VE_all_2018)
 # 31.26893 
 
 Ranks$RETURNS <- 0
-
 Ranks$RETURNS[Ranks$re_HE_all_2018 >= 92.54144 & 
                 Ranks$re_VE_all_2018>=31.26893] <- "High"
 
 Ranks$RETURNS[Ranks$re_HE_all_2018 <  92.54144 & 
                 Ranks$re_VE_all_2018 < 31.26893] <- "Low"
-
 Ranks$TAG_ <- 0
 Ranks$TAG_[Ranks$RETURNS==0] <- 1
 table(Ranks$TAG_)
 
 Ranks$RETURNS[Ranks$TAG_==1 & Ranks$re_HE_all_2018 >= 92.54144] <- "High"
 Ranks$RETURNS[Ranks$TAG_==1 & Ranks$re_HE_all_2018 < 92.54144] <- "Low"
-
 table(Ranks$RETURNS)
 
 # Now for the all important cross table
 
 CrossTable(Ranks$DEMSUP,Ranks$RETURNS)
-
-
 Ranks2 <- Ranks %>% dplyr::select(en_rgnames,RETURNS,DEMSUP,Dep_reg)
-
-
 Ranks2$facvar <- 0
 Ranks2$facvar[Ranks2$RETURNS=="High" & Ranks2$DEMSUP=="DEMDOM"] <- "High Returns - Demand Dominates"
 Ranks2$facvar[Ranks2$RETURNS=="Low" & Ranks2$DEMSUP=="DEMDOM"] <- "Low Returns - Demand Dominates"
@@ -349,7 +296,7 @@ Ranks2$yy <- sample(1:500, 20, replace=F)
 
 Ranks2$yy[Ranks2$en_rgnames=="Nizhegorodskaya Oblast"] <- 300
 
-
+# Plotting
 ggplot(data=Ranks2,aes(x=xx,y=yy,
          label=en_rgnames,color=as.factor(Dep_reg)))+ 
   geom_text_repel(segment.color='transparent',force=2.5,vjust=0.75,
@@ -370,8 +317,6 @@ ggplot(data=Ranks2,aes(x=xx,y=yy,
 ggsave("ranks2a.png", width = 10, height = 10,
        units = "in")
 
-
-
 export(Ranks, 'Ranks.xlsx')
 # in Ranks_modified the regions are arranged manually according to our classification
 
@@ -381,7 +326,6 @@ export(Ranks, 'Ranks.xlsx')
 # demand_vars - Mirkina variables (demand side)
 # EGE - EGE scores in a region
 # univ_degree_share - proportion of people with university degree in the sample
-
 
 library(PerformanceAnalytics)
 
@@ -434,3 +378,5 @@ pairs(cormat_df, gap=0, lower.panel=panel.smooth,
       upper.panel=panel.cor, diag.panel=hist.panel,
       cex.labels = 1.5, font.labels = 2)
 
+### 
+# End of file

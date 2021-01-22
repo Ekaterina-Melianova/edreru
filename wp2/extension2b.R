@@ -107,7 +107,8 @@ sparkTable::export(spk_m_out, outputType="tex",
        filename="C:/Country/Russia/Data/SEASHELL/SEABYTE/Edreru/wp2/sparklines/Weber_sprk_m",
        graphNames="C:/Country/Russia/Data/SEASHELL/SEABYTE/Edreru/wp2/sparklines/Weber_sprk_m")
 
-
+### 
+# End of file
 
 
 

@@ -1,10 +1,16 @@
 # rosstat2a.R
+# Working paper 3
+# Depressed regions
 
 library(dplyr)
 library(tidyr)
 library(lme4)
 library(rio)
 library(ggrepel)
+library(sqldf)
+
+# We have as set of user-created functions which are used often and stored separately
+source("C:/Country/Russia/Data/SEASHELL/SEABYTE/edreru/edreru_package.R")
 
 ###### Rosstat main 2018 dataset
 wd <- 'C:/Country/Russia/Data/SEASHELL/SEABYTE/edreru/wp3'
@@ -12,7 +18,7 @@ setwd(wd)
 Rosstat18 <- readRDS('Rosstat18.rds')
 names(Rosstat18)[1] <- 'OKATO'
 
-# Agerages for edu and lnwage for corplot
+# Averages for edu and lnwage for corplot
 Rosstat18$lnwage <- log(Rosstat18$wage)
 
 Rosstat18 <- Rosstat18 %>%
@@ -42,7 +48,7 @@ EGE <- EGE_full %>%
 #export(EGE$region_name, 'region_name.xlsx')
 region_name <- import('region_name.xlsx')
 
-# Joining OKATO to the EGE df
+# Joining OKATO with the EGE df
 EGE <- EGE %>% 
   left_join(region_name, by = 'region_name')
 
@@ -120,10 +126,17 @@ Ranks <- left_join(Ranks,eci18, by="en_rgnames")
 
 Ranks$rank_eci <- rank(-Ranks$ECI)
   
-# get labor markt demand quantity sectors
+# get labor market demand quantity sectors
 # source(edreru_package.R)
 # Selecting the variables of interest
+
+# Connecting with SQLite
+db <- dbConnect(SQLite(), dbname="C:/Country/Russia/Data/SEASHELL/SEABYTE/Databases/RLMS/sqlite/rlms.db")
 df_ <- selectFromSQL(c("J1", "AGE", "J4_1", "YEAR"))
+
+# After creating the R dataframe, we can disconnect the SQLITE connection
+dbDisconnect(db)
+
 df <- df_[df_$AGE >= 25 & df_$AGE < 65,]
 df <- df %>% filter(!is.na(J4_1) & J4_1 !="NA" & J4_1 <99)
 options(frequency_open_output = TRUE)
@@ -153,18 +166,10 @@ ggplot(data=Ranks, aes(x=rank_univ,y=rank_ege, color=as.factor(Dep_reg)))+
 ggsave("ranks1a.png", width = 4, height = 4,
        units = "in")
 
-
-
 Ranks$rank_demand <- rank(-Ranks$demand_sum)
 Ranks$rank_re_HE <- rank(-Ranks$re_HE_all_2018)
 Ranks$rank_re_VE <- rank(-Ranks$re_VE_all_2018)
-
 Ranks$rank_supply <- rowMeans(Ranks[, c('rank_univ', 'rank_ege')])
-
-# Arranging
-#Ranks <- Ranks %>% select(en_rgnames, OKATO, rank_supply,
-#                        rank_demand, rank_re_HE, rank_re_VE)
-
 
 # I make a scatter plot of ranks by quantity and quality of demand
 
@@ -195,15 +200,6 @@ temp
 
 ###############################################################################################
 # Depressed regions
-#depressed_regions <- c('Respublika Adygeya', 'Pskovskaya Oblast',
-#                       'Altayskiy Kray', 'Kurganskaya Oblast',
-#                       'Respublika Kalmykiya', 'Chuvashskaya Respublika', 
-#                       'Respublika Altay', 'Respublika Karelia',
-#                       'Respublika Tyva', 'Respublika Mariy El')
-
-# Filtering depressed regions
-#Ranks_depressed <- filter(Ranks, en_rgnames %in% depressed_regions)
-
 # Groups 
 Ranks$Ql_re_high_dem_greater <- ifelse(Ranks$rank_re_HE < 28 & 
                                                 Ranks$rank_demand > Ranks$rank_supply, 1, 0)
@@ -217,13 +213,11 @@ Ranks$Ql_re_low_dem_lower <- ifelse(Ranks$rank_re_HE >= 28 &
 export(Ranks, 'Ranks.xlsx')
 # in Ranks_modified the regions are arranged manually according to our classification
 
-
 ############ Overall correlations matrix for IV
 
 # demand_vars - Mirkina variables (demand side)
 # EGE - EGE scores in a region
 # univ_degree_share - proportion of people with university degree in the sample
-
 
 library(PerformanceAnalytics)
 
@@ -275,4 +269,7 @@ panel.cor <- function(x, y, digits=2, prefix="", use="pairwise.complete.obs",
 pairs(cormat_df, gap=0, lower.panel=panel.smooth,
       upper.panel=panel.cor, diag.panel=hist.panel,
       cex.labels = 1.5, font.labels = 2)
+
+### 
+# End of file
 

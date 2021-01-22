@@ -1,4 +1,5 @@
 # rosstat1a.R
+# Working Paper 3
 
 library(foreign)
 library(plyr); library(dplyr)
@@ -16,6 +17,17 @@ library(pbapply)
 library(gridExtra)
 library(stargazer)
 library(xtable)
+library(lme4)
+library(lattice)
+library(sjPlot)
+library(sjmisc)
+library(effects)
+library(broom) # for glance at AIC, BIC etc.
+library(performance) # for icc
+library(ggeffects) # for ggpredict
+library(margins) # for marginal effects
+library(merTools)
+library(glmmTMB)
 
 ##########################################################################################################
 
@@ -120,9 +132,7 @@ saveRDS(df_18, 'Rosstat18.rds')
 ###########################################################################################################
 
 # Empty list where the regression output will be written
-# The list is a list of 5 lists - one for each year of data
-# 2014, 2015, 2016, 2017, 2018
-# and for each year about 85 being the number of regions (H00_02)
+# The list is a list of 5X85 lists - for each year and region
 
 Rlm_mincer_all <- vector("list", length(unique(df$YEAR)))
 for (i in seq(length(Rlm_mincer_all))){
@@ -130,19 +140,14 @@ for (i in seq(length(Rlm_mincer_all))){
 }
 Rlm_mincer_f = Rlm_mincer_m = Rlm_mincer_all 
 
-
-# define indices to simplify various loops 
+# Define indices to simplify loops coding 
 seq_year <- unique(df$YEAR)
 df$H00_02 <- as.numeric(as.character(df$H00_02))
 seq_region <- unique(df$H00_02) %>% sort()
 
-# Looping over each year and region
-# First loop is over year - and then regions within year 
-# and skip for regions 35 and 67 in year 2014
-# Then the algorithm starts filling in each i,j list
-# We are running 85*5 = 425-2 = 423 regressions
-# data we have to choose rows - YEAR from i & region from j, weights 
-# is the column KVZV ; print(i) is just to display the loop is working
+# Running loops over each year and region.
+# KVZV variable represents samplig weights.
+# print(i) is just to display the loop is working.
 
 # All
 # takes ~ 10 sec
@@ -188,16 +193,15 @@ for(i in seq(length(seq_year))){
   print(i)
 }
 
-# Naming the list for each year
+# Naming lists for each year
 
 names(Rlm_mincer_all) <- seq_year
 names(Rlm_mincer_m) <- seq_year
 names(Rlm_mincer_f) <- seq_year
 
 
-# We now run the regression for the whole country, without reference to region
-# five sets of regressions
 ##################################### FOR THE WHOLE SAMPLE ###############################
+
 # Empty list where the regression output will be written
 lm_mincer_all <- vector("list", length(unique(df$YEAR)))
 for (i in seq(length(lm_mincer_all))){
@@ -206,9 +210,7 @@ for (i in seq(length(lm_mincer_all))){
 lm_mincer_f = lm_mincer_m  = lm_mincer_all 
 seq_year <- unique(df$YEAR)
 
-
-
-# Looping over each year
+# Running loops over each year
 for(i in seq(length(seq_year))){
   lm_mincer_all[[i]] <- lm(log(wage) ~ edu_4 + exper + I(exper^2) + female,
                            data = df[df$YEAR == seq_year[i],],
@@ -228,8 +230,7 @@ names(lm_mincer_all) <- seq_year
 names(lm_mincer_f) <- seq_year
 names(lm_mincer_m) <- seq_year
 
-# Joining total results with the regression results by regions
-
+# Joining total results with the results by regions
 
 for (i in 1:length(Rlm_mincer_all)){
   Rlm_mincer_all[[i]][[length(Rlm_mincer_all[[i]]) + 1]] <- lm_mincer_all[[i]]
@@ -244,23 +245,23 @@ wd <- "C:/Country/Russia/Data/SEASHELL/SEABYTE/edreru/wp3"
 setwd(wd)
 rgvars <- rio::import("rgvars.xlsx") %>% arrange(OKATO)
 
-# Note the strict correspondence necessary between OKATO and H00_02
+# Note: the strict correspondence is necessary between OKATO and H00_02
 
-# Naming sublists with regression summary
+# Naming sublists within summarised regressions 
 for (i in seq(length(seq_year))){
   names(Rlm_mincer_all[[i]]) <- c(rgvars[,3], "Russian Federation")
   names(Rlm_mincer_m[[i]]) <- c(rgvars[,3], "Russian Federation")
   names(Rlm_mincer_f[[i]]) <- c(rgvars[,3], "Russian Federation")
 }
 
-# Summarizing
+# Summarising
 Rsmry_all <- lapply(Rlm_mincer_all, function(x) {lapply(x, summary)})
 Rsmry_f <- lapply(Rlm_mincer_m, function(x) {lapply(x, summary)})
 Rsmry_m <- lapply(Rlm_mincer_f, function(x) {lapply(x, summary)})
 
 # Calculating returns by year for higher and vocational education
 
-# Setting variable names
+# Defining variable names
 # Higher - all
 re_h <- paste0("re_HE_all_", seq_year)
 p_h <- paste0("p_HE_all_", seq_year)
@@ -315,7 +316,7 @@ seq_region <- c(seq_region, "Russian Federation")
 RoREs <- as.data.frame((matrix(ncol = ncol, nrow = length(seq_region))))
 colnames(RoREs) <-  c("OKATO", re_p_ci)
 
-# Obtaining the values
+# Obtaining values
 re_one_region <- c()
 
 for (j in 1:(length(seq_region))){
@@ -370,52 +371,9 @@ for (j in 1:(length(seq_region))){
 RoREs <- cbind.data.frame(Region = c(rgvars[,3], 'Russian Federation'), RoREs)
 RoREs$Region <- as.character(RoREs$Region)
 RoREs[,-(1:2)] <- lapply(RoREs[,-(1:2)], as.numeric)
-# RoREs
-#export(RoREs, 'RoREs.xlsx')
-# Converting to data.table and melting in order to visualize
-# RoREs <- as.data.table(RoREs)
-
-##################################### Plot ##########################################
-
-# 2018
-# HE
-
-#temp <- RoREs %>% arrange(re_HE_all_2018)
-#RF_color <- ifelse(temp[, "Region"] == "Russian Federation", "red", "black")
-
-#ggplot(data = temp, aes(x = re_HE_all_2018, y = reorder(Region, re_HE_all_2018))) +
-#  geom_point(size = 3, color = RF_color) + 
-#  geom_errorbarh(aes(xmin = ci_lo_HE_all_2018,
-#                     xmax = ci_up_HE_all_2018, height = 0.6)) +
-#  theme_bw() +
-#  theme(axis.text.y = element_text(color = RF_color, size = 16),
-#        axis.text.x = element_text(color = "black", size = 16, face = "bold"),
-#        axis.title.y = element_blank(),
-#        axis.title.x = element_blank())  +
-#  scale_x_continuous(limits = c(-1,85))
-
-#ggsave("reg_he_18.png", width = 8, height = 20,
- #      units = "in")
-
-# VE
-#temp <- RoREs %>% arrange(re_VE_all_2018)
-#RF_color <- ifelse(temp[, "Region"] == "Russian Federation", "red", "black")
-
-#ggplot(data = temp, aes(x = re_VE_all_2018, y = reorder(Region, re_VE_all_2018))) +
-#  geom_point(size = 3, color = RF_color) + 
-#  geom_errorbarh(aes(xmin = ci_lo_VE_all_2018,
-#                     xmax = ci_up_VE_all_2018, height = 0.6)) +
-#  theme_bw() +
-#  theme(axis.text.y = element_text(color = RF_color, size = 16),
-#        axis.text.x = element_text(color = "black", size = 16, face = "bold"),
-#        axis.title.y = element_blank(),
-#        axis.title.x = element_blank())  +
-#  scale_x_continuous(limits = c(-10, 85))
-
-#ggsave("reg_ve_18.png", width = 8, height = 20,
-#       units = "in")
 
 ############################################################################################
+
 # A file with region names
 Sys.setlocale("LC_CTYPE", "russian")
 wd <- "C:/Country/Russia/Data/SEASHELL/SEABYTE/edreru/wp3"
@@ -441,40 +399,26 @@ desc_rst <- tabular((Regions = factor(en_rgnames)) ~  (N=1) +
                       (Education = factor(edu_4)*Percent("row")) +
                       (Gender = factor(female)*Percent("row")), data = df)
 latex(desc_rst)
+
 # Mixed models
 
 # 2018
-
-library(lme4)
-library(lattice)
-library(sjPlot)
-library(sjmisc)
-library(effects)
-library(broom) # for glance at AIC, BIC etc.
-library(performance) # for icc
-library(ggeffects) # for ggpredict
-library(margins) # for marginal effects
-library(merTools)
-library(glmmTMB)
 
 # Null model
 M18_0 <- lmer(log(wage) ~ 1 + (1|en_rgnames),
             data = df[df$YEAR == 2018,],
             weights = df[df$YEAR == 2018, "KVZV"],
             control=lmerControl(optimizer="bobyqa"))
-# ICC = 0.08875/(0.08875 + 0.46805) # EM I get slightly different numbers
-
 summary(M18_0)
 glance(M18_0)
 performance::icc(M18_0)
 
-# We have  result that gamma_00 = 10.17810; 
+# We have result that gamma_00 = 10.17810; 
 # we have sigma-squared as 0.4493  and tau_00 as 0.0911
 # we have rho as 0.169 
 # and we have 79 nu_oj coefficients
 dotplot(ranef(M18_0),main=F,title="Model M18_0: Random effects - no covariates")
 M18_0a <- as.data.frame(ranef(M18_0)[1])
-
 
 # Adding predictors
 M18_1 <- lmer(log(wage) ~ edu_4 + scale(exper) + I(scale(exper)^2) +
@@ -517,7 +461,7 @@ M18_2b_smry <- summary(M18_2b)
 # fixed effect part and construct a new dataframe for plotting
 # that combines fixed and random effect, with confidence intervals. 
 
-# Returns by region: fized plus region-specific random effect
+# Returns by region: fixed plus a region-specific random effect
 returns_by_regions <- as.data.frame(matrix(ncol = 1, nrow = 79))
 
 # HE
@@ -685,10 +629,8 @@ anova(M18_11, M18_12) # cov_VE works as a moderator
 summary(M18_12)
 
 
-
-
 #################
-######## REVISED REVISED 
+######## REVISED 
 
 blix <- getME(M18_12,name=c("Ztlist"))
 
@@ -709,7 +651,6 @@ M18_12ba <- get_model_data(M18_12b,type="re",sort.est = "edu_4Higher")
 summary(M18_2b)
 tab_model(M18_2b,M18_12b)
 glance(M18_2b,M18_12b)
-
 
 #################################
 # coverage HE
@@ -801,10 +742,10 @@ performance(M18_19)
 
 
 #################
+
 # Just for a rough look 
 dotplot(coef(M18_2))
 dotplot(ranef(M18_2, condVar=T))
-
 
 #################
 
@@ -907,6 +848,7 @@ ranef[is.na(ranef[,3]),3 ] <- ""
 
 fit.stat <- t(do.call(rbind.data.frame, lapply(c(M18_0, M18_1, M18_11, M18_12), glance)))
 fit.stat <- cbind(rownames(fit.stat), round(fit.stat, 3))
+
 ################# Fixed effects
 stargazer(M18_0,
           M18_1,
@@ -967,7 +909,7 @@ mean(df$cov_VE, na.rm = T) - 1*sd(df$cov_VE, na.rm = T)
 100*(exp(summary(M18_12)$coefficients[7])-1) -
   100*(exp(summary(M18_12)$coefficients[9])-1) # returns for HE
 
-########################################## Cor matrix
+########################################## Correlation Matrix
 
 # migr - migration rate (2017)
 # grp - gross regional product (2016)
@@ -1032,3 +974,7 @@ panel.cor <- function(x, y, digits=2, prefix="", use="pairwise.complete.obs",
 pairs(rgvars_selected, gap=0, lower.panel=panel.smooth,
       upper.panel=panel.cor, diag.panel=hist.panel,
       cex.labels = 2, font.labels = 2)
+
+### 
+# End of file
+

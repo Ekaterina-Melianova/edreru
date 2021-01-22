@@ -34,7 +34,6 @@ greg <- lm(weight ~ lag_calories+I(lag_cycling^2)+
 summary(reg,robust = T)
 summary(reg,robust = F)
 
-
 # create stargazer output with robust standard errors
 require("stargazer")
 
@@ -44,7 +43,8 @@ robust_se <- as.vector(summary(reg,robust = T)$coefficients[,"Std. Error"])
 # print stargazer output with robust standard errors
 stargazer(reg, greg, type = "text",se = list(robust_se))
 
-
-
 # the last command prints the stargazer output (in this case as tex t)
 # with robust standard errors. 
+
+### 
+# End of file

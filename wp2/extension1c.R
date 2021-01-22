@@ -25,7 +25,7 @@ library(arules)
 source("C:/Country/Russia/Data/SEASHELL/SEABYTE/edreru/edreru_package.R")
 
 # Specify the default working directory for this script
-setwd("C:/Country/Russia/Data/SEASHELL/SEABYTE/edreru/wp1")
+setwd("C:/Country/Russia/Data/SEASHELL/SEABYTE/edreru/wp2")
 
 ## Loading a table with routineness classification
 mt19 <- rio::import("mt19_table.xlsx")
@@ -41,18 +41,6 @@ df_dep_18 <- left_join(df_dep_18_, mt19,
 df_dep_18$NRAIM = df_dep_18$NRA + df_dep_18$NRI + df_dep_18$NRM
 df_dep_18$RCM = df_dep_18$RC + df_dep_18$RM
 
-#df_18 <- df_mincer2 %>% filter(YEAR==2018) %>% mutate(summer=1) %>% 
-#  group_by(occup) %>% 
-#  summarize(n_occ=sum(summer)) %>% arrange(desc(n_occ)) %>% 
-#  mutate(cn_occ=cumsum(n_occ))
-
-#junk <- df_temp1 %>% filter(YEAR==2018|YEAR==2006) %>% 
-#  select(IDIND, ID_H,ID_I,AGE,YEAR) %>% arrange(IDIND,YEAR) %>% 
-#  distinct(IDIND,.keep_all = T)
-#junk <- df_temp1 %>% filter(YEAR==1998|YEAR==2006) %>% 
-#  select(IDIND, ID_H,ID_I,AGE,YEAR) %>% arrange(IDIND,YEAR) %>% 
-#  distinct(IDIND,.keep_all = T)
-
 # On basis of three aggregates, I define three groups for analysis of depreciation
 # Note: drti and drcm are identical
 df_dep_18$drti <- discretize(df_dep_18$RTI,breaks=3,method="cluster",labels=c("Low","Medium","High"))
@@ -66,4 +54,7 @@ table(df_dep_18$dnraim)
 table(df_dep_18$drcm)
 
 saveRDS(df_dep_18, "df_dep_18.rds")
+
+### 
+# End of file
 

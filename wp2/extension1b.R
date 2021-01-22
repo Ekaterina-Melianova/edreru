@@ -2,8 +2,6 @@
 options(scipen=999) # to supress scientific notation
 # WP1 extension along lines of Neuman-Weiss 1995.
 
-# Revised by Suhas; Tuesday, January 07, 2020
-
 library(plyr); library(dplyr)
 library(sqldf)
 library(XLConnectJars)
@@ -26,14 +24,14 @@ library(reshape2)
 source("C:/Country/Russia/Data/SEASHELL/SEABYTE/edreru/edreru_package.R")
 
 # Specify the default working directory for this script
-setwd("C:/Country/Russia/Data/SEASHELL/SEABYTE/edreru/wp1")
+setwd("C:/Country/Russia/Data/SEASHELL/SEABYTE/edreru/wp2")
 
 # Load data generated and saved in mincer2a.R file with RLMS 1994-2018 cleaned and cooked well
 df_mincer <- readRDS("df_mincer.rds")
 
 ############
 # Adjusting to prices in 2018
-cpi <- rio::import("cpi_revised.xlsx")[,c(1,6)]
+cpi <- rio::import("C:/Country/Russia/Data/SEASHELL/SEABYTE/edreru/wp1/cpi_revised.xlsx")[,c(1,6)]
 df_mincer <- df_mincer %>% left_join(cpi,by="YEAR")
 df_mincer2 <- df_mincer %>% 
   mutate(wage_c18=ifelse(YEAR >=1998,wage*cons_wb,(wage*cons_wb/1000)))
@@ -42,10 +40,9 @@ df_mincer2 <- df_mincer %>%
 saveRDS(df_mincer2, "df_mincer2.rds")
 ############
 
-## I want to bring in some other variables from the rawdata sqlite database.
-## The additional variables are
+## Bringing in some other variables from the rawdata sqlite database.
+
 # J41 - Industry or Sector of employment in RLMS
-## I neeed the function selectFromSQL defined in mincer1a.R
 setwd("C:/Country/Russia/Data/SEASHELL/SEABYTE/Databases/RLMS/sqlite")
 
 # Connecting with SQLite
@@ -63,38 +60,30 @@ rm(temp1_) # don't need this anymore
 
 temp1 <- SysMisFix(temp1) # determining system missings
 temp1 <- UserMisFix(temp1) # labelling user-defined missings
-#
 
-# convert large 9999 numbers to missing 
-# Interrogative - is this a default for all variables or every variable 
-# has different set of numerically coded missing values
+# Frequencies
+Freq(temp1$J4_1)
 
-temp1$J4_1[temp1$J4_1==99999996] <- NA
-temp1$J4_1[temp1$J4_1==99999997] <- NA
-temp1$J4_1[temp1$J4_1==99999998] <- NA
-temp1$J4_1[temp1$J4_1==99999999] <- NA
+# Removing labels
+temp1 <- remove_labels(temp1, user_na_to_na = T)
 
-FreqSP(temp1$J4_1)  # Function derived from descr/freq works only for cases with 9999996 etc sanitized
 ############################################################################################
 # Move the wd back to project root
-setwd("C:/Country/Russia/Data/SEASHELL/SEABYTE/edreru/wp1")
-
+setwd("C:/Country/Russia/Data/SEASHELL/SEABYTE/edreru/wp2")
 
 ##########
-# I will calculate the proportion of women in labor force in 2018
-temp218_ <- temp1 %>% filter(YEAR==2018) # 6,111 observations
 
-# By Industry/Sector J4_1 ############********************
+# Calculating the proportion of women in labor force in 2018
+temp218_ <- temp1 %>% filter(YEAR==2018) # 6,121 observations
+
+# By Industry/Sector J4_1 
 # How many NAs on J4_1
-(sum(is.na(temp218_$J4_1)))
-# 22 
-
-# 6011-22 = 6089 observations left below from filtering NAs on J4_1
+(sum(is.na(temp218_$J4_1))) # 22
 
 t2_ <- temp218_ %>% filter(!is.na(J4_1)) %>% group_by(J4_1) %>% 
-  summarize(tfem=sum(female),tall=n()) %>%  arrange(desc(tall))
+  summarize(tfem=sum(female),tall=n(), .groups = 'drop') %>%  arrange(desc(tall))
 
-(sum(t2_$tfem))/(sum(t2_$tall)) # 0.5425 
+(sum(t2_$tfem))/(sum(t2_$tall)) # 0.54
 # I take as 54% - more than 10% or more than 64% regarded as female dominated industry
 #               - less than 10% or less than 44% regarded as male dominated
 # those in the middle are neutral
@@ -104,23 +93,19 @@ t2_ <- temp218_ %>% filter(!is.na(J4_1)) %>% group_by(J4_1) %>%
 # which was an original "others" value in the RLMS Questionnaire in 26th Round
 
 t2_ <- temp218_ %>% filter(!is.na(J4_1)) %>% group_by(J4_1) %>% 
-  summarize(tfem=sum(female),tall=n()) %>%  
+  summarize(tfem=sum(female),tall=n(), .groups = 'drop') %>%  
     mutate(J4_1=replace(J4_1,J4_1%in%c(22,28,29,31,32),19)) %>% arrange(J4_1) %>% 
-  group_by(J4_1) %>% summarize(tfem=sum(tfem),tall=sum(tall)) %>% 
+  group_by(J4_1) %>% summarize(tfem=sum(tfem),tall=sum(tall), .groups = 'drop') %>% 
    mutate(J4_1=as.numeric(J4_1)) %>% mutate(pfem=tfem/tall) %>% 
    mutate(pfem=round(pfem,4)*100,pmal=100-pfem) 
 
 t2_$J4_1 <- as.numeric(t2_$J4_1)
-
-(sum(t2_$tfem)) # 3303
-(sum(t2_$tall)) # 6089
 
 t2_$indcat <- NA  # to avoid multiple warnings
 
 t2_$indcat[t2_$pfem>64] <- "Ind_F"
 t2_$indcat[t2_$pfem<44] <- "Ind_M"
 t2_$indcat[t2_$pfem>=44&t2_$pfem<=64] <- "Ind_N"
-
 
 # Defining the values 
 t2_$ilab = NA
@@ -183,7 +168,6 @@ df_dep_18 <- temp1 %>%
 #############
 #############
 
-
 # Keep only variables needed for graphing and introduce rank
 t2_ <- t2_ %>% arrange(desc(pfem)) %>% select(J4_1,pfem,pmal) %>% 
   mutate(rankf=rank(desc(pfem)))
@@ -204,28 +188,24 @@ ggplot(t2b_,aes(x=reorder(as.factor(J4_1),rankf),y=percentage,fill=gender))+
 #ggsave("gen_ind18.png", width = 7.5, height = 4,
 #       units = "in")
 
-
-
 ## By single occupational digit#################
-temp218_ <- temp1 %>% filter(YEAR==2018) # 6,111 observations
+temp218_ <- temp1 %>% filter(YEAR==2018)
 temp218_ <- temp218_ %>% mutate(isco_1=substr(occup,1,1))
 
 t2_ <- temp218_ %>% group_by(isco_1) %>% 
-  summarize(tfem=sum(female),tall=n()) %>%  arrange(desc(tall))
+  summarize(tfem=sum(female),tall=n(), .groups = 'drop') %>%  arrange(desc(tall))
 
 # manual observation indicates 
 # 6 individuals with 06 (farm and fishery) and 5 individuals with 00 (armed forces)
 # otherwise lowest n is 339
 
-# From 6111 to 6100 observations
 t2_ <- temp218_ %>% filter(isco_1!=6 & isco_1!=0) %>% group_by(isco_1) %>% 
   summarize(tfem=sum(female),tall=n()) %>%  arrange(desc(tall))
 
-(sum(t2_$tfem))/(sum(t2_$tall)) # 0.5423 
-
+(sum(t2_$tfem))/(sum(t2_$tall)) # 0.54
 
 t2_ <- temp218_ %>% filter(isco_1!=6 & isco_1!=0) %>% group_by(isco_1) %>% 
-  summarize(tfem=sum(female),tall=n()) %>%  
+  summarize(tfem=sum(female),tall=n(), .groups = 'drop') %>%  
   mutate(pfem=tfem/tall) %>%  mutate(pfem=round(pfem,4)*100,pmal=100-pfem) 
 
 t2_$indcat <- NA  # to avoid multiple warnings
@@ -238,7 +218,6 @@ t2_$indcat[t2_$pfem>=44&t2_$pfem<=64] <- "Ind_N"
 t2_ <- t2_ %>% arrange(desc(pfem)) %>% select(isco_1,pfem,pmal) %>% 
   mutate(rankf=rank(desc(pfem)))
 
-
 # convert into long form for ggplot2
 t2b_ <- reshape2::melt(t2_,id.vars=(c("isco_1","rankf")),
                        value.name="percentage", variable.name="gender")
@@ -248,20 +227,18 @@ t2c_ <- t2_ %>% select(isco_1,pfem,rankf) %>%
   transmute(isco_1=isco_1,percentage=pfem,rankf=rankf)
 
 t2c_$ilabel <- NA
-t2c_$ilabel[t2c_$isco_1==1] <- "                Managers"
+t2c_$ilabel[t2c_$isco_1==1] <- "Managers"
 t2c_$ilabel[t2c_$isco_1==2] <- "Professionals"
-t2c_$ilabel[t2c_$isco_1==3] <- "   Technicians"
+t2c_$ilabel[t2c_$isco_1==3] <- "Technicians"
 
 t2c_$ilabel[t2c_$isco_1==4] <- "Clerical"
-t2c_$ilabel[t2c_$isco_1==5] <- "     Services"
+t2c_$ilabel[t2c_$isco_1==5] <- "Services"
 t2c_$ilabel[t2c_$isco_1==7] <- "Crafts/Trades"
 
 t2c_$ilabel[t2c_$isco_1==8] <- "Machine Operators"
-t2c_$ilabel[t2c_$isco_1==9] <- "     Elementary Ocups."
-
+t2c_$ilabel[t2c_$isco_1==9] <- "Elementary Ocups."
 
 t2c_$gender <- NA
-
 
 # Now for graph
 # We wont use this as it is not very intuitive
@@ -276,7 +253,6 @@ ggplot(t2b_,aes(x=reorder(as.factor(isco_1),rankf),y=percentage,fill=gender))+
   ylab("Percentage") +
   theme(legend.position ="NONE")
 
-
 ## By double digit occupational digit#################
 temp218_ <- temp1 %>% filter(YEAR==2018) # 6,111 observations
 temp218_ <- temp218_ %>% mutate(isco_2=substr(occup,1,2))
@@ -288,16 +264,15 @@ temp218_ <- temp218_ %>% mutate(isco_2=substr(occup,1,2))
 t2_ <- temp218_ %>% 
   mutate(isco_2=replace(isco_2,isco_2%in%c(0,35,61,62,95),66)) %>% arrange(isco_2) %>%   
   group_by(isco_2) %>% 
-  summarize(tfem=sum(female),tall=n()) %>% arrange(desc(tall))
+  summarize(tfem=sum(female),tall=n(), .groups = 'drop') %>% arrange(desc(tall))
 
-(sum(t2_$tfem))/(sum(t2_$tall)) # 0.5420
+(sum(t2_$tfem))/(sum(t2_$tall)) # 0.54
 
 t2_ <- temp218_ %>% 
   mutate(isco_2=replace(isco_2,isco_2%in%c(0,35,61,62,95),66)) %>% arrange(isco_2) %>%   
   group_by(isco_2) %>% 
-  summarize(tfem=sum(female),tall=n()) %>% arrange(desc(tall)) %>%
+  summarize(tfem=sum(female),tall=n(), .groups = 'drop') %>% arrange(desc(tall)) %>%
    mutate(pfem=tfem/tall) %>%  mutate(pfem=round(pfem,4)*100,pmal=100-pfem) %>% arrange(desc(pfem))
-
 
 # keep for later merging
 t2 <- t2_ 
@@ -315,7 +290,6 @@ t2_$ilab = NA
 # Defining the values 
 t2_$ilab = NA
 
-
 t2_$ilab[t2_$isco_2==11]	<- "Chief Executives, Senior Officials and Legislators"
 t2_$ilab[t2_$isco_2==12]	<- "Administrative and Commercial Managers"
 t2_$ilab[t2_$isco_2==13]	<- "Production and Specialized Services Managers"
@@ -327,7 +301,6 @@ t2_$ilab[t2_$isco_2==23]	<- "Teaching Professionals"
 t2_$ilab[t2_$isco_2==24]	<- "Business and Administration Professionals"
 t2_$ilab[t2_$isco_2==25]	<- "Information and Communications Technology Professionals"
 t2_$ilab[t2_$isco_2==26]	<- "Legal, Social and Cultural Professionals"
-
 
 t2_$ilab[t2_$isco_2==31] 	<- "Science and Engineering Associate Professionals"
 t2_$ilab[t2_$isco_2==32]	<- "Health Associate Professionals"
@@ -364,7 +337,6 @@ t2_$ilab[t2_$isco_2==94]	<-"Food Preparation Assistants"
 t2_$ilab[t2_$isco_2==95]	<-"Street and Related Sales and Services Workers"
 t2_$ilab[t2_$isco_2==96]	<-"Refuse Workers and Other Elementary Workers" 
 
-
 ## Table
 t2t_ <- t2_ %>% select(ilab,tfem,pfem,tall) %>% arrange(desc(pfem)) %>%
   transmute(ilab=ilab,tfem=as.character(tfem),
@@ -386,7 +358,7 @@ temp218_ <- df_dep_18 %>% mutate(isco_2=substr(occup,1,2))
 t2 <- temp218_ %>% 
   mutate(isco_2=replace(isco_2,isco_2%in%c(0,35,61,62,95),66)) %>% arrange(isco_2) %>%   
   group_by(isco_2) %>% 
-  summarize(tfem=sum(female),tall=n()) %>% arrange(desc(tall)) %>%
+  summarize(tfem=sum(female),tall=n(), .groups = 'drop') %>% arrange(desc(tall)) %>%
   mutate(pfem=tfem/tall) %>%  mutate(pfem=round(pfem,4)*100,pmal=100-pfem) %>% arrange(desc(pfem))
 
 t2$ocpcat18 <- NA
@@ -411,11 +383,9 @@ saveRDS(df_dep_18, "df_dep_18_.rds")
 t2_ <- t2_ %>% arrange(desc(pfem)) %>% select(isco_2,pfem,pmal) %>% 
   mutate(rankf=rank(desc(pfem)))
 
-
 # convert into long form for ggplot2
 t2b_ <- reshape2::melt(t2_,id.vars=(c("isco_2","rankf")),
                        value.name="percentage", variable.name="gender")
-
 
 # Now for graph
 ggplot(t2b_,aes(x=reorder(as.factor(isco_2),rankf),y=percentage,fill=gender))+
@@ -433,7 +403,6 @@ ggsave("gen_occ18.png", width = 7.5, height = 4,
 ## Later we could explore 4 digit ISCO and J4_1/ISCO 2 digit combinations
 ## But first we take 2 digit ISCO all the way
 
-
 ## temp218 - Basic earnings profile 
 
 ## let's take university graduates
@@ -444,14 +413,16 @@ ggplot(temp218_,aes(x=exper,y=wage,group=edu_4,col=edu_4)) + geom_smooth(se=FALS
    facet_wrap(~female)
 
 
-
 ##########################################################################################
 # wages in 2018 are alomst 3 times as high as in 2000:
-aggregate(wage_c18 ~ YEAR, df_mincer, mean)
+# Removing labels
+df_mincer2 <- remove_labels(df_mincer2, user_na_to_na = T)
+
+aggregate(wage_c18 ~ YEAR, df_mincer2, mean)
 aggregate(wage ~ YEAR, df_mincer, mean)
 
-
-temp_ <- df_mincer %>% filter(edu_4=="Higher") %>% filter(YEAR==1998|YEAR==2006|YEAR==2018)
+# Higher education
+temp_ <- df_mincer2 %>% filter(edu_4=='Higher') %>% filter(YEAR==1998|YEAR==2006|YEAR==2018)
 ggplot(temp_,aes(x=exper,y=wage_c18,group=as.factor(YEAR),linetype=as.factor(YEAR))) + geom_smooth(se=FALSE,col="red",lwd=0.75,method=loess)+
   coord_cartesian(ylim=c(0,40000))+
   xlab("Experience in years") + ylab("Monthly wages in 2018 Rubles")+
@@ -466,8 +437,8 @@ ggplot(temp_,aes(x=exper,y=wage_c18,group=as.factor(YEAR),linetype=as.factor(YEA
 ggsave("dp01_he.png", width = 3, height = 3.5,
        units = "in")
   
-
-temp_ <- df_mincer %>% filter(edu_4=="Vocational") %>% filter(YEAR==1998|YEAR==2006|YEAR==2018)
+# Vocational education
+temp_ <- df_mincer2 %>% filter(edu_4=='Vocational') %>% filter(YEAR==1998|YEAR==2006|YEAR==2018)
 ggplot(temp_,aes(x=exper,y=wage_c18,group=as.factor(YEAR),linetype=as.factor(YEAR))) + geom_smooth(se=FALSE,col="blue",lwd=0.75,method=loess)+
   coord_cartesian(ylim=c(0,40000))+
   scale_linetype_manual(values=c("dotted","longdash","solid"))+
@@ -482,8 +453,8 @@ ggplot(temp_,aes(x=exper,y=wage_c18,group=as.factor(YEAR),linetype=as.factor(YEA
 ggsave("dp01_ve.png", width = 3, height = 3.5,
        units = "in")
 
-
-temp_ <- df_mincer %>% filter(edu_4=="Secondary") %>% filter(YEAR==1998|YEAR==2006|YEAR==2018)
+# Secondary education
+temp_ <- df_mincer2 %>% filter(edu_4=='Secondary') %>% filter(YEAR==1998|YEAR==2006|YEAR==2018)
 ggplot(temp_,aes(x=exper,y=wage_c18,group=as.factor(YEAR),linetype=as.factor(YEAR))) + 
   geom_smooth(se=FALSE,col="darkgreen",lwd=0.75,method=loess)+
   coord_cartesian(ylim=c(0,40000))+
@@ -506,7 +477,8 @@ ggsave("dp01_se.png", width = 3, height = 3.5,
 
 ## Now the same plot, arranged with years together
 
-temp_ <- df_mincer %>% filter(YEAR==1998) 
+# Higher education
+temp_ <- df_mincer2 %>% filter(YEAR==1998)
 ggplot(temp_,aes(x=exper,y=wage_c18,group=as.factor(edu_4),color=as.factor(edu_4))) +
   geom_smooth(se=FALSE,lwd=0.75,method=loess)+
   coord_cartesian(ylim=c(0,40000))+
@@ -526,9 +498,8 @@ ggplot(temp_,aes(x=exper,y=wage_c18,group=as.factor(edu_4),color=as.factor(edu_4
 ggsave("dp01_98.png", width = 3, height = 3.5,
        units = "in")
 
-###
-
-temp_ <- df_mincer %>% filter(YEAR==2006) 
+# Vocational education
+temp_ <- df_mincer2 %>% filter(YEAR==2006) 
 ggplot(temp_,aes(x=exper,y=wage_c18,group=as.factor(edu_4),color=as.factor(edu_4))) +
   geom_smooth(se=FALSE,lwd=0.75,method=loess)+
   coord_cartesian(ylim=c(10000,40000))+
@@ -545,10 +516,8 @@ ggplot(temp_,aes(x=exper,y=wage_c18,group=as.factor(edu_4),color=as.factor(edu_4
 ggsave("dp01_06.png", width = 3, height = 3.5,
        units = "in")
 
-
-###
-
-temp_ <- df_mincer %>% filter(YEAR==2018) 
+# Secondary education
+temp_ <- df_mincer2 %>% filter(YEAR==2018) 
 ggplot(temp_,aes(x=exper,y=wage_c18,group=as.factor(edu_4),color=as.factor(edu_4))) +
   geom_smooth(se=FALSE,lwd=0.75,method=loess)+
   coord_cartesian(ylim=c(10000,40000))+
@@ -569,7 +538,7 @@ ggsave("dp01_18.png", width = 3, height = 3.5,
 ## Run Murillo Regression
 
 lm_dep <- lm(log(wage_c18) ~ edu_yrs + exper*edu_yrs + exper + I(exper^2),
-             data=subset(df_mincer,YEAR==2018))
+             data=subset(df_mincer2,YEAR==2018))
 summary(lm_dep)
 #b1 edu_yrs        0.05302502  0.00913908   5.802 0.000000006881165398 ***
 #b2 edu_yrs:exper  0.00006204  0.00038075   0.163              0.87056  
@@ -577,14 +546,14 @@ summary(lm_dep)
 #b4 I(exper^2)    -0.00061336  0.00007516  -8.161 0.000000000000000402 ***
   
 (junk <- df_mincer %>% select(YEAR,edu_yrs,exper) %>% group_by(YEAR) %>% 
-  summarize(meaned=mean(edu_yrs),meanex=mean(exper)))
+  summarize(meaned=mean(edu_yrs),meanex=mean(exper), .groups = 'drop'))
 
 #tdesc=0.00006204*13*100 at average s of 13 or 0.080652 i.e. 0.08%
 
 #tdexp=2*0.00061336*22*100 at average of 22 ex or 2.698784 i.e. 2.698% 
 
 lm_dep <- lm(log(wage_c18) ~ edu_yrs + exper*edu_yrs + exper + I(exper^2),
-             data=subset(df_mincer,YEAR==2018 & female==1))
+             data=subset(df_mincer2,YEAR==2018 & female==1))
 summary(lm_dep)
 
 # b1=0.05302502
@@ -599,7 +568,7 @@ summary(lm_dep)
 
 # b2_s + b3 + 2b4x
 lm_dep <- lm(log(wage_c18) ~ edu_yrs + exper*edu_yrs + exper + I(exper^2),
-             data=subset(df_mincer,YEAR==2018 & female==0))
+             data=subset(df_mincer2,YEAR==2018 & female==0))
 summary(lm_dep)
 
 #b1  edu_yrs        0.0770274  0.0123341   6.245     0.00000000048807 ***
@@ -609,14 +578,13 @@ summary(lm_dep)
   
 ## others 
 lm_dep <- lm(log(wage_c18) ~ edu_yrs + exper*edu_yrs + exper + I(exper^2),
-             data=subset(df_mincer,YEAR==2018 & edu_4=="Higher"))
+             data=subset(df_mincer2,YEAR==2018 & edu_4=="Higher"))
 summary(lm_dep)
 
 
 lm_dep <- lm(log(wage_c18) ~ edu_yrs + exper*edu_yrs + exper + I(exper^2),
-             data=subset(df_mincer,YEAR==2018 & exper>5 & exper <40))
+             data=subset(df_mincer2,YEAR==2018 & exper>5 & exper <40))
 summary(lm_dep)
 
-
-
-
+### 
+# End of file

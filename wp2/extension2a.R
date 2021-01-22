@@ -2,10 +2,6 @@
 
 # This script uses df_mincer2, a dataframe generated from extension1d.R 
 
-# Written by Suhas D. Parandekar, Tuesday, December 10, 2019 
-# Updated by Suhas D. Parandekar, Wednesday, December 11, 2019 
-
-
 options(scipen=999) # to supress scientific notation
 # Arrazola and De Havia / Weber et al 
 
@@ -28,6 +24,10 @@ library(segregation)
 library(reshape2)
 library(arules)
 library(stargazer)
+
+# sparkTable package was removed froom CRAN, install from the archive
+# library(devtools)
+# install_url('https://cran.r-project.org/src/contrib/Archive/sparkTable/sparkTable_1.3.0.tar.gz')
 library(sparkTable)
 
 # Some functions
@@ -242,8 +242,8 @@ x1 <- newSparkTable(xx, content, varType)
 # from which I only use the preamble and graphics command in the latex table
 # main output are three sparklines 
 export(x1, outputType="tex", 
-       filename="C:/Country/Russia/Data/SEASHELL/SEABYTE/Edreru/wp1/sparklines/spkline",
-       graphNames="C:/Country/Russia/Data/SEASHELL/SEABYTE/Edreru/wp1/sparklines/all")
+       filename="C:/Country/Russia/Data/SEASHELL/SEABYTE/edreru/wp2/sparklines/spkline",
+       graphNames="C:/Country/Russia/Data/SEASHELL/SEABYTE/edreru/wp2/sparklines/all")
 #######################################
 ########### A1F. General model - Female
 stargazer(lm_dep_f[1],
@@ -371,8 +371,8 @@ x1 <- newSparkTable(xx, content, varType)
 # from which I only use the preamble and graphics command in the latex table
 # main output are three sparklines 
 export(x1, outputType="tex", 
-       filename="C:/Country/Russia/Data/SEASHELL/SEABYTE/Edreru/wp1/sparklines/spkline",
-       graphNames="C:/Country/Russia/Data/SEASHELL/SEABYTE/Edreru/wp1/sparklines/female")
+       filename="C:/Country/Russia/Data/SEASHELL/SEABYTE/edreru/wp2/sparklines/spkline",
+       graphNames="C:/Country/Russia/Data/SEASHELL/SEABYTE/edreru/wp2/sparklines/female")
 #######################################
 
 
@@ -504,8 +504,8 @@ x1 <- newSparkTable(xx, content, varType)
 # from which I only use the preamble and graphics command in the latex table
 # main output are three sparklines 
 export(x1, outputType="tex", 
-       filename="C:/Country/Russia/Data/SEASHELL/SEABYTE/Edreru/wp1/sparklines/spkline",
-       graphNames="C:/Country/Russia/Data/SEASHELL/SEABYTE/Edreru/wp1/sparklines/male")
+       filename="C:/Country/Russia/Data/SEASHELL/SEABYTE/edreru/wp2/sparklines/spkline",
+       graphNames="C:/Country/Russia/Data/SEASHELL/SEABYTE/edreru/wp2/sparklines/male")
 #######################################
 
 
@@ -665,7 +665,7 @@ edu_exp_mean <- rbind.data.frame(col, edu_exp_mean)
 # Latex 
 xtable::xtable(edu_exp_mean)
 
-
-#### By gender - 
+### 
+# End of file
 
 

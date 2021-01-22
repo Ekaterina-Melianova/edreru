@@ -33,7 +33,6 @@ rst_18 <- read.spss(file="rosstat_18.sav",
                     use.missings=TRUE,
                     to.data.frame = TRUE)
 
-
 # Now generate first table
 
 stargazer(rst_18,
@@ -47,9 +46,10 @@ stargazer(rst_18,
 # Generate a second table
 latex(Hmisc::describe(rst_18), file="C:/Country/Russia/Data/SEASHELL/SEABYTE/Databases/ROSSTAT/documentation/rst_18a.pretex",size="small")
 
-
 blix <- Hmisc::describe(rst_18)
-
 sink("blix.txt", append=TRUE)
 blix
+
+### 
+# End of file
 

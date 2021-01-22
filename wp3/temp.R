@@ -4,7 +4,6 @@ library(DBI)
 
 # Connecting with SQLite
 
-
 db <- dbConnect(SQLite(), dbname="C:/Country/Russia/Data/SEASHELL/SEABYTE/Databases/RLMS/sqlite/rlms.db")
 dbListTables(db)
 
