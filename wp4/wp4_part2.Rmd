@@ -73,25 +73,11 @@ Sys.setlocale("LC_CTYPE", "russian")
 
 setwd("C:/Country/Russia/Data/SEASHELL/SEABYTE/Databases/Tertiary")
 
-# Load dataframes
-df_colleges <- rio::import("dataframe_colleges.xlsx")
-df_universities <- rio::import("dataframe_universities.xlsx")
-df_universities_areas <- rio::import("dataframe_universities_areas.xlsx")
+# Load dataframes saved from wp4_part1.Rmd
+load("C:/Country/Russia/Data/SEASHELL/SEABYTE/edreru/wp4/df_universities.rda")
+load("C:/Country/Russia/Data/SEASHELL/SEABYTE/edreru/wp4/df_universities_areas.rda")
+load("C:/Country/Russia/Data/SEASHELL/SEABYTE/edreru/wp4/df_colleges.rda")
 
-
-### Filtering
-# Select Universities with more than 100 graduates
-df_universities <- df_universities[df_universities$graduates_number > 100,]
-# Remove salary outlier
-# df_universities <- df_universities[df_universities$salary_2016 != max(df_universities$salary_2016),]
-# Remove 0 salaries
-df_universities <- df_universities[df_universities$salary_2016 != 0,]
-# Select Colleges with more than 50 graduates
-df_colleges <- df_colleges[df_colleges$graduates_number > 50,]
-
-### Recode rare specialization types in universities and colleges
-df_colleges$speciality_type[df_colleges$speciality_type == "спортивный"] <- "общий"
-df_universities$specialization_type[df_universities$specialization_type == "спортивный"] <- "специализированный"
 
 # Adjust salaries in 2014 and 2015 for 2016 prices
 df_colleges$graduate_salary_2014 <- df_colleges$graduate_salary_2014 * 1.237
@@ -109,6 +95,10 @@ df_colleges$graduate_salary_2016 <- df_colleges$graduate_salary_2016*12
 df_universities$salary_2014 <- df_universities$salary_2014*12
 df_universities$salary_2015 <- df_universities$salary_2015*12
 df_universities$salary_2016 <- df_universities$salary_2016*12
+
+df_universities_areas$graduates_salary_2014 <- df_universities_areas$graduates_salary_2014*12
+df_universities_areas$graduates_salary_2015 <- df_universities_areas$graduates_salary_2015*12
+df_universities_areas$graduates_salary_2016 <- df_universities_areas$graduates_salary_2016*12
 
 ```
 
@@ -155,7 +145,9 @@ df_colleges$income_total_mean <- df_colleges %>%
 df_colleges$social_cost <- df_colleges$income_total_mean / (df_colleges$graduates_number*3)
 
 # Remove organizations with 0 social costs
-df_universities <- df_universities[-which(df_universities$social_cost == 0),]
+# Something happened but this code does not work anymore, so I substitute with a dplyr alternative
+# df_universities <- df_universities[-which(df_universities$social_cost == 0),]
+df_universities <- df_universities %>% filter(social_cost!=0)
 
 # Remove organizations with 0 salary for graduates
 df_colleges <- df_colleges[df_colleges$graduate_salary_2013 > 0,]
@@ -211,6 +203,7 @@ calculateIRR <- function(one_row, org_type, return_type){
 
 ### Calculate the IRR
 
+# There is some discrepancy here - code does not run when I use saved df_universities from wp4_part1.Rmd 
 # 1, Universities - Social
 university_social_returns <- c()
 for(i in 1:nrow(df_universities)){university_social_returns <- c(university_social_returns,
@@ -381,6 +374,16 @@ df_colleges_table %>%
 
 
 
+
+
+```{r save data, echo=FALSE}
+
+save("df_universities",file="C:/Country/Russia/Data/SEASHELL/SEABYTE/edreru/wp4/df_universities.rda")
+save("df_universities_areas",file="C:/Country/Russia/Data/SEASHELL/SEABYTE/edreru/wp4/df_universities_areas.rda")
+save("df_colleges",file="C:/Country/Russia/Data/SEASHELL/SEABYTE/edreru/wp4/df_colleges.rda")
+
+
+```
 
 
 

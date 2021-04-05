@@ -8,10 +8,12 @@ library(openxlsx)
 glimpse(df_region_returns_university_full)
 
 
-mrs <- read.xlsx("C:/Country/Russia/Data/SEASHELL/SEABYTE/edreru/wp3/RoREs_cleaned.xlsx")
+mrs <- read.xlsx("C:/Country/Russia/Data/SEASHELL/SEABYTE/edreru/wp3/RoREs_cleaned.xlsx") %>%
+        dplyr::select(OKATO)
 
 
 dfc_ <- left_join(df_region_returns_college ,mrs,by=c("region"="OKATO"))
+glimpse(dfc_)
 
 dfc_$pr_coll <- dfc_$private_returns*100
 dfc_$sr_coll <- dfc_$social_returns*100
@@ -36,7 +38,7 @@ library(tables)
 #                                                              data=dfcu
 
 dfcu_t <- tabular((Regions = factor(en_rgnames)) ~  All(dfcu)*(mean),data = dfcu)
-latex(dfcu_t)
+latex.tabular(dfcu_t)
 
 
 library(openxlsx)
@@ -69,8 +71,7 @@ df_universities_table <- df_universities %>%
 write.xlsx(df_universities_table,file="WP5_Universities Social Private Returns.xlsx",asTable = TRUE)
 
 
-tabular( Species ~
-           All(iris)*(mean + sd), data=iris )
+#tabular( Species ~ All(iris)*(mean + sd), data=iris )
 
 
                                                               

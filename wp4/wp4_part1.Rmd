@@ -3,13 +3,16 @@ title: "R Notebook"
 output:
   html_document:
     df_print: paged
+  pdf_document: 
+    latex_engine: xelatex
+    keep_tex: yes
 ---
 
 # Part 1. Descriptive statistics
 
 
 ```{r Libraries, include=FALSE}
-
+options("rgdal_show_exportToProj4_warnings"="none") #to supress warnings
 library(tidyverse)
 library(sp)
 library(maptools)
@@ -44,7 +47,7 @@ library(jsonlite)
 library(rangeMapper)
 library(geojsonio)
 library(descr)
-library(BaylorEdPsych)
+library(BaylorEdPsych) # install from archive as of Apr 4, 2021
 library(mvnmle)
 library(mice)
 library(Amelia)
@@ -76,7 +79,7 @@ df_universities <- df_universities[df_universities$salary_2016 != 0,]
 df_colleges <- df_colleges[df_colleges$graduates_number > 50,]
 
 
-### Remove outliers of salaries
+### Remove outliers on base reported salaries
 
 # Colleges
 high_quant <- quantile(df_colleges$graduate_salary_2014, 0.99)
@@ -91,11 +94,11 @@ df_universities <- df_universities[df_universities$salary_2014 < high_quant,]
 df_universities <- df_universities[df_universities$salary_2014 > low_quant,]
 
 
-### Caclulate rate of salary change
+### Calculate rate of salary change to eliminate outliers 
 
 # Calculate rate of salary change for universities
 df_universities$rate_salary_change <- df_universities$salary_2016 / df_universities$salary_2014
-# Remove outlier
+# Remove outliers 
 high_quant <- quantile(df_universities$rate_salary_change, 0.99)
 low_quant <- quantile(df_universities$rate_salary_change, 0.01)
 df_universities$rate_salary_change[df_universities$rate_salary_change > high_quant] <- NA
@@ -103,7 +106,7 @@ df_universities$rate_salary_change[df_universities$rate_salary_change < low_quan
 
 # Calculate rate of salary change for colleges
 df_colleges$rate_salary_change <- df_colleges$graduate_salary_2016 / df_colleges$graduate_salary_2014
-# Remove outlier
+# Remove outliers 
 high_quant <- quantile(df_colleges$rate_salary_change, 0.99)
 low_quant <- quantile(df_colleges$rate_salary_change, 0.01)
 df_colleges$rate_salary_change[df_colleges$rate_salary_change > high_quant] <- NA
@@ -131,14 +134,13 @@ df_universities <- df_universities %>%
 df_colleges$speciality_type[df_colleges$speciality_type == "спортивный"] <- "общий"
 df_universities$specialization_type[df_universities$specialization_type == "спортивный"] <- "специализированный"
 
-### Remove outliers from Income and PaidServices
+### Remove outliers from Income and Paid Services
 
 removeOutliers <- function(vec, q=0.01){
-  
   # Calculate low and high threshold for outliers based on quantile value q
   low_q <- quantile(vec, q, na.rm=T)
   high_q <- quantile(vec, 1 - q, na.rm=T)
-  # Overwrite outliers with NA's
+  # Overwrite outliers with NAs 
   vec[vec > high_q] <- NA
   vec[vec < low_q] <- NA
   
@@ -236,8 +238,9 @@ gadm.prj$universities_number <- df_temp$count
 
 ### Remove outliers from df_universities_areas
 
-# Remove low number of graduates
-df_universities_areas <- df_universities_areas[df_universities_areas$graduates_number >= 30,]
+# Remove low number of graduates from an area - at least 30
+# SP removed April 04, 2021
+# df_universities_areas <- df_universities_areas[df_universities_areas$graduates_number >= 30,]
 
 # Remove outliers in the 2014 salary
 high_quant <- quantile(df_universities_areas$graduates_salary_2014, 0.99)
@@ -251,7 +254,7 @@ low_quant <- quantile(df_universities_areas$graduates_salary_2016, 0.01)
 df_universities_areas <- df_universities_areas[df_universities_areas$graduates_salary_2016 < high_quant,]
 df_universities_areas <- df_universities_areas[df_universities_areas$graduates_salary_2016 > low_quant,]
 
-# Calculate graduate salary change
+# Calculate graduate salary change to remove them
 df_universities_areas$rate_salary_change <- df_universities_areas$graduates_salary_2016/df_universities_areas$graduates_salary_2014
 high_quant <- quantile(df_universities_areas$rate_salary_change, 0.99)
 low_quant <- quantile(df_universities_areas$rate_salary_change, 0.01)
@@ -346,14 +349,15 @@ grid.arrange(plot1, plot2, ncol=2)
 ```{r Plot 4. Graduate salary and rate of salary increase colored by specialization, echo=FALSE, fig.width = 16, fig.height = 8}
 
 # 1. Colleges
+# na.rm=T supresses warnings about eliminated points due to NAs 
 plot2 <- ggplot(df_colleges, aes(x=graduate_salary_2014, y=rate_salary_change)) +
-  geom_point() + geom_smooth(method="lm") + theme_minimal() + theme(plot.title = element_text(size = 18), axis.text = element_text(size=14)) +
+  geom_point(na.rm=T) + geom_smooth(method="lm",na.rm=T,formula=y~x) + theme_minimal() + theme(plot.title = element_text(size = 18), axis.text = element_text(size=14)) +
   labs(x="Average salary in 2014", y = "Rate of Salary Increase in 2016") + 
   ggtitle("Salary of College Graduates and Rate of Salary Increase")
 
 # 2. Universities
 plot1 <- ggplot(df_universities, aes(x=salary_2014, y=rate_salary_change)) +
-  geom_point() + geom_smooth(method="lm") + theme_minimal() + theme(plot.title = element_text(size = 18), axis.text = element_text(size=14)) +
+  geom_point(na.rm=T) + geom_smooth(method="lm",na.rm=T,formula=y~x) + theme_minimal() + theme(plot.title = element_text(size = 18), axis.text = element_text(size=14)) +
   labs(x="Average salary in 2014", y = "Rate of Salary Increase in 2016") + 
   ggtitle("Salary of University Graduates and Rate of Salary Increase")
 
@@ -430,5 +434,11 @@ tmap_arrange(plot1, plot2, nrow=2)
 ```
 
 
+```{r save data, echo=FALSE}
+
+save("df_universities",file="C:/Country/Russia/Data/SEASHELL/SEABYTE/edreru/wp4/df_universities.rda")
+save("df_universities_areas",file="C:/Country/Russia/Data/SEASHELL/SEABYTE/edreru/wp4/df_universities_areas.rda")
+save("df_colleges",file="C:/Country/Russia/Data/SEASHELL/SEABYTE/edreru/wp4/df_colleges.rda")
 
 
+```

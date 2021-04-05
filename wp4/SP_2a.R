@@ -347,6 +347,7 @@ p2 <- ggplot(data=rus1.sf_) + geom_sf(aes(fill=cat15)) +
         legend.key.size = unit(0.5, "lines")) +
   guides(shape = guide_legend(override.aes = list(size = 0.5)),
          color = guide_legend(override.aes = list(size = 0.5)))
+
 a <- theme_get()
 p2 <- p2 + theme_set(a) + cowplot::draw_label("2015", hjust=0,vjust=2,size=8) +  theme(axis.text.x = element_blank(),
                                                                                        axis.text.y = element_blank(),

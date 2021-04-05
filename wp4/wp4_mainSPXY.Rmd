@@ -1,12 +1,12 @@
 ---
 title: "Working Paper 5"
 output:
+  html_document:
+    df_print: paged
+  html_notebook: default
   pdf_document:
     keep_tex: yes
     latex_engine: xelatex
-  html_notebook: default
-  html_document:
-    df_print: paged
 ---
 
 
@@ -297,7 +297,7 @@ kableExtra::kable(df_desc)
 
 ```{r Plot 1. Salary of graduates by specialization type, echo=FALSE, warning=FALSE, fig.width = 25, fig.height = 12}
 
-setwd("C:/Country/Russia/Data/SEASHELL/SEABYTE/edreru/wp5") 
+setwd("C:/Country/Russia/Data/SEASHELL/SEABYTE/edreru/wp4") 
 # 1. Universities
 plot1 <- ggplot(df_universities, aes(reorder(specialization_type, salary_2014/12), salary_2014/12)) +
   geom_boxplot(outlier.shape = NA, fill="deepskyblue2") + 
@@ -881,7 +881,7 @@ df_region_returns_university$year <- as.character(df_region_returns_university$y
 
 ```{r Preprocessing for plotting, include=FALSE}
 
-setwd("C:/Country/Russia/Data/SEASHELL/SEABYTE/edreru/wp5")
+setwd("C:/Country/Russia/Data/SEASHELL/SEABYTE/edreru/wp4")
 
 # Extract region names for plotting
 temp_df <- rbind(df_colleges %>% dplyr::select(OKATO, region_name), df_universities %>% dplyr::select(OKATO, region_name))
@@ -1026,7 +1026,7 @@ The average levels of social returns of college and university graduates in a re
 
 ```{r Plot 3. Scatterplot. Social Returns by regions, echo=FALSE, fig.height=8, fig.width=8}
 
-setwd("C:/Country/Russia/Data/SEASHELL/SEABYTE/edreru/wp5")
+setwd("C:/Country/Russia/Data/SEASHELL/SEABYTE/edreru/wp4")
 
 # Preprocessing for plotting
 df_temp.1 <- df_region_returns_university_full %>%
@@ -1197,7 +1197,7 @@ df_universities_table <- df_universities_table[c(1:select_top_bottom_n,
 ```
 
 
-Bellow, you can the tables with Top-10 and Bottom-10 universities/colleges ranked according to the social IRR.
+Below, the tables with Top-10 and Bottom-10 universities/colleges ranked according to the social IRR.
 
 
 ```{r Plot 1. Kable Table with Top-10/Bottom-10 Universities by social returns, echo=FALSE}
@@ -1269,7 +1269,7 @@ The provided data allow us to map the educational organizations according to the
 
 ```{r Plot 3. Map of Social Returns in Moscow Universities, echo=FALSE, fig.width=8, fig.height=8}
 
-#register_google('AIzaSyCgMUoTSCJ2fXSj3Au6XnGwrAyk1BnQbcQ', write = TRUE)
+register_google('AIzaSyCgMUoTSCJ2fXSj3Au6XnGwrAyk1BnQbcQ', write = TRUE)
 map_mo <- get_googlemap(center="Moscow", zoom=11, maptype='roadmap', language = 'ru', color='bw',
                         source='google', size = c(1000, 1000),
                         style = c(feature="all",element="labels",visibility="off")) 
@@ -1279,7 +1279,7 @@ df_universities$social_returns_cat <- cut(
   df_universities$social_returns, 3, labels=c("low", "medium", "high"))
 
 # Subset of Moscow and MO colleges
-df_universities_moscow <- df_universities %>% filter(region_name == "Moscow")
+df_universities_moscow <- df_universities %>% filter(region_name == "Москва")
 
 # Create 3 categories of social returns based on Moscow data
 # df_universities_moscow$social_returns_cat <- cut(
@@ -1310,7 +1310,7 @@ df_colleges$social_returns_cat <- cut(
   df_colleges$social_returns, 3, labels=c("low", "medium", "high"))
 
 # Subset of SPB colleges
-df_colleges_spb <- df_colleges %>% filter(region_name == "Saint-Petersburg")
+df_colleges_spb <- df_colleges %>% filter(region_name == "Санкт-Петербург")
 
 ## Create 3 categories of social returns based on Spb data
 # df_colleges_spb$social_returns_cat <- cut(

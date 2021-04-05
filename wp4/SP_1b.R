@@ -4,7 +4,7 @@
 library(ggplot2)
 df_universities <- df_universities
 
-setwd("C:/Country/Russia/Data/SEASHELL/SEABYTE/edreru/wp5")
+setwd("C:/Country/Russia/Data/SEASHELL/SEABYTE/edreru/wp4")
 
 (median(df_universities$salary_2014))/12
 # 30521
@@ -47,7 +47,7 @@ grid.arrange(plot2, plot1, ncol=2)
 glimpse(df_universities)
 
 #########################################
-setwd("C:/Country/Russia/Data/SEASHELL/SEABYTE/edreru/wp5")
+setwd("C:/Country/Russia/Data/SEASHELL/SEABYTE/edreru/wp4")
 
 # Load dataset
 df_russia_economic <- openxlsx::read.xlsx("ICSID Russia Regions economic database v121.xlsx")
@@ -88,7 +88,7 @@ ggsave("igap_u.png")
 
 glimpse(df_region_returns_university)
 
-setwd("C:/Country/Russia/Data/SEASHELL/SEABYTE/edreru/wp5")
+setwd("C:/Country/Russia/Data/SEASHELL/SEABYTE/edreru/wp4")
 df_region_returns_college$diff_returns <- df_region_returns_college$private_returns - df_region_returns_college$social_returns
 
 # Add reg_minckfd

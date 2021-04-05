@@ -81,8 +81,8 @@ plot2 <- ggplot(df_colleges, aes(reorder(speciality_type, social_returns), socia
 plot_grid <- grid.arrange(plot2, plot1, ncol=2)
 
 plot(plot_grid)
-setwd("C:/Country/Russia/Data/SEASHELL/SEABYTE/edreru/wp5")
-ggsave(filename = "returns_by_areas.png", plot_grid, width=25, height=12)
+setwd("C:/Country/Russia/Data/SEASHELL/SEABYTE/edreru/wp4")
+ggsave(filename = "returns_by_areasEN.png", plot_grid, width=25, height=12)
 
 
 
