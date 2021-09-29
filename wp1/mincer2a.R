@@ -333,6 +333,10 @@ g <- gridExtra::grid.arrange(g1, g2, g3, nrow = 1, ncol = 3)
 ggsave("earnings_ratio.png", g, width = 12, height = 6,
        units = "in")
 
+
+# save as MS-Excel file
+write.xlsx(edu_ratio, file='edu_ratio.xlsx')
+
 ### Age-earning Profiles by Level of Education
 
 ############
@@ -371,6 +375,38 @@ g1 <- ggplot(temp_,aes(x=AGE,y=wage_c18,group=as.factor(edu_4),color=as.factor(e
   guides(shape = FALSE,
          colour = guide_legend(override.aes = list(color = c("#D50B53","#824CA7","#B9C406"),
                                                    linetype = c('longdash', 'dotted', 'solid'))))
+
+
+
+# SP Sept 27, 2021 - MS- Excel chart of HSE Journal Figure 4a
+loess.sec <- stats::loess(wage_c18 ~ AGE, data = temp_[temp_$edu_4=='Secondary',])
+loess.predict.sec <- predict(loess.sec, se = F)
+
+loess.voc <- stats::loess(wage_c18 ~ AGE, data = temp_[temp_$edu_4=='Vocational',])
+loess.predict.voc <- predict(loess.voc, se = F)
+
+loess.high <- stats::loess(wage_c18 ~ AGE, data = temp_[temp_$edu_4=='Higher',])
+loess.predict.high <- predict(loess.high, se = F)
+
+
+loess.df98S <- data.frame(AGE = temp_[temp_$edu_4 == 'Secondary', "AGE"],
+                       loess.sec = loess.predict.sec) %>% distinct() %>% arrange(AGE)
+
+loess.df98V <- data.frame(AGE = temp_[temp_$edu_4 == 'Vocational', "AGE"],
+                          loess.voc = loess.predict.voc)  %>% distinct() %>% arrange(AGE)
+
+loess.df98H <- data.frame(AGE = temp_[temp_$edu_4 == 'Higher', "AGE"],
+                          loess.high = loess.predict.high)   %>% distinct() %>% arrange(AGE)
+
+# ggplot()+ geom_smooth(data=loess.df98S,aes(x=AGE,y=loess.sec),se=F)+coord_cartesian(ylim=c(5000,40000))+
+#           geom_smooth(data=loess.df98V,aes(x=AGE,y=loess.voc),se=F)+coord_cartesian(ylim=c(5000,40000))+
+#           geom_smooth(data=loess.df98H,aes(x=AGE,y=loess.high),se=F)+coord_cartesian(ylim=c(5000,40000))
+
+
+xl_lst98 <- list('Secondary98' = loess.df98S, 'Vocational98' = loess.df98V, 'Higher98' = loess.df98H)
+
+
+
 ###
 
 temp_ <- df_mincer2 %>% filter(YEAR==2006) 
@@ -393,8 +429,32 @@ g2 <- ggplot(temp_,aes(x=AGE,y=wage_c18,group=as.factor(edu_4),color=as.factor(e
         plot.title = element_text(hjust = 0.5, size = 20)) +
   ggtitle('2006')
 
-###
 
+# SP Sept 28, 2021 - MS- Excel chart of HSE Journal Figure 4b
+loess.sec <- stats::loess(wage_c18 ~ AGE, data = temp_[temp_$edu_4=='Secondary',])
+loess.predict.sec <- predict(loess.sec, se = F)
+
+loess.voc <- stats::loess(wage_c18 ~ AGE, data = temp_[temp_$edu_4=='Vocational',])
+loess.predict.voc <- predict(loess.voc, se = F)
+
+loess.high <- stats::loess(wage_c18 ~ AGE, data = temp_[temp_$edu_4=='Higher',])
+loess.predict.high <- predict(loess.high, se = F)
+
+
+loess.df06S <- data.frame(AGE = temp_[temp_$edu_4 == 'Secondary', "AGE"],
+                          loess.sec = loess.predict.sec) %>% distinct() %>% arrange(AGE)
+
+loess.df06V <- data.frame(AGE = temp_[temp_$edu_4 == 'Vocational', "AGE"],
+                          loess.voc = loess.predict.voc)  %>% distinct() %>% arrange(AGE)
+
+loess.df06H <- data.frame(AGE = temp_[temp_$edu_4 == 'Higher', "AGE"],
+                          loess.high = loess.predict.high)   %>% distinct() %>% arrange(AGE)
+
+
+xl_lst06 <- list('Secondary06' = loess.df06S, 'Vocational06' = loess.df06V, 'Higher06' = loess.df06H)
+
+
+###
 temp_ <- df_mincer2 %>% filter(YEAR==2018) 
 g3 <- ggplot(temp_,aes(x=AGE,y=wage_c18,group=as.factor(edu_4),color=as.factor(edu_4))) +
   geom_smooth(aes(linetype = edu_4), se=FALSE, lwd=2, method=loess)+
@@ -414,6 +474,41 @@ g3 <- ggplot(temp_,aes(x=AGE,y=wage_c18,group=as.factor(edu_4),color=as.factor(e
         legend.position = 'none',
         plot.title = element_text(hjust = 0.5, size = 20)) +
   ggtitle('2018')
+
+# SP Sept 28, 2021 - MS- Excel chart of HSE Journal Figure 4c
+
+loess.sec <- stats::loess(wage_c18 ~ AGE, data = temp_[temp_$edu_4=='Secondary',])
+loess.predict.sec <- predict(loess.sec, se = F)
+
+loess.voc <- stats::loess(wage_c18 ~ AGE, data = temp_[temp_$edu_4=='Vocational',])
+loess.predict.voc <- predict(loess.voc, se = F)
+
+loess.high <- stats::loess(wage_c18 ~ AGE, data = temp_[temp_$edu_4=='Higher',])
+loess.predict.high <- predict(loess.high, se = F)
+
+
+loess.df18S <- data.frame(AGE = temp_[temp_$edu_4 == 'Secondary', "AGE"],
+                          loess.sec = loess.predict.sec) %>% distinct() %>% arrange(AGE)
+
+loess.df18V <- data.frame(AGE = temp_[temp_$edu_4 == 'Vocational', "AGE"],
+                          loess.voc = loess.predict.voc)  %>% distinct() %>% arrange(AGE)
+
+loess.df18H <- data.frame(AGE = temp_[temp_$edu_4 == 'Higher', "AGE"],
+                          loess.high = loess.predict.high)   %>% distinct() %>% arrange(AGE)
+
+
+xl_lst18 <- list('Secondary18' = loess.df18S, 'Vocational18' = loess.df18V, 'Higher18' = loess.df18H)
+
+# Now get list of 9 sheets 
+
+xl_lst_ <- append(xl_lst98,xl_lst06)
+xl_lst  <- append(xl_lst_,xl_lst18)
+# Housekeeping
+rm(xl_lst98,xl_lst06,xl_lst18,xl_lst_)
+
+write.xlsx(xl_lst, file = "fig4_.xlsx")
+
+
 
 g <- gridExtra::grid.arrange(g1, g2, g3, nrow = 1, ncol = 3)
 
@@ -627,25 +722,32 @@ ggsave("re_edu.png", width = 10, height = 7, units = "in")
 
 # Obtaining loess points to reproduce the graph in MS-Excel
 # Total
-loess.tot <- stats::loess(value ~ YEAR, data = RoREs_edu[RoREs_edu$variable == 'Total',])
+loess.tot <- stats::loess(value ~ YEAR, data = RoREs_edu[RoREs_edu$variable == 'returns_to_edu_all',])
 loess.predict.tot <- predict(loess.tot, se = F)
+raw.tot <- RoREs_edu[RoREs_edu$variable == 'returns_to_edu_all','value']
+names(raw.tot) <- 'raw.tot'
 
 # Females
-loess.fem <- stats::loess(value ~ YEAR, data = RoREs_edu[RoREs_edu$variable == 'Females',])
+loess.fem <- stats::loess(value ~ YEAR, data = RoREs_edu[RoREs_edu$variable == 'returns_to_edu_f',])
 loess.predict.fem <- predict(loess.fem, se = F)
+raw.fem <- RoREs_edu[RoREs_edu$variable == 'returns_to_edu_f','value']
+names(raw.fem) <- 'raw.fem'
 
 # Males
-loess.male <- stats::loess(value ~ YEAR, data = RoREs_edu[RoREs_edu$variable == 'Males',])
+loess.male <- stats::loess(value ~ YEAR, data = RoREs_edu[RoREs_edu$variable == 'returns_to_edu_m',])
 loess.predict.male <- predict(loess.male, se = F)
+raw.male <- RoREs_edu[RoREs_edu$variable == 'returns_to_edu_m','value']
+names(raw.male) <- 'raw.male'
 
 # Combining all points into a dataframe
-loess.df <- data.frame(YEAR = RoREs_edu[RoREs_edu$variable == 'Females', "YEAR"],
+fig5.df <- data.frame(YEAR = RoREs_edu[RoREs_edu$variable == 'returns_to_edu_f', "YEAR"],
                        loess.fem = loess.predict.fem, 
                        loess.male = loess.predict.male,
-                       loess.tot = loess.predict.tot)
+                       loess.tot = loess.predict.tot,
+                       raw.tot,raw.fem,raw.male)
 
 # Saving in .xlsx format
-write.xlsx(loess.df, file="loess1.xlsx")
+write.xlsx(fig5.df, file="fig5_.xlsx")
 
 # Plotting for males and females only
 RoREs_edu2 <- RoREs_edu %>% filter(variable=="Males"|variable=="Females")
@@ -702,6 +804,79 @@ ggplot(RoREs_HE_VE_all, aes(YEAR, value, group = variable, color = variable,
   scale_x_discrete(breaks = x_axis) +
   ylab("Rate of returns, %") +
   xlab("Year")
+
+# Obtaining loess points to reproduce the graph in MS-Excel
+# Total
+
+RoREs_HE_VE_all <- read.xlsx("RoREs_edu2.xlsx") # some prior version saved and used
+
+
+# Fig 6a in HSE journal paper
+loess.he <- stats::loess(R_HE ~ YEAR, data = RoREs_HE_VE_all[RoREs_HE_VE_all$variable == 'returns_to_edu_all',])
+loess.predict.he <- predict(loess.he, se = F)
+raw.he <- RoREs_HE_VE_all[RoREs_HE_VE_all$variable == 'returns_to_edu_all','R_HE']
+names(raw.he) <- 'HE'
+
+loess.ve <- stats::loess(R_VE ~ YEAR, data = RoREs_HE_VE_all[RoREs_HE_VE_all$variable == 'returns_to_edu_all',])
+loess.predict.ve <- predict(loess.ve, se = F)
+raw.ve <- RoREs_HE_VE_all[RoREs_HE_VE_all$variable == 'returns_to_edu_all','R_VE']
+names(raw.ve) <- 'VE'
+
+# Combining all points into a dataframe
+fig6a.df <- data.frame(YEAR = RoREs_HE_VE_all[RoREs_HE_VE_all$variable == 'returns_to_edu_all', "YEAR"],
+                      loess.he = loess.predict.he, 
+                      loess.ve = loess.predict.ve,
+                      raw.he,raw.ve)
+# Saving in .xlsx format
+write.xlsx(fig6a.df, file="fig6a_.xlsx")
+
+
+# Figure 7a in HSE journal paper
+loess.hef <- stats::loess(R_HEF ~ YEAR, data = RoREs_HE_VE_all[RoREs_HE_VE_all$variable == 'returns_to_edu_all',])
+loess.predict.hef <- predict(loess.hef, se = F)
+raw.hef <- RoREs_HE_VE_all[RoREs_HE_VE_all$variable == 'returns_to_edu_all','R_HEF']
+names(raw.hef) <- 'HEF'
+
+loess.vef <- stats::loess(R_VEF ~ YEAR, data = RoREs_HE_VE_all[RoREs_HE_VE_all$variable == 'returns_to_edu_all',])
+loess.predict.vef <- predict(loess.vef, se = F)
+raw.vef <- RoREs_HE_VE_all[RoREs_HE_VE_all$variable == 'returns_to_edu_all','R_VEF']
+names(raw.vef) <- 'VEF'
+
+# Combining all points into a dataframe
+fig7a.df <- data.frame(YEAR = RoREs_HE_VE_all[RoREs_HE_VE_all$variable == 'returns_to_edu_all', "YEAR"],
+                       loess.hef = loess.predict.hef, 
+                       loess.vef = loess.predict.vef,
+                       raw.hef,raw.vef)
+# Saving in .xlsx format
+write.xlsx(fig7a.df, file="fig7a_.xlsx")
+
+
+# Figure 7b in HSE journal paper
+loess.hem <- stats::loess(R_HEM ~ YEAR, data = RoREs_HE_VE_all[RoREs_HE_VE_all$variable == 'returns_to_edu_all',])
+loess.predict.hem <- predict(loess.hem, se = F)
+raw.hem <- RoREs_HE_VE_all[RoREs_HE_VE_all$variable == 'returns_to_edu_all','R_HEM']
+names(raw.hem) <- 'HEM'
+
+loess.vem <- stats::loess(R_VEM ~ YEAR, data = RoREs_HE_VE_all[RoREs_HE_VE_all$variable == 'returns_to_edu_all',])
+loess.predict.vem <- predict(loess.vem, se = F)
+raw.vem <- RoREs_HE_VE_all[RoREs_HE_VE_all$variable == 'returns_to_edu_all','R_VEM']
+names(raw.vem) <- 'VEM'
+
+# Combining all points into a dataframe
+fig7b.df <- data.frame(YEAR = RoREs_HE_VE_all[RoREs_HE_VE_all$variable == 'returns_to_edu_all', "YEAR"],
+                       loess.hem = loess.predict.hem, 
+                       loess.vem = loess.predict.vem,
+                       raw.hem,raw.vem)
+# Saving in .xlsx format
+write.xlsx(fig7b.df, file="fig7b_.xlsx")
+
+
+
+
+
+
+
+
 
 # Saving
 ggsave("re_HE_all.png", width = 7, height = 7,

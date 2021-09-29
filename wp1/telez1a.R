@@ -65,3 +65,36 @@ ggplot(data=telez1b , aes(YEAR, value, group = variable,
 # Saving
 ggsave("telez1a.png", width = 7, height = 7,
        units = "in")
+
+
+# Loess version data
+
+# Figure 6b in HSE journal paper
+loess.tot <- stats::loess(en_all ~ as.numeric(YEAR), data = telez1a, na.action=na.exclude)
+loess.predict.tot <- predict(loess.tot, se = F)
+en.all <- telez1a['en_all']
+names(en.all) <- 'en_all'
+
+# Females
+loess.fem <- stats::loess(en_f ~ as.numeric(YEAR), data = telez1a, na.action=na.exclude)
+loess.predict.fem <- predict(loess.fem, se = F)
+en.f <- telez1a['en_f']
+names(en.f) <- 'en_f'
+
+# Males
+loess.male <- stats::loess(en_m ~ as.numeric(YEAR), data = telez1a, na.action=na.exclude)
+loess.predict.male <- predict(loess.male, se = F)
+en.m <- telez1a['en_m']
+names(en.m) <- 'en_m'
+
+# Combining all points into a dataframe
+fig6b.df <- data.frame(YEAR = telez1a[, "YEAR"],
+                      loess.tot = loess.predict.tot,
+                      loess.fem = loess.predict.fem,
+                      loes.male = loess.predict.male,
+                      en.all,en.f,en.m)
+
+# Saving in .xlsx format
+write.xlsx(fig6b.df, file="fig6b_.xlsx")
+
+
